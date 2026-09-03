@@ -2641,8 +2641,8 @@ function startStandingIndexSubscriptions() {
 
 const distPath = path.join(__dirname, '../frontend/dist');
 app.use(express.static(distPath, { maxAge: '1d', etag: true }));
-app.get('*', (req, res) => {
-  if (req.path.startsWith('/api') || req.path.startsWith('/ws')) return;
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/ws')) return next();
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
