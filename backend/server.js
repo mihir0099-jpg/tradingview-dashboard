@@ -2643,9 +2643,28 @@ app.get('*', (req, res) => {
   res.status(200).send('<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Initializing frontend application...</p></body></html>');
 });
 
+// 24/7 Keep-Alive & Self-Healing Heartbeat Engine
+function start247KeepAliveEngine(port) {
+  const publicUrl = process.env.RENDER_EXTERNAL_URL || 'https://tradingview-dashboard-1.onrender.com';
+  console.log(`[24/7 Self-Healing Engine] Started keep-alive heartbeat pinging ${publicUrl}/health every 5 minutes...`);
+
+  setInterval(() => {
+    fetch(`${publicUrl}/health`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(`[24/7 Heartbeat] Public keep-alive ping successful @ ${new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })}`);
+      })
+      .catch(err => {
+        console.warn(`[24/7 Heartbeat] Public ping warning (retrying via localhost):`, err.message || err);
+        fetch(`http://localhost:${port}/health`).catch(() => {});
+      });
+  }, 5 * 60 * 1000);
+}
+
 const PORT = process.env.PORT || 3002;
 server.listen(PORT, () => {
   console.log(`Backend server listening on port ${PORT}`);
   startPostMarketScheduler();
   startStandingIndexSubscriptions();
+  start247KeepAliveEngine(PORT);
 });
