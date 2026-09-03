@@ -1,0 +1,10 @@
+import fs from 'fs';
+
+const content = fs.readFileSync('C:/Users/mihir/.gemini/antigravity/scratch/tradingview-dashboard/frontend/src/components/BacktestResultsContainer.tsx', 'utf8');
+const lines = content.split('\n');
+
+lines.forEach((line, idx) => {
+  if (line.includes('livePrice') || line.includes('livePrices') || line.includes('setLivePrice')) {
+    console.log(`L${idx + 1}: ${line.trim()}`);
+  }
+});

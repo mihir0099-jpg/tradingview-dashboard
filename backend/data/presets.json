@@ -1,0 +1,6926 @@
+[
+  {
+    "value": "NSE:NIFTY",
+    "label": "Nifty 50 Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "MCX:CRUDEOIL1!",
+    "label": "Crude Oil Futures",
+    "type": "futures",
+    "exchange": "MCX"
+  },
+  {
+    "value": "NSE:BANKNIFTY",
+    "label": "Nifty Bank Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "BSE:SENSEX",
+    "label": "SENSEX Index",
+    "type": "index",
+    "exchange": "BSE"
+  },
+  {
+    "value": "NSE:FINNIFTY",
+    "label": "Nifty Financial Services Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MIDCPNIFTY",
+    "label": "Nifty Midcap Select Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXIT",
+    "label": "Nifty IT Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXAUTO",
+    "label": "Nifty Auto Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXMETAL",
+    "label": "Nifty Metal Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXPHARMA",
+    "label": "Nifty Pharma Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXPSUBANK",
+    "label": "Nifty PSU Bank Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXENERGY",
+    "label": "Nifty Energy Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXINFRA",
+    "label": "Nifty Infra Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNXFMGC",
+    "label": "Nifty FMCG Index",
+    "type": "index",
+    "exchange": "NSE"
+  },
+  {
+    "value": "BSE:BANKEX",
+    "label": "BSE Bankex Index",
+    "type": "index",
+    "exchange": "BSE"
+  },
+  {
+    "value": "NSE:NIFTY1!",
+    "label": "Nifty Index Futures",
+    "type": "futures",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BANKNIFTY1!",
+    "label": "Bank Nifty Index Futures",
+    "type": "futures",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FINNIFTY1!",
+    "label": "Finnifty Index Futures",
+    "type": "futures",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:20MICRONS",
+    "label": "20 Microns Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:360ONE",
+    "label": "360 One Wam Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:3BBLACKBIO",
+    "label": "3B BlackBio Dx Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:3MINDIA",
+    "label": "3M India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:5PAISA",
+    "label": "5paisa Capital Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:63MOONS",
+    "label": "63 Moons Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AADHARHFC",
+    "label": "Aadhar Housing Finance Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AARTIDRUGS",
+    "label": "Aarti Drugs Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AARTIIND",
+    "label": "AARTI Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AARTIPHARM",
+    "label": "Aarti Pharmalabs Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AARTISURF",
+    "label": "Aarti Surfactants Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AAVAS",
+    "label": "Aavas Financiers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABB",
+    "label": "ABB India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABBOTINDIA",
+    "label": "Abbott India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABCAPITAL",
+    "label": "Aditya Birla Capital Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABCOTS",
+    "label": "AB Cotspin India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABDL",
+    "label": "Allied Blenders and Distillers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABMKNO",
+    "label": "ABM Knowledgeware Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABREL",
+    "label": "Aditya Birla Real Estate Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABSLAMC",
+    "label": "Aditya Birla Sun Life Amc Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ABSMARINE",
+    "label": "ABS Marine Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACC",
+    "label": "ACC Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACCELYA",
+    "label": "Accelya Solutions India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACCENTMIC",
+    "label": "Accent Microcell Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACCPL",
+    "label": "Accretion Pharmaceuticals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACE",
+    "label": "Action Construction Equipment Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACI",
+    "label": "Archean Chemical Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACMESOLAR",
+    "label": "ACME Solar Holdings Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACTIVEINFR",
+    "label": "Active Infrastructures Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ACUTAAS",
+    "label": "Acutaas Chemicals Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADANIENSOL",
+    "label": "Adani Energy Solutions Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADANIENT",
+    "label": "Adani Enterprises Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADANIGREEN",
+    "label": "Adani Green Energy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADANIPORTS",
+    "label": "Adani Ports & Special Economic Zone Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADANIPOWER",
+    "label": "Adani Power Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADFFOODS",
+    "label": "ADF Foods Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADISOFT",
+    "label": "Adisoft Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADOR",
+    "label": "Ador Welding Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADVAIT",
+    "label": "Advait Energy Transitions Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ADVENZYMES",
+    "label": "Advanced Enzyme Technologies Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AEGISLOG",
+    "label": "Aegis Logistics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AEGISVOPAK",
+    "label": "Aegis Vopak Terminals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AEQUS",
+    "label": "Aequs Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AEROFLEX",
+    "label": "Aeroflex Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AEROPLANE",
+    "label": "Amir Chand Jagdish Kumar (Exports) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AETHER",
+    "label": "Aether Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AFCONS",
+    "label": "Afcons Infrastructure Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AFFLE",
+    "label": "Affle 3i Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AFFORDABLE",
+    "label": "Affordable Robotic & Automation Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AFSL",
+    "label": "Abans Financial Services Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AGARIND",
+    "label": "Agarwal Industrial Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AGARWALEYE",
+    "label": "Dr. Agarwal's Health Care Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AGI",
+    "label": "AGI Greenpac Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AGIIL",
+    "label": "Agi Infra Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AHLUCONT",
+    "label": "Ahluwalia Contracts (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AHLWEST",
+    "label": "Asian Hotels (West) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AIAENG",
+    "label": "AIA Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AIIL",
+    "label": "Authum Investment & Infrastucture Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AIMTRON",
+    "label": "Aimtron Electronics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AJANTPHARM",
+    "label": "Ajanta Pharma Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AJAXENGG",
+    "label": "Ajax Engineering Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AKCAPIT",
+    "label": "A. K. Capital Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AKIKO",
+    "label": "Akiko Global Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AKSHARCHEM",
+    "label": "AksharChem India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AKUMS",
+    "label": "Akums Drugs and Pharmaceuticals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALBERTDAVD",
+    "label": "Albert David Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALICON",
+    "label": "Alicon Castalloy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALIVUS",
+    "label": "Alivus Life Sciences Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALKEM",
+    "label": "Alkem Laboratories Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALKYLAMINE",
+    "label": "Alkyl Amines Chemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALLDIGI",
+    "label": "Alldigi Tech Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALLTIME",
+    "label": "All Time Plastics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALPEXSOLAR",
+    "label": "Alpex Solar Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ALPHAGEO",
+    "label": "Alphageo (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMAGI",
+    "label": "Amagi Media Labs Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMANTA",
+    "label": "Amanta Healthcare Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMBER",
+    "label": "Amber Enterprises India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMBIKCO",
+    "label": "Ambika Cotton Mills Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMBUJACEM",
+    "label": "Ambuja Cements Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMCL",
+    "label": "ANB Metal Cast Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMNPLST",
+    "label": "Amines & Plasticizers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AMRUTANJAN",
+    "label": "Amrutanjan Health Care Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANANDRATHI",
+    "label": "Anand Rathi Wealth Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANANTRAJ",
+    "label": "Anant Raj Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANGELONE",
+    "label": "Angel One Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANLON",
+    "label": "Anlon Technology Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANONDITA",
+    "label": "Anondita Medicare Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANTELOPUS",
+    "label": "Antelopus Selan Energy Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANTHEM",
+    "label": "Anthem Biosciences Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANUP",
+    "label": "Anup Engineering Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ANURAS",
+    "label": "Anupam Rasayan India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APARINDS",
+    "label": "APAR Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APCOTEXIND",
+    "label": "Apcotex Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APEX",
+    "label": "Apex Frozen Foods Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APEXECO",
+    "label": "Apex Ecotech Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APLAPOLLO",
+    "label": "APL Apollo Tubes Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APLLTD",
+    "label": "Alembic Pharmaceuticals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APOLLO",
+    "label": "Apollo Micro Systems Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APOLLOHOSP",
+    "label": "Apollo Hospitals Enterprise Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APOLLOPIPE",
+    "label": "Apollo Pipes Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APOLLOTYRE",
+    "label": "Apollo Tyres Limited.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APOLSINHOT",
+    "label": "Apollo Sindoori Hotels Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APS",
+    "label": "Australian Premium Solar (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APSISAERO",
+    "label": "Apsis Aerocom Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:APTUS",
+    "label": "Aptus Value Housing Finance India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARE&M",
+    "label": "Amara Raja Energy & Mobility Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARHAM",
+    "label": "Arham Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARIES",
+    "label": "Aries Agro Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARIHANT",
+    "label": "Arihant Foundations & Housing Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARIHANTSUP",
+    "label": "Arihant Superstructures Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARIS",
+    "label": "ArisInfra Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARMANFIN",
+    "label": "Arman Financial Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARROWGREEN",
+    "label": "Arrow Greentech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARSSBL",
+    "label": "Anand Rathi Share and Stock Brokers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARTEMISMED",
+    "label": "Artemis Medicare Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARVEE",
+    "label": "Arvee Laboratories (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARVIND",
+    "label": "Arvind Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARVINDFASN",
+    "label": "Arvind Fashions Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ARVSMART",
+    "label": "Arvind SmartSpaces Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASAHIINDIA",
+    "label": "Asahi India Glass Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASAHISONG",
+    "label": "Asahi Songwon Colors Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASAL",
+    "label": "Automotive Stampings & Assemblies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASALCBR",
+    "label": "Associated Alcohols & Breweries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASHAPURMIN",
+    "label": "Ashapura Minechem Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASHIANA",
+    "label": "Ashiana Housing Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASHIKA",
+    "label": "Ashika Credit Capital Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASHOKLEY",
+    "label": "Ashok Leyland Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASHWINI",
+    "label": "Ashwini Container Movers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASIANENE",
+    "label": "Asian Energy Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASIANHOTNR",
+    "label": "Asian Hotels (North) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASIANPAINT",
+    "label": "Asian Paints Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASKAUTOLTD",
+    "label": "ASK Automotive Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASPINWALL",
+    "label": "Aspinwall and Company Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASTAR",
+    "label": "Asian Star Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASTEC",
+    "label": "Astec Lifesciences Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASTERDM",
+    "label": "Aster DM Quality Care Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASTRAL",
+    "label": "Astral Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASTRAMICRO",
+    "label": "Astra Microwave Products Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ASTRAZEN",
+    "label": "AstraZeneca Pharma India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ATGL",
+    "label": "Adani Total Gas Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ATHERENERG",
+    "label": "Ather Energy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ATLANTAELE",
+    "label": "Atlanta Electricals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ATUL",
+    "label": "Atul Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ATULAUTO",
+    "label": "Atul Auto Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AUBANK",
+    "label": "AU Small Finance Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AURIONPRO",
+    "label": "Aurionpro Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AUROPHARMA",
+    "label": "Aurobindo Pharma Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AURUM",
+    "label": "Aurum Proptech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AUTOAXLES",
+    "label": "Automotive Axles Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVADHSUGAR",
+    "label": "Avadh Sugar & Energy Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVALON",
+    "label": "Avalon Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVANA",
+    "label": "Avana Electrosystems Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVANTEL",
+    "label": "Avantel Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVANTIFEED",
+    "label": "Avanti Feeds Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVG",
+    "label": "AVG Logistics Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVIENCE",
+    "label": "Avience Biomedicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AVL",
+    "label": "Aditya Vision Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AWFIS",
+    "label": "Awfis Space Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AWHCL",
+    "label": "Antony Waste Handling Cell Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AWL",
+    "label": "AWL Agri Business Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AXISBANK",
+    "label": "Axis Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AXISCADES",
+    "label": "AXISCADES Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AYE",
+    "label": "Aye Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AYMSYNTEX",
+    "label": "AYM Syntex Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:AZAD",
+    "label": "Azad Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAFNAPH",
+    "label": "Bafna Pharmaceuticals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAHETI",
+    "label": "Baheti Recycling Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJCON",
+    "label": "Bajaj Consumer Care Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJELEC",
+    "label": "Bajaj Electricals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJFINSV",
+    "label": "Bajaj Finserv Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJHCARE",
+    "label": "Bajaj Healthcare Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJHLDNG",
+    "label": "Bajaj Holdings & Investment Limited.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJINDEF",
+    "label": "Indef Manufacturing Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJST",
+    "label": "Bajaj Steel Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJAJ_AUTO",
+    "label": "Bajaj Auto Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJEL",
+    "label": "Bajel Projects Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAJFINANCE",
+    "label": "Bajaj Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BALAMINES",
+    "label": "Balaji Amines Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BALKRISIND",
+    "label": "Balkrishna Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BALMLAWRIE",
+    "label": "Balmer Lawrie & Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BALRAMCHIN",
+    "label": "Balrampur Chini Mills Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BALUFORGE",
+    "label": "Balu Forge Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BANARISUG",
+    "label": "Bannari Amman Sugars Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BANCOINDIA",
+    "label": "Banco Products (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BANDHANBNK",
+    "label": "Bandhan Bank Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BANKBARODA",
+    "label": "Bank of Baroda",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BANSALWIRE",
+    "label": "Bansal Wire Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BASF",
+    "label": "BASF India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BASILIC",
+    "label": "Basilic Fly Studio Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BATAINDIA",
+    "label": "Bata India Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BAYERCROP",
+    "label": "Bayer Cropscience India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BBL",
+    "label": "Bharat Bijlee Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BBOX",
+    "label": "Black Box Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BBTC",
+    "label": "Bombay Burmah Trading Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BBTCL",
+    "label": "B&B Triplewall Containers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BCONCEPTS",
+    "label": "Brand Concepts Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BDL",
+    "label": "Bharat Dynamics Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BECTORFOOD",
+    "label": "Mrs. Bector's Food Specialities Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BEEKAY",
+    "label": "Beekay Steel Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BEL",
+    "label": "Bharat Electronics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BELLACASA",
+    "label": "Bella Casa Fashion & Retail Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BELRISE",
+    "label": "Belrise Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BEML",
+    "label": "BEML Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BENGALASM",
+    "label": "Bengal & Assam Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BERGEPAINT",
+    "label": "Berger Paints India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BETA",
+    "label": "Beta Drugs Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BFINVEST",
+    "label": "BF Investment Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BFUTILITIE",
+    "label": "BF Utilities Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BGRENERGY",
+    "label": "BGR Energy Systems Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHAGCHEM",
+    "label": "Bhagiradha Chemicals & Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHAGERIA",
+    "label": "Bhageria Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHAGYANGR",
+    "label": "Bhagyanagar India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHARATFORG",
+    "label": "Bharat Forge Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHARATRAS",
+    "label": "Bharat Rasayan Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHARATSE",
+    "label": "Bharat Seats Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHARATWIRE",
+    "label": "Bharat Wire Ropes Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHARTIARTL",
+    "label": "Bharti Airtel Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHARTIHEXA",
+    "label": "Bharti Hexacom Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BHEL",
+    "label": "Bharat Heavy Electricals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIKAJI",
+    "label": "Bikaji Foods International Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIL",
+    "label": "Bhartiya International Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIMETAL",
+    "label": "Bimetal Bearings Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIOCON",
+    "label": "Biocon Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIRET.RR",
+    "label": "Brookfield India Real Estate Trust",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIRLACABLE",
+    "label": "Birla Cable Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIRLACORPN",
+    "label": "Birla Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BIRLANU",
+    "label": "Birlanu Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLACKBUCK",
+    "label": "Blackbuck Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLAL",
+    "label": "BEML Land Assets Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLISSGVS",
+    "label": "Bliss GVS Pharma Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLS",
+    "label": "BLS International Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLSE",
+    "label": "BLS E-Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLUEDART",
+    "label": "Blue Dart Express Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLUEJET",
+    "label": "Blue Jet Healthcare Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLUESTARCO",
+    "label": "Blue Star Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLUESTONE",
+    "label": "Bluestone Jewellery and Lifestyle Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BLUEWATER",
+    "label": "Blue Water Logistics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BNAGROCHEM",
+    "label": "BN Agrochem Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BNALTD",
+    "label": "B & A Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BORANA",
+    "label": "Borana Weaves Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BOROLTD",
+    "label": "Borosil Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BORORENEW",
+    "label": "Borosil Renewables Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BOSCHLTD",
+    "label": "Bosch Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BOSCH_HCIL",
+    "label": "Bosch Home Comfort India Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BPCL",
+    "label": "Bharat Petroleum Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BRANDMAN",
+    "label": "Brandman Retail Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BRIGADE",
+    "label": "Brigade Enterprises Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BRITANNIA",
+    "label": "Britannia Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BSE",
+    "label": "BSE Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BSOFT",
+    "label": "Birlasoft Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BUILDPRO",
+    "label": "Shankara Buildpro Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:BUTTERFLY",
+    "label": "Butterfly Gandhimathi Appliances Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:C2C",
+    "label": "C2C Advanced Systems Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CAMPUS",
+    "label": "Campus Activewear Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CAMS",
+    "label": "Computer Age Management Services Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CANFINHOME",
+    "label": "Can Fin Homes Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CANHLIFE",
+    "label": "Canara HSBC Life Insurance Company Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CANTABIL",
+    "label": "Cantabil Retail India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CAPACITE",
+    "label": "Capacit'e Infraprojects Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CAPILLARY",
+    "label": "Capillary Technologies India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CAPITALSFB",
+    "label": "Capital Small Finance Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CAPLIPOINT",
+    "label": "Caplin Point Laboratories Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CARBORUNIV",
+    "label": "Carborundum Universal Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CARERATING",
+    "label": "CARE Ratings Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CARRARO",
+    "label": "Carraro India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CARTRADE",
+    "label": "CarTrade Tech Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CARYSIL",
+    "label": "Carysil Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CASTROLIND",
+    "label": "Castrol India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CCL",
+    "label": "CCL Products (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CDSL",
+    "label": "Central Depository Services (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CEATLTD",
+    "label": "CEAT Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CEIGALL",
+    "label": "Ceigall India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CEINSYS",
+    "label": "Ceinsys Tech Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CELLO",
+    "label": "Cello World Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CEMPRO",
+    "label": "Cemindia Projects Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CENTENKA",
+    "label": "Century Enka Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CENTUM",
+    "label": "Centum Electronics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CENTURYPLY",
+    "label": "Century Plyboards (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CERA",
+    "label": "Cera Sanitaryware Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CEWATER",
+    "label": "Concord Enviro Systems Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CGCL",
+    "label": "Capri Global Capital Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CGPOWER",
+    "label": "CG Power & Industrial Solutions Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHALET",
+    "label": "Chalet Hotels Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHAMBLFERT",
+    "label": "Chambal Fertilisers & Chemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHANDAN",
+    "label": "CHANDAN HEALTHCARE LIMITED",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHEMBOND",
+    "label": "Chembond Material Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHEMBONDCH",
+    "label": "Chembond Chemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHEMCON",
+    "label": "Chemcon Speciality Chemicals Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHEMFAB",
+    "label": "Chemfab Alkalis Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHEMPLASTS",
+    "label": "Chemplast Sanmar Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHENNPETRO",
+    "label": "Chennai Petroleum Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHEVIOT",
+    "label": "Cheviot Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHOICEIN",
+    "label": "Choice International Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHOLAFIN",
+    "label": "Cholamandalam Investment and Finance Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CHOLAHLDNG",
+    "label": "Cholamandalam Financial Holdings Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CIEINDIA",
+    "label": "CIE Automotive India Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CIPLA",
+    "label": "Cipla Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CKKRETAIL",
+    "label": "C K K Retail Mart Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CLAYCRAFT",
+    "label": "Clay Craft India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CLEAN",
+    "label": "Clean Science & Technology Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CLEANMAX",
+    "label": "Clean Max Enviro Energy Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CLSEL",
+    "label": "Chaman Lal Setia Exports Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CMPDI",
+    "label": "Central Mine Planning & Design Institute Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CMRGREEN",
+    "label": "CMR Green Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CMSINFO",
+    "label": "CMS Info Systems Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CNL",
+    "label": "Creative Newtech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COALINDIA",
+    "label": "Coal India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COCHINSHIP",
+    "label": "Cochin Shipyard Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COCKERILL",
+    "label": "John Cockerill India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COFORGE",
+    "label": "Coforge Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COHANCE",
+    "label": "Cohance Lifesciences Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COLPAL",
+    "label": "Colgate-Palmolive (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COMMITTED",
+    "label": "Committed Cargo Care Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COMSYN",
+    "label": "Commercial Syn Bags Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CONCOR",
+    "label": "Container Corporation of India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CONCORDBIO",
+    "label": "Concord Biotech Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CONNPLEX",
+    "label": "Connplex Cinemas Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CONSOFINVT",
+    "label": "Consolidated Finvest & Holdings LTd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CONTROLPR",
+    "label": "Control Print Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CORDSCABLE",
+    "label": "Cords Cable Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COROMANDEL",
+    "label": "Coromandel International Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CORONA",
+    "label": "Corona Remedies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:COSMOFIRST",
+    "label": "Cosmo First Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CPEDU",
+    "label": "Career Point Edutech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CPPLUS",
+    "label": "Aditya Infotech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CPS",
+    "label": "C P S Shapers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CRAFTSMAN",
+    "label": "Craftsman Automation Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CRAMC",
+    "label": "Canara Robeco Asset Management Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CREDITACC",
+    "label": "CreditAccess Grameen Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CREST",
+    "label": "Crest Ventures Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CRISIL",
+    "label": "CRISIL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CRIZAC",
+    "label": "Crizac Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CROMPTON",
+    "label": "Crompton Greaves Consumer Electricals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CSBBANK",
+    "label": "CSB Bank Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CSLFINANCE",
+    "label": "CSL Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CUB",
+    "label": "City Union Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CUMMINSIND",
+    "label": "Cummins India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CUPID",
+    "label": "Cupid Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CYIENT",
+    "label": "Cyient Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:CYIENTDLM",
+    "label": "Cyient DLM Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DABUR",
+    "label": "Dabur India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DAICHI",
+    "label": "Dai-Ichi Karkaria Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DALBHARAT",
+    "label": "Dalmia Bharat Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DALMIASUG",
+    "label": "Dalmia Bharat Sugar & Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DANISH",
+    "label": "Danish Power Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DATAMATICS",
+    "label": "Datamatics Global Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DATAPATTNS",
+    "label": "Data Patterns (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DBCORP",
+    "label": "DB Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DBL",
+    "label": "Dilip Buildcon Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DCAL",
+    "label": "Dishman Carbogen Amcis Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DCBBANK",
+    "label": "DCB Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DCI",
+    "label": "Dc Infotech And Communication Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DCMNVL",
+    "label": "DCM Nouvelle Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DCMSHRIRAM",
+    "label": "DCM Shriram Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DCXINDIA",
+    "label": "DCX Systems Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DDEVPLSTIK",
+    "label": "Ddev Plastiks Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DECCANCE",
+    "label": "Deccan Cements Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DECNGOLD",
+    "label": "Deccan Gold Mines Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DEEDEV",
+    "label": "DEE Development Engineers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DEEPAKFERT",
+    "label": "Deepak Fertilisers and Petrochemicals Corporation Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DEEPAKNTR",
+    "label": "Deepak Nitrite Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DEEPINDS",
+    "label": "Deep Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DELHIVERY",
+    "label": "Delhivery Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DENEERS",
+    "label": "De Neers Tools Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DENORA",
+    "label": "De Nora India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DENTA",
+    "label": "Denta Water and Infra Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DENTALKART",
+    "label": "Vasa Denticity Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DHAMPURSUG",
+    "label": "Dhampur Sugar Mills Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DHANUKA",
+    "label": "Dhanuka Agritech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DHARMAJ",
+    "label": "Dharmaj Crop Guard Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DHUNINV",
+    "label": "Dhunseri Investments Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DIACABS",
+    "label": "Diamond Power Infrastructure Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DIAMINESQ",
+    "label": "Diamines & Chemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DIAMONDYD",
+    "label": "Prataap Snacks Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DICIND",
+    "label": "DIC India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DIFFNKG",
+    "label": "Diffusion Engineers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DISAQ",
+    "label": "DISA India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DIVGIITTS",
+    "label": "Divgi TorqTransfer Systems Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DIVISLAB",
+    "label": "Divi's Laboratories Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DIXON",
+    "label": "Dixon Technologies (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DLF",
+    "label": "DLF Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DLINKINDIA",
+    "label": "D-Link (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DMART",
+    "label": "Avenue Supermarts Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DMCC",
+    "label": "DMCC Speciality Chemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DODLA",
+    "label": "Dodla Dairy Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DOLLAR",
+    "label": "Dollar Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DOLPHIN",
+    "label": "Dolphin Offshore Enterprises India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DOMS",
+    "label": "DOMS Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DPABHUSHAN",
+    "label": "D. P. Abhushan Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DPEL",
+    "label": "Divine Power Energy Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DPWIRES",
+    "label": "DP Wires Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DRAGARWQ",
+    "label": "Dr. Agarwal'S Eye Hospital Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DREDGECORP",
+    "label": "Dredging Corporation of India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DRREDDY",
+    "label": "Dr. Reddy's Laboratories Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DSSL",
+    "label": "Dynacons Systems & Solutions Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DTIL",
+    "label": "Dhunseri Tea & Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DVL",
+    "label": "Dhunseri Ventures Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DYCL",
+    "label": "Dynamic Cables Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DYNAMATECH",
+    "label": "Dynamatic Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:DYNPRO",
+    "label": "Dynemic Products Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:E2E",
+    "label": "E2E Networks Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:E2ERAIL",
+    "label": "E To E Transportation Infrastructure Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EBGNG",
+    "label": "Gng Electronics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ECLERX",
+    "label": "eClerx Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ECOLINE",
+    "label": "Ecoline Exim Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EEPL",
+    "label": "Eppeltone Engineers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EFCIL",
+    "label": "EFC (I) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EFFWA",
+    "label": "Effwa Infra & Research Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EICHERMOT",
+    "label": "Eicher Motors Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EIDPARRY",
+    "label": "E.I.D.-Parry (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EIEL",
+    "label": "Enviro Infra Engineers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EIFFL",
+    "label": "Euro India Fresh Foods Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EIHAHOTELS",
+    "label": "EIH Associated Hotels Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EIHOTEL",
+    "label": "EIH Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EIMCOELECO",
+    "label": "Eimco Elecon (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELANTAS",
+    "label": "ELANTAS Beck India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELCIDIN",
+    "label": "Elcid Investments Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELDEHSG",
+    "label": "Eldeco Housing & Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELECON",
+    "label": "Elecon Engineering Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELECTHERM",
+    "label": "Electrotherm (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELGIEQUIP",
+    "label": "ELGI Equipments Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELLEN",
+    "label": "Ellenbarrie Industrial Gases Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ELPROINTL",
+    "label": "Elpro International Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMAMILTD",
+    "label": "Emami Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMBASSY.RR",
+    "label": "Embassy Office Parks REIT",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMCURE",
+    "label": "Emcure Pharmaceuticals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMIL",
+    "label": "Electronics Mart India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMKAY",
+    "label": "Emkay Global Financial Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMMVEE",
+    "label": "Emmvee Photovoltaic Power Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMSLIMITED",
+    "label": "EMS Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EMUDHRA",
+    "label": "eMudhra Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ENCOMPAS",
+    "label": "Encompass Design India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ENDURANCE",
+    "label": "Endurance Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ENFUSE",
+    "label": "Enfuse Solutions Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ENGINERSIN",
+    "label": "Engineers India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ENRIN",
+    "label": "Siemens Energy India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ENTERO",
+    "label": "Entero Healthcare Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EPACK",
+    "label": "Epack Durable Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EPACKPEB",
+    "label": "Epack Prefab Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EPIGRAL",
+    "label": "Epigral Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EPL",
+    "label": "EPL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EPWINDIA",
+    "label": "EPW India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ERIS",
+    "label": "Eris Lifesciences Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ESABINDIA",
+    "label": "Esab India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ESCONET",
+    "label": "Esconet Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ESCORTS",
+    "label": "Escorts Kubota Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ETERNAL",
+    "label": "Eternal Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ETHOSLTD",
+    "label": "Ethos Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ETL",
+    "label": "Emkay Tools Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EUREKAFORB",
+    "label": "Eureka Forbes Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EUROBOND",
+    "label": "Euro Panel Products Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EUROPRATIK",
+    "label": "Euro Pratik Sales Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EVEREADY",
+    "label": "Eveready Industries India Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EVERESTIND",
+    "label": "Everest Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EXCELINDUS",
+    "label": "Excel Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EXICOM",
+    "label": "Exicom Tele-Systems Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EXIDEIND",
+    "label": "Exide Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:EXPLEOSOL",
+    "label": "Expleo Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FACT",
+    "label": "Fertilizers & Chemicals Travancore Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FAIRCHEMOR",
+    "label": "Fairchem Organics Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FAZE3Q",
+    "label": "Faze Three Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FDC",
+    "label": "FDC Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FEDERALBNK",
+    "label": "Federal Bank Ltd. (India)",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FEDFINA",
+    "label": "Fedbank Financial Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FELIX",
+    "label": "Felix Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FERMENTA",
+    "label": "Fermenta Biotech Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FIEMIND",
+    "label": "Fiem Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FINCABLES",
+    "label": "Finolex Cables Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FINEORG",
+    "label": "Fine Organic Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FINPIPE",
+    "label": "Finolex Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FIRSTCRY",
+    "label": "Brainbees Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FIVESTAR",
+    "label": "Five-Star Business Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FLAIR",
+    "label": "Flair Writing Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FLUOROCHEM",
+    "label": "Gujarat Fluorochemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FLYSBS",
+    "label": "FlySBS Aviation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FMGOETZE",
+    "label": "Federal-Mogul Goetze (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FORCAS",
+    "label": "Forcas Studio Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FORCEMOT",
+    "label": "Force Motors Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FORTIS",
+    "label": "Fortis Healthcare Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FOSECOIND",
+    "label": "Foseco India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FRACTAL",
+    "label": "Fractal Analytics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FRESHARA",
+    "label": "Freshara Agro Exports Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FROG",
+    "label": "Frog Innovations Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FRONTSP",
+    "label": "Frontier Springs Limited.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FSL",
+    "label": "Firstsource Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FUSION",
+    "label": "Fusion Finance Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:FWSTC",
+    "label": "Flywings Simulator Training Centre Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GABRIEL",
+    "label": "Gabriel India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GAEL",
+    "label": "Gujarat Ambuja Exports Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GAIL",
+    "label": "GAIL (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GALAPREC",
+    "label": "Gala Precision Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GALAXYSURF",
+    "label": "Galaxy Surfactants Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GALLANTT",
+    "label": "Gallantt Ispat Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GANDHAR",
+    "label": "Gandhar Oil Refinery (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GANDHITUBE",
+    "label": "Gandhi Special Tubes Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GANECOS",
+    "label": "Ganesha Ecosphere Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GANESHCP",
+    "label": "Ganesh Consumer Products Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GANESHHOU",
+    "label": "Ganesh Housing Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GARFIBRES",
+    "label": "Garware Technical Fibres Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GARUDA",
+    "label": "Garuda Construction and Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GCSL",
+    "label": "Gretex Corporate Services Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GEECEE",
+    "label": "GeeCee Ventures Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GEMAROMA",
+    "label": "Gem Aromatics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GENESYS",
+    "label": "Genesys International Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GENUSPOWER",
+    "label": "Genus Power Infrastructures Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GESHIP",
+    "label": "Great Eastern Shipping Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GGBL",
+    "label": "Ganesh Green Bharat Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GHCL",
+    "label": "GHCL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GICRE",
+    "label": "General Insurance Corporation of India",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GILLETTE",
+    "label": "Gillette India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GIPCL",
+    "label": "Gujarat Industries Power Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GJL",
+    "label": "Grover Jewells Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GKSL",
+    "label": "Gujarat Kidney & Super Speciality Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GKWLIMITED",
+    "label": "GKW Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GLAND",
+    "label": "Gland Pharma Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GLAXO",
+    "label": "GlaxoSmithKline Pharmaceuticals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GLENMARK",
+    "label": "Glenmark Pharmaceuticals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GLOBUSSPR",
+    "label": "Globus Spirits Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GLOSTERLTD",
+    "label": "Gloster Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GMBREW",
+    "label": "G.M. Breweries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GMDCLTD",
+    "label": "Gujarat Mineral Development Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GMMPFAUDLR",
+    "label": "GMM Pfaudler Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GNA",
+    "label": "GNA Axles Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GNFC",
+    "label": "Gujarat Narmada Valley Fertilizers & Chemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOACARBON",
+    "label": "Goa Carbon Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOCLCORP",
+    "label": "GOCL Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOCOLORS",
+    "label": "Go Fashion (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GODAVARIB",
+    "label": "Godavari Biorefineries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GODFRYPHLP",
+    "label": "Godfrey Phillips India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GODIGIT",
+    "label": "Go Digit General Insurance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GODREJAGRO",
+    "label": "Godrej Agrovet Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GODREJCP",
+    "label": "Godrej Consumer Products Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GODREJIND",
+    "label": "Godrej Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GODREJPROP",
+    "label": "Godrej Properties Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOKEX",
+    "label": "Gokaldas Exports Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOKULAGRO",
+    "label": "Gokul Agro Resources Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOLDIAM",
+    "label": "Goldiam International Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOODLUCK",
+    "label": "Goodluck India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOODYEAR",
+    "label": "Goodyear India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GOPAL",
+    "label": "Gopal Snacks Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GPECO",
+    "label": "GP Eco Solutions India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GPIL",
+    "label": "Godawari Power & Ispat Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GPPL",
+    "label": "Gujarat Pipavav Port Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GPTHEALTH",
+    "label": "GPT Healthcare Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRANULES",
+    "label": "Granules India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRAPHITE",
+    "label": "Graphite India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRASIM",
+    "label": "Grasim Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRAVITA",
+    "label": "Gravita India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GREAVESCOT",
+    "label": "Greaves Cotton Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GREENLAM",
+    "label": "Greenlam Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GREENPANEL",
+    "label": "Greenpanel Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GREENPLY",
+    "label": "Greenply Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRINDWELL",
+    "label": "Grindwell Norton Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRINFRA",
+    "label": "G R Infraprojects Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GROBTEA",
+    "label": "Grob Tea Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GROWW",
+    "label": "Billionbrains Garage Ventures Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRPLTD",
+    "label": "GRP Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRSE",
+    "label": "Garden Reach Shipbuilders & Engineers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GRWRHITECH",
+    "label": "Garware Hi-Tech Films Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GSFC",
+    "label": "Gujarat State Fertilizers & Chemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GSPCROP",
+    "label": "GSP Crop Science Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GUFICBIO",
+    "label": "Gufic Biosciences Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GUJALKALI",
+    "label": "Gujarat Alkalies & Chemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GUJAPOLLO",
+    "label": "Gujarat Apollo Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GUJENERGY",
+    "label": "Gujarat Energy Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GUJTHEM",
+    "label": "Gujarat Themis Biosyn Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GULFOILLUB",
+    "label": "Gulf Oil Lubricants India Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GULPOLY",
+    "label": "Gulshan Polyols Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GVPIL",
+    "label": "GE Power India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GVT&D",
+    "label": "GE Vernova T&D India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:GYFTR",
+    "label": "Gyftr Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HAL",
+    "label": "Hindustan Aeronautics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HALDER",
+    "label": "Halder Venture Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HALEOSLABS",
+    "label": "Haleos Labs Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HAPPSTMNDS",
+    "label": "Happiest Minds Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HAPPYFORGE",
+    "label": "Happy Forging Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HARIOMPIPE",
+    "label": "Hariom Pipe Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HARRMALAYA",
+    "label": "Harrisons Malayalam Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HARSHA",
+    "label": "Harsha Engineers International Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HATSUN",
+    "label": "Hatsun Agro Product Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HAVELLS",
+    "label": "Havells India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HAWKINCOOK",
+    "label": "Hawkins Cookers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HBLENGINE",
+    "label": "HBL Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HCG",
+    "label": "HealthCare Global Enterprises Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HCLTECH",
+    "label": "HCL Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HDBFS",
+    "label": "HDB Financial Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HDFCAMC",
+    "label": "HDFC Asset Management Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HDFCBANK",
+    "label": "HDFC Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HDFCLIFE",
+    "label": "HDFC Life Insurance Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HEALTHX",
+    "label": "Health X Platform Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HEG",
+    "label": "HEG Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HEIDELBERG",
+    "label": "Heidelbergcement India Limited.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HERANBA",
+    "label": "Heranba Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HERITGFOOD",
+    "label": "Heritage Foods Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HEROMOTOCO",
+    "label": "Hero Motocorp Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HESTERBIO",
+    "label": "Hester Biosciences Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HEXATRADEX",
+    "label": "Hexa Tradex Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HEXT",
+    "label": "Hexaware Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HFCL",
+    "label": "HFCL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HGINFRA",
+    "label": "H.G. Infra Engineering Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HGS",
+    "label": "Hinduja Global Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HIKAL",
+    "label": "Hikal Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDALCO",
+    "label": "Hindalco Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDCOMPOS",
+    "label": "Hindustan Composites Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDCOPPER",
+    "label": "Hindustan Copper Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDOILEXP",
+    "label": "Hindustan Oil Exploration Co., Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDPETRO",
+    "label": "Hindustan Petroleum Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDUNILVR",
+    "label": "Hindustan Unilever Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDWAREAP",
+    "label": "Hindware Home Innovation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HINDZINC",
+    "label": "Hindustan Zinc Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HIRECT",
+    "label": "Hind Rectifiers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HISARMETAL",
+    "label": "Hisar Metal Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HITECHCORP",
+    "label": "Hitech Corporation Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HITECHGEAR",
+    "label": "Hi-Tech Gears Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HLEGLAS",
+    "label": "HLE Glascoat Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HNDFDS",
+    "label": "Hindustan Foods Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HOACFOODS",
+    "label": "HOAC Foods India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HOMEFIRST",
+    "label": "Home First Finance Company India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HONASA",
+    "label": "Honasa Consumer Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HONAUT",
+    "label": "Honeywell Automation India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HONDAPOWER",
+    "label": "Honda India Power Products Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HPL",
+    "label": "HPL Electric & Power Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HPTL",
+    "label": "HP Telecom India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HSCL",
+    "label": "Himadri Speciality Chemical Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HUBTOWN",
+    "label": "Hubtown Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HUDCO",
+    "label": "Housing & Urban Development Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HUHTAMAKI",
+    "label": "Huhtamaki India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:HYUNDAI",
+    "label": "Hyundai Motor India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ICEMAKE",
+    "label": "Ice Make Refrigeration Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ICICIAMC",
+    "label": "ICICI Prudential Asset Management Company Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ICICIBANK",
+    "label": "ICICI Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ICICIGI",
+    "label": "ICICI Lombard General Insurance Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ICICIPRULI",
+    "label": "ICICI Prudential Life Insurance Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ICIL",
+    "label": "Indo Count Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ICRA",
+    "label": "ICRA Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IDEAFORGE",
+    "label": "Ideaforge Technology Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IFBAGRO",
+    "label": "IFB Agro Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IFBIND",
+    "label": "IFB Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IFGLEXPOR",
+    "label": "IFGL Refractories Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IGARASHI",
+    "label": "Igarashi Motors India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IGIL",
+    "label": "International Gemological Institute Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IGPL",
+    "label": "IG Petrochemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IIFL",
+    "label": "IIFL Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IIFLCAPS",
+    "label": "IIFL Capital Services Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IITL",
+    "label": "Industrial Investment Trust Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IKIO",
+    "label": "IKIO Technologies Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IKS",
+    "label": "Inventurus Knowledge Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IMFA",
+    "label": "Indian Metals & Ferro Alloys Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IMPAL",
+    "label": "India Motor Parts & Accessories Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDGN",
+    "label": "Indegene Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDHOTEL",
+    "label": "Indian Hotels Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIACEM",
+    "label": "India Cements Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIAGLYCO",
+    "label": "India Glycols Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIAMART",
+    "label": "IndiaMART InterMESH Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIANB",
+    "label": "Indian Bank",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIANCARD",
+    "label": "Indian Card Clothing Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIANHUME",
+    "label": "Indian Hume Pipe Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIASHLTR",
+    "label": "India Shelter Finance Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIGO",
+    "label": "InterGlobe Aviation Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIGOPNTS",
+    "label": "Indigo Paints Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIGRID",
+    "label": "IndiGrid Infrastructure Trust",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDIQUBE",
+    "label": "Indiqube Spaces Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDNIPPON",
+    "label": "India Nippon Electricals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDOBORAX",
+    "label": "Indo Borax & Chemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDOCO",
+    "label": "Indoco Remedies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDOSTAR",
+    "label": "IndoStar Capital Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDOTECH",
+    "label": "Indo Tech Transformers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDPRUD",
+    "label": "Industrial & Prudential Investment Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDRAMEDCO",
+    "label": "Indraprastha Medical Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDSWFTLAB",
+    "label": "Ind-Swift Laboratories Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDUSINDBK",
+    "label": "IndusInd Bank Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INDUSTOWER",
+    "label": "Indus Towers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INFINIUM",
+    "label": "Infinium Pharmachem Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INFLUX",
+    "label": "Influx Healthtech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INFOBEAN",
+    "label": "InfoBeans Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INFOLLION",
+    "label": "Infollion Research Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INFY",
+    "label": "Infosys Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INGERRAND",
+    "label": "Ingersoll-Rand (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INM",
+    "label": "Interiors & More Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INNOVACAP",
+    "label": "Innova Captab Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INNOVANA",
+    "label": "Innovana Thinklabs Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INNOVISION",
+    "label": "Innovision Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INOXGREEN",
+    "label": "Inox Green Energy Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INOXINDIA",
+    "label": "INOX India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INSECTICID",
+    "label": "Insecticides (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INTEGRITY",
+    "label": "Integrity Infrabuild Developers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INTELLECT",
+    "label": "Intellect Design Arena Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INTERARCH",
+    "label": "Interarch Building Solutions Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:INVPRECQ",
+    "label": "Investment & Precision Castings Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IOLCP",
+    "label": "IOL Chemicals & Pharmaceuticals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IONEXCHANG",
+    "label": "Ion Exchange (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IPCALAB",
+    "label": "IPCA Laboratories Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IRCTC",
+    "label": "Indian Railway Catering & Tourism Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IRIS",
+    "label": "IRIS RegTech Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IRMENERGY",
+    "label": "Irm Energy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ISGEC",
+    "label": "ISGEC Heavy Engineering Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ITC",
+    "label": "ITC Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ITCHOTELS",
+    "label": "ITC Hotels Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ITDC",
+    "label": "India Tourism Development Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ITI",
+    "label": "ITI Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IVALUE",
+    "label": "Ivalue Infosolutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IVP",
+    "label": "IVP Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IWARE",
+    "label": "Iware Supplychain Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IXIGO",
+    "label": "Le Travenues Technology Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:IZMO",
+    "label": "IZMO Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:J&KBANK",
+    "label": "Jammu & Kashmir Bank Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JAGSNPHARM",
+    "label": "Jagsonpal Pharmaceuticals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JAINIK",
+    "label": "Jainik Power and Cables Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JAINREC",
+    "label": "Jain Resource Recycling Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JARO",
+    "label": "Jaro Institute of Technology Management and Research Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JASH",
+    "label": "Jash Engineering Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JAYAGROGN",
+    "label": "Jayant Agro-Organics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JAYKAY",
+    "label": "Jaykay Enterprises Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JBMA",
+    "label": "JBM Auto Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JGCHEM",
+    "label": "JG Chemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JINDALPHOT",
+    "label": "Jindal Photo Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JINDALPOLY",
+    "label": "Jindal Poly Films Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JINDALSAW",
+    "label": "Jindal Saw Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JINDALSTEL",
+    "label": "Jindal Steel Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JINDRILL",
+    "label": "Jindal Drilling & Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JIOFIN",
+    "label": "Jio Financial Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JITFINFRA",
+    "label": "JITF Infralogistics Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JKCEMENT",
+    "label": "J.K. Cement Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JKIL",
+    "label": "J. Kumar Infraprojects Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JKLAKSHMI",
+    "label": "JK Lakshmi Cement Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JKPAPER",
+    "label": "JK Paper Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JKTYRE",
+    "label": "JK Tyre & Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JLHL",
+    "label": "Jupiter Life Line Hospitals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JNKINDIA",
+    "label": "Jnk India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JOCIL",
+    "label": "Jocil Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JPOLYINVST",
+    "label": "Jindal Poly Investment and Finance Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSFB",
+    "label": "Jana Small Finance Bank Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSL",
+    "label": "Jindal Stainless Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSLL",
+    "label": "Jeena Sikho Lifecare Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSWDULUX",
+    "label": "JSW Dulux Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSWENERGY",
+    "label": "JSW Energy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSWHL",
+    "label": "JSW Holdings Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSWINFRA",
+    "label": "JSW Infrastructure Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JSWSTEEL",
+    "label": "JSW Steel Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JUBLCPL",
+    "label": "Jubilant Agri and Consumer Products Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JUBLFOOD",
+    "label": "Jubilant Foodworks Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JUBLINGREA",
+    "label": "Jubilant Ingrevia Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JUBLPHARMA",
+    "label": "Jubilant Pharmova Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JUNIPER",
+    "label": "Juniper Hotels Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JUSTDIAL",
+    "label": "Just Dial Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JWL",
+    "label": "Jupiter Wagons Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JYOTHYLAB",
+    "label": "Jyothy Labs Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:JYOTICNC",
+    "label": "Jyoti Cnc Automation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KABRAEXTRU",
+    "label": "Kabra ExtrusionTechnik Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KAJARIACER",
+    "label": "Kajaria Ceramics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KALPATARU",
+    "label": "Kalpataru Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KALYANIFRG",
+    "label": "Kalyani Forge Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KALYANKJIL",
+    "label": "Kalyan Jewellers India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KAMAHOLD",
+    "label": "Kama Holdings Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KAMATHOTEL",
+    "label": "Kamat Hotels (India) Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KANCHI",
+    "label": "Kanchi Karpooram Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KANORICHEM",
+    "label": "Kanoria Chemicals & Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KANPRPLA",
+    "label": "Kanpur Plastipack Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KANSAINER",
+    "label": "Kansai Nerolac Paints Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KAPSTON",
+    "label": "Kapston Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KARURVYSYA",
+    "label": "Karur Vysya Bank Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KAUSHALYA",
+    "label": "Kaushalya Infrastructure Development Corporation Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KAYA",
+    "label": "Kaya Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KAYNES",
+    "label": "Kaynes Technology India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KCP",
+    "label": "KCP Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KDDL",
+    "label": "KDDL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KEC",
+    "label": "KEC International Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KEI",
+    "label": "KEI Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KENNAMET",
+    "label": "Kennametal India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KERNEX",
+    "label": "Kernex Microsystems India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KEYFINSERV",
+    "label": "Keynote Financial Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KFINTECH",
+    "label": "Kfin Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KICL",
+    "label": "Kalyani Investment Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KILITCH",
+    "label": "Kilitch Drugs (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIMS",
+    "label": "Krishna Institute of Medical Sciences Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KINGFA",
+    "label": "Kingfa Science & Technology (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIOCL",
+    "label": "KIOCL Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIRANVYPAR",
+    "label": "Kiran Vyapar Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIRIINDUS",
+    "label": "Kiri Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIRLFER",
+    "label": "Kirloskar Ferrous Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIRLOSBROS",
+    "label": "Kirloskar Brothers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIRLOSENG",
+    "label": "Kirloskar Oil Engines Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIRLOSIND",
+    "label": "Kirloskar Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KIRLPNU",
+    "label": "Kirloskar Pneumatic Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KISSHT",
+    "label": "Onemi Technology Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KKCL",
+    "label": "Kewal Kiran Clothing Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KLBRENG_B",
+    "label": "Kilburn Engineering Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KMEW",
+    "label": "Knowledge Marine & Engineering Works Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KNACK",
+    "label": "Knack Packaging Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KNAGRI",
+    "label": "KN Agri Resources Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KODYTECH",
+    "label": "Kody Technolab Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KOLTEPATIL",
+    "label": "Kolte-Patil Developers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KOPRAN",
+    "label": "Kopran Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KOTAKBANK",
+    "label": "Kotak Mahindra Bank Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KOTIC",
+    "label": "Kothari Industrial Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KOVAI",
+    "label": "Kovai Medical Center & Hospital Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KPEL",
+    "label": "K.P. Energy Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KPIGREEN",
+    "label": "KPI Green Energy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KPIL",
+    "label": "Kalpataru Projects International Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KPITTECH",
+    "label": "KPIT Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KPL",
+    "label": "Kwality Pharmaceuticals Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KPRMILL",
+    "label": "K.P.R. Mill Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRBL",
+    "label": "KRBL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRISHANA",
+    "label": "Krishana Phoschem Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRISHCA",
+    "label": "Krishca Strapping Solutions Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRISHIVAL",
+    "label": "Krishival Foods Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRISHNADEF",
+    "label": "Krishna Defence and Allied Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRMAYURVED",
+    "label": "KRM Ayurveda Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRN",
+    "label": "Krn Heat Exchanger and Refrigeration Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRONOX",
+    "label": "Kronox Lab Sciences Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KROSS",
+    "label": "Kross Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRSNAA",
+    "label": "Krsnaa Diagnostics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KRYSTAL",
+    "label": "Krystal Integrated Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KSB",
+    "label": "KSB Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KSCL",
+    "label": "Kaveri Seed Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KSHINTL",
+    "label": "KSH International Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KSL",
+    "label": "Kalyani Steels Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KSOLVES",
+    "label": "Ksolves India Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KTKBANK",
+    "label": "Karnataka Bank Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:KUSUMGAR",
+    "label": "Kusumgar Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LALPATHLAB",
+    "label": "Dr. Lal PathLabs Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LANDMARK",
+    "label": "Landmark Cars Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LAOPALA",
+    "label": "La Opala RG Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LASERPOWER",
+    "label": "Laser Power and Infra Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LATENTVIEW",
+    "label": "Latent View Analytics Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LAURUSLABS",
+    "label": "Laurus Labs Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LAXMIDENTL",
+    "label": "Laxmi Dental Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LENSKART",
+    "label": "Lenskart Solutions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LGBBROSLTD",
+    "label": "L.G. Balakrishnan & Bros Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LGEINDIA",
+    "label": "LG Electronics India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LGHL",
+    "label": "Laxmi Goldorna House Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LIBERTSHOE",
+    "label": "Liberty Shoes Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LICHSGFIN",
+    "label": "LIC Housing Finance Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LICI",
+    "label": "Life Insurance Corp. of India",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LIKHITHA",
+    "label": "Likhitha Infrastructure Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LINCOLN",
+    "label": "Lincoln Pharmaceuticals Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LINDEINDIA",
+    "label": "Linde India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LLOYDSME",
+    "label": "Lloyds Metals & Energy Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LMW",
+    "label": "LMW Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LODHA",
+    "label": "Lodha Developers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LOKESHMACH",
+    "label": "Lokesh Machines Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LOTUSDEV",
+    "label": "Sri Lotus Developers and Realty Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LOYALTEX",
+    "label": "Loyal Textile Mills Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LT",
+    "label": "Larsen & Toubro Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LTF",
+    "label": "L&T Finance Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LTFOODS",
+    "label": "LT Foods Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LTM",
+    "label": "LTM Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LTTS",
+    "label": "L&T Technology Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LUMAXIND",
+    "label": "Lumax Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LUMAXTECH",
+    "label": "Lumax Auto Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LUPIN",
+    "label": "Lupin Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LUXIND",
+    "label": "Lux Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:LXCHEM",
+    "label": "Laxmi Organic Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:M&M",
+    "label": "Mahindra & Mahindra Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:M&MFIN",
+    "label": "Mahindra & Mahindra Financial Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MACOBSTECH",
+    "label": "Macobs Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MACPOWER",
+    "label": "Macpower CNC Machines Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MADHAVBAUG",
+    "label": "Vaidya Sane Ayurved Laboratories Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MADHUSUDAN",
+    "label": "Madhusudan Masala Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAGADSUGAR",
+    "label": "Magadh Sugar & Energy Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAGSON",
+    "label": "Magson Retail and Distribution Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAHASTEEL",
+    "label": "Mahamaya Steel Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAHICKRA",
+    "label": "Mahickra Chemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAHLIFE",
+    "label": "Mahindra Lifespace Developers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAHLOG",
+    "label": "Mahindra Logistics Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAHSCOOTER",
+    "label": "Maharashtra Scooters Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAHSEAMLES",
+    "label": "Maharashtra Seamless Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAITHANALL",
+    "label": "Maithan Alloys Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAJESAUT",
+    "label": "Majestic Auto Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MALLCOM",
+    "label": "Mallcom (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAMATA",
+    "label": "Mamata Machinery Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANAPPURAM",
+    "label": "Manappuram Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANCREDIT",
+    "label": "Mangal Credit & Fincorp Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANGLMCEM",
+    "label": "Mangalam Cement Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANINDS",
+    "label": "Man Industries (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANKIND",
+    "label": "Mankind Pharma Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANOMAY",
+    "label": "Manomay Tex India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANORAMA",
+    "label": "Manorama Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANORG",
+    "label": "Mangalam Organics Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MANYAVAR",
+    "label": "Vedant Fashions Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAPMYINDIA",
+    "label": "C.E. Info Systems Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MARATHON",
+    "label": "Marathon Nextgen Realty Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MARICO",
+    "label": "Marico Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MARINE",
+    "label": "Marine Electricals (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MARKOLINES",
+    "label": "Markolines Pavement Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MARKSANS",
+    "label": "Marksans Pharma Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MARUTI",
+    "label": "Maruti Suzuki India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MASFIN",
+    "label": "MAS Financial Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MASTEK",
+    "label": "Mastek Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MASTER",
+    "label": "Master Components Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MATRIMONY",
+    "label": "Matrimony.com Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAXESTATES",
+    "label": "Max Estates Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAXHEALTH",
+    "label": "Max Healthcare Institute Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAXIND",
+    "label": "Max India Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAXVOLT",
+    "label": "Maxvolt Energy Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAYURUNIQ",
+    "label": "Mayur Uniquoters Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAZDA",
+    "label": "Mazda Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MAZDOCK",
+    "label": "Mazagon Dock Shipbuilders Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MBAPL",
+    "label": "Madhya Bharat Agro Products Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MBEL",
+    "label": "M & B Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MCCHRLS_B",
+    "label": "Mac Charles India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MCX",
+    "label": "Multi Commodity Exchange of India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEDANTA",
+    "label": "Global Health Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEDIASSIST",
+    "label": "Medi Assist Healthcare Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEDICAMEQ",
+    "label": "Medicamen Biotech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEDPLUS",
+    "label": "MedPlus Health Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEESHO",
+    "label": "Meesho Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEGASTAR",
+    "label": "Megastar Foods Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEGATHERM",
+    "label": "Megatherm Induction Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MEIL",
+    "label": "Mangal Electrical Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MENONBE",
+    "label": "Menon Bearings Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:METROBRAND",
+    "label": "Metro Brands Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:METROPOLIS",
+    "label": "Metropolis Healthcare Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MFSL",
+    "label": "Max Financial Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MGL",
+    "label": "Mahanagar Gas Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MHLXMIRU",
+    "label": "Mahalaxmi Rubtech Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MHRIL",
+    "label": "Mahindra Holidays & Resorts India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MIDHANI",
+    "label": "Mishra Dhatu Nigam Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MIDWESTLTD",
+    "label": "Midwest Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MINDACORP",
+    "label": "Minda Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MINDSPACE.RR",
+    "label": "Mindspace Business Parks REIT",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MINDTECK",
+    "label": "Mindteck (India) Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MMFL",
+    "label": "MM Forgings Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MMP",
+    "label": "MMP Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MOBIKWIK",
+    "label": "One Mobikwik Systems Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MODINATUR",
+    "label": "Modi Naturals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MODIS",
+    "label": "Modi's Navnirman Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MODISONLTD",
+    "label": "Modison Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MOIL",
+    "label": "Moil Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MOLDTECH",
+    "label": "Mold-Tek Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MOLDTKPAC",
+    "label": "Mold Tek Packaging Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MONARCH",
+    "label": "Monarch Networth Capital Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MONOLITH",
+    "label": "Monolithisch India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MONTECARLO",
+    "label": "Monte Carlo Fashions Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MOSCHIP",
+    "label": "Moschip Technologies Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MOTHERSON",
+    "label": "Samvardhana Motherson International Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MOTILALOFS",
+    "label": "Motilal Oswal Financial Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MPHASIS",
+    "label": "Mphasis Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MPSLTD",
+    "label": "MPS Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MRF",
+    "label": "MRF Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MRPL",
+    "label": "Mangalore Refinery & Petrochemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MSTCLTD",
+    "label": "MSTC Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MTARTECH",
+    "label": "MTAR Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MUTHOOTCAP",
+    "label": "Muthoot Capital Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MUTHOOTFIN",
+    "label": "Muthoot Finance Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MUTHOOTMF",
+    "label": "Muthoot Microfin Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MVGJL",
+    "label": "Manoj Vaibhav Gems 'N' Jewellers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:MVKAGRO",
+    "label": "M.V.K. Agro Food Product Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NACLIND",
+    "label": "NACL Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAHARCAP",
+    "label": "Nahar Capital & Financial Services Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAHARPOLY",
+    "label": "Nahar Poly Films Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAHARSPING",
+    "label": "Nahar Spinning Mills Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAMOEWASTE",
+    "label": "Namo eWaste Management Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAM_INDIA",
+    "label": "Nippon Life India Asset Management Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NATCAPSUQ",
+    "label": "Natural Capsules Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NATCOPHARM",
+    "label": "NATCO Pharma Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NATHBIOGEN",
+    "label": "Nath Bio-Genes (India) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NATIONALUM",
+    "label": "National Aluminium Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAUKRI",
+    "label": "Info Edge India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAVA",
+    "label": "Nava Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAVINFLUOR",
+    "label": "Navin Fluorine International Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NAZARA",
+    "label": "Nazara Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NBIFIN",
+    "label": "N.B.I. Industrial Finance Company Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NCLIND",
+    "label": "NCL Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NDGL",
+    "label": "Naga Dhunseri Group Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NDRAUTO",
+    "label": "NDR Auto Components Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NELCO",
+    "label": "Nelco Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NEOGEN",
+    "label": "Neogen Chemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NEPHROPLUS",
+    "label": "Nephrocare Health Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NEPTUNE",
+    "label": "Neptune Petrochemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NESCO",
+    "label": "NESCO Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NESTLEIND",
+    "label": "Nestle India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NETWEB",
+    "label": "Netweb Technologies India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NEULANDLAB",
+    "label": "Neuland Laboratories Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NEWGEN",
+    "label": "Newgen Software Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NGLFINE",
+    "label": "NGL Fine-Chem Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NH",
+    "label": "Narayana Hrudayalaya Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NIACL",
+    "label": "New India Assurance Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NIBE",
+    "label": "Nibe Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NIITMTS",
+    "label": "NIIT Learning Systems Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NILE",
+    "label": "Nile Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NILKAMAL",
+    "label": "Nilkamal Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NIMBSPROJ",
+    "label": "Nimbus Projects Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NINSYS",
+    "label": "NINtec Systems Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NIPPOBATRY",
+    "label": "Indo National Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NIRLON",
+    "label": "Nirlon Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NITINSPIN",
+    "label": "Nitin Spinners Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NITIRAJ",
+    "label": "Nitiraj Engineers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NITTAGELA",
+    "label": "Nitta Gelatin India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NLCINDIA",
+    "label": "NLC India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NOCIL",
+    "label": "NOCIL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NORTHARC",
+    "label": "Northern Arc Capital Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NOVARTIND",
+    "label": "Novartis India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NPST",
+    "label": "Network People Services Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NRAIL",
+    "label": "NR Agarwal Industries Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NRBBEARING",
+    "label": "NRB Bearings Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NSIL",
+    "label": "Nalwa Sons Investments Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NTPC",
+    "label": "NTPC Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NUCLEUS",
+    "label": "Nucleus Software Exports Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NURECA",
+    "label": "Nureca Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NUVAMA",
+    "label": "Nuvama Wealth Management Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NUVOCO",
+    "label": "Nuvoco Vistas Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NXST.RR",
+    "label": "Nexus Select Trust",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:NYKAA",
+    "label": "FSN E-Commerce Ventures Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OAL",
+    "label": "Oriental Aromatics Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OBEROIRLTY",
+    "label": "Oberoi Realty Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OBSCP",
+    "label": "OBSC Perfection Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OCCLLTD",
+    "label": "OCCL Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OFSS",
+    "label": "Oracle Financial Services Software Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OIL",
+    "label": "Oil India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OLECTRA",
+    "label": "Olectra Greentech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OLIL",
+    "label": "Oneclick Logistics India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OMAXAUTO",
+    "label": "Omax Autos Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OMNI",
+    "label": "Omnitech Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OMPOWER",
+    "label": "Om Power Transmission Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ONDOOR",
+    "label": "On Door Concepts Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ONESOURCE",
+    "label": "OneSource Specialty Pharma Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ONGC",
+    "label": "Oil & Natural Gas Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ONWARDTEC",
+    "label": "Onward Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OPTIEMUS",
+    "label": "Optiemus Infracom Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OPTIVALUE",
+    "label": "Optivalue Tek Consulting Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORBTEXP",
+    "label": "Orbit Exports Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORCHPHARMA",
+    "label": "Orchid Pharma Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORIANA",
+    "label": "Oriana Power Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORIENTBELL",
+    "label": "Orient Bell Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORIENTELEC",
+    "label": "Orient Electric Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORIENTTECH",
+    "label": "Orient Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORISSAMINE",
+    "label": "Orissa Minerals Development Company Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:ORKLAINDIA",
+    "label": "Orkla India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OSELDEVICE",
+    "label": "Osel Devices Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:OSWALPUMPS",
+    "label": "Oswal Pumps Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PACEDIGITK",
+    "label": "Pace Digitek Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PAGEIND",
+    "label": "Page Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PANACEABIO",
+    "label": "Panacea Biotec Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PANACHE",
+    "label": "Panache Digilife Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PANAMAPET",
+    "label": "Panama Petrochem Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PANSARI",
+    "label": "Pansari Developers Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PARADEEP",
+    "label": "Paradeep Phosphates Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PARAGMILK",
+    "label": "Parag Milk Foods Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PARAS",
+    "label": "Paras Defence & Space Technologies Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PARIN",
+    "label": "Parin Enterprises Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PARKHOSPS",
+    "label": "Park Medi World Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PARTH",
+    "label": "Parth Electricals & Engineering Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PATANJALI",
+    "label": "Patanjali Foods Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PATELRMART",
+    "label": "Patel Retail Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PATILAUTOM",
+    "label": "Patil Automation Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PAUSHAKLTD",
+    "label": "Paushak Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PAYTM",
+    "label": "One 97 Communications Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PCBL",
+    "label": "PCBL Chemical Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PCCL",
+    "label": "Petro Carbon & Chemicals Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PDSL",
+    "label": "PDS Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PELATRO",
+    "label": "Pelatro Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PENIND",
+    "label": "Pennar Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PERSISTENT",
+    "label": "Persistent Systems Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PETRONET",
+    "label": "Petronet Lng Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PFC",
+    "label": "Power Finance Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PFIZER",
+    "label": "PFIZER LIMITED",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PFOCUS",
+    "label": "Prime Focus Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PGEL",
+    "label": "PG Electroplast Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PGHH",
+    "label": "Procter & Gamble Hygiene & Health Care Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PGHL",
+    "label": "Procter & Gamble Health Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PGIL",
+    "label": "Pearl Global Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PHOENIXLTD",
+    "label": "Phoenix Mills Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PICCADIL",
+    "label": "Piccadily Agro Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PIDILITIND",
+    "label": "Pidilite Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PIIND",
+    "label": "PI Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PILANIINVS",
+    "label": "Pilani Investment And Industries Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PINELABS",
+    "label": "Pine Labs Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PIRAMALFIN",
+    "label": "Piramal Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PITTIENG",
+    "label": "Pitti Engineering Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PIXTRANS",
+    "label": "PIX Transmissions Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PKTEA",
+    "label": "Peria Karamalai Tea & Produce Co. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PLASTIBLEN",
+    "label": "Plastiblends India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PLATIND",
+    "label": "Platinum Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PML",
+    "label": "Paul Merchants Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PNBHOUSING",
+    "label": "PNB Housing Finance Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PNCINFRA",
+    "label": "PNC Infratech Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PNGJL",
+    "label": "P N Gadgil Jewellers Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PNGSREVA",
+    "label": "PNGS Reva Diamond Jewellery Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POCL",
+    "label": "Pondy Oxides & Chemicals Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PODDARMENT",
+    "label": "Poddar Pigments Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POKARNA",
+    "label": "Pokarna Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POLICYBZR",
+    "label": "PB Fintech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POLYCAB",
+    "label": "Polycab India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POLYMED",
+    "label": "Poly Medicure Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POLYPLEX",
+    "label": "Polyplex Corporation Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PONNIERODE",
+    "label": "Ponni Sugars (Erode) Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POONAWALLA",
+    "label": "Poonawalla Fincorp Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POSITRON",
+    "label": "Positron Energy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POWERGRID",
+    "label": "Power Grid Corporation of India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POWERICA",
+    "label": "Powerica Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POWERINDIA",
+    "label": "Hitachi Energy India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:POWERMECH",
+    "label": "Power Mech Projects Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PPAP",
+    "label": "PPAP Automotive Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PPL",
+    "label": "Prakash Pipes Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PPLPHARMA",
+    "label": "Piramal Pharma Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRABHA",
+    "label": "Prabha Energy Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRADPME",
+    "label": "Pradeep Metals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRAJIND",
+    "label": "PRAJ Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRAVEG",
+    "label": "Praveg Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRECOT",
+    "label": "Precot Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRECWIRE",
+    "label": "Precision Wires India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PREMCO",
+    "label": "Premco Global Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PREMEXPLN",
+    "label": "Premier Explosives Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PREMIERENE",
+    "label": "Premier Energies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRESTIGE",
+    "label": "Prestige Estates Projects Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRICOLLTD",
+    "label": "Pricol Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRIMECAB",
+    "label": "Prime Cable Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRIMESECU",
+    "label": "Prime Securities Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRINCEPIPE",
+    "label": "Prince Pipes And Fittings Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRIVISCL",
+    "label": "Privi Speciality Chemicals Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRIZOR",
+    "label": "Prizor Viztech Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PROTEAN",
+    "label": "Protean eGov Technologies Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PROV",
+    "label": "Proventus Agrocom Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PRUDENT",
+    "label": "Prudent Corporate Advisory Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PSPPROJECT",
+    "label": "PSP Projects Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PTC",
+    "label": "PTC India Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PTCIL",
+    "label": "PTC Industries Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PUNJABCHEM",
+    "label": "Punjab Chemicals & Crop Protection Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PURPLEUTED",
+    "label": "Purple United Sales Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PURVA",
+    "label": "Puravankara Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PVRINOX",
+    "label": "PVR Inox Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:PYRAMID",
+    "label": "Pyramid Technoplast Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:QLINE",
+    "label": "Q-Line Biotech Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:QMSMEDI",
+    "label": "QMS Medical Allied Services Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:QPOWER",
+    "label": "Quality Power Electrical Equipments Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:QUADFUTURE",
+    "label": "Quadrant Future Tek Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:QUESS",
+    "label": "Quess Corp. Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RACLGEAR",
+    "label": "RACL Geartech Ltd",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RADICO",
+    "label": "Radico Khaitan Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RAILTEL",
+    "label": "RailTel Corp. of India Ltd.",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RAIN",
+    "label": "Rain Industries Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RAINBOW",
+    "label": "Rainbow Childrens Medicare Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RAJPALAYAM",
+    "label": "Rajapalayam Mills Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RAJPUTANA",
+    "label": "Rajputana Biodiesel Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  },
+  {
+    "value": "NSE:RAJRATAN",
+    "label": "Rajratan Global Wire Limited",
+    "type": "stock",
+    "exchange": "NSE"
+  }
+]

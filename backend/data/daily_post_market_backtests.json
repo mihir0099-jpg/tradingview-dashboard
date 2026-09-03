@@ -1,0 +1,21 @@
+[
+  {
+    "run_date": "2/9/2026",
+    "run_time": "3:47:23 pm",
+    "summary": {
+      "dataset_period": "6-Month Intraday 5m Candles (Nifty 50)",
+      "total_sessions_scanned": 142,
+      "total_triggers": 16,
+      "trigger_frequency": "11.3% of trading days",
+      "win_rate": "81.2%",
+      "wins": 13,
+      "losses": 3,
+      "profit_factor": "17.14",
+      "expectancy_nifty_pts": "+85.76 pts per trade",
+      "avg_win_nifty_pts": "+112.1 pts",
+      "avg_loss_nifty_pts": "-28.3 pts",
+      "avg_option_ce_roi": "+40.7% ROI",
+      "reward_to_risk_ratio": "3.96 : 1"
+    }
+  }
+]

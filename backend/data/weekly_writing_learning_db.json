@@ -1,0 +1,50 @@
+{
+  "learningSummary": {
+    "totalWeeklySeriesTracked": 18,
+    "successfulFloorHolds": 16,
+    "successfulCeilingHolds": 15,
+    "floorHoldWinRate": "88.9%",
+    "ceilingHoldWinRate": "83.3%",
+    "optimalPutStrikeSelection": "0.50% to 0.75% Below Spot Open (Delta ~0.20)",
+    "optimalCallStrikeSelection": "0.75% to 1.00% Above Spot Open (Delta ~0.20)",
+    "lastUpdated": "2026-09-03T02:23:13.168Z"
+  },
+  "seriesHistory": [
+    {
+      "seriesName": "NIFTY-2026-SEP-08-WEEKLY",
+      "spotOpenAtSeriesStart": 23920,
+      "peakPutWrittenStrike": "23800 PE",
+      "peakPutTradedVolume": "47.7 Million Contracts",
+      "peakCallWrittenStrike": "24100 CE",
+      "peakCallTradedVolume": "39.5 Million Contracts",
+      "institutionalRange": "23,800 PE Floor to 24,100 CE Ceiling (300 pts range)",
+      "writingStartTime": "Friday 09:30 AM IST (Series Open)",
+      "status": "ACTIVE_TRACKING",
+      "currentOutcome": "Put Floor 23800 Defended (+78 pts bounce)"
+    },
+    {
+      "seriesName": "NIFTY-2026-SEP-01-WEEKLY",
+      "spotOpenAtSeriesStart": 24150,
+      "peakPutWrittenStrike": "24000 PE",
+      "peakPutTradedVolume": "52.1 Million Contracts",
+      "peakCallWrittenStrike": "24300 CE",
+      "peakCallTradedVolume": "41.8 Million Contracts",
+      "institutionalRange": "24,000 PE Floor to 24,300 CE Ceiling",
+      "writingStartTime": "Friday 09:30 AM IST",
+      "status": "EXPIRED_SUCCESS",
+      "currentOutcome": "Both Written Strikes Held (Full Decay to ₹0)"
+    },
+    {
+      "seriesName": "NIFTY-2026-AUG-25-WEEKLY",
+      "spotOpenAtSeriesStart": 24380,
+      "peakPutWrittenStrike": "24200 PE",
+      "peakPutTradedVolume": "44.3 Million Contracts",
+      "peakCallWrittenStrike": "24500 CE",
+      "peakCallTradedVolume": "48.9 Million Contracts",
+      "institutionalRange": "24,200 PE Floor to 24,500 CE Ceiling",
+      "writingStartTime": "Friday 09:30 AM IST",
+      "status": "EXPIRED_SUCCESS",
+      "currentOutcome": "Both Written Strikes Held (Full Decay to ₹0)"
+    }
+  ]
+}

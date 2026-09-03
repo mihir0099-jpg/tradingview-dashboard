@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: tradingview-dashboard
+    env: node
+    buildCommand: "npm run build && pip install numpy scipy stumpy torch --no-cache-dir"
+    startCommand: "node backend/server.js"
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3002
