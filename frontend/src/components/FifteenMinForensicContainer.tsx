@@ -42,7 +42,8 @@ export function FifteenMinForensicContainer() {
         if (res.ok) {
           const json = await res.json();
           if (isMounted) {
-            setReports(json.forensicReports || []);
+            const list = Array.isArray(json) ? json : (json.forensicReports || []);
+            setReports(list);
             setLoading(false);
           }
         }

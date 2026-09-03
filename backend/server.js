@@ -2211,14 +2211,14 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
         const slotStartMin = sh * 60 + sm;
         const slotEndMin = eh * 60 + em;
 
-        // Strictly filter to ONLY slots that have already started today (Past & Current Active Slot)
-        if (currentMinutes < slotStartMin) {
+        // Include all slots; if off-market or before market open (currentMinutes < 555), display full day logs
+        const showAllSlots = currentMinutes < 555 || currentMinutes > 930;
+        if (!showAllSlots && currentMinutes < slotStartMin) {
           return null;
         }
 
-        // Find data points belonging to this slot today (matching today's date)
+        // Find data points belonging to this slot today
         const slotPoints = liveHistory.filter(pt => {
-          if (pt.date && pt.date !== todayDate) return false;
           const [h, m] = pt.time.split(':').map(Number);
           const ptMin = h * 60 + m;
           return ptMin >= slotStartMin && ptMin <= slotEndMin;
@@ -2308,8 +2308,9 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
         const slotStartMin = sh * 60 + sm;
         const slotEndMin = eh * 60 + em;
 
-        // Strictly do NOT show future unreached time slots!
-        if (currentMinutes < slotStartMin) return null;
+        // Include all slots; if off-market or before market open (currentMinutes < 555), display full day logs
+        const showAllForensics = currentMinutes < 555 || currentMinutes > 930;
+        if (!showAllForensics && currentMinutes < slotStartMin) return null;
 
         const slotPoints = liveHistory.filter(pt => {
           const [h, m] = pt.time.split(':').map(Number);
