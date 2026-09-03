@@ -33,39 +33,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const [symbolsList, setSymbolsList] = useState<SymbolPreset[]>([]);
   const modalInputRef = useRef<HTMLInputElement>(null);
 
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [visitorData, setVisitorData] = useState<any>(null);
-  const [showVisitorModal, setShowVisitorModal] = useState(false);
-  const [showPinPrompt, setShowPinPrompt] = useState(false);
-  const [pinInput, setPinInput] = useState('');
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const pinParam = urlParams.get('pin');
-    if (pinParam === '1234') {
-      localStorage.setItem('admin_pin', '1234');
-      setIsAdmin(true);
-    } else if (localStorage.getItem('admin_pin') === '1234') {
-      setIsAdmin(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!isAdmin) return;
-    const fetchVisitors = async () => {
-      try {
-        const backendUrl = (window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin;
-        const res = await fetch(`${backendUrl}/api/admin/visitors?pin=1234`);
-        if (res.ok) {
-          const data = await res.json();
-          setVisitorData(data);
-        }
-      } catch (e) {}
-    };
-    fetchVisitors();
-    const timer = setInterval(fetchVisitors, 3000);
-    return () => clearInterval(timer);
-  }, [isAdmin]);
 
   // Load symbols list dynamically on mount
   useEffect(() => {
@@ -260,49 +228,6 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <RefreshCw size={15} />
           </button>
 
-          {!isAdmin ? (
-            <button
-              onClick={() => setShowPinPrompt(true)}
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid var(--border-color)',
-                color: 'var(--text-secondary)',
-                padding: '6px 12px',
-                borderRadius: '8px',
-                fontSize: '12px',
-                fontWeight: '800',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
-              title="Unlock Admin Visitor Radar"
-            >
-              🔒 Admin
-            </button>
-          ) : (
-            <div 
-              onClick={() => setShowVisitorModal(!showVisitorModal)}
-              style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                background: 'rgba(16, 185, 129, 0.15)', 
-                border: '1px solid rgba(16, 185, 129, 0.4)', 
-                padding: '6px 12px', 
-                borderRadius: '8px', 
-                cursor: 'pointer',
-                boxShadow: '0 0 12px rgba(16, 185, 129, 0.2)'
-              }}
-              title="Click to view live visitors"
-            >
-              <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10b981', boxShadow: '0 0 10px #10b981' }}></div>
-              <span style={{ fontSize: '12px', fontWeight: '900', color: '#86efac', fontFamily: 'monospace' }}>
-                👥 {visitorData?.totalOnline || 1} LIVE VISITORS
-              </span>
-            </div>
-          )}
-
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'var(--bg-input)', border: '1px solid var(--border-color)', padding: '6px 12px', borderRadius: '8px' }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: getStatusColor(), boxShadow: `0 0 10px ${getStatusColor()}` }}></div>
             <span style={{ fontSize: '12px', textTransform: 'capitalize', fontWeight: 'bold', color: 'var(--text-primary)' }}>
@@ -312,110 +237,6 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         </div>
 
       </div>
-
-      {/* Secret Admin Visitor Radar Modal */}
-      {isAdmin && showVisitorModal && (
-        <div 
-          onClick={() => setShowVisitorModal(false)}
-          style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(6px)', zIndex: 99999, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            style={{ width: '90%', maxWidth: '540px', background: '#0b0f19', border: '1px solid rgba(16, 185, 129, 0.4)', borderRadius: '16px', padding: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)' }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{ fontSize: '18px' }}>🔒</span>
-                <h3 style={{ margin: 0, color: 'white', fontSize: '16px', fontWeight: '900' }}>
-                  SECRET ADMIN LIVE VISITOR RADAR
-                </h3>
-              </div>
-              <button onClick={() => setShowVisitorModal(false)} style={{ background: 'transparent', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
-                <X size={18} />
-              </button>
-            </div>
-
-            <div style={{ margin: '16px 0', fontSize: '13px', color: '#86efac', fontWeight: '900', display: 'flex', justifyContent: 'space-between' }}>
-              <span>CURRENTLY ONLINE: {visitorData?.totalOnline || 1} USER(S)</span>
-              <span style={{ color: '#cbd5e1', fontSize: '11px', fontFamily: 'monospace' }}>🕒 {visitorData?.timestamp} IST</span>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '300px', overflowY: 'auto' }}>
-              {visitorData?.visitors?.map((v: any, idx: number) => (
-                <div key={idx} style={{ padding: '12px', borderRadius: '10px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <div style={{ fontSize: '13px', fontWeight: '800', color: 'white' }}>
-                      📍 {v.country} ({v.device})
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px', fontFamily: 'monospace' }}>
-                      IP: {v.ip} | Page: {v.url}
-                    </div>
-                  </div>
-                  <div style={{ fontSize: '11px', color: '#34d399', fontWeight: '800', fontFamily: 'monospace' }}>
-                    Active {v.lastActiveTime}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ marginTop: '16px', fontSize: '11px', color: '#64748b', textAlign: 'center' }}>
-              🔒 100% Private to Admin. Only visible on your device via PIN 1234.
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Secret PIN Entry Prompt Modal */}
-      {showPinPrompt && (
-        <div 
-          onClick={() => setShowPinPrompt(false)}
-          style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 99999, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            style={{ width: '90%', maxWidth: '400px', background: '#0b0f19', border: '1px solid rgba(16, 185, 129, 0.4)', borderRadius: '16px', padding: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)' }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
-              <h3 style={{ margin: 0, color: 'white', fontSize: '16px', fontWeight: '900' }}>
-                🔒 Enter Secret Admin PIN
-              </h3>
-              <button onClick={() => setShowPinPrompt(false)} style={{ background: 'transparent', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
-                <X size={18} />
-              </button>
-            </div>
-
-            <form 
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (pinInput === '1234') {
-                  localStorage.setItem('admin_pin', '1234');
-                  setIsAdmin(true);
-                  setShowPinPrompt(false);
-                } else {
-                  alert('Invalid Secret PIN!');
-                }
-              }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '20px' }}
-            >
-              <input 
-                type="password"
-                placeholder="Enter Secret PIN (e.g. 1234)"
-                value={pinInput}
-                onChange={(e) => setPinInput(e.target.value)}
-                autoFocus
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', color: 'white', fontSize: '14px', boxSizing: 'border-box' }}
-              />
-
-              <button 
-                type="submit"
-                style={{ padding: '12px', borderRadius: '8px', background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: 'white', fontWeight: '900', fontSize: '14px', border: 'none', cursor: 'pointer' }}
-              >
-                🔓 Unlock Admin Visitor Radar
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* TradingView-Style Search Overlay Modal */}
       {isModalOpen && (
