@@ -137,10 +137,7 @@ app.use(express.json()); // Enable JSON body parsing for constraints logger
 app.use(cors());
 app.use(compression());
 
-app.use((req, res, next) => {
-  console.log(`[HTTP Request] ${req.method} ${req.url} - Origin: ${req.headers.origin || 'none'}`);
-  next();
-});
+
 
 // Secret Admin Visitor Tracking Engine
 const activeVisitorSessions = new Map();
@@ -690,14 +687,17 @@ wss.on('error', (err) => {
   console.error('[Node Backend] WebSocket Server error:', err);
 });
 
-const tvBridge = new TradingViewBridge();
-// Defer starting heavy background scanners by 15 seconds to ensure instant server boot and dashboard load times
+// Declare tvBridge at module scope immediately but don't connect until after server is proven healthy
+let tvBridge = new TradingViewBridge();
+
+// Defer ALL heavy background work by 30 seconds to guarantee instant HTTP response on boot
 setTimeout(() => {
-  console.log('[Startup] Initiating background scanners (Scanner, Doji, Volume)...');
-  startScanner(tvBridge);
-  startDojiScanner(tvBridge);
-  startVolumeScanner(tvBridge);
-}, 15000);
+  console.log('[Startup] Server healthy. Initiating background scanners (Scanner, Doji, Volume)...');
+  try { startScanner(tvBridge); } catch(e) { console.error('[Startup] Scanner init error:', e.message); }
+  try { startDojiScanner(tvBridge); } catch(e) { console.error('[Startup] Doji scanner init error:', e.message); }
+  try { startVolumeScanner(tvBridge); } catch(e) { console.error('[Startup] Volume scanner init error:', e.message); }
+  try { startStandingIndexSubscriptions(); } catch(e) { console.error('[Startup] Standing feed init error:', e.message); }
+}, 30000);
 
 const anchorLevelsCache = {};
 
@@ -2675,6 +2675,5 @@ const PORT = process.env.PORT || 3002;
 server.listen(PORT, () => {
   console.log(`Backend server listening on port ${PORT}`);
   startPostMarketScheduler();
-  startStandingIndexSubscriptions();
   start247KeepAliveEngine(PORT);
 });
