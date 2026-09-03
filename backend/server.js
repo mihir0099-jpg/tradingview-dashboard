@@ -2628,13 +2628,19 @@ function startStandingIndexSubscriptions() {
 }
 
 const distPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(distPath));
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+}
 
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
     return res.status(404).json({ error: 'API route not found' });
   }
-  res.sendFile(path.join(distPath, 'index.html'));
+  const indexPath = path.join(distPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    return res.sendFile(indexPath);
+  }
+  res.status(200).send('<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Initializing frontend application...</p></body></html>');
 });
 
 const PORT = process.env.PORT || 3002;
