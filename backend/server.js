@@ -2555,6 +2555,13 @@ function startStandingIndexSubscriptions() {
   }, 4000);
 }
 
+const distPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(distPath));
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/ws')) return;
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 const PORT = process.env.PORT || 3002;
 server.listen(PORT, () => {
   console.log(`Backend WebSocket server listening on port ${PORT}`);
