@@ -2638,8 +2638,8 @@ app.get('*', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3002;
-server.listen(PORT, () => {
-  console.log(`Backend WebSocket server listening on port ${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Backend WebSocket server listening on 0.0.0.0:${PORT}`);
   startPostMarketScheduler();
   startStandingIndexSubscriptions();
 });
