@@ -191,26 +191,31 @@ export function loadSignalsFromDisk() {
       }
     }
 
+    const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
+
     const levelsPath = path.join(__dirname, 'data/levels_cache_backup.json');
     if (fs.existsSync(levelsPath)) {
       const cached = JSON.parse(fs.readFileSync(levelsPath, 'utf8'));
-      if (cached['5'] && cached['D']) {
-        scannerCache.levelsCache = cached;
-        console.log(`[Scanner] Restored ${Object.keys(cached['5']).length} Daily and ${Object.keys(cached['D']).length} Monthly level calculations from disk.`);
+      if (cached.date === todayStr && cached['5'] && cached['D']) {
+        scannerCache.levelsCache = { '5': cached['5'], 'D': cached['D'] };
+        console.log(`[Scanner] Restored ${Object.keys(cached['5']).length} Daily and ${Object.keys(cached['D']).length} Monthly level calculations for today (${todayStr}) from disk.`);
+      } else {
+        console.log(`[Scanner] Disk levels cache belongs to previous date (${cached.date || 'unknown'}). Invalidating for fresh today scan (${todayStr}).`);
       }
     }
 
     const resultsPath = path.join(__dirname, 'data/scanner_results_backup.json');
     if (fs.existsSync(resultsPath)) {
       const cachedResults = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
-      if (cachedResults.results && cachedResults.lastScanTime) {
+      if (cachedResults.date === todayStr && cachedResults.results && cachedResults.lastScanTime) {
         scannerCache.results = cachedResults.results;
-        // Restore string dates back to Date objects or keep as strings/null
         scannerCache.lastScanTime = {
           '5': cachedResults.lastScanTime['5'] ? new Date(cachedResults.lastScanTime['5']) : null,
           'D': cachedResults.lastScanTime['D'] ? new Date(cachedResults.lastScanTime['D']) : null
         };
-        console.log('[Scanner] Restored previous scan results and times from disk.');
+        console.log(`[Scanner] Restored previous scan results for today (${todayStr}) from disk.`);
+      } else {
+        console.log(`[Scanner] Disk scan results belong to previous date (${cachedResults.date || 'unknown'}). Invalidating for fresh today scan (${todayStr}).`);
       }
     }
   } catch (err) {
@@ -220,11 +225,17 @@ export function loadSignalsFromDisk() {
 
 export function saveLevelsCacheToDisk() {
   try {
+    const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
     const levelsPath = path.join(__dirname, 'data/levels_cache_backup.json');
-    fs.writeFileSync(levelsPath, JSON.stringify(scannerCache.levelsCache), 'utf8');
+    fs.writeFileSync(levelsPath, JSON.stringify({
+      date: todayStr,
+      '5': scannerCache.levelsCache['5'],
+      'D': scannerCache.levelsCache['D']
+    }), 'utf8');
 
     const resultsPath = path.join(__dirname, 'data/scanner_results_backup.json');
     fs.writeFileSync(resultsPath, JSON.stringify({
+      date: todayStr,
       results: scannerCache.results,
       lastScanTime: scannerCache.lastScanTime
     }), 'utf8');
