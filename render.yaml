@@ -1,3 +1,4 @@
+# Render 1-click build trigger
 services:
   - type: web
     name: tradingview-dashboard
