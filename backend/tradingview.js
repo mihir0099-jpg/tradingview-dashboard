@@ -28,7 +28,18 @@ export class TradingViewBridge {
       }
       
       console.log('[TV Bridge] Connecting new shared TradingView session...');
-      const session = await createSession(token);
+      const session = await Promise.race([
+        createSession(token),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('TradingView connection timeout')), 5000))
+      ]).catch(err => {
+        console.warn('[TV Bridge] Shared session connection warning:', err.message || err);
+        return null;
+      });
+
+      if (!session) {
+        this.sessionPromise = null;
+        return null;
+      }
       
       // Patch the session's emit function to prevent benign events from triggering subscription errors in other concurrent charts
       const originalEmit = session.emit;
