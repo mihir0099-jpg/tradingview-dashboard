@@ -2640,13 +2640,7 @@ function startStandingIndexSubscriptions() {
 }
 
 const distPath = path.join(__dirname, '../frontend/dist');
-
-app.use((req, res, next) => {
-  if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
-    return next();
-  }
-  express.static(distPath, { maxAge: '1d', etag: true })(req, res, next);
-});
+app.use(express.static(distPath));
 
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
