@@ -286,23 +286,6 @@ export function startDojiScanner(tvBridge) {
     }
   }, 10000);
 
-  // Fallback boot scan: if booted after 9:20 AM and today is not scanned, trigger once
-  setTimeout(() => {
-    const now = new Date();
-    const kolkataTime = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'Asia/Kolkata',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false
-    }).format(now);
-    const [hh, mm] = kolkataTime.split(':').map(Number);
-    const isTimeReady = (hh > 9 || (hh === 9 && mm >= 20));
-    const todayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
-    const alreadyScanned = dojiCache.slotData['first_5min'] && dojiCache.slotData['first_5min'].date === todayStr;
-
-    if (isTimeReady && !alreadyScanned && !dojiCache.isScanning) {
-      console.log('[Doji Startup] Booted after 9:20 AM IST with empty cache. Triggering catch-up scan...');
-      scanDojiForSlot(tvBridge, 'first_5min');
-    }
-  }, 5000);
+  // Baseline doji data active. Heavy catch-up boot scan disabled to protect server CPU/event loop.
+  console.log('[Doji Startup] Baseline doji scan data active.');
 }
