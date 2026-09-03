@@ -105,8 +105,8 @@ export function BacktestResultsContainer() {
   const [niftyVolStr, setNiftyVolStr] = useState<string>('31.6 Million Contracts');
   const [bankVolStr, setBankVolStr] = useState<string>('6.3 Million Contracts');
 
-  const [niftyVolPrintedTime, setNiftyVolPrintedTime] = useState<string>(new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }));
-  const [bankVolPrintedTime, setBankVolPrintedTime] = useState<string>(new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+  const [niftyVolPrintedTime, setNiftyVolPrintedTime] = useState<string>(new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }));
+  const [bankVolPrintedTime, setBankVolPrintedTime] = useState<string>(new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }));
 
 
   const [refreshKey, setRefreshKey] = useState<number>(0);
@@ -275,7 +275,6 @@ export function BacktestResultsContainer() {
             const nowTime = new Date().toLocaleTimeString('en-IN', {
               hour: '2-digit',
               minute: '2-digit',
-              second: '2-digit',
               hour12: true
             });
 

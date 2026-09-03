@@ -1832,7 +1832,7 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
 
             if (!global.climaxPrintTimestamps[symKey] || global.lastClimaxKeys[symKey] !== currentClimaxKey) {
               global.lastClimaxKeys[symKey] = currentClimaxKey;
-              global.climaxPrintTimestamps[symKey] = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+              global.climaxPrintTimestamps[symKey] = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
             }
 
             const volumeClimaxAlert = {
