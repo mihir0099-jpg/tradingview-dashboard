@@ -1773,24 +1773,60 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
               fib1618Bear: parseFloat((spotPrice * 0.997 - 1.618 * spotPrice * 0.008).toFixed(2)),
               fib2618Bear: parseFloat((spotPrice * 0.997 - 2.618 * spotPrice * 0.008).toFixed(2)),
               fib3618Bear: parseFloat((spotPrice * 0.997 - 3.618 * spotPrice * 0.008).toFixed(2))
-            },
-            volumeClimaxAlert: {
+            };
+
+            // Sticky Climax Print Timestamp Logic
+            if (!global.climaxPrintTimestamps) global.climaxPrintTimestamps = {};
+            if (!global.lastClimaxKeys) global.lastClimaxKeys = {};
+
+            const maxVolStr = `${(Math.max(ceVolSum, peVolSum, 6302725) / 1000000).toFixed(1)} Million Contracts`;
+            const currentClimaxKey = `${symKey}_${Math.round(spotPrice/50)*50}_${maxVolStr}`;
+
+            if (!global.climaxPrintTimestamps[symKey] || global.lastClimaxKeys[symKey] !== currentClimaxKey) {
+              global.lastClimaxKeys[symKey] = currentClimaxKey;
+              global.climaxPrintTimestamps[symKey] = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            }
+
+            const volumeClimaxAlert = {
               active: (ceVolSum > 3000000 || peVolSum > 3000000 || Math.abs(skewSpreadPct) > 10.0),
               type: peVolSum >= ceVolSum ? 'PEAK PUT VOLUME CLIMAX (PUT WRITING FLOOR)' : 'PEAK CALL VOLUME CLIMAX (CALL WRITING CEILING)',
-              volumeStr: `${(Math.max(ceVolSum, peVolSum, 6302725) / 1000000).toFixed(1)} Million Contracts`,
-              timestamp: new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+              volumeStr: maxVolStr,
+              timestamp: global.climaxPrintTimestamps[symKey],
               skewShiftPct: parseFloat(skewSpreadPct.toFixed(1)),
               details: peVolSum >= ceVolSum 
                 ? `Heavy Put Volume Absorption (${(Math.max(peVolSum, 6302725)/1000000).toFixed(1)}M Puts shorted). Institutional Floor Confirmed! 81.2% Win Rate Bullish Reversal.`
                 : `Heavy Call Volume Overhead (${(Math.max(ceVolSum, 5000000)/1000000).toFixed(1)}M Calls shorted). Institutional Ceiling Confirmed! Bearish Breakdown Risk.`
-            },
-            gex: parseFloat(gexValue.toFixed(4)),
-            gexCallWall,
-            gexPutWall,
-            gexFlipZone,
-            gexMaxPain,
-            inceptionTime: '09:15 AM',
-            positionType: skewSpreadPct >= 0 ? 'PUT WRITING + CALL ACCUMULATION' : 'CALL WRITING + PUT ACCUMULATION'
+            };
+
+            return {
+              spotPrice,
+              straddlePrice,
+              skewSpreadPct: parseFloat(skewSpreadPct.toFixed(1)),
+              gammaRatio: parseFloat(gammaRatio.toFixed(2)),
+              pinStrike,
+              itmStrike,
+              otmStrike,
+              ceSymbol: ceSym,
+              ceLtp,
+              peSymbol: peSym,
+              peLtp,
+              targets: {
+                fib1618Bull: parseFloat((spotPrice * 1.005 + 1.618 * spotPrice * 0.008).toFixed(2)),
+                fib2618Bull: parseFloat((spotPrice * 1.005 + 2.618 * spotPrice * 0.008).toFixed(2)),
+                fib3618Bull: parseFloat((spotPrice * 1.005 + 3.618 * spotPrice * 0.008).toFixed(2)),
+                fib1618Bear: parseFloat((spotPrice * 0.997 - 1.618 * spotPrice * 0.008).toFixed(2)),
+                fib2618Bear: parseFloat((spotPrice * 0.997 - 2.618 * spotPrice * 0.008).toFixed(2)),
+                fib3618Bear: parseFloat((spotPrice * 0.997 - 3.618 * spotPrice * 0.008).toFixed(2))
+              },
+              volumeClimaxAlert,
+              gex: parseFloat(gexValue.toFixed(4)),
+              gexCallWall,
+              gexPutWall,
+              gexFlipZone,
+              gexMaxPain,
+              inceptionTime: '09:15 AM',
+              positionType: skewSpreadPct >= 0 ? 'PUT WRITING + CALL ACCUMULATION' : 'CALL WRITING + PUT ACCUMULATION'
+            };
           };
         }
       } catch (err) {
