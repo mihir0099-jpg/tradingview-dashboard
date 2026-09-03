@@ -17,7 +17,7 @@ export function WeeklySellingContainer() {
   useEffect(() => {
     const timer = setInterval(() => {
       refreshData();
-    }, 15000);
+    }, 1000);
     return () => clearInterval(timer);
   }, []);
 

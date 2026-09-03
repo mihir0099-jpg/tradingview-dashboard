@@ -2531,7 +2531,7 @@ function startStandingIndexSubscriptions() {
   subscribeIndex('NSE:NIFTY', 'NIFTY');
   subscribeIndex('NSE:BANKNIFTY', 'BANKNIFTY');
 
-  // Guaranteed 5-Second Live Spot Heartbeat Safeguard
+  // Guaranteed 1-Second Live Spot Heartbeat Safeguard (Millisecond Speed)
   setInterval(async () => {
     if (!tvBridge || !tvBridge.sharedSession) return;
     const targets = [
@@ -2539,7 +2539,7 @@ function startStandingIndexSubscriptions() {
       { key: 'BANKNIFTY', symbol: 'NSE:BANKNIFTY' }
     ];
     for (const t of targets) {
-      if (Date.now() - (lastPriceChangeTime[t.key] || 0) > 4000) {
+      if (Date.now() - (lastPriceChangeTime[t.key] || 0) > 1000) {
         try {
           const candles = await fetchCandlesForSymbol(tvBridge, t.symbol, '1', 5);
           if (candles && candles.length > 0) {
@@ -2552,11 +2552,11 @@ function startStandingIndexSubscriptions() {
         } catch (e) {}
       }
     }
-  }, 4000);
+  }, 1000);
 }
 
 const distPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(distPath));
+app.use(express.static(distPath, { maxAge: '1d', etag: true }));
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) return;
   res.sendFile(path.join(distPath, 'index.html'));
