@@ -142,6 +142,54 @@ app.use((req, res, next) => {
   next();
 });
 
+// Secret Admin Visitor Tracking Engine
+const activeVisitorSessions = new Map();
+
+app.use((req, res, next) => {
+  try {
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
+    const userAgent = req.headers['user-agent'] || 'Unknown Device';
+    const country = req.headers['cf-ipcountry'] || req.headers['x-render-country'] || 'India';
+    
+    let deviceType = 'Desktop PC';
+    if (/mobile/i.test(userAgent)) deviceType = 'Mobile Phone';
+    else if (/ipad|tablet/i.test(userAgent)) deviceType = 'Tablet';
+
+    const clientIp = ip.split(',')[0].trim();
+    activeVisitorSessions.set(clientIp, {
+      ip: clientIp,
+      device: deviceType,
+      country: country,
+      lastActive: Date.now(),
+      lastActiveTime: new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+      url: req.url
+    });
+
+    // Cleanup inactive sessions older than 3 minutes
+    const now = Date.now();
+    for (const [key, session] of activeVisitorSessions.entries()) {
+      if (now - session.lastActive > 180000) {
+        activeVisitorSessions.delete(key);
+      }
+    }
+  } catch (e) {}
+  next();
+});
+
+// Secret Admin Visitors API (Protected by PIN 1234)
+app.get('/api/admin/visitors', (req, res) => {
+  const pin = req.query.pin || req.headers['x-admin-pin'];
+  if (pin !== '1234') {
+    return res.status(403).json({ error: 'Unauthorized. Secret Admin PIN required.' });
+  }
+  const visitors = Array.from(activeVisitorSessions.values());
+  res.json({
+    totalOnline: visitors.length,
+    timestamp: new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' }),
+    visitors
+  });
+});
+
 
 // Route for Live Confluence Analyzer Alerts
 app.get('/api/scanner/confluence', async (req, res) => {
