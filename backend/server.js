@@ -2495,12 +2495,7 @@ app.get('/api/symbols/presets', (req, res) => {
   res.json(presetsData);
 });
 
-app.get('*', (req, res) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
-  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-});
+
 
 // timezone-aware background scheduler for post-market reports (3:47 PM IST)
 function startPostMarketScheduler() {
