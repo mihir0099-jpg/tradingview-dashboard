@@ -2571,9 +2571,10 @@ function startStandingIndexSubscriptions() {
   
   const subscribeIndex = (symbol, key) => {
     let cleanup = null;
-    const connect = () => {
-      if (!tvBridge.sharedSession) {
-        setTimeout(connect, 1000);
+    const connect = async () => {
+      const session = await tvBridge.getSession().catch(() => null);
+      if (!session) {
+        setTimeout(connect, 10000);
         return;
       }
       console.log(`[Standing Feed] Initializing continuous tick subscription for ${symbol}...`);

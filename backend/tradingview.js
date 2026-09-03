@@ -15,7 +15,9 @@ export class TradingViewBridge {
       return this.sharedSession;
     }
     if (this.sessionPromise) {
-      return this.sessionPromise;
+      const res = await this.sessionPromise;
+      if (res) return res;
+      this.sessionPromise = null;
     }
 
     this.sessionPromise = (async () => {
@@ -38,6 +40,7 @@ export class TradingViewBridge {
 
       if (!session) {
         this.sessionPromise = null;
+        this.sharedSession = null;
         return null;
       }
       
