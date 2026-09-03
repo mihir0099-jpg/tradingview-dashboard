@@ -2562,6 +2562,19 @@ function startPostMarketScheduler() {
 
 // Standing background subscriptions for index spot prices to ensure zero-delay updates from TradingView
 function startStandingIndexSubscriptions() {
+  const now = new Date();
+  const istTimeStr = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false });
+  const day = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'short' });
+  const isWeekday = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].includes(day);
+  const [hh, mm] = istTimeStr.split(':').map(Number);
+  const currentMinutes = hh * 60 + mm;
+
+  // Market hours are 9:15 AM (555 mins) to 3:30 PM (930 mins) IST
+  if (!isWeekday || currentMinutes < 555 || currentMinutes > 930) {
+    console.log('[Standing Feed] Off-market hours. Skipping live index WebSocket subscriptions to preserve server speed.');
+    return;
+  }
+
   console.log('[Startup] Starting standing background subscriptions for index spot prices from TradingView...');
   
   const subscribeIndex = (symbol, key) => {
