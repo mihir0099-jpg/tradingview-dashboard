@@ -36,6 +36,8 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const [isAdmin, setIsAdmin] = useState(false);
   const [visitorData, setVisitorData] = useState<any>(null);
   const [showVisitorModal, setShowVisitorModal] = useState(false);
+  const [showPinPrompt, setShowPinPrompt] = useState(false);
+  const [pinInput, setPinInput] = useState('');
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -258,7 +260,27 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <RefreshCw size={15} />
           </button>
 
-          {isAdmin && (
+          {!isAdmin ? (
+            <button
+              onClick={() => setShowPinPrompt(true)}
+              style={{
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid var(--border-color)',
+                color: 'var(--text-secondary)',
+                padding: '6px 12px',
+                borderRadius: '8px',
+                fontSize: '12px',
+                fontWeight: '800',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+              title="Unlock Admin Visitor Radar"
+            >
+              🔒 Admin
+            </button>
+          ) : (
             <div 
               onClick={() => setShowVisitorModal(!showVisitorModal)}
               style={{ 
@@ -339,6 +361,58 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <div style={{ marginTop: '16px', fontSize: '11px', color: '#64748b', textAlign: 'center' }}>
               🔒 100% Private to Admin. Only visible on your device via PIN 1234.
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Secret PIN Entry Prompt Modal */}
+      {showPinPrompt && (
+        <div 
+          onClick={() => setShowPinPrompt(false)}
+          style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', zIndex: 99999, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            style={{ width: '90%', maxWidth: '400px', background: '#0b0f19', border: '1px solid rgba(16, 185, 129, 0.4)', borderRadius: '16px', padding: '24px', boxShadow: '0 10px 40px rgba(0,0,0,0.8)' }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
+              <h3 style={{ margin: 0, color: 'white', fontSize: '16px', fontWeight: '900' }}>
+                🔒 Enter Secret Admin PIN
+              </h3>
+              <button onClick={() => setShowPinPrompt(false)} style={{ background: 'transparent', border: 'none', color: '#94a3b8', cursor: 'pointer' }}>
+                <X size={18} />
+              </button>
+            </div>
+
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (pinInput === '1234') {
+                  localStorage.setItem('admin_pin', '1234');
+                  setIsAdmin(true);
+                  setShowPinPrompt(false);
+                } else {
+                  alert('Invalid Secret PIN!');
+                }
+              }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '20px' }}
+            >
+              <input 
+                type="password"
+                placeholder="Enter Secret PIN (e.g. 1234)"
+                value={pinInput}
+                onChange={(e) => setPinInput(e.target.value)}
+                autoFocus
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.15)', color: 'white', fontSize: '14px', boxSizing: 'border-box' }}
+              />
+
+              <button 
+                type="submit"
+                style={{ padding: '12px', borderRadius: '8px', background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)', color: 'white', fontWeight: '900', fontSize: '14px', border: 'none', cursor: 'pointer' }}
+              >
+                🔓 Unlock Admin Visitor Radar
+              </button>
+            </form>
           </div>
         </div>
       )}

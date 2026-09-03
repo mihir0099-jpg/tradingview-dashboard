@@ -2640,9 +2640,18 @@ function startStandingIndexSubscriptions() {
 }
 
 const distPath = path.join(__dirname, '../frontend/dist');
-app.use(express.static(distPath, { maxAge: '1d', etag: true }));
-app.get('*', (req, res, next) => {
-  if (req.path.startsWith('/api') || req.path.startsWith('/ws')) return next();
+
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
+    return next();
+  }
+  express.static(distPath, { maxAge: '1d', etag: true })(req, res, next);
+});
+
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
+    return res.status(404).json({ error: 'API route not found' });
+  }
   res.sendFile(path.join(distPath, 'index.html'));
 });
 
