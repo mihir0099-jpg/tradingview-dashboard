@@ -670,15 +670,63 @@ try {
   console.error('[Node Backend] Failed to load presets.json:', err);
 }
 
-// Disable caching to prevent browser caching issues
-app.use((req, res, next) => {
-  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  next();
-});
+// Serve static assets from frontend/dist
+const distPath = path.join(__dirname, '../frontend/dist');
+console.log('[Static] Serving frontend from:', distPath, '| Exists:', fs.existsSync(distPath));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date(), project: 'TradingView Dashboard V2' });
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.json({ status: 'OK', version: 'v3-fast', timestamp: new Date(), project: 'TradingView Dashboard V2' });
+});
+
+// Direct synchronous delivery for root HTML
+app.get('/', (req, res) => {
+  const indexPath = path.join(distPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    try {
+      const htmlContent = fs.readFileSync(indexPath, 'utf8');
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Content-Length', Buffer.byteLength(htmlContent, 'utf8'));
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+      return res.status(200).send(htmlContent);
+    } catch (err) {
+      console.error('[Static] Error reading index.html:', err);
+    }
+  }
+  const fallback = '<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Frontend building...</p></body></html>';
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Content-Length', Buffer.byteLength(fallback, 'utf8'));
+  return res.status(200).send(fallback);
+});
+
+// Direct synchronous asset delivery handler for ultra-fast, zero-hang serving
+app.get('/assets/:filename', (req, res) => {
+  const filename = path.basename(req.params.filename);
+  const filePath = path.join(distPath, 'assets', filename);
+  if (fs.existsSync(filePath)) {
+    const ext = path.extname(filename).toLowerCase();
+    const mimeTypes = {
+      '.js': 'application/javascript; charset=utf-8',
+      '.css': 'text/css; charset=utf-8',
+      '.svg': 'image/svg+xml',
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.json': 'application/json',
+      '.woff2': 'font/woff2',
+      '.woff': 'font/woff'
+    };
+    try {
+      const content = fs.readFileSync(filePath);
+      res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+      res.setHeader('Content-Length', content.length);
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      return res.status(200).send(content);
+    } catch (e) {
+      return res.status(500).send('Error reading asset');
+    }
+  }
+  return res.status(404).send('Asset not found');
 });
 
 const server = createServer(app);
@@ -2606,39 +2654,6 @@ function startStandingIndexSubscriptions() {
   subscribeIndex('NSE:BANKNIFTY', 'BANKNIFTY');
 }
 
-// Serve static assets from frontend/dist
-const distPath = path.join(__dirname, '../frontend/dist');
-console.log('[Static] Serving frontend from:', distPath, '| Exists:', fs.existsSync(distPath));
-
-// Direct synchronous asset delivery handler for ultra-fast, zero-hang serving
-app.get('/assets/:filename', (req, res) => {
-  const filename = path.basename(req.params.filename);
-  const filePath = path.join(distPath, 'assets', filename);
-  if (fs.existsSync(filePath)) {
-    const ext = path.extname(filename).toLowerCase();
-    const mimeTypes = {
-      '.js': 'application/javascript; charset=utf-8',
-      '.css': 'text/css; charset=utf-8',
-      '.svg': 'image/svg+xml',
-      '.png': 'image/png',
-      '.jpg': 'image/jpeg',
-      '.json': 'application/json',
-      '.woff2': 'font/woff2',
-      '.woff': 'font/woff'
-    };
-    try {
-      const content = fs.readFileSync(filePath);
-      res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
-      res.setHeader('Content-Length', content.length);
-      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-      return res.status(200).send(content);
-    } catch (e) {
-      return res.status(500).send('Error reading asset');
-    }
-  }
-  return res.status(404).send('Asset not found');
-});
-
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
@@ -2667,22 +2682,19 @@ app.get('*', (req, res) => {
 });
 
 // 24/7 Keep-Alive & Self-Healing Heartbeat Engine
-// Render free tier spins down after 15 min of inactivity - ping every 4 min to prevent this
+// Keep Node event loop and memory warm every 4 minutes without external NAT hairpin hang
 function start247KeepAliveEngine(port) {
-  const publicUrl = process.env.RENDER_EXTERNAL_URL || 'https://tradingview-dashboard-1.onrender.com';
-  console.log(`[24/7 Self-Healing Engine] Started keep-alive heartbeat pinging ${publicUrl}/health every 4 minutes...`);
+  console.log(`[24/7 Self-Healing Engine] Started keep-alive heartbeat pinging http://127.0.0.1:${port}/health every 4 minutes...`);
 
   setInterval(() => {
     const pingTime = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
-    fetch(`${publicUrl}/health`, { signal: AbortSignal.timeout(30000) })
+    fetch(`http://127.0.0.1:${port}/health`, { signal: AbortSignal.timeout(5000) })
       .then(res => res.json())
       .then(data => {
-        console.log(`[24/7 Heartbeat] Keep-alive ping OK @ ${pingTime}`);
+        console.log(`[24/7 Heartbeat] Internal keep-alive ping OK @ ${pingTime}`);
       })
       .catch(err => {
-        console.warn(`[24/7 Heartbeat] Public ping failed @ ${pingTime} - retrying via localhost:`, err.message || err);
-        // Fallback: ping localhost to keep Node event loop busy
-        fetch(`http://localhost:${port}/health`, { signal: AbortSignal.timeout(5000) }).catch(() => {});
+        console.warn(`[24/7 Heartbeat] Internal ping failed @ ${pingTime}:`, err.message || err);
       });
   }, 4 * 60 * 1000); // Every 4 minutes
 }
