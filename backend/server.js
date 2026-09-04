@@ -2615,13 +2615,33 @@ function startStandingIndexSubscriptions() {
 const distPath = path.join(__dirname, '../frontend/dist');
 console.log('[Static] Serving frontend from:', distPath, '| Exists:', fs.existsSync(distPath));
 
+// Direct synchronous asset delivery handler for ultra-fast, zero-hang serving
+app.get('/assets/:filename', (req, res) => {
+  const filename = path.basename(req.params.filename);
+  const filePath = path.join(distPath, 'assets', filename);
+  if (fs.existsSync(filePath)) {
+    const ext = path.extname(filename).toLowerCase();
+    const mimeTypes = {
+      '.js': 'application/javascript; charset=utf-8',
+      '.css': 'text/css; charset=utf-8',
+      '.svg': 'image/svg+xml',
+      '.png': 'image/png',
+      '.jpg': 'image/jpeg',
+      '.json': 'application/json'
+    };
+    res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+    res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+    try {
+      const content = fs.readFileSync(filePath);
+      return res.status(200).send(content);
+    } catch (e) {
+      return res.status(500).send('Error reading asset');
+    }
+  }
+  return res.status(404).send('Asset not found');
+});
+
 if (fs.existsSync(distPath)) {
-  // Serve /assets folder (JS/CSS bundles) with caching
-  app.use('/assets', express.static(path.join(distPath, 'assets'), {
-    maxAge: '7d',
-    etag: true,
-  }));
-  // Serve all other static files (favicon, etc)
   app.use(express.static(distPath, { index: false }));
 }
 
