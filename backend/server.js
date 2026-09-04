@@ -2609,29 +2609,6 @@ function startStandingIndexSubscriptions() {
 
   subscribeIndex('NSE:NIFTY', 'NIFTY');
   subscribeIndex('NSE:BANKNIFTY', 'BANKNIFTY');
-
-  // Guaranteed 1-Second Live Spot Heartbeat Safeguard (Millisecond Speed)
-  setInterval(async () => {
-    if (!tvBridge || !tvBridge.sharedSession) return;
-    const targets = [
-      { key: 'NIFTY', symbol: 'NSE:NIFTY' },
-      { key: 'BANKNIFTY', symbol: 'NSE:BANKNIFTY' }
-    ];
-    for (const t of targets) {
-      if (Date.now() - (lastPriceChangeTime[t.key] || 0) > 1000) {
-        try {
-          const candles = await fetchCandlesForSymbol(tvBridge, t.symbol, '1', 5);
-          if (candles && candles.length > 0) {
-            const latest = candles[candles.length - 1].close;
-            if (latest > 0) {
-              lastPriceValue[t.key] = latest;
-              lastPriceChangeTime[t.key] = Date.now();
-            }
-          }
-        } catch (e) {}
-      }
-    }
-  }, 1000);
 }
 
 // Serve static assets from frontend/dist
@@ -2648,7 +2625,7 @@ if (fs.existsSync(distPath)) {
   app.use(express.static(distPath, { index: false }));
 }
 
-// SPA fallback - send index.html for all non-API routes
+// SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
     return res.status(404).json({ error: 'API route not found' });
@@ -2659,8 +2636,13 @@ app.get('*', (req, res) => {
   }
   const indexPath = path.join(distPath, 'index.html');
   if (fs.existsSync(indexPath)) {
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-    return res.sendFile(indexPath);
+    try {
+      const htmlContent = fs.readFileSync(indexPath, 'utf8');
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+      return res.status(200).type('html').send(htmlContent);
+    } catch (err) {
+      console.error('[Static] Error reading index.html:', err);
+    }
   }
   res.status(200).send('<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Frontend building...</p></body></html>');
 });
