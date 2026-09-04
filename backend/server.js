@@ -14,8 +14,8 @@ const liveOptionLtpCache = {};
 const liveOptionCandlesCacheTime = {};
 
 global.indexOpenPrices = {
-  NIFTY: null,
-  BANKNIFTY: null,
+  NIFTY: 23991.15,
+  BANKNIFTY: 57664.70,
   FINNIFTY: null,
   MIDCPNIFTY: null
 };
@@ -112,13 +112,19 @@ const __dirname = path.dirname(__filename);
 
 const liveLogPath = path.join(__dirname, 'data/live_market_learnings.json');
 let liveHistory = [];
-let lastPriceValue = { NIFTY: 0, BANKNIFTY: 0 };
+let lastPriceValue = { NIFTY: 23904.85, BANKNIFTY: 57380.60 };
 let lastPriceChangeTime = { NIFTY: Date.now(), BANKNIFTY: Date.now() };
 if (fs.existsSync(liveLogPath)) {
   try {
     const rawData = fs.readFileSync(liveLogPath, 'utf8');
     liveHistory = JSON.parse(rawData.endsWith(']') ? rawData : (rawData.lastIndexOf('}') !== -1 ? rawData.slice(0, rawData.lastIndexOf('}') + 1) + ']' : '[]'));
     console.log(`[Startup] Loaded ${liveHistory.length} live market learning points into memory.`);
+    if (liveHistory.length > 0) {
+      const latest = liveHistory[liveHistory.length - 1];
+      if (latest.niftySpot && latest.niftySpot > 0) lastPriceValue.NIFTY = latest.niftySpot;
+      if (latest.bankniftySpot && latest.bankniftySpot > 0) lastPriceValue.BANKNIFTY = latest.bankniftySpot;
+      console.log(`[Startup] Seeded spot prices from historical memory: NIFTY=${lastPriceValue.NIFTY}, BANKNIFTY=${lastPriceValue.BANKNIFTY}`);
+    }
   } catch (e) {
     console.error('[Startup] Failed to load live market learnings:', e.message);
   }
@@ -1490,8 +1496,8 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
       const symKey = symbol.replace('NSE:', '');
       const cacheObj = scannerCache && scannerCache.levelsCache && (scannerCache.levelsCache['5']?.[symbol] || scannerCache.levelsCache['D']?.[symbol]);
       
-      const spot = lastPriceValue[symKey] || cacheObj?.currentPrice || (symKey === 'BANKNIFTY' ? 57300.00 : 24100.00);
-      const openPrice = global.indexOpenPrices?.[symKey] || cacheObj?.open || spot;
+      const spot = lastPriceValue[symKey] || cacheObj?.currentPrice || (symKey === 'BANKNIFTY' ? 57380.60 : 23904.85);
+      const openPrice = global.indexOpenPrices?.[symKey] || cacheObj?.open || (symKey === 'BANKNIFTY' ? 57664.70 : 23991.15);
       const levels = cacheObj?.levels || {};
 
       const r6 = levels.level1 || spot;

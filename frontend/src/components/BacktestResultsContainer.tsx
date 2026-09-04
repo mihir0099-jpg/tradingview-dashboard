@@ -206,14 +206,14 @@ export function BacktestResultsContainer() {
         if (res.ok) {
           const json = await res.json();
           if (isMounted) {
-            const currentNifty = Number(json.nifty?.currentPrice || json.nifty?.openPrice || 24498.70);
-            const currentBank = Number(json.banknifty?.currentPrice || json.banknifty?.openPrice || 57333.90);
-            const nSkew = Number(json.nifty?.straddleSkew?.skewSpreadPct || 3.2);
-            const bSkew = Number(json.banknifty?.straddleSkew?.skewSpreadPct || 18.9);
-            const nGamma = Number(json.nifty?.straddleSkew?.gammaRatio || 0.64);
-            const bGamma = Number(json.banknifty?.straddleSkew?.gammaRatio || 0.92);
-            const nStraddle = Number(json.nifty?.straddleSkew?.totalStraddle || 92.50);
-            const bStraddle = Number(json.banknifty?.straddleSkew?.totalStraddle || 1212.15);
+            const currentNifty = Number(json.nifty?.currentPrice || json.nifty?.openPrice || 23904.85);
+            const currentBank = Number(json.banknifty?.currentPrice || json.banknifty?.openPrice || 57380.60);
+            const nSkew = Number(json.nifty?.straddleSkew?.skewSpreadPct || 12.6);
+            const bSkew = Number(json.banknifty?.straddleSkew?.skewSpreadPct || 0.9);
+            const nGamma = Number(json.nifty?.straddleSkew?.gammaRatio || 1.15);
+            const bGamma = Number(json.banknifty?.straddleSkew?.gammaRatio || 1.15);
+            const nStraddle = Number(json.nifty?.straddleSkew?.totalStraddle || 276.19);
+            const bStraddle = Number(json.banknifty?.straddleSkew?.totalStraddle || 1125.22);
 
             setNiftySpot(currentNifty);
             setBankSpot(currentBank);
@@ -224,20 +224,20 @@ export function BacktestResultsContainer() {
             setNiftyStraddle(nStraddle);
             setBankStraddle(bStraddle);
             
-            const nGex = Number(json.nifty?.straddleSkew?.gex || 0);
-            const bGex = Number(json.banknifty?.straddleSkew?.gex || 0);
+            const nGex = Number(json.nifty?.straddleSkew?.gex || 0.0092);
+            const bGex = Number(json.banknifty?.straddleSkew?.gex || 0.0023);
             setNiftyGex(nGex);
             setBankGex(bGex);
             
-            setNiftyCallWall(json.nifty?.straddleSkew?.gexCallWall || 24400);
-            setNiftyPutWall(json.nifty?.straddleSkew?.gexPutWall || 24100);
-            setNiftyFlipZone(json.nifty?.straddleSkew?.gexFlipZone || 24250);
-            setNiftyMaxPain(json.nifty?.straddleSkew?.gexMaxPain || 24250);
+            setNiftyCallWall(json.nifty?.straddleSkew?.gexCallWall || 24200);
+            setNiftyPutWall(json.nifty?.straddleSkew?.gexPutWall || 23650);
+            setNiftyFlipZone(json.nifty?.straddleSkew?.gexFlipZone || 23900);
+            setNiftyMaxPain(json.nifty?.straddleSkew?.gexMaxPain || 23900);
 
-            setBankCallWall(json.banknifty?.straddleSkew?.gexCallWall || 57900);
-            setBankPutWall(json.banknifty?.straddleSkew?.gexPutWall || 57600);
-            setBankFlipZone(json.banknifty?.straddleSkew?.gexFlipZone || 57800);
-            setBankMaxPain(json.banknifty?.straddleSkew?.gexMaxPain || 57800);
+            setBankCallWall(json.banknifty?.straddleSkew?.gexCallWall || 58500);
+            setBankPutWall(json.banknifty?.straddleSkew?.gexPutWall || 56300);
+            setBankFlipZone(json.banknifty?.straddleSkew?.gexFlipZone || 57400);
+            setBankMaxPain(json.banknifty?.straddleSkew?.gexMaxPain || 57400);
 
             if (json.nifty?.straddleSkew) {
               if (json.nifty.straddleSkew.ceSymbol) setNiftyCeSym(json.nifty.straddleSkew.ceSymbol);

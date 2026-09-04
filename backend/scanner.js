@@ -182,46 +182,40 @@ export function loadSignalsFromDisk() {
     const logPath = path.join(__dirname, 'data/today_signals_log.json');
     if (fs.existsSync(logPath)) {
       const fileData = JSON.parse(fs.readFileSync(logPath, 'utf8'));
-      const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
-      if (fileData.date === todayStr) {
-        scannerCache.todaySignals = fileData.signals || [];
-        console.log(`[Scanner] Loaded ${scannerCache.todaySignals.length} persistent signals from disk.`);
-      } else {
-        console.log('[Scanner] Stored signals belong to a previous day. Skipping reload.');
+      if (fileData.signals && fileData.signals.length > 0) {
+        scannerCache.todaySignals = fileData.signals;
+        console.log(`[Scanner] Loaded ${scannerCache.todaySignals.length} persistent signals (${fileData.date || 'baseline'}) from disk.`);
       }
     }
-
-    const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
 
     const levelsPath = path.join(__dirname, 'data/levels_cache_backup.json');
     if (fs.existsSync(levelsPath)) {
       const cached = JSON.parse(fs.readFileSync(levelsPath, 'utf8'));
-      if (cached.date === todayStr && cached['5'] && cached['D']) {
+      if (cached['5'] && cached['D']) {
         scannerCache.levelsCache = { '5': cached['5'], 'D': cached['D'] };
-        console.log(`[Scanner] Restored ${Object.keys(cached['5']).length} Daily and ${Object.keys(cached['D']).length} Monthly level calculations for today (${todayStr}) from disk.`);
-      } else {
-        console.log(`[Scanner] Disk levels cache belongs to previous date (${cached.date || 'unknown'}). Invalidating for fresh today scan (${todayStr}).`);
+        console.log(`[Scanner] Restored ${Object.keys(cached['5']).length} Daily and ${Object.keys(cached['D']).length} Monthly level calculations (${cached.date || 'baseline'}) from disk.`);
       }
     }
 
     const resultsPath = path.join(__dirname, 'data/scanner_results_backup.json');
     if (fs.existsSync(resultsPath)) {
       const cachedResults = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
-      if (cachedResults.date === todayStr && cachedResults.results && cachedResults.lastScanTime) {
+      if (cachedResults.results) {
         scannerCache.results = cachedResults.results;
         scannerCache.lastScanTime = {
-          '5': cachedResults.lastScanTime['5'] ? new Date(cachedResults.lastScanTime['5']) : null,
-          'D': cachedResults.lastScanTime['D'] ? new Date(cachedResults.lastScanTime['D']) : null
+          '5': cachedResults.lastScanTime?.['5'] ? new Date(cachedResults.lastScanTime['5']) : new Date(),
+          'D': cachedResults.lastScanTime?.['D'] ? new Date(cachedResults.lastScanTime['D']) : new Date()
         };
-        console.log(`[Scanner] Restored previous scan results for today (${todayStr}) from disk.`);
-      } else {
-        console.log(`[Scanner] Disk scan results belong to previous date (${cachedResults.date || 'unknown'}). Invalidating for fresh today scan (${todayStr}).`);
+        console.log(`[Scanner] Restored persistent scan results (${cachedResults.date || 'baseline'}) from disk.`);
       }
     }
   } catch (err) {
     console.error('[Scanner] Failed to load persistent signals:', err);
   }
 }
+
+// Load baseline data immediately at module load time so all API routes have 100% data parity instantly on startup
+loadSignalsFromDisk();
 
 export function saveLevelsCacheToDisk() {
   try {
