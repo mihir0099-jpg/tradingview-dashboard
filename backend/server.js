@@ -1139,6 +1139,7 @@ app.get('/api/scanner/results', (req, res) => {
     processedResults[lvl] = (level === undefined || lvl === level) ? rawResults[lvl] : [];
   });
 
+  res.setHeader('Cache-Control', 'public, max-age=60'); // Cache 60s - scanner refreshes every few minutes
   res.json({
     lastScanTime: scannerCache.lastScanTime[tf] || null,
     isScanning: scannerCache.isScanning[tf] || false,
@@ -1361,6 +1362,7 @@ app.get('/api/scanner/weekly-200-ema', async (req, res) => {
     const cachedData = getCachedWeekly200EMASymbols();
 
     if (!force && cachedData && cachedData.length > 0) {
+      res.setHeader('Cache-Control', 'public, max-age=600'); // Cache 10 min - weekly data rarely changes
       return res.json({
         success: true,
         cached: true,
@@ -2422,35 +2424,23 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
 });
 
 
-// Endpoint to retrieve Doji signals with slot support (Daily or 30-min time slots)
-app.get('/api/doji-signals', async (req, res) => {
-  const slot = req.query.slot || 'D';
-  const force = req.query.scan === 'true';
+// Endpoint to retrieve Doji signals — served from daily 9:21 AM cache, instant response
+app.get('/api/doji-signals', (req, res) => {
+  const slot = req.query.slot || 'first_5min';
+  const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
 
-  const hasNoData = !dojiCache.slotData[slot] || 
-                    !dojiCache.slotData[slot].allDojiStocks || 
-                    dojiCache.slotData[slot].allDojiStocks.length === 0;
+  // Always serve from cache — scan only happens once at 9:21 AM via scheduler
+  const slotData = dojiCache.slotData[slot] || dojiCache.slotData['first_5min'] || null;
 
-  if (force || hasNoData) {
-    console.log(`[Node Backend] API hit triggered scan for Doji Slot ${slot} (force=${force}, hasNoData=${hasNoData})...`);
-    // Run scan if not available or empty
-    scanDojiForSlot(tvBridge, slot);
-  }
-
-  const slotData = dojiCache.slotData[slot] || {
-    slot,
-    stocks: dojiCache.stocks || [],
-    allDojiStocks: dojiCache.allDojiStocks || [],
-    lastScanTime: dojiCache.lastScanTime
-  };
-
+  res.setHeader('Cache-Control', 'public, max-age=300'); // Cache 5 min in browser
   res.json({
     slot,
     isScanning: dojiCache.isScanning,
-    date: dojiCache.date || new Date().toISOString().split('T')[0],
-    lastScanTime: slotData.lastScanTime || dojiCache.lastScanTime,
-    stocks: slotData.stocks || [],
-    allDojiStocks: slotData.allDojiStocks || []
+    date: slotData?.date || todayStr,
+    lastScanTime: slotData?.lastScanTime || dojiCache.lastScanTime || null,
+    stocks: slotData?.stocks || [],
+    allDojiStocks: slotData?.allDojiStocks || [],
+    note: slotData ? 'Results from 9:21 AM daily scan' : 'Awaiting 9:21 AM market open scan'
   });
 });
 
@@ -2460,6 +2450,7 @@ app.get('/api/volume-breakouts', (req, res) => {
     console.log('[Volume Endpoint] Manual trigger requested...');
     scanVolumeBreakouts(tvBridge);
   }
+  res.setHeader('Cache-Control', 'public, max-age=120'); // Cache 2 min
   res.json(volumeCache);
 });
 

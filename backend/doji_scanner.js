@@ -262,7 +262,7 @@ export async function scanDojiForSlot(tvBridge, slot = 'first_5min') {
 export function startDojiScanner(tvBridge) {
   loadDojiCacheFromDisk();
 
-  // Run a check every 10 seconds to detect 9:20 AM IST trigger time
+  // Check every 10 seconds — trigger scan at exactly 9:21 AM IST once per day
   setInterval(() => {
     const now = new Date();
     const kolkataTime = new Intl.DateTimeFormat('en-US', {
@@ -277,15 +277,16 @@ export function startDojiScanner(tvBridge) {
     const todayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
 
     const isWeekDay = now.getDay() >= 1 && now.getDay() <= 5;
-    const isTimeReady = (hh > 9 || (hh === 9 && mm >= 20));
-    const alreadyScanned = dojiCache.slotData['first_5min'] && dojiCache.slotData['first_5min'].date === todayStr;
+    // Trigger at 9:21 AM (exactly 1 minute after market open - first candle is complete)
+    const isTimeReady = (hh === 9 && mm === 21) || (hh > 9 && hh < 16 && !dojiCache.slotData['first_5min']);
+    const alreadyScannedToday = dojiCache.slotData['first_5min'] && dojiCache.slotData['first_5min'].date === todayStr;
 
-    if (isWeekDay && isTimeReady && !alreadyScanned && !dojiCache.isScanning) {
-      console.log(`[Doji Scheduler] 9:20 AM IST threshold reached (${kolkataTime}). Launching single daily Doji scan...`);
+    if (isWeekDay && isTimeReady && !alreadyScannedToday && !dojiCache.isScanning) {
+      console.log(`[Doji Scheduler] Triggering daily 9:21 AM IST Doji scan (${kolkataTime} IST)...`);
       scanDojiForSlot(tvBridge, 'first_5min');
     }
   }, 10000);
 
-  // Baseline doji data active. Heavy catch-up boot scan disabled to protect server CPU/event loop.
-  console.log('[Doji Startup] Baseline doji scan data active.');
+  console.log('[Doji Startup] Daily 9:21 AM scan scheduler active. Results locked all day.');
 }
+
