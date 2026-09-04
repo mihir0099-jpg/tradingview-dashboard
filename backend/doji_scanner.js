@@ -29,21 +29,20 @@ export function loadDojiCacheFromDisk() {
     const backupPath = path.join(__dirname, 'data/doji_cache_backup.json');
     if (fs.existsSync(backupPath)) {
       const data = JSON.parse(fs.readFileSync(backupPath, 'utf8'));
-      const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
       const cleanData = {};
       Object.keys(data).forEach(slot => {
-        if (data[slot] && data[slot].date === todayStr) {
+        if (data[slot]) {
           cleanData[slot] = data[slot];
         }
       });
       dojiCache.slotData = cleanData;
-      const currentSlot = dojiCache.selectedSlot;
+      const currentSlot = dojiCache.selectedSlot || 'first_5min';
       if (cleanData[currentSlot]) {
-        dojiCache.stocks = cleanData[currentSlot].stocks;
-        dojiCache.allDojiStocks = cleanData[currentSlot].allDojiStocks;
+        dojiCache.stocks = cleanData[currentSlot].stocks || [];
+        dojiCache.allDojiStocks = cleanData[currentSlot].allDojiStocks || [];
         dojiCache.date = cleanData[currentSlot].date;
       }
-      console.log('[Doji Scanner] Restored today\'s doji scan results from disk.');
+      console.log(`[Doji Scanner] Restored persistent doji scan results (${dojiCache.stocks.length} stocks) from disk.`);
     }
   } catch (err) {
     console.error('[Doji Scanner] Failed to load doji cache from disk:', err);
@@ -277,8 +276,8 @@ export function startDojiScanner(tvBridge) {
     const todayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
 
     const isWeekDay = now.getDay() >= 1 && now.getDay() <= 5;
-    // Trigger at 9:21 AM (exactly 1 minute after market open - first candle is complete)
-    const isTimeReady = (hh === 9 && mm === 21) || (hh > 9 && hh < 16 && !dojiCache.slotData['first_5min']);
+    // Trigger STRICTLY at 9:21 AM IST only - never mid-day catchup
+    const isTimeReady = (hh === 9 && mm === 21);
     const alreadyScannedToday = dojiCache.slotData['first_5min'] && dojiCache.slotData['first_5min'].date === todayStr;
 
     if (isWeekDay && isTimeReady && !alreadyScannedToday && !dojiCache.isScanning) {
