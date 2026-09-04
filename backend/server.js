@@ -730,7 +730,7 @@ initStaticRamCache();
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  res.json({ status: 'OK', version: 'v4-instant-ram', timestamp: new Date(), project: 'TradingView Dashboard V2' });
+  res.json({ status: 'OK', version: 'v5-ws-bulletproof', timestamp: new Date(), project: 'TradingView Dashboard V2' });
 });
 
 // Instant RAM delivery for root HTML (<1ms)
@@ -789,11 +789,42 @@ app.get('/assets/:filename', (req, res) => {
 });
 
 const server = createServer(app);
-const wss = new WebSocketServer({ server });
+const wss = new WebSocketServer({ noServer: true });
 
 wss.on('error', (err) => {
   console.error('[Node Backend] WebSocket Server error:', err);
 });
+
+// Explicit upgrade handler supporting root ('/') and dedicated endpoint ('/ws')
+server.on('upgrade', (request, socket, head) => {
+  const url = request.url || '/';
+  const pathname = url.split('?')[0];
+  console.log(`[WebSocket Upgrade] Received upgrade request on path: "${pathname}"`);
+
+  if (pathname === '/' || pathname === '/ws' || pathname.startsWith('/ws')) {
+    wss.handleUpgrade(request, socket, head, (ws) => {
+      wss.emit('connection', ws, request);
+    });
+  } else {
+    socket.destroy();
+  }
+});
+
+// Keep-alive ping-pong heartbeat to prevent Render & Cloudflare proxy timeouts (100s idle timeout)
+const wsHeartbeatInterval = setInterval(() => {
+  wss.clients.forEach((ws) => {
+    if (ws.isAlive === false) {
+      console.log('[WebSocket Server] Terminating stale dead socket connection');
+      return ws.terminate();
+    }
+    ws.isAlive = false;
+    try {
+      ws.ping();
+    } catch (e) {}
+  });
+}, 25000);
+
+wss.on('close', () => clearInterval(wsHeartbeatInterval));
 
 // Declare tvBridge at module scope immediately but don't connect until after server is proven healthy
 let tvBridge = new TradingViewBridge();
@@ -903,8 +934,14 @@ async function fetchAnchorLevels(symbol, timeframe) {
   });
 }
 
-wss.on('connection', (ws) => {
-  console.log('Client connected to WebSocket server');
+wss.on('connection', (ws, request) => {
+  ws.isAlive = true;
+  ws.on('pong', () => {
+    ws.isAlive = true;
+  });
+
+  const clientIp = request?.headers?.['x-forwarded-for'] || request?.socket?.remoteAddress || 'unknown';
+  console.log(`[WebSocket Server] Client connected from ${clientIp}`);
   
   ws.on('error', (err) => {
     console.error('[Node Backend] Client WebSocket error:', err);
@@ -986,6 +1023,37 @@ wss.on('connection', (ws) => {
       unsubscribePromise = null;
     }
   });
+});
+
+// Instant HTTP chart snapshot & fallback endpoint for clients behind firewalls/proxies
+app.get('/api/chart/candles', async (req, res) => {
+  try {
+    const symbol = (req.query.symbol || 'NSE:NIFTY').toUpperCase();
+    const timeframe = req.query.timeframe || '5';
+
+    const levels = await fetchAnchorLevels(symbol, timeframe).catch(() => null);
+
+    let candles = [];
+    if (tvBridge && tvBridge.sharedSession) {
+      candles = await fetchCandlesForSymbol(tvBridge, symbol, timeframe, 100).catch(() => []);
+    }
+
+    if ((!candles || candles.length === 0) && liveOptionCandlesCache[symbol]) {
+      candles = liveOptionCandlesCache[symbol];
+    }
+
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    return res.json({
+      type: 'data',
+      symbol,
+      timeframe,
+      isSnapshot: true,
+      candles: candles || [],
+      matrixHistory: levels || null
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Symbol search proxy endpoint to fetch all Indian stocks from TradingView
@@ -2759,8 +2827,8 @@ function start247KeepAliveEngine(port) {
 }
 
 const PORT = process.env.PORT || 3002;
-server.listen(PORT, () => {
-  console.log(`Backend server listening on port ${PORT}`);
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Backend server listening on 0.0.0.0:${PORT}`);
   startPostMarketScheduler();
   start247KeepAliveEngine(PORT);
 });

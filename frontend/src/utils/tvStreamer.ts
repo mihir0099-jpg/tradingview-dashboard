@@ -19,12 +19,15 @@ type OnStatusCallback = (status: 'connecting' | 'connected' | 'disconnected') =>
 
 class TVWebSocketStreamer {
   private ws: WebSocket | null = null;
-  private url: string;
+  private url: string = '';
+  private wsUrls: string[] = [];
+  private currentUrlIndex: number = 0;
   private currentSubscription: { symbol: string; timeframe: string } | null = null;
   private onDataCallback: OnDataCallback | null = null;
   private onErrorCallback: OnErrorCallback | null = null;
   private onStatusCallback: OnStatusCallback | null = null;
   private reconnectTimeout: number | null = null;
+  private pollInterval: number | null = null;
   private status: 'connecting' | 'connected' | 'disconnected' = 'disconnected';
 
   constructor() {
@@ -33,11 +36,16 @@ class TVWebSocketStreamer {
     let wsHost = window.location.host;
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
       if (window.location.port !== '3001' && window.location.port !== '3002') {
-        wsHost = `${window.location.hostname}:3001`;
+        wsHost = `${window.location.hostname}:3002`;
       }
     }
     
-    this.url = `${protocol}//${wsHost}`;
+    // Support both /ws and root / endpoints
+    this.wsUrls = [
+      `${protocol}//${wsHost}/ws`,
+      `${protocol}//${wsHost}/`
+    ];
+    this.url = this.wsUrls[0];
   }
 
   public setStatusListener(callback: OnStatusCallback) {
@@ -52,6 +60,24 @@ class TVWebSocketStreamer {
     }
   }
 
+  private fetchHttpCandlesSnapshot(symbol: string, timeframe: string) {
+    const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
+      ? `${window.location.protocol}//${window.location.hostname}:3002`
+      : '';
+
+    fetch(`${apiBase}/api/chart/candles?symbol=${encodeURIComponent(symbol)}&timeframe=${encodeURIComponent(timeframe)}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.type === 'data' && this.onDataCallback) {
+          this.onDataCallback(data);
+          if (this.status === 'connecting') {
+            this.setStatus('connected');
+          }
+        }
+      })
+      .catch(() => {});
+  }
+
   public connect() {
     if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
       return;
@@ -64,7 +90,7 @@ class TVWebSocketStreamer {
       this.ws = new WebSocket(this.url);
 
       this.ws.onopen = () => {
-        console.log('WebSocket connection established');
+        console.log(`WebSocket connection established on ${this.url}`);
         this.setStatus('connected');
         
         // Resubscribe if we had an active subscription before disconnect
@@ -93,7 +119,7 @@ class TVWebSocketStreamer {
       };
 
       this.ws.onclose = () => {
-        console.log('WebSocket connection closed');
+        console.log(`WebSocket connection closed (${this.url})`);
         this.setStatus('disconnected');
         this.ws = null;
         this.triggerReconnect();
@@ -118,7 +144,10 @@ class TVWebSocketStreamer {
 
     this.reconnectTimeout = window.setTimeout(() => {
       this.reconnectTimeout = null;
-      console.log('Attempting to reconnect...');
+      // Alternate between /ws and /
+      this.currentUrlIndex = (this.currentUrlIndex + 1) % this.wsUrls.length;
+      this.url = this.wsUrls[this.currentUrlIndex];
+      console.log(`Attempting to reconnect with ${this.url}...`);
       this.connect();
     }, 3000);
   }
@@ -133,7 +162,8 @@ class TVWebSocketStreamer {
       this.ws.send(msg);
       console.log(`Sent subscription request for ${symbol} (${timeframe})`);
     } else {
-      console.warn('Cannot send subscription, WebSocket not open. Will subscribe upon connection.');
+      console.warn('Cannot send subscription, WebSocket not open. Fetching HTTP snapshot.');
+      this.fetchHttpCandlesSnapshot(symbol, timeframe);
     }
   }
 
@@ -147,14 +177,31 @@ class TVWebSocketStreamer {
     this.onDataCallback = onData;
     if (onError) this.onErrorCallback = onError;
 
+    // Instant HTTP snapshot fetch so chart renders in <100ms
+    this.fetchHttpCandlesSnapshot(symbol, timeframe);
+
     this.connect();
     this.sendSubscription(symbol, timeframe);
+
+    // Periodic HTTP fallback if WebSocket remains disconnected
+    if (this.pollInterval) {
+      clearInterval(this.pollInterval);
+    }
+    this.pollInterval = window.setInterval(() => {
+      if (this.currentSubscription && (!this.ws || this.ws.readyState !== WebSocket.OPEN)) {
+        this.fetchHttpCandlesSnapshot(this.currentSubscription.symbol, this.currentSubscription.timeframe);
+      }
+    }, 5000);
   }
 
   public unsubscribe() {
     this.currentSubscription = null;
     this.onDataCallback = null;
     this.onErrorCallback = null;
+    if (this.pollInterval) {
+      clearInterval(this.pollInterval);
+      this.pollInterval = null;
+    }
   }
 
   public disconnect() {

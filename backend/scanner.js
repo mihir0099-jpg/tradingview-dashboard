@@ -665,16 +665,13 @@ export function startScanner(tvBridge) {
   const hasCache5 = scannerCache.levelsCache['5'] && Object.keys(scannerCache.levelsCache['5']).length > 0;
   const hasCacheD = scannerCache.levelsCache['D'] && Object.keys(scannerCache.levelsCache['D']).length > 0;
 
-  // Run initial scan only if cache is empty
-  if (!hasCache5) {
-    console.log('[Scanner Startup] No levels cache found for today. Queueing initial 5m scan...');
-    queueScan(tvBridge, '5');
-  } else {
-    console.log('[Scanner Startup] Levels cache for timeframe 5 restored from disk. Skipping boot scan.');
-  }
-
   // Baseline scanner data initialized from disk or defaults. Heavy boot scan disabled to protect server CPU/event loop.
-  console.log('[Scanner Startup] Baseline scanner levels active.');
+  if (hasCache5) {
+    console.log('[Scanner Startup] Levels cache for timeframe 5 restored from disk.');
+  } else {
+    console.log('[Scanner Startup] Running with disk baseline levels.');
+  }
+  console.log('[Scanner Startup] Baseline scanner levels active. Scheduled scans run at 3:45 PM IST.');
 
   // Instead of scanning every 2/3 minutes, we only scan ONCE a day at 3:45 PM IST (15:45)
   // to populate the levels for the next session.
