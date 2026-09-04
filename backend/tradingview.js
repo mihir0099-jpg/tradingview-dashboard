@@ -11,6 +11,12 @@ export class TradingViewBridge {
   }
 
   async getSession() {
+    // If no valid token is configured, skip WebSocket connection entirely
+    const token = process.env.TRADINGVIEW_TOKEN;
+    if (!token || token === '' || token === 'your_tradingview_sessionid_cookie_here') {
+      return null; // No token = no live data, serve from cache only
+    }
+
     if (this.sharedSession) {
       return this.sharedSession;
     }
@@ -21,14 +27,7 @@ export class TradingViewBridge {
     }
 
     this.sessionPromise = (async () => {
-      let token = process.env.TRADINGVIEW_TOKEN || undefined;
-      if (token === 'your_tradingview_sessionid_cookie_here' || token === '') {
-        token = undefined;
-      }
-      if (token) {
-        console.log('[TV Bridge] Using TradingView session token');
-      }
-      
+      console.log('[TV Bridge] Using TradingView session token');
       console.log('[TV Bridge] Connecting new shared TradingView session...');
       const session = await Promise.race([
         createSession(token),
