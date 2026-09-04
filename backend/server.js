@@ -2637,38 +2637,56 @@ function startStandingIndexSubscriptions() {
   }, 1000);
 }
 
+// Serve static assets from frontend/dist
 const distPath = path.join(__dirname, '../frontend/dist');
+console.log('[Static] Serving frontend from:', distPath, '| Exists:', fs.existsSync(distPath));
+
 if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath));
+  // Serve /assets folder (JS/CSS bundles) with caching
+  app.use('/assets', express.static(path.join(distPath, 'assets'), {
+    maxAge: '7d',
+    etag: true,
+  }));
+  // Serve all other static files (favicon, etc)
+  app.use(express.static(distPath, { index: false }));
 }
 
+// SPA fallback - send index.html for all non-API routes
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
     return res.status(404).json({ error: 'API route not found' });
   }
+  // Never serve index.html for asset requests (would break JS loading)
+  if (req.path.startsWith('/assets/')) {
+    return res.status(404).json({ error: 'Asset not found' });
+  }
   const indexPath = path.join(distPath, 'index.html');
   if (fs.existsSync(indexPath)) {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
     return res.sendFile(indexPath);
   }
-  res.status(200).send('<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Initializing frontend application...</p></body></html>');
+  res.status(200).send('<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Frontend building...</p></body></html>');
 });
 
 // 24/7 Keep-Alive & Self-Healing Heartbeat Engine
+// Render free tier spins down after 15 min of inactivity - ping every 4 min to prevent this
 function start247KeepAliveEngine(port) {
   const publicUrl = process.env.RENDER_EXTERNAL_URL || 'https://tradingview-dashboard-1.onrender.com';
-  console.log(`[24/7 Self-Healing Engine] Started keep-alive heartbeat pinging ${publicUrl}/health every 5 minutes...`);
+  console.log(`[24/7 Self-Healing Engine] Started keep-alive heartbeat pinging ${publicUrl}/health every 4 minutes...`);
 
   setInterval(() => {
-    fetch(`${publicUrl}/health`)
+    const pingTime = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
+    fetch(`${publicUrl}/health`, { signal: AbortSignal.timeout(30000) })
       .then(res => res.json())
       .then(data => {
-        console.log(`[24/7 Heartbeat] Public keep-alive ping successful @ ${new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })}`);
+        console.log(`[24/7 Heartbeat] Keep-alive ping OK @ ${pingTime}`);
       })
       .catch(err => {
-        console.warn(`[24/7 Heartbeat] Public ping warning (retrying via localhost):`, err.message || err);
-        fetch(`http://localhost:${port}/health`).catch(() => {});
+        console.warn(`[24/7 Heartbeat] Public ping failed @ ${pingTime} - retrying via localhost:`, err.message || err);
+        // Fallback: ping localhost to keep Node event loop busy
+        fetch(`http://localhost:${port}/health`, { signal: AbortSignal.timeout(5000) }).catch(() => {});
       });
-  }, 5 * 60 * 1000);
+  }, 4 * 60 * 1000); // Every 4 minutes
 }
 
 const PORT = process.env.PORT || 3002;
