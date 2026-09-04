@@ -129,14 +129,17 @@ if (fs.existsSync(liveLogPath)) {
   }
 }
 
-// Periodically write liveHistory to disk asynchronously to prevent blocking the event loop
+let liveHistoryModified = false;
+// Periodically write liveHistory to disk asynchronously - only when modified, at low frequency
 setInterval(() => {
-  if (liveHistory.length > 0) {
-    fs.writeFile(liveLogPath, JSON.stringify(liveHistory, null, 2), 'utf8', (err) => {
+  if (liveHistoryModified && liveHistory.length > 0) {
+    liveHistoryModified = false;
+    const toSave = liveHistory.length > 2000 ? liveHistory.slice(-2000) : liveHistory;
+    fs.writeFile(liveLogPath, JSON.stringify(toSave), 'utf8', (err) => {
       if (err) console.error('[Background I/O] Failed to write live market learnings:', err.message);
     });
   }
-}, 20000); // Once every 20 seconds
+}, 5 * 60 * 1000); // Once every 5 minutes
 
 app.use(express.json()); // Enable JSON body parsing for constraints logger
 app.use(cors());
@@ -674,38 +677,23 @@ try {
 const distPath = path.join(__dirname, '../frontend/dist');
 console.log('[Static] Serving frontend from:', distPath, '| Exists:', fs.existsSync(distPath));
 
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  res.json({ status: 'OK', version: 'v3-fast', timestamp: new Date(), project: 'TradingView Dashboard V2' });
-});
+// Preload all frontend files into RAM on startup for sub-millisecond responses
+const assetMemoryCache = new Map();
+let preloadedIndexHtml = null;
 
-// Direct synchronous delivery for root HTML
-app.get('/', (req, res) => {
+function initStaticRamCache() {
   const indexPath = path.join(distPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     try {
-      const htmlContent = fs.readFileSync(indexPath, 'utf8');
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
-      res.setHeader('Content-Length', Buffer.byteLength(htmlContent, 'utf8'));
-      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-      return res.status(200).send(htmlContent);
-    } catch (err) {
-      console.error('[Static] Error reading index.html:', err);
+      preloadedIndexHtml = fs.readFileSync(indexPath, 'utf8');
+      console.log(`[Static RAM] Preloaded index.html into RAM (${Buffer.byteLength(preloadedIndexHtml)} bytes)`);
+    } catch (e) {
+      console.error('[Static RAM] Failed to preload index.html:', e);
     }
   }
-  const fallback = '<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Frontend building...</p></body></html>';
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.setHeader('Content-Length', Buffer.byteLength(fallback, 'utf8'));
-  return res.status(200).send(fallback);
-});
 
-// Direct synchronous asset delivery handler for ultra-fast, zero-hang serving
-app.get('/assets/:filename', (req, res) => {
-  const filename = path.basename(req.params.filename);
-  const filePath = path.join(distPath, 'assets', filename);
-  if (fs.existsSync(filePath)) {
-    const ext = path.extname(filename).toLowerCase();
+  const assetsDir = path.join(distPath, 'assets');
+  if (fs.existsSync(assetsDir)) {
     const mimeTypes = {
       '.js': 'application/javascript; charset=utf-8',
       '.css': 'text/css; charset=utf-8',
@@ -717,11 +705,82 @@ app.get('/assets/:filename', (req, res) => {
       '.woff': 'font/woff'
     };
     try {
+      const files = fs.readdirSync(assetsDir);
+      for (const f of files) {
+        const fPath = path.join(assetsDir, f);
+        const stat = fs.statSync(fPath);
+        if (stat.isFile()) {
+          const ext = path.extname(f).toLowerCase();
+          const buf = fs.readFileSync(fPath);
+          assetMemoryCache.set(f, {
+            content: buf,
+            mime: mimeTypes[ext] || 'application/octet-stream',
+            length: buf.length
+          });
+          console.log(`[Static RAM] Preloaded asset ${f} (${buf.length} bytes)`);
+        }
+      }
+    } catch (e) {
+      console.error('[Static RAM] Failed to preload assets dir:', e);
+    }
+  }
+}
+initStaticRamCache();
+
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  res.json({ status: 'OK', version: 'v4-instant-ram', timestamp: new Date(), project: 'TradingView Dashboard V2' });
+});
+
+// Instant RAM delivery for root HTML (<1ms)
+app.get('/', (req, res) => {
+  if (preloadedIndexHtml) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Content-Length', Buffer.byteLength(preloadedIndexHtml, 'utf8'));
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    return res.status(200).send(preloadedIndexHtml);
+  }
+  const indexPath = path.join(distPath, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    try {
+      preloadedIndexHtml = fs.readFileSync(indexPath, 'utf8');
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Content-Length', Buffer.byteLength(preloadedIndexHtml, 'utf8'));
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+      return res.status(200).send(preloadedIndexHtml);
+    } catch (err) {}
+  }
+  const fallback = '<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Frontend building...</p></body></html>';
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Content-Length', Buffer.byteLength(fallback, 'utf8'));
+  return res.status(200).send(fallback);
+});
+
+// Instant RAM delivery for all static assets (<0.1ms)
+app.get('/assets/:filename', (req, res) => {
+  const filename = path.basename(req.params.filename);
+  const cached = assetMemoryCache.get(filename);
+  if (cached) {
+    res.setHeader('Content-Type', cached.mime);
+    res.setHeader('Content-Length', cached.length);
+    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    return res.status(200).end(cached.content);
+  }
+  // Fallback if asset was generated dynamically or not preloaded
+  const filePath = path.join(distPath, 'assets', filename);
+  if (fs.existsSync(filePath)) {
+    const ext = path.extname(filename).toLowerCase();
+    const mimeTypes = {
+      '.js': 'application/javascript; charset=utf-8',
+      '.css': 'text/css; charset=utf-8'
+    };
+    try {
       const content = fs.readFileSync(filePath);
       res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
       res.setHeader('Content-Length', content.length);
       res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
-      return res.status(200).send(content);
+      return res.status(200).end(content);
     } catch (e) {
       return res.status(500).send('Error reading asset');
     }

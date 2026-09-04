@@ -4,7 +4,7 @@ services:
     name: tradingview-dashboard
     env: node
     plan: free
-    buildCommand: "cd backend && npm install && cd ../frontend && npm install --include=dev --legacy-peer-deps && npm run build"
+    buildCommand: "cd backend && npm install"
     startCommand: "node backend/server.js"
     healthCheckPath: /health
     envVars:
