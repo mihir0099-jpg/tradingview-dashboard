@@ -6,7 +6,6 @@ import cors from 'cors';
 import { TradingViewBridge } from './tradingview.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import compression from 'compression';
 import { startScanner, scannerCache, findClosestValidOptionSymbol, fetchCandlesForSymbol, queueScan } from './scanner.js';
 
 const liveOptionCandlesCache = {};
@@ -141,7 +140,6 @@ setInterval(() => {
 
 app.use(express.json()); // Enable JSON body parsing for constraints logger
 app.use(cors());
-app.use(compression());
 
 
 
@@ -677,9 +675,6 @@ app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
   next();
 });
-
-// Serve static files from React frontend build
-app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -2627,12 +2622,15 @@ app.get('/assets/:filename', (req, res) => {
       '.svg': 'image/svg+xml',
       '.png': 'image/png',
       '.jpg': 'image/jpeg',
-      '.json': 'application/json'
+      '.json': 'application/json',
+      '.woff2': 'font/woff2',
+      '.woff': 'font/woff'
     };
-    res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
-    res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
     try {
       const content = fs.readFileSync(filePath);
+      res.setHeader('Content-Type', mimeTypes[ext] || 'application/octet-stream');
+      res.setHeader('Content-Length', content.length);
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
       return res.status(200).send(content);
     } catch (e) {
       return res.status(500).send('Error reading asset');
@@ -2640,10 +2638,6 @@ app.get('/assets/:filename', (req, res) => {
   }
   return res.status(404).send('Asset not found');
 });
-
-if (fs.existsSync(distPath)) {
-  app.use(express.static(distPath, { index: false }));
-}
 
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
@@ -2658,13 +2652,18 @@ app.get('*', (req, res) => {
   if (fs.existsSync(indexPath)) {
     try {
       const htmlContent = fs.readFileSync(indexPath, 'utf8');
+      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.setHeader('Content-Length', Buffer.byteLength(htmlContent, 'utf8'));
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-      return res.status(200).type('html').send(htmlContent);
+      return res.status(200).send(htmlContent);
     } catch (err) {
       console.error('[Static] Error reading index.html:', err);
     }
   }
-  res.status(200).send('<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Frontend building...</p></body></html>');
+  const fallback = '<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard Engine Running</h2><p>Frontend building...</p></body></html>';
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Content-Length', Buffer.byteLength(fallback, 'utf8'));
+  res.status(200).send(fallback);
 });
 
 // 24/7 Keep-Alive & Self-Healing Heartbeat Engine
