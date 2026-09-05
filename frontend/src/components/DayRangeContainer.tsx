@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu, Radar } from 'lucide-react';
 
 interface TargetItem {
   label: string;
@@ -33,6 +33,24 @@ interface ActiveRegimeData {
   closingDriveProb: string;
 }
 
+interface EarlyMoveDetectorData {
+  markovState: string;
+  markovLabel: string;
+  directionalAsymmetry: string;
+  earlyWarningBadge: string;
+  earlyWarningColor: string;
+  earlyWarningStatus: string;
+  earlyDirection: string;
+  earlyTriggerPrice: number;
+  target1Price: number;
+  target2Price: number;
+  expansionCapPrice: number;
+  hurstRegime: string;
+  hurstAction: string;
+  parkinsonExpectedRange: number;
+  expansionMultiplier: string;
+}
+
 interface AssetRangeData {
   name: string;
   spot: number;
@@ -64,6 +82,7 @@ interface AssetRangeData {
   keyPivot: number;
   timeWindowContext: string;
   activeRegime?: ActiveRegimeData;
+  earlyMoveDetector?: EarlyMoveDetectorData;
   multiTimeframe?: {
     daily: TimeframePrediction;
     weekly: TimeframePrediction;
@@ -123,7 +142,7 @@ export function DayRangeContainer() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', minHeight: '400px', color: 'var(--text-secondary)' }}>
         <RefreshCw className="animate-spin" size={32} style={{ color: '#3b82f6', marginBottom: '16px' }} />
-        <p style={{ fontSize: '15px', fontWeight: 600 }}>Loading Adaptive Market Range & Predictions...</p>
+        <p style={{ fontSize: '15px', fontWeight: 600 }}>Loading Early Move Predictor & Day Range...</p>
       </div>
     );
   }
@@ -137,7 +156,7 @@ export function DayRangeContainer() {
   return (
     <div style={{ padding: '20px 24px', maxWidth: '1440px', margin: '0 auto', width: '100%', boxSizing: 'border-box', overflowY: 'auto' }}>
       
-      {/* Top Header & Asset Switcher */}
+      {/* Top Header & Controls */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.15))', padding: '10px', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
@@ -145,42 +164,42 @@ export function DayRangeContainer() {
           </div>
           <div>
             <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              Day Range & Adaptive Intelligence
+              Day Range & Early Move Predictor
             </h2>
             <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: 'var(--text-secondary)' }}>
-              Modern Market Regime (Era 3), Real-Time Anchors & Multi-Timeframe Targets
+              Early direction detection, range extension limits, and price targets
             </p>
           </div>
         </div>
 
-        {/* Horizon Toggle, Asset Toggle & Refresh Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-          {/* Multi-Timeframe Horizon Selector */}
-          <div style={{ display: 'flex', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', padding: '3px', border: '1px solid var(--border-color)' }}>
-            {(['daily', 'weekly', 'monthly', 'yearly'] as const).map((h) => (
+        {/* Timeframe Horizon & Asset Switchers */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          {/* Horizon Selector */}
+          <div style={{ display: 'flex', background: 'rgba(255, 255, 255, 0.05)', padding: '3px', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+            {(['daily', 'weekly', 'monthly', 'yearly'] as const).map((hz) => (
               <button
-                key={h}
-                onClick={() => setSelectedHorizon(h)}
+                key={hz}
+                onClick={() => setSelectedHorizon(hz)}
                 style={{
-                  background: selectedHorizon === h ? '#a855f7' : 'transparent',
-                  color: selectedHorizon === h ? '#ffffff' : 'var(--text-secondary)',
+                  background: selectedHorizon === hz ? '#8b5cf6' : 'transparent',
+                  color: selectedHorizon === hz ? '#ffffff' : 'var(--text-secondary)',
                   border: 'none',
                   padding: '5px 12px',
-                  borderRadius: '7px',
-                  fontSize: '12px',
+                  borderRadius: '6px',
+                  fontSize: '11px',
                   fontWeight: 700,
+                  textTransform: 'uppercase',
                   cursor: 'pointer',
-                  textTransform: 'capitalize',
                   transition: 'all 0.15s ease'
                 }}
               >
-                {h}
+                {hz}
               </button>
             ))}
           </div>
 
-          {/* Index Selector */}
-          <div style={{ display: 'flex', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '10px', padding: '3px', border: '1px solid var(--border-color)' }}>
+          {/* Asset Switcher */}
+          <div style={{ display: 'flex', background: 'rgba(255, 255, 255, 0.05)', padding: '3px', borderRadius: '9px', border: '1px solid var(--border-color)' }}>
             <button
               onClick={() => setSelectedAsset('nifty')}
               style={{
@@ -195,7 +214,7 @@ export function DayRangeContainer() {
                 transition: 'all 0.15s ease'
               }}
             >
-              NIFTY
+              NIFTY 50
             </button>
             <button
               onClick={() => setSelectedAsset('banknifty')}
@@ -238,7 +257,7 @@ export function DayRangeContainer() {
         </div>
       </div>
 
-      {/* Modern Market Regime & Adaptive Calibration Bar */}
+      {/* Modern Market Regime Bar */}
       {asset.activeRegime && (
         <div style={{
           background: 'rgba(15, 23, 42, 0.85)',
@@ -273,6 +292,111 @@ export function DayRangeContainer() {
             <div style={{ width: '1px', height: '14px', background: 'rgba(255, 255, 255, 0.1)' }} />
             <div>
               Calibration: <span style={{ color: '#86efac', fontWeight: 700 }}>{asset.activeRegime.calibration}</span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Early Move Predictor & Directional Asymmetry Radar */}
+      {asset.earlyMoveDetector && (
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85))',
+          border: `1px solid ${asset.earlyMoveDetector.earlyWarningColor}55`,
+          borderRadius: '14px',
+          padding: '16px 20px',
+          marginBottom: '14px',
+          boxShadow: `0 4px 20px ${asset.earlyMoveDetector.earlyWarningColor}15`
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px', marginBottom: '14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Radar size={20} color={asset.earlyMoveDetector.earlyWarningColor} />
+              <span style={{ fontSize: '15px', fontWeight: 900, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
+                Early Move Detector & Directional Radar
+              </span>
+              <span style={{
+                fontSize: '11px',
+                fontWeight: 800,
+                color: asset.earlyMoveDetector.earlyWarningColor,
+                background: `${asset.earlyMoveDetector.earlyWarningColor}20`,
+                border: `1px solid ${asset.earlyMoveDetector.earlyWarningColor}40`,
+                padding: '3px 10px',
+                borderRadius: '6px'
+              }}>
+                {asset.earlyMoveDetector.earlyWarningBadge}
+              </span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+              <span style={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#38bdf8',
+                background: 'rgba(56, 189, 248, 0.12)',
+                padding: '3px 9px',
+                borderRadius: '6px'
+              }}>
+                {asset.earlyMoveDetector.directionalAsymmetry}
+              </span>
+              <span style={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#a78bfa',
+                background: 'rgba(167, 139, 250, 0.12)',
+                padding: '3px 9px',
+                borderRadius: '6px'
+              }}>
+                {asset.earlyMoveDetector.hurstAction}
+              </span>
+            </div>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
+            gap: '12px'
+          }}>
+            {/* Early Trigger */}
+            <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Breakout Trigger Level</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#ffffff', marginTop: '3px' }}>
+                {asset.earlyMoveDetector.earlyTriggerPrice.toLocaleString('en-IN')}
+              </div>
+              <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                Status: <span style={{ color: asset.earlyMoveDetector.earlyWarningColor, fontWeight: 700 }}>{asset.earlyMoveDetector.earlyWarningStatus}</span>
+              </div>
+            </div>
+
+            {/* Target 1 Quick Scale */}
+            <div style={{ background: 'rgba(16, 185, 129, 0.06)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Target 1 (Quick Scale)</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#10b981', marginTop: '3px' }}>
+                {asset.earlyMoveDetector.target1Price.toLocaleString('en-IN')}
+              </div>
+              <div style={{ fontSize: '11px', color: '#6ee7b7', marginTop: '2px' }}>
+                First profit scaling milestone
+              </div>
+            </div>
+
+            {/* Target 2 Golden Target */}
+            <div style={{ background: 'rgba(59, 130, 246, 0.06)', border: '1px solid rgba(59, 130, 246, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>Target 2 (Primary Runner)</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#60a5fa', marginTop: '3px' }}>
+                {asset.earlyMoveDetector.target2Price.toLocaleString('en-IN')}
+              </div>
+              <div style={{ fontSize: '11px', color: '#93c5fd', marginTop: '2px' }}>
+                Primary trend continuation target
+              </div>
+            </div>
+
+            {/* Session Climax Cap */}
+            <div style={{ background: 'rgba(234, 179, 8, 0.06)', border: '1px solid rgba(234, 179, 8, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#facc15', fontWeight: 700, textTransform: 'uppercase' }}>Session Climax Cap</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#facc15', marginTop: '3px' }}>
+                {asset.earlyMoveDetector.expansionCapPrice.toLocaleString('en-IN')}
+              </div>
+              <div style={{ fontSize: '11px', color: '#fde047', marginTop: '2px' }}>
+                Expansion limit boundary
+              </div>
             </div>
           </div>
         </div>
@@ -557,11 +681,11 @@ export function DayRangeContainer() {
             {asset.currentRange} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
-            Day High ({asset.dayHigh}) - Day Low ({asset.dayLow})
+            High: {asset.dayHigh.toLocaleString('en-IN')} | Low: {asset.dayLow.toLocaleString('en-IN')}
           </div>
         </div>
 
-        {/* Initial Balance Range */}
+        {/* Initial Balance (IB) Range */}
         <div style={{
           background: 'rgba(15, 23, 42, 0.7)',
           border: '1px solid rgba(234, 179, 8, 0.25)',
@@ -572,18 +696,18 @@ export function DayRangeContainer() {
           justifyContent: 'space-between'
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <span style={{ fontSize: '12px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>IB Range</span>
-            <Shield size={16} color="#facc15" />
+            <span style={{ fontSize: '12px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Initial Balance (IB)</span>
+            <Anchor size={16} color="#facc15" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 900, fontFamily: 'monospace', color: '#facc15' }}>
             {asset.ibRange} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
-            IB High ({asset.ibHigh}) - IB Low ({asset.ibLow})
+            IB High: {asset.ibHigh.toLocaleString('en-IN')} | IB Low: {asset.ibLow.toLocaleString('en-IN')}
           </div>
         </div>
 
-        {/* Range Consumed % */}
+        {/* Range Consumed Percentage */}
         <div style={{
           background: 'rgba(15, 23, 42, 0.7)',
           border: '1px solid rgba(16, 185, 129, 0.25)',
@@ -595,82 +719,59 @@ export function DayRangeContainer() {
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Range Consumed</span>
-            <span style={{ fontSize: '12px', fontWeight: 800, color: asset.rangeConsumedPct >= 85 ? '#f43f5e' : '#10b981' }}>
-              {asset.rangeConsumedPct}%
-            </span>
+            <Target size={16} color="#34d399" />
           </div>
-          <div style={{ fontSize: '26px', fontWeight: 900, fontFamily: 'monospace', color: asset.rangeConsumedPct >= 85 ? '#f43f5e' : '#10b981' }}>
+          <div style={{ fontSize: '26px', fontWeight: 900, fontFamily: 'monospace', color: asset.rangeConsumedPct > 85 ? '#f43f5e' : (asset.rangeConsumedPct > 60 ? '#facc15' : '#34d399') }}>
             {asset.rangeConsumedPct}%
           </div>
-          <div style={{ width: '100%', height: '6px', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '3px', marginTop: '8px', overflow: 'hidden' }}>
-            <div style={{
-              width: `${Math.min(100, asset.rangeConsumedPct)}%`,
-              height: '100%',
-              background: asset.rangeConsumedPct >= 85 ? '#f43f5e' : (asset.rangeConsumedPct >= 65 ? '#f59e0b' : '#10b981'),
-              borderRadius: '3px',
-              transition: 'width 0.4s ease'
-            }} />
+          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
+            {asset.rangeConsumedPct >= 100 ? 'Expansion exhausted' : `${Math.round(asset.expectedDayRange - asset.currentRange)} pts remaining`}
           </div>
         </div>
       </div>
 
-      {/* Opening 15-Minute Anchor Levels Bar */}
+      {/* Visual Range Progress Bar */}
       <div style={{
-        background: 'rgba(15, 23, 42, 0.65)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        background: 'rgba(15, 23, 42, 0.7)',
+        border: '1px solid var(--border-color)',
         borderRadius: '12px',
-        padding: '12px 18px',
-        marginBottom: '16px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '12px'
+        padding: '14px 20px',
+        marginBottom: '16px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Anchor size={16} color="#60a5fa" />
-          <span style={{ fontSize: '12px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            15-Min Anchor Boundaries (09:15 - 09:30 AM)
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px', fontWeight: 700, marginBottom: '8px' }}>
+          <span style={{ color: 'var(--text-secondary)' }}>Intraday Range Utilization</span>
+          <span style={{ color: 'var(--text-primary)', fontFamily: 'monospace' }}>
+            {asset.currentRange} / {asset.expectedDayRange} pts ({asset.rangeConsumedPct}%)
           </span>
         </div>
-
-        <div style={{ display: 'flex', gap: '18px', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '11px', color: '#86efac', fontWeight: 700 }}>15m High:</span>
-            <span style={{ fontSize: '15px', fontWeight: 800, fontFamily: 'monospace', color: '#86efac' }}>{asset.m15High}</span>
-          </div>
-          <div style={{ width: '1px', height: '18px', background: 'rgba(255, 255, 255, 0.1)' }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ fontSize: '11px', color: '#fda4af', fontWeight: 700 }}>15m Low:</span>
-            <span style={{ fontSize: '15px', fontWeight: 800, fontFamily: 'monospace', color: '#fda4af' }}>{asset.m15Low}</span>
-          </div>
-          <div style={{ width: '1px', height: '18px', background: 'rgba(255, 255, 255, 0.1)' }} />
-          <div style={{ fontSize: '11px', color: '#94a3b8' }}>
-            Session Phase: <span style={{ fontWeight: 700, color: '#facc15' }}>{asset.timeWindowContext}</span>
-          </div>
+        <div style={{ width: '100%', height: '8px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden' }}>
+          <div style={{
+            width: `${Math.min(100, asset.rangeConsumedPct)}%`,
+            height: '100%',
+            background: asset.rangeConsumedPct > 85 
+              ? 'linear-gradient(90deg, #f59e0b, #ef4444)' 
+              : 'linear-gradient(90deg, #3b82f6, #10b981)',
+            borderRadius: '4px',
+            transition: 'width 0.4s ease'
+          }} />
         </div>
       </div>
 
-      {/* Target Columns: Dynamic based on Selected Horizon */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-        gap: '20px'
-      }}>
-        {/* Bullish Extension Targets Card */}
+      {/* Target Ladders (Bullish & Bearish) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
+        {/* Bullish Continuation Targets */}
         <div style={{
           background: 'rgba(15, 23, 42, 0.7)',
           border: '1px solid rgba(16, 185, 129, 0.25)',
           borderRadius: '14px',
-          padding: '20px',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)'
+          padding: '18px 20px'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Target size={18} color="#10b981" />
-              <span style={{ fontSize: '15px', fontWeight: 800, color: '#10b981' }}>
-                {horizonData ? `${horizonData.label} Bullish Targets` : 'Bullish Targets'}
-              </span>
+              <TrendingUp size={18} color="#10b981" />
+              <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 800, color: '#10b981', letterSpacing: '-0.01em' }}>
+                {selectedHorizon === 'daily' ? 'Bullish Extension Targets' : `${horizonData?.label} Bullish Ladder`}
+              </h3>
             </div>
             <span style={{ fontSize: '11px', fontWeight: 700, color: '#6ee7b7', background: 'rgba(16, 185, 129, 0.12)', padding: '2px 8px', borderRadius: '6px' }}>
               Above {selectedHorizon === 'daily' ? asset.ibHigh : asset.spot}
@@ -733,20 +834,19 @@ export function DayRangeContainer() {
           </div>
         </div>
 
-        {/* Bearish Breakdown Targets Card */}
+        {/* Bearish Breakdown Targets */}
         <div style={{
           background: 'rgba(15, 23, 42, 0.7)',
           border: '1px solid rgba(244, 63, 94, 0.25)',
           borderRadius: '14px',
-          padding: '20px',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.25)'
+          padding: '18px 20px'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Target size={18} color="#f43f5e" />
-              <span style={{ fontSize: '15px', fontWeight: 800, color: '#f43f5e' }}>
-                {horizonData ? `${horizonData.label} Bearish Targets` : 'Bearish Targets'}
-              </span>
+              <TrendingDown size={18} color="#f43f5e" />
+              <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 800, color: '#f43f5e', letterSpacing: '-0.01em' }}>
+                {selectedHorizon === 'daily' ? 'Bearish Breakdown Targets' : `${horizonData?.label} Bearish Ladder`}
+              </h3>
             </div>
             <span style={{ fontSize: '11px', fontWeight: 700, color: '#fda4af', background: 'rgba(244, 63, 94, 0.12)', padding: '2px 8px', borderRadius: '6px' }}>
               Below {selectedHorizon === 'daily' ? asset.ibLow : asset.spot}
