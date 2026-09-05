@@ -12,3 +12,7 @@ services:
         value: production
       - key: NPM_CONFIG_PRODUCTION
         value: "false"
+      - key: TZ
+        value: "Asia/Kolkata"
+      # RENDER_EXTERNAL_URL is auto-set by Render — used by heartbeat engine to ping public URL
+      # TRADINGVIEW_TOKEN — set manually in Render dashboard (secret, not committed to git)

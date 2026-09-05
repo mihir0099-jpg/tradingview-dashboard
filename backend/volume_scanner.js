@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { TradingViewBridge } from './tradingview.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const volumeTvBridge = new TradingViewBridge();
+// NOTE: tvBridge removed — we use the shared tvBridge passed in from server.js
+// Creating a second TradingViewBridge here was opening a duplicate WebSocket to TradingView
 
 export const volumeCache = {
   lastScanTime: null,
@@ -197,10 +197,10 @@ export async function scanVolumeBreakouts(tvBridge) {
   let bankSpot = 0;
 
   try {
-    const niftyCandles = await fetchCandlesForSymbol(volumeTvBridge, 'NSE:NIFTY', 'D', 2);
+    const niftyCandles = await fetchCandlesForSymbol(tvBridge, 'NSE:NIFTY', 'D', 2);
     if (niftyCandles.length > 0) niftySpot = niftyCandles[niftyCandles.length - 1].close;
 
-    const bankCandles = await fetchCandlesForSymbol(volumeTvBridge, 'NSE:BANKNIFTY', 'D', 2);
+    const bankCandles = await fetchCandlesForSymbol(tvBridge, 'NSE:BANKNIFTY', 'D', 2);
     if (bankCandles.length > 0) bankSpot = bankCandles[bankCandles.length - 1].close;
   } catch (e) {
     // Spot fetch failed
@@ -242,7 +242,7 @@ export async function scanVolumeBreakouts(tvBridge) {
     const batch = symbols.slice(i, i + BATCH_SIZE);
     await Promise.all(batch.map(async (symbol) => {
       try {
-        const candles = await fetchCandlesForSymbol(volumeTvBridge, symbol, '5', 100);
+        const candles = await fetchCandlesForSymbol(tvBridge, symbol, '5', 100);
         if (!candles || candles.length < 2) return;
 
         // Filter today's candles
@@ -288,7 +288,7 @@ export async function scanVolumeBreakouts(tvBridge) {
     const batch = optionSymbols.slice(i, i + BATCH_SIZE);
     await Promise.all(batch.map(async (opt) => {
       try {
-        const candles = await fetchCandlesForSymbol(volumeTvBridge, opt.symbol, '5', 100);
+        const candles = await fetchCandlesForSymbol(tvBridge, opt.symbol, '5', 100);
         if (!candles || candles.length < 2) return;
 
         const todayCandles = candles.filter(c => {
@@ -341,7 +341,7 @@ export async function scanVolumeBreakouts(tvBridge) {
     const batch = futuresSymbols.slice(i, i + BATCH_SIZE);
     await Promise.all(batch.map(async (symbol) => {
       try {
-        const candles = await fetchCandlesForSymbol(volumeTvBridge, symbol, '5', 100);
+        const candles = await fetchCandlesForSymbol(tvBridge, symbol, '5', 100);
         if (!candles || candles.length < 2) return;
 
         const todayCandles = candles.filter(c => {
@@ -397,19 +397,7 @@ export async function scanVolumeBreakouts(tvBridge) {
   // Save updated results to disk backup
   saveVolumeCacheToDisk();
   
-  // Close the dedicated session after 10 seconds to allow all pending cleanups to finish safely
-  const sessionToClose = volumeTvBridge.sharedSession;
-  volumeTvBridge.sharedSession = null;
-  volumeTvBridge.sessionPromise = null;
-  
-  if (sessionToClose) {
-    setTimeout(async () => {
-      console.log('[Volume Scanner] Closing dedicated WebSocket session to release resources.');
-      try {
-        await sessionToClose.close();
-      } catch (e) {}
-    }, 10000);
-  }
+  // NOTE: Do NOT close tvBridge session here — it is the shared server session used by all scanners
 
   volumeCache.isScanning = false;
 }

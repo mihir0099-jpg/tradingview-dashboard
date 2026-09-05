@@ -275,7 +275,9 @@ export function startDojiScanner(tvBridge) {
     const [hh, mm, ss] = kolkataTime.split(':').map(Number);
     const todayStr = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
 
-    const isWeekDay = now.getDay() >= 1 && now.getDay() <= 5;
+    // IMPORTANT: Use IST locale for weekday — now.getDay() is UTC and can be wrong after midnight IST
+    const dayOfWeekIST = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', weekday: 'short' }).format(now);
+    const isWeekDay = !['Sat', 'Sun'].includes(dayOfWeekIST);
     // Trigger STRICTLY at 9:21 AM IST only - never mid-day catchup
     const isTimeReady = (hh === 9 && mm === 21);
     const alreadyScannedToday = dojiCache.slotData['first_5min'] && dojiCache.slotData['first_5min'].date === todayStr;

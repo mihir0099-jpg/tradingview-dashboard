@@ -116,7 +116,23 @@ let lastPriceChangeTime = { NIFTY: Date.now(), BANKNIFTY: Date.now() };
 if (fs.existsSync(liveLogPath)) {
   try {
     const rawData = fs.readFileSync(liveLogPath, 'utf8');
-    liveHistory = JSON.parse(rawData.endsWith(']') ? rawData : (rawData.lastIndexOf('}') !== -1 ? rawData.slice(0, rawData.lastIndexOf('}') + 1) + ']' : '[]'));
+    // Robust JSON parse: try normal parse first, then attempt to truncate to last valid object
+    let parsed = null;
+    try {
+      parsed = JSON.parse(rawData);
+    } catch (parseErr) {
+      // File may be partially written — find last complete JSON object and close the array
+      const lastBrace = rawData.lastIndexOf('}');
+      if (lastBrace !== -1) {
+        try {
+          parsed = JSON.parse(rawData.slice(0, lastBrace + 1) + ']');
+        } catch (e2) {
+          parsed = []; // Truly corrupted — start fresh
+          console.warn('[Startup] live_market_learnings.json corrupted — starting with empty history.');
+        }
+      }
+    }
+    liveHistory = Array.isArray(parsed) ? parsed : [];
     console.log(`[Startup] Loaded ${liveHistory.length} live market learning points into memory.`);
     if (liveHistory.length > 0) {
       const latest = liveHistory[liveHistory.length - 1];
@@ -2280,6 +2296,7 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
       } else {
         // Append snapshot to global in-memory array
         liveHistory.push(logSnapshot);
+        liveHistoryModified = true; // Mark dirty so background 5-min writer saves to disk
         // O(1) trim: slice instead of shift (shift is O(n) on large arrays)
         if (liveHistory.length > 10000) liveHistory = liveHistory.slice(-2000);
       }
