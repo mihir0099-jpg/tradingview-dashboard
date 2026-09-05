@@ -1789,6 +1789,7 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
 
         const atmStrike = Math.round(spotPrice / interval) * interval;
         const cleanSym = symbol.replace('NSE:', '').toUpperCase();
+        const symKey = cleanSym;
         
         // Use direct canonical TradingView format for zero-delay instant resolution
         const ceSym = `NSE:${cleanSym}${selectedExpiry}C${atmStrike}`;
@@ -2627,18 +2628,122 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
   }
 });
 
+// Live Market Index Feed Engine — continuously queries real exchange ticks for Nifty & Bank Nifty
+let liveMarketIndicesCache = {
+  lastUpdated: 0,
+  nifty: null,
+  banknifty: null
+};
+
+async function fetchLiveMarketIndices() {
+  const now = Date.now();
+  // 5-second cache to prevent socket flooding while keeping real-time responsiveness
+  if (now - liveMarketIndicesCache.lastUpdated < 5000 && liveMarketIndicesCache.nifty && liveMarketIndicesCache.banknifty) {
+    return liveMarketIndicesCache;
+  }
+
+  try {
+    const [resNifty, resBank] = await Promise.all([
+      fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?interval=1m&range=1d', {
+        signal: AbortSignal.timeout(4000),
+        headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+      }),
+      fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEBANK?interval=1m&range=1d', {
+        signal: AbortSignal.timeout(4000),
+        headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+      })
+    ]);
+
+    if (resNifty.ok) {
+      const jsonNifty = await resNifty.json();
+      const meta = jsonNifty.chart?.result?.[0]?.meta;
+      const quotes = jsonNifty.chart?.result?.[0]?.indicators?.quote?.[0];
+      if (meta && meta.regularMarketPrice > 0) {
+        const spot = parseFloat(meta.regularMarketPrice.toFixed(2));
+        const open = quotes?.open?.[0] ? parseFloat(quotes.open[0].toFixed(2)) : (meta.chartPreviousClose || spot);
+        
+        // Compute exact 60-min Initial Balance range (09:15 AM - 10:15 AM IST)
+        const highs = (quotes?.high || []).slice(0, 60).filter(v => v > 0);
+        const lows = (quotes?.low || []).slice(0, 60).filter(v => v > 0);
+        const ibHigh = highs.length > 0 ? Math.max(...highs) : (meta.regularMarketDayHigh || (open * 1.0035));
+        const ibLow = lows.length > 0 ? Math.min(...lows) : (meta.regularMarketDayLow || (open * 0.9965));
+
+        lastPriceValue.NIFTY = spot;
+        global.indexOpenPrices.NIFTY = open;
+        lastPriceChangeTime.NIFTY = now;
+
+        liveMarketIndicesCache.nifty = {
+          spot,
+          open,
+          dayHigh: meta.regularMarketDayHigh || spot,
+          dayLow: meta.regularMarketDayLow || spot,
+          ibHigh: parseFloat(ibHigh.toFixed(2)),
+          ibLow: parseFloat(ibLow.toFixed(2)),
+          prevClose: meta.chartPreviousClose || open
+        };
+      }
+    }
+
+    if (resBank.ok) {
+      const jsonBank = await resBank.json();
+      const meta = jsonBank.chart?.result?.[0]?.meta;
+      const quotes = jsonBank.chart?.result?.[0]?.indicators?.quote?.[0];
+      if (meta && meta.regularMarketPrice > 0) {
+        const spot = parseFloat(meta.regularMarketPrice.toFixed(2));
+        const open = quotes?.open?.[0] ? parseFloat(quotes.open[0].toFixed(2)) : (meta.chartPreviousClose || spot);
+        
+        // Compute exact 60-min Initial Balance range (09:15 AM - 10:15 AM IST)
+        const highs = (quotes?.high || []).slice(0, 60).filter(v => v > 0);
+        const lows = (quotes?.low || []).slice(0, 60).filter(v => v > 0);
+        const ibHigh = highs.length > 0 ? Math.max(...highs) : (meta.regularMarketDayHigh || (open * 1.0045));
+        const ibLow = lows.length > 0 ? Math.min(...lows) : (meta.regularMarketDayLow || (open * 0.9955));
+
+        lastPriceValue.BANKNIFTY = spot;
+        global.indexOpenPrices.BANKNIFTY = open;
+        lastPriceChangeTime.BANKNIFTY = now;
+
+        liveMarketIndicesCache.banknifty = {
+          spot,
+          open,
+          dayHigh: meta.regularMarketDayHigh || spot,
+          dayLow: meta.regularMarketDayLow || spot,
+          ibHigh: parseFloat(ibHigh.toFixed(2)),
+          ibLow: parseFloat(ibLow.toFixed(2)),
+          prevClose: meta.chartPreviousClose || open
+        };
+      }
+    }
+
+    liveMarketIndicesCache.lastUpdated = now;
+  } catch (err) {
+    // Graceful fallback to existing in-memory values
+  }
+
+  return liveMarketIndicesCache;
+}
+
+// Background auto-refresh for live market indices (polls every 15 seconds during market days)
+setInterval(() => {
+  fetchLiveMarketIndices().catch(() => {});
+}, 15000);
+
 // Endpoint to retrieve First-Hour PCR Velocity & 3-Signal Institutional Confluence (Rule 2D + Rule 4A + Rule 1)
-app.get('/api/scanner/pcr-velocity', (req, res) => {
+app.get('/api/scanner/pcr-velocity', async (req, res) => {
   try {
     const now = new Date();
     const istTimeStr = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false });
     const [hh, mm] = istTimeStr.split(':').map(Number);
     const currentMins = hh * 60 + mm;
 
-    const niftySpot = lastPriceValue.NIFTY || 24285;
-    const bankSpot = lastPriceValue.BANKNIFTY || 57512;
-    const niftyOpen = global.indexOpenPrices.NIFTY || 24250;
-    const bankOpen = global.indexOpenPrices.BANKNIFTY || 57480;
+    // Fetch real live prices & real IB range directly from live market feed
+    const liveIndices = await fetchLiveMarketIndices();
+    const niftyLive = liveIndices?.nifty;
+    const bankLive = liveIndices?.banknifty;
+
+    const niftySpot = niftyLive?.spot || lastPriceValue.NIFTY || 23897.70;
+    const bankSpot = bankLive?.spot || lastPriceValue.BANKNIFTY || 57369.65;
+    const niftyOpen = niftyLive?.open || global.indexOpenPrices.NIFTY || 23915.45;
+    const bankOpen = bankLive?.open || global.indexOpenPrices.BANKNIFTY || 57492.65;
 
     // Baseline 9:15 AM PCR & dynamic 10:15 AM drift
     let niftyBasePcr = 0.94;
@@ -2667,10 +2772,11 @@ app.get('/api/scanner/pcr-velocity', (req, res) => {
     const isPeriodC_Active = currentMins >= 615 && currentMins <= 645;
     const isPastPeriodC = currentMins > 645;
 
-    const niftyIbHigh = Math.round(niftyOpen * 1.0035);
-    const niftyIbLow = Math.round(niftyOpen * 0.9965);
-    const bankIbHigh = Math.round(bankOpen * 1.0045);
-    const bankIbLow = Math.round(bankOpen * 0.9955);
+    // Real Initial Balance (IB: 09:15 - 10:15 AM)
+    const niftyIbHigh = niftyLive?.ibHigh || Math.round(niftyOpen * 1.0035);
+    const niftyIbLow = niftyLive?.ibLow || Math.round(niftyOpen * 0.9965);
+    const bankIbHigh = bankLive?.ibHigh || Math.round(bankOpen * 1.0045);
+    const bankIbLow = bankLive?.ibLow || Math.round(bankOpen * 0.9955);
 
     const niftyPeriodC_Breakout = niftySpot > niftyIbHigh ? 'BULLISH_BREAKOUT_ABOVE_IB' : (niftySpot < niftyIbLow ? 'BEARISH_BREAKDOWN_BELOW_IB' : 'INSIDE_IB_RANGE');
     const bankPeriodC_Breakout = bankSpot > bankIbHigh ? 'BULLISH_BREAKOUT_ABOVE_IB' : (bankSpot < bankIbLow ? 'BEARISH_BREAKDOWN_BELOW_IB' : 'INSIDE_IB_RANGE');
