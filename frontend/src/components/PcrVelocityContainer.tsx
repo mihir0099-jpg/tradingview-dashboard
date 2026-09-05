@@ -1,5 +1,5 @@
-﻿import React, { useState, useEffect } from 'react';
-import { Zap, RefreshCw, TrendingUp, TrendingDown, Target, BarChart2, Award, Brain, ShieldAlert, CheckCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Zap, RefreshCw, TrendingUp, TrendingDown, Target, BarChart2, Award, Brain, Download, FolderArchive } from 'lucide-react';
 
 interface IndexVelocityData {
   spot: number;
@@ -89,6 +89,24 @@ interface AutoLearnedDB {
   }>;
 }
 
+interface LedgerEntry {
+  date: string;
+  day_of_week: string;
+  nifty_open: number | null;
+  nifty_close: number | null;
+  nifty_change_pts: number | null;
+  nifty_change_pct: number | null;
+  nifty_day_type: string;
+  nifty_ib_range: number | null;
+  nifty_period_c_breakout: string;
+  bank_close: number | null;
+  bank_change_pct: number | null;
+  pcr_drift_pct: number | null;
+  hod_time: string;
+  lod_time: string;
+  archive_file: string;
+}
+
 interface PcrVelocityResponse {
   timestamp: string;
   istTimeStr: string;
@@ -102,15 +120,20 @@ interface PcrVelocityResponse {
 
 export function PcrVelocityContainer() {
   const [data, setData] = useState<PcrVelocityResponse | null>(null);
+  const [ledgerData, setLedgerData] = useState<LedgerEntry[]>([]);
+  const [totalArchivedDays, setTotalArchivedDays] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [activeAsset, setActiveAsset] = useState<'both' | 'nifty' | 'banknifty'>('both');
 
+  const getBackendUrl = () => {
+    return (window.location.hostname.endsWith('github.io')
+      ? 'https://tradingview-dashboard-1.onrender.com'
+      : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+  };
+
   const fetchData = async () => {
     try {
-      const backendUrl = (window.location.hostname.endsWith('github.io')
-        ? 'https://tradingview-dashboard-1.onrender.com'
-        : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
-      
+      const backendUrl = getBackendUrl();
       const res = await fetch(`${backendUrl}/api/scanner/pcr-velocity?_t=${Date.now()}`, {
         cache: 'no-store'
       });
@@ -118,16 +141,29 @@ export function PcrVelocityContainer() {
         const json = await res.json();
         setData(json);
       }
+
+      // Also fetch cumulative archive ledger
+      const resLedger = await fetch(`${backendUrl}/api/archive/ledger?_t=${Date.now()}`, { cache: 'no-store' });
+      if (resLedger.ok) {
+        const jsonLedger = await resLedger.json();
+        setLedgerData(jsonLedger.ledger || []);
+        setTotalArchivedDays(jsonLedger.totalDays || 0);
+      }
     } catch (err) {
-      console.error('Failed to fetch PCR velocity data:', err);
+      console.error('Failed to fetch PCR velocity or archive data:', err);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleExportArchive = () => {
+    const backendUrl = getBackendUrl();
+    window.open(`${backendUrl}/api/archive/export`, '_blank');
+  };
+
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 3000);
+    const interval = setInterval(fetchData, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -504,6 +540,97 @@ export function PcrVelocityContainer() {
           </div>
         </div>
       )}
+
+      {/* Master Cumulative Backtest Archive & Exporter */}
+      <div
+        className="glass-panel"
+        style={{
+          borderRadius: '14px',
+          padding: '22px',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          background: 'linear-gradient(180deg, rgba(30, 58, 138, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px'
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <FolderArchive size={22} color="#38bdf8" />
+            <div>
+              <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: '#fff' }}>
+                Master Cumulative Backtest Archive ({totalArchivedDays} Trading Days Preserved)
+              </h3>
+              <p style={{ margin: '3px 0 0 0', fontSize: '12px', color: '#94a3b8' }}>
+                Every weekday at 3:35 PM IST, full 1m candles, IB ranges, period extremes, and options skew are archived for backtesting.
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleExportArchive}
+            style={{
+              background: 'linear-gradient(90deg, #2563eb, #1d4ed8)',
+              color: '#fff',
+              border: 'none',
+              padding: '8px 16px',
+              borderRadius: '8px',
+              fontSize: '13px',
+              fontWeight: '700',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.3)'
+            }}
+          >
+            <Download size={15} /> Export Complete Ledger (.json)
+          </button>
+        </div>
+
+        {/* Ledger Table */}
+        <div style={{ overflowX: 'auto', maxHeight: '350px' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
+            <thead style={{ position: 'sticky', top: 0, background: 'rgba(15, 23, 42, 0.98)', zIndex: 1 }}>
+              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'var(--text-secondary)' }}>
+                <th style={{ padding: '8px 10px' }}>Date</th>
+                <th style={{ padding: '8px 10px' }}>Day</th>
+                <th style={{ padding: '8px 10px' }}>Nifty Open</th>
+                <th style={{ padding: '8px 10px' }}>Nifty Close</th>
+                <th style={{ padding: '8px 10px' }}>Change %</th>
+                <th style={{ padding: '8px 10px' }}>Day Type</th>
+                <th style={{ padding: '8px 10px' }}>Period C Status</th>
+                <th style={{ padding: '8px 10px' }}>HOD Time</th>
+                <th style={{ padding: '8px 10px' }}>LOD Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ledgerData.slice(0, 15).map(row => (
+                <tr key={row.date} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
+                  <td style={{ padding: '8px 10px', fontWeight: '700', color: '#fff' }}>{row.date}</td>
+                  <td style={{ padding: '8px 10px', color: 'var(--text-secondary)' }}>{row.day_of_week}</td>
+                  <td style={{ padding: '8px 10px', color: '#cbd5e1' }}>₹{row.nifty_open ? row.nifty_open.toLocaleString('en-IN') : '-'}</td>
+                  <td style={{ padding: '8px 10px', color: '#fff', fontWeight: '600' }}>₹{row.nifty_close ? row.nifty_close.toLocaleString('en-IN') : '-'}</td>
+                  <td style={{ padding: '8px 10px', color: (row.nifty_change_pct || 0) >= 0 ? '#10b981' : '#ef4444', fontWeight: '700' }}>
+                    {row.nifty_change_pct !== null ? `${row.nifty_change_pct > 0 ? '+' : ''}${row.nifty_change_pct}%` : '-'}
+                  </td>
+                  <td style={{ padding: '8px 10px', color: '#38bdf8' }}>{row.nifty_day_type}</td>
+                  <td style={{ padding: '8px 10px' }}>
+                    <span style={{
+                      color: row.nifty_period_c_breakout.includes('BULL') ? '#10b981' : (row.nifty_period_c_breakout.includes('BEAR') ? '#ef4444' : '#eab308'),
+                      fontWeight: '700'
+                    }}>
+                      {row.nifty_period_c_breakout}
+                    </span>
+                  </td>
+                  <td style={{ padding: '8px 10px', color: '#94a3b8' }}>{row.hod_time}</td>
+                  <td style={{ padding: '8px 10px', color: '#94a3b8' }}>{row.lod_time}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* 5-Year Empirical Quantitative Backtest Matrix */}
       {backtest && (

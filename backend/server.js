@@ -3056,9 +3056,51 @@ function startPostMarketScheduler() {
         }
         console.log('[Post-Market Scheduler] PCR Velocity Auto-Learner completed successfully:\n', stdout);
       });
+
+      // Trigger Automated Daily Data Archiver & Cumulative Backtest Recorder
+      const archiverPath = path.join(__dirname, 'daily_data_archiver.js');
+      console.log(`[Post-Market Scheduler] Triggering Daily Data Archiver at ${istTimeStr} IST...`);
+      exec(`node "${archiverPath}"`, (error, stdout, stderr) => {
+        if (error) {
+          console.error('[Post-Market Scheduler] Daily Data Archiver failed:', error);
+          return;
+        }
+        console.log('[Post-Market Scheduler] Daily Data Archiver completed successfully:\n', stdout);
+      });
     }
   }, 30000); // Check every 30 seconds
 }
+
+// Endpoints to retrieve & export cumulative daily backtesting ledger
+app.get('/api/archive/ledger', (req, res) => {
+  try {
+    const ledgerPath = path.join(__dirname, 'data', 'master_backtest_ledger.json');
+    if (fs.existsSync(ledgerPath)) {
+      const data = JSON.parse(fs.readFileSync(ledgerPath, 'utf8'));
+      return res.json({
+        totalDays: data.length,
+        ledger: data
+      });
+    }
+    res.json({ totalDays: 0, ledger: [] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/archive/export', (req, res) => {
+  try {
+    const ledgerPath = path.join(__dirname, 'data', 'master_backtest_ledger.json');
+    if (fs.existsSync(ledgerPath)) {
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Content-Disposition', 'attachment; filename="master_backtest_ledger.json"');
+      return fs.createReadStream(ledgerPath).pipe(res);
+    }
+    res.status(404).json({ error: 'Master ledger not found.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Standing background subscriptions for index spot prices to ensure zero-delay updates from TradingView
 function startStandingIndexSubscriptions() {
