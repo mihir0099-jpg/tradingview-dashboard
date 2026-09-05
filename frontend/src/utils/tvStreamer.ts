@@ -1,3 +1,5 @@
+import { getBackendUrl, getWsUrls } from './config';
+
 export interface TVDataMessage {
   symbol: string;
   timeframe: string;
@@ -31,21 +33,8 @@ class TVWebSocketStreamer {
   private status: 'connecting' | 'connected' | 'disconnected' = 'disconnected';
 
   constructor() {
-    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-    
-    let wsHost = window.location.host;
-    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-      if (window.location.port !== '3001' && window.location.port !== '3002') {
-        wsHost = `${window.location.hostname}:3002`;
-      }
-    }
-    
-    // Support both /ws and root / endpoints
-    this.wsUrls = [
-      `${protocol}//${wsHost}/ws`,
-      `${protocol}//${wsHost}/`
-    ];
-    this.url = this.wsUrls[0];
+    this.wsUrls = getWsUrls();
+    this.url = this.wsUrls[0] || '';
   }
 
   public setStatusListener(callback: OnStatusCallback) {
@@ -61,9 +50,7 @@ class TVWebSocketStreamer {
   }
 
   private fetchHttpCandlesSnapshot(symbol: string, timeframe: string) {
-    const apiBase = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-      ? `${window.location.protocol}//${window.location.hostname}:3002`
-      : '';
+    const apiBase = getBackendUrl();
 
     fetch(`${apiBase}/api/chart/candles?symbol=${encodeURIComponent(symbol)}&timeframe=${encodeURIComponent(timeframe)}`)
       .then(res => res.json())

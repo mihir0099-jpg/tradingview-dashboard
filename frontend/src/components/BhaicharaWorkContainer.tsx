@@ -102,7 +102,7 @@ export const BhaicharaWorkContainer: React.FC<BhaicharaWorkProps> = ({
     let isMounted = true;
     const fetchBhaicharaData = async () => {
       try {
-        const backendUrl = (window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin;
+        const backendUrl = (window.location.hostname.endsWith('github.io') ? 'https://tradingview-dashboard-1.onrender.com' : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
         
         const [biasRes, picksRes, confluenceRes] = await Promise.all([
           fetch(`${backendUrl}/api/scanner/opening-bias?_t=${Date.now()}`).catch(() => null),
