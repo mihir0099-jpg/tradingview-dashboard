@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap } from 'lucide-react';
 
 interface TargetItem {
   label: string;
@@ -23,6 +23,19 @@ interface AssetRangeData {
   rangeConsumedPct: number;
   expectedHigh: number;
   expectedLow: number;
+  m15High: number;
+  m15Low: number;
+  m15Color: 'GREEN' | 'RED';
+  gapPts: number;
+  gapPct: number;
+  gapType: string;
+  gapRetestLevel: number;
+  gapStatus: string;
+  predictedBias: string;
+  predictedHigh: number;
+  predictedLow: number;
+  keyPivot: number;
+  timeWindowContext: string;
   bullishTargets: TargetItem[];
   bearishTargets: TargetItem[];
 }
@@ -88,18 +101,18 @@ export function DayRangeContainer() {
   return (
     <div style={{ padding: '20px 24px', maxWidth: '1440px', margin: '0 auto', width: '100%', boxSizing: 'border-box', overflowY: 'auto' }}>
       
-      {/* Navigation & Asset Switcher */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+      {/* Top Header & Asset Switcher */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', marginBottom: '18px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{ background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(16, 185, 129, 0.15))', padding: '10px', borderRadius: '12px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
             <Activity size={24} color="#60a5fa" />
           </div>
           <div>
             <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              Day Range
+              Day Range & Predictions
             </h2>
             <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: 'var(--text-secondary)' }}>
-              Intraday Range, Key Auction Reference Levels & Targets
+              Live Intraday Range, Key Auction Reference Levels & Targets
             </p>
           </div>
         </div>
@@ -164,14 +177,14 @@ export function DayRangeContainer() {
         </div>
       </div>
 
-      {/* Spot Price & Session Overview Banner */}
+      {/* Live Spot Banner & Session Overview */}
       <div style={{
         background: 'rgba(17, 24, 39, 0.65)',
         backdropFilter: 'blur(12px)',
         border: '1px solid rgba(255, 255, 255, 0.08)',
         borderRadius: '14px',
         padding: '16px 20px',
-        marginBottom: '20px',
+        marginBottom: '16px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -199,7 +212,7 @@ export function DayRangeContainer() {
           </span>
         </div>
 
-        <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
           <div>
             <div style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Open</div>
             <div style={{ fontSize: '15px', fontWeight: 700, fontFamily: 'monospace', color: 'var(--text-primary)' }}>
@@ -213,6 +226,113 @@ export function DayRangeContainer() {
               {asset.prevClose.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
             </div>
           </div>
+          <div style={{ width: '1px', height: '24px', background: 'rgba(255, 255, 255, 0.1)' }} />
+          <div>
+            <div style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Central Pivot</div>
+            <div style={{ fontSize: '15px', fontWeight: 700, fontFamily: 'monospace', color: '#facc15' }}>
+              {asset.keyPivot.toLocaleString('en-IN')}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Quantitative Prediction Cards */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+        gap: '12px',
+        marginBottom: '16px'
+      }}>
+        {/* Directional Prediction Bias */}
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.7)',
+          border: '1px solid rgba(59, 130, 246, 0.25)',
+          borderRadius: '12px',
+          padding: '14px 16px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Directional Prediction</span>
+            <Compass size={15} color="#60a5fa" />
+          </div>
+          <div style={{
+            fontSize: '17px',
+            fontWeight: 800,
+            color: asset.predictedBias.includes('BULLISH') ? '#10b981' : (asset.predictedBias.includes('BEARISH') ? '#f43f5e' : '#facc15')
+          }}>
+            {asset.predictedBias}
+          </div>
+          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>
+            15m Candle: <span style={{ fontWeight: 700, color: asset.m15Color === 'GREEN' ? '#10b981' : '#f43f5e' }}>{asset.m15Color}</span>
+          </div>
+        </div>
+
+        {/* Predicted Day High */}
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.7)',
+          border: '1px solid rgba(16, 185, 129, 0.25)',
+          borderRadius: '12px',
+          padding: '14px 16px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Predicted Day High</span>
+            <TrendingUp size={15} color="#10b981" />
+          </div>
+          <div style={{ fontSize: '24px', fontWeight: 900, fontFamily: 'monospace', color: '#10b981' }}>
+            {asset.predictedHigh.toLocaleString('en-IN')}
+          </div>
+          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>
+            Distance: +{Math.max(0, Math.round(asset.predictedHigh - asset.spot))} pts
+          </div>
+        </div>
+
+        {/* Predicted Day Low */}
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.7)',
+          border: '1px solid rgba(244, 63, 94, 0.25)',
+          borderRadius: '12px',
+          padding: '14px 16px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Predicted Day Low</span>
+            <TrendingDown size={15} color="#f43f5e" />
+          </div>
+          <div style={{ fontSize: '24px', fontWeight: 900, fontFamily: 'monospace', color: '#f43f5e' }}>
+            {asset.predictedLow.toLocaleString('en-IN')}
+          </div>
+          <div style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>
+            Distance: -{Math.max(0, Math.round(asset.spot - asset.predictedLow))} pts
+          </div>
+        </div>
+
+        {/* Overnight Gap Retest Magnet */}
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.7)',
+          border: '1px solid rgba(234, 179, 8, 0.25)',
+          borderRadius: '12px',
+          padding: '14px 16px',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <span style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Gap Retest Level</span>
+            <Zap size={15} color="#facc15" />
+          </div>
+          <div style={{ fontSize: '20px', fontWeight: 800, fontFamily: 'monospace', color: '#facc15' }}>
+            {asset.gapRetestLevel.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+          </div>
+          <div style={{ fontSize: '11px', color: asset.gapStatus.includes('FILLED') ? '#10b981' : '#f59e0b', marginTop: '4px', fontWeight: 600 }}>
+            {asset.gapType} • {asset.gapStatus}
+          </div>
         </div>
       </div>
 
@@ -221,7 +341,7 @@ export function DayRangeContainer() {
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
         gap: '14px',
-        marginBottom: '20px'
+        marginBottom: '16px'
       }}>
         {/* Expected Total Day Range */}
         <div style={{
@@ -241,7 +361,7 @@ export function DayRangeContainer() {
             {asset.expectedDayRange} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
-            Projected total expansion for the session
+            Projected total session expansion
           </div>
         </div>
 
@@ -320,13 +440,50 @@ export function DayRangeContainer() {
         </div>
       </div>
 
+      {/* Opening 15-Minute Anchor Levels Bar */}
+      <div style={{
+        background: 'rgba(15, 23, 42, 0.65)',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        borderRadius: '12px',
+        padding: '12px 18px',
+        marginBottom: '16px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '12px'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <Anchor size={16} color="#60a5fa" />
+          <span style={{ fontSize: '12px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            15-Min Anchor Boundaries (09:15 - 09:30 AM)
+          </span>
+        </div>
+
+        <div style={{ display: 'flex', gap: '18px', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ fontSize: '11px', color: '#86efac', fontWeight: 700 }}>15m High:</span>
+            <span style={{ fontSize: '15px', fontWeight: 800, fontFamily: 'monospace', color: '#86efac' }}>{asset.m15High}</span>
+          </div>
+          <div style={{ width: '1px', height: '18px', background: 'rgba(255, 255, 255, 0.1)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span style={{ fontSize: '11px', color: '#fda4af', fontWeight: 700 }}>15m Low:</span>
+            <span style={{ fontSize: '15px', fontWeight: 800, fontFamily: 'monospace', color: '#fda4af' }}>{asset.m15Low}</span>
+          </div>
+          <div style={{ width: '1px', height: '18px', background: 'rgba(255, 255, 255, 0.1)' }} />
+          <div style={{ fontSize: '11px', color: '#94a3b8' }}>
+            Session Phase: <span style={{ fontWeight: 700, color: '#facc15' }}>{asset.timeWindowContext}</span>
+          </div>
+        </div>
+      </div>
+
       {/* Auction Reference Levels Bar */}
       <div style={{
         background: 'rgba(15, 23, 42, 0.65)',
         border: '1px solid rgba(255, 255, 255, 0.08)',
         borderRadius: '14px',
         padding: '18px 20px',
-        marginBottom: '24px'
+        marginBottom: '20px'
       }}>
         <div style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px' }}>
           Auction Reference Levels
@@ -337,11 +494,11 @@ export function DayRangeContainer() {
           gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
           gap: '10px'
         }}>
-          {/* Expected High */}
+          {/* Predicted High */}
           <div style={{ background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '10px', padding: '10px 12px', textAlign: 'center' }}>
-            <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Expected High</div>
+            <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Predicted High</div>
             <div style={{ fontSize: '17px', fontWeight: 800, fontFamily: 'monospace', color: '#10b981', marginTop: '4px' }}>
-              {asset.expectedHigh}
+              {asset.predictedHigh}
             </div>
           </div>
 
@@ -385,11 +542,11 @@ export function DayRangeContainer() {
             </div>
           </div>
 
-          {/* Expected Low */}
+          {/* Predicted Low */}
           <div style={{ background: 'rgba(225, 29, 72, 0.08)', border: '1px solid rgba(225, 29, 72, 0.3)', borderRadius: '10px', padding: '10px 12px', textAlign: 'center' }}>
-            <div style={{ fontSize: '11px', color: '#f43f5e', fontWeight: 700, textTransform: 'uppercase' }}>Expected Low</div>
+            <div style={{ fontSize: '11px', color: '#f43f5e', fontWeight: 700, textTransform: 'uppercase' }}>Predicted Low</div>
             <div style={{ fontSize: '17px', fontWeight: 800, fontFamily: 'monospace', color: '#f43f5e', marginTop: '4px' }}>
-              {asset.expectedLow}
+              {asset.predictedLow}
             </div>
           </div>
         </div>

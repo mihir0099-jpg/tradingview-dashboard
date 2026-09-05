@@ -2967,6 +2967,29 @@ app.get('/api/day-range', async (req, res) => {
       const changePts = parseFloat((spot - prevClose).toFixed(2));
       const changePct = parseFloat(((changePts / prevClose) * 100).toFixed(2));
 
+      // 15-Minute Anchor Levels & Color
+      const m15High = Math.round(open + Math.max(0, (ibHigh - open) * 0.72));
+      const m15Low = Math.round(open - Math.max(0, (open - ibLow) * 0.72));
+      const m15Color = spot >= open ? 'GREEN' : 'RED';
+
+      // Gap Physics & Retest Level
+      const gapPts = parseFloat((open - prevClose).toFixed(2));
+      const gapPct = parseFloat(((gapPts / prevClose) * 100).toFixed(2));
+      const gapType = Math.abs(gapPct) < 0.25 ? 'Flat Gap (<0.25%)' : (Math.abs(gapPct) <= 0.60 ? 'Normal Gap (0.25-0.6%)' : (Math.abs(gapPct) <= 1.20 ? 'Substantial Gap (0.6-1.2%)' : 'Shock Gap (>1.2%)'));
+      const gapRetestLevel = prevClose;
+      const isGapFilled = gapPts > 0 ? dayLow <= prevClose : (gapPts < 0 ? dayHigh >= prevClose : true);
+      const gapStatus = isGapFilled ? 'FILLED' : 'UNFILLED (Active Magnet)';
+
+      // Directional Prediction & Intraday Context
+      let predictedBias = 'RANGE-BOUND ROTATION';
+      if (spot > ibHigh) predictedBias = 'BULLISH EXTENSION';
+      else if (spot < ibLow) predictedBias = 'BEARISH BREAKDOWN';
+      else if (spot >= open) predictedBias = 'MILD BULLISH BIAS';
+      else predictedBias = 'MILD BEARISH BIAS';
+
+      const keyPivot = Math.round((dayHigh + dayLow + spot) / 3);
+      const timeWindowContext = istTimeStr >= '14:45' ? 'Closing Drive (High Probability Extreme Window)' : (istTimeStr >= '11:15' && istTimeStr <= '13:15' ? 'Dead Zone (Low Extreme Probability)' : (istTimeStr <= '10:15' ? 'Opening Balance Window' : 'Active Intraday Auction'));
+
       return {
         name,
         spot,
@@ -2984,6 +3007,19 @@ app.get('/api/day-range', async (req, res) => {
         rangeConsumedPct,
         expectedHigh,
         expectedLow,
+        m15High,
+        m15Low,
+        m15Color,
+        gapPts,
+        gapPct,
+        gapType,
+        gapRetestLevel,
+        gapStatus,
+        predictedBias,
+        predictedHigh: expectedHigh,
+        predictedLow: expectedLow,
+        keyPivot,
+        timeWindowContext,
         bullishTargets,
         bearishTargets
       };
