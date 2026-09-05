@@ -730,7 +730,13 @@ initStaticRamCache();
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
-  res.json({ status: 'OK', version: 'v5-ws-bulletproof', timestamp: new Date(), project: 'TradingView Dashboard V2' });
+  res.json({
+    status: 'OK',
+    version: 'v6-full-audit',
+    uptime: Math.floor(process.uptime()),
+    timestamp: new Date(),
+    project: 'TradingView Dashboard V2'
+  });
 });
 
 // Instant RAM delivery for root HTML (<1ms)
@@ -952,7 +958,10 @@ wss.on('connection', (ws, request) => {
   ws.on('message', async (message) => {
     try {
       const payload = JSON.parse(message);
-      console.log('Received WebSocket message:', payload);
+      // Only log non-subscribe messages to avoid production log spam
+      if (payload.type !== 'subscribe') {
+        console.log('[WebSocket] Received message:', payload);
+      }
       
       if (payload.type === 'subscribe') {
         const { symbol, timeframe } = payload;
@@ -2256,21 +2265,23 @@ app.get('/api/scanner/opening-bias', async (req, res) => {
       // lastPriceValue updates are handled exclusively by standing subscriptions
 
       // Check for active market hours (09:15 AM - 03:30 PM IST)
-      const now = new Date();
-      const hour = now.getHours();
-      const minute = now.getMinutes();
-      const timeStr = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+      // IMPORTANT: Use IST locale string — now.getHours() returns UTC on Render Linux (no TZ env set)
+      const nowForMarket = new Date();
+      const istStr = nowForMarket.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false });
+      const [istH, istM] = istStr.split(':').map(Number);
+      const timeStr = `${String(istH).padStart(2, '0')}:${String(istM).padStart(2, '0')}`;
       const isMarketActive = timeStr >= '09:15' && timeStr <= '15:40';
 
-      const niftyFrozen = isMarketActive && (cleanNifty === 0 || (Date.now() - lastPriceChangeTime.NIFTY > 60000));
-      const bankniftyFrozen = isMarketActive && (cleanBank === 0 || (Date.now() - lastPriceChangeTime.BANKNIFTY > 60000));
+      const niftyFrozen = isMarketActive && (cleanNifty === 0 || (Date.now() - (lastPriceChangeTime.NIFTY || 0) > 60000));
+      const bankniftyFrozen = isMarketActive && (cleanBank === 0 || (Date.now() - (lastPriceChangeTime.BANKNIFTY || 0) > 60000));
 
       if (niftyFrozen || bankniftyFrozen) {
         console.warn(`[Stiffness Filter] Stale spot detected (Nifty: ${cleanNifty} ${niftyFrozen ? '(FROZEN)' : '(OK)'}, BankNifty: ${cleanBank} ${bankniftyFrozen ? '(FROZEN)' : '(OK)'}). Bypassing snapshot logging.`);
       } else {
         // Append snapshot to global in-memory array
         liveHistory.push(logSnapshot);
-        if (liveHistory.length > 10000) liveHistory.shift();
+        // O(1) trim: slice instead of shift (shift is O(n) on large arrays)
+        if (liveHistory.length > 10000) liveHistory = liveHistory.slice(-2000);
       }
 
       // Precise 30-Minute TPO Market Period Slots (09:15 AM - 03:30 PM IST)
@@ -2631,7 +2642,25 @@ app.get('/api/volume-breakouts', (req, res) => {
 });
 
 // Local tick endpoint to receive instantaneous price feeds from browser userscript (Tampermonkey)
-app.all('/api/tick', (req, res) => {
+// Use POST — Tampermonkey sends POST. app.all() would accept DELETE/PATCH/PUT which is unintended.
+// Also support GET with query params for Tampermonkey scripts that use ?symbol=X&price=Y
+app.get('/api/tick', (req, res) => {
+  try {
+    let symbol = (req.query.symbol || '').toUpperCase().replace('NSE:', '').replace('MCX:', '');
+    const price = parseFloat(req.query.price);
+    if (!symbol || isNaN(price) || price <= 0) {
+      return res.status(400).json({ error: 'Invalid symbol or price parameter.' });
+    }
+    if (symbol.includes('BANKNIFTY')) symbol = 'BANKNIFTY';
+    else if (symbol.includes('NIFTY') && !symbol.includes('FINNIFTY') && !symbol.includes('MIDCPNIFTY')) symbol = 'NIFTY';
+    lastPriceValue[symbol] = price;
+    lastPriceChangeTime[symbol] = Date.now();
+    res.json({ status: 'success', symbol, price });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+app.post('/api/tick', (req, res) => {
   try {
     let symbol = (req.query.symbol || req.body?.symbol || '').toUpperCase().replace('NSE:', '').replace('MCX:', '');
     const price = parseFloat(req.query.price || req.body?.price);
@@ -2753,26 +2782,33 @@ function startStandingIndexSubscriptions() {
         return;
       }
       console.log(`[Standing Feed] Initializing continuous tick subscription for ${symbol}...`);
-      cleanup = tvBridge.subscribeSymbol(symbol, '1', (data) => {
-        if (data.candles && data.candles.length > 0) {
-          const firstCandle = data.candles[0];
-          if (firstCandle && firstCandle.open > 0) {
-            global.indexOpenPrices[key] = firstCandle.open;
-          }
+      // IMPORTANT: subscribeSymbol returns a Promise — must await to get the actual cleanup function
+      try {
+        cleanup = await tvBridge.subscribeSymbol(symbol, '1', (data) => {
+          if (data.candles && data.candles.length > 0) {
+            const firstCandle = data.candles[0];
+            if (firstCandle && firstCandle.open > 0) {
+              global.indexOpenPrices[key] = firstCandle.open;
+            }
 
-          const latest = data.candles[data.candles.length - 1].close;
-          if (latest > 0) {
-            lastPriceValue[key] = latest;
-            lastPriceChangeTime[key] = Date.now();
+            const latest = data.candles[data.candles.length - 1].close;
+            if (latest > 0) {
+              lastPriceValue[key] = latest;
+              lastPriceChangeTime[key] = Date.now();
+            }
           }
-        }
-      }, (err) => {
-        console.warn(`[Standing Feed] Subscription error for ${symbol}, reconnecting in 2s:`, err);
-        if (cleanup) {
-          try { cleanup(); } catch(e) {}
-        }
-        setTimeout(connect, 2000); // Fast reconnect on error
-      });
+        }, (err) => {
+          console.warn(`[Standing Feed] Subscription error for ${symbol}, reconnecting in 2s:`, err);
+          if (typeof cleanup === 'function') {
+            try { cleanup(); } catch(e) {}
+          }
+          cleanup = null;
+          setTimeout(connect, 2000); // Fast reconnect on error
+        });
+      } catch (err) {
+        console.warn(`[Standing Feed] Failed to subscribe ${symbol}:`, err.message || err);
+        setTimeout(connect, 5000);
+      }
     };
     connect();
   };
@@ -2790,10 +2826,18 @@ app.get('*', (req, res) => {
   if (req.path.startsWith('/assets/')) {
     return res.status(404).json({ error: 'Asset not found' });
   }
+  // Use preloaded RAM copy (<1ms) — falls back to disk read only if not loaded yet
+  if (preloadedIndexHtml) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Content-Length', Buffer.byteLength(preloadedIndexHtml, 'utf8'));
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    return res.status(200).send(preloadedIndexHtml);
+  }
   const indexPath = path.join(distPath, 'index.html');
   if (fs.existsSync(indexPath)) {
     try {
       const htmlContent = fs.readFileSync(indexPath, 'utf8');
+      preloadedIndexHtml = htmlContent; // Populate RAM cache for next requests
       res.setHeader('Content-Type', 'text/html; charset=utf-8');
       res.setHeader('Content-Length', Buffer.byteLength(htmlContent, 'utf8'));
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
