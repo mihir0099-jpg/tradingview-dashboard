@@ -20,6 +20,7 @@ import { BacktestResultsContainer } from './components/BacktestResultsContainer'
 import { FifteenMinForensicContainer } from './components/FifteenMinForensicContainer';
 import { PatternForecasterContainer } from './components/PatternForecasterContainer';
 import { WeeklySellingContainer } from './components/WeeklySellingContainer';
+import { PcrVelocityContainer } from './components/PcrVelocityContainer';
 
 function App() {
   const [symbol, setSymbol] = useState('NSE:NIFTY');
@@ -30,7 +31,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('fifteen_min');
+  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -157,6 +158,27 @@ function App() {
 
       {/* Navigation Tabs */}
       <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', paddingBottom: '2px', flexWrap: 'wrap' }}>
+        <button
+          onClick={() => setActiveTab('pcr_velocity')}
+          style={{
+            background: activeTab === 'pcr_velocity' ? 'rgba(56, 189, 248, 0.18)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'pcr_velocity' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'pcr_velocity' ? '#38bdf8' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '700',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          ⚡ PCR Velocity
+        </button>
         <button
           onClick={() => setActiveTab('bhaichara')}
           style={{
@@ -495,6 +517,11 @@ function App() {
         {activeTab === 'pattern_forecaster' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
             <PatternForecasterContainer />
+          </div>
+        )}
+        {activeTab === 'pcr_velocity' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <PcrVelocityContainer />
           </div>
         )}
         {activeTab === 'bhaichara' && (
