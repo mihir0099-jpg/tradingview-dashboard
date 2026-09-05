@@ -111,6 +111,56 @@ interface LedgerEntry {
   archive_file: string;
 }
 
+interface DailyForecastEntry {
+  target_date: string;
+  target_day: string;
+  computed_at: string;
+  baseline_session: {
+    date: string;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    atr14: number;
+  };
+  prediction: {
+    predicted_open: number;
+    predicted_close: number;
+    predicted_range: number;
+    directional_bias: string;
+    expected_candle: string;
+    cpr: {
+      P: number;
+      BCP: number;
+      TCP: number;
+      widthPct: number;
+      type: string;
+    };
+    camarilla: {
+      r4: number;
+      r3: number;
+      r2: number;
+      r1: number;
+      s1: number;
+      s2: number;
+      s3: number;
+      s4: number;
+    };
+  };
+  actual_evaluation: {
+    actual_open: number;
+    actual_close: number;
+    actual_high: number;
+    actual_low: number;
+    open_error_pct: number;
+    close_error_pct: number;
+    actual_candle: string;
+    directional_bias_match: boolean;
+    outcome: string;
+    evaluated_at: string;
+  } | null;
+}
+
 interface PcrVelocityResponse {
   timestamp: string;
   istTimeStr: string;
@@ -125,11 +175,13 @@ interface PcrVelocityResponse {
 export function PcrVelocityContainer() {
   const [data, setData] = useState<PcrVelocityResponse | null>(null);
   const [ledgerData, setLedgerData] = useState<LedgerEntry[]>([]);
+  const [forecasts, setForecasts] = useState<DailyForecastEntry[]>([]);
   const [totalArchivedDays, setTotalArchivedDays] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [isSavingSnapshot, setIsSavingSnapshot] = useState(false);
   const [snapshotMsg, setSnapshotMsg] = useState<string | null>(null);
   const [activeAsset, setActiveAsset] = useState<'both' | 'nifty' | 'banknifty'>('both');
+
 
   const getBackendUrl = () => {
     return (window.location.hostname.endsWith('github.io')
@@ -186,6 +238,13 @@ export function PcrVelocityContainer() {
         const jsonLedger = await resLedger.json();
         setLedgerData(jsonLedger.ledger || []);
         setTotalArchivedDays(jsonLedger.totalDays || 0);
+      }
+
+      // Also fetch quantitative forecasts & audit scorecard
+      const resAudit = await fetch(`${backendUrl}/api/predictions/audit?_t=${Date.now()}`, { cache: 'no-store' });
+      if (resAudit.ok) {
+        const jsonAudit = await resAudit.json();
+        setForecasts(jsonAudit.forecasts || []);
       }
     } catch (err) {
       console.error('Failed to fetch PCR velocity or archive data:', err);
@@ -578,6 +637,143 @@ export function PcrVelocityContainer() {
           </div>
         </div>
       )}
+
+      {/* Weekly Quantitative Forecast & Live Audit Scorecard (Sept 7 - Sept 12 Review) */}
+      <div
+        className="glass-panel"
+        style={{
+          borderRadius: '14px',
+          padding: '22px',
+          border: '1px solid rgba(168, 85, 247, 0.35)',
+          background: 'linear-gradient(180deg, rgba(88, 28, 135, 0.15) 0%, rgba(15, 23, 42, 0.92) 100%)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '16px'
+        }}
+      >
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Target size={24} color="#c084fc" />
+            <div>
+              <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: '#fff' }}>
+                Weekly Quantitative Forecast &amp; Live Audit Scorecard (Sept 7 – Sept 12 Review)
+              </h3>
+              <p style={{ margin: '3px 0 0 0', fontSize: '12px', color: '#cbd5e1' }}>
+                Automated daily predictions at 3:40 PM IST. Tracking Open % Error, Close % Error, and Directional Bias daily for Saturday review.
+              </p>
+            </div>
+          </div>
+          <span style={{
+            background: 'rgba(168, 85, 247, 0.15)',
+            border: '1px solid rgba(168, 85, 247, 0.4)',
+            color: '#c084fc',
+            padding: '4px 10px',
+            borderRadius: '6px',
+            fontSize: '12px',
+            fontWeight: '700'
+          }}>
+            Week Target: Sept 7 – Sept 11
+          </span>
+        </div>
+
+        {/* Forecast Table */}
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'var(--text-secondary)' }}>
+                <th style={{ padding: '8px 10px' }}>Target Date</th>
+                <th style={{ padding: '8px 10px' }}>Pred Open</th>
+                <th style={{ padding: '8px 10px' }}>Actual Open (Err %)</th>
+                <th style={{ padding: '8px 10px' }}>Pred Close</th>
+                <th style={{ padding: '8px 10px' }}>Actual Close (Err %)</th>
+                <th style={{ padding: '8px 10px' }}>Directional Bias</th>
+                <th style={{ padding: '8px 10px' }}>CPR &amp; Key Pivot Band</th>
+                <th style={{ padding: '8px 10px' }}>Outcome / Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {forecasts.map(f => {
+                const evalData = f.actual_evaluation;
+                const isPending = !evalData;
+                const isWin = evalData?.outcome === 'ACCURATE_WIN';
+
+                return (
+                  <tr key={f.target_date} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
+                    <td style={{ padding: '10px', fontWeight: '700', color: '#fff' }}>
+                      {f.target_date} <span style={{ color: 'var(--text-secondary)', fontWeight: '400', fontSize: '11px' }}>({f.target_day})</span>
+                    </td>
+                    <td style={{ padding: '10px', color: '#38bdf8', fontWeight: '700' }}>
+                      ₹{f.prediction.predicted_open.toLocaleString('en-IN')}
+                    </td>
+                    <td style={{ padding: '10px' }}>
+                      {evalData ? (
+                        <span>
+                          ₹{evalData.actual_open.toLocaleString('en-IN')}{' '}
+                          <span style={{ color: evalData.open_error_pct <= 0.15 ? '#10b981' : '#eab308', fontWeight: '700', fontSize: '11px' }}>
+                            ({evalData.open_error_pct}%)
+                          </span>
+                        </span>
+                      ) : (
+                        <span style={{ color: 'var(--text-secondary)' }}>Pending Open</span>
+                      )}
+                    </td>
+                    <td style={{ padding: '10px', color: '#c084fc', fontWeight: '700' }}>
+                      ₹{f.prediction.predicted_close.toLocaleString('en-IN')}
+                    </td>
+                    <td style={{ padding: '10px' }}>
+                      {evalData ? (
+                        <span>
+                          ₹{evalData.actual_close.toLocaleString('en-IN')}{' '}
+                          <span style={{ color: evalData.close_error_pct <= 0.25 ? '#10b981' : '#eab308', fontWeight: '700', fontSize: '11px' }}>
+                            ({evalData.close_error_pct}%)
+                          </span>
+                        </span>
+                      ) : (
+                        <span style={{ color: 'var(--text-secondary)' }}>Pending Close</span>
+                      )}
+                    </td>
+                    <td style={{ padding: '10px' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        fontSize: '11px',
+                        fontWeight: '700',
+                        background: f.prediction.directional_bias === 'GREEN' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                        color: f.prediction.directional_bias === 'GREEN' ? '#10b981' : '#ef4444',
+                        border: `1px solid ${f.prediction.directional_bias === 'GREEN' ? '#10b981' : '#ef4444'}40`
+                      }}>
+                        {f.prediction.directional_bias}
+                      </span>
+                      {evalData && (
+                        <span style={{ marginLeft: '6px', fontSize: '11px', color: evalData.directional_bias_match ? '#10b981' : '#ef4444', fontWeight: '700' }}>
+                          {evalData.directional_bias_match ? '✓ Match' : '✗ Miss'}
+                        </span>
+                      )}
+                    </td>
+                    <td style={{ padding: '10px', fontSize: '11px', color: '#94a3b8' }}>
+                      CPR: {f.prediction.cpr.type.split(' ')[0]} ({f.prediction.cpr.widthPct}%)<br />
+                      S3: ₹{f.prediction.camarilla.s3} | R3: ₹{f.prediction.camarilla.r3}
+                    </td>
+                    <td style={{ padding: '10px' }}>
+                      <span style={{
+                        padding: '3px 8px',
+                        borderRadius: '6px',
+                        fontSize: '10px',
+                        fontWeight: '800',
+                        background: isPending ? 'rgba(59, 130, 246, 0.15)' : (isWin ? 'rgba(16, 185, 129, 0.15)' : 'rgba(234, 179, 8, 0.15)'),
+                        color: isPending ? '#38bdf8' : (isWin ? '#10b981' : '#eab308'),
+                        border: `1px solid ${isPending ? '#38bdf8' : (isWin ? '#10b981' : '#eab308')}40`
+                      }}>
+                        {isPending ? 'PENDING (Active Target)' : evalData?.outcome}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* Master Cumulative Backtest Archive & Exporter */}
       <div

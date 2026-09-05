@@ -3067,9 +3067,37 @@ function startPostMarketScheduler() {
         }
         console.log('[Post-Market Scheduler] Daily Data Archiver completed successfully:\n', stdout);
       });
+
+      // Trigger Automated Daily Predictor & Evaluation Engine
+      const predictorPath = path.join(__dirname, 'daily_predictor.js');
+      console.log(`[Post-Market Scheduler] Triggering Daily Predictor at ${istTimeStr} IST...`);
+      exec(`node "${predictorPath}"`, (error, stdout, stderr) => {
+        if (error) {
+          console.error('[Post-Market Scheduler] Daily Predictor failed:', error);
+          return;
+        }
+        console.log('[Post-Market Scheduler] Daily Predictor completed successfully:\n', stdout);
+      });
     }
   }, 30000); // Check every 30 seconds
 }
+
+// Endpoint to retrieve daily predictions & live weekly evaluation scorecard
+app.get('/api/predictions/audit', (req, res) => {
+  try {
+    const predPath = path.join(__dirname, 'data', 'daily_predictions.json');
+    if (fs.existsSync(predPath)) {
+      const data = JSON.parse(fs.readFileSync(predPath, 'utf8'));
+      return res.json({
+        totalForecasts: data.length,
+        forecasts: data
+      });
+    }
+    res.json({ totalForecasts: 0, forecasts: [] });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Endpoints to retrieve & export cumulative daily backtesting ledger
 app.get('/api/archive/ledger', (req, res) => {
