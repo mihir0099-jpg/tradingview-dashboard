@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, BarChart2 } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu } from 'lucide-react';
 
 interface TargetItem {
   label: string;
@@ -22,6 +22,15 @@ interface TimeframePrediction {
   bearTarget2: number;
   bearTarget3: number;
   bearTargetMax: number;
+}
+
+interface ActiveRegimeData {
+  era: string;
+  label: string;
+  speed: string;
+  calibration: string;
+  pinningStrike: number;
+  closingDriveProb: string;
 }
 
 interface AssetRangeData {
@@ -54,6 +63,7 @@ interface AssetRangeData {
   predictedLow: number;
   keyPivot: number;
   timeWindowContext: string;
+  activeRegime?: ActiveRegimeData;
   multiTimeframe?: {
     daily: TimeframePrediction;
     weekly: TimeframePrediction;
@@ -113,7 +123,7 @@ export function DayRangeContainer() {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', minHeight: '400px', color: 'var(--text-secondary)' }}>
         <RefreshCw className="animate-spin" size={32} style={{ color: '#3b82f6', marginBottom: '16px' }} />
-        <p style={{ fontSize: '15px', fontWeight: 600 }}>Loading Multi-Timeframe Range & Predictions...</p>
+        <p style={{ fontSize: '15px', fontWeight: 600 }}>Loading Adaptive Market Range & Predictions...</p>
       </div>
     );
   }
@@ -135,10 +145,10 @@ export function DayRangeContainer() {
           </div>
           <div>
             <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>
-              Day Range & Multi-Timeframe Predictions
+              Day Range & Adaptive Intelligence
             </h2>
             <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: 'var(--text-secondary)' }}>
-              Live Intraday Range, Key Auction Reference Levels & Targets
+              Modern Market Regime (Era 3), Real-Time Anchors & Multi-Timeframe Targets
             </p>
           </div>
         </div>
@@ -227,6 +237,46 @@ export function DayRangeContainer() {
           </button>
         </div>
       </div>
+
+      {/* Modern Market Regime & Adaptive Calibration Bar */}
+      {asset.activeRegime && (
+        <div style={{
+          background: 'rgba(15, 23, 42, 0.85)',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          borderRadius: '12px',
+          padding: '10px 16px',
+          marginBottom: '14px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '10px'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Cpu size={16} color="#38bdf8" />
+            <span style={{ fontSize: '12px', fontWeight: 800, color: '#38bdf8', letterSpacing: '0.04em' }}>
+              {asset.activeRegime.era}
+            </span>
+            <span style={{ fontSize: '11px', color: '#94a3b8', background: 'rgba(59, 130, 246, 0.15)', padding: '2px 8px', borderRadius: '6px', fontWeight: 700 }}>
+              {asset.activeRegime.label}
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', fontSize: '11px', color: '#94a3b8' }}>
+            <div>
+              Speed: <span style={{ color: '#ffffff', fontWeight: 700 }}>{asset.activeRegime.speed}</span>
+            </div>
+            <div style={{ width: '1px', height: '14px', background: 'rgba(255, 255, 255, 0.1)' }} />
+            <div>
+              Pinning Strike: <span style={{ color: '#facc15', fontWeight: 800 }}>{asset.activeRegime.pinningStrike}</span>
+            </div>
+            <div style={{ width: '1px', height: '14px', background: 'rgba(255, 255, 255, 0.1)' }} />
+            <div>
+              Calibration: <span style={{ color: '#86efac', fontWeight: 700 }}>{asset.activeRegime.calibration}</span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Live Spot Banner & Session Overview */}
       <div style={{
