@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Zap, RefreshCw, TrendingUp, TrendingDown, Target, BarChart2, Award } from 'lucide-react';
+import { Zap, RefreshCw, TrendingUp, TrendingDown, Target, BarChart2, Award, Brain, ShieldAlert, CheckCircle } from 'lucide-react';
 
 interface IndexVelocityData {
   spot: number;
@@ -62,6 +62,33 @@ interface BacktestStats {
   }>;
 }
 
+interface AutoLearnedDB {
+  last_updated: string;
+  total_sessions_scanned: number;
+  active_triggers: number;
+  wins: number;
+  mistakes_learned: number;
+  live_accuracy_pct: string;
+  auto_learned_adaptations: Array<{
+    rule_id: string;
+    lesson: string;
+    confidence: string;
+  }>;
+  recent_sessions: Array<{
+    date: string;
+    niftyClose: number;
+    changePct: number;
+    ce: number;
+    pe: number;
+    skew: number;
+    signal: string;
+    predicted: string;
+    actual: string;
+    outcome: string;
+    lesson: string;
+  }>;
+}
+
 interface PcrVelocityResponse {
   timestamp: string;
   istTimeStr: string;
@@ -70,6 +97,7 @@ interface PcrVelocityResponse {
   nifty: IndexVelocityData;
   banknifty: IndexVelocityData;
   backtestStats: BacktestStats;
+  autoLearnedDatabase?: AutoLearnedDB | null;
 }
 
 export function PcrVelocityContainer() {
@@ -276,6 +304,7 @@ export function PcrVelocityContainer() {
   };
 
   const backtest = data?.backtestStats;
+  const autoLearner = data?.autoLearnedDatabase;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
@@ -302,7 +331,7 @@ export function PcrVelocityContainer() {
             </h1>
           </div>
           <p style={{ margin: '6px 0 0 0', fontSize: '13px', color: '#94a3b8' }}>
-            Tracking 9:15 AM to 10:15 AM Put-Call Ratio drift rate (&gt; 3% threshold) to predict full-day directional trends with institutional confirmation.
+            Tracking 9:15 AM to 10:15 AM Put-Call Ratio drift rate (&gt; 3% threshold) with automated daily learning from real mistakes at 3:47 PM IST.
           </p>
         </div>
 
@@ -357,6 +386,125 @@ export function PcrVelocityContainer() {
         </div>
       )}
 
+      {/* Auto-Learned Daily Feedback & Mistakes Correction Engine */}
+      {autoLearner && (
+        <div
+          className="glass-panel"
+          style={{
+            borderRadius: '14px',
+            padding: '22px',
+            border: '1px solid rgba(168, 85, 247, 0.3)',
+            background: 'linear-gradient(180deg, rgba(88, 28, 135, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '18px'
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <Brain size={22} color="#c084fc" />
+              <div>
+                <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: '#fff' }}>
+                  Self-Learning Engine: Daily Mistake Diagnostics & Auto-Adaptation
+                </h3>
+                <p style={{ margin: '3px 0 0 0', fontSize: '12px', color: '#cbd5e1' }}>
+                  Runs automatically post-market at 3:47 PM IST. Logs mistakes, isolates failure causes, and auto-tunes rules on both localhost and Render.
+                </p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ fontSize: '12px', background: 'rgba(168, 85, 247, 0.2)', color: '#e9d5ff', padding: '4px 10px', borderRadius: '6px', fontWeight: '700', border: '1px solid rgba(168, 85, 247, 0.4)' }}>
+                Live Accuracy: {autoLearner.live_accuracy_pct}
+              </span>
+              <span style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
+                {autoLearner.wins} Wins / {autoLearner.mistakes_learned} Mistakes Diagnosed
+              </span>
+            </div>
+          </div>
+
+          {/* Auto-Learned Adaptation Rules */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '12px' }}>
+            {autoLearner.auto_learned_adaptations.map(rule => (
+              <div
+                key={rule.rule_id}
+                style={{
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  borderRadius: '10px',
+                  padding: '14px',
+                  border: '1px solid rgba(168, 85, 247, 0.25)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '6px'
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ fontSize: '11px', fontWeight: '800', color: '#c084fc' }}>
+                    {rule.rule_id.replace(/_/g, ' ')}
+                  </span>
+                  <span style={{ fontSize: '11px', color: '#10b981', fontWeight: '700' }}>
+                    {rule.confidence} Confidence
+                  </span>
+                </div>
+                <p style={{ margin: 0, fontSize: '12px', color: '#e2e8f0', lineHeight: '1.5' }}>
+                  {rule.lesson}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Recent 10 Sessions Learning Ledger */}
+          <div style={{ overflowX: 'auto' }}>
+            <div style={{ fontSize: '13px', fontWeight: '700', color: '#e2e8f0', marginBottom: '8px' }}>
+              Recent Sessions Learning Ledger (Real Server Days)
+            </div>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'var(--text-secondary)' }}>
+                  <th style={{ padding: '8px 10px' }}>Date</th>
+                  <th style={{ padding: '8px 10px' }}>Spot Close (Change)</th>
+                  <th style={{ padding: '8px 10px' }}>Option Skew</th>
+                  <th style={{ padding: '8px 10px' }}>Predicted</th>
+                  <th style={{ padding: '8px 10px' }}>Actual</th>
+                  <th style={{ padding: '8px 10px' }}>Outcome</th>
+                  <th style={{ padding: '8px 10px' }}>Learned Diagnosis</th>
+                </tr>
+              </thead>
+              <tbody>
+                {autoLearner.recent_sessions.map(s => {
+                  const isWin = s.outcome === 'WIN';
+                  const isMistake = s.outcome === 'MISTAKE_CORRECTED';
+                  const color = isWin ? '#10b981' : (isMistake ? '#ef4444' : '#94a3b8');
+                  return (
+                    <tr key={s.date} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
+                      <td style={{ padding: '8px 10px', fontWeight: '700', color: '#fff' }}>{s.date}</td>
+                      <td style={{ padding: '8px 10px', color: '#cbd5e1' }}>
+                        ₹{s.niftyClose ? s.niftyClose.toLocaleString('en-IN') : 'N/A'}{' '}
+                        <span style={{ color: s.changePct >= 0 ? '#10b981' : '#ef4444', fontWeight: '600' }}>
+                          ({s.changePct >= 0 ? `+${s.changePct}%` : `${s.changePct}%`})
+                        </span>
+                      </td>
+                      <td style={{ padding: '8px 10px', color: s.skew > 0 ? '#60a5fa' : '#f43f5e', fontWeight: '600' }}>
+                        {s.skew > 0 ? `+${s.skew}%` : `${s.skew}%`}
+                      </td>
+                      <td style={{ padding: '8px 10px', fontWeight: '600', color: '#fff' }}>{s.predicted}</td>
+                      <td style={{ padding: '8px 10px', fontWeight: '600', color: '#e2e8f0' }}>{s.actual}</td>
+                      <td style={{ padding: '8px 10px' }}>
+                        <span style={{ color, fontWeight: '800', background: `${color}15`, padding: '2px 8px', borderRadius: '4px', border: `1px solid ${color}30` }}>
+                          {s.outcome}
+                        </span>
+                      </td>
+                      <td style={{ padding: '8px 10px', color: isMistake ? '#fca5a5' : '#94a3b8', fontSize: '11px', maxWidth: '350px' }}>
+                        {s.lesson}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {/* 5-Year Empirical Quantitative Backtest Matrix */}
       {backtest && (
         <div
@@ -383,7 +531,6 @@ export function PcrVelocityContainer() {
             </span>
           </div>
 
-          {/* 3-Tier Strategy Comparison Cards */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '14px' }}>
             <div style={{ background: 'rgba(255, 255, 255, 0.02)', borderRadius: '10px', padding: '16px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
               <div style={{ fontSize: '12px', color: '#94a3b8', fontWeight: '700', textTransform: 'uppercase' }}>Tier 1: PCR Velocity Standalone</div>
@@ -428,7 +575,6 @@ export function PcrVelocityContainer() {
             </div>
           </div>
 
-          {/* Year by Year Table */}
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px', textAlign: 'left' }}>
               <thead>

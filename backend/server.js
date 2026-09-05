@@ -2779,7 +2779,16 @@ app.get('/api/scanner/pcr-velocity', (req, res) => {
         confluenceScore: bankConfluenceScore,
         action: bankAction
       },
-      backtestStats
+      backtestStats,
+      autoLearnedDatabase: (() => {
+        try {
+          const learnPath = path.join(__dirname, 'data', 'pcr_velocity_learnings.json');
+          if (fs.existsSync(learnPath)) {
+            return JSON.parse(fs.readFileSync(learnPath, 'utf8'));
+          }
+        } catch (e) {}
+        return null;
+      })()
     });
   } catch (err) {
     console.error('[PCR Velocity Route Error]:', err.message || err);
@@ -2929,6 +2938,17 @@ function startPostMarketScheduler() {
           return;
         }
         console.log('[Post-Market Scheduler] Daily backtester completed successfully:\n', stdout);
+      });
+
+      // Trigger Automated Daily PCR Velocity Learning & Mistake Adaptation
+      const pcrLearnerPath = path.join(__dirname, 'pcr_velocity_learner.js');
+      console.log(`[Post-Market Scheduler] Triggering PCR Velocity Auto-Learner at ${istTimeStr} IST...`);
+      exec(`node "${pcrLearnerPath}"`, (error, stdout, stderr) => {
+        if (error) {
+          console.error('[Post-Market Scheduler] PCR Velocity Auto-Learner failed:', error);
+          return;
+        }
+        console.log('[Post-Market Scheduler] PCR Velocity Auto-Learner completed successfully:\n', stdout);
       });
     }
   }, 30000); // Check every 30 seconds

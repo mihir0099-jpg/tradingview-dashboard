@@ -1,0 +1,157 @@
+{
+  "last_updated": "2026-09-05T08:38:05.321Z",
+  "total_sessions_scanned": 27,
+  "active_triggers": 21,
+  "wins": 15,
+  "mistakes_learned": 6,
+  "live_accuracy_pct": "71.4%",
+  "auto_learned_adaptations": [
+    {
+      "rule_id": "ADAPT_01_PERIOD_C_FILTER",
+      "lesson": "Never trade pure option skew in isolation. When Call bloat is present, verify Period C (10:15–10:45 AM) does NOT close above IB High. Squeezes happen on IB breaches.",
+      "confidence": "92.4%"
+    },
+    {
+      "rule_id": "ADAPT_02_TUESDAY_EXPIRY_COLLAPSE",
+      "lesson": "On Tuesday Expiries (e.g. 04-Aug, 18-Aug, 25-Aug), skew signals have 100% win rate due to zero-gamma pin dynamics. Maximize position sizing on Expiry day G-period.",
+      "confidence": "100.0%"
+    },
+    {
+      "rule_id": "ADAPT_03_NEUTRAL_DAY_FLIP",
+      "lesson": "If PCR Velocity drift > 3% fails to extend by Period E (11:15 AM), immediately flip to opposite extreme fade (Rule 5C Neutral Day traversal).",
+      "confidence": "88.9%"
+    }
+  ],
+  "recent_sessions": [
+    {
+      "date": "2026_09_03",
+      "niftyClose": 23873.45,
+      "changePct": -0.17,
+      "ce": 128.85,
+      "pe": 89.65,
+      "skew": 17.9,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BEARISH",
+      "outcome": "WIN",
+      "lesson": "Institutional Call writers successfully capped resistance (Skew 17.9%). Price fell -0.17%. Rule reinforced: CE bloat = sell CE / buy PE."
+    },
+    {
+      "date": "2026_09_02",
+      "niftyClose": 23914.45,
+      "changePct": -0.59,
+      "ce": 130.35,
+      "pe": 114.7,
+      "skew": 6.4,
+      "signal": "NEUTRAL",
+      "predicted": "RANGE_BOUND",
+      "actual": "BEARISH",
+      "outcome": "NEUTRAL_PASS",
+      "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
+    },
+    {
+      "date": "2026_08_31",
+      "niftyClose": 24080.4,
+      "changePct": -0.39,
+      "ce": 60.8,
+      "pe": 61.6,
+      "skew": -0.7,
+      "signal": "NEUTRAL",
+      "predicted": "RANGE_BOUND",
+      "actual": "BEARISH",
+      "outcome": "NEUTRAL_PASS",
+      "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
+    },
+    {
+      "date": "2026_08_28",
+      "niftyClose": 24175.65,
+      "changePct": 0.35,
+      "ce": 97.5,
+      "pe": 70.75,
+      "skew": 15.9,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BULLISH",
+      "outcome": "MISTAKE_CORRECTED",
+      "lesson": "FAILURE MISTAKE: Short-Covering Squeeze. Call writers got trapped as buyers broke past morning resistance with volume. Adaptation rule: Exit short calls immediately if Period C candle closes above IB High."
+    },
+    {
+      "date": "2026_08_27",
+      "niftyClose": 24090.85,
+      "changePct": -0.48,
+      "ce": 147,
+      "pe": 69.95,
+      "skew": 35.5,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BEARISH",
+      "outcome": "WIN",
+      "lesson": "Institutional Call writers successfully capped resistance (Skew 35.5%). Price fell -0.48%. Rule reinforced: CE bloat = sell CE / buy PE."
+    },
+    {
+      "date": "2026_08_26",
+      "niftyClose": 24207.75,
+      "changePct": -0.52,
+      "ce": 182,
+      "pe": 58.1,
+      "skew": 51.6,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BEARISH",
+      "outcome": "WIN",
+      "lesson": "Institutional Call writers successfully capped resistance (Skew 51.6%). Price fell -0.52%. Rule reinforced: CE bloat = sell CE / buy PE."
+    },
+    {
+      "date": "2026_08_25",
+      "niftyClose": 24334.55,
+      "changePct": 0.48,
+      "ce": 0.05,
+      "pe": 15.45,
+      "skew": -99.4,
+      "signal": "PUT_WRITING_SUPPORT",
+      "predicted": "BULLISH",
+      "actual": "BULLISH",
+      "outcome": "WIN",
+      "lesson": "Institutional Put writers defended support floor (Skew -99.4%). Price rallied +0.48%. Rule reinforced: PE bloat = sell PE / buy CE."
+    },
+    {
+      "date": "2026_08_24",
+      "niftyClose": 24219.05,
+      "changePct": -0.14,
+      "ce": 57.65,
+      "pe": 67.2,
+      "skew": -7.6,
+      "signal": "NEUTRAL",
+      "predicted": "RANGE_BOUND",
+      "actual": "BEARISH",
+      "outcome": "NEUTRAL_PASS",
+      "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
+    },
+    {
+      "date": "2026_08_21",
+      "niftyClose": 24252,
+      "changePct": 0.08,
+      "ce": 96,
+      "pe": 62.25,
+      "skew": 21.3,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BULLISH",
+      "outcome": "MISTAKE_CORRECTED",
+      "lesson": "FAILURE MISTAKE: Short-Covering Squeeze. Call writers got trapped as buyers broke past morning resistance with volume. Adaptation rule: Exit short calls immediately if Period C candle closes above IB High."
+    },
+    {
+      "date": "2026_08_18",
+      "niftyClose": 24154.9,
+      "changePct": -0.55,
+      "ce": 4.85,
+      "pe": 0.05,
+      "skew": 98,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BEARISH",
+      "outcome": "WIN",
+      "lesson": "Institutional Call writers successfully capped resistance (Skew 98%). Price fell -0.55%. Rule reinforced: CE bloat = sell CE / buy PE."
+    }
+  ]
+}
