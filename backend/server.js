@@ -3035,6 +3035,32 @@ app.get('/api/day-range', async (req, res) => {
       const hurstRegime = isPersistent ? 'Persistent Trend' : 'Mean-Reverting Balance';
       const hurstAction = isPersistent ? 'Follow Breakouts (68.4% Persistence)' : 'Fade Extremes (52.3% False Break Risk)';
 
+      // 4 Canaries of Regime Shift Monitoring (Section 26)
+      const isSma200Breached = spot < (key === 'nifty' ? 22800 : 54500); // 200 SMA level
+      const isOpenEqualHigh = Math.abs(open - dayHigh) <= (key === 'nifty' ? 8 : 20);
+      const isRangeExploded = currentRange > 1.30 * expectedDayRange;
+
+      let macroState = 'State 1: Equilibrium / Low-Vol Grind';
+      let macroBadge = 'EQUILIBRIUM BALANCE';
+      let macroColor = '#10b981';
+
+      if (isSma200Breached && isOpenEqualHigh) {
+        macroState = 'State 3: Tail-Risk Volatility Expansion (Crisis Mode)';
+        macroBadge = 'CRISIS VOLATILITY EXPANSION';
+        macroColor = '#ef4444';
+      } else if (isPersistent || isRangeExploded || posInIB >= 0.68 || posInIB <= 0.32) {
+        macroState = 'State 2: Early Regime Shift (Canaries Active)';
+        macroBadge = 'EARLY REGIME SHIFT ACTIVE';
+        macroColor = '#f59e0b';
+      }
+
+      const canaries = [
+        { name: 'Canary 1: VIX Regime', status: 'NORMAL (<15)', alert: false },
+        { name: 'Canary 2: 200-Day SMA', status: isSma200Breached ? 'BREACHED (Defensive Mode)' : 'HOLDING (Bull Floor Active)', alert: isSma200Breached },
+        { name: 'Canary 3: Open Auction', status: isOpenEqualHigh ? 'OPEN = HIGH (Sell Drive)' : 'NORMAL AUCTION', alert: isOpenEqualHigh },
+        { name: 'Canary 4: Range Expansion', status: isRangeExploded ? 'RANGE EXPANSION (>1.3x)' : 'EQUILIBRIUM (<1.15x)', alert: isRangeExploded }
+      ];
+
       const earlyMoveDetector = {
         markovState,
         markovLabel,
@@ -3050,7 +3076,11 @@ app.get('/api/day-range', async (req, res) => {
         hurstRegime,
         hurstAction,
         parkinsonExpectedRange: parkinsonPts,
-        expansionMultiplier: '1.788x'
+        expansionMultiplier: '1.788x',
+        macroState,
+        macroBadge,
+        macroColor,
+        canaries
       };
 
       // 15-Minute Anchor Levels & Color

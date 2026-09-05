@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu, Radar } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu, Radar, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
 interface TargetItem {
   label: string;
@@ -33,6 +33,12 @@ interface ActiveRegimeData {
   closingDriveProb: string;
 }
 
+interface CanaryItem {
+  name: string;
+  status: string;
+  alert: boolean;
+}
+
 interface EarlyMoveDetectorData {
   markovState: string;
   markovLabel: string;
@@ -49,6 +55,10 @@ interface EarlyMoveDetectorData {
   hurstAction: string;
   parkinsonExpectedRange: number;
   expansionMultiplier: string;
+  macroState?: string;
+  macroBadge?: string;
+  macroColor?: string;
+  canaries?: CanaryItem[];
 }
 
 interface AssetRangeData {
@@ -167,7 +177,7 @@ export function DayRangeContainer() {
               Day Range & Early Move Predictor
             </h2>
             <p style={{ margin: '2px 0 0 0', fontSize: '13px', color: 'var(--text-secondary)' }}>
-              Early direction detection, range extension limits, and price targets
+              Early direction detection, 4-canary regime monitoring, and expansion targets
             </p>
           </div>
         </div>
@@ -297,7 +307,7 @@ export function DayRangeContainer() {
         </div>
       )}
 
-      {/* Early Move Predictor & Directional Asymmetry Radar */}
+      {/* Early Move Predictor & 4-Canary Directional Radar */}
       {asset.earlyMoveDetector && (
         <div style={{
           background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85))',
@@ -324,6 +334,19 @@ export function DayRangeContainer() {
               }}>
                 {asset.earlyMoveDetector.earlyWarningBadge}
               </span>
+              {asset.earlyMoveDetector.macroBadge && (
+                <span style={{
+                  fontSize: '11px',
+                  fontWeight: 800,
+                  color: asset.earlyMoveDetector.macroColor || '#10b981',
+                  background: `${asset.earlyMoveDetector.macroColor || '#10b981'}20`,
+                  border: `1px solid ${asset.earlyMoveDetector.macroColor || '#10b981'}40`,
+                  padding: '3px 10px',
+                  borderRadius: '6px'
+                }}>
+                  {asset.earlyMoveDetector.macroBadge}
+                </span>
+              )}
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
@@ -350,10 +373,12 @@ export function DayRangeContainer() {
             </div>
           </div>
 
+          {/* 4 Actionable Level Cards */}
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
-            gap: '12px'
+            gap: '12px',
+            marginBottom: '14px'
           }}>
             {/* Early Trigger */}
             <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '12px 14px' }}>
@@ -399,6 +424,36 @@ export function DayRangeContainer() {
               </div>
             </div>
           </div>
+
+          {/* 4 Canaries of Regime Shift Monitoring Bar */}
+          {asset.earlyMoveDetector.canaries && (
+            <div style={{
+              background: 'rgba(0, 0, 0, 0.25)',
+              border: '1px solid rgba(255, 255, 255, 0.06)',
+              borderRadius: '10px',
+              padding: '10px 14px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: '10px',
+              alignItems: 'center'
+            }}>
+              {asset.earlyMoveDetector.canaries.map((canary, cIdx) => (
+                <div key={cIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {canary.alert ? (
+                    <AlertTriangle size={14} color="#f43f5e" />
+                  ) : (
+                    <CheckCircle2 size={14} color="#10b981" />
+                  )}
+                  <div>
+                    <div style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase' }}>{canary.name}</div>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: canary.alert ? '#f43f5e' : '#e2e8f0' }}>
+                      {canary.status}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
