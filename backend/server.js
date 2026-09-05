@@ -2809,21 +2809,46 @@ app.get('*', (req, res) => {
 });
 
 // 24/7 Keep-Alive & Self-Healing Heartbeat Engine
-// Keep Node event loop and memory warm every 4 minutes without external NAT hairpin hang
+// CRITICAL: Must ping the PUBLIC Render URL (not 127.0.0.1) so Render infrastructure
+// registers inbound traffic and does NOT spin down the container (Free tier sleeps after 30min idle)
 function start247KeepAliveEngine(port) {
-  console.log(`[24/7 Self-Healing Engine] Started keep-alive heartbeat pinging http://127.0.0.1:${port}/health every 4 minutes...`);
+  // Determine public URL: Render sets RENDER_EXTERNAL_URL automatically
+  const publicUrl = process.env.RENDER_EXTERNAL_URL || null;
+  const localUrl  = `http://127.0.0.1:${port}/health`;
 
-  setInterval(() => {
+  if (publicUrl) {
+    console.log(`[24/7 Engine] Pinging PUBLIC URL ${publicUrl}/health every 4 min to prevent Render sleep...`);
+  } else {
+    console.log(`[24/7 Engine] No RENDER_EXTERNAL_URL found — pinging localhost only (local dev mode)`);
+  }
+
+  setInterval(async () => {
     const pingTime = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
-    fetch(`http://127.0.0.1:${port}/health`, { signal: AbortSignal.timeout(5000) })
-      .then(res => res.json())
-      .then(data => {
-        console.log(`[24/7 Heartbeat] Internal keep-alive ping OK @ ${pingTime}`);
-      })
-      .catch(err => {
-        console.warn(`[24/7 Heartbeat] Internal ping failed @ ${pingTime}:`, err.message || err);
-      });
-  }, 4 * 60 * 1000); // Every 4 minutes
+
+    // PRIMARY: Ping the public Render URL — this is what prevents the container from sleeping
+    if (publicUrl) {
+      try {
+        const res = await fetch(`${publicUrl}/health`, { signal: AbortSignal.timeout(10000) });
+        const data = await res.json();
+        console.log(`[24/7 Heartbeat] PUBLIC ping OK @ ${pingTime} — uptime: ${data.uptime || 'N/A'}s`);
+      } catch (err) {
+        console.warn(`[24/7 Heartbeat] PUBLIC ping failed @ ${pingTime}:`, err.message || err);
+        // Fallback to local ping to at least keep Node warm
+        try {
+          await fetch(localUrl, { signal: AbortSignal.timeout(5000) });
+          console.log(`[24/7 Heartbeat] LOCAL fallback ping OK @ ${pingTime}`);
+        } catch (e) { /* ignore */ }
+      }
+    } else {
+      // Local dev: just ping localhost
+      try {
+        await fetch(localUrl, { signal: AbortSignal.timeout(5000) });
+        console.log(`[24/7 Heartbeat] LOCAL keep-alive ping OK @ ${pingTime}`);
+      } catch (err) {
+        console.warn(`[24/7 Heartbeat] LOCAL ping failed @ ${pingTime}:`, err.message || err);
+      }
+    }
+  }, 4 * 60 * 1000); // Every 4 minutes (well within Render's 30-min idle threshold)
 }
 
 const PORT = process.env.PORT || 3002;
