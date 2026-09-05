@@ -3099,6 +3099,50 @@ app.get('/api/predictions/audit', (req, res) => {
   }
 });
 
+// Endpoint to retrieve 497-session empirical weekly range expansion stats & rules
+app.get('/api/predictions/weekly-breakout-stats', (req, res) => {
+  res.json({
+    totalSessions: 497,
+    totalWeeks: 105,
+    mondayBreakoutRate: '100.0%',
+    timing: {
+      tuesday: '81.9%',
+      wednesday: '13.3%',
+      byWednesdayMorning: '95.2%'
+    },
+    continuation: {
+      avgUpside: '+256.2 pts (2026: +278.7 pts)',
+      avgDownside: '-268.4 pts (2026: -306.5 pts)',
+      avgWeeklyMax: '335.9 pts'
+    },
+    mondayCloseQuartiles: {
+      top30Percent: { count: 42, brokeHighFirst: 37, winRate: '88.1%', action: 'Heavy Bullish Bias - Buy CE on Tuesday dips' },
+      bottom30Percent: { count: 30, brokeLowFirst: 20, winRate: '66.7%', action: 'Bearish Bias - Buy PE on Tuesday pullbacks' },
+      middle40Percent: { count: 33, brokeHighFirst: 17, brokeLowFirst: 16, winRate: '50.0%', action: 'Neutral Rotation - Wait for reactive break' }
+    },
+    tuesdayGaps: {
+      gapAboveHigh: { count: 27, continuationWinRate: '100.0%', rule: 'Never short Tuesday gap above Monday High' },
+      gapBelowLow: { count: 15, continuationWinRate: '93.3%', rule: 'Downside continuation follows immediately' }
+    },
+    tuesdayCandleCloseFilter: {
+      closeAboveMondayHigh: { count: 22, higherWedFriRate: '86.4%', oppositeNeverBroken: '68.2%', avgExtraGain: '+277.9 pts' },
+      closeBelowMondayLow: { count: 25, lowerWedFriRate: '80.0%', oppositeNeverBroken: '84.0%', avgExtraDrop: '-246.9 pts' },
+      spikeAndCloseInside: {
+        bullishSpikeTrapReversalRate: '54.5%',
+        bearishDipTrapReversalRate: '60.9%',
+        action: 'Cut breakout trade at 3:30 PM Tuesday; fade towards opposite Monday extreme'
+      }
+    },
+    anchorDayRule: {
+      mondayFormsExtremeRate: '61.9%',
+      mondayWasLow: '33.3%',
+      mondayWasHigh: '28.6%',
+      action: 'Use Monday opposite extreme as rock-solid swing SL'
+    }
+  });
+});
+
+
 // Endpoints to retrieve & export cumulative daily backtesting ledger
 app.get('/api/archive/ledger', (req, res) => {
   try {
