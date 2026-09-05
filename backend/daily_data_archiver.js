@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -142,15 +142,22 @@ function analyzeTpoSession(candles) {
 }
 
 // 3. Master Archive Execution
-export async function archiveTodayMarketData() {
+export async function archiveTodayMarketData(options = {}) {
+  const reason = options.reason || 'MANUAL_OR_POSTMARKET';
+  const isStopping = options.isStopping || reason.startsWith('SERVER_STOPPED');
+
   console.log('====================================================================');
-  console.log('[Daily Archiver] Archiving complete daily market session for backtesting...');
+  console.log(`[Daily Archiver] Archiving market session (Trigger: ${reason})...`);
   console.log('====================================================================');
 
   const now = new Date();
   const todayStr = now.toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }).replace(/\//g, '_');
   const sessionDateFormatted = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' }); // YYYY-MM-DD
   const dayName = now.toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata', weekday: 'long' });
+  const currentIST = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false });
+  const [curHour, curMin] = currentIST.split(':').map(Number);
+  const minutesNow = (curHour || 0) * 60 + (curMin || 0);
+  const isMarketComplete = minutesNow >= (15 * 60 + 30); // after 15:30 IST
 
   // 1. Pull full intraday candles for both indices
   const [niftyData, bankData] = await Promise.all([
@@ -158,8 +165,20 @@ export async function archiveTodayMarketData() {
     fetchFullDayCandles('BANKNIFTY')
   ]);
 
-  const niftyAnalysis = niftyData ? analyzeTpoSession(niftyData.candles) : null;
-  const bankAnalysis = bankData ? analyzeTpoSession(bankData.candles) : null;
+  const niftyCandles = niftyData?.candles || [];
+  const bankCandles = bankData?.candles || [];
+
+  const lastNiftyCandle = niftyCandles.length > 0 ? niftyCandles[niftyCandles.length - 1] : null;
+  const lastBankCandle = bankCandles.length > 0 ? bankCandles[bankCandles.length - 1] : null;
+  const capturedTill = lastNiftyCandle?.timeIST || lastBankCandle?.timeIST || currentIST;
+
+  let sessionStatus = 'COMPLETE';
+  if (!isMarketComplete) {
+    sessionStatus = isStopping ? `STOPPED_AT_${capturedTill}` : 'IN_PROGRESS';
+  }
+
+  const niftyAnalysis = niftyData ? analyzeTpoSession(niftyCandles) : null;
+  const bankAnalysis = bankData ? analyzeTpoSession(bankCandles) : null;
 
   // 2. Read live learning & option skew records for today
   let todaySkewGamma = null;
@@ -189,28 +208,33 @@ export async function archiveTodayMarketData() {
     date: sessionDateFormatted,
     day_of_week: dayName,
     archived_at: now.toISOString(),
-    ist_timestamp: now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' }),
+    ist_timestamp: currentIST,
+    captured_till_ist: capturedTill,
+    session_status: sessionStatus,
+    save_trigger: reason,
     indices: {
       nifty: {
         profile: niftyAnalysis,
-        candles_count: niftyData?.candles?.length || 0
+        candles_count: niftyCandles.length,
+        last_candle_time: lastNiftyCandle?.timeIST || 'N/A'
       },
       banknifty: {
         profile: bankAnalysis,
-        candles_count: bankData?.candles?.length || 0
+        candles_count: bankCandles.length,
+        last_candle_time: lastBankCandle?.timeIST || 'N/A'
       }
     },
     options_skew_gamma: todaySkewGamma,
     raw_candles: {
-      nifty_1m: niftyData?.candles || [],
-      banknifty_1m: bankData?.candles || []
+      nifty_1m: niftyCandles,
+      banknifty_1m: bankCandles
     }
   };
 
   // Save full daily file (including 1m candles for visual replay & tick backtesting)
   const dailyFilePath = path.join(archiveDir, `session_${sessionDateFormatted}.json`);
   fs.writeFileSync(dailyFilePath, JSON.stringify(archiveDocument, null, 2), 'utf8');
-  console.log(`[Daily Archiver] Saved full session replay archive to: ${dailyFilePath}`);
+  console.log(`[Daily Archiver] Saved session replay archive (Captured till ${capturedTill}, Status: ${sessionStatus}) to: ${dailyFilePath}`);
 
   // 4. Update Cumulative Master Backtest Ledger
   let ledger = [];
@@ -228,6 +252,9 @@ export async function archiveTodayMarketData() {
   const ledgerSummaryEntry = {
     date: sessionDateFormatted,
     day_of_week: dayName,
+    captured_till: capturedTill,
+    session_status: sessionStatus,
+    save_trigger: reason,
     nifty_open: niftyAnalysis?.openPrice || null,
     nifty_close: niftyAnalysis?.closePrice || null,
     nifty_change_pts: niftyAnalysis?.changePts || null,
@@ -243,6 +270,7 @@ export async function archiveTodayMarketData() {
     pcr_drift_pct: todaySkewGamma?.pcrDriftNifty || null,
     hod_time: niftyAnalysis?.sessionExtremes?.hodTime || 'N/A',
     lod_time: niftyAnalysis?.sessionExtremes?.lodTime || 'N/A',
+    candles_count: niftyCandles.length,
     archive_file: `session_${sessionDateFormatted}.json`
   };
 
@@ -255,6 +283,8 @@ export async function archiveTodayMarketData() {
   return {
     dailyFile: dailyFilePath,
     ledgerLength: ledger.length,
+    capturedTill,
+    sessionStatus,
     entry: ledgerSummaryEntry
   };
 }
@@ -298,6 +328,9 @@ export function seedMasterLedgerFromPastReports() {
       ledger.push({
         date: rawDate,
         day_of_week: dayName,
+        captured_till: '15:30:00 (Market Close)',
+        session_status: 'COMPLETE',
+        save_trigger: 'HISTORICAL_SEED',
         nifty_open: niftyClose ? parseFloat((niftyClose / (1 + ((niftyChangePct || 0) / 100))).toFixed(2)) : null,
         nifty_close: niftyClose || null,
         nifty_change_pts: null,
@@ -313,9 +346,17 @@ export function seedMasterLedgerFromPastReports() {
         pcr_drift_pct: skew,
         hod_time: '14:45 PM (Period L)',
         lod_time: '09:30 AM (Period A)',
+        candles_count: 375,
         archive_file: file
       });
     } catch (e) {}
+  });
+
+  // Ensure any existing entries without captured_till get default values
+  ledger.forEach(l => {
+    if (!l.captured_till) l.captured_till = '15:30:00 (Market Close)';
+    if (!l.session_status) l.session_status = 'COMPLETE';
+    if (!l.save_trigger) l.save_trigger = 'HISTORICAL_REPORT';
   });
 
   ledger.sort((a, b) => b.date.localeCompare(a.date));
@@ -324,8 +365,12 @@ export function seedMasterLedgerFromPastReports() {
 }
 
 if (process.argv[1] && process.argv[1].endsWith('daily_data_archiver.js')) {
+  const args = process.argv.slice(2);
+  const reasonArg = args.find(a => a.startsWith('--reason='));
+  const reason = reasonArg ? reasonArg.split('=')[1] : 'CLI_EXECUTION';
+
   seedMasterLedgerFromPastReports();
-  archiveTodayMarketData().then(() => process.exit(0)).catch(err => {
+  archiveTodayMarketData({ reason }).then(() => process.exit(0)).catch(err => {
     console.error(err);
     process.exit(1);
   });

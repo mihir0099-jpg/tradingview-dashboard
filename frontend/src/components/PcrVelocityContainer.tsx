@@ -92,6 +92,9 @@ interface AutoLearnedDB {
 interface LedgerEntry {
   date: string;
   day_of_week: string;
+  captured_till?: string;
+  session_status?: string;
+  save_trigger?: string;
   nifty_open: number | null;
   nifty_close: number | null;
   nifty_change_pts: number | null;
@@ -104,6 +107,7 @@ interface LedgerEntry {
   pcr_drift_pct: number | null;
   hod_time: string;
   lod_time: string;
+  candles_count?: number;
   archive_file: string;
 }
 
@@ -123,6 +127,8 @@ export function PcrVelocityContainer() {
   const [ledgerData, setLedgerData] = useState<LedgerEntry[]>([]);
   const [totalArchivedDays, setTotalArchivedDays] = useState<number>(0);
   const [loading, setLoading] = useState(true);
+  const [isSavingSnapshot, setIsSavingSnapshot] = useState(false);
+  const [snapshotMsg, setSnapshotMsg] = useState<string | null>(null);
   const [activeAsset, setActiveAsset] = useState<'both' | 'nifty' | 'banknifty'>('both');
 
   const getBackendUrl = () => {
@@ -130,6 +136,38 @@ export function PcrVelocityContainer() {
       ? 'https://tradingview-dashboard-1.onrender.com'
       : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
   };
+
+  const handleSaveSnapshot = async () => {
+    try {
+      setIsSavingSnapshot(true);
+      setSnapshotMsg('Saving snapshot till current minute...');
+      const backendUrl = getBackendUrl();
+      const res = await fetch(`${backendUrl}/api/archive/snapshot`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reason: 'MANUAL_USER_SNAPSHOT' })
+      });
+      const json = await res.json();
+      if (json.success) {
+        setSnapshotMsg(`Saved state till ${json.result?.capturedTill || 'current minute'}!`);
+        // Refresh ledger
+        const ledgerRes = await fetch(`${backendUrl}/api/archive/ledger?_t=${Date.now()}`);
+        if (ledgerRes.ok) {
+          const lData = await ledgerRes.json();
+          setTotalArchivedDays(lData.totalDays || 0);
+          setLedgerData(lData.ledger || []);
+        }
+      } else {
+        setSnapshotMsg('Snapshot failed: ' + (json.error || 'Unknown error'));
+      }
+    } catch (err: any) {
+      setSnapshotMsg(`Error: ${err.message}`);
+    } finally {
+      setIsSavingSnapshot(false);
+      setTimeout(() => setSnapshotMsg(null), 5000);
+    }
+  };
+
 
   const fetchData = async () => {
     try {
@@ -562,31 +600,67 @@ export function PcrVelocityContainer() {
                 Master Cumulative Backtest Archive ({totalArchivedDays} Trading Days Preserved)
               </h3>
               <p style={{ margin: '3px 0 0 0', fontSize: '12px', color: '#94a3b8' }}>
-                Every weekday at 3:35 PM IST, full 1m candles, IB ranges, period extremes, and options skew are archived for backtesting.
+                Intraday checkpoints every 5m &amp; shutdown interceptor automatically save data up to the exact moment it stopped.
               </p>
             </div>
           </div>
 
-          <button
-            onClick={handleExportArchive}
-            style={{
-              background: 'linear-gradient(90deg, #2563eb, #1d4ed8)',
-              color: '#fff',
-              border: 'none',
-              padding: '8px 16px',
-              borderRadius: '8px',
-              fontSize: '13px',
-              fontWeight: '700',
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              boxShadow: '0 4px 14px rgba(37, 99, 235, 0.3)'
-            }}
-          >
-            <Download size={15} /> Export Complete Ledger (.json)
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+            <button
+              onClick={handleSaveSnapshot}
+              disabled={isSavingSnapshot}
+              style={{
+                background: isSavingSnapshot ? 'rgba(59, 130, 246, 0.3)' : 'rgba(16, 185, 129, 0.15)',
+                color: isSavingSnapshot ? '#94a3b8' : '#10b981',
+                border: '1px solid rgba(16, 185, 129, 0.4)',
+                padding: '8px 14px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '700',
+                cursor: isSavingSnapshot ? 'not-allowed' : 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+            >
+              <RefreshCw size={14} className={isSavingSnapshot ? 'animate-spin' : ''} />
+              {isSavingSnapshot ? 'Saving State...' : '💾 Save Snapshot Till Now'}
+            </button>
+
+            <button
+              onClick={handleExportArchive}
+              style={{
+                background: 'linear-gradient(90deg, #2563eb, #1d4ed8)',
+                color: '#fff',
+                border: 'none',
+                padding: '8px 16px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 4px 14px rgba(37, 99, 235, 0.3)'
+              }}
+            >
+              <Download size={15} /> Export Complete Ledger (.json)
+            </button>
+          </div>
         </div>
+
+        {snapshotMsg && (
+          <div style={{
+            background: snapshotMsg.includes('Saved') ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+            border: `1px solid ${snapshotMsg.includes('Saved') ? '#10b981' : '#ef4444'}40`,
+            borderRadius: '8px',
+            padding: '8px 12px',
+            fontSize: '12px',
+            color: snapshotMsg.includes('Saved') ? '#10b981' : '#ef4444'
+          }}>
+            {snapshotMsg}
+          </div>
+        )}
 
         {/* Ledger Table */}
         <div style={{ overflowX: 'auto', maxHeight: '350px' }}>
@@ -594,43 +668,65 @@ export function PcrVelocityContainer() {
             <thead style={{ position: 'sticky', top: 0, background: 'rgba(15, 23, 42, 0.98)', zIndex: 1 }}>
               <tr style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', color: 'var(--text-secondary)' }}>
                 <th style={{ padding: '8px 10px' }}>Date</th>
-                <th style={{ padding: '8px 10px' }}>Day</th>
+                <th style={{ padding: '8px 10px' }}>Captured Till</th>
+                <th style={{ padding: '8px 10px' }}>Status</th>
                 <th style={{ padding: '8px 10px' }}>Nifty Open</th>
                 <th style={{ padding: '8px 10px' }}>Nifty Close</th>
                 <th style={{ padding: '8px 10px' }}>Change %</th>
                 <th style={{ padding: '8px 10px' }}>Day Type</th>
                 <th style={{ padding: '8px 10px' }}>Period C Status</th>
-                <th style={{ padding: '8px 10px' }}>HOD Time</th>
-                <th style={{ padding: '8px 10px' }}>LOD Time</th>
+                <th style={{ padding: '8px 10px' }}>HOD / LOD Time</th>
               </tr>
             </thead>
             <tbody>
-              {ledgerData.slice(0, 15).map(row => (
-                <tr key={row.date} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
-                  <td style={{ padding: '8px 10px', fontWeight: '700', color: '#fff' }}>{row.date}</td>
-                  <td style={{ padding: '8px 10px', color: 'var(--text-secondary)' }}>{row.day_of_week}</td>
-                  <td style={{ padding: '8px 10px', color: '#cbd5e1' }}>₹{row.nifty_open ? row.nifty_open.toLocaleString('en-IN') : '-'}</td>
-                  <td style={{ padding: '8px 10px', color: '#fff', fontWeight: '600' }}>₹{row.nifty_close ? row.nifty_close.toLocaleString('en-IN') : '-'}</td>
-                  <td style={{ padding: '8px 10px', color: (row.nifty_change_pct || 0) >= 0 ? '#10b981' : '#ef4444', fontWeight: '700' }}>
-                    {row.nifty_change_pct !== null ? `${row.nifty_change_pct > 0 ? '+' : ''}${row.nifty_change_pct}%` : '-'}
-                  </td>
-                  <td style={{ padding: '8px 10px', color: '#38bdf8' }}>{row.nifty_day_type}</td>
-                  <td style={{ padding: '8px 10px' }}>
-                    <span style={{
-                      color: row.nifty_period_c_breakout.includes('BULL') ? '#10b981' : (row.nifty_period_c_breakout.includes('BEAR') ? '#ef4444' : '#eab308'),
-                      fontWeight: '700'
-                    }}>
-                      {row.nifty_period_c_breakout}
-                    </span>
-                  </td>
-                  <td style={{ padding: '8px 10px', color: '#94a3b8' }}>{row.hod_time}</td>
-                  <td style={{ padding: '8px 10px', color: '#94a3b8' }}>{row.lod_time}</td>
-                </tr>
-              ))}
+              {ledgerData.slice(0, 15).map(row => {
+                const isComplete = row.session_status === 'COMPLETE';
+                return (
+                  <tr key={row.date} style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.04)' }}>
+                    <td style={{ padding: '8px 10px', fontWeight: '700', color: '#fff' }}>
+                      {row.date} <span style={{ color: 'var(--text-secondary)', fontWeight: '400', fontSize: '11px' }}>({row.day_of_week})</span>
+                    </td>
+                    <td style={{ padding: '8px 10px', color: '#38bdf8', fontWeight: '600' }}>
+                      {row.captured_till || '15:30:00'}
+                    </td>
+                    <td style={{ padding: '8px 10px' }}>
+                      <span style={{
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        fontSize: '10px',
+                        fontWeight: '700',
+                        background: isComplete ? 'rgba(16, 185, 129, 0.15)' : 'rgba(234, 179, 8, 0.15)',
+                        color: isComplete ? '#10b981' : '#eab308',
+                        border: `1px solid ${isComplete ? '#10b981' : '#eab308'}40`
+                      }}>
+                        {isComplete ? 'COMPLETE' : (row.session_status || 'IN_PROGRESS')}
+                      </span>
+                    </td>
+                    <td style={{ padding: '8px 10px', color: '#cbd5e1' }}>₹{row.nifty_open ? row.nifty_open.toLocaleString('en-IN') : '-'}</td>
+                    <td style={{ padding: '8px 10px', color: '#fff', fontWeight: '600' }}>₹{row.nifty_close ? row.nifty_close.toLocaleString('en-IN') : '-'}</td>
+                    <td style={{ padding: '8px 10px', color: (row.nifty_change_pct || 0) >= 0 ? '#10b981' : '#ef4444', fontWeight: '700' }}>
+                      {row.nifty_change_pct !== null ? `${row.nifty_change_pct > 0 ? '+' : ''}${row.nifty_change_pct}%` : '-'}
+                    </td>
+                    <td style={{ padding: '8px 10px', color: '#38bdf8' }}>{row.nifty_day_type}</td>
+                    <td style={{ padding: '8px 10px' }}>
+                      <span style={{
+                        color: row.nifty_period_c_breakout.includes('BULL') ? '#10b981' : (row.nifty_period_c_breakout.includes('BEAR') ? '#ef4444' : '#eab308'),
+                        fontWeight: '700'
+                      }}>
+                        {row.nifty_period_c_breakout}
+                      </span>
+                    </td>
+                    <td style={{ padding: '8px 10px', color: '#94a3b8', fontSize: '11px' }}>
+                      H: {row.hod_time}<br />L: {row.lod_time}
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
       </div>
+
 
       {/* 5-Year Empirical Quantitative Backtest Matrix */}
       {backtest && (

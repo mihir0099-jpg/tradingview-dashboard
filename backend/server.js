@@ -3102,6 +3102,72 @@ app.get('/api/archive/export', (req, res) => {
   }
 });
 
+// Manual/API trigger to snapshot and save market session data up to the current minute
+app.post('/api/archive/snapshot', async (req, res) => {
+  try {
+    const reason = req.body?.reason || req.query?.reason || 'MANUAL_USER_SNAPSHOT';
+    const { archiveTodayMarketData } = await import('./daily_data_archiver.js');
+    const result = await archiveTodayMarketData({ reason });
+    res.json({
+      success: true,
+      message: `Session snapshot saved up to ${result.capturedTill}`,
+      result
+    });
+  } catch (err) {
+    console.error('[Archive Snapshot API] Failed:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Periodic auto-snapshot every 5 minutes during market hours (09:15 to 15:35 IST)
+// Ensures data is continuously saved up to the current minute so if the server stops mid-day, nothing is lost
+function startIntradayCheckpointScheduler() {
+  console.log('[Intraday Checkpointer] Initializing 5-minute continuous session archiver...');
+  
+  // Also run an immediate checkpoint on server startup if during market hours
+  setTimeout(async () => {
+    try {
+      const now = new Date();
+      const istTimeStr = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false });
+      const [h, m] = istTimeStr.split(':').map(Number);
+      const minutesNow = (h || 0) * 60 + (m || 0);
+      const day = now.getDay();
+      if (day >= 1 && day <= 5 && minutesNow >= 555 && minutesNow <= 935) {
+        console.log(`[Intraday Checkpointer] Server startup during market hours (${istTimeStr} IST). Saving baseline session snapshot...`);
+        const archiverPath = path.join(__dirname, 'daily_data_archiver.js');
+        exec(`node "${archiverPath}" --reason=STARTUP_MARKET_HOURS_CATCHUP`, (err) => {
+          if (err) console.warn('[Intraday Checkpointer] Startup snapshot warning:', err.message);
+        });
+      }
+    } catch (e) {}
+  }, 10000);
+
+  setInterval(() => {
+    try {
+      const now = new Date();
+      const istTimeStr = now.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false });
+      const [h, m] = istTimeStr.split(':').map(Number);
+      const minutesNow = (h || 0) * 60 + (m || 0);
+      const day = now.getDay();
+      if (day === 0 || day === 6) return; // Skip weekends
+
+      // Market hours: 09:15 (555 min) to 15:35 (935 min)
+      if (minutesNow >= 555 && minutesNow <= 935) {
+        // Run every 5 minutes
+        if (m % 5 === 0) {
+          const archiverPath = path.join(__dirname, 'daily_data_archiver.js');
+          exec(`node "${archiverPath}" --reason=INTRADAY_5MIN_AUTO`, (err) => {
+            if (err) console.warn('[Intraday Checkpointer] Auto-save error:', err.message);
+          });
+        }
+      }
+    } catch (e) {
+      console.warn('[Intraday Checkpointer] Scheduler error:', e);
+    }
+  }, 60000); // Check every minute
+}
+
+
 // Standing background subscriptions for index spot prices to ensure zero-delay updates from TradingView
 function startStandingIndexSubscriptions() {
   const now = new Date();
@@ -3245,5 +3311,34 @@ const PORT = process.env.PORT || 3002;
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend server listening on 0.0.0.0:${PORT}`);
   startPostMarketScheduler();
+  startIntradayCheckpointScheduler();
   start247KeepAliveEngine(PORT);
 });
+
+// Graceful Shutdown & Stop Interceptor:
+// If the server stops (SIGINT / SIGTERM / Ctrl+C / Render redeploy), capture and save all market data till that exact stop moment!
+let isStoppingGracefully = false;
+async function handleServerStop(signal) {
+  if (isStoppingGracefully) return;
+  isStoppingGracefully = true;
+  const stopIST = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false });
+  console.log(`\n====================================================================`);
+  console.log(`[Server Stop] Received ${signal} at ${stopIST} IST. Saving all session data captured till this moment...`);
+  console.log(`====================================================================`);
+
+  try {
+    const { archiveTodayMarketData } = await import('./daily_data_archiver.js');
+    await archiveTodayMarketData({
+      isStopping: true,
+      reason: `SERVER_STOPPED_${signal}`
+    });
+    console.log(`[Server Stop] Successfully archived all session data captured till ${stopIST} IST.`);
+  } catch (err) {
+    console.error(`[Server Stop] Failed to archive data during stop:`, err);
+  }
+  process.exit(0);
+}
+
+process.on('SIGINT', () => handleServerStop('SIGINT'));
+process.on('SIGTERM', () => handleServerStop('SIGTERM'));
+

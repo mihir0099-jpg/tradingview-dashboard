@@ -2,8 +2,11 @@
   "archive_id": "SESSION_2026-09-05",
   "date": "2026-09-05",
   "day_of_week": "Saturday",
-  "archived_at": "2026-09-05T08:53:30.828Z",
-  "ist_timestamp": "2:23:30 pm",
+  "archived_at": "2026-09-05T09:00:51.000Z",
+  "ist_timestamp": "14:30:51",
+  "captured_till_ist": "15:30:00",
+  "session_status": "IN_PROGRESS",
+  "save_trigger": "TEST_STOP_MIDDAY",
   "indices": {
     "nifty": {
       "profile": {
@@ -35,7 +38,8 @@
           "lodTime": "09:36:00"
         }
       },
-      "candles_count": 376
+      "candles_count": 376,
+      "last_candle_time": "15:30:00"
     },
     "banknifty": {
       "profile": {
@@ -67,7 +71,8 @@
           "lodTime": "09:28:00"
         }
       },
-      "candles_count": 376
+      "candles_count": 376,
+      "last_candle_time": "15:30:00"
     }
   },
   "options_skew_gamma": null,
