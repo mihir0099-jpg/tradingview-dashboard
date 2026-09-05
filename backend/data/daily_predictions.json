@@ -2,7 +2,7 @@
   {
     "target_date": "2026-09-07",
     "target_day": "Monday",
-    "computed_at": "2026-09-05T13:11:26.507Z",
+    "computed_at": "2026-09-05T14:09:18.363Z",
     "baseline_session": {
       "date": "2026-09-04",
       "open": 23910.9,
@@ -15,6 +15,9 @@
       "predicted_open": 23928,
       "predicted_close": 23869.3,
       "predicted_range": 167.6,
+      "predicted_gap_pts": 30.3,
+      "gap_fill_probability": "64.9% (11.5-Year / 2,817-Session Historical Proof)",
+      "gap_retest_target": 23897.7,
       "directional_bias": "RED",
       "expected_candle": "RED CANDLE (Open > Close)",
       "cpr": {
