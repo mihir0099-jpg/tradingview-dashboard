@@ -21,6 +21,7 @@ import { FifteenMinForensicContainer } from './components/FifteenMinForensicCont
 import { PatternForecasterContainer } from './components/PatternForecasterContainer';
 import { WeeklySellingContainer } from './components/WeeklySellingContainer';
 import { PcrVelocityContainer } from './components/PcrVelocityContainer';
+import { DayRangeContainer } from './components/DayRangeContainer';
 
 function App() {
   const [symbol, setSymbol] = useState('NSE:NIFTY');
@@ -31,7 +32,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
+  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'day_range' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -178,6 +179,27 @@ function App() {
           }}
         >
           ⚡ PCR Velocity
+        </button>
+        <button
+          onClick={() => setActiveTab('day_range')}
+          style={{
+            background: activeTab === 'day_range' ? 'rgba(59, 130, 246, 0.22)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'day_range' ? '2px solid #3b82f6' : '2px solid transparent',
+            color: activeTab === 'day_range' ? '#60a5fa' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '700',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          📐 Day Range
         </button>
         <button
           onClick={() => setActiveTab('bhaichara')}
@@ -522,6 +544,11 @@ function App() {
         {activeTab === 'pcr_velocity' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
             <PcrVelocityContainer />
+          </div>
+        )}
+        {activeTab === 'day_range' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <DayRangeContainer />
           </div>
         )}
         {activeTab === 'bhaichara' && (
