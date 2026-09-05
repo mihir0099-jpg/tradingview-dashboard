@@ -2990,6 +2990,82 @@ app.get('/api/day-range', async (req, res) => {
       const keyPivot = Math.round((dayHigh + dayLow + spot) / 3);
       const timeWindowContext = istTimeStr >= '14:45' ? 'Closing Drive (High Probability Extreme Window)' : (istTimeStr >= '11:15' && istTimeStr <= '13:15' ? 'Dead Zone (Low Extreme Probability)' : (istTimeStr <= '10:15' ? 'Opening Balance Window' : 'Active Intraday Auction'));
 
+      // Multi-Timeframe Candle Synthesis & Predictions (Daily, Weekly, Monthly, Yearly)
+      const wRangePts = Math.round(spot * (key === 'nifty' ? 0.0230 : 0.0340));
+      const mRangePts = Math.round(spot * (key === 'nifty' ? 0.0527 : 0.0780));
+      const yRangePts = Math.round(spot * (key === 'nifty' ? 0.1820 : 0.2450));
+
+      const multiTimeframe = {
+        daily: {
+          label: 'Daily',
+          expectedRange: expectedDayRange,
+          predictedHigh: expectedHigh,
+          predictedLow: expectedLow,
+          expectedBody: Math.round(expectedDayRange * 0.434),
+          expectedUpperWick: Math.round(expectedDayRange * 0.207),
+          expectedLowerWick: Math.round(expectedDayRange * 0.230),
+          target1: Math.round(ibHigh + 0.382 * ibRange),
+          target2: Math.round(ibHigh + 0.618 * ibRange),
+          target3: Math.round(ibHigh + 1.000 * ibRange),
+          targetMax: Math.round(ibHigh + 1.618 * ibRange),
+          bearTarget1: Math.round(ibLow - 0.382 * ibRange),
+          bearTarget2: Math.round(ibLow - 0.618 * ibRange),
+          bearTarget3: Math.round(ibLow - 1.000 * ibRange),
+          bearTargetMax: Math.round(ibLow - 1.618 * ibRange)
+        },
+        weekly: {
+          label: 'Weekly',
+          expectedRange: wRangePts,
+          predictedHigh: Math.round(spot + wRangePts * 0.55),
+          predictedLow: Math.round(spot - wRangePts * 0.45),
+          expectedBody: Math.round(wRangePts * 0.531),
+          expectedUpperWick: Math.round(wRangePts * 0.212),
+          expectedLowerWick: Math.round(wRangePts * 0.257),
+          target1: Math.round(spot + wRangePts * 0.382),
+          target2: Math.round(spot + wRangePts * 0.618),
+          target3: Math.round(spot + wRangePts * 1.000),
+          targetMax: Math.round(spot + wRangePts * 1.618),
+          bearTarget1: Math.round(spot - wRangePts * 0.382),
+          bearTarget2: Math.round(spot - wRangePts * 0.618),
+          bearTarget3: Math.round(spot - wRangePts * 1.000),
+          bearTargetMax: Math.round(spot - wRangePts * 1.618)
+        },
+        monthly: {
+          label: 'Monthly',
+          expectedRange: mRangePts,
+          predictedHigh: Math.round(spot + mRangePts * 0.60),
+          predictedLow: Math.round(spot - mRangePts * 0.40),
+          expectedBody: Math.round(mRangePts * 0.511),
+          expectedUpperWick: Math.round(mRangePts * 0.224),
+          expectedLowerWick: Math.round(mRangePts * 0.265),
+          target1: Math.round(spot + mRangePts * 0.382),
+          target2: Math.round(spot + mRangePts * 0.618),
+          target3: Math.round(spot + mRangePts * 1.000),
+          targetMax: Math.round(spot + mRangePts * 1.618),
+          bearTarget1: Math.round(spot - mRangePts * 0.382),
+          bearTarget2: Math.round(spot - mRangePts * 0.618),
+          bearTarget3: Math.round(spot - mRangePts * 1.000),
+          bearTargetMax: Math.round(spot - mRangePts * 1.618)
+        },
+        yearly: {
+          label: 'Yearly',
+          expectedRange: yRangePts,
+          predictedHigh: Math.round(spot + yRangePts * 0.70),
+          predictedLow: Math.round(spot - yRangePts * 0.30),
+          expectedBody: Math.round(yRangePts * 0.542),
+          expectedUpperWick: Math.round(yRangePts * 0.212),
+          expectedLowerWick: Math.round(yRangePts * 0.245),
+          target1: Math.round(spot + yRangePts * 0.382),
+          target2: Math.round(spot + yRangePts * 0.618),
+          target3: Math.round(spot + yRangePts * 1.000),
+          targetMax: Math.round(spot + yRangePts * 1.618),
+          bearTarget1: Math.round(spot - yRangePts * 0.382),
+          bearTarget2: Math.round(spot - yRangePts * 0.618),
+          bearTarget3: Math.round(spot - yRangePts * 1.000),
+          bearTargetMax: Math.round(spot - yRangePts * 1.618)
+        }
+      };
+
       return {
         name,
         spot,
@@ -3020,6 +3096,7 @@ app.get('/api/day-range', async (req, res) => {
         predictedLow: expectedLow,
         keyPivot,
         timeWindowContext,
+        multiTimeframe,
         bullishTargets,
         bearishTargets
       };
