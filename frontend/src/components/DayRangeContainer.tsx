@@ -59,6 +59,11 @@ interface EarlyMoveDetectorData {
   macroBadge?: string;
   macroColor?: string;
   canaries?: CanaryItem[];
+  learnedSafeguards?: {
+    candleCloseFilter: { required: boolean; label: string; status: string; winRateBoost: string; description: string };
+    exhaustionFilter: { isExhaustion: boolean; rangePct: number; label: string; status: string; description: string };
+    trailingStopLossRule: { label: string; status: string; description: string };
+  };
 }
 
 interface AssetRangeData {
@@ -382,7 +387,7 @@ export function DayRangeContainer() {
           }}>
             {/* Early Trigger */}
             <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '12px 14px' }}>
-              <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Breakout Trigger Level</div>
+              <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Trigger Level</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#ffffff', marginTop: '3px' }}>
                 {asset.earlyMoveDetector.earlyTriggerPrice.toLocaleString('en-IN')}
               </div>
@@ -391,9 +396,9 @@ export function DayRangeContainer() {
               </div>
             </div>
 
-            {/* Target 1 Quick Scale */}
+            {/* Target 1 */}
             <div style={{ background: 'rgba(16, 185, 129, 0.06)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
-              <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Target 1 (Quick Scale)</div>
+              <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Target 1</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#10b981', marginTop: '3px' }}>
                 {asset.earlyMoveDetector.target1Price.toLocaleString('en-IN')}
               </div>
@@ -402,9 +407,9 @@ export function DayRangeContainer() {
               </div>
             </div>
 
-            {/* Target 2 Golden Target */}
+            {/* Target 2 */}
             <div style={{ background: 'rgba(59, 130, 246, 0.06)', border: '1px solid rgba(59, 130, 246, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
-              <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>Target 2 (Primary Runner)</div>
+              <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>Target 2</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#60a5fa', marginTop: '3px' }}>
                 {asset.earlyMoveDetector.target2Price.toLocaleString('en-IN')}
               </div>
@@ -413,9 +418,9 @@ export function DayRangeContainer() {
               </div>
             </div>
 
-            {/* Session Climax Cap */}
+            {/* Expansion Cap */}
             <div style={{ background: 'rgba(234, 179, 8, 0.06)', border: '1px solid rgba(234, 179, 8, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
-              <div style={{ fontSize: '11px', color: '#facc15', fontWeight: 700, textTransform: 'uppercase' }}>Session Climax Cap</div>
+              <div style={{ fontSize: '11px', color: '#facc15', fontWeight: 700, textTransform: 'uppercase' }}>Expansion Cap</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#facc15', marginTop: '3px' }}>
                 {asset.earlyMoveDetector.expansionCapPrice.toLocaleString('en-IN')}
               </div>
@@ -452,6 +457,68 @@ export function DayRangeContainer() {
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Learned Execution Safeguards Bar */}
+          {asset.earlyMoveDetector.learnedSafeguards && (
+            <div style={{
+              marginTop: '10px',
+              background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.5), rgba(15, 23, 42, 0.7))',
+              border: '1px solid rgba(59, 130, 246, 0.25)',
+              borderRadius: '10px',
+              padding: '10px 14px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '10px',
+              alignItems: 'center'
+            }}>
+              {/* Filter 1: Candle Close */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                <CheckCircle2 size={16} color="#38bdf8" style={{ marginTop: '2px', flexShrink: 0 }} />
+                <div>
+                  <div style={{ fontSize: '11px', fontWeight: 800, color: '#38bdf8' }}>
+                    {asset.earlyMoveDetector.learnedSafeguards.candleCloseFilter.label}
+                  </div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', lineHeight: 1.3, marginTop: '2px' }}>
+                    {asset.earlyMoveDetector.learnedSafeguards.candleCloseFilter.description}
+                  </div>
+                </div>
+              </div>
+
+              {/* Filter 2: Exhaustion */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                {asset.earlyMoveDetector.learnedSafeguards.exhaustionFilter.isExhaustion ? (
+                  <AlertTriangle size={16} color="#f59e0b" style={{ marginTop: '2px', flexShrink: 0 }} />
+                ) : (
+                  <CheckCircle2 size={16} color="#10b981" style={{ marginTop: '2px', flexShrink: 0 }} />
+                )}
+                <div>
+                  <div style={{
+                    fontSize: '11px',
+                    fontWeight: 800,
+                    color: asset.earlyMoveDetector.learnedSafeguards.exhaustionFilter.isExhaustion ? '#f59e0b' : '#10b981'
+                  }}>
+                    {asset.earlyMoveDetector.learnedSafeguards.exhaustionFilter.label}
+                  </div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', lineHeight: 1.3, marginTop: '2px' }}>
+                    {asset.earlyMoveDetector.learnedSafeguards.exhaustionFilter.description}
+                  </div>
+                </div>
+              </div>
+
+              {/* Filter 3: Trailing SL */}
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                <CheckCircle2 size={16} color="#a855f7" style={{ marginTop: '2px', flexShrink: 0 }} />
+                <div>
+                  <div style={{ fontSize: '11px', fontWeight: 800, color: '#c084fc' }}>
+                    {asset.earlyMoveDetector.learnedSafeguards.trailingStopLossRule.label}
+                  </div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', lineHeight: 1.3, marginTop: '2px' }}>
+                    {asset.earlyMoveDetector.learnedSafeguards.trailingStopLossRule.description}
+                  </div>
+                </div>
+              </div>
             </div>
           )}
         </div>
@@ -835,13 +902,14 @@ export function DayRangeContainer() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {(selectedHorizon === 'daily' ? asset.bullishTargets : [
-              { label: `${horizonData?.label} Target 1 (0.382x)`, price: horizonData?.target1 || 0 },
-              { label: `${horizonData?.label} Target 2 (0.618x)`, price: horizonData?.target2 || 0 },
-              { label: `${horizonData?.label} Target 3 (1.000x)`, price: horizonData?.target3 || 0 },
-              { label: `${horizonData?.label} Extended Max (1.618x)`, price: horizonData?.targetMax || 0 }
+              { label: `${horizonData?.label} Target 1`, price: horizonData?.target1 || 0 },
+              { label: `${horizonData?.label} Target 2`, price: horizonData?.target2 || 0 },
+              { label: `${horizonData?.label} Target 3`, price: horizonData?.target3 || 0 },
+              { label: `${horizonData?.label} Extended Max`, price: horizonData?.targetMax || 0 }
             ]).map((item, idx) => {
               const diffPts = Math.round(item.price - asset.spot);
               const isHit = asset.spot >= item.price;
+              const cleanLabel = item.label.replace(/\s*\([^)]*\)/g, '').trim();
 
               return (
                 <div
@@ -864,7 +932,7 @@ export function DayRangeContainer() {
                       background: isHit ? '#10b981' : '#64748b'
                     }} />
                     <span style={{ fontSize: '13px', fontWeight: 600, color: isHit ? '#6ee7b7' : 'var(--text-secondary)' }}>
-                      {item.label}
+                      {cleanLabel}
                     </span>
                   </div>
 
@@ -910,13 +978,14 @@ export function DayRangeContainer() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {(selectedHorizon === 'daily' ? asset.bearishTargets : [
-              { label: `${horizonData?.label} Target 1 (0.382x)`, price: horizonData?.bearTarget1 || 0 },
-              { label: `${horizonData?.label} Target 2 (0.618x)`, price: horizonData?.bearTarget2 || 0 },
-              { label: `${horizonData?.label} Target 3 (1.000x)`, price: horizonData?.bearTarget3 || 0 },
-              { label: `${horizonData?.label} Extended Max (1.618x)`, price: horizonData?.bearTargetMax || 0 }
+              { label: `${horizonData?.label} Target 1`, price: horizonData?.bearTarget1 || 0 },
+              { label: `${horizonData?.label} Target 2`, price: horizonData?.bearTarget2 || 0 },
+              { label: `${horizonData?.label} Target 3`, price: horizonData?.bearTarget3 || 0 },
+              { label: `${horizonData?.label} Extended Max`, price: horizonData?.bearTargetMax || 0 }
             ]).map((item, idx) => {
               const diffPts = Math.round(asset.spot - item.price);
               const isHit = asset.spot <= item.price;
+              const cleanLabel = item.label.replace(/\s*\([^)]*\)/g, '').trim();
 
               return (
                 <div
@@ -939,7 +1008,7 @@ export function DayRangeContainer() {
                       background: isHit ? '#f43f5e' : '#64748b'
                     }} />
                     <span style={{ fontSize: '13px', fontWeight: 600, color: isHit ? '#fda4af' : 'var(--text-secondary)' }}>
-                      {item.label}
+                      {cleanLabel}
                     </span>
                   </div>
 
