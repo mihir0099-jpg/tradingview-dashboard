@@ -378,6 +378,97 @@ export function DayRangeContainer() {
             </div>
           </div>
 
+          {/* Dedicated 9:30 AM First 15-Minute Trade Signal Card */}
+          {(() => {
+            const stepStrike = selectedAsset === 'nifty' ? 50 : 100;
+            const atmStrike = Math.round(asset.spot / stepStrike) * stepStrike;
+            const isSpotBullish = asset.spot >= asset.open;
+            const tradeAction = isSpotBullish ? `BUY ${atmStrike} CE` : `BUY ${atmStrike} PE`;
+            const triggerLevel = isSpotBullish ? asset.m15High : asset.m15Low;
+            const oppositeLevel = isSpotBullish ? asset.m15Low : asset.m15High;
+            const spotRiskPts = Math.abs(triggerLevel - oppositeLevel);
+            const optionRiskPts = Math.round(spotRiskPts * 0.5);
+            const t1Pts = Math.min(Math.round(Math.abs(asset.earlyMoveDetector.target1Price - triggerLevel)), selectedAsset === 'nifty' ? 38 : 95);
+            const t2Pts = Math.round(Math.abs(asset.earlyMoveDetector.target2Price - triggerLevel));
+            const isTriggered = isSpotBullish ? asset.spot >= triggerLevel : asset.spot <= triggerLevel;
+
+            return (
+              <div style={{
+                background: isSpotBullish ? 'rgba(16, 185, 129, 0.08)' : 'rgba(244, 63, 94, 0.08)',
+                border: `1px solid ${isSpotBullish ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)'}`,
+                borderRadius: '12px',
+                padding: '14px 18px',
+                marginBottom: '14px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '14px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '10px',
+                    background: isSpotBullish ? 'rgba(16, 185, 129, 0.2)' : 'rgba(244, 63, 94, 0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}>
+                    <Zap size={22} color={isSpotBullish ? '#10b981' : '#f43f5e'} />
+                  </div>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ fontSize: '13px', fontWeight: 800, color: '#e2e8f0', letterSpacing: '0.02em' }}>
+                        9:30 AM FIRST 15-MIN TRADE SIGNAL
+                      </span>
+                      <span style={{
+                        fontSize: '11px',
+                        fontWeight: 900,
+                        color: isSpotBullish ? '#10b981' : '#f43f5e',
+                        background: isSpotBullish ? 'rgba(16, 185, 129, 0.15)' : 'rgba(244, 63, 94, 0.15)',
+                        border: `1px solid ${isSpotBullish ? '#10b981' : '#f43f5e'}40`,
+                        padding: '2px 8px',
+                        borderRadius: '6px'
+                      }}>
+                        {tradeAction}
+                      </span>
+                      <span style={{
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        color: isTriggered ? '#10b981' : '#f59e0b',
+                        background: isTriggered ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+                        padding: '2px 7px',
+                        borderRadius: '4px'
+                      }}>
+                        {isTriggered ? 'TRIGGER ACTIVE' : 'PENDING 5M CLOSE'}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '3px' }}>
+                      Trigger: <strong style={{ color: '#ffffff' }}>{triggerLevel.toLocaleString('en-IN')}</strong> (5m Close Required) | SL: <strong style={{ color: '#f43f5e' }}>{oppositeLevel.toLocaleString('en-IN')}</strong> (Opt SL ~{optionRiskPts} pts)
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700 }}>Target 1 (Trail SL)</div>
+                    <div style={{ fontSize: '14px', fontWeight: 900, color: '#10b981', fontFamily: 'monospace' }}>
+                      {asset.earlyMoveDetector.target1Price.toLocaleString('en-IN')} (+{t1Pts} pts)
+                    </div>
+                  </div>
+                  <div style={{ width: '1px', height: '26px', background: 'rgba(255, 255, 255, 0.1)' }} />
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700 }}>Target 2 (Runner)</div>
+                    <div style={{ fontSize: '14px', fontWeight: 900, color: '#60a5fa', fontFamily: 'monospace' }}>
+                      {asset.earlyMoveDetector.target2Price.toLocaleString('en-IN')} (+{t2Pts} pts)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+
           {/* 4 Actionable Level Cards */}
           <div style={{
             display: 'grid',
