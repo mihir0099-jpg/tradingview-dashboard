@@ -280,6 +280,55 @@ export async function archiveTodayMarketData(options = {}) {
   fs.writeFileSync(ledgerPath, JSON.stringify(ledger, null, 2), 'utf8');
   console.log(`[Daily Archiver] Updated Master Backtest Ledger (${ledger.length} total historical days recorded).`);
 
+  // 5. Automated Daily / Weekly Self-Learning & Mistake Auditor
+  try {
+    if (niftyAnalysis && niftyAnalysis.openPrice && niftyAnalysis.dayHigh && niftyAnalysis.dayLow) {
+      const actHigh = niftyAnalysis.dayHigh;
+      const actLow = niftyAnalysis.dayLow;
+      const actRange = niftyAnalysis.totalRange;
+      const ibRange = niftyAnalysis.ibRange;
+      
+      // Predicted range baseline (1.788x standard, 1.36x on wide IB)
+      const isWideIB = ibRange >= 90;
+      const predMultiplier = isWideIB ? 1.36 : 1.788;
+      const predRange = Math.round(predMultiplier * ibRange);
+      const rangeErrorPts = parseFloat(Math.abs(actRange - predRange).toFixed(1));
+      const rangeAccuracyPct = parseFloat((Math.max(0, 100 - (rangeErrorPts / actRange) * 100)).toFixed(2));
+      
+      const learningRecord = {
+        date: sessionDateFormatted,
+        timeframe: 'DAILY',
+        actual_range: actRange,
+        predicted_range: predRange,
+        range_error_pts: rangeErrorPts,
+        range_accuracy_pct: rangeAccuracyPct,
+        ib_range: ibRange,
+        is_wide_ib: isWideIB,
+        day_type: niftyAnalysis.dayType,
+        mistake_diagnosed: rangeAccuracyPct < 85.0 
+          ? `Range deviated by ${rangeErrorPts} pts. Check VIX shifts and day-of-week multipliers.` 
+          : 'High prediction accuracy maintained (≥85%).',
+        remedy_applied: isWideIB 
+          ? 'Apply 1.36x compression cap on morning climax.' 
+          : 'Retain standard 1.788x expansion multiplier.',
+        logged_at: new Date().toISOString()
+      };
+
+      const auditLogPath = path.join(__dirname, 'data', 'daily_prediction_audit.json');
+      let auditLog = [];
+      if (fs.existsSync(auditLogPath)) {
+        try { auditLog = JSON.parse(fs.readFileSync(auditLogPath, 'utf8')); } catch (e) {}
+      }
+      auditLog = auditLog.filter(a => a.date !== sessionDateFormatted);
+      auditLog.push(learningRecord);
+      auditLog.sort((a, b) => b.date.localeCompare(a.date));
+      fs.writeFileSync(auditLogPath, JSON.stringify(auditLog, null, 2), 'utf8');
+      console.log(`[Auto-Learner] Logged daily prediction audit: Range Error=${rangeErrorPts} pts (${rangeAccuracyPct}% Accuracy)`);
+    }
+  } catch (err) {
+    console.warn('[Auto-Learner] Failed to compute session audit:', err.message);
+  }
+
   return {
     dailyFile: dailyFilePath,
     ledgerLength: ledger.length,

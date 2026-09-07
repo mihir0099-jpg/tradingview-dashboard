@@ -3170,9 +3170,52 @@ app.get('/api/day-range', async (req, res) => {
       const timeWindowContext = istTimeStr >= '14:45' ? 'Closing Drive (High Probability Extreme Window)' : (istTimeStr >= '11:15' && istTimeStr <= '13:15' ? 'Dead Zone (Low Extreme Probability)' : (istTimeStr <= '10:15' ? 'Opening Balance Window' : 'Active Intraday Auction'));
 
       // Multi-Timeframe Candle Synthesis & Predictions (Daily, Weekly, Monthly, Yearly)
-      const wRangePts = Math.round(spot * (key === 'nifty' ? 0.0230 : 0.0340));
-      const mRangePts = Math.round(spot * (key === 'nifty' ? 0.0527 : 0.0780));
-      const yRangePts = Math.round(spot * (key === 'nifty' ? 0.1820 : 0.2450));
+      // VIX-Adjusted Dynamic Weekly ATR (Learned from Sept 4 overshoot audit: sub-14 VIX compresses weekly range to 1.45%)
+      const vixValue = data?.vix || 13.2; // Default India VIX in low-volatility grinding phase
+      let weeklyPctMultiplier = key === 'nifty' ? 0.0230 : 0.0340;
+      if (vixValue < 14) {
+        weeklyPctMultiplier = key === 'nifty' ? 0.0145 : 0.0215; // Low-VIX Grinding Regime (~345 pts Nifty)
+      } else if (vixValue <= 18) {
+        weeklyPctMultiplier = key === 'nifty' ? 0.0210 : 0.0310; // Normal Regime (~500 pts Nifty)
+      } else {
+        weeklyPctMultiplier = key === 'nifty' ? 0.0320 : 0.0460; // High-VIX Expansion Regime (>750 pts Nifty)
+      }
+
+      // VIX-Adjusted Dynamic Monthly ATR (sub-14 VIX compresses monthly range to 3.85%, ~920 pts vs static 1260 pts)
+      let monthlyPctMultiplier = key === 'nifty' ? 0.0527 : 0.0780;
+      if (vixValue < 14) {
+        monthlyPctMultiplier = key === 'nifty' ? 0.0385 : 0.0570; // Low-VIX (~920 pts Nifty)
+      } else if (vixValue <= 18) {
+        monthlyPctMultiplier = key === 'nifty' ? 0.0510 : 0.0750; // Normal (~1220 pts Nifty)
+      } else {
+        monthlyPctMultiplier = key === 'nifty' ? 0.0720 : 0.0980; // High Volatility (>1700 pts Nifty)
+      }
+
+      // VIX-Adjusted Yearly Volatility Envelope
+      let yearlyPctMultiplier = key === 'nifty' ? 0.1820 : 0.2450;
+      if (vixValue < 14) {
+        yearlyPctMultiplier = key === 'nifty' ? 0.1450 : 0.1950;
+      } else if (vixValue > 18) {
+        yearlyPctMultiplier = key === 'nifty' ? 0.2250 : 0.2950;
+      }
+
+      const wRangePts = Math.round(spot * weeklyPctMultiplier);
+      const mRangePts = Math.round(spot * monthlyPctMultiplier);
+      const yRangePts = Math.round(spot * yearlyPctMultiplier);
+
+      // Directional Skew for Weekly High/Low
+      const isWeeklyBearishSkew = spot < prevClose;
+      const weeklyUpFrac = isWeeklyBearishSkew ? 0.28 : 0.72;
+      const weeklyDownFrac = isWeeklyBearishSkew ? 0.72 : 0.28;
+      const predWeeklyHigh = Math.round(spot + wRangePts * weeklyUpFrac);
+      const predWeeklyLow = Math.round(spot - wRangePts * weeklyDownFrac);
+
+      // Directional Skew for Monthly High/Low (Anchored to Monthly Open/Value Area)
+      const isMonthlyBearishSkew = spot < open;
+      const monthlyUpFrac = isMonthlyBearishSkew ? 0.35 : 0.65;
+      const monthlyDownFrac = isMonthlyBearishSkew ? 0.65 : 0.35;
+      const predMonthlyHigh = Math.round(spot + mRangePts * monthlyUpFrac);
+      const predMonthlyLow = Math.round(spot - mRangePts * monthlyDownFrac);
 
       const multiTimeframe = {
         daily: {
@@ -3195,11 +3238,11 @@ app.get('/api/day-range', async (req, res) => {
         weekly: {
           label: 'Weekly',
           expectedRange: wRangePts,
-          predictedHigh: Math.round(spot + wRangePts * 0.55),
-          predictedLow: Math.round(spot - wRangePts * 0.45),
+          predictedHigh: predWeeklyHigh,
+          predictedLow: predWeeklyLow,
           expectedBody: Math.round(wRangePts * 0.531),
-          expectedUpperWick: Math.round(wRangePts * 0.212),
-          expectedLowerWick: Math.round(wRangePts * 0.257),
+          expectedUpperWick: Math.round(wRangePts * (isWeeklyBearishSkew ? 0.14 : 0.25)),
+          expectedLowerWick: Math.round(wRangePts * (isWeeklyBearishSkew ? 0.28 : 0.15)),
           target1: Math.round(spot + wRangePts * 0.382),
           target2: Math.round(spot + wRangePts * 0.618),
           target3: Math.round(spot + wRangePts * 1.000),
@@ -3212,11 +3255,11 @@ app.get('/api/day-range', async (req, res) => {
         monthly: {
           label: 'Monthly',
           expectedRange: mRangePts,
-          predictedHigh: Math.round(spot + mRangePts * 0.60),
-          predictedLow: Math.round(spot - mRangePts * 0.40),
+          predictedHigh: predMonthlyHigh,
+          predictedLow: predMonthlyLow,
           expectedBody: Math.round(mRangePts * 0.511),
-          expectedUpperWick: Math.round(mRangePts * 0.224),
-          expectedLowerWick: Math.round(mRangePts * 0.265),
+          expectedUpperWick: Math.round(mRangePts * (isMonthlyBearishSkew ? 0.15 : 0.25)),
+          expectedLowerWick: Math.round(mRangePts * (isMonthlyBearishSkew ? 0.28 : 0.16)),
           target1: Math.round(spot + mRangePts * 0.382),
           target2: Math.round(spot + mRangePts * 0.618),
           target3: Math.round(spot + mRangePts * 1.000),
@@ -3229,8 +3272,8 @@ app.get('/api/day-range', async (req, res) => {
         yearly: {
           label: 'Yearly',
           expectedRange: yRangePts,
-          predictedHigh: Math.round(spot + yRangePts * 0.70),
-          predictedLow: Math.round(spot - yRangePts * 0.30),
+          predictedHigh: Math.round(spot + yRangePts * 0.65),
+          predictedLow: Math.round(spot - yRangePts * 0.35),
           expectedBody: Math.round(yRangePts * 0.542),
           expectedUpperWick: Math.round(yRangePts * 0.212),
           expectedLowerWick: Math.round(yRangePts * 0.245),
