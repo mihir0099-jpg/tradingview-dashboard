@@ -803,8 +803,8 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Instant RAM delivery for root HTML (<1ms)
-app.get('/', (req, res) => {
+// Instant RAM delivery for root HTML (<1ms) - Supports GET, POST, and all methods
+app.all('/', (req, res) => {
   if (preloadedIndexHtml) {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Content-Length', Buffer.byteLength(preloadedIndexHtml, 'utf8'));
@@ -856,6 +856,20 @@ app.get('/assets/:filename', (req, res) => {
     }
   }
   return res.status(404).send('Asset not found');
+});
+
+// SPA wildcard fallback: Any page route or accidental POST returns dashboard HTML
+app.all('*', (req, res, next) => {
+  if (req.path.startsWith('/api') || req.path.startsWith('/assets') || req.path.startsWith('/health') || req.path.startsWith('/ws')) {
+    return next();
+  }
+  if (preloadedIndexHtml) {
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.setHeader('Content-Length', Buffer.byteLength(preloadedIndexHtml, 'utf8'));
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    return res.status(200).send(preloadedIndexHtml);
+  }
+  return res.status(200).send('<!DOCTYPE html><html><head><title>TradingView Dashboard</title></head><body><h2>TradingView Dashboard</h2><script>window.location.href="/";</script></body></html>');
 });
 
 const server = createServer(app);

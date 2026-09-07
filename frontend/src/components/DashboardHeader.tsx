@@ -278,7 +278,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           >
             
             {/* Input Row */}
-            <form onSubmit={handleCustomSubmit} style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', padding: '16px 20px', gap: '12px' }}>
+            <form action="#" method="dialog" onSubmit={(e) => { e.preventDefault(); handleCustomSubmit(e); }} style={{ display: 'flex', alignItems: 'center', borderBottom: '1px solid rgba(255, 255, 255, 0.06)', padding: '16px 20px', gap: '12px' }}>
               <Search size={20} color="var(--text-secondary)" />
               <input
                 ref={modalInputRef}

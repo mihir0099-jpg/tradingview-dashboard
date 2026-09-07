@@ -2,18 +2,18 @@
   "archive_id": "SESSION_2026-09-07",
   "date": "2026-09-07",
   "day_of_week": "Monday",
-  "archived_at": "2026-09-07T09:57:53.350Z",
-  "ist_timestamp": "15:27:53",
-  "captured_till_ist": "15:27:46",
-  "session_status": "IN_PROGRESS",
-  "save_trigger": "MANUAL_USER_SNAPSHOT",
+  "archived_at": "2026-09-07T10:05:51.108Z",
+  "ist_timestamp": "15:35:51",
+  "captured_till_ist": "15:30:00",
+  "session_status": "COMPLETE",
+  "save_trigger": "INTRADAY_5MIN_AUTO",
   "indices": {
     "nifty": {
       "profile": {
         "openPrice": 23881.9,
-        "closePrice": 23760.3,
-        "changePts": -121.6,
-        "changePct": -0.51,
+        "closePrice": 23779.15,
+        "changePts": -102.75,
+        "changePct": -0.43,
         "dayHigh": 23888.8,
         "dayLow": 23738.05,
         "totalRange": 150.75,
@@ -38,15 +38,15 @@
           "lodTime": "15:09:00"
         }
       },
-      "candles_count": 373,
-      "last_candle_time": "15:27:46"
+      "candles_count": 376,
+      "last_candle_time": "15:30:00"
     },
     "banknifty": {
       "profile": {
         "openPrice": 57343.35,
-        "closePrice": 57056.75,
-        "changePts": -286.6,
-        "changePct": -0.5,
+        "closePrice": 57088.3,
+        "changePts": -255.05,
+        "changePct": -0.44,
         "dayHigh": 57426.25,
         "dayLow": 57002.95,
         "totalRange": 423.3,
@@ -71,8 +71,8 @@
           "lodTime": "12:54:00"
         }
       },
-      "candles_count": 373,
-      "last_candle_time": "15:27:45"
+      "candles_count": 376,
+      "last_candle_time": "15:30:00"
     }
   },
   "options_skew_gamma": {
@@ -3434,12 +3434,39 @@
         "volume": 0
       },
       {
-        "time": 1788775066,
-        "timeIST": "15:27:46",
+        "time": 1788775020,
+        "timeIST": "15:27:00",
         "open": 23760.3,
         "high": 23760.3,
         "low": 23760.3,
         "close": 23760.3,
+        "volume": 0
+      },
+      {
+        "time": 1788775080,
+        "timeIST": "15:28:00",
+        "open": 23760.3,
+        "high": 23760.3,
+        "low": 23760.3,
+        "close": 23760.3,
+        "volume": 0
+      },
+      {
+        "time": 1788775140,
+        "timeIST": "15:29:00",
+        "open": 23760.3,
+        "high": 23779.15,
+        "low": 23760.3,
+        "close": 23779.15,
+        "volume": 0
+      },
+      {
+        "time": 1788775200,
+        "timeIST": "15:30:00",
+        "open": 23779.15,
+        "high": 23779.15,
+        "low": 23779.15,
+        "close": 23779.15,
         "volume": 0
       }
     ],
@@ -6793,12 +6820,39 @@
         "volume": 0
       },
       {
-        "time": 1788775065,
-        "timeIST": "15:27:45",
+        "time": 1788775020,
+        "timeIST": "15:27:00",
         "open": 57056.75,
         "high": 57056.75,
         "low": 57056.75,
         "close": 57056.75,
+        "volume": 0
+      },
+      {
+        "time": 1788775080,
+        "timeIST": "15:28:00",
+        "open": 57056.75,
+        "high": 57056.75,
+        "low": 57056.75,
+        "close": 57056.75,
+        "volume": 0
+      },
+      {
+        "time": 1788775140,
+        "timeIST": "15:29:00",
+        "open": 57056.75,
+        "high": 57088.3,
+        "low": 57056.75,
+        "close": 57088.3,
+        "volume": 0
+      },
+      {
+        "time": 1788775200,
+        "timeIST": "15:30:00",
+        "open": 57088.3,
+        "high": 57088.3,
+        "low": 57088.3,
+        "close": 57088.3,
         "volume": 0
       }
     ]
