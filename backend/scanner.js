@@ -473,6 +473,13 @@ export async function runScan(tvBridge, timeframe) {
     console.log('[Scanner] Outside active market hours. Running scan to populate cache for confluences & early picks (live signals touch logging is disabled).');
   }
   
+  const hasToken = process.env.TRADINGVIEW_TOKEN && process.env.TRADINGVIEW_TOKEN.length > 15;
+  if (!hasToken) {
+    console.log(`[Scanner] No valid TRADINGVIEW_TOKEN configured. Serving ${timeframe} scan from persistent disk cache.`);
+    scannerCache.isScanning[timeframe] = false;
+    return;
+  }
+
   console.log(`[Scanner] Starting ${timeframe} timeframe scanning cycle...`);
   scannerCache.isScanning[timeframe] = true;
 

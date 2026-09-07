@@ -249,49 +249,95 @@ app.post('/api/scanner/learning', (req, res) => {
   }
 });
 
-// Route to trigger PyTorch offline model training
-app.get('/api/scanner/train', (req, res) => {
+// Route to trigger PyTorch offline model training (Asynchronous Background Execution)
+let isModelTraining = false;
+app.all('/api/scanner/train', (req, res) => {
+  if (isModelTraining) {
+    return res.json({ success: true, status: 'TRAINING_IN_PROGRESS', message: 'PyTorch model training is already running in the background.' });
+  }
   const scriptPath = path.join(__dirname, 'train_pytorch_skew_model.py');
-  console.log('[PyTorch Engine] Triggering offline model training...');
-  
+  console.log('[PyTorch Engine] Triggering offline model training in background...');
+  isModelTraining = true;
+  res.json({
+    success: true,
+    status: 'TRAINING_STARTED',
+    message: 'PyTorch offline model training started in background.'
+  });
+
   exec(`python "${scriptPath}"`, (error, stdout, stderr) => {
+    isModelTraining = false;
     if (error) {
       console.error('[PyTorch Engine] Training failed:', stderr || error.message);
-      return res.status(500).json({
-        success: false,
-        error: error.message,
-        stderr: stderr,
-        stdout: stdout
-      });
+    } else {
+      console.log('[PyTorch Engine] Training completed successfully.');
     }
-    console.log('[PyTorch Engine] Training completed successfully.');
-    res.json({
-      success: true,
-      stdout: stdout
-    });
   });
 });
 
-// Route to handle Pattern Forecasting via STUMPY + River
-app.get('/api/pattern/forecast', async (req, res) => {
+// In-memory cache for pattern forecasting with disk persistence for sub-second responses
+const patternForecastCache = new Map();
+const isCalculatingForecast = new Set();
+const forecastDiskPath = path.join(__dirname, 'data', 'forecast_cache.json');
+
+try {
+  if (fs.existsSync(forecastDiskPath)) {
+    const rawData = fs.readFileSync(forecastDiskPath, 'utf8');
+    const parsed = JSON.parse(rawData);
+    for (const [k, v] of Object.entries(parsed)) {
+      patternForecastCache.set(k, { data: v.data, timestamp: v.timestamp || Date.now() });
+    }
+    console.log(`[Pattern Forecaster] Restored ${patternForecastCache.size} persistent forecasts from disk.`);
+  }
+} catch (e) {
+  console.warn('[Pattern Forecaster] Error loading forecast cache from disk:', e.message);
+}
+
+function persistForecastCache() {
   try {
-    const symbol = req.query.symbol || 'NSE:NIFTY';
-    const timeframe = req.query.timeframe || '30';
-    const K = parseInt(req.query.window) || 20; 
-    const future_n = parseInt(req.query.future) || 10; 
+    const obj = {};
+    for (const [k, v] of patternForecastCache.entries()) {
+      obj[k] = v;
+    }
+    fs.writeFileSync(forecastDiskPath, JSON.stringify(obj, null, 2), 'utf8');
+  } catch (e) {}
+}
 
-    console.log(`[Pattern Forecaster] Fetching candles for ${symbol} on TF ${timeframe}...`);
+// Route to handle Pattern Forecasting via STUMPY + River + PyTorch Sequence Model
+app.all('/api/pattern/forecast', async (req, res) => {
+  try {
+    const symbol = req.query.symbol || req.body?.symbol || 'NSE:NIFTY';
+    const timeframe = req.query.timeframe || req.body?.timeframe || '30';
+    const K = parseInt(req.query.window || req.body?.window) || 20; 
+    const future_n = parseInt(req.query.future || req.body?.future) || 10; 
 
-    // Fetch 500 candles from TradingView Bridge with robust fallbacks
+    const cacheKey = `${symbol}_${timeframe}_${K}_${future_n}`;
+    const cachedEntry = patternForecastCache.get(cacheKey);
+
+    // Instant return if cached entry exists
+    if (cachedEntry) {
+      // If older than 2 minutes, trigger background update
+      if (Date.now() - cachedEntry.timestamp > 120000 && !isCalculatingForecast.has(cacheKey)) {
+        console.log(`[Pattern Forecaster] Cache stale for ${cacheKey}. Refreshing in background...`);
+        // Trigger background calculation
+        setTimeout(() => {
+          computeAndCacheForecast(symbol, timeframe, K, future_n).catch(() => {});
+        }, 10);
+      }
+      return res.json(cachedEntry.data);
+    }
+
+    console.log(`[Pattern Forecaster] Cold request for ${symbol} on TF ${timeframe}...`);
+
+    // Fast-fallback candle fetch: avoid waiting 15s if TradingView token is not configured
     let candles = null;
-    try {
-      candles = await fetchCandlesForSymbol(tvBridge, symbol, timeframe, 500);
-    } catch (err) {
-      console.warn(`[Pattern Forecaster] Primary fetch failed for ${symbol} on TF ${timeframe}: ${err.message}. Trying 5m fallback...`);
+    if (process.env.TRADINGVIEW_TOKEN && process.env.TRADINGVIEW_TOKEN.length > 15) {
       try {
-        candles = await fetchCandlesForSymbol(tvBridge, symbol, '5', 200);
-      } catch (e2) {
-        console.warn(`[Pattern Forecaster] Secondary fetch failed. Using historical scanner cache...`);
+        candles = await Promise.race([
+          fetchCandlesForSymbol(tvBridge, symbol, timeframe, 500),
+          new Promise((_, reject) => setTimeout(() => reject(new Error('TV fetch timeout')), 1500))
+        ]);
+      } catch (err) {
+        console.warn(`[Pattern Forecaster] Fast fetch bypass for ${symbol}: ${err.message}`);
       }
     }
 
@@ -604,6 +650,8 @@ app.get('/api/pattern/forecast', async (req, res) => {
           close: c.close
         }));
         result.candlestickStructure = candlestickStructure;
+        patternForecastCache.set(cacheKey, { data: result, timestamp: Date.now() });
+        persistForecastCache();
         res.json(result);
       } catch (err) {
         console.error('[Pattern Forecaster] Failed to parse JSON from Python output:', stdoutData);
@@ -668,7 +716,7 @@ app.post('/api/scanner/historical-signals', (req, res) => {
 });
 
 // Route to clear historical math signals
-app.post('/api/scanner/clear-historical-signals', (req, res) => {
+app.all('/api/scanner/clear-historical-signals', (req, res) => {
   try {
     const todayStr = new Date().toLocaleDateString('en-IN', { timeZone: 'Asia/Kolkata' }).replace(/\//g, '-');
     const filePath = path.join(__dirname, 'data/historical_signals_' + todayStr + '.json');
@@ -1314,8 +1362,8 @@ app.get('/api/options/chain', async (req, res) => {
 });
 
 // Endpoint to retrieve background Matrix proximity scan results
-app.post('/api/scanner/trigger-scan', (req, res) => {
-  const tf = req.query.timeframe || '5';
+app.all('/api/scanner/trigger-scan', (req, res) => {
+  const tf = req.query.timeframe || req.body?.timeframe || '5';
   console.log(`[API Trigger Scan] Manual scan requested for timeframe: ${tf}`);
   queueScan(tvBridge, tf);
   res.json({ success: true, message: `Scan queued for timeframe ${tf}` });
@@ -3636,7 +3684,7 @@ app.get('/api/archive/export', (req, res) => {
 });
 
 // Manual/API trigger to snapshot and save market session data up to the current minute
-app.post('/api/archive/snapshot', async (req, res) => {
+app.all('/api/archive/snapshot', async (req, res) => {
   try {
     const reason = req.body?.reason || req.query?.reason || 'MANUAL_USER_SNAPSHOT';
     const { archiveTodayMarketData } = await import('./daily_data_archiver.js');

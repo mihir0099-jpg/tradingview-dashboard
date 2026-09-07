@@ -68,7 +68,7 @@ class PyTorchSequenceForecaster(nn.Module):
     def forward(self, x):
         return self.network(x)
 
-def run_pytorch_forecasting(train_X, train_y, live_X, epochs=40):
+def run_pytorch_forecasting(train_X, train_y, live_X, epochs=15):
     K = train_X.shape[1]
     future_n = train_y.shape[1]
     model = PyTorchSequenceForecaster(K, future_n)
@@ -135,7 +135,7 @@ def run_pattern_forecasting():
     hist_returns = np.diff(np.log(history_close)).reshape(-1, 1)
     
     try:
-        hmm = GaussianHMM(n_components=3, covariance_type="full", n_iter=50, random_state=42)
+        hmm = GaussianHMM(n_components=3, covariance_type="full", n_iter=10, random_state=42)
         hmm.fit(hist_returns)
         regimes = hmm.predict(hist_returns)
         
@@ -276,11 +276,11 @@ def run_pattern_forecasting():
             else:
                 train_y_list.append(np.ones(future_n))
                 
-        train_X = np.array(train_X_list, dtype=np.float32)
-        train_y = np.array(train_y_list, dtype=np.float32)
+        train_X = np.array(train_X_list[:60], dtype=np.float32)
+        train_y = np.array(train_y_list[:60], dtype=np.float32)
         
         live_X = z_normalize(live_close).astype(np.float32)
-        pred_ratios = run_pytorch_forecasting(train_X, train_y, live_X, epochs=40)
+        pred_ratios = run_pytorch_forecasting(train_X, train_y, live_X, epochs=10)
         
         pytorch_path = (last_live_close * pred_ratios).tolist()
         projections.append(pytorch_path)

@@ -126,6 +126,9 @@ export class TradingViewBridge {
     try {
       session = await this.getSession();
       if (!active) return () => {};
+      if (!session) {
+        throw new Error('No active TradingView session (missing or invalid token)');
+      }
 
       chart = await createChart(session);
       if (!active) {
