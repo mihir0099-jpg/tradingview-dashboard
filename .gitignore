@@ -5,3 +5,5 @@ dist/
 !frontend/dist/
 build/
 scratch/
+__pycache__/
+*.pyc

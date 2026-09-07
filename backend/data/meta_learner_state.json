@@ -1,0 +1,15 @@
+{
+  "total_samples_learned": 53,
+  "mistakes_absorbed": 0,
+  "wins_absorbed": 0,
+  "current_accuracy_pct": 84.5,
+  "last_updated": "2026-09-07T17:37:04.375105",
+  "feature_weights": {
+    "is_vix_low": 1.42,
+    "is_divergent": 1.68,
+    "is_wick_spike": 1.85,
+    "is_wide_ib": 0.94,
+    "is_period_g": 1.25,
+    "is_period_l": 1.1
+  }
+}

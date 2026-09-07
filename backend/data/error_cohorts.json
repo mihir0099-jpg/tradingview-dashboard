@@ -1,0 +1,92 @@
+{
+  "last_updated": "2026-09-07T17:36:38.178807",
+  "engine": "Surrogate Decision Error Tree (Entropy Criterion)",
+  "baseline_metrics": {
+    "total_trades_analyzed": 53,
+    "total_errors_detected": 14,
+    "overall_error_rate_pct": 26.4,
+    "prevented_by_safeguards_pct": 88.4
+  },
+  "feature_error_drivers": {
+    "is_vix_low": 0.423,
+    "is_divergent": 0.316,
+    "is_wick_spike": 0.261,
+    "is_wide_ib": 0.0,
+    "is_period_g": 0.0,
+    "is_period_l": 0.0,
+    "is_call": 0.0
+  },
+  "high_risk_cohorts": [
+    {
+      "id": "COHORT-LUNCH-DECAY",
+      "name": "Low-VIX Lunchtime Theta Decay Trap",
+      "conditions": [
+        "India VIX < 15",
+        "TPO Period == G (12:15 - 12:45 PM)",
+        "Long Option Buying"
+      ],
+      "sample_count": 4,
+      "error_rate_pct": 100.0,
+      "severity": "CRITICAL",
+      "root_cause": "G-period lunchtime lull induces rapid theta decay in low-volatility grinding regimes.",
+      "safeguard_rule": "Exit all long options before 12:15 PM or wait strictly for Period H (12:45 PM) candle close outside IB."
+    },
+    {
+      "id": "COHORT-INDEX-DRAG",
+      "name": "Stock Breakout vs Index Drag (Divergence Trap)",
+      "conditions": [
+        "Index Confluence == False",
+        "Direction == Bullish CE",
+        "Nifty/BankNifty Below Open"
+      ],
+      "sample_count": 5,
+      "error_rate_pct": 100.0,
+      "severity": "CRITICAL",
+      "root_cause": "Individual stock breakout lacks institutional support when broader indices are selling off.",
+      "safeguard_rule": "Never buy Call Options (CE) on stock breakouts if Nifty or Bank Nifty is trading below Open or printing bearish PCR velocity."
+    },
+    {
+      "id": "COHORT-WICK-SPIKE",
+      "name": "False Wick Breakout (No Candle Close)",
+      "conditions": [
+        "Spike Beyond Level",
+        "5-Min Candle Closed Inside Range",
+        "Fails Acceptance Filter"
+      ],
+      "sample_count": 5,
+      "error_rate_pct": 100.0,
+      "severity": "CRITICAL",
+      "root_cause": "Institutional stop hunts (liquidity sweeps) trigger breakouts that immediately collapse back into value.",
+      "safeguard_rule": "Mandatory Candle Close Filter: 5-minute bar must close strictly outside the IB trigger level before entry."
+    },
+    {
+      "id": "COHORT-CLIMAX-WIDE-IB",
+      "name": "Wide-IB Exhaustion False Breakdown",
+      "conditions": [
+        "IB Width > 0.80% (Wide Range)",
+        "Low Volatility Environment",
+        "Chasing Afternoon Breakdowns"
+      ],
+      "sample_count": 2,
+      "error_rate_pct": 100.0,
+      "severity": "HIGH",
+      "root_cause": "Morning volatility fuel is exhausted early; afternoon breaks become 2-way Neutral Day rotation traps.",
+      "safeguard_rule": "In wide-IB sessions (>0.8%), cap daily range multiplier to 1.36x and look to fade extremes at Value Area boundaries."
+    },
+    {
+      "id": "COHORT-PERIOD-L-VOLUME",
+      "name": "Late-Day Low-Volume Trap (Period L)",
+      "conditions": [
+        "TPO Period == L (02:45 - 03:15 PM)",
+        "Volume < 1.2x Baseline",
+        "Breakout Attempt"
+      ],
+      "sample_count": 2,
+      "error_rate_pct": 100.0,
+      "severity": "HIGH",
+      "root_cause": "Period L breakouts without 1.2x volume spikes are closing auction traps that reverse before 3:30 PM.",
+      "safeguard_rule": "Require 1.2x to 1.3x volume expansion for any breakout initiated after 02:45 PM."
+    }
+  ],
+  "summary": "Mined 5 distinct error cohorts. Top failure drivers: is_vix_low, is_divergent, is_wick_spike."
+}

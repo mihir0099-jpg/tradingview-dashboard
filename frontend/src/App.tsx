@@ -22,6 +22,7 @@ import { PatternForecasterContainer } from './components/PatternForecasterContai
 import { WeeklySellingContainer } from './components/WeeklySellingContainer';
 import { PcrVelocityContainer } from './components/PcrVelocityContainer';
 import { DayRangeContainer } from './components/DayRangeContainer';
+import { AutoLearnerContainer } from './components/AutoLearnerContainer';
 
 function App() {
   const [symbol, setSymbol] = useState('NSE:NIFTY');
@@ -32,7 +33,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'day_range' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
+  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'day_range' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -200,6 +201,27 @@ function App() {
           }}
         >
           📐 Day Range
+        </button>
+        <button
+          onClick={() => setActiveTab('auto_learner')}
+          style={{
+            background: activeTab === 'auto_learner' ? 'rgba(168, 85, 247, 0.22)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'auto_learner' ? '2px solid #a855f7' : '2px solid transparent',
+            color: activeTab === 'auto_learner' ? '#c084fc' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '700',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🔬 Auto-Learner & Mistake Miner
         </button>
         <button
           onClick={() => setActiveTab('bhaichara')}
@@ -549,6 +571,11 @@ function App() {
         {activeTab === 'day_range' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
             <DayRangeContainer />
+          </div>
+        )}
+        {activeTab === 'auto_learner' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <AutoLearnerContainer />
           </div>
         )}
         {activeTab === 'bhaichara' && (

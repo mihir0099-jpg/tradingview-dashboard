@@ -6,14 +6,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const predictionsFile = path.join(__dirname, 'data', 'daily_predictions.json');
-
-// Ensure data folder exists
 const dataDir = path.join(__dirname, 'data');
 if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
-export async function fetchNiftyDailyCandles(limit = 30) {
+export async function fetchDailyCandles(symbol = 'NIFTY', limit = 30) {
   try {
-    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?interval=1d&range=3mo';
+    const ticker = symbol === 'BANKNIFTY' ? '%5ENSEBANK' : '%5ENSEI';
+    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + ticker + '?interval=1d&range=3mo';
     const res = await fetch(url, {
       signal: AbortSignal.timeout(8000),
       headers: { 'User-Agent': 'Mozilla/5.0' }
@@ -41,14 +40,13 @@ export async function fetchNiftyDailyCandles(limit = 30) {
     }
     return candles.slice(-limit);
   } catch (err) {
-    console.warn('[Daily Predictor] Failed to fetch candles:', err.message || err);
+    console.warn('[Daily Predictor] Failed to fetch candles for ' + symbol + ':', err.message || err);
     return null;
   }
 }
 
 export function calculatePivotLevels(H, L, C) {
   const R = H - L;
-  // Camarilla Equations
   const r4 = parseFloat((C + R * 1.1 / 2).toFixed(1));
   const r3 = parseFloat((C + R * 1.1 / 4).toFixed(1));
   const r2 = parseFloat((C + R * 1.1 / 6).toFixed(1));
@@ -58,7 +56,6 @@ export function calculatePivotLevels(H, L, C) {
   const s3 = parseFloat((C - R * 1.1 / 4).toFixed(1));
   const s4 = parseFloat((C - R * 1.1 / 2).toFixed(1));
 
-  // Central Pivot Range (CPR)
   const P = parseFloat(((H + L + C) / 3).toFixed(1));
   const BCP = parseFloat(((H + L) / 2).toFixed(1));
   const TCP = parseFloat(((P - BCP) + P).toFixed(1));
@@ -77,17 +74,16 @@ export function calculatePivotLevels(H, L, C) {
   };
 }
 
-export async function generateNextDayForecast() {
-  const candles = await fetchNiftyDailyCandles(20);
+export async function generateForecastForSymbol(symbol = 'NIFTY') {
+  const candles = await fetchDailyCandles(symbol, 20);
   if (!candles || candles.length < 5) {
-    console.error('[Daily Predictor] Insufficient candle history.');
+    console.error('[Daily Predictor] Insufficient candle history for ' + symbol);
     return null;
   }
 
-  const lastCandle = candles[candles.length - 1]; // Friday / latest session
+  const lastCandle = candles[candles.length - 1];
   const prevCandle = candles[candles.length - 2];
-  
-  // Compute rolling ATR(14)
+
   let sumTR = 0;
   for (let i = candles.length - 14; i < candles.length; i++) {
     const curr = candles[i];
@@ -101,12 +97,11 @@ export async function generateNextDayForecast() {
   const lastRange = lastCandle.high - lastCandle.low;
   const closeLocation = lastRange > 0 ? (lastCandle.close - lastCandle.low) / lastRange : 0.5;
 
-  // Determine Target Date (Next Trading Day)
   const lastDate = new Date(lastCandle.date);
   const nextDate = new Date(lastDate);
-  if (lastDate.getDay() === 5) { // Friday -> Monday
+  if (lastDate.getDay() === 5) {
     nextDate.setDate(lastDate.getDate() + 3);
-  } else if (lastDate.getDay() === 6) { // Saturday -> Monday
+  } else if (lastDate.getDay() === 6) {
     nextDate.setDate(lastDate.getDate() + 2);
   } else {
     nextDate.setDate(lastDate.getDate() + 1);
@@ -114,20 +109,33 @@ export async function generateNextDayForecast() {
   const targetDateStr = nextDate.toISOString().split('T')[0];
   const targetDayName = nextDate.toLocaleDateString('en-US', { weekday: 'long' });
 
-  // 1. Predicted Open (Gap estimation based on closing pressure & mean reversion)
-  // When closing in lower 10% (like Friday 23897.7 vs Low 23895.85), morning dip-buying provides mild gap up
-  const gapPts = parseFloat(((closeLocation - 0.5) * 0.12 * atr14 + (lastCandle.close > prevCandle.close ? 15 : -15)).toFixed(1));
-  const predOpen = parseFloat((lastCandle.close + gapPts + 25).toFixed(1)); // Mild positive baseline: ~23,935 - 23,950
+  // 1. Predicted Open (Gap model)
+  const isBank = symbol === 'BANKNIFTY';
+  const gapMult = isBank ? 0.35 : 0.12;
+  const gapPts = parseFloat(((closeLocation - 0.5) * gapMult * atr14 + (lastCandle.close > prevCandle.close ? (isBank ? 35 : 15) : (isBank ? -35 : -15))).toFixed(1));
+  const predOpen = parseFloat((lastCandle.close + gapPts).toFixed(1));
 
-  // 2. Predicted Direction & Close
-  // Monday: 55.4% Green probability, but pulling into Weekly Pivot 23,942 / POC 23,880
-  const isTuesdayExpiry = targetDayName === 'Tuesday';
-  const predBias = isTuesdayExpiry ? 'RED' : (closeLocation > 0.45 ? 'GREEN' : 'RED');
-  const predClose = predBias === 'GREEN' 
-    ? parseFloat((predOpen + (atr14 * 0.25)).toFixed(1))
-    : parseFloat((predOpen - (atr14 * 0.35)).toFixed(1));
+  // 2. Directional Bias
+  const priorRet = (lastCandle.close - lastCandle.open) / lastCandle.open;
+  const predBias = priorRet > 0 ? (closeLocation > 0.5 ? 'GREEN' : 'RED') : (closeLocation < 0.4 ? 'RED' : 'GREEN');
+
+  // 3. Predicted Range & Multiplier
+  const rangeMult = priorRet > 0 ? 0.95 : 1.08;
+  const predRange = parseFloat((atr14 * rangeMult).toFixed(1));
+
+  // 4. Explicit Single-Point High and Low (Zero Guesswork / Zero Proxy)
+  const upsideSkew = predBias === 'GREEN' ? 0.62 : 0.42;
+  const downsideSkew = 1.0 - upsideSkew;
+  const predHigh = parseFloat((predOpen + (predRange * upsideSkew)).toFixed(1));
+  const predLow = parseFloat((predOpen - (predRange * downsideSkew)).toFixed(1));
+
+  // 5. Predicted Close
+  const predClose = predBias === 'GREEN'
+    ? parseFloat((predOpen + (predRange * 0.28)).toFixed(1))
+    : parseFloat((predOpen - (predRange * 0.36)).toFixed(1));
 
   const forecast = {
+    symbol,
     target_date: targetDateStr,
     target_day: targetDayName,
     computed_at: new Date().toISOString(),
@@ -141,11 +149,11 @@ export async function generateNextDayForecast() {
     },
     prediction: {
       predicted_open: predOpen,
+      predicted_high: predHigh,
+      predicted_low: predLow,
       predicted_close: predClose,
-      predicted_range: atr14,
-      predicted_gap_pts: parseFloat((predOpen - lastCandle.close).toFixed(1)),
-      gap_fill_probability: '64.9% (11.5-Year / 2,817-Session Historical Proof)',
-      gap_retest_target: lastCandle.close,
+      predicted_range: predRange,
+      predicted_gap_pts: gapPts,
       directional_bias: predBias,
       expected_candle: predBias === 'GREEN' ? 'GREEN CANDLE (Close > Open)' : 'RED CANDLE (Open > Close)',
       cpr: levels.cpr,
@@ -154,20 +162,32 @@ export async function generateNextDayForecast() {
     actual_evaluation: null
   };
 
-  // Load existing predictions database
+  return forecast;
+}
+
+export async function generateNextDayForecast() {
+  const symbols = ['NIFTY', 'BANKNIFTY'];
+  const newForecasts = [];
+
+  for (const sym of symbols) {
+    const fc = await generateForecastForSymbol(sym);
+    if (fc) newForecasts.push(fc);
+  }
+
   let db = [];
   if (fs.existsSync(predictionsFile)) {
     try { db = JSON.parse(fs.readFileSync(predictionsFile, 'utf8')); } catch (e) { db = []; }
   }
 
-  // Remove existing entry for this target date if present, then push
-  db = db.filter(item => item.target_date !== targetDateStr);
-  db.push(forecast);
+  for (const fc of newForecasts) {
+    db = db.filter(item => !(item.target_date === fc.target_date && (item.symbol || 'NIFTY') === fc.symbol));
+    db.push(fc);
+  }
   db.sort((a, b) => b.target_date.localeCompare(a.target_date));
 
   fs.writeFileSync(predictionsFile, JSON.stringify(db, null, 2), 'utf8');
-  console.log(`[Daily Predictor] Forecast generated for ${targetDateStr} (${targetDayName}): Open=${predOpen}, Close=${predClose}, Bias=${predBias}`);
-  return forecast;
+  console.log('[Daily Predictor] Successfully generated next-day forecasts for NIFTY & BANKNIFTY.');
+  return newForecasts;
 }
 
 export async function evaluatePastPredictions() {
@@ -175,33 +195,48 @@ export async function evaluatePastPredictions() {
   let db = [];
   try { db = JSON.parse(fs.readFileSync(predictionsFile, 'utf8')); } catch (e) { return; }
 
-  const candles = await fetchNiftyDailyCandles(20);
-  if (!candles) return;
-  const candleMap = new Map(candles.map(c => [c.date, c]));
+  const niftyCandles = await fetchDailyCandles('NIFTY', 20);
+  const bankCandles = await fetchDailyCandles('BANKNIFTY', 20);
+
+  const niftyMap = niftyCandles ? new Map(niftyCandles.map(c => [c.date, c])) : new Map();
+  const bankMap = bankCandles ? new Map(bankCandles.map(c => [c.date, c])) : new Map();
 
   let updated = false;
   for (const item of db) {
-    if (!item.actual_evaluation && candleMap.has(item.target_date)) {
-      const actual = candleMap.get(item.target_date);
-      const openError = parseFloat((Math.abs((item.prediction.predicted_open - actual.open) / actual.open) * 100).toFixed(3));
-      const closeError = parseFloat((Math.abs((item.prediction.predicted_close - actual.close) / actual.close) * 100).toFixed(3));
+    const sym = item.symbol || 'NIFTY';
+    const map = sym === 'BANKNIFTY' ? bankMap : niftyMap;
+
+    if (!item.actual_evaluation && map.has(item.target_date)) {
+      const actual = map.get(item.target_date);
+      const actualRange = parseFloat((actual.high - actual.low).toFixed(2));
+      const predRange = item.prediction.predicted_range;
+      
+      const openErr = parseFloat((actual.open - item.prediction.predicted_open).toFixed(2));
+      const highErr = item.prediction.predicted_high ? parseFloat((actual.high - item.prediction.predicted_high).toFixed(2)) : null;
+      const lowErr = item.prediction.predicted_low ? parseFloat((actual.low - item.prediction.predicted_low).toFixed(2)) : null;
+      const closeErr = parseFloat((actual.close - item.prediction.predicted_close).toFixed(2));
+      const rangeErr = parseFloat((actualRange - predRange).toFixed(2));
+
       const actualColor = actual.close >= actual.open ? 'GREEN' : 'RED';
       const isBiasMatch = (item.prediction.directional_bias === actualColor);
 
       item.actual_evaluation = {
         actual_open: actual.open,
-        actual_close: actual.close,
         actual_high: actual.high,
         actual_low: actual.low,
-        open_error_pct: openError,
-        close_error_pct: closeError,
+        actual_close: actual.close,
+        actual_range: actualRange,
+        open_error_pts: openErr,
+        high_error_pts: highErr,
+        low_error_pts: lowErr,
+        close_error_pts: closeErr,
+        range_error_pts: rangeErr,
         actual_candle: actualColor,
         directional_bias_match: isBiasMatch,
-        outcome: isBiasMatch && closeError < 0.5 ? 'ACCURATE_WIN' : (closeError < 0.8 ? 'WITHIN_ATR_BAND' : 'DEVIATION'),
         evaluated_at: new Date().toISOString()
       };
       updated = true;
-      console.log(`[Daily Predictor] Evaluated ${item.target_date}: Open Err=${openError}%, Close Err=${closeError}%, Bias Match=${isBiasMatch}`);
+      console.log([Daily Predictor] Evaluated  for : Range Err= pts, High Err=, Low Err=);
     }
   }
 
@@ -211,56 +246,12 @@ export async function evaluatePastPredictions() {
   return db;
 }
 
-// Seed Friday Sept 4th evaluation if not present
-export function seedFridayEvaluation() {
-  let db = [];
-  if (fs.existsSync(predictionsFile)) {
-    try { db = JSON.parse(fs.readFileSync(predictionsFile, 'utf8')); } catch (e) {}
-  }
-  const hasFriday = db.some(d => d.target_date === '2026-09-04');
-  if (!hasFriday) {
-    db.push({
-      target_date: '2026-09-04',
-      target_day: 'Friday',
-      computed_at: '2026-09-03T15:45:00.000Z',
-      baseline_session: {
-        date: '2026-09-03',
-        open: 23997.95,
-        high: 24025.4,
-        low: 23873.45,
-        close: 23873.45,
-        atr14: 154.2
-      },
-      prediction: {
-        predicted_open: 23928.0,
-        predicted_close: 23862.0,
-        predicted_range: 154.2,
-        directional_bias: 'RED',
-        expected_candle: 'RED CANDLE (Open > Close)',
-        cpr: { P: 23924.1, BCP: 23949.4, TCP: 23898.8, widthPct: 0.21, type: 'AVERAGE' },
-        camarilla: { r4: 23956.9, r3: 23915.2, r1: 23887.4, s1: 23859.6, s3: 23831.7, s4: 23790.0 }
-      },
-      actual_evaluation: {
-        actual_open: 23910.9,
-        actual_close: 23897.7,
-        actual_high: 24005.75,
-        actual_low: 23895.85,
-        open_error_pct: 0.071,
-        close_error_pct: 0.149,
-        actual_candle: 'RED',
-        directional_bias_match: true,
-        outcome: 'ACCURATE_WIN',
-        evaluated_at: '2026-09-04T15:35:00.000Z'
-      }
-    });
-    fs.writeFileSync(predictionsFile, JSON.stringify(db, null, 2), 'utf8');
-  }
-}
-
 if (process.argv[1] && process.argv[1].endsWith('daily_predictor.js')) {
-  seedFridayEvaluation();
-  generateNextDayForecast().then(() => evaluatePastPredictions()).then(() => process.exit(0)).catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+  generateNextDayForecast()
+    .then(() => evaluatePastPredictions())
+    .then(() => process.exit(0))
+    .catch(err => {
+      console.error(err);
+      process.exit(1);
+    });
 }
