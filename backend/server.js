@@ -2637,19 +2637,32 @@ let liveMarketIndicesCache = {
 
 async function fetchLiveMarketIndices() {
   const now = Date.now();
-  // 5-second cache to prevent socket flooding while keeping real-time responsiveness
-  if (now - liveMarketIndicesCache.lastUpdated < 5000 && liveMarketIndicesCache.nifty && liveMarketIndicesCache.banknifty) {
+  // 3-second cache to prevent socket flooding while keeping real-time responsiveness
+  const isFresh = (now - liveMarketIndicesCache.lastUpdated < 3000) && liveMarketIndicesCache.nifty && liveMarketIndicesCache.banknifty;
+  if (isFresh) {
     return liveMarketIndicesCache;
   }
 
+  // If we have existing cached values, return them immediately and update in background (Zero latency for clients!)
+  if (liveMarketIndicesCache.nifty && liveMarketIndicesCache.banknifty) {
+    // Trigger background refresh without awaiting
+    updateLiveMarketIndicesAsync().catch(() => {});
+    return liveMarketIndicesCache;
+  }
+
+  return await updateLiveMarketIndicesAsync();
+}
+
+async function updateLiveMarketIndicesAsync() {
+  const now = Date.now();
   try {
     const [resNifty, resBank] = await Promise.all([
       fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?interval=1m&range=1d', {
-        signal: AbortSignal.timeout(4000),
+        signal: AbortSignal.timeout(3500),
         headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
       }),
       fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEBANK?interval=1m&range=1d', {
-        signal: AbortSignal.timeout(4000),
+        signal: AbortSignal.timeout(3500),
         headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
       })
     ]);
@@ -3788,8 +3801,8 @@ app.get('*', (req, res) => {
 // CRITICAL: Must ping the PUBLIC Render URL (not 127.0.0.1) so Render infrastructure
 // registers inbound traffic and does NOT spin down the container (Free tier sleeps after 30min idle)
 function start247KeepAliveEngine(port) {
-  // Determine public URL: Render sets RENDER_EXTERNAL_URL automatically
-  const publicUrl = process.env.RENDER_EXTERNAL_URL || null;
+  // Determine public URL: Render sets RENDER_EXTERNAL_URL automatically, fallback to public Render service URL
+  const publicUrl = process.env.RENDER_EXTERNAL_URL || 'https://tradingview-dashboard-1.onrender.com';
   const localUrl  = `http://127.0.0.1:${port}/health`;
 
   if (publicUrl) {
@@ -3797,6 +3810,14 @@ function start247KeepAliveEngine(port) {
   } else {
     console.log(`[24/7 Engine] No RENDER_EXTERNAL_URL found — pinging localhost only (local dev mode)`);
   }
+
+  // Ping immediately after 30s of startup
+  setTimeout(async () => {
+    try {
+      await fetch(`${publicUrl}/health`, { signal: AbortSignal.timeout(10000) });
+      console.log(`[24/7 Heartbeat] Initial boot keep-alive ping sent to ${publicUrl}`);
+    } catch (e) {}
+  }, 30000);
 
   setInterval(async () => {
     const pingTime = new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' });
