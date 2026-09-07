@@ -4,7 +4,7 @@
     "day_of_week": "Monday",
     "captured_till": "15:30:00",
     "session_status": "COMPLETE",
-    "save_trigger": "INTRADAY_5MIN_AUTO",
+    "save_trigger": "CLI_EXECUTION",
     "nifty_open": 23881.9,
     "nifty_close": 23779.15,
     "nifty_change_pts": -102.75,

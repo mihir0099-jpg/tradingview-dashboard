@@ -1,5 +1,46 @@
 [
   {
+    "target_date": "2026-09-08",
+    "target_day": "Tuesday",
+    "computed_at": "2026-09-07T10:17:24.054Z",
+    "baseline_session": {
+      "date": "2026-09-07",
+      "open": 23883.15,
+      "high": 23890,
+      "low": 23737.9,
+      "close": 23779.15,
+      "atr14": 169.6
+    },
+    "prediction": {
+      "predicted_open": 23784.5,
+      "predicted_close": 23725.1,
+      "predicted_range": 169.6,
+      "predicted_gap_pts": 5.3,
+      "gap_fill_probability": "64.9% (11.5-Year / 2,817-Session Historical Proof)",
+      "gap_retest_target": 23779.15,
+      "directional_bias": "RED",
+      "expected_candle": "RED CANDLE (Open > Close)",
+      "cpr": {
+        "P": 23802.4,
+        "BCP": 23790.8,
+        "TCP": 23814,
+        "widthPct": 0.1,
+        "type": "NARROW (High Volatility Squeeze)"
+      },
+      "camarilla": {
+        "r4": 23862.8,
+        "r3": 23821,
+        "r2": 23807,
+        "r1": 23793.1,
+        "s1": 23765.2,
+        "s2": 23751.3,
+        "s3": 23737.3,
+        "s4": 23695.5
+      }
+    },
+    "actual_evaluation": null
+  },
+  {
     "target_date": "2026-09-07",
     "target_day": "Monday",
     "computed_at": "2026-09-05T14:09:18.363Z",
@@ -38,7 +79,18 @@
         "s4": 23837.3
       }
     },
-    "actual_evaluation": null
+    "actual_evaluation": {
+      "actual_open": 23883.15,
+      "actual_close": 23779.15,
+      "actual_high": 23890,
+      "actual_low": 23737.9,
+      "open_error_pct": 0.188,
+      "close_error_pct": 0.379,
+      "actual_candle": "RED",
+      "directional_bias_match": true,
+      "outcome": "ACCURATE_WIN",
+      "evaluated_at": "2026-09-07T10:17:24.137Z"
+    }
   },
   {
     "target_date": "2026-09-04",
