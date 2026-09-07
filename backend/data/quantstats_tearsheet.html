@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>QuantStats Institutional Performance Tear Sheet</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b1120; color: #f8fafc; padding: 24px; margin: 0; }
+        .header { border-bottom: 2px solid #3b82f6; padding-bottom: 16px; margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center; }
+        .title { font-size: 24px; font-weight: 800; color: #60a5fa; }
+        .subtitle { font-size: 13px; color: #94a3b8; margin-top: 4px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+        .card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 16px; }
+        .label { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+        .val { font-size: 24px; font-weight: 800; margin-top: 6px; }
+        .green { color: #10b981; }
+        .blue { color: #38bdf8; }
+        .red { color: #ef4444; }
+        .table-card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid #334155; font-size: 13px; }
+        th { color: #94a3b8; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <div class="title">QuantStats Strategy Tear Sheet</div>
+            <div class="subtitle">G-TPO & Multi-Horizon Options Synthesis Engine • Benchmark: NIFTY 50</div>
+        </div>
+        <div style="font-size: 12px; color: #64748b;">Generated: 07 Sep 2026, 17:52:05</div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="label">Sharpe Ratio (Annualized)</div>
+            <div class="val green">18.93</div>
+        </div>
+        <div class="card">
+            <div class="label">Sortino Ratio</div>
+            <div class="val green">891.1</div>
+        </div>
+        <div class="card">
+            <div class="label">Profit Factor</div>
+            <div class="val blue">16.85</div>
+        </div>
+        <div class="card">
+            <div class="label">Max Drawdown</div>
+            <div class="val red">0.0%</div>
+        </div>
+        <div class="card">
+            <div class="label">Win Rate</div>
+            <div class="val green">96.7%</div>
+        </div>
+        <div class="card">
+            <div class="label">Annualized Return</div>
+            <div class="val green">+6.019905604077249e+50%</div>
+        </div>
+    </div>
+
+    <div class="table-card">
+        <h3 style="margin-top: 0; color: #f1f5f9;">Statistical Risk & Return Profile</h3>
+        <table>
+            <tr><th>Metric</th><th>Strategy Value</th><th>Institutional Standard</th></tr>
+            <tr><td>Sharpe Ratio</td><td><strong>18.93</strong></td><td>&gt; 1.50 (Excellent)</td></tr>
+            <tr><td>Sortino Ratio (Downside Deviation)</td><td><strong>891.1</strong></td><td>&gt; 2.00 (Superior)</td></tr>
+            <tr><td>Calmar Ratio</td><td><strong>5.0</strong></td><td>&gt; 2.00</td></tr>
+            <tr><td>Win Rate (Daily Directional)</td><td><strong>96.7%</strong></td><td>&gt; 65.0%</td></tr>
+            <tr><td>Profit Factor</td><td><strong>16.85</strong></td><td>&gt; 1.75</td></tr>
+            <tr><td>Max Peak-to-Trough Drawdown</td><td><strong>0.0%</strong></td><td>&lt; 15.0%</td></tr>
+            <tr><td>Annualized Volatility</td><td><strong>747.37%</strong></td><td>&lt; 25.0%</td></tr>
+        </table>
+    </div>
+</body>
+</html>

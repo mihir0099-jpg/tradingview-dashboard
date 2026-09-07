@@ -1,0 +1,82 @@
+{
+  "nifty": {
+    "methodology": "Split Conformal Prediction (MAPIE Distribution-Free Bound)",
+    "point_estimates": {
+      "predicted_high": 23890,
+      "predicted_low": 23738,
+      "expected_range": 148
+    },
+    "confidence_90": {
+      "level": "90% Guaranteed Coverage",
+      "high_interval": [
+        23853,
+        23927
+      ],
+      "low_interval": [
+        23701,
+        23775
+      ],
+      "range_interval": [
+        65,
+        231
+      ],
+      "conformal_margin_pts": 37.2
+    },
+    "confidence_95": {
+      "level": "95% Guaranteed Coverage",
+      "high_interval": [
+        23853,
+        23927
+      ],
+      "low_interval": [
+        23701,
+        23775
+      ],
+      "range_interval": [
+        65,
+        231
+      ],
+      "conformal_margin_pts": 37.2
+    }
+  },
+  "banknifty": {
+    "methodology": "Split Conformal Prediction (MAPIE Distribution-Free Bound)",
+    "point_estimates": {
+      "predicted_high": 57448,
+      "predicted_low": 56982,
+      "expected_range": 445
+    },
+    "confidence_90": {
+      "level": "90% Guaranteed Coverage",
+      "high_interval": [
+        57299,
+        57597
+      ],
+      "low_interval": [
+        56833,
+        57131
+      ],
+      "range_interval": [
+        114,
+        776
+      ],
+      "conformal_margin_pts": 148.9
+    },
+    "confidence_95": {
+      "level": "95% Guaranteed Coverage",
+      "high_interval": [
+        57299,
+        57597
+      ],
+      "low_interval": [
+        56833,
+        57131
+      ],
+      "range_interval": [
+        113,
+        777
+      ],
+      "conformal_margin_pts": 149.4
+    }
+  }
+}

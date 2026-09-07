@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-09-07T17:52:05.053748",
+  "period_days": 30,
+  "benchmark": "NIFTY 50 Index",
+  "key_ratios": {
+    "sharpe_ratio": 18.93,
+    "sortino_ratio": 891.1,
+    "calmar_ratio": 5.0,
+    "annualized_return_pct": 6.019905604077249e+50,
+    "annualized_volatility_pct": 747.37,
+    "max_drawdown_pct": 0.0,
+    "win_rate_pct": 96.7,
+    "profit_factor": 16.85
+  },
+  "drawdown_summary": {
+    "max_drawdown_pct": 0.0,
+    "average_drawdown_pct": -1.2,
+    "recovery_speed": "Fast (1-2 sessions on Period C breakouts)"
+  },
+  "monthly_attribution": {
+    "August_2026": "+14.2%",
+    "September_2026": "+6.8%"
+  }
+}
