@@ -63,6 +63,8 @@ interface EarlyMoveDetectorData {
     candleCloseFilter: { required: boolean; label: string; status: string; winRateBoost: string; description: string };
     exhaustionFilter: { isExhaustion: boolean; rangePct: number; label: string; status: string; description: string };
     trailingStopLossRule: { label: string; status: string; description: string };
+    indexConfluenceFilter?: { label: string; status: string; description: string };
+    liquiditySweepFilter?: { label: string; status: string; description: string };
   };
 }
 
@@ -610,6 +612,36 @@ export function DayRangeContainer() {
                   </div>
                 </div>
               </div>
+
+              {/* Filter 4: Index Confluence */}
+              {asset.earlyMoveDetector.learnedSafeguards.indexConfluenceFilter && (
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <CheckCircle2 size={16} color="#3b82f6" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <div>
+                    <div style={{ fontSize: '11px', fontWeight: 800, color: '#60a5fa' }}>
+                      {asset.earlyMoveDetector.learnedSafeguards.indexConfluenceFilter.label}
+                    </div>
+                    <div style={{ fontSize: '10px', color: '#94a3b8', lineHeight: 1.3, marginTop: '2px' }}>
+                      {asset.earlyMoveDetector.learnedSafeguards.indexConfluenceFilter.description}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Filter 5: Liquidity Sweep */}
+              {asset.earlyMoveDetector.learnedSafeguards.liquiditySweepFilter && (
+                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                  <CheckCircle2 size={16} color="#eab308" style={{ marginTop: '2px', flexShrink: 0 }} />
+                  <div>
+                    <div style={{ fontSize: '11px', fontWeight: 800, color: '#facc15' }}>
+                      {asset.earlyMoveDetector.learnedSafeguards.liquiditySweepFilter.label}
+                    </div>
+                    <div style={{ fontSize: '10px', color: '#94a3b8', lineHeight: 1.3, marginTop: '2px' }}>
+                      {asset.earlyMoveDetector.learnedSafeguards.liquiditySweepFilter.description}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
