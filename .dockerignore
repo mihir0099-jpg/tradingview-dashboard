@@ -1,0 +1,10 @@
+﻿node_modules
+.git
+.agents
+.agents.zip
+*.log
+scratch
+backend/data/*.log
+__pycache__
+*.pyc
+.env
