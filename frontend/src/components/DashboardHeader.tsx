@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search, X, Activity, RefreshCw, Landmark, TrendingUp, Layers } from 'lucide-react';
+import { getBackendUrl, setCustomBackendUrl } from '../utils/config';
 
 interface DashboardHeaderProps {
   currentSymbol: string;
@@ -39,7 +40,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   useEffect(() => {
     const loadPresets = async () => {
       try {
-        const backendUrl = (window.location.hostname.endsWith('github.io') ? 'https://tradingview-dashboard-1.onrender.com' : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+        const backendUrl = getBackendUrl();
         const res = await fetch(`${backendUrl}/api/symbols/presets`);
         if (res.ok) {
           const data = await res.json();
@@ -62,7 +63,7 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     const delayDebounce = setTimeout(async () => {
       setLoadingApi(true);
       try {
-        const backendUrl = (window.location.hostname.endsWith('github.io') ? 'https://tradingview-dashboard-1.onrender.com' : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+        const backendUrl = getBackendUrl();
         const res = await fetch(`${backendUrl}/api/search?query=${encodeURIComponent(searchQuery)}`);
         if (res.ok) {
           const data = await res.json();
@@ -228,7 +229,28 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <RefreshCw size={15} />
           </button>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'var(--bg-input)', border: '1px solid var(--border-color)', padding: '6px 12px', borderRadius: '8px' }}>
+          <div 
+            onClick={() => {
+              const current = getBackendUrl();
+              const next = window.prompt('Active Backend API & WebSocket URL:\n(Leave empty to reset to default)', current);
+              if (next !== null) {
+                setCustomBackendUrl(next);
+                window.location.reload();
+              }
+            }}
+            title={`Backend: ${getBackendUrl() || 'Auto'} (Tap to edit)`}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px', 
+              background: 'var(--bg-input)', 
+              border: '1px solid var(--border-color)', 
+              padding: '6px 12px', 
+              borderRadius: '8px',
+              cursor: 'pointer',
+              userSelect: 'none'
+            }}
+          >
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: getStatusColor(), boxShadow: `0 0 10px ${getStatusColor()}` }}></div>
             <span style={{ fontSize: '12px', textTransform: 'capitalize', fontWeight: 'bold', color: 'var(--text-primary)' }}>
               {connectionStatus === 'connected' ? 'Live' : connectionStatus}
