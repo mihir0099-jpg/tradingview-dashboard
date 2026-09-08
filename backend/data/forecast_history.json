@@ -1758,5 +1758,115 @@
     "predicted_low": 51031.63,
     "predicted_close": 51061.57,
     "createdAt": 1788775065535
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788838717,
+    "predicted": 23872.8,
+    "predicted_open": 23861.18,
+    "predicted_high": 23868.81,
+    "predicted_low": 23854.55,
+    "predicted_close": 23862.13,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788840517,
+    "predicted": 23830.26,
+    "predicted_open": 23852.06,
+    "predicted_high": 23859.03,
+    "predicted_low": 23844.5,
+    "predicted_close": 23853.14,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788842317,
+    "predicted": 23853.02,
+    "predicted_open": 23843.58,
+    "predicted_high": 23850.8,
+    "predicted_low": 23837.63,
+    "predicted_close": 23843.66,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788844117,
+    "predicted": 23827.19,
+    "predicted_open": 23834.39,
+    "predicted_high": 23839.91,
+    "predicted_low": 23826.21,
+    "predicted_close": 23834.35,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788845917,
+    "predicted": 23830.15,
+    "predicted_open": 23826.08,
+    "predicted_high": 23831.7,
+    "predicted_low": 23818.57,
+    "predicted_close": 23825.83,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788847717,
+    "predicted": 23819.39,
+    "predicted_open": 23819.86,
+    "predicted_high": 23826.11,
+    "predicted_low": 23811.65,
+    "predicted_close": 23818.62,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788849517,
+    "predicted": 23815.4,
+    "predicted_open": 23812.68,
+    "predicted_high": 23818.71,
+    "predicted_low": 23804.67,
+    "predicted_close": 23813.12,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788851317,
+    "predicted": 23807,
+    "predicted_open": 23808.66,
+    "predicted_high": 23814.94,
+    "predicted_low": 23801.75,
+    "predicted_close": 23809.54,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788853117,
+    "predicted": 23790.94,
+    "predicted_open": 23807.14,
+    "predicted_high": 23814.6,
+    "predicted_low": 23799.78,
+    "predicted_close": 23807.96,
+    "createdAt": 1788836966185
+  },
+  {
+    "symbol": "NIFTY",
+    "timeframe": "30",
+    "targetTime": 1788854917,
+    "predicted": 23801.22,
+    "predicted_open": 23806.81,
+    "predicted_high": 23813.84,
+    "predicted_low": 23798.31,
+    "predicted_close": 23808.26,
+    "createdAt": 1788836966185
   }
 ]

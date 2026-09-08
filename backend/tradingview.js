@@ -213,6 +213,7 @@ export class TradingViewBridge {
       };
 
       session.on("du", duListener);
+      session.on("timescale_update", duListener);
 
       // Define cleanup function
       cleanupFunc = async () => {
@@ -221,6 +222,7 @@ export class TradingViewBridge {
         decrementCounter();
         try {
           session.off("du", duListener);
+          session.off("timescale_update", duListener);
         } catch (e) {}
         try {
           if (series) await series.close();
