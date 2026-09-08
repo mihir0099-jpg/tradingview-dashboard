@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import React, { useState, useEffect } from 'react';
 import { RefreshCw, Clock, Play } from 'lucide-react';
 
@@ -63,7 +64,7 @@ export const ScannerContainer: React.FC<ScannerContainerProps> = ({
     
     const fetchResults = async () => {
       try {
-        const backendUrl = (window.location.hostname.endsWith('github.io') ? 'https://tradingview-dashboard-1.onrender.com' : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+        const backendUrl = getBackendUrl();
         const res = await fetch(`${backendUrl}/api/scanner/results?timeframe=${activeTimeframe}&level=${activeLevel}&_t=${Date.now()}`);
         if (res.ok) {
           const data = await res.json();
@@ -107,7 +108,7 @@ export const ScannerContainer: React.FC<ScannerContainerProps> = ({
   const handleManualRefresh = async () => {
     setIsRefreshing(true);
     try {
-      const backendUrl = (window.location.hostname.endsWith('github.io') ? 'https://tradingview-dashboard-1.onrender.com' : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+      const backendUrl = getBackendUrl();
       await fetch(`${backendUrl}/api/scanner/trigger-scan?timeframe=${activeTimeframe}&_t=${Date.now()}`, { method: 'POST' });
       // Short delay for backend to queue it up
       await new Promise(r => setTimeout(r, 1500));

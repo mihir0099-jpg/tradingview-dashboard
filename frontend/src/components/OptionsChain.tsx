@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import { useState, useEffect, useRef } from 'react';
 import { Loader2, AlertCircle, TrendingUp, Search, X } from 'lucide-react';
 
@@ -33,7 +34,7 @@ interface SearchResult {
 }
 
 export function OptionsChain({ currentSymbol, onSymbolChange, onSwitchToChart }: OptionsChainProps) {
-  const backendUrl = (window.location.hostname.endsWith('github.io') ? 'https://tradingview-dashboard-1.onrender.com' : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+  const backendUrl = getBackendUrl();
 
   const [expiry, setExpiry] = useState<string>('');
   const [data, setData] = useState<OptionChainResponse | null>(null);

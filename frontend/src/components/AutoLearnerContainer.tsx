@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import React, { useState, useEffect } from 'react';
 import { 
   ShieldAlert, 
@@ -74,9 +75,7 @@ export function AutoLearnerContainer() {
   const [testIbWidth, setTestIbWidth] = useState('0.45');
   const [evalResult, setEvalResult] = useState<EvaluationResult | null>(null);
 
-  const backendUrl = (window.location.hostname.endsWith('github.io') 
-    ? 'https://tradingview-dashboard-1.onrender.com' 
-    : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+  const backendUrl = getBackendUrl();
 
   const fetchData = async () => {
     setLoading(true);

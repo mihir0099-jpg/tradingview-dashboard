@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import React, { useState, useEffect } from 'react';
 import { Zap, RefreshCw, TrendingUp, TrendingDown, Target, BarChart2, Award, Brain, Download, FolderArchive } from 'lucide-react';
 
@@ -182,12 +183,6 @@ export function PcrVelocityContainer() {
   const [snapshotMsg, setSnapshotMsg] = useState<string | null>(null);
   const [activeAsset, setActiveAsset] = useState<'both' | 'nifty' | 'banknifty'>('both');
 
-
-  const getBackendUrl = () => {
-    return (window.location.hostname.endsWith('github.io')
-      ? 'https://tradingview-dashboard-1.onrender.com'
-      : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
-  };
 
   const handleSaveSnapshot = async () => {
     try {

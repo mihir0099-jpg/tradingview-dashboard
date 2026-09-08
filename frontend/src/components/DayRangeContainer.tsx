@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import React, { useState, useEffect } from 'react';
 import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu, Radar, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
@@ -123,12 +124,6 @@ export function DayRangeContainer() {
   const [selectedHorizon, setSelectedHorizon] = useState<'daily' | 'weekly' | 'monthly' | 'yearly'>('daily');
   const [loading, setLoading] = useState<boolean>(true);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
-
-  const getBackendUrl = () => {
-    return window.location.hostname.endsWith('github.io')
-      ? 'https://tradingview-dashboard-1.onrender.com'
-      : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin);
-  };
 
   const fetchRangeData = async (isManual = false) => {
     if (isManual) setIsRefreshing(true);

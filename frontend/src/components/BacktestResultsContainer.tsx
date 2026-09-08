@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import React, { useState, useEffect, useRef } from 'react';
 import { Zap, Volume2, VolumeX, AlertTriangle, ArrowUpRight, ArrowDownRight, ShieldCheck, Target, Activity, RefreshCw } from 'lucide-react';
 
@@ -23,9 +24,7 @@ interface LiveSignal {
 export function BacktestResultsContainer() {
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [activeSignals, setActiveSignals] = useState<LiveSignal[]>([]);
-  const backendUrl = (window.location.port && window.location.port !== '3002')
-    ? 'http://localhost:3002'
-    : window.location.origin;
+  const backendUrl = getBackendUrl();
 
   const [isTraining, setIsTraining] = useState<boolean>(false);
   const [trainingLog, setTrainingLog] = useState<string>('');

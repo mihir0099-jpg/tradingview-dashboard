@@ -11,11 +11,8 @@ export class TradingViewBridge {
   }
 
   async getSession() {
-    // If no valid token is configured, skip WebSocket connection entirely
-    const token = process.env.TRADINGVIEW_TOKEN;
-    if (!token || token === '' || token === 'your_tradingview_sessionid_cookie_here') {
-      return null; // No token = no live data, serve from cache only
-    }
+    const rawToken = process.env.TRADINGVIEW_TOKEN;
+    const token = (rawToken && rawToken.trim() !== '' && rawToken !== 'your_tradingview_sessionid_cookie_here') ? rawToken.trim() : null;
 
     if (this.sharedSession) {
       return this.sharedSession;
@@ -27,11 +24,10 @@ export class TradingViewBridge {
     }
 
     this.sessionPromise = (async () => {
-      console.log('[TV Bridge] Using TradingView session token');
-      console.log('[TV Bridge] Connecting new shared TradingView session...');
+      console.log(`[TV Bridge] Connecting new shared TradingView session (${token ? 'Authorized token' : 'Public Anonymous'})...`);
       const session = await Promise.race([
-        createSession(token),
-        new Promise((_, reject) => setTimeout(() => reject(new Error('TradingView connection timeout')), 5000))
+        token ? createSession(token) : createSession(),
+        new Promise((_, reject) => setTimeout(() => reject(new Error('TradingView connection timeout')), 10000))
       ]).catch(err => {
         console.warn('[TV Bridge] Shared session connection warning:', err.message || err);
         return null;

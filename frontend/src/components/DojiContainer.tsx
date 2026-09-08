@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import { useEffect, useState } from 'react';
 import { Loader2, RefreshCw, AlertCircle, Info, Clock, Calendar } from 'lucide-react';
 
@@ -53,7 +54,7 @@ export function DojiContainer({ onSymbolSelect, onSwitchToChart, noVolumeFilter 
     try {
       setLoading(true);
       setError(null);
-      const backendUrl = (window.location.hostname.endsWith('github.io') ? 'https://tradingview-dashboard-1.onrender.com' : ((window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : window.location.origin));
+      const backendUrl = getBackendUrl();
       const response = await fetch(`${backendUrl}/api/doji-signals?slot=${slot}&scan=${force ? 'true' : 'false'}&_t=${Date.now()}`);
       if (!response.ok) {
         throw new Error('Failed to fetch Doji signals');

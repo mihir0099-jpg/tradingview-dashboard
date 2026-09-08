@@ -1,3 +1,4 @@
+import { getBackendUrl } from '../utils/config';
 import React, { useState, useEffect } from 'react';
 import { Zap, HelpCircle, AlertCircle, RefreshCw, BarChart2, Activity, TrendingUp, Calendar, Info, Clock } from 'lucide-react';
 
@@ -65,9 +66,7 @@ export function PatternForecasterContainer() {
   const [result, setResult] = useState<ForecastResult | null>(null);
   const [lastUpdatedTime, setLastUpdatedTime] = useState<string>(new Date().toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }));
 
-  const backendUrl = (window.location.port && window.location.port !== '3002')
-    ? 'http://localhost:3002'
-    : window.location.origin;
+  const backendUrl = getBackendUrl();
 
   const runForecast = async (targetSymbol?: string) => {
     const activeSym = targetSymbol || symbol;
