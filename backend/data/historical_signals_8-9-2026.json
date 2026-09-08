@@ -160,5 +160,23 @@
     "mathTrigger": "Bank Nifty Skew (+25.2%) with 🚀 IMMINENT BULLISH DRIVE DETECTED (60-90s).",
     "conceptUsed": "Skew Velocity Drift + Asymmetry Rebound",
     "isUrgent": true
+  },
+  {
+    "id": "NIFTY-LIVE-PE-23650",
+    "timestamp": "01:38 pm",
+    "symbol": "NIFTY 50",
+    "action": "BUY PE",
+    "strike": "23650 PE",
+    "currentOptionPrice": 120.77,
+    "entryRange": "₹115.9 - ₹123.2",
+    "spotPrice": 23648.4,
+    "spotSL": 23673.4,
+    "optionSL": 108.27,
+    "target1": 157,
+    "target2": 205.31,
+    "confidence": 94,
+    "mathTrigger": "Nifty Skew (-49.3%) with 📉 IMMINENT BEARISH BREAKDOWN DETECTED (60-90s).",
+    "conceptUsed": "Premium Elasticity + Put-Call Asymmetry",
+    "isUrgent": true
   }
 ]

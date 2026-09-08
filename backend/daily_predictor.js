@@ -236,7 +236,7 @@ export async function evaluatePastPredictions() {
         evaluated_at: new Date().toISOString()
       };
       updated = true;
-      console.log([Daily Predictor] Evaluated  for : Range Err= pts, High Err=, Low Err=);
+      console.log(`[Daily Predictor] Evaluated ${sym} for ${item.target_date}: Range Err=${rangeErr} pts, High Err=${highErr}, Low Err=${lowErr}`);
     }
   }
 

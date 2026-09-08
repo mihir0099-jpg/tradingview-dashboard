@@ -50,11 +50,11 @@
     },
     "z7_s3_s2": {
       "name": "Open Between S3 and S2",
-      "recommendation": "Rotational Balanced Day (46.9% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
-      "count": 32,
-      "greenPct": 46.9,
-      "avgRange": 230.2,
-      "avgMove": 21.7
+      "recommendation": "Rotational Balanced Day (45.5% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
+      "count": 33,
+      "greenPct": 45.5,
+      "avgRange": 227.3,
+      "avgMove": 17.8
     },
     "z8_s4_s3": {
       "name": "Open Between S4 and S3",
@@ -140,11 +140,11 @@
     },
     "z7_s3_s2": {
       "name": "Open Between S3 and S2",
-      "recommendation": "Rotational Balanced Day (48.9% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
-      "count": 45,
-      "greenPct": 48.9,
-      "avgRange": 604.2,
-      "avgMove": 9.7
+      "recommendation": "Rotational Balanced Day (47.8% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
+      "count": 46,
+      "greenPct": 47.8,
+      "avgRange": 598.1,
+      "avgMove": 4.9
     },
     "z8_s4_s3": {
       "name": "Open Between S4 and S3",
