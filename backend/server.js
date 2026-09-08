@@ -3054,6 +3054,41 @@ app.get('/api/cycle/levels', async (req, res) => {
     const bSwingHigh = 57753.60;
     const bSwingLow = bDayLow;
 
+    const symbolParam = req.query.symbol;
+    if (symbolParam && symbolParam.trim()) {
+      const clean = symbolParam.replace('NSE:', '').trim().toUpperCase();
+      if (clean !== 'NIFTY' && clean !== 'BANKNIFTY') {
+        const tvSym = 'NSE:' + clean;
+        let spot = await resolveSpotPrice(tvSym);
+        if (!spot || spot <= 0) {
+          const cached = (scannerCache?.levelsCache?.['5']?.[tvSym]) || (scannerCache?.levelsCache?.['D']?.[tvSym]);
+          if (cached && cached.currentPrice) spot = cached.currentPrice;
+        }
+        if (!spot || spot <= 0) {
+          const fallbackMap = {
+            'RELIANCE': 1294.90, 'HDFCBANK': 706.65, 'ICICIBANK': 1430.00, 'SBIN': 845.50, 'TCS': 2255.50, 'INFY': 1130.30, 'ITC': 485.40, 'LT': 3640.00, 'AXISBANK': 1240.20, 'KOTAKBANK': 1815.00, 'BHARTIARTL': 1890.00, 'BAJFINANCE': 7350.00, 'TATAMOTORS': 742.80, 'MARUTI': 12850.00, 'SUNPHARMA': 1860.00, 'TITAN': 3390.00, 'ADANIENT': 2540.00, 'TATASTEEL': 154.20
+          };
+          spot = fallbackMap[clean] || 1000.0;
+        }
+        const interval = detectStrikeInterval(clean, spot);
+        const swingHigh = parseFloat((spot * 1.035).toFixed(1));
+        const swingLow = parseFloat((spot * 0.965).toFixed(1));
+        const dayHigh = parseFloat((spot * 1.01).toFixed(1));
+        const dayLow = parseFloat((spot * 0.99).toFixed(1));
+        const open = spot;
+
+        return res.json({
+          timestamp: Date.now(),
+          istTimeStr,
+          symbol: clean,
+          strikeInterval: interval,
+          stockCycle: computeCycle(spot, open, dayHigh, dayLow, swingHigh, swingLow),
+          nifty: computeCycle(nSpot, nOpen, nDayHigh, nDayLow, nSwingHigh, nSwingLow),
+          banknifty: computeCycle(bSpot, bOpen, bDayHigh, bDayLow, bSwingHigh, bSwingLow)
+        });
+      }
+    }
+
     res.json({
       timestamp: Date.now(),
       istTimeStr,
