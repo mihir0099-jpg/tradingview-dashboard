@@ -24,6 +24,7 @@ import { WeeklySellingContainer } from './components/WeeklySellingContainer';
 import { PcrVelocityContainer } from './components/PcrVelocityContainer';
 import { DayRangeContainer } from './components/DayRangeContainer';
 import { AutoLearnerContainer } from './components/AutoLearnerContainer';
+import { CycleContainer } from './components/CycleContainer';
 
 function App() {
   const [symbol, setSymbol] = useState('NSE:NIFTY');
@@ -34,7 +35,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'day_range' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
+  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -202,6 +203,27 @@ function App() {
           }}
         >
           📐 Day Range
+        </button>
+        <button
+          onClick={() => setActiveTab('cycle')}
+          style={{
+            background: activeTab === 'cycle' ? 'rgba(234, 179, 8, 0.22)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'cycle' ? '2px solid #eab308' : '2px solid transparent',
+            color: activeTab === 'cycle' ? '#fde047' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '700',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🌀 Cycle (Sq of 9)
         </button>
         <button
           onClick={() => setActiveTab('auto_learner')}
@@ -674,6 +696,11 @@ function App() {
               onSymbolSelect={setSymbol}
               onSwitchToChart={() => setActiveTab('chart')}
             />
+          </div>
+        )}
+        {activeTab === 'cycle' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <CycleContainer />
           </div>
         )}
         

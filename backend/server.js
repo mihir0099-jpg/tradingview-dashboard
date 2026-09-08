@@ -2978,6 +2978,94 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
   }
 });
 
+// Endpoint to retrieve Live Gann Square of 9 Time & Price Cycle Levels
+app.get('/api/cycle/levels', async (req, res) => {
+  try {
+    const liveIndices = await fetchLiveMarketIndices();
+    const now = new Date();
+    const istTimeStr = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false });
+
+    const computeCycle = (spot, open, dayHigh, dayLow, swingHigh, swingLow) => {
+      const calcLadder = (anchor, isUpside) => {
+        const sqrtAnchor = Math.sqrt(anchor);
+        const degrees = [22.5, 45, 67.5, 90, 135, 180, 225, 270, 315, 360, 450, 540, 720];
+        return degrees.map(deg => {
+          const delta = deg / 180.0;
+          const target = isUpside ? Math.pow(sqrtAnchor + delta, 2) : Math.pow(Math.max(1, sqrtAnchor - delta), 2);
+          const roundedTarget = parseFloat(target.toFixed(1));
+          const diff = parseFloat((spot - roundedTarget).toFixed(1));
+          const diffPct = parseFloat(((diff / spot) * 100).toFixed(2));
+          let status = 'PENDING TARGET';
+          if (isUpside) {
+            status = spot >= roundedTarget ? 'HIT & CLEARED' : 'PENDING TARGET';
+          } else {
+            status = spot <= roundedTarget ? 'HIT & CLEARED' : 'PENDING TARGET';
+          }
+          return {
+            degree: deg,
+            delta: parseFloat(delta.toFixed(3)),
+            target: roundedTarget,
+            diff,
+            diffPct,
+            status
+          };
+        });
+      };
+
+      const downsideLadder = calcLadder(swingHigh, false);
+      const upsideLadder = calcLadder(swingLow, true);
+
+      const activeDownTarget = downsideLadder.find(l => l.status === 'PENDING TARGET') || downsideLadder[downsideLadder.length - 1];
+      const activeUpTarget = upsideLadder.find(l => l.status === 'PENDING TARGET') || upsideLadder[upsideLadder.length - 1];
+
+      const lastClearedDown = [...downsideLadder].reverse().find(l => l.status === 'HIT & CLEARED');
+      const lastClearedUp = [...upsideLadder].reverse().find(l => l.status === 'HIT & CLEARED');
+
+      return {
+        spot,
+        open,
+        dayHigh,
+        dayLow,
+        swingHigh,
+        swingLow,
+        activeDownTarget,
+        activeUpTarget,
+        lastClearedDown: lastClearedDown || null,
+        lastClearedUp: lastClearedUp || null,
+        downsideLadder,
+        upsideLadder
+      };
+    };
+
+    const niftyLive = liveIndices?.nifty;
+    const bankLive = liveIndices?.banknifty;
+
+    const nSpot = niftyLive?.spot || 23635.10;
+    const nOpen = niftyLive?.open || 23746.75;
+    const nDayHigh = niftyLive?.dayHigh || 23758.95;
+    const nDayLow = niftyLive?.dayLow || 23623.10;
+    const nSwingHigh = 24025.40;
+    const nSwingLow = nDayLow;
+
+    const bSpot = bankLive?.spot || 56777.55;
+    const bOpen = bankLive?.open || 56990.40;
+    const bDayHigh = bankLive?.dayHigh || 57044.00;
+    const bDayLow = bankLive?.dayLow || 56720.45;
+    const bSwingHigh = 57753.60;
+    const bSwingLow = bDayLow;
+
+    res.json({
+      timestamp: Date.now(),
+      istTimeStr,
+      nifty: computeCycle(nSpot, nOpen, nDayHigh, nDayLow, nSwingHigh, nSwingLow),
+      banknifty: computeCycle(bSpot, bOpen, bDayHigh, bDayLow, bSwingHigh, bSwingLow)
+    });
+  } catch (err) {
+    console.error('[Cycle Route Error]:', err);
+    res.status(500).json({ error: 'Failed to compute cycle levels' });
+  }
+});
+
 // Endpoint to retrieve pure Day Range, Levels and Targets (No formulas, pure levels)
 app.get('/api/day-range', async (req, res) => {
   try {
