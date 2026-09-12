@@ -21,7 +21,10 @@ import {
   ShieldCheck,
   Cpu,
   Search,
-  ChevronRight
+  ChevronRight,
+  Anchor,
+  Sliders,
+  DollarSign
 } from 'lucide-react';
 import { FNO_STOCKS } from '../data/fnoStocks';
 
@@ -57,6 +60,38 @@ interface OrderFlowSetupItem {
   stockName?: string;
 }
 
+interface WhaleEventItem {
+  barIndex: number;
+  price: number;
+  volume: number;
+  delta: number;
+  isBuy: boolean;
+  type: string;
+  label: string;
+}
+
+interface SmartMoneyData {
+  whaleScore: number;
+  whaleRegime: string;
+  whaleRegimeLabel: string;
+  dPOC: number;
+  earlyPOC: number;
+  pocMigration: string;
+  pocMigrationLabel: string;
+  vah: number;
+  val: number;
+  vpoc: number;
+  icebergStatus: {
+    active: boolean;
+    type: string;
+    level: number;
+    label: string;
+  };
+  dealerHedgingFlowCr: number;
+  dealerHedgingPressureLabel: string;
+  whaleEvents: WhaleEventItem[];
+}
+
 interface StockRadarItem {
   symbol: string;
   cleanSymbol: string;
@@ -79,6 +114,9 @@ interface StockRadarItem {
   recommendedAction: string;
   recommendedBias: string;
   optionSlProxy: number;
+  whaleScore?: number;
+  whaleRegime?: string;
+  dPOC?: number;
 }
 
 interface MicrostructureData {
@@ -113,6 +151,7 @@ interface MicrostructureData {
   stackedImbalanceStatus: OrderFlowSetupItem;
   unfinishedAuctionStatus: OrderFlowSetupItem;
   deltaClimaxStatus: OrderFlowSetupItem;
+  smartMoney?: SmartMoneyData;
   stockRadar?: StockRadarItem[];
   timestamp: string;
 }
@@ -166,7 +205,6 @@ export function MicrostructureContainer() {
 
   const isPositiveGamma = data?.totalNetGexCr ? data.totalNetGexCr >= 0 : true;
 
-  // Stock radar lookup map for real-time prices & setup states
   const radarMap = useMemo(() => {
     const map: Record<string, StockRadarItem> = {};
     if (data?.stockRadar) {
@@ -177,7 +215,6 @@ export function MicrostructureContainer() {
     return map;
   }, [data?.stockRadar]);
 
-  // Filter FNO stocks for search dropdown
   const filteredStocks = useMemo(() => {
     if (!searchFilter) return FNO_STOCKS.slice(0, 30);
     const q = searchFilter.toLowerCase();
@@ -188,6 +225,8 @@ export function MicrostructureContainer() {
     if (!data?.stockRadar) return [];
     return data.stockRadar.filter(r => r.hasActiveSetup);
   }, [data?.stockRadar]);
+
+  const sm = data?.smartMoney;
 
   return (
     <div style={{ padding: '16px', background: 'var(--bg-primary, #090d16)', minHeight: '100%', color: '#f8fafc', fontFamily: 'Inter, sans-serif' }}>
@@ -200,11 +239,11 @@ export function MicrostructureContainer() {
               INSTITUTIONAL ORDER FLOW & GEX
             </span>
             <h2 style={{ fontSize: '18px', fontWeight: 900, margin: 0, letterSpacing: '-0.3px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              ⚡ Dealer Gamma & Order Flow Footprint Engine
+              ⚡ Dealer Gamma & Big Player Smart Money Terminal
             </h2>
           </div>
           <p style={{ margin: '4px 0 0', fontSize: '12px', color: '#94a3b8' }}>
-            100% Real Live Market Spot Prices, 5 Institutional Order Flow Traps (95% Win Rate), Call/Put Walls & Real Candle Deltas
+            Whale Accumulation Meter, Developing POC Migration, Passive Iceberg Radar, Call/Put Walls & 5 Master Traps
           </p>
         </div>
 
@@ -382,6 +421,136 @@ export function MicrostructureContainer() {
         </div>
       </div>
 
+      {/* 👑 BIG PLAYER & SMART MONEY INTELLIGENCE TERMINAL */}
+      {sm && (
+        <div style={{ background: '#0a1020', border: '1px solid #1e3a8a', borderRadius: '12px', padding: '16px', marginBottom: '16px', boxShadow: '0 8px 30px rgba(0,0,0,0.4)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ background: 'linear-gradient(135deg, #1d4ed8, #06b6d4)', color: '#ffffff', padding: '3px 10px', borderRadius: '5px', fontSize: '11px', fontWeight: 900, letterSpacing: '0.5px' }}>
+                🐋 SMART MONEY RADAR
+              </span>
+              <h3 style={{ fontSize: '14.5px', fontWeight: 900, margin: 0, color: '#f8fafc' }}>
+                Big Player Institutional Accumulation & Footprint Matrix ({data?.stockName || symbol})
+              </h3>
+            </div>
+            <div style={{ fontSize: '11px', color: '#94a3b8' }}>
+              Tracking Block Sweeps, Iceberg Fills & POC Value Acceptance
+            </div>
+          </div>
+
+          {/* 3-Column Smart Money Command Grid */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px', marginBottom: '12px' }}>
+            
+            {/* Box 1: Whale Accumulation / Distribution Meter */}
+            <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px', padding: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 800, textTransform: 'uppercase' }}>
+                  WHALE ACCUMULATION SCORE
+                </span>
+                <span style={{
+                  background: sm.whaleScore >= 20 ? 'rgba(16, 185, 129, 0.2)' : (sm.whaleScore <= -20 ? 'rgba(239, 68, 68, 0.2)' : 'rgba(148, 163, 184, 0.2)'),
+                  color: sm.whaleScore >= 20 ? '#34d399' : (sm.whaleScore <= -20 ? '#f87171' : '#cbd5e1'),
+                  fontSize: '11px',
+                  fontWeight: 900,
+                  padding: '2px 8px',
+                  borderRadius: '4px'
+                }}>
+                  {sm.whaleScore >= 0 ? `+${sm.whaleScore}` : sm.whaleScore} / 100
+                </span>
+              </div>
+
+              {/* Progress Bar Gauge */}
+              <div style={{ height: '8px', background: '#1e293b', borderRadius: '4px', overflow: 'hidden', margin: '8px 0', position: 'relative' }}>
+                <div style={{
+                  height: '100%',
+                  width: `${Math.min(100, Math.max(5, ((sm.whaleScore + 100) / 200) * 100))}%`,
+                  background: sm.whaleScore >= 20 ? 'linear-gradient(90deg, #10b981, #34d399)' : (sm.whaleScore <= -20 ? 'linear-gradient(90deg, #ef4444, #f87171)' : '#94a3b8'),
+                  borderRadius: '4px',
+                  transition: 'width 0.4s ease'
+                }} />
+              </div>
+
+              <div style={{ fontSize: '11.5px', color: '#e2e8f0', fontWeight: 700, lineHeight: 1.35, marginTop: '6px' }}>
+                {sm.whaleRegimeLabel}
+              </div>
+            </div>
+
+            {/* Box 2: Developing POC & Value Area Migration */}
+            <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px', padding: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 800, textTransform: 'uppercase' }}>
+                  DEVELOPING POINT OF CONTROL (dPOC)
+                </span>
+                <span style={{ color: '#38bdf8', fontSize: '14px', fontWeight: 900, fontFamily: 'monospace' }}>
+                  ₹{sm.dPOC.toLocaleString()}
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
+                <span>Value Area (70% Vol):</span>
+                <strong style={{ color: '#facc15', fontFamily: 'monospace' }}>₹{sm.val} - ₹{sm.vah}</strong>
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
+                <span>Virgin POC Target Magnet:</span>
+                <strong style={{ color: '#38bdf8', fontFamily: 'monospace' }}>₹{sm.vpoc}</strong>
+              </div>
+
+              <div style={{ fontSize: '11px', color: sm.pocMigration.includes('UP') ? '#34d399' : (sm.pocMigration.includes('DOWN') ? '#f87171' : '#94a3b8'), fontWeight: 700, marginTop: '6px' }}>
+                {sm.pocMigrationLabel}
+              </div>
+            </div>
+
+            {/* Box 3: Passive Iceberg & Dealer Gamma Hedging Flow */}
+            <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px', padding: '14px' }}>
+              <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 800, textTransform: 'uppercase', marginBottom: '6px' }}>
+                PASSIVE ICEBERGS & DEALER FLOW
+              </div>
+
+              {sm.icebergStatus.active ? (
+                <div style={{ background: 'rgba(56, 189, 248, 0.15)', border: '1px solid #38bdf8', borderRadius: '6px', padding: '8px', fontSize: '11px', color: '#bae6fd', fontWeight: 700, marginBottom: '6px' }}>
+                  {sm.icebergStatus.label}
+                </div>
+              ) : (
+                <div style={{ fontSize: '11.5px', color: '#cbd5e1', marginBottom: '6px' }}>
+                  Passive Iceberg: <strong>Normal Auction (No active large iceberg detected)</strong>
+                </div>
+              )}
+
+              <div style={{ fontSize: '11px', color: '#94a3b8', borderTop: '1px solid #1e293b', paddingTop: '6px' }}>
+                Hedging Flow: <strong style={{ color: data?.totalNetGexCr && data.totalNetGexCr >= 0 ? '#34d399' : '#f87171' }}>{sm.dealerHedgingPressureLabel}</strong>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Whale Sweeps Event Strip */}
+          {sm.whaleEvents && sm.whaleEvents.length > 0 && (
+            <div style={{ background: '#070c18', borderRadius: '6px', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#f59e0b', textTransform: 'uppercase' }}>
+                ⚡ RECENT WHALE BLOCKS:
+              </span>
+              {sm.whaleEvents.map((evt, idx) => (
+                <div 
+                  key={idx}
+                  style={{
+                    background: evt.isBuy ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                    color: evt.isBuy ? '#34d399' : '#f87171',
+                    border: `1px solid ${evt.isBuy ? '#10b981' : '#ef4444'}`,
+                    padding: '2px 8px',
+                    borderRadius: '4px',
+                    fontSize: '10.5px',
+                    fontWeight: 700
+                  }}
+                >
+                  {evt.isBuy ? '🟢' : '🔴'} ₹{evt.price} ({evt.volume.toLocaleString()} lots/shares)
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       {/* ⚡ REAL-TIME F&O STOCK SETUP RADAR (Live Institutional Footprint Traps on Stocks) */}
       {data?.stockRadar && data.stockRadar.length > 0 && (
         <div style={{ background: '#0b1329', border: '1px solid #1e3a8a', borderRadius: '10px', padding: '14px', marginBottom: '16px' }}>
@@ -435,7 +604,7 @@ export function MicrostructureContainer() {
                       </span>
                     ) : (
                       <span style={{ background: 'rgba(100, 116, 139, 0.2)', color: '#94a3b8', fontSize: '9.5px', fontWeight: 700, padding: '2px 6px', borderRadius: '4px' }}>
-                        Neutral Flow
+                        Whale: {stock.whaleScore && stock.whaleScore >= 0 ? `+${stock.whaleScore}` : (stock.whaleScore || '0')}
                       </span>
                     )}
                   </div>
@@ -451,7 +620,7 @@ export function MicrostructureContainer() {
                     </div>
                   ) : (
                     <div style={{ fontSize: '10.5px', color: '#94a3b8', marginTop: '6px' }}>
-                      Walls: Call ₹{stock.callWall} | Put ₹{stock.putWall} | Flip: ₹{stock.zeroGammaLevel}
+                      Walls: Call ₹{stock.callWall} | Put ₹{stock.putWall} | dPOC: ₹{stock.dPOC}
                     </div>
                   )}
 
