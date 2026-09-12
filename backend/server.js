@@ -8,7 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { startScanner, scannerCache, findClosestValidOptionSymbol, fetchCandlesForSymbol, queueScan } from './scanner.js';
 import { evaluateSetupInMemory, recordOutcome, loadState, loadCohorts } from './meta_learner.js';
-import { computeMicrostructure, scanTopFnoStockSetups, FNO_STOCK_METADATA } from './microstructure.js';
+import { computeMicrostructure, scanTopFnoStockSetups, FNO_STOCK_METADATA, fetchRealtimeMicrostructureFeed } from './microstructure.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -4176,21 +4176,24 @@ app.get('/api/discoveries', (req, res) => {
 });
 
 // Live Institutional Dealer Gamma Exposure (GEX) & Order Flow Microstructure API
-app.get('/api/microstructure/gamma-orderflow', (req, res) => {
+app.get('/api/microstructure/gamma-orderflow', async (req, res) => {
   try {
     const sym = req.query.symbol || 'NSE:NIFTY';
     const cleanSym = sym.replace('NSE:', '').toUpperCase();
     const isBank = sym.includes('BANKNIFTY');
     const isNifty = sym.includes('NIFTY') && !isBank && !sym.includes('FIN');
 
-    const candles = (tvBridge && tvBridge.historicalData && tvBridge.historicalData[sym]) ? tvBridge.historicalData[sym] : [];
-    let spot = (candles.length > 0 && candles[candles.length - 1].close) ? candles[candles.length - 1].close : null;
+    // 1. Fetch 100% REAL LIVE MARKET SPOT & TRUE CANDLES from Yahoo Finance
+    const realFeed = await fetchRealtimeMicrostructureFeed(sym);
+    let spot = realFeed.spot;
+    let candles = (realFeed.candles && realFeed.candles.length > 0) ? realFeed.candles : [];
 
-    if (!spot || spot <= 0) {
-      if (scannerCache && scannerCache.levelsCache) {
-        spot = scannerCache.levelsCache['5']?.[sym]?.currentPrice || scannerCache.levelsCache['D']?.[sym]?.currentPrice;
-      }
+    // Prioritize TradingView bridge WebSocket if actively receiving fresh candles
+    if (tvBridge && tvBridge.historicalData && tvBridge.historicalData[sym] && tvBridge.historicalData[sym].length > 0) {
+      candles = tvBridge.historicalData[sym];
+      spot = candles[candles.length - 1].close;
     }
+
     if (!spot || spot <= 0) {
       if (isBank) spot = global.indexOpenPrices.BANKNIFTY || 56606.55;
       else if (isNifty) spot = global.indexOpenPrices.NIFTY || 23398.1;
@@ -4208,7 +4211,7 @@ app.get('/api/microstructure/gamma-orderflow', (req, res) => {
     }
 
     const data = computeMicrostructure(sym, spot, candles);
-    const stockRadar = scanTopFnoStockSetups(priceMap);
+    const stockRadar = await scanTopFnoStockSetups(priceMap);
 
     res.json({
       ...data,
