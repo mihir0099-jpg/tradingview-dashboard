@@ -10,6 +10,7 @@ import { startScanner, scannerCache, findClosestValidOptionSymbol, fetchCandlesF
 import { evaluateSetupInMemory, recordOutcome, loadState, loadCohorts } from './meta_learner.js';
 import { computeMicrostructure, scanTopFnoStockSetups, FNO_STOCK_METADATA, fetchRealtimeMicrostructureFeed } from './microstructure.js';
 import { computeStocksTrackerOverview, calculateParticipantPositioning, evaluateEODStocksTrackerOutcomes, startAutonomousEODStocksTrackerScheduler, getAutoSchedulerStatus } from './stocksTracker.js';
+import { computeStocksMovingOverview } from './stocksMoving.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -1398,7 +1399,29 @@ app.get('/api/scanner/results', (req, res) => {
   const tf = req.query.timeframe || '5';
   const level = req.query.level;
 
-  const rawResults = scannerCache.results[tf] || {
+  let rawResults = scannerCache.results[tf];
+  
+  // If memory cache is empty, check scanner_results_backup.json on disk
+  const hasItems = rawResults && Object.values(rawResults).some(arr => arr && arr.length > 0);
+  if (!hasItems) {
+    try {
+      const resultsPath = path.join(__dirname, 'data/scanner_results_backup.json');
+      if (fs.existsSync(resultsPath)) {
+        const diskData = JSON.parse(fs.readFileSync(resultsPath, 'utf8'));
+        if (diskData.results && diskData.results[tf]) {
+          scannerCache.results[tf] = diskData.results[tf];
+          rawResults = diskData.results[tf];
+          if (diskData.lastScanTime && diskData.lastScanTime[tf]) {
+            scannerCache.lastScanTime[tf] = new Date(diskData.lastScanTime[tf]);
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('[Scanner Route] Failed reading backup results from disk:', e.message);
+    }
+  }
+
+  rawResults = rawResults || {
     level1: [], level2: [], level3: [], level4: [], level5: [],
     level6: [], level7: [], level8: [], level9: [], level10: []
   };
@@ -1413,9 +1436,9 @@ app.get('/api/scanner/results', (req, res) => {
     processedResults[lvl] = (level === undefined || lvl === level) ? rawResults[lvl] : [];
   });
 
-  res.setHeader('Cache-Control', 'public, max-age=60'); // Cache 60s - scanner refreshes every few minutes
+  res.setHeader('Cache-Control', 'public, max-age=10');
   res.json({
-    lastScanTime: scannerCache.lastScanTime[tf] || null,
+    lastScanTime: scannerCache.lastScanTime[tf] || new Date().toISOString(),
     isScanning: scannerCache.isScanning[tf] || false,
     counts,
     results: processedResults,
@@ -4330,6 +4353,18 @@ app.get('/api/stocks-tracker/forensic-deep-dive', async (req, res) => {
       historicalCaseStudies: data.historicalCaseStudies,
       timestamp: data.timestamp
     });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STOCKS MOVING: LIVE F&O INSTITUTIONAL SITUATION & MOVING SCANNER
+// ─────────────────────────────────────────────────────────────────────────────
+app.get('/api/stocks-moving/overview', async (req, res) => {
+  try {
+    const data = await computeStocksMovingOverview(tvBridge);
+    res.json(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
