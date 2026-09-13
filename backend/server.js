@@ -4315,6 +4315,26 @@ app.get('/api/stocks-tracker/stealth-vault', async (req, res) => {
   }
 });
 
+app.get('/api/stocks-tracker/forensic-deep-dive', async (req, res) => {
+  try {
+    const symbol = req.query.symbol || 'NSE:NIFTY';
+    const priceMap = {};
+    if (scannerCache && scannerCache.levelsCache && scannerCache.levelsCache['5']) {
+      for (const [k, v] of Object.entries(scannerCache.levelsCache['5'])) {
+        if (v && v.currentPrice) priceMap[k] = v.currentPrice;
+      }
+    }
+    const data = await computeStocksTrackerOverview(symbol, priceMap);
+    res.json({
+      forensicMicrostructure: data.forensicMicrostructure,
+      historicalCaseStudies: data.historicalCaseStudies,
+      timestamp: data.timestamp
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 app.get('/api/stocks-tracker/participant-oi', (req, res) => {
   try {
     const data = calculateParticipantPositioning();

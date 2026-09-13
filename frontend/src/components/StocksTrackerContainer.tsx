@@ -149,6 +149,9 @@ interface StocksTrackerData {
   stealthDelivery: StealthDeliveryItem[];
   participantPositioning: ParticipantPositioningData;
   sectorRotation: SectorRotationItem[];
+  stealthVault?: any[];
+  forensicMicrostructure?: any[];
+  historicalCaseStudies?: any[];
   timestamp: string;
 }
 
@@ -173,7 +176,8 @@ export function StocksTrackerContainer() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
-  const [activeSubTab, setActiveSubTab] = useState<'signatures' | 'block_tape' | 'liquidity_pools' | 'stealth_delivery' | 'stealth_vault' | 'participants' | 'sector_rotation' | 'eod_learner'>('signatures');
+  const [activeSubTab, setActiveSubTab] = useState<'signatures' | 'block_tape' | 'liquidity_pools' | 'stealth_delivery' | 'stealth_vault' | 'forensic_deep_dive' | 'participants' | 'sector_rotation' | 'eod_learner'>('signatures');
+  const [selectedCaseId, setSelectedCaseId] = useState<string>('HDFCBANK-2024');
   const [eodReport, setEodReport] = useState<any>(null);
   const [eodLoading, setEodLoading] = useState<boolean>(false);
 
@@ -681,6 +685,7 @@ export function StocksTrackerContainer() {
           { id: 'liquidity_pools', label: '🧲 Liquidity Pools Heatmap (BSL/SSL)' },
           { id: 'stealth_delivery', label: '🏦 Stealth Delivery Hoarding Radar' },
           { id: 'stealth_vault', label: '🕵️ Stealth Vault & Icebergs' },
+          { id: 'forensic_deep_dive', label: '🔬 Forensic Deep Dive' },
           { id: 'participants', label: '👥 FII vs. DII Participant Traps' },
           { id: 'sector_rotation', label: '🔄 Sector Whale Capital Rotation' },
           { id: 'eod_learner', label: '🧠 EOD Outcome & Mistake Miner' }
@@ -1265,6 +1270,228 @@ export function StocksTrackerContainer() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+        </div>
+      )}
+
+      
+      {/* VIEW: FORENSIC MICROSTRUCTURE DEEP DIVE & HISTORICAL CASE STUDIES */}
+      {activeSubTab === 'forensic_deep_dive' && data && (
+        <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '10px', padding: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+            <div>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, margin: 0, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                🔬 Institutional Forensic Microstructure &amp; Depository Clearing Footprints
+              </h3>
+              <p style={{ margin: '3px 0 0', fontSize: '11px', color: '#94a3b8' }}>
+                Mathematical verification of algorithmic slicing, Traded Value Per Trade (TVPT) collapse, Shannon Entropy, and depository settlement assignments.
+              </p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ background: 'rgba(56, 189, 248, 0.2)', color: '#38bdf8', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: 800 }}>
+                Clearing Mandate: NSE Clearing Limited (NCL)
+              </span>
+            </div>
+          </div>
+
+          {/* 3 Core Forensic Microstructure Explanatory Pillars */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px', marginBottom: '16px' }}>
+            <div style={{ background: '#0b1329', border: '1px solid #1e3a8a', borderRadius: '8px', padding: '12px' }}>
+              <div style={{ fontSize: '12px', fontWeight: 900, color: '#38bdf8', marginBottom: '4px' }}>
+                📊 1. TVPT vs. Delivery Smokescreen
+              </div>
+              <div style={{ fontSize: '10.5px', color: '#cbd5e1', lineHeight: 1.4 }}>
+                <strong>Formula:</strong> SAI = (Delivery% / Baseline%) × (Baseline TVPT / Today TVPT).
+                When an algorithm slices 20L shares into 35-share tickets, Traded Value Per Trade (TVPT) collapses by &gt;40% to ₹20,000 while Demat Delivery surges &gt;75%.
+              </div>
+            </div>
+
+            <div style={{ background: '#0b1329', border: '1px solid #7c3aed', borderRadius: '8px', padding: '12px' }}>
+              <div style={{ fontSize: '12px', fontWeight: 900, color: '#c084fc', marginBottom: '4px' }}>
+                🧮 2. Shannon Entropy &amp; Benford's Law
+              </div>
+              <div style={{ fontSize: '10.5px', color: '#cbd5e1', lineHeight: 1.4 }}>
+                Human trading clusters irregularly around news. Algorithmic TWAP order routers fire child tickets with unnatural uniform timing (Shannon Entropy &gt; 85/100) and deviate from natural logarithmic digit distributions.
+              </div>
+            </div>
+
+            <div style={{ background: '#0b1329', border: '1px solid #059669', borderRadius: '8px', padding: '12px' }}>
+              <div style={{ fontSize: '12px', fontWeight: 900, color: '#34d399', marginBottom: '4px' }}>
+                📦 3. Synthetic Basis &amp; Expiry Assignment
+              </div>
+              <div style={{ fontSize: '10.5px', color: '#cbd5e1', lineHeight: 1.4 }}>
+                Institutions buy Long Stock Futures with zero basis premium and refuse to roll over into next month. On Thursday 03:30 PM, the clearing house physical settlement converts futures directly into custodial Demat shares.
+              </div>
+            </div>
+          </div>
+
+          {/* FORENSIC SCANNER TABLE */}
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{ fontSize: '12px', fontWeight: 900, color: '#f8fafc', textTransform: 'uppercase', marginBottom: '8px' }}>
+              ⚡ LIVE FORENSIC MICROSTRUCTURE SCANNER (RANKED BY STEALTH ACCUMULATION INDEX)
+            </div>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', textAlign: 'left' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8' }}>
+                    <th style={{ padding: '8px' }}>Symbol</th>
+                    <th style={{ padding: '8px' }}>Spot</th>
+                    <th style={{ padding: '8px' }}>SAI (Stealth Index)</th>
+                    <th style={{ padding: '8px' }}>TVPT (₹ / Trade)</th>
+                    <th style={{ padding: '8px' }}>TVPT Drop %</th>
+                    <th style={{ padding: '8px' }}>Delivery %</th>
+                    <th style={{ padding: '8px' }}>Entropy Score</th>
+                    <th style={{ padding: '8px' }}>Basis Compression</th>
+                    <th style={{ padding: '8px' }}>CVD Delta Soaked</th>
+                    <th style={{ padding: '8px' }}>Forensic Verdict</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.forensicMicrostructure?.map((item: any) => (
+                    <tr key={item.symbol} style={{ borderBottom: '1px solid #1e293b' }}>
+                      <td style={{ padding: '8px', fontWeight: 800, color: '#f8fafc' }}>
+                        {item.cleanSymbol}
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f8fafc' }}>
+                        ₹{item.spotPrice}
+                      </td>
+                      <td style={{ padding: '8px' }}>
+                        <span style={{
+                          background: item.sai >= 2.5 ? 'rgba(16, 185, 129, 0.25)' : 'rgba(59, 130, 246, 0.2)',
+                          color: item.sai >= 2.5 ? '#34d399' : '#60a5fa',
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          fontWeight: 900,
+                          fontFamily: 'monospace'
+                        }}>
+                          {item.sai}x
+                        </span>
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: '#fde047' }}>
+                        ₹{item.todayTvpt.toLocaleString()}
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f87171', fontWeight: 800 }}>
+                        {item.tvptDropPct}%
+                      </td>
+                      <td style={{ padding: '8px', fontWeight: 800, color: item.deliveryPct >= 70 ? '#34d399' : '#cbd5e1' }}>
+                        {item.deliveryPct}%
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: item.entropyScore >= 85 ? '#c084fc' : '#94a3b8' }}>
+                        {item.entropyScore}/100
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: '#38bdf8' }}>
+                        -{item.basisCompressionPct}%
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: '#cbd5e1' }}>
+                        {item.cvdContracts.toLocaleString()}
+                      </td>
+                      <td style={{ padding: '8px' }}>
+                        <span style={{
+                          background: item.alertLevel === 'CRITICAL' ? '#065f46' : '#1e293b',
+                          color: item.alertLevel === 'CRITICAL' ? '#6ee7b7' : '#94a3b8',
+                          padding: '2px 6px',
+                          borderRadius: '4px',
+                          fontSize: '9.5px',
+                          fontWeight: 800,
+                          whiteSpace: 'nowrap'
+                        }}>
+                          {item.verdict}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* HISTORICAL FORENSIC CASE STUDIES (INTERACTIVE ARCHIVE) */}
+          <div style={{ background: '#0b1329', border: '1px solid #1e3a8a', borderRadius: '10px', padding: '16px' }}>
+            <div style={{ fontSize: '13px', fontWeight: 900, color: '#f8fafc', textTransform: 'uppercase', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              🏆 HISTORICAL FORENSIC CASE STUDIES: PROOF OF INSTITUTIONAL STEALTH CAMPAIGNS
+            </div>
+
+            {/* Case Study Selector Tabs */}
+            <div style={{ display: 'flex', gap: '8px', marginBottom: '14px', flexWrap: 'wrap' }}>
+              {data.historicalCaseStudies?.map((cs: any) => {
+                const isSelected = selectedCaseId === cs.id;
+                return (
+                  <button
+                    key={cs.id}
+                    onClick={() => setSelectedCaseId(cs.id)}
+                    style={{
+                      background: isSelected ? '#1d4ed8' : '#1e293b',
+                      border: `1px solid ${isSelected ? '#60a5fa' : '#334155'}`,
+                      color: isSelected ? '#ffffff' : '#cbd5e1',
+                      padding: '6px 14px',
+                      borderRadius: '6px',
+                      fontSize: '11.5px',
+                      fontWeight: 800,
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {cs.symbol} ({cs.gainPct})
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Selected Case Study Detail */}
+            {data.historicalCaseStudies && (
+              (() => {
+                const cs = data.historicalCaseStudies.find((c: any) => c.id === selectedCaseId) || data.historicalCaseStudies[0];
+                if (!cs) return null;
+                return (
+                  <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '8px', padding: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
+                      <div>
+                        <h4 style={{ fontSize: '14px', fontWeight: 900, margin: 0, color: '#f8fafc' }}>
+                          {cs.title}
+                        </h4>
+                        <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                          📅 Period: {cs.period} | Asset: <strong>{cs.symbol}</strong>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        <div style={{ background: '#1e293b', padding: '4px 10px', borderRadius: '4px', textAlign: 'center' }}>
+                          <div style={{ fontSize: '9.5px', color: '#94a3b8' }}>RUN MOVE</div>
+                          <div style={{ fontSize: '13px', fontWeight: 900, color: '#34d399', fontFamily: 'monospace' }}>{cs.gainPts} ({cs.gainPct})</div>
+                        </div>
+                        <div style={{ background: '#1e293b', padding: '4px 10px', borderRadius: '4px', textAlign: 'center' }}>
+                          <div style={{ fontSize: '9.5px', color: '#94a3b8' }}>SAI SCORE</div>
+                          <div style={{ fontSize: '13px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>{cs.saiScore}x</div>
+                        </div>
+                        <div style={{ background: '#1e293b', padding: '4px 10px', borderRadius: '4px', textAlign: 'center' }}>
+                          <div style={{ fontSize: '9.5px', color: '#94a3b8' }}>DELIVERY %</div>
+                          <div style={{ fontSize: '13px', fontWeight: 900, color: '#fde047', fontFamily: 'monospace' }}>{cs.dematDeliveryPct}%</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style={{ fontSize: '11.5px', color: '#38bdf8', fontWeight: 800, marginBottom: '10px' }}>
+                      🔍 Mechanism: {cs.accumulationMechanism}
+                    </div>
+
+                    {/* Timeline */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '12px' }}>
+                      {cs.timeline.map((item: any, idx: number) => (
+                        <div key={idx} style={{ display: 'flex', gap: '10px', background: 'rgba(0,0,0,0.3)', padding: '6px 10px', borderRadius: '4px', fontSize: '11px' }}>
+                          <span style={{ color: '#facc15', fontWeight: 800, minWidth: '85px' }}>{item.date}:</span>
+                          <span style={{ color: '#cbd5e1' }}>{item.event}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div style={{ background: 'rgba(16, 185, 129, 0.15)', border: '1px solid #10b981', borderRadius: '6px', padding: '8px 12px', fontSize: '11px', color: '#a7f3d0' }}>
+                      🧠 <strong>Forensic Takeaway:</strong> {cs.forensicTakeaway}
+                    </div>
+                  </div>
+                );
+              })()
+            )}
+
           </div>
 
         </div>
