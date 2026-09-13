@@ -123,6 +123,18 @@ while ($true) {
         }
     } catch {}
 
+    # Autonomous 4:00 PM IST Evening 24-Tab Health Audit & Self-Healing Trigger
+    try {
+        $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
+        $todayKey = $istNow.ToString("yyyy-MM-dd")
+        if ($istNow.Hour -ge 16 -and $global:lastTabHealthAuditRun -ne $todayKey) {
+            Write-Host "[Watchdog 16:00 IST] 🛡️ Running Autonomous Evening Tab Health Audit & Self-Healing for $todayKey..." -ForegroundColor Cyan
+            Start-Process -FilePath "node" -ArgumentList "backend\auto_heal_tabs.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+            $global:lastTabHealthAuditRun = $todayKey
+            Write-Host "[Watchdog 16:00 IST] Tab Health Auditor launched in background!" -ForegroundColor Green
+        }
+    } catch {}
+
     # Sleep 30 seconds between health checks
     Start-Sleep -Seconds 30
 }

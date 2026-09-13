@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { spawn, exec } from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -15,6 +15,7 @@ fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
 
 let child = null;
 let reconnectTimer = null;
+let lastPublishedUrl = null;
 
 function startTunnel() {
   if (reconnectTimer) clearTimeout(reconnectTimer);
@@ -34,11 +35,28 @@ function startTunnel() {
     const match = text.match(/https:\/\/[a-zA-Z0-9-]+\.trycloudflare\.com/);
     if (match) {
       const url = match[0];
-      fs.writeFileSync(urlFile, url, 'utf8');
-      fs.writeFileSync(activeFile, url, 'utf8');
-      console.log('====================================================');
-      console.log('[Cloudflare Tunnel] ACTIVE PUBLIC URL: ' + url);
-      console.log('====================================================');
+      if (lastPublishedUrl !== url) {
+        lastPublishedUrl = url;
+        fs.writeFileSync(urlFile, url, 'utf8');
+        fs.writeFileSync(activeFile, url, 'utf8');
+        console.log('====================================================');
+        console.log('[Cloudflare Tunnel] ACTIVE PUBLIC URL: ' + url);
+        console.log('====================================================');
+
+        // Automatically sync to Hugging Face space live_backend.json in background!
+        const syncScript = path.join(__dirname, 'sync_hf_tunnel.py');
+        exec(`python "${syncScript}" mihir0099/tradingview-dashboard "${url}"`, (err, stdout, stderr) => {
+          if (err) console.error('[HF Auto-Sync Error]:', err.message);
+          else console.log(stdout.trim());
+        });
+
+        // Notify Telegram Bot with the new tunnel URL
+        try {
+          import('./telegram_notifier.js').then(({ sendTelegramMessage }) => {
+            sendTelegramMessage(`🌐 <b>CLOUDFLARE TUNNEL ACTIVE / RENEWED</b>\n━━━━━━━━━━━━━━━━━━━━━\n🔗 <b>Live URL:</b>\n<code>${url}</code>\n\n✅ <i>Auto-synced to Hugging Face space live_backend.json</i>`).catch(() => {});
+          }).catch(() => {});
+        } catch (te) {}
+      }
     }
   }
 

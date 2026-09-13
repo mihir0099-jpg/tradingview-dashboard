@@ -1,0 +1,2122 @@
+[
+  {
+    "symbol": "NSE:CHENNPETRO",
+    "cleanSymbol": "CHENNPETRO",
+    "ticker": "CHENNPETRO.NS",
+    "name": "Chennai Petroleum Corp. Ltd.",
+    "sector": "Oil Refining & Petrochemicals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1597.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:FINPIPE",
+    "cleanSymbol": "FINPIPE",
+    "ticker": "FINPIPE.NS",
+    "name": "Finolex Industries Ltd.",
+    "sector": "Pipes & PVC Products",
+    "strikeInterval": 2.5,
+    "defaultSpot": 156.8,
+    "lotSize": 3000
+  },
+  {
+    "symbol": "NSE:FINCABLES",
+    "cleanSymbol": "FINCABLES",
+    "ticker": "FINCABLES.NS",
+    "name": "Finolex Cables Ltd.",
+    "sector": "Cables & Electricals",
+    "strikeInterval": 10.0,
+    "defaultSpot": 1351.7,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:RELIANCE",
+    "cleanSymbol": "RELIANCE",
+    "ticker": "RELIANCE.NS",
+    "name": "Reliance Industries Ltd.",
+    "sector": "Energy & Petrochemicals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1287.2,
+    "lotSize": 250
+  },
+  {
+    "symbol": "NSE:HDFCBANK",
+    "cleanSymbol": "HDFCBANK",
+    "ticker": "HDFCBANK.NS",
+    "name": "HDFC Bank Ltd.",
+    "sector": "Banking & Financials",
+    "strikeInterval": 10.0,
+    "defaultSpot": 690.2,
+    "lotSize": 550
+  },
+  {
+    "symbol": "NSE:ICICIBANK",
+    "cleanSymbol": "ICICIBANK",
+    "ticker": "ICICIBANK.NS",
+    "name": "ICICI Bank Ltd.",
+    "sector": "Banking & Financials",
+    "strikeInterval": 10.0,
+    "defaultSpot": 1394.9,
+    "lotSize": 700
+  },
+  {
+    "symbol": "NSE:SBIN",
+    "cleanSymbol": "SBIN",
+    "ticker": "SBIN.NS",
+    "name": "State Bank of India",
+    "sector": "Public Sector Banking",
+    "strikeInterval": 10.0,
+    "defaultSpot": 1003.3,
+    "lotSize": 750
+  },
+  {
+    "symbol": "NSE:TCS",
+    "cleanSymbol": "TCS",
+    "ticker": "TCS.NS",
+    "name": "Tata Consultancy Services",
+    "sector": "Information Technology",
+    "strikeInterval": 50.0,
+    "defaultSpot": 2210.1,
+    "lotSize": 175
+  },
+  {
+    "symbol": "NSE:INFY",
+    "cleanSymbol": "INFY",
+    "ticker": "INFY.NS",
+    "name": "Infosys Limited",
+    "sector": "Information Technology",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1031.8,
+    "lotSize": 400
+  },
+  {
+    "symbol": "NSE:ITC",
+    "cleanSymbol": "ITC",
+    "ticker": "ITC.NS",
+    "name": "ITC Limited",
+    "sector": "FMCG & Cigarettes",
+    "strikeInterval": 5.0,
+    "defaultSpot": 262.4,
+    "lotSize": 1600
+  },
+  {
+    "symbol": "NSE:LT",
+    "cleanSymbol": "LT",
+    "ticker": "LT.NS",
+    "name": "Larsen & Toubro Ltd.",
+    "sector": "Infrastructure & Capital Goods",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3939.1,
+    "lotSize": 175
+  },
+  {
+    "symbol": "NSE:AXISBANK",
+    "cleanSymbol": "AXISBANK",
+    "ticker": "AXISBANK.NS",
+    "name": "Axis Bank Ltd.",
+    "sector": "Banking & Financials",
+    "strikeInterval": 10.0,
+    "defaultSpot": 1241.5,
+    "lotSize": 625
+  },
+  {
+    "symbol": "NSE:KOTAKBANK",
+    "cleanSymbol": "KOTAKBANK",
+    "ticker": "KOTAKBANK.NS",
+    "name": "Kotak Mahindra Bank",
+    "sector": "Banking & Financials",
+    "strikeInterval": 10.0,
+    "defaultSpot": 415.2,
+    "lotSize": 400
+  },
+  {
+    "symbol": "NSE:BHARTIARTL",
+    "cleanSymbol": "BHARTIARTL",
+    "ticker": "BHARTIARTL.NS",
+    "name": "Bharti Airtel Ltd.",
+    "sector": "Telecom",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1822.5,
+    "lotSize": 475
+  },
+  {
+    "symbol": "NSE:BAJFINANCE",
+    "cleanSymbol": "BAJFINANCE",
+    "ticker": "BAJFINANCE.NS",
+    "name": "Bajaj Finance Ltd.",
+    "sector": "NBFC & Financials",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1041.0,
+    "lotSize": 125
+  },
+  {
+    "symbol": "NSE:HINDUNILVR",
+    "cleanSymbol": "HINDUNILVR",
+    "ticker": "HINDUNILVR.NS",
+    "name": "Hindustan Unilever Ltd.",
+    "sector": "FMCG",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1936.7,
+    "lotSize": 300
+  },
+  {
+    "symbol": "NSE:TATAMOTORS",
+    "cleanSymbol": "TATAMOTORS",
+    "ticker": "TMPV.NS",
+    "name": "Tata Motors Ltd.",
+    "sector": "Automobile",
+    "strikeInterval": 10.0,
+    "defaultSpot": 303.8,
+    "lotSize": 550
+  },
+  {
+    "symbol": "NSE:MARUTI",
+    "cleanSymbol": "MARUTI",
+    "ticker": "MARUTI.NS",
+    "name": "Maruti Suzuki India Ltd.",
+    "sector": "Automobile",
+    "strikeInterval": 100.0,
+    "defaultSpot": 12628.0,
+    "lotSize": 50
+  },
+  {
+    "symbol": "NSE:SUNPHARMA",
+    "cleanSymbol": "SUNPHARMA",
+    "ticker": "SUNPHARMA.NS",
+    "name": "Sun Pharmaceutical Industries",
+    "sector": "Pharma & Healthcare",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1870.5,
+    "lotSize": 350
+  },
+  {
+    "symbol": "NSE:TITAN",
+    "cleanSymbol": "TITAN",
+    "ticker": "TITAN.NS",
+    "name": "Titan Company Ltd.",
+    "sector": "Consumer Goods & Luxury",
+    "strikeInterval": 50.0,
+    "defaultSpot": 4984.0,
+    "lotSize": 175
+  },
+  {
+    "symbol": "NSE:ADANIENT",
+    "cleanSymbol": "ADANIENT",
+    "ticker": "ADANIENT.NS",
+    "name": "Adani Enterprises Ltd.",
+    "sector": "Metals & Energy",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3102.3,
+    "lotSize": 300
+  },
+  {
+    "symbol": "NSE:ADANIPORTS",
+    "cleanSymbol": "ADANIPORTS",
+    "ticker": "ADANIPORTS.NS",
+    "name": "Adani Ports and SEZ",
+    "sector": "Ports & Logistics",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1772.4,
+    "lotSize": 400
+  },
+  {
+    "symbol": "NSE:ULTRACEMCO",
+    "cleanSymbol": "ULTRACEMCO",
+    "ticker": "ULTRACEMCO.NS",
+    "name": "UltraTech Cement Ltd.",
+    "sector": "Cement & Building Materials",
+    "strikeInterval": 100.0,
+    "defaultSpot": 10886.0,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:TATASTEEL",
+    "cleanSymbol": "TATASTEEL",
+    "ticker": "TATASTEEL.NS",
+    "name": "Tata Steel Ltd.",
+    "sector": "Metals & Mining",
+    "strikeInterval": 2.5,
+    "defaultSpot": 188.4,
+    "lotSize": 5500
+  },
+  {
+    "symbol": "NSE:POWERGRID",
+    "cleanSymbol": "POWERGRID",
+    "ticker": "POWERGRID.NS",
+    "name": "Power Grid Corporation",
+    "sector": "Power Utilities",
+    "strikeInterval": 5.0,
+    "defaultSpot": 266.2,
+    "lotSize": 1800
+  },
+  {
+    "symbol": "NSE:NTPC",
+    "cleanSymbol": "NTPC",
+    "ticker": "NTPC.NS",
+    "name": "NTPC Limited",
+    "sector": "Power Utilities",
+    "strikeInterval": 5.0,
+    "defaultSpot": 332.9,
+    "lotSize": 1500
+  },
+  {
+    "symbol": "NSE:M&M",
+    "cleanSymbol": "M&M",
+    "ticker": "M&M.NS",
+    "name": "Mahindra & Mahindra Ltd.",
+    "sector": "Automobile",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3141.0,
+    "lotSize": 200
+  },
+  {
+    "symbol": "NSE:BAJAJFINSV",
+    "cleanSymbol": "BAJAJFINSV",
+    "ticker": "BAJAJFINSV.NS",
+    "name": "Bajaj Finserv Ltd.",
+    "sector": "Financial Services",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1926.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:COALINDIA",
+    "cleanSymbol": "COALINDIA",
+    "ticker": "COALINDIA.NS",
+    "name": "Coal India Ltd.",
+    "sector": "Mining & Energy",
+    "strikeInterval": 5.0,
+    "defaultSpot": 430.9,
+    "lotSize": 2100
+  },
+  {
+    "symbol": "NSE:ONGC",
+    "cleanSymbol": "ONGC",
+    "ticker": "ONGC.NS",
+    "name": "Oil & Natural Gas Corp",
+    "sector": "Oil & Gas Exploration",
+    "strikeInterval": 5.0,
+    "defaultSpot": 235.7,
+    "lotSize": 3850
+  },
+  {
+    "symbol": "NSE:HCLTECH",
+    "cleanSymbol": "HCLTECH",
+    "ticker": "HCLTECH.NS",
+    "name": "HCL Technologies Ltd.",
+    "sector": "Information Technology",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1224.2,
+    "lotSize": 350
+  },
+  {
+    "symbol": "NSE:ASIANPAINT",
+    "cleanSymbol": "ASIANPAINT",
+    "ticker": "ASIANPAINT.NS",
+    "name": "Asian Paints Ltd.",
+    "sector": "Paints & Chemicals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2473.1,
+    "lotSize": 200
+  },
+  {
+    "symbol": "NSE:BPCL",
+    "cleanSymbol": "BPCL",
+    "ticker": "BPCL.NS",
+    "name": "Bharat Petroleum Corp",
+    "sector": "Oil Refining & Marketing",
+    "strikeInterval": 5.0,
+    "defaultSpot": 303.3,
+    "lotSize": 1800
+  },
+  {
+    "symbol": "NSE:GRASIM",
+    "cleanSymbol": "GRASIM",
+    "ticker": "GRASIM.NS",
+    "name": "Grasim Industries Ltd.",
+    "sector": "Cement & Chemicals",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3294.0,
+    "lotSize": 250
+  },
+  {
+    "symbol": "NSE:JSWSTEEL",
+    "cleanSymbol": "JSWSTEEL",
+    "ticker": "JSWSTEEL.NS",
+    "name": "JSW Steel Ltd.",
+    "sector": "Metals & Mining",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1307.9,
+    "lotSize": 675
+  },
+  {
+    "symbol": "NSE:TECHM",
+    "cleanSymbol": "TECHM",
+    "ticker": "TECHM.NS",
+    "name": "Tech Mahindra Ltd.",
+    "sector": "Information Technology",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1502.1,
+    "lotSize": 600
+  },
+  {
+    "symbol": "NSE:EICHERMOT",
+    "cleanSymbol": "EICHERMOT",
+    "ticker": "EICHERMOT.NS",
+    "name": "Eicher Motors Ltd.",
+    "sector": "Automobile",
+    "strikeInterval": 50.0,
+    "defaultSpot": 7736.5,
+    "lotSize": 175
+  },
+  {
+    "symbol": "NSE:CIPLA",
+    "cleanSymbol": "CIPLA",
+    "ticker": "CIPLA.NS",
+    "name": "Cipla Limited",
+    "sector": "Pharma",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1371.3,
+    "lotSize": 650
+  },
+  {
+    "symbol": "NSE:NESTLEIND",
+    "cleanSymbol": "NESTLEIND",
+    "ticker": "NESTLEIND.NS",
+    "name": "Nestle India Ltd.",
+    "sector": "FMCG",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1392.2,
+    "lotSize": 250
+  },
+  {
+    "symbol": "NSE:BRITANNIA",
+    "cleanSymbol": "BRITANNIA",
+    "ticker": "BRITANNIA.NS",
+    "name": "Britannia Industries Ltd.",
+    "sector": "FMCG",
+    "strikeInterval": 50.0,
+    "defaultSpot": 5075.0,
+    "lotSize": 200
+  },
+  {
+    "symbol": "NSE:TATACONSUM",
+    "cleanSymbol": "TATACONSUM",
+    "ticker": "TATACONSUM.NS",
+    "name": "Tata Consumer Products",
+    "sector": "FMCG",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1005.0,
+    "lotSize": 900
+  },
+  {
+    "symbol": "NSE:APOLLOHOSP",
+    "cleanSymbol": "APOLLOHOSP",
+    "ticker": "APOLLOHOSP.NS",
+    "name": "Apollo Hospitals Enterprise",
+    "sector": "Healthcare",
+    "strikeInterval": 50.0,
+    "defaultSpot": 8946.0,
+    "lotSize": 125
+  },
+  {
+    "symbol": "NSE:INDUSINDBK",
+    "cleanSymbol": "INDUSINDBK",
+    "ticker": "INDUSINDBK.NS",
+    "name": "IndusInd Bank Ltd.",
+    "sector": "Banking & Financials",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1001.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:HEROMOTOCO",
+    "cleanSymbol": "HEROMOTOCO",
+    "ticker": "HEROMOTOCO.NS",
+    "name": "Hero MotoCorp Ltd.",
+    "sector": "Automobile",
+    "strikeInterval": 50.0,
+    "defaultSpot": 5241.0,
+    "lotSize": 150
+  },
+  {
+    "symbol": "NSE:HINDALCO",
+    "cleanSymbol": "HINDALCO",
+    "ticker": "HINDALCO.NS",
+    "name": "Hindalco Industries Ltd.",
+    "sector": "Metals & Mining",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1022.0,
+    "lotSize": 1400
+  },
+  {
+    "symbol": "NSE:SHREECEM",
+    "cleanSymbol": "SHREECEM",
+    "ticker": "SHREECEM.NS",
+    "name": "Shree Cement Ltd.",
+    "sector": "Cement",
+    "strikeInterval": 100.0,
+    "defaultSpot": 22925.0,
+    "lotSize": 25
+  },
+  {
+    "symbol": "NSE:WIPRO",
+    "cleanSymbol": "WIPRO",
+    "ticker": "WIPRO.NS",
+    "name": "Wipro Limited",
+    "sector": "Information Technology",
+    "strikeInterval": 2.5,
+    "defaultSpot": 167.1,
+    "lotSize": 1500
+  },
+  {
+    "symbol": "NSE:SBILIFE",
+    "cleanSymbol": "SBILIFE",
+    "ticker": "SBILIFE.NS",
+    "name": "SBI Life Insurance Company",
+    "sector": "Insurance",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1678.9,
+    "lotSize": 750
+  },
+  {
+    "symbol": "NSE:HDFCLIFE",
+    "cleanSymbol": "HDFCLIFE",
+    "ticker": "HDFCLIFE.NS",
+    "name": "HDFC Life Insurance Co.",
+    "sector": "Insurance",
+    "strikeInterval": 10.0,
+    "defaultSpot": 514.5,
+    "lotSize": 1100
+  },
+  {
+    "symbol": "NSE:BEL",
+    "cleanSymbol": "BEL",
+    "ticker": "BEL.NS",
+    "name": "Bharat Electronics Ltd.",
+    "sector": "Defense & Aerospace",
+    "strikeInterval": 5.0,
+    "defaultSpot": 406.2,
+    "lotSize": 2850
+  },
+  {
+    "symbol": "NSE:TRENT",
+    "cleanSymbol": "TRENT",
+    "ticker": "TRENT.NS",
+    "name": "Trent Limited",
+    "sector": "Retail & Consumer",
+    "strikeInterval": 50.0,
+    "defaultSpot": 2825.5,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:360ONE",
+    "cleanSymbol": "360ONE",
+    "ticker": "360ONE.NS",
+    "name": "360 One Wam Limited",
+    "sector": "Wealth Management",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1098.8,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:AARTIIND",
+    "cleanSymbol": "AARTIIND",
+    "ticker": "AARTIIND.NS",
+    "name": "Aarti Industries Ltd.",
+    "sector": "Chemicals",
+    "strikeInterval": 5.0,
+    "defaultSpot": 496.2,
+    "lotSize": 1000
+  },
+  {
+    "symbol": "NSE:ABB",
+    "cleanSymbol": "ABB",
+    "ticker": "ABB.NS",
+    "name": "ABB India Limited",
+    "sector": "Industrial Automation",
+    "strikeInterval": 50.0,
+    "defaultSpot": 7393.0,
+    "lotSize": 125
+  },
+  {
+    "symbol": "NSE:ABCAPITAL",
+    "cleanSymbol": "ABCAPITAL",
+    "ticker": "ABCAPITAL.NS",
+    "name": "Aditya Birla Capital Ltd.",
+    "sector": "NBFC & Financial Services",
+    "strikeInterval": 5.0,
+    "defaultSpot": 398.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:ADANIENSOL",
+    "cleanSymbol": "ADANIENSOL",
+    "ticker": "ADANIENSOL.NS",
+    "name": "Adani Energy Solutions Ltd",
+    "sector": "Power Transmission",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1423.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:ADANIGREEN",
+    "cleanSymbol": "ADANIGREEN",
+    "ticker": "ADANIGREEN.NS",
+    "name": "Adani Green Energy Limited",
+    "sector": "Renewable Energy",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1313.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:ADANIPOWER",
+    "cleanSymbol": "ADANIPOWER",
+    "ticker": "ADANIPOWER.NS",
+    "name": "Adani Power Limited",
+    "sector": "Power Utilities",
+    "strikeInterval": 5.0,
+    "defaultSpot": 213.9,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:ALKEM",
+    "cleanSymbol": "ALKEM",
+    "ticker": "ALKEM.NS",
+    "name": "Alkem Laboratories Ltd.",
+    "sector": "Pharmaceuticals",
+    "strikeInterval": 50.0,
+    "defaultSpot": 5149.5,
+    "lotSize": 125
+  },
+  {
+    "symbol": "NSE:AMBER",
+    "cleanSymbol": "AMBER",
+    "ticker": "AMBER.NS",
+    "name": "Amber Enterprises India Ltd.",
+    "sector": "Consumer Electronics EMS",
+    "strikeInterval": 50.0,
+    "defaultSpot": 7215.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:AMBUJACEM",
+    "cleanSymbol": "AMBUJACEM",
+    "ticker": "AMBUJACEM.NS",
+    "name": "Ambuja Cements Limited",
+    "sector": "Cement & Materials",
+    "strikeInterval": 5.0,
+    "defaultSpot": 395.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:ANGELONE",
+    "cleanSymbol": "ANGELONE",
+    "ticker": "ANGELONE.NS",
+    "name": "Angel One Limited",
+    "sector": "Fintech & Brokerage",
+    "strikeInterval": 5.0,
+    "defaultSpot": 300.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:APLAPOLLO",
+    "cleanSymbol": "APLAPOLLO",
+    "ticker": "APLAPOLLO.NS",
+    "name": "APL Apollo Tubes Limited",
+    "sector": "Steel Tubes & Pipes",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2182.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:APOLLOTYRE",
+    "cleanSymbol": "APOLLOTYRE",
+    "ticker": "APOLLOTYRE.NS",
+    "name": "Apollo Tyres Ltd.",
+    "sector": "Auto Tyres",
+    "strikeInterval": 5.0,
+    "defaultSpot": 422.4,
+    "lotSize": 1700
+  },
+  {
+    "symbol": "NSE:ASHOKLEY",
+    "cleanSymbol": "ASHOKLEY",
+    "ticker": "ASHOKLEY.NS",
+    "name": "Ashok Leyland Ltd.",
+    "sector": "Commercial Vehicles",
+    "strikeInterval": 2.5,
+    "defaultSpot": 167.0,
+    "lotSize": 5000
+  },
+  {
+    "symbol": "NSE:ASTRAL",
+    "cleanSymbol": "ASTRAL",
+    "ticker": "ASTRAL.NS",
+    "name": "Astral Limited",
+    "sector": "Pipes & Building Materials",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1470.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:AUBANK",
+    "cleanSymbol": "AUBANK",
+    "ticker": "AUBANK.NS",
+    "name": "AU Small Finance Bank",
+    "sector": "Private Banking",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1061.2,
+    "lotSize": 1000
+  },
+  {
+    "symbol": "NSE:AUROPHARMA",
+    "cleanSymbol": "AUROPHARMA",
+    "ticker": "AUROPHARMA.NS",
+    "name": "Aurobindo Pharma Ltd.",
+    "sector": "Pharmaceuticals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1677.8,
+    "lotSize": 550
+  },
+  {
+    "symbol": "NSE:BAJAJ-AUTO",
+    "cleanSymbol": "BAJAJ-AUTO",
+    "ticker": "BAJAJ-AUTO.NS",
+    "name": "Bajaj Auto Ltd.",
+    "sector": "Automobile",
+    "strikeInterval": 100.0,
+    "defaultSpot": 11764.0,
+    "lotSize": 75
+  },
+  {
+    "symbol": "NSE:BAJAJHLDNG",
+    "cleanSymbol": "BAJAJHLDNG",
+    "ticker": "BAJAJHLDNG.NS",
+    "name": "Bajaj Holdings & Investment Limited.",
+    "sector": "Holding Company & Investments",
+    "strikeInterval": 100.0,
+    "defaultSpot": 11040.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:BALKRISIND",
+    "cleanSymbol": "BALKRISIND",
+    "ticker": "BALKRISIND.NS",
+    "name": "Balkrishna Industries",
+    "sector": "Auto Tyres",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2209.9,
+    "lotSize": 300
+  },
+  {
+    "symbol": "NSE:BANDHANBNK",
+    "cleanSymbol": "BANDHANBNK",
+    "ticker": "BANDHANBNK.NS",
+    "name": "Bandhan Bank Ltd.",
+    "sector": "Private Banking",
+    "strikeInterval": 2.5,
+    "defaultSpot": 171.3,
+    "lotSize": 2500
+  },
+  {
+    "symbol": "NSE:BANKBARODA",
+    "cleanSymbol": "BANKBARODA",
+    "ticker": "BANKBARODA.NS",
+    "name": "Bank of Baroda",
+    "sector": "Public Sector Banking",
+    "strikeInterval": 5.0,
+    "defaultSpot": 234.5,
+    "lotSize": 2925
+  },
+  {
+    "symbol": "NSE:BANKINDIA",
+    "cleanSymbol": "BANKINDIA",
+    "ticker": "BANKINDIA.NS",
+    "name": "Bank of India",
+    "sector": "Public Sector Banking",
+    "strikeInterval": 2.5,
+    "defaultSpot": 140.7,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:BDL",
+    "cleanSymbol": "BDL",
+    "ticker": "BDL.NS",
+    "name": "Bharat Dynamics Ltd.",
+    "sector": "Defense & Missiles",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1212.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:BHARATFORG",
+    "cleanSymbol": "BHARATFORG",
+    "ticker": "BHARATFORG.NS",
+    "name": "Bharat Forge Ltd.",
+    "sector": "Auto Components",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1973.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:BHEL",
+    "cleanSymbol": "BHEL",
+    "ticker": "BHEL.NS",
+    "name": "Bharat Heavy Electricals",
+    "sector": "Heavy Electrical Equipment",
+    "strikeInterval": 5.0,
+    "defaultSpot": 433.6,
+    "lotSize": 2625
+  },
+  {
+    "symbol": "NSE:BIOCON",
+    "cleanSymbol": "BIOCON",
+    "ticker": "BIOCON.NS",
+    "name": "Biocon Limited",
+    "sector": "Biotechnology",
+    "strikeInterval": 5.0,
+    "defaultSpot": 396.2,
+    "lotSize": 2500
+  },
+  {
+    "symbol": "NSE:BLUESTARCO",
+    "cleanSymbol": "BLUESTARCO",
+    "ticker": "BLUESTARCO.NS",
+    "name": "Blue Star Limited",
+    "sector": "Air Conditioning & Cooling",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1449.9,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:BOSCHLTD",
+    "cleanSymbol": "BOSCHLTD",
+    "ticker": "BOSCHLTD.NS",
+    "name": "Bosch Limited",
+    "sector": "Auto Components",
+    "strikeInterval": 100.0,
+    "defaultSpot": 48810.0,
+    "lotSize": 25
+  },
+  {
+    "symbol": "NSE:BSE",
+    "cleanSymbol": "BSE",
+    "ticker": "BSE.NS",
+    "name": "BSE Ltd.",
+    "sector": "Stock Exchange & Financial Infra",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3286.8,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:BSOFT",
+    "cleanSymbol": "BSOFT",
+    "ticker": "BSOFT.NS",
+    "name": "Birlasoft Limited",
+    "sector": "Information Technology",
+    "strikeInterval": 5.0,
+    "defaultSpot": 278.1,
+    "lotSize": 1000
+  },
+  {
+    "symbol": "NSE:CAMS",
+    "cleanSymbol": "CAMS",
+    "ticker": "CAMS.NS",
+    "name": "Computer Age Management Services Ltd",
+    "sector": "Financial Infrastructure & Registrar",
+    "strikeInterval": 10.0,
+    "defaultSpot": 714.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:CANBK",
+    "cleanSymbol": "CANBK",
+    "ticker": "CANBK.NS",
+    "name": "Canara Bank",
+    "sector": "Public Sector Banking",
+    "strikeInterval": 2.5,
+    "defaultSpot": 124.0,
+    "lotSize": 6750
+  },
+  {
+    "symbol": "NSE:CANFINHOME",
+    "cleanSymbol": "CANFINHOME",
+    "ticker": "CANFINHOME.NS",
+    "name": "Can Fin Homes Ltd.",
+    "sector": "Housing Finance",
+    "strikeInterval": 10.0,
+    "defaultSpot": 785.9,
+    "lotSize": 975
+  },
+  {
+    "symbol": "NSE:CDSL",
+    "cleanSymbol": "CDSL",
+    "ticker": "CDSL.NS",
+    "name": "Central Depository Services (India) Limited",
+    "sector": "Depository & Financial Services",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1368.6,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:CGPOWER",
+    "cleanSymbol": "CGPOWER",
+    "ticker": "CGPOWER.NS",
+    "name": "CG Power & Industrial Solutions Ltd",
+    "sector": "Power Equipment & Industrial",
+    "strikeInterval": 10.0,
+    "defaultSpot": 926.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:CHOLAFIN",
+    "cleanSymbol": "CHOLAFIN",
+    "ticker": "CHOLAFIN.NS",
+    "name": "Cholamandalam Investment",
+    "sector": "NBFC",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1827.0,
+    "lotSize": 625
+  },
+  {
+    "symbol": "NSE:COCHINSHIP",
+    "cleanSymbol": "COCHINSHIP",
+    "ticker": "COCHINSHIP.NS",
+    "name": "Cochin Shipyard Limited",
+    "sector": "Shipbuilding & Marine",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1558.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:COFORGE",
+    "cleanSymbol": "COFORGE",
+    "ticker": "COFORGE.NS",
+    "name": "Coforge Limited",
+    "sector": "Information Technology",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1843.4,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:COLPAL",
+    "cleanSymbol": "COLPAL",
+    "ticker": "COLPAL.NS",
+    "name": "Colgate-Palmolive (India) Limited",
+    "sector": "FMCG & Personal Care",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1799.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:CONCOR",
+    "cleanSymbol": "CONCOR",
+    "ticker": "CONCOR.NS",
+    "name": "Container Corporation of India Limited",
+    "sector": "Logistics & Container Cargo",
+    "strikeInterval": 10.0,
+    "defaultSpot": 510.2,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:CROMPTON",
+    "cleanSymbol": "CROMPTON",
+    "ticker": "CROMPTON.NS",
+    "name": "Crompton Greaves Consumer",
+    "sector": "Consumer Electricals",
+    "strikeInterval": 5.0,
+    "defaultSpot": 231.8,
+    "lotSize": 1800
+  },
+  {
+    "symbol": "NSE:CUMMINSIND",
+    "cleanSymbol": "CUMMINSIND",
+    "ticker": "CUMMINSIND.NS",
+    "name": "Cummins India Ltd.",
+    "sector": "Engines & Power Gen",
+    "strikeInterval": 50.0,
+    "defaultSpot": 5166.5,
+    "lotSize": 200
+  },
+  {
+    "symbol": "NSE:DABUR",
+    "cleanSymbol": "DABUR",
+    "ticker": "DABUR.NS",
+    "name": "Dabur India Limited",
+    "sector": "FMCG & Ayurvedic Healthcare",
+    "strikeInterval": 5.0,
+    "defaultSpot": 369.9,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:DALBHARAT",
+    "cleanSymbol": "DALBHARAT",
+    "ticker": "DALBHARAT.NS",
+    "name": "Dalmia Bharat Ltd.",
+    "sector": "Cement & Building Materials",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1736.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:DEEPAKNTR",
+    "cleanSymbol": "DEEPAKNTR",
+    "ticker": "DEEPAKNTR.NS",
+    "name": "Deepak Nitrite Ltd.",
+    "sector": "Chemicals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1643.5,
+    "lotSize": 300
+  },
+  {
+    "symbol": "NSE:DELHIVERY",
+    "cleanSymbol": "DELHIVERY",
+    "ticker": "DELHIVERY.NS",
+    "name": "Delhivery Limited",
+    "sector": "Logistics & Supply Chain",
+    "strikeInterval": 5.0,
+    "defaultSpot": 450.35,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:DIXON",
+    "cleanSymbol": "DIXON",
+    "ticker": "DIXON.NS",
+    "name": "Dixon Technologies Ltd.",
+    "sector": "Electronics Manufacturing",
+    "strikeInterval": 100.0,
+    "defaultSpot": 13794.0,
+    "lotSize": 50
+  },
+  {
+    "symbol": "NSE:DLF",
+    "cleanSymbol": "DLF",
+    "ticker": "DLF.NS",
+    "name": "DLF Limited",
+    "sector": "Real Estate & Property",
+    "strikeInterval": 10.0,
+    "defaultSpot": 657.5,
+    "lotSize": 825
+  },
+  {
+    "symbol": "NSE:DMART",
+    "cleanSymbol": "DMART",
+    "ticker": "DMART.NS",
+    "name": "Avenue Supermarts Ltd.",
+    "sector": "Retail Supermarkets",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3723.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:ESCORTS",
+    "cleanSymbol": "ESCORTS",
+    "ticker": "ESCORTS.NS",
+    "name": "Escorts Kubota Ltd.",
+    "sector": "Agri Machinery & Tractors",
+    "strikeInterval": 50.0,
+    "defaultSpot": 2988.9,
+    "lotSize": 200
+  },
+  {
+    "symbol": "NSE:EXIDEIND",
+    "cleanSymbol": "EXIDEIND",
+    "ticker": "EXIDEIND.NS",
+    "name": "Exide Industries Limited",
+    "sector": "Batteries & Storage",
+    "strikeInterval": 5.0,
+    "defaultSpot": 410.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:FEDERALBNK",
+    "cleanSymbol": "FEDERALBNK",
+    "ticker": "FEDERALBNK.NS",
+    "name": "The Federal Bank Ltd.",
+    "sector": "Private Banking",
+    "strikeInterval": 5.0,
+    "defaultSpot": 343.4,
+    "lotSize": 5000
+  },
+  {
+    "symbol": "NSE:GAIL",
+    "cleanSymbol": "GAIL",
+    "ticker": "GAIL.NS",
+    "name": "GAIL (India) Ltd.",
+    "sector": "Natural Gas Transmission",
+    "strikeInterval": 2.5,
+    "defaultSpot": 174.69,
+    "lotSize": 3250
+  },
+  {
+    "symbol": "NSE:GLENMARK",
+    "cleanSymbol": "GLENMARK",
+    "ticker": "GLENMARK.NS",
+    "name": "Glenmark Pharmaceuticals",
+    "sector": "Pharmaceuticals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2432.1,
+    "lotSize": 725
+  },
+  {
+    "symbol": "NSE:GMRINFRA",
+    "cleanSymbol": "GMRINFRA",
+    "ticker": "GMRINFRA.NS",
+    "name": "GMR Airports Infrastructure Ltd.",
+    "sector": "Airports & Infrastructure",
+    "strikeInterval": 10.0,
+    "defaultSpot": 98.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:GODREJCP",
+    "cleanSymbol": "GODREJCP",
+    "ticker": "GODREJCP.NS",
+    "name": "Godrej Consumer Products Limited",
+    "sector": "FMCG & Personal Care",
+    "strikeInterval": 10.0,
+    "defaultSpot": 862.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:GODREJPROP",
+    "cleanSymbol": "GODREJPROP",
+    "ticker": "GODREJPROP.NS",
+    "name": "Godrej Properties Ltd.",
+    "sector": "Real Estate & Property",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1860.8,
+    "lotSize": 225
+  },
+  {
+    "symbol": "NSE:GUJGASLTD",
+    "cleanSymbol": "GUJGASLTD",
+    "ticker": "GUJGASLTD.NS",
+    "name": "Gujarat Gas Limited",
+    "sector": "City Gas Distribution",
+    "strikeInterval": 10.0,
+    "defaultSpot": 540.0,
+    "lotSize": 1250
+  },
+  {
+    "symbol": "NSE:HAL",
+    "cleanSymbol": "HAL",
+    "ticker": "HAL.NS",
+    "name": "Hindustan Aeronautics Ltd.",
+    "sector": "Defense & Aerospace",
+    "strikeInterval": 50.0,
+    "defaultSpot": 5010.4,
+    "lotSize": 150
+  },
+  {
+    "symbol": "NSE:HAVELLS",
+    "cleanSymbol": "HAVELLS",
+    "ticker": "HAVELLS.NS",
+    "name": "Havells India Ltd.",
+    "sector": "Electrical Consumer Goods",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1120.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:HDFCAMC",
+    "cleanSymbol": "HDFCAMC",
+    "ticker": "HDFCAMC.NS",
+    "name": "HDFC Asset Management Co.",
+    "sector": "Asset Management",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2417.6,
+    "lotSize": 150
+  },
+  {
+    "symbol": "NSE:HINDCOPPER",
+    "cleanSymbol": "HINDCOPPER",
+    "ticker": "HINDCOPPER.NS",
+    "name": "Hindustan Copper Ltd.",
+    "sector": "Copper Mining",
+    "strikeInterval": 10.0,
+    "defaultSpot": 532.5,
+    "lotSize": 1800
+  },
+  {
+    "symbol": "NSE:HINDPETRO",
+    "cleanSymbol": "HINDPETRO",
+    "ticker": "HINDPETRO.NS",
+    "name": "Hindustan Petroleum Corp",
+    "sector": "Oil Refining & Marketing",
+    "strikeInterval": 5.0,
+    "defaultSpot": 348.4,
+    "lotSize": 1350
+  },
+  {
+    "symbol": "NSE:HINDZINC",
+    "cleanSymbol": "HINDZINC",
+    "ticker": "HINDZINC.NS",
+    "name": "Hindustan Zinc Ltd.",
+    "sector": "Zinc & Silver Mining",
+    "strikeInterval": 10.0,
+    "defaultSpot": 605.0,
+    "lotSize": 1000
+  },
+  {
+    "symbol": "NSE:ICICIGI",
+    "cleanSymbol": "ICICIGI",
+    "ticker": "ICICIGI.NS",
+    "name": "ICICI Lombard General",
+    "sector": "Insurance",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1466.2,
+    "lotSize": 350
+  },
+  {
+    "symbol": "NSE:ICICIPRULI",
+    "cleanSymbol": "ICICIPRULI",
+    "ticker": "ICICIPRULI.NS",
+    "name": "ICICI Prudential Life",
+    "sector": "Insurance",
+    "strikeInterval": 5.0,
+    "defaultSpot": 459.8,
+    "lotSize": 900
+  },
+  {
+    "symbol": "NSE:IDEA",
+    "cleanSymbol": "IDEA",
+    "ticker": "IDEA.NS",
+    "name": "Vodafone Idea Limited",
+    "sector": "Telecom Services",
+    "strikeInterval": 1.0,
+    "defaultSpot": 15.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:IDFCFIRSTB",
+    "cleanSymbol": "IDFCFIRSTB",
+    "ticker": "IDFCFIRSTB.NS",
+    "name": "IDFC First Bank Ltd.",
+    "sector": "Private Banking",
+    "strikeInterval": 2.5,
+    "defaultSpot": 86.1,
+    "lotSize": 7500
+  },
+  {
+    "symbol": "NSE:IEX",
+    "cleanSymbol": "IEX",
+    "ticker": "IEX.NS",
+    "name": "Indian Energy Exchange Ltd.",
+    "sector": "Power Exchange & Trading",
+    "strikeInterval": 2.5,
+    "defaultSpot": 117.9,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:IGL",
+    "cleanSymbol": "IGL",
+    "ticker": "IGL.NS",
+    "name": "Indraprastha Gas Ltd.",
+    "sector": "City Gas Distribution",
+    "strikeInterval": 2.5,
+    "defaultSpot": 153.2,
+    "lotSize": 1375
+  },
+  {
+    "symbol": "NSE:INDHOTEL",
+    "cleanSymbol": "INDHOTEL",
+    "ticker": "INDHOTEL.NS",
+    "name": "The Indian Hotels Co.",
+    "sector": "Hotels & Hospitality",
+    "strikeInterval": 10.0,
+    "defaultSpot": 716.6,
+    "lotSize": 1000
+  },
+  {
+    "symbol": "NSE:INDIANB",
+    "cleanSymbol": "INDIANB",
+    "ticker": "INDIANB.NS",
+    "name": "Indian Bank",
+    "sector": "Public Sector Banking",
+    "strikeInterval": 10.0,
+    "defaultSpot": 853.9,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:INDIGO",
+    "cleanSymbol": "INDIGO",
+    "ticker": "INDIGO.NS",
+    "name": "InterGlobe Aviation Ltd",
+    "sector": "Airlines & Aviation",
+    "strikeInterval": 50.0,
+    "defaultSpot": 4970.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:INDUSTOWER",
+    "cleanSymbol": "INDUSTOWER",
+    "ticker": "INDUSTOWER.NS",
+    "name": "Indus Towers Limited",
+    "sector": "Telecom Infrastructure & Towers",
+    "strikeInterval": 5.0,
+    "defaultSpot": 372.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:INOXWIND",
+    "cleanSymbol": "INOXWIND",
+    "ticker": "INOXWIND.NS",
+    "name": "Inox Wind Limited",
+    "sector": "Renewable Energy & Wind Turbines",
+    "strikeInterval": 2.5,
+    "defaultSpot": 77.2,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:IOC",
+    "cleanSymbol": "IOC",
+    "ticker": "IOC.NS",
+    "name": "Indian Oil Corporation",
+    "sector": "Oil Refining & Marketing",
+    "strikeInterval": 2.5,
+    "defaultSpot": 135.4,
+    "lotSize": 4875
+  },
+  {
+    "symbol": "NSE:IREDA",
+    "cleanSymbol": "IREDA",
+    "ticker": "IREDA.NS",
+    "name": "Indian Renewable Energy Dev Agency",
+    "sector": "Green Energy Financing",
+    "strikeInterval": 2.5,
+    "defaultSpot": 112.03,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:IRFC",
+    "cleanSymbol": "IRFC",
+    "ticker": "IRFC.NS",
+    "name": "Indian Railway Finance Corporation",
+    "sector": "Railway Financing & NBFC",
+    "strikeInterval": 2.5,
+    "defaultSpot": 81.3,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:JINDALSTEL",
+    "cleanSymbol": "JINDALSTEL",
+    "ticker": "JINDALSTEL.NS",
+    "name": "Jindal Steel & Power",
+    "sector": "Metals & Mining",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1149.3,
+    "lotSize": 625
+  },
+  {
+    "symbol": "NSE:JIOFIN",
+    "cleanSymbol": "JIOFIN",
+    "ticker": "JIOFIN.NS",
+    "name": "Jio Financial Services Limited",
+    "sector": "Fintech & Financial Services",
+    "strikeInterval": 5.0,
+    "defaultSpot": 230.8,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:JSWENERGY",
+    "cleanSymbol": "JSWENERGY",
+    "ticker": "JSWENERGY.NS",
+    "name": "JSW Energy Limited",
+    "sector": "Power Utilities & Renewables",
+    "strikeInterval": 10.0,
+    "defaultSpot": 532.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:JUBLFOOD",
+    "cleanSymbol": "JUBLFOOD",
+    "ticker": "JUBLFOOD.NS",
+    "name": "Jubilant FoodWorks Ltd.",
+    "sector": "Restaurants & Fast Food",
+    "strikeInterval": 5.0,
+    "defaultSpot": 474.4,
+    "lotSize": 1250
+  },
+  {
+    "symbol": "NSE:KALYANKJIL",
+    "cleanSymbol": "KALYANKJIL",
+    "ticker": "KALYANKJIL.NS",
+    "name": "Kalyan Jewellers India Ltd.",
+    "sector": "Jewellery & Retail",
+    "strikeInterval": 10.0,
+    "defaultSpot": 607.9,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:KPITTECH",
+    "cleanSymbol": "KPITTECH",
+    "ticker": "KPITTECH.NS",
+    "name": "KPIT Technologies Limited",
+    "sector": "Automotive Software & Tech",
+    "strikeInterval": 10.0,
+    "defaultSpot": 554.3,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:LALPATHLAB",
+    "cleanSymbol": "LALPATHLAB",
+    "ticker": "LALPATHLAB.NS",
+    "name": "Dr. Lal PathLabs Ltd.",
+    "sector": "Healthcare Diagnostics",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1922.5,
+    "lotSize": 300
+  },
+  {
+    "symbol": "NSE:LAURUSLABS",
+    "cleanSymbol": "LAURUSLABS",
+    "ticker": "LAURUSLABS.NS",
+    "name": "Laurus Labs Ltd.",
+    "sector": "Pharmaceuticals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1929.7,
+    "lotSize": 1700
+  },
+  {
+    "symbol": "NSE:LICHSGFIN",
+    "cleanSymbol": "LICHSGFIN",
+    "ticker": "LICHSGFIN.NS",
+    "name": "LIC Housing Finance",
+    "sector": "Housing Finance",
+    "strikeInterval": 10.0,
+    "defaultSpot": 558.1,
+    "lotSize": 1000
+  },
+  {
+    "symbol": "NSE:LICI",
+    "cleanSymbol": "LICI",
+    "ticker": "LICI.NS",
+    "name": "Life Insurance Corporation",
+    "sector": "Insurance",
+    "strikeInterval": 5.0,
+    "defaultSpot": 407.4,
+    "lotSize": 700
+  },
+  {
+    "symbol": "NSE:LODHA",
+    "cleanSymbol": "LODHA",
+    "ticker": "LODHA.NS",
+    "name": "Lodha Developers Ltd.",
+    "sector": "Real Estate & Property",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1163.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:LTF",
+    "cleanSymbol": "LTF",
+    "ticker": "LTF.NS",
+    "name": "L&T Finance Ltd",
+    "sector": "NBFC & Rural Finance",
+    "strikeInterval": 5.0,
+    "defaultSpot": 310.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:LTIM",
+    "cleanSymbol": "LTIM",
+    "ticker": "LTIM.NS",
+    "name": "LTIMindtree Limited",
+    "sector": "Information Technology",
+    "strikeInterval": 50.0,
+    "defaultSpot": 5650.0,
+    "lotSize": 150
+  },
+  {
+    "symbol": "NSE:LTTS",
+    "cleanSymbol": "LTTS",
+    "ticker": "LTTS.NS",
+    "name": "L&T Technology Services",
+    "sector": "Information Technology",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3354.0,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:LUPIN",
+    "cleanSymbol": "LUPIN",
+    "ticker": "LUPIN.NS",
+    "name": "Lupin Limited",
+    "sector": "Pharmaceuticals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2097.1,
+    "lotSize": 425
+  },
+  {
+    "symbol": "NSE:M&MFIN",
+    "cleanSymbol": "M&MFIN",
+    "ticker": "M&MFIN.NS",
+    "name": "Mahindra & Mahindra Financial",
+    "sector": "NBFC",
+    "strikeInterval": 5.0,
+    "defaultSpot": 363.1,
+    "lotSize": 2000
+  },
+  {
+    "symbol": "NSE:MANAPPURAM",
+    "cleanSymbol": "MANAPPURAM",
+    "ticker": "MANAPPURAM.NS",
+    "name": "Manappuram Finance Ltd.",
+    "sector": "NBFC",
+    "strikeInterval": 5.0,
+    "defaultSpot": 319.9,
+    "lotSize": 3000
+  },
+  {
+    "symbol": "NSE:MANKIND",
+    "cleanSymbol": "MANKIND",
+    "ticker": "MANKIND.NS",
+    "name": "Mankind Pharma Ltd.",
+    "sector": "Pharma & Consumer Healthcare",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2264.7,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:MARICO",
+    "cleanSymbol": "MARICO",
+    "ticker": "MARICO.NS",
+    "name": "Marico Limited",
+    "sector": "FMCG & Consumer Goods",
+    "strikeInterval": 10.0,
+    "defaultSpot": 809.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:MAXHEALTH",
+    "cleanSymbol": "MAXHEALTH",
+    "ticker": "MAXHEALTH.NS",
+    "name": "Max Healthcare Institute",
+    "sector": "Hospitals & Healthcare",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1036.3,
+    "lotSize": 550
+  },
+  {
+    "symbol": "NSE:MAZDOCK",
+    "cleanSymbol": "MAZDOCK",
+    "ticker": "MAZDOCK.NS",
+    "name": "Mazagon Dock Shipbuilders Ltd.",
+    "sector": "Defense Shipbuilding & Marine",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2405.7,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:MCX",
+    "cleanSymbol": "MCX",
+    "ticker": "MCX.NS",
+    "name": "Multi Commodity Exchange of India Limited",
+    "sector": "Commodity Exchange & Financial Infra",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3334.6,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:MFSL",
+    "cleanSymbol": "MFSL",
+    "ticker": "MFSL.NS",
+    "name": "Max Financial Services Limited",
+    "sector": "Life Insurance & Financials",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1468.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:MOTHERSON",
+    "cleanSymbol": "MOTHERSON",
+    "ticker": "MOTHERSON.NS",
+    "name": "Samvardhana Motherson",
+    "sector": "Auto Components",
+    "strikeInterval": 2.5,
+    "defaultSpot": 163.9,
+    "lotSize": 4500
+  },
+  {
+    "symbol": "NSE:MOTILALOFS",
+    "cleanSymbol": "MOTILALOFS",
+    "ticker": "MOTILALOFS.NS",
+    "name": "Motilal Oswal Financial Services Limited",
+    "sector": "Brokerage & Wealth Management",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1023.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:MPHASIS",
+    "cleanSymbol": "MPHASIS",
+    "ticker": "MPHASIS.NS",
+    "name": "MphasiS Limited",
+    "sector": "Information Technology",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2301.3,
+    "lotSize": 275
+  },
+  {
+    "symbol": "NSE:MRF",
+    "cleanSymbol": "MRF",
+    "ticker": "MRF.NS",
+    "name": "MRF Limited",
+    "sector": "Auto Tyres",
+    "strikeInterval": 100.0,
+    "defaultSpot": 128180.0,
+    "lotSize": 5
+  },
+  {
+    "symbol": "NSE:MUTHOOTFIN",
+    "cleanSymbol": "MUTHOOTFIN",
+    "ticker": "MUTHOOTFIN.NS",
+    "name": "Muthoot Finance Ltd.",
+    "sector": "NBFC",
+    "strikeInterval": 50.0,
+    "defaultSpot": 2821.2,
+    "lotSize": 350
+  },
+  {
+    "symbol": "NSE:NAM-INDIA",
+    "cleanSymbol": "NAM-INDIA",
+    "ticker": "NAM-INDIA.NS",
+    "name": "Nippon Life India Asset Mgmt",
+    "sector": "Asset Management & Mutual Funds",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1163.7,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:NATIONALUM",
+    "cleanSymbol": "NATIONALUM",
+    "ticker": "NATIONALUM.NS",
+    "name": "National Aluminium Co.",
+    "sector": "Aluminium Mining",
+    "strikeInterval": 5.0,
+    "defaultSpot": 379.3,
+    "lotSize": 3750
+  },
+  {
+    "symbol": "NSE:NAUKRI",
+    "cleanSymbol": "NAUKRI",
+    "ticker": "NAUKRI.NS",
+    "name": "Info Edge (India) Ltd.",
+    "sector": "Internet & E-Commerce",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1256.3,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:NBCC",
+    "cleanSymbol": "NBCC",
+    "ticker": "NBCC.NS",
+    "name": "NBCC (India) Limited",
+    "sector": "Infrastructure & Construction",
+    "strikeInterval": 2.5,
+    "defaultSpot": 83.6,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:NHPC",
+    "cleanSymbol": "NHPC",
+    "ticker": "NHPC.NS",
+    "name": "NHPC Limited",
+    "sector": "Hydro Power Generation",
+    "strikeInterval": 2.5,
+    "defaultSpot": 76.3,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:NMDC",
+    "cleanSymbol": "NMDC",
+    "ticker": "NMDC.NS",
+    "name": "NMDC Limited",
+    "sector": "Mining & Minerals",
+    "strikeInterval": 2.5,
+    "defaultSpot": 85.4,
+    "lotSize": 3375
+  },
+  {
+    "symbol": "NSE:NUVAMA",
+    "cleanSymbol": "NUVAMA",
+    "ticker": "NUVAMA.NS",
+    "name": "Nuvama Wealth Management Limited",
+    "sector": "Wealth Management & Broking",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1785.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:NYKAA",
+    "cleanSymbol": "NYKAA",
+    "ticker": "NYKAA.NS",
+    "name": "FSN E-Commerce Ventures Ltd.",
+    "sector": "Beauty & Fashion E-Commerce",
+    "strikeInterval": 5.0,
+    "defaultSpot": 341.6,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:OBEROIRLTY",
+    "cleanSymbol": "OBEROIRLTY",
+    "ticker": "OBEROIRLTY.NS",
+    "name": "Oberoi Realty Ltd.",
+    "sector": "Real Estate & Property",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1800.0,
+    "lotSize": 350
+  },
+  {
+    "symbol": "NSE:OFSS",
+    "cleanSymbol": "OFSS",
+    "ticker": "OFSS.NS",
+    "name": "Oracle Financial Services Software Limited",
+    "sector": "Financial Software & IT",
+    "strikeInterval": 100.0,
+    "defaultSpot": 11582.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:OIL",
+    "cleanSymbol": "OIL",
+    "ticker": "OIL.NS",
+    "name": "Oil India Limited",
+    "sector": "Oil & Gas Exploration",
+    "strikeInterval": 5.0,
+    "defaultSpot": 498.2,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PAGEIND",
+    "cleanSymbol": "PAGEIND",
+    "ticker": "PAGEIND.NS",
+    "name": "Page Industries Limited",
+    "sector": "Apparel & Innerwear",
+    "strikeInterval": 100.0,
+    "defaultSpot": 35240.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PATANJALI",
+    "cleanSymbol": "PATANJALI",
+    "ticker": "PATANJALI.NS",
+    "name": "Patanjali Foods Limited",
+    "sector": "FMCG & Foods",
+    "strikeInterval": 5.0,
+    "defaultSpot": 339.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PAYTM",
+    "cleanSymbol": "PAYTM",
+    "ticker": "PAYTM.NS",
+    "name": "One 97 Communications Ltd.",
+    "sector": "Fintech & Digital Payments",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1752.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PERSISTENT",
+    "cleanSymbol": "PERSISTENT",
+    "ticker": "PERSISTENT.NS",
+    "name": "Persistent Systems Ltd.",
+    "sector": "Information Technology",
+    "strikeInterval": 50.0,
+    "defaultSpot": 5381.5,
+    "lotSize": 175
+  },
+  {
+    "symbol": "NSE:PETRONET",
+    "cleanSymbol": "PETRONET",
+    "ticker": "PETRONET.NS",
+    "name": "Petronet LNG Ltd.",
+    "sector": "LNG Regasification",
+    "strikeInterval": 5.0,
+    "defaultSpot": 286.7,
+    "lotSize": 1800
+  },
+  {
+    "symbol": "NSE:PFC",
+    "cleanSymbol": "PFC",
+    "ticker": "PFC.NS",
+    "name": "Power Finance Corporation",
+    "sector": "Financial Institutions",
+    "strikeInterval": 5.0,
+    "defaultSpot": 350.5,
+    "lotSize": 1300
+  },
+  {
+    "symbol": "NSE:PGEL",
+    "cleanSymbol": "PGEL",
+    "ticker": "PGEL.NS",
+    "name": "PG Electroplast Limited",
+    "sector": "Consumer Electronics Manufacturing",
+    "strikeInterval": 10.0,
+    "defaultSpot": 544.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PHOENIXLTD",
+    "cleanSymbol": "PHOENIXLTD",
+    "ticker": "PHOENIXLTD.NS",
+    "name": "Phoenix Mills Ltd.",
+    "sector": "Malls & Commercial Real Estate",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1892.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PIDILITIND",
+    "cleanSymbol": "PIDILITIND",
+    "ticker": "PIDILITIND.NS",
+    "name": "Pidilite Industries Ltd.",
+    "sector": "Adhesives & Chemicals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1568.7,
+    "lotSize": 250
+  },
+  {
+    "symbol": "NSE:PIIND",
+    "cleanSymbol": "PIIND",
+    "ticker": "PIIND.NS",
+    "name": "PI Industries Limited",
+    "sector": "Agrochemicals & Fine Chemicals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 2384.5,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PNB",
+    "cleanSymbol": "PNB",
+    "ticker": "PNB.NS",
+    "name": "Punjab National Bank",
+    "sector": "Public Sector Banking",
+    "strikeInterval": 2.5,
+    "defaultSpot": 115.8,
+    "lotSize": 8000
+  },
+  {
+    "symbol": "NSE:POLICYBZR",
+    "cleanSymbol": "POLICYBZR",
+    "ticker": "POLICYBZR.NS",
+    "name": "PB Fintech Limited",
+    "sector": "Fintech & Insurance Marketplace",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1802.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:POLYCAB",
+    "cleanSymbol": "POLYCAB",
+    "ticker": "POLYCAB.NS",
+    "name": "Polycab India Ltd.",
+    "sector": "Cables & Electricals",
+    "strikeInterval": 50.0,
+    "defaultSpot": 8332.0,
+    "lotSize": 125
+  },
+  {
+    "symbol": "NSE:PREMIERENE",
+    "cleanSymbol": "PREMIERENE",
+    "ticker": "PREMIERENE.NS",
+    "name": "Premier Energies Limited",
+    "sector": "Solar Energy Solutions",
+    "strikeInterval": 10.0,
+    "defaultSpot": 973.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:PRESTIGE",
+    "cleanSymbol": "PRESTIGE",
+    "ticker": "PRESTIGE.NS",
+    "name": "Prestige Estates Projects Limited",
+    "sector": "Real Estate & Property",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1540.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:RADICO",
+    "cleanSymbol": "RADICO",
+    "ticker": "RADICO.NS",
+    "name": "Radico Khaitan Limited",
+    "sector": "Distilleries & Beverages",
+    "strikeInterval": 50.0,
+    "defaultSpot": 4419.6,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:RBLBANK",
+    "cleanSymbol": "RBLBANK",
+    "ticker": "RBLBANK.NS",
+    "name": "RBL Bank Limited",
+    "sector": "Private Banking",
+    "strikeInterval": 5.0,
+    "defaultSpot": 416.1,
+    "lotSize": 2500
+  },
+  {
+    "symbol": "NSE:RECLTD",
+    "cleanSymbol": "RECLTD",
+    "ticker": "RECLTD.NS",
+    "name": "REC Limited",
+    "sector": "Financial Institutions",
+    "strikeInterval": 5.0,
+    "defaultSpot": 314.1,
+    "lotSize": 1400
+  },
+  {
+    "symbol": "NSE:RVNL",
+    "cleanSymbol": "RVNL",
+    "ticker": "RVNL.NS",
+    "name": "Rail Vikas Nigam Limited",
+    "sector": "Railway Infrastructure",
+    "strikeInterval": 5.0,
+    "defaultSpot": 206.8,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:SAIL",
+    "cleanSymbol": "SAIL",
+    "ticker": "SAIL.NS",
+    "name": "Steel Authority of India",
+    "sector": "Metals & Mining",
+    "strikeInterval": 2.5,
+    "defaultSpot": 186.3,
+    "lotSize": 4000
+  },
+  {
+    "symbol": "NSE:SBICARD",
+    "cleanSymbol": "SBICARD",
+    "ticker": "SBICARD.NS",
+    "name": "SBI Cards and Payment",
+    "sector": "Financial Services",
+    "strikeInterval": 10.0,
+    "defaultSpot": 665.5,
+    "lotSize": 800
+  },
+  {
+    "symbol": "NSE:SHRIRAMFIN",
+    "cleanSymbol": "SHRIRAMFIN",
+    "ticker": "SHRIRAMFIN.NS",
+    "name": "Shriram Finance Ltd.",
+    "sector": "NBFC",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1027.6,
+    "lotSize": 300
+  },
+  {
+    "symbol": "NSE:SIEMENS",
+    "cleanSymbol": "SIEMENS",
+    "ticker": "SIEMENS.NS",
+    "name": "Siemens Limited",
+    "sector": "Capital Goods & Engineering",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3955.6,
+    "lotSize": 125
+  },
+  {
+    "symbol": "NSE:SONACOMS",
+    "cleanSymbol": "SONACOMS",
+    "ticker": "SONACOMS.NS",
+    "name": "Sona BLW Precision Forgings",
+    "sector": "Precision Automotive Components",
+    "strikeInterval": 10.0,
+    "defaultSpot": 799.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:SRF",
+    "cleanSymbol": "SRF",
+    "ticker": "SRF.NS",
+    "name": "SRF Limited",
+    "sector": "Specialty Chemicals",
+    "strikeInterval": 50.0,
+    "defaultSpot": 2510.1,
+    "lotSize": 375
+  },
+  {
+    "symbol": "NSE:SUPREMEIND",
+    "cleanSymbol": "SUPREMEIND",
+    "ticker": "SUPREMEIND.NS",
+    "name": "Supreme Industries Limited",
+    "sector": "Plastic Piping & Polymer",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3506.2,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:SUZLON",
+    "cleanSymbol": "SUZLON",
+    "ticker": "SUZLON.NS",
+    "name": "Suzlon Energy Limited",
+    "sector": "Wind Energy & Turbines",
+    "strikeInterval": 1.0,
+    "defaultSpot": 45.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:SWIGGY",
+    "cleanSymbol": "SWIGGY",
+    "ticker": "SWIGGY.NS",
+    "name": "Swiggy Limited",
+    "sector": "Food Delivery & Quick Commerce",
+    "strikeInterval": 5.0,
+    "defaultSpot": 283.1,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:TATAELXSI",
+    "cleanSymbol": "TATAELXSI",
+    "ticker": "TATAELXSI.NS",
+    "name": "Tata Elxsi Ltd.",
+    "sector": "Information Technology",
+    "strikeInterval": 50.0,
+    "defaultSpot": 3382.3,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:TATAPOWER",
+    "cleanSymbol": "TATAPOWER",
+    "ticker": "TATAPOWER.NS",
+    "name": "Tata Power Co. Ltd.",
+    "sector": "Power Utilities",
+    "strikeInterval": 5.0,
+    "defaultSpot": 367.1,
+    "lotSize": 1500
+  },
+  {
+    "symbol": "NSE:TORNTPHARM",
+    "cleanSymbol": "TORNTPHARM",
+    "ticker": "TORNTPHARM.NS",
+    "name": "Torrent Pharmaceuticals",
+    "sector": "Pharmaceuticals",
+    "strikeInterval": 50.0,
+    "defaultSpot": 4930.5,
+    "lotSize": 250
+  },
+  {
+    "symbol": "NSE:TORNTPOWER",
+    "cleanSymbol": "TORNTPOWER",
+    "ticker": "TORNTPOWER.NS",
+    "name": "Torrent Power Ltd.",
+    "sector": "Power Utilities",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1307.8,
+    "lotSize": 400
+  },
+  {
+    "symbol": "NSE:TVSMOTOR",
+    "cleanSymbol": "TVSMOTOR",
+    "ticker": "TVSMOTOR.NS",
+    "name": "TVS Motor Company Ltd.",
+    "sector": "Automobile",
+    "strikeInterval": 50.0,
+    "defaultSpot": 4158.2,
+    "lotSize": 350
+  },
+  {
+    "symbol": "NSE:UNIONBANK",
+    "cleanSymbol": "UNIONBANK",
+    "ticker": "UNIONBANK.NS",
+    "name": "Union Bank of India",
+    "sector": "Public Sector Banking",
+    "strikeInterval": 2.5,
+    "defaultSpot": 182.1,
+    "lotSize": 4500
+  },
+  {
+    "symbol": "NSE:UNITDSPR",
+    "cleanSymbol": "UNITDSPR",
+    "ticker": "UNITDSPR.NS",
+    "name": "United Spirits Limited",
+    "sector": "Distilleries & Spirits",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1400.8,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:UNOMINDA",
+    "cleanSymbol": "UNOMINDA",
+    "ticker": "UNOMINDA.NS",
+    "name": "Uno Minda Limited",
+    "sector": "Auto Components & Lighting",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1229.0,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:UPL",
+    "cleanSymbol": "UPL",
+    "ticker": "UPL.NS",
+    "name": "UPL Limited",
+    "sector": "Agrochemicals & Crop Protection",
+    "strikeInterval": 10.0,
+    "defaultSpot": 574.2,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:VBL",
+    "cleanSymbol": "VBL",
+    "ticker": "VBL.NS",
+    "name": "Varun Beverages Limited",
+    "sector": "Beverages & FMCG",
+    "strikeInterval": 5.0,
+    "defaultSpot": 405.6,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:VEDL",
+    "cleanSymbol": "VEDL",
+    "ticker": "VEDL.NS",
+    "name": "Vedanta Limited",
+    "sector": "Metals & Mining",
+    "strikeInterval": 5.0,
+    "defaultSpot": 275.1,
+    "lotSize": 1100
+  },
+  {
+    "symbol": "NSE:VOLTAS",
+    "cleanSymbol": "VOLTAS",
+    "ticker": "VOLTAS.NS",
+    "name": "Voltas Limited",
+    "sector": "Air Conditioning & Cooling",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1140.7,
+    "lotSize": 375
+  },
+  {
+    "symbol": "NSE:YESBANK",
+    "cleanSymbol": "YESBANK",
+    "ticker": "YESBANK.NS",
+    "name": "Yes Bank Limited",
+    "sector": "Private Sector Banking",
+    "strikeInterval": 1.0,
+    "defaultSpot": 22.4,
+    "lotSize": 500
+  },
+  {
+    "symbol": "NSE:ZOMATO",
+    "cleanSymbol": "ZOMATO",
+    "ticker": "ZOMATO.NS",
+    "name": "Zomato Limited",
+    "sector": "Internet & Food Delivery",
+    "strikeInterval": 5.0,
+    "defaultSpot": 260.0,
+    "lotSize": 2200
+  },
+  {
+    "symbol": "NSE:ZYDUSLIFE",
+    "cleanSymbol": "ZYDUSLIFE",
+    "ticker": "ZYDUSLIFE.NS",
+    "name": "Zydus Lifesciences Ltd.",
+    "sector": "Pharmaceuticals",
+    "strikeInterval": 20.0,
+    "defaultSpot": 1130.9,
+    "lotSize": 900
+  }
+]

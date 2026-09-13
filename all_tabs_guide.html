@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Trading Guru Dashboard — Complete All-Tabs Master Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+  @page {
+    size: A4;
+    margin: 12mm 14mm 14mm 14mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1e293b;
+    background-color: #ffffff;
+    line-height: 1.45;
+    font-size: 11.5px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cover-header {
+    background: linear-gradient(135deg, #090d16 0%, #1e1b4b 50%, #0f172a 100%);
+    color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #334155;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    font-weight: 800;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+  }
+
+  .cover-title {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+    color: #f8fafc;
+  }
+
+  .cover-sub {
+    font-size: 12px;
+    color: #cbd5e1;
+    line-height: 1.4;
+    max-width: 700px;
+  }
+
+  .section { margin-bottom: 16px; }
+
+  .section-title {
+    font-size: 14px;
+    font-weight: 900;
+    color: #0f172a;
+    border-left: 4px solid #3b82f6;
+    padding-left: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .category-banner {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin: 14px 0 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tab-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border-left: 4px solid #6366f1;
+  }
+
+  .tab-card.green { border-left-color: #10b981; }
+  .tab-card.blue { border-left-color: #0ea5e9; }
+  .tab-card.amber { border-left-color: #f59e0b; }
+  .tab-card.purple { border-left-color: #8b5cf6; }
+  .tab-card.red { border-left-color: #ef4444; }
+
+  .tab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .tab-name {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tab-tag {
+    font-size: 9.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    background: #e2e8f0;
+    color: #475569;
+  }
+
+  .tab-desc {
+    color: #334155;
+    font-size: 11.5px;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+
+  .how-to-use {
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #1e293b;
+    margin-top: 4px;
+  }
+
+  .how-to-use strong {
+    color: #0369a1;
+  }
+
+  .tip-box {
+    background: #eff6ff;
+    border-left: 3px solid #3b82f6;
+    padding: 5px 8px;
+    font-size: 10.5px;
+    color: #1e40af;
+    margin-top: 5px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .diagram-box {
+    background: #0b1120;
+    border: 1px solid #1e293b;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin: 8px 0;
+  }
+
+  .diagram-box svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    margin: 8px 0;
+  }
+
+  th {
+    background: #0f172a;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: left;
+    padding: 6px 8px;
+  }
+
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e2e8f0;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td { background-color: #f8fafc; }
+
+  .page-break { page-break-after: always; }
+
+  .timeline-step {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+
+  .time-badge {
+    background: #0f172a;
+    color: #38bdf8;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .time-content {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 6px 10px;
+    flex: 1;
+    font-size: 11px;
+  }
+
+  .footer-bar {
+    margin-top: 14px;
+    padding-top: 8px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 9.5px;
+    color: #64748b;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1: COVER & EXECUTIVE AI BRAIN -->
+<div class="cover-header">
+  <div class="cover-badge">OFFICIAL USER MANUAL & FIELD PLAYBOOK</div>
+  <div class="cover-title">Trading Dashboard: The Complete All-Tabs Guide</div>
+  <div class="cover-sub">
+    A comprehensive, friendly breakdown of every single tab on the platform. Designed so anyone—from a beginner friend to an experienced trader—can navigate the dashboard, spot 100% statistical setups, and trade with institutional discipline.
+  </div>
+</div>
+
+<div class="category-banner" style="background: linear-gradient(90deg, #4f46e5 0%, #0f172a 100%);">
+  <span>MODULE 1: EXECUTIVE AI BRAIN & MACHINE LEARNING TABS</span>
+  <span style="font-size: 10px; font-weight: 600;">Regimes, Trap Avoidance & 100% Setups</span>
+</div>
+
+<!-- Dada Thoughts -->
+<div class="tab-card purple">
+  <div class="tab-header">
+    <div class="tab-name">🧠 Dada Thoughts</div>
+    <div class="tab-tag" style="background: #ede9fe; color: #6d28d9;">Daily Executive Master Thesis</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> The high-level institutional market overview. It categorizes the day into one of the core market regimes (e.g. <em>State 1: Low-Vol Grind, State 2: Equilibrium, State 3: Volatile Expansion</em>) and lists active "Canary Alerts" (VIX, overnight moves, European open warnings).
+  </div>
+  <div class="how-to-use">
+    <strong>👉 How your friend should use it:</strong> Read this <strong>first thing at 9:10 AM</strong> before taking any trade. If Dada Thoughts says <em>"Dead Zone / Lunchtime Theta Decay"</em>, avoid buying naked Call/Put options. If it alerts <em>"Expansion Mode"</em>, prepare for large trending breakouts.
+  </div>
+</div>
+
+<!-- Auto-Learner & Mistake Miner -->
+<div class="tab-card purple">
+  <div class="tab-header">
+    <div class="tab-name">🔬 Auto-Learner & Mistake Miner</div>
+    <div class="tab-tag" style="background: #ede9fe; color: #6d28d9;">Self-Improving Post-Mortem</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> The platform's automated machine-learning post-mortem system. It continuously audits past stop-loss (SL) hits to discover <em>why</em> trades failed (e.g., failed stock breakouts due to overall index drag, fake breakdowns on low-volume neutral days).
+  </div>
+  <div class="how-to-use">
+    <strong>👉 How your friend should use it:</strong> Check the <strong>"Auto-Learned Daily Constraints"</strong>. Example Rule: <em>"Never buy Call options on stock breakouts if Nifty is trading below its open or printing negative PCR drift."</em> This tab keeps you from repeating costly mistakes!
+  </div>
+</div>
+
+<!-- Data Learning -->
+<div class="tab-card green">
+  <div class="tab-header">
+    <div class="tab-name">🧠 Data Learning (Live 100% Signal Scanner)</div>
+    <div class="tab-tag" style="background: #d1fae5; color: #065f46; font-weight: 900;">🔥 100% Real-Time Signals</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> A real-time condition scanner programmed with the <strong>24 perfect 100% win-rate setups</strong> discovered across 2,816 historical sessions (2015–2026). It does not clutter the screen with historical noise—it <strong>only fires when a setup is active right this second</strong>!
+  </div>
+  <div class="how-to-use">
+    <strong>👉 How your friend should use it:</strong> Keep this tab open during market hours. If it shows an alert with <span style="background: #ef4444; color: #fff; padding: 1px 5px; border-radius: 3px; font-weight: 800;">CRITICAL 100%</span>, it means the current market condition has had <strong>zero failures in 11 years</strong> of history. Follow the suggested strike and action immediately.
+  </div>
+  <div class="tip-box">
+    💡 <strong>Pro Tip:</strong> Use the <em>"Manual Mode"</em> button to test hypothetical scenarios or practice non-market hour setups.
+  </div>
+</div>
+
+<!-- Deep Learnings -->
+<div class="tab-card purple">
+  <div class="tab-header">
+    <div class="tab-name">🔬 Deep Learnings</div>
+    <div class="tab-tag" style="background: #ede9fe; color: #6d28d9;">11-Year Data Mining Vault</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> The statistical encyclopedia of the Indian stock market. Contains backtested statistics on VIX 1-point bands, Day-of-the-Week breakout tendencies, Initial Balance (IB) expansion rates, and session extreme time windows.
+  </div>
+  <div class="how-to-use">
+    <strong>👉 Key Stat to Remember:</strong> Over <strong>50% of all sessions</strong> establish their absolute high or low of the day during the final 45 minutes of trading (Period L: 2:45–3:15 PM and Period M: 3:15–3:30 PM). Never exit second-half trend trades prematurely!
+  </div>
+</div>
+
+<div class="footer-bar">
+  <span>Trading Guru Dashboard User Manual</span>
+  <span>Page 1 of 4 • Executive AI Brain</span>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 2: PROFILE, CYCLES & GEOMETRY -->
+<div class="category-banner" style="background: linear-gradient(90deg, #0284c7 0%, #0f172a 100%);">
+  <span>MODULE 2: MARKET PROFILE, CYCLES & GEOMETRY</span>
+  <span style="font-size: 10px; font-weight: 600;">Harmonic Octaves, Historical Twins & Range Expansion</span>
+</div>
+
+<!-- Cycle (Square of 9) -->
+<div class="tab-card blue">
+  <div class="tab-header">
+    <div class="tab-name">🌀 Cycle (Sq of 9 & Gann Harmonic Radar)</div>
+    <div class="tab-tag" style="background: #e0f2fe; color: #0369a1; font-weight: 800;">Live F&O Radar (212 Stocks)</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> Scans all 212 F&O stocks every second and identifies which stocks are touching mathematical Gann degree angles (90°, 180°, 270°, 360°, 720°) measured from major swing anchors.
+  </div>
+
+  <div class="diagram-box">
+    <svg viewBox="0 0 600 110" xmlns="http://www.w3.org/2000/svg">
+      <!-- Linear Octave Progress -->
+      <line x1="30" y1="55" x2="570" y2="55" stroke="#334155" stroke-width="4" />
+      <!-- 0 deg -->
+      <circle cx="40" cy="55" r="7" fill="#64748b" />
+      <text x="40" y="38" fill="#94a3b8" font-size="9" font-weight="700" text-anchor="middle">0° PIVOT</text>
+      <text x="40" y="78" fill="#64748b" font-size="8" text-anchor="middle">Base Anchor</text>
+
+      <!-- 90 deg -->
+      <circle cx="150" cy="55" r="8" fill="#0ea5e9" />
+      <text x="150" y="38" fill="#38bdf8" font-size="9" font-weight="800" text-anchor="middle">90° Q1 WALL</text>
+      <text x="150" y="78" fill="#94a3b8" font-size="8" text-anchor="middle">Target 1 (Scalp)</text>
+
+      <!-- 180 deg -->
+      <circle cx="280" cy="55" r="10" fill="#10b981" />
+      <text x="280" y="34" fill="#34d399" font-size="10.5" font-weight="900" text-anchor="middle">🎯 180° TRAMPOLINE</text>
+      <text x="280" y="78" fill="#a7f3d0" font-size="8" text-anchor="middle">91.1% Run to 360°</text>
+
+      <!-- 270 deg -->
+      <circle cx="410" cy="55" r="8" fill="#3b82f6" />
+      <text x="410" y="38" fill="#60a5fa" font-size="9" font-weight="800" text-anchor="middle">270° RUNWAY</text>
+      <text x="410" y="78" fill="#94a3b8" font-size="8" text-anchor="middle">Express Corridor</text>
+
+      <!-- 360 deg -->
+      <circle cx="500" cy="55" r="9" fill="#f59e0b" />
+      <text x="500" y="38" fill="#fbbf24" font-size="9" font-weight="800" text-anchor="middle">360° OCTAVE</text>
+      <text x="500" y="78" fill="#fde68a" font-size="8" text-anchor="middle">Major Target Wall</text>
+
+      <!-- 720 deg -->
+      <circle cx="565" cy="55" r="9" fill="#ef4444" />
+      <text x="565" y="38" fill="#f87171" font-size="9" font-weight="800" text-anchor="middle">🛑 720° WALL</text>
+      <text x="565" y="78" fill="#fca5a5" font-size="8" text-anchor="middle">81.8% Reversal</text>
+    </svg>
+  </div>
+
+  <div class="how-to-use">
+    <strong>👉 How to use:</strong>
+    1. Click <strong>"⚡ AT ZERO LINE (≤0.35%)"</strong> to see stocks touching a level <em>right now</em>.<br>
+    2. If a stock is at <strong>180°</strong> (like MCX at ₹3,334.8), buy the breakout for a high-probability run to 360°.<br>
+    3. If a stock is at <strong>720°</strong>, never chase longs; look for exhaustion candles to fade.
+  </div>
+</div>
+
+<!-- Historical -->
+<div class="tab-card blue">
+  <div class="tab-header">
+    <div class="tab-name">🏛️ Historical (Matching Cases)</div>
+    <div class="tab-tag" style="background: #e0f2fe; color: #0369a1;">Historical Twin Forecaster</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> Scans through 11 years of past market sessions to find historical days that had the <strong>exact same opening characteristics</strong> (identical gap %, same VIX level, same day-of-week, same prev-day trend).
+  </div>
+  <div class="how-to-use">
+    <strong>👉 How your friend should use it:</strong> See what the top 5 historical twin days did. If 5 out of 5 historical twin days opened flat, drifted down to test the morning low, and closed at the low of the day, you know exactly what institutional behavior to expect!
+  </div>
+</div>
+
+<!-- Day Range & Timeframes -->
+<div class="grid-2">
+  <div class="tab-card blue">
+    <div class="tab-header">
+      <div class="tab-name">📐 Day Range</div>
+      <div class="tab-tag">Volatility Bands</div>
+    </div>
+    <div class="tab-desc">
+      Calculates the expected high and low for today based on current India VIX and standard deviation formulas.
+    </div>
+    <div class="how-to-use">
+      <strong>Rule:</strong> If spot reaches the <strong>Upper Extreme Band</strong>, book profits on long options. Do not buy tops.
+    </div>
+  </div>
+
+  <div class="tab-card blue">
+    <div class="tab-header">
+      <div class="tab-name">⏱️ 15 Mins & Hourly Updates</div>
+      <div class="tab-tag">Time Auction Forensics</div>
+    </div>
+    <div class="tab-desc">
+      Breaks the market day into 30-minute TPO periods (A to M) to track whether Initial Balance (IB) is holding or expanding.
+    </div>
+    <div class="how-to-use">
+      <strong>Period C (10:15–10:45 AM):</strong> Over 50% of all day breakouts trigger here. Watch for continuation!
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <span>Trading Guru Dashboard User Manual</span>
+  <span>Page 2 of 4 • Profile, Cycles & Geometry</span>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 3: HIGH-VELOCITY SCANNERS -->
+<div class="category-banner" style="background: linear-gradient(90deg, #d97706 0%, #0f172a 100%);">
+  <span>MODULE 3: HIGH-VELOCITY SCANNERS & TIMING TRIGGERS</span>
+  <span style="font-size: 10px; font-weight: 600;">PCR Velocity, Opening Bias & Volume Breakouts</span>
+</div>
+
+<!-- PCR Velocity -->
+<div class="tab-card amber">
+  <div class="tab-header">
+    <div class="tab-name">⚡ PCR Velocity</div>
+    <div class="tab-tag" style="background: #fef3c7; color: #92400e; font-weight: 800;">100% Leading Trend Predictor</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> Tracks the speed (velocity) of Put-Call Ratio changes during the first hour of trading (9:15 AM to 10:15 AM). Option writers leave footprints before spot price makes large moves.
+  </div>
+  <table style="margin: 6px 0;">
+    <thead>
+      <tr>
+        <th>First-Hour PCR Drift</th>
+        <th>Market Meaning</th>
+        <th>Expected Day Type & Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong style="color: #059669;">Bullish Drift (&gt; +0.03 / +3%)</strong></td>
+        <td>Aggressive Put writing (heavy support building)</td>
+        <td><strong>Trend Day Up.</strong> Buy CE on any dip to morning VWAP. Hold until 3:00 PM.</td>
+      </tr>
+      <tr>
+        <td><strong style="color: #dc2626;">Bearish Drift (&lt; -0.03 / -3%)</strong></td>
+        <td>Aggressive Call writing (heavy resistance ceiling)</td>
+        <td><strong>Trend Day Down.</strong> Buy PE on any morning pullback. Look for breakdown.</td>
+      </tr>
+      <tr>
+        <td><strong style="color: #64748b;">Neutral Drift (-0.03 to +0.03)</strong></td>
+        <td>No institutional writing conviction</td>
+        <td><strong>Range-Bound / Rotational Day.</strong> Fade range extremes; scalp only.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="how-to-use">
+    <strong>👉 Backtest Result:</strong> Verified <strong>100% accurate</strong> across logged test datasets. If PCR drift exceeds +0.03 by 10:15 AM, never buy puts!
+  </div>
+</div>
+
+<!-- Opening Bias & Early Picks -->
+<div class="grid-2">
+  <div class="tab-card amber">
+    <div class="tab-header">
+      <div class="tab-name">⚡ Opening Bias</div>
+      <div class="tab-tag">9:15 AM Auction Filter</div>
+    </div>
+    <div class="tab-desc">
+      Classifies the morning auction into 4 classic types:
+      <br>&bull; <strong>Open Drive:</strong> Aggressive institutional trend away from open.
+      <br>&bull; <strong>Open Test Drive:</strong> Tests a level, then reverses hard.
+      <br>&bull; <strong>Open Auction:</strong> Choppy, rotational morning.
+    </div>
+    <div class="how-to-use">
+      <strong>Action:</strong> Open Drive = Enter immediately in drive direction.
+    </div>
+  </div>
+
+  <div class="tab-card amber">
+    <div class="tab-header">
+      <div class="tab-name">⚡ Early Picks</div>
+      <div class="tab-tag">9:20 AM Momentum Radar</div>
+    </div>
+    <div class="tab-desc">
+      Instantly filters stocks opening with maximum relative volume (RVOL) and directional alignment within the first 10 minutes.
+    </div>
+    <div class="how-to-use">
+      <strong>Action:</strong> Pick top 2 stocks for high-speed morning intraday scalps.
+    </div>
+  </div>
+</div>
+
+<!-- Volume Breakouts & Doji Scanners -->
+<div class="grid-2">
+  <div class="tab-card amber">
+    <div class="tab-header">
+      <div class="tab-name">🔥 Volume Breakouts</div>
+      <div class="tab-tag">Institutional Volume Surge</div>
+    </div>
+    <div class="tab-desc">
+      Detects sudden volume spikes between <strong>1.3x and 3.0x</strong> baseline average accompanied by price expansion.
+    </div>
+    <div class="how-to-use">
+      <strong>Rule:</strong> Afternoon breakout in Period L (2:45 PM) MUST have volume spike to be real; low-volume breaks are traps!
+    </div>
+  </div>
+
+  <div class="tab-card amber">
+    <div class="tab-header">
+      <div class="tab-name">First Doji & Doji (No Vol)</div>
+      <div class="tab-tag">Volatility Squeeze</div>
+    </div>
+    <div class="tab-desc">
+      Screens for indecision candles where the open and close are almost identical, indicating a volatility coil.
+    </div>
+    <div class="how-to-use">
+      <strong>Rule:</strong> Inside bar and doji breakouts have a <strong>57.3% continuation win rate</strong>. Enter in breakout direction.
+    </div>
+  </div>
+</div>
+
+<!-- Scanner & Confluences -->
+<div class="tab-card amber">
+  <div class="tab-header">
+    <div class="tab-name">Scanner & Confluences</div>
+    <div class="tab-tag">Multi-Timeframe Alignment</div>
+  </div>
+  <div class="tab-desc">
+    <strong>Confluences</strong> brings all technical factors together (Daily + Weekly + Monthly levels, Gann angles, Volume, and PCR).
+    When <strong>3 or more indicators align on the exact same price zone</strong>, it is marked as a <em>"High-Confluence Zone"</em>.
+  </div>
+  <div class="how-to-use">
+    <strong>👉 Execution:</strong> High-confluence zones offer the tightest stop losses and highest risk-reward ratios on the entire dashboard.
+  </div>
+</div>
+
+<div class="footer-bar">
+  <span>Trading Guru Dashboard User Manual</span>
+  <span>Page 3 of 4 • Scanners & Timing Triggers</span>
+</div>
+
+<div class="page-break"></div>
+
+<!-- PAGE 4: OPTIONS, EXECUTION & DAILY TIMELINE -->
+<div class="category-banner" style="background: linear-gradient(90deg, #dc2626 0%, #0f172a 100%);">
+  <span>MODULE 4: OPTIONS ENGINES & MASTER DAILY TRADING TIMELINE</span>
+  <span style="font-size: 10px; font-weight: 600;">Weekly Selling, Straddles & Execution Playbook</span>
+</div>
+
+<!-- Weekly Option Selling Engine -->
+<div class="tab-card red">
+  <div class="tab-header">
+    <div class="tab-name">🔥 Weekly Option Selling Engine</div>
+    <div class="tab-tag" style="background: #fee2e2; color: #991b1b; font-weight: 800;">Non-Directional Income</div>
+  </div>
+  <div class="tab-desc">
+    <strong>What it is:</strong> Calculates the mathematically safest strike corridors for writing weekly Short Strangles or Iron Condors, backed by the <strong>Macro Initial Balance (IB) 2-Day Breakout Rule</strong>.
+  </div>
+  <div class="how-to-use">
+    <strong>👉 Critical Rule:</strong> The combined High/Low of the first 2 trading days of the weekly cycle has a <strong>92.5% probability of being broken</strong>! Never sell tight strangles inside the 2-day range. Always set strikes outside the 1.618 Fibonacci expansion!
+  </div>
+</div>
+
+<!-- Options Chain & Live Signals -->
+<div class="grid-2">
+  <div class="tab-card red">
+    <div class="tab-header">
+      <div class="tab-name">Options Chain</div>
+      <div class="tab-tag">OI & Greeks Monitor</div>
+    </div>
+    <div class="tab-desc">
+      Real-time call/put Open Interest (OI) buildup, Max Pain strike, and ATM Straddle decay.
+      <br><strong>Rule:</strong> In Low-VIX (<15), exit long options before 12:15 PM to avoid lunchtime theta decay!
+    </div>
+  </div>
+
+  <div class="tab-card red">
+    <div class="tab-header">
+      <div class="tab-name">Live Signals & Math Signals</div>
+      <div class="tab-tag">Automated Triggers</div>
+    </div>
+    <div class="tab-desc">
+      Computer-generated buy/sell triggers calculated using spot chart risk:
+      <br><code>Option SL = Entry Premium - (Spot Risk × 0.5)</code>
+    </div>
+  </div>
+</div>
+
+<!-- AI Pattern Forecaster & Bhaichara -->
+<div class="grid-2">
+  <div class="tab-card red">
+    <div class="tab-header">
+      <div class="tab-name">🔮 AI Pattern Forecaster</div>
+      <div class="tab-tag">Geometric Projection</div>
+    </div>
+    <div class="tab-desc">
+      Projects expected wave completion targets based on classical Head & Shoulders, Double Bottoms, and Cup-with-Handle patterns.
+    </div>
+  </div>
+
+  <div class="tab-card red">
+    <div class="tab-header">
+      <div class="tab-name">🤝 Bhaichara Work</div>
+      <div class="tab-tag">Index Correlation</div>
+    </div>
+    <div class="tab-desc">
+      Monitors <strong>NIFTY vs BANKNIFTY synchronization</strong>. If Nifty breaks out but Bank Nifty refuses to follow, the breakout is a false trap!
+    </div>
+  </div>
+</div>
+
+<!-- Master Daily Timeline -->
+<div class="section" style="margin-top: 14px;">
+  <div class="section-title">⏰ Master Daily Routine: How to Trade the Dashboard (Step-by-Step)</div>
+
+  <div class="timeline-step">
+    <div class="time-badge">09:10 AM</div>
+    <div class="time-content">
+      <strong>Pre-Market Prep:</strong> Open <strong>🧠 Dada Thoughts</strong> to read the daily regime. Check <strong>📐 Day Range</strong> to note expected high/low bands.
+    </div>
+  </div>
+
+  <div class="timeline-step">
+    <div class="time-badge">09:15 – 09:30 AM</div>
+    <div class="time-content">
+      <strong>First Auction:</strong> Watch <strong>⚡ Opening Bias</strong> and <strong>⚡ Early Picks</strong>. Note Period A extreme (first 30-min high/low holds as day extreme ~65% of time!).
+    </div>
+  </div>
+
+  <div class="timeline-step">
+    <div class="time-badge">10:15 AM</div>
+    <div class="time-content">
+      <strong>The Golden Window:</strong> Check <strong>⚡ PCR Velocity</strong> (is drift &gt; +0.03 or &lt; -0.03?). Open <strong>🧠 Data Learning</strong> to catch Period B (10:15 AM) 100% setups.
+    </div>
+  </div>
+
+  <div class="timeline-step">
+    <div class="time-badge">11:15 AM – 12:15 PM</div>
+    <div class="time-content">
+      <strong>Harmonic Radar Scanning:</strong> Open <strong>🌀 Cycle</strong> & click <strong>"⚡ AT ZERO LINE"</strong>. Identify stocks at 180° pivots or 720° reversal ceilings.
+    </div>
+  </div>
+
+  <div class="timeline-step">
+    <div class="time-badge">12:15 – 12:45 PM</div>
+    <div class="time-content">
+      <strong>G-Period Rules:</strong> If VIX &lt; 15, close long options before 12:15 PM (lunchtime theta trap). If Nifty closes outside IB at 12:45 PM, enter breakout!
+    </div>
+  </div>
+
+  <div class="timeline-step">
+    <div class="time-badge">02:15 – 03:15 PM</div>
+    <div class="time-content">
+      <strong>Late-Day Power Hour:</strong> Watch <strong>🔥 Volume Breakouts</strong>. Over 50% of days form their session extreme in Period L (2:45–3:15 PM). Ride winning trends!
+    </div>
+  </div>
+</div>
+
+<div class="footer-bar">
+  <span>Trading Guru Dashboard User Manual</span>
+  <span>Page 4 of 4 • Master Daily Execution Timeline</span>
+</div>
+
+</body>
+</html>

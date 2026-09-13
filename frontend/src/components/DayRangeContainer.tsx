@@ -1,6 +1,6 @@
 import { getBackendUrl } from '../utils/config';
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu, Radar, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, Target, Maximize2, Shield, Activity, Compass, Anchor, Zap, Calendar, Cpu, Radar, AlertTriangle, CheckCircle2, Clock } from 'lucide-react';
 
 interface TargetItem {
   label: string;
@@ -120,6 +120,8 @@ interface DayRangeApiResponse {
 
 export function DayRangeContainer() {
   const [data, setData] = useState<DayRangeApiResponse | null>(null);
+  const [forecasts, setForecasts] = useState<any[]>([]);
+  const [casData, setCasData] = useState<any[]>([]);
   const [selectedAsset, setSelectedAsset] = useState<'nifty' | 'banknifty'>('nifty');
   const [selectedHorizon, setSelectedHorizon] = useState<'daily' | 'weekly' | 'monthly' | 'yearly'>('daily');
   const [loading, setLoading] = useState<boolean>(true);
@@ -129,10 +131,22 @@ export function DayRangeContainer() {
     if (isManual) setIsRefreshing(true);
     try {
       const backendUrl = getBackendUrl();
-      const res = await fetch(`${backendUrl}/api/day-range?_t=${Date.now()}`, { cache: 'no-store' });
-      if (res.ok) {
-        const json = await res.json();
+      const [rangeRes, predRes, casRes] = await Promise.all([
+        fetch(`${backendUrl}/api/day-range?_t=${Date.now()}`, { cache: 'no-store' }),
+        fetch(`${backendUrl}/api/predictions/audit?_t=${Date.now()}`, { cache: 'no-store' }),
+        fetch(`${backendUrl}/api/cas/learnings?_t=${Date.now()}`, { cache: 'no-store' })
+      ]);
+      if (rangeRes.ok) {
+        const json = await rangeRes.json();
         setData(json);
+      }
+      if (predRes.ok) {
+        const predJson = await predRes.json();
+        setForecasts(predJson.forecasts || []);
+      }
+      if (casRes.ok) {
+        const casJson = await casRes.json();
+        setCasData(casJson.learnings || []);
       }
     } catch (err) {
       console.error('Failed to fetch day range:', err);
@@ -164,6 +178,17 @@ export function DayRangeContainer() {
 
   const isUp = asset.changePts >= 0;
   const horizonData = asset.multiTimeframe ? asset.multiTimeframe[selectedHorizon] : null;
+  const currentForecast = forecasts.find(
+    f => (f.symbol || 'NIFTY').toUpperCase() === selectedAsset.toUpperCase()
+  );
+
+  const safeFmt = (val: any, decimals: number = 0) => {
+    if (val === undefined || val === null || isNaN(Number(val))) return '---';
+    return Number(val).toLocaleString('en-IN', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    });
+  };
 
   return (
     <div style={{ padding: '20px 24px', maxWidth: '1440px', margin: '0 auto', width: '100%', boxSizing: 'border-box', overflowY: 'auto' }}>
@@ -442,7 +467,7 @@ export function DayRangeContainer() {
                       </span>
                     </div>
                     <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '3px' }}>
-                      Trigger: <strong style={{ color: '#ffffff' }}>{triggerLevel.toLocaleString('en-IN')}</strong> (5m Close Required) | SL: <strong style={{ color: '#f43f5e' }}>{oppositeLevel.toLocaleString('en-IN')}</strong> (Opt SL ~{optionRiskPts} pts)
+                      Trigger: <strong style={{ color: '#ffffff' }}>{safeFmt(triggerLevel)}</strong> (5m Close Required) | SL: <strong style={{ color: '#f43f5e' }}>{safeFmt(oppositeLevel)}</strong> (Opt SL ~{safeFmt(optionRiskPts)} pts)
                     </div>
                   </div>
                 </div>
@@ -451,14 +476,14 @@ export function DayRangeContainer() {
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700 }}>Target 1 (Trail SL)</div>
                     <div style={{ fontSize: '14px', fontWeight: 900, color: '#10b981', fontFamily: 'monospace' }}>
-                      {asset.earlyMoveDetector.target1Price.toLocaleString('en-IN')} (+{t1Pts} pts)
+                      {safeFmt(asset.earlyMoveDetector?.target1Price)} (+{safeFmt(t1Pts)} pts)
                     </div>
                   </div>
                   <div style={{ width: '1px', height: '26px', background: 'rgba(255, 255, 255, 0.1)' }} />
                   <div style={{ textAlign: 'right' }}>
                     <div style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase', fontWeight: 700 }}>Target 2 (Runner)</div>
                     <div style={{ fontSize: '14px', fontWeight: 900, color: '#60a5fa', fontFamily: 'monospace' }}>
-                      {asset.earlyMoveDetector.target2Price.toLocaleString('en-IN')} (+{t2Pts} pts)
+                      {safeFmt(asset.earlyMoveDetector?.target2Price)} (+{safeFmt(t2Pts)} pts)
                     </div>
                   </div>
                 </div>
@@ -469,7 +494,7 @@ export function DayRangeContainer() {
           {/* 4 Actionable Level Cards */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
             gap: '12px',
             marginBottom: '14px'
           }}>
@@ -477,10 +502,10 @@ export function DayRangeContainer() {
             <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '12px 14px' }}>
               <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Trigger Level</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#ffffff', marginTop: '3px' }}>
-                {asset.earlyMoveDetector.earlyTriggerPrice.toLocaleString('en-IN')}
+                {safeFmt(asset.earlyMoveDetector?.earlyTriggerPrice)}
               </div>
               <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
-                Status: <span style={{ color: asset.earlyMoveDetector.earlyWarningColor, fontWeight: 700 }}>{asset.earlyMoveDetector.earlyWarningStatus}</span>
+                Status: <span style={{ color: asset.earlyMoveDetector?.earlyWarningColor, fontWeight: 700 }}>{asset.earlyMoveDetector?.earlyWarningStatus}</span>
               </div>
             </div>
 
@@ -488,7 +513,7 @@ export function DayRangeContainer() {
             <div style={{ background: 'rgba(16, 185, 129, 0.06)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
               <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Target 1</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#10b981', marginTop: '3px' }}>
-                {asset.earlyMoveDetector.target1Price.toLocaleString('en-IN')}
+                {safeFmt(asset.earlyMoveDetector?.target1Price)}
               </div>
               <div style={{ fontSize: '11px', color: '#6ee7b7', marginTop: '2px' }}>
                 First profit scaling milestone
@@ -499,7 +524,7 @@ export function DayRangeContainer() {
             <div style={{ background: 'rgba(59, 130, 246, 0.06)', border: '1px solid rgba(59, 130, 246, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
               <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>Target 2</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#60a5fa', marginTop: '3px' }}>
-                {asset.earlyMoveDetector.target2Price.toLocaleString('en-IN')}
+                {safeFmt(asset.earlyMoveDetector?.target2Price)}
               </div>
               <div style={{ fontSize: '11px', color: '#93c5fd', marginTop: '2px' }}>
                 Primary trend continuation target
@@ -510,7 +535,7 @@ export function DayRangeContainer() {
             <div style={{ background: 'rgba(234, 179, 8, 0.06)', border: '1px solid rgba(234, 179, 8, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
               <div style={{ fontSize: '11px', color: '#facc15', fontWeight: 700, textTransform: 'uppercase' }}>Expansion Cap</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#facc15', marginTop: '3px' }}>
-                {asset.earlyMoveDetector.expansionCapPrice.toLocaleString('en-IN')}
+                {safeFmt(asset.earlyMoveDetector?.expansionCapPrice)}
               </div>
               <div style={{ fontSize: '11px', color: '#fde047', marginTop: '2px' }}>
                 Expansion limit boundary
@@ -659,7 +684,7 @@ export function DayRangeContainer() {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px' }}>
           <span style={{ fontSize: '15px', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.05em' }}>{asset.name}</span>
           <span style={{ fontSize: '32px', fontWeight: 900, fontFamily: 'monospace', color: isUp ? '#10b981' : '#f43f5e' }}>
-            {asset.spot.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            {safeFmt(asset.spot, 2)}
           </span>
           <span style={{
             display: 'inline-flex',
@@ -681,21 +706,21 @@ export function DayRangeContainer() {
           <div>
             <div style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Open</div>
             <div style={{ fontSize: '15px', fontWeight: 700, fontFamily: 'monospace', color: 'var(--text-primary)' }}>
-              {asset.open.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+              {safeFmt(asset.open, 2)}
             </div>
           </div>
           <div style={{ width: '1px', height: '24px', background: 'rgba(255, 255, 255, 0.1)' }} />
           <div>
             <div style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Prev Close</div>
             <div style={{ fontSize: '15px', fontWeight: 700, fontFamily: 'monospace', color: 'var(--text-primary)' }}>
-              {asset.prevClose.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+              {safeFmt(asset.prevClose, 2)}
             </div>
           </div>
           <div style={{ width: '1px', height: '24px', background: 'rgba(255, 255, 255, 0.1)' }} />
           <div>
             <div style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Central Pivot</div>
             <div style={{ fontSize: '15px', fontWeight: 700, fontFamily: 'monospace', color: '#facc15' }}>
-              {asset.keyPivot.toLocaleString('en-IN')}
+              {safeFmt(asset.keyPivot)}
             </div>
           </div>
         </div>
@@ -718,7 +743,7 @@ export function DayRangeContainer() {
               </span>
             </div>
             <span style={{ fontSize: '12px', fontWeight: 700, color: '#c084fc', background: 'rgba(168, 85, 247, 0.15)', padding: '3px 10px', borderRadius: '6px' }}>
-              Expected Move: {horizonData.expectedRange.toLocaleString('en-IN')} pts
+              Expected Move: {safeFmt(horizonData.expectedRange)} pts
             </span>
           </div>
 
@@ -731,10 +756,10 @@ export function DayRangeContainer() {
             <div style={{ background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '10px', padding: '10px 14px' }}>
               <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Projected {horizonData.label} High</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#10b981', marginTop: '2px' }}>
-                {horizonData.predictedHigh.toLocaleString('en-IN')}
+                {safeFmt(horizonData.predictedHigh)}
               </div>
               <div style={{ fontSize: '11px', color: '#6ee7b7', marginTop: '2px' }}>
-                +{Math.max(0, Math.round(horizonData.predictedHigh - asset.spot))} pts from spot
+                +{Math.max(0, Math.round((horizonData.predictedHigh || 0) - (asset.spot || 0)))} pts from spot
               </div>
             </div>
 
@@ -742,10 +767,10 @@ export function DayRangeContainer() {
             <div style={{ background: 'rgba(244, 63, 94, 0.08)', border: '1px solid rgba(244, 63, 94, 0.3)', borderRadius: '10px', padding: '10px 14px' }}>
               <div style={{ fontSize: '11px', color: '#f43f5e', fontWeight: 700, textTransform: 'uppercase' }}>Projected {horizonData.label} Low</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#f43f5e', marginTop: '2px' }}>
-                {horizonData.predictedLow.toLocaleString('en-IN')}
+                {safeFmt(horizonData.predictedLow)}
               </div>
               <div style={{ fontSize: '11px', color: '#fda4af', marginTop: '2px' }}>
-                -{Math.max(0, Math.round(asset.spot - horizonData.predictedLow))} pts from spot
+                -{Math.max(0, Math.round((asset.spot || 0) - (horizonData.predictedLow || 0)))} pts from spot
               </div>
             </div>
 
@@ -753,7 +778,7 @@ export function DayRangeContainer() {
             <div style={{ background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: '10px', padding: '10px 14px' }}>
               <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>Expected Body Size</div>
               <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#60a5fa', marginTop: '2px' }}>
-                {horizonData.expectedBody.toLocaleString('en-IN')} pts
+                {safeFmt(horizonData.expectedBody)} pts
               </div>
               <div style={{ fontSize: '11px', color: '#93c5fd', marginTop: '2px' }}>
                 Central expansion mass
@@ -771,6 +796,251 @@ export function DayRangeContainer() {
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Quantitative Daily Prediction vs Actual Post-Market Audit Scorecard */}
+      {currentForecast && currentForecast.prediction && (
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.8))',
+          border: '1px solid rgba(59, 130, 246, 0.35)',
+          borderRadius: '14px',
+          padding: '16px 20px',
+          marginBottom: '16px'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '14px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '8px', borderRadius: '10px', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                <Target size={20} color="#38bdf8" />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#fff' }}>
+                    Quantitative Session Forecast &amp; Audit Scorecard
+                  </h3>
+                  <span style={{ fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '5px', background: 'rgba(59, 130, 246, 0.15)', color: '#38bdf8', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                    {currentForecast.target_date} ({currentForecast.target_day})
+                  </span>
+                </div>
+                <p style={{ margin: '2px 0 0 0', fontSize: '12px', color: '#94a3b8' }}>
+                  Multi-factor quantitative projection (14-ATR, CPR squeeze band, directional skew &amp; empirical verification)
+                </p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{
+                fontSize: '12px',
+                fontWeight: 800,
+                padding: '4px 12px',
+                borderRadius: '7px',
+                background: currentForecast.actual_evaluation?.outcome === 'ACCURATE_WIN' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(234, 179, 8, 0.15)',
+                color: currentForecast.actual_evaluation?.outcome === 'ACCURATE_WIN' ? '#10b981' : '#facc15',
+                border: `1px solid ${currentForecast.actual_evaluation?.outcome === 'ACCURATE_WIN' ? '#10b981' : '#facc15'}40`
+              }}>
+                {currentForecast.actual_evaluation?.outcome ? `VERIFIED: ${currentForecast.actual_evaluation.outcome}` : 'STATUS: LIVE PENDING'}
+              </span>
+            </div>
+          </div>
+
+          {/* Grid of 5 Prediction Columns (Matching User Screenshot) */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '12px'
+          }}>
+            {/* Directional Bias */}
+            <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Directional Bias</div>
+              <div style={{
+                fontSize: '14px',
+                fontWeight: 800,
+                marginTop: '4px',
+                color: currentForecast.prediction.directional_bias === 'GREEN' ? '#10b981' : '#f43f5e'
+              }}>
+                {currentForecast.prediction.expected_candle || '---'}
+              </div>
+              <div style={{ fontSize: '11px', marginTop: '4px', color: currentForecast.actual_evaluation?.directional_bias_match ? '#10b981' : '#94a3b8' }}>
+                {currentForecast.actual_evaluation ? (
+                  <span>Actual: <strong>{currentForecast.actual_evaluation.actual_candle || '---'}</strong> ({currentForecast.actual_evaluation.directional_bias_match ? '✓ 100% Match' : '✗ Miss'})</span>
+                ) : 'Awaiting 3:30 Close'}
+              </div>
+            </div>
+
+            {/* Predicted Day High */}
+            <div style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>Predicted High</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#10b981', marginTop: '2px' }}>
+                {safeFmt(currentForecast.prediction?.predicted_high)}
+              </div>
+              <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px' }}>
+                {currentForecast.actual_evaluation ? (
+                  <span>Actual High: <strong style={{ color: '#fff' }}>{safeFmt(currentForecast.actual_evaluation.actual_high)}</strong> ({currentForecast.actual_evaluation.high_error_pts > 0 ? '+' : ''}{safeFmt(currentForecast.actual_evaluation.high_error_pts)} pts)</span>
+                ) : 'Upper boundary test'}
+              </div>
+            </div>
+
+            {/* Predicted Day Low */}
+            <div style={{ background: 'rgba(244, 63, 94, 0.05)', border: '1px solid rgba(244, 63, 94, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#f43f5e', fontWeight: 700, textTransform: 'uppercase' }}>Predicted Low</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#f43f5e', marginTop: '2px' }}>
+                {safeFmt(currentForecast.prediction?.predicted_low)}
+              </div>
+              <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px' }}>
+                {currentForecast.actual_evaluation ? (
+                  <span>Actual Low: <strong style={{ color: '#fff' }}>{safeFmt(currentForecast.actual_evaluation.actual_low)}</strong> ({currentForecast.actual_evaluation.low_error_pts > 0 ? '+' : ''}{safeFmt(currentForecast.actual_evaluation.low_error_pts)} pts)</span>
+                ) : 'Lower boundary test'}
+              </div>
+            </div>
+
+            {/* Predicted Day Range */}
+            <div style={{ background: 'rgba(59, 130, 246, 0.05)', border: '1px solid rgba(59, 130, 246, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>Predicted Range</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#60a5fa', marginTop: '2px' }}>
+                {safeFmt(currentForecast.prediction?.predicted_range)} <span style={{ fontSize: '12px', color: '#94a3b8' }}>pts</span>
+              </div>
+              <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px' }}>
+                {currentForecast.actual_evaluation ? (
+                  <span>Actual: <strong style={{ color: '#fff' }}>{safeFmt(currentForecast.actual_evaluation.actual_range)} pts</strong> ({Math.round(((currentForecast.actual_evaluation.actual_range || 0) / (currentForecast.prediction.predicted_range || 1)) * 100)}% consumed)</span>
+                ) : 'Estimated total session move'}
+              </div>
+            </div>
+
+            {/* Predicted Day Close */}
+            <div style={{ background: 'rgba(168, 85, 247, 0.05)', border: '1px solid rgba(168, 85, 247, 0.25)', borderRadius: '10px', padding: '12px 14px' }}>
+              <div style={{ fontSize: '11px', color: '#c084fc', fontWeight: 700, textTransform: 'uppercase' }}>Predicted Close</div>
+              <div style={{ fontSize: '20px', fontWeight: 900, fontFamily: 'monospace', color: '#c084fc', marginTop: '2px' }}>
+                {safeFmt(currentForecast.prediction?.predicted_close)}
+              </div>
+              <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px' }}>
+                {currentForecast.actual_evaluation ? (
+                  <span>Actual Close: <strong style={{ color: '#fff' }}>{safeFmt(currentForecast.actual_evaluation.actual_close)}</strong> ({safeFmt(currentForecast.actual_evaluation.close_error_pct, 2)}% err)</span>
+                ) : 'Projected 3:30 PM settlement'}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* CAS (Closing Auction Session) Daily Intelligence & Learning Card */}
+      {casData && casData.length > 0 && (
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(30, 27, 75, 0.6), rgba(15, 23, 42, 0.85))',
+          border: '1px solid rgba(139, 92, 246, 0.35)',
+          borderRadius: '14px',
+          padding: '16px 20px',
+          marginBottom: '16px'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ background: 'rgba(139, 92, 246, 0.15)', padding: '8px', borderRadius: '10px', border: '1px solid rgba(139, 92, 246, 0.3)' }}>
+                <Clock size={20} color="#a855f7" />
+              </div>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 800, color: '#fff' }}>
+                    CAS (Closing Auction Session) Daily Intelligence &amp; Audit
+                  </h3>
+                  <span style={{ fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '5px', background: 'rgba(139, 92, 246, 0.15)', color: '#c084fc', border: '1px solid rgba(139, 92, 246, 0.3)' }}>
+                    NSE CAS Effective: Aug 3, 2026
+                  </span>
+                </div>
+                <p style={{ margin: '2px 0 0 0', fontSize: '12px', color: '#94a3b8' }}>
+                  3:15 PM Continuous Close vs 3:30 PM Equilibrium Settlement &amp; Slippage Tracking
+                </p>
+              </div>
+            </div>
+
+            <span style={{
+              fontSize: '12px',
+              fontWeight: 800,
+              padding: '4px 12px',
+              borderRadius: '7px',
+              background: 'rgba(239, 68, 68, 0.15)',
+              color: '#f87171',
+              border: '1px solid rgba(239, 68, 68, 0.3)'
+            }}>
+              🚨 MANDATORY EXIT: 3:12 PM IST
+            </span>
+          </div>
+
+          {/* Current Asset CAS Summary */}
+          {(() => {
+            const todayCas = casData && casData.length > 0 ? casData[0] : null;
+            if (!todayCas) return null;
+            const assetCas = selectedAsset === 'nifty' ? todayCas?.nifty : todayCas?.banknifty;
+            if (!assetCas) return null;
+
+            const ltpContinuous = assetCas.continuousCloseAt327 ?? assetCas.ltpAt315 ?? 0;
+            const casClose = assetCas.casEquilibriumClose ?? assetCas.casClosePrice ?? 0;
+            const slippagePts = assetCas.casSlippagePts ?? 0;
+            const slippagePct = assetCas.casSlippagePct ?? 0;
+            const driftDir = assetCas.casDriftDirection ?? 'EQUILIBRIUM';
+            const gapBias = (assetCas.nextDayGapBias || 'NEUTRAL').replace(/_/g, ' ');
+
+            return (
+              <div>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+                  gap: '12px',
+                  marginBottom: '12px'
+                }}>
+                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '10px 14px' }}>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>3:15 / 3:26 Continuous LTP</div>
+                    <div style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'monospace', color: '#38bdf8', marginTop: '2px' }}>
+                      ₹{safeFmt(ltpContinuous, 2)}
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                      {assetCas.isDayExtremeAt315 ? '⚠️ Coincided with Day Extreme' : 'Continuous trading halt'}
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '10px 14px' }}>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>3:30 PM CAS Equilibrium Price</div>
+                    <div style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'monospace', color: '#c084fc', marginTop: '2px' }}>
+                      ₹{safeFmt(casClose, 2)}
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#a855f7', marginTop: '2px' }}>
+                      Official SEBI Settlement
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '10px 14px' }}>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>CAS Auction Slippage</div>
+                    <div style={{ fontSize: '18px', fontWeight: 800, fontFamily: 'monospace', color: slippagePts > 0 ? '#10b981' : (slippagePts < 0 ? '#f43f5e' : '#facc15'), marginTop: '2px' }}>
+                      {slippagePts > 0 ? '+' : ''}{safeFmt(slippagePts, 2)} pts ({safeFmt(slippagePct, 2)}%)
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                      {driftDir}
+                    </div>
+                  </div>
+
+                  <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.08)', borderRadius: '10px', padding: '10px 14px' }}>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Next-Day Gap Bias</div>
+                    <div style={{ fontSize: '16px', fontWeight: 800, color: '#f43f5e', marginTop: '4px' }}>
+                      {gapBias}
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                      Based on auction extreme closing
+                    </div>
+                  </div>
+                </div>
+
+                {/* Key Findings List */}
+                {todayCas.keyFindings && todayCas.keyFindings.length > 0 && (
+                  <div style={{ background: 'rgba(0, 0, 0, 0.25)', borderRadius: '8px', padding: '10px 14px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                    <div style={{ fontSize: '11px', color: '#c084fc', fontWeight: 700, textTransform: 'uppercase', marginBottom: '6px' }}>Today's Auto-Learned CAS Observations:</div>
+                    <ul style={{ margin: 0, paddingLeft: '16px', fontSize: '12px', color: '#cbd5e1', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                      {todayCas.keyFindings.map((f: string, i: number) => (
+                        <li key={i}>{f}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </div>
       )}
 
@@ -822,10 +1092,10 @@ export function DayRangeContainer() {
             <TrendingUp size={15} color="#10b981" />
           </div>
           <div style={{ fontSize: '24px', fontWeight: 900, fontFamily: 'monospace', color: '#10b981' }}>
-            {asset.predictedHigh.toLocaleString('en-IN')}
+            {safeFmt(asset.predictedHigh)}
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>
-            Distance: +{Math.max(0, Math.round(asset.predictedHigh - asset.spot))} pts
+            Distance: +{Math.max(0, Math.round((asset.predictedHigh || 0) - (asset.spot || 0)))} pts
           </div>
         </div>
 
@@ -844,10 +1114,10 @@ export function DayRangeContainer() {
             <TrendingDown size={15} color="#f43f5e" />
           </div>
           <div style={{ fontSize: '24px', fontWeight: 900, fontFamily: 'monospace', color: '#f43f5e' }}>
-            {asset.predictedLow.toLocaleString('en-IN')}
+            {safeFmt(asset.predictedLow)}
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>
-            Distance: -{Math.max(0, Math.round(asset.spot - asset.predictedLow))} pts
+            Distance: -{Math.max(0, Math.round((asset.spot || 0) - (asset.predictedLow || 0)))} pts
           </div>
         </div>
 
@@ -866,9 +1136,9 @@ export function DayRangeContainer() {
             <Zap size={15} color="#facc15" />
           </div>
           <div style={{ fontSize: '20px', fontWeight: 800, fontFamily: 'monospace', color: '#facc15' }}>
-            {asset.gapRetestLevel.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+            {safeFmt(asset.gapRetestLevel, 2)}
           </div>
-          <div style={{ fontSize: '11px', color: asset.gapStatus.includes('FILLED') ? '#10b981' : '#f59e0b', marginTop: '4px', fontWeight: 600 }}>
+          <div style={{ fontSize: '11px', color: asset.gapStatus?.includes('FILLED') ? '#10b981' : '#f59e0b', marginTop: '4px', fontWeight: 600 }}>
             {asset.gapType} • {asset.gapStatus}
           </div>
         </div>
@@ -896,7 +1166,7 @@ export function DayRangeContainer() {
             <Maximize2 size={16} color="#60a5fa" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 900, fontFamily: 'monospace', color: '#60a5fa' }}>
-            {asset.expectedDayRange} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
+            {safeFmt(asset.expectedDayRange)} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
             Projected total session expansion
@@ -918,10 +1188,10 @@ export function DayRangeContainer() {
             <Activity size={16} color="#c084fc" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 900, fontFamily: 'monospace', color: '#c084fc' }}>
-            {asset.currentRange} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
+            {safeFmt(asset.currentRange)} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
-            High: {asset.dayHigh.toLocaleString('en-IN')} | Low: {asset.dayLow.toLocaleString('en-IN')}
+            High: {safeFmt(asset.dayHigh)} | Low: {safeFmt(asset.dayLow)}
           </div>
         </div>
 
@@ -940,10 +1210,10 @@ export function DayRangeContainer() {
             <Anchor size={16} color="#facc15" />
           </div>
           <div style={{ fontSize: '26px', fontWeight: 900, fontFamily: 'monospace', color: '#facc15' }}>
-            {asset.ibRange} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
+            {safeFmt(asset.ibRange)} <span style={{ fontSize: '13px', fontWeight: 600, color: '#94a3b8' }}>pts</span>
           </div>
           <div style={{ fontSize: '11px', color: '#64748b', marginTop: '6px' }}>
-            IB High: {asset.ibHigh.toLocaleString('en-IN')} | IB Low: {asset.ibLow.toLocaleString('en-IN')}
+            IB High: {safeFmt(asset.ibHigh)} | IB Low: {safeFmt(asset.ibLow)}
           </div>
         </div>
 
@@ -1056,7 +1326,7 @@ export function DayRangeContainer() {
 
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
                     <span style={{ fontSize: '16px', fontWeight: 800, fontFamily: 'monospace', color: isHit ? '#10b981' : 'var(--text-primary)' }}>
-                      {item.price.toLocaleString('en-IN')}
+                      {safeFmt(item.price)}
                     </span>
                     <span style={{
                       fontSize: '11px',
@@ -1132,7 +1402,7 @@ export function DayRangeContainer() {
 
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: '10px' }}>
                     <span style={{ fontSize: '16px', fontWeight: 800, fontFamily: 'monospace', color: isHit ? '#f43f5e' : 'var(--text-primary)' }}>
-                      {item.price.toLocaleString('en-IN')}
+                      {safeFmt(item.price)}
                     </span>
                     <span style={{
                       fontSize: '11px',

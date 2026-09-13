@@ -1,4 +1,4 @@
-import { getBackendUrl, getWsUrls } from './config';
+import { getBackendUrl, getWsUrls, onBackendChange } from './config';
 
 export interface TVDataMessage {
   symbol: string;
@@ -28,13 +28,29 @@ class TVWebSocketStreamer {
   private onDataCallback: OnDataCallback | null = null;
   private onErrorCallback: OnErrorCallback | null = null;
   private onStatusCallback: OnStatusCallback | null = null;
-  private reconnectTimeout: number | null = null;
-  private pollInterval: number | null = null;
+  private reconnectTimeout: any = null;
+  private pingInterval: any = null;
+  private pollInterval: any = null;
   private status: 'connecting' | 'connected' | 'disconnected' = 'disconnected';
 
   constructor() {
+    this.refreshWsUrls();
+    // React immediately if backend tunnel URL changes in config
+    onBackendChange(() => {
+      console.log('[tvStreamer] Backend URL changed, refreshing connection...');
+      this.refreshWsUrls();
+      if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
+        this.connect();
+      }
+    });
+  }
+
+  private refreshWsUrls() {
     this.wsUrls = getWsUrls();
-    this.url = this.wsUrls[0] || '';
+    if (this.currentUrlIndex >= this.wsUrls.length) {
+      this.currentUrlIndex = 0;
+    }
+    this.url = this.wsUrls[this.currentUrlIndex] || '';
   }
 
   public setStatusListener(callback: OnStatusCallback) {
@@ -46,6 +62,25 @@ class TVWebSocketStreamer {
     this.status = newStatus;
     if (this.onStatusCallback) {
       this.onStatusCallback(newStatus);
+    }
+  }
+
+  private startHeartbeat() {
+    this.stopHeartbeat();
+    // Send application ping every 10 seconds to keep reverse proxy tunnel and backend alive
+    this.pingInterval = setInterval(() => {
+      if (this.ws && this.ws.readyState === WebSocket.OPEN) {
+        try {
+          this.ws.send(JSON.stringify({ type: 'ping', timestamp: Date.now() }));
+        } catch (e) {}
+      }
+    }, 10000);
+  }
+
+  private stopHeartbeat() {
+    if (this.pingInterval) {
+      clearInterval(this.pingInterval);
+      this.pingInterval = null;
     }
   }
 
@@ -70,6 +105,13 @@ class TVWebSocketStreamer {
       return;
     }
 
+    this.refreshWsUrls();
+    if (!this.url) {
+      this.setStatus('disconnected');
+      this.triggerReconnect();
+      return;
+    }
+
     this.setStatus('connecting');
     console.log(`Connecting to backend WebSocket at ${this.url}...`);
 
@@ -79,6 +121,7 @@ class TVWebSocketStreamer {
       this.ws.onopen = () => {
         console.log(`WebSocket connection established on ${this.url}`);
         this.setStatus('connected');
+        this.startHeartbeat();
         
         // Resubscribe if we had an active subscription before disconnect
         if (this.currentSubscription) {
@@ -90,6 +133,11 @@ class TVWebSocketStreamer {
         try {
           const payload = JSON.parse(event.data);
           
+          // Fast heartbeat pong response from server
+          if (payload.type === 'pong') {
+            return;
+          }
+
           if (payload.type === 'data') {
             if (this.onDataCallback) {
               this.onDataCallback(payload);
@@ -107,6 +155,7 @@ class TVWebSocketStreamer {
 
       this.ws.onclose = () => {
         console.log(`WebSocket connection closed (${this.url})`);
+        this.stopHeartbeat();
         this.setStatus('disconnected');
         this.ws = null;
         this.triggerReconnect();
@@ -114,6 +163,7 @@ class TVWebSocketStreamer {
 
       this.ws.onerror = (err) => {
         console.error('WebSocket connection error:', err);
+        this.stopHeartbeat();
         this.setStatus('disconnected');
         if (this.onErrorCallback) {
           this.onErrorCallback('WebSocket server connection error');
@@ -121,6 +171,7 @@ class TVWebSocketStreamer {
       };
     } catch (err) {
       console.error('Failed to create WebSocket client:', err);
+      this.stopHeartbeat();
       this.setStatus('disconnected');
       this.triggerReconnect();
     }
@@ -131,9 +182,11 @@ class TVWebSocketStreamer {
 
     this.reconnectTimeout = window.setTimeout(() => {
       this.reconnectTimeout = null;
-      // Alternate between /ws and /
-      this.currentUrlIndex = (this.currentUrlIndex + 1) % this.wsUrls.length;
-      this.url = this.wsUrls[this.currentUrlIndex];
+      this.refreshWsUrls();
+      if (this.wsUrls.length > 0) {
+        this.currentUrlIndex = (this.currentUrlIndex + 1) % this.wsUrls.length;
+        this.url = this.wsUrls[this.currentUrlIndex];
+      }
       console.log(`Attempting to reconnect with ${this.url}...`);
       this.connect();
     }, 3000);
@@ -193,6 +246,7 @@ class TVWebSocketStreamer {
 
   public disconnect() {
     this.unsubscribe();
+    this.stopHeartbeat();
     if (this.ws) {
       this.ws.close();
       this.ws = null;

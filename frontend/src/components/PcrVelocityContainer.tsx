@@ -698,14 +698,14 @@ export function PcrVelocityContainer() {
                       {f.target_date} <span style={{ color: 'var(--text-secondary)', fontWeight: '400', fontSize: '11px' }}>({f.target_day})</span>
                     </td>
                     <td style={{ padding: '10px', color: '#38bdf8', fontWeight: '700' }}>
-                      ₹{f.prediction.predicted_open.toLocaleString('en-IN')}
+                      ₹{f.prediction?.predicted_open ? f.prediction.predicted_open.toLocaleString('en-IN') : '---'}
                     </td>
                     <td style={{ padding: '10px' }}>
                       {evalData ? (
                         <span>
-                          ₹{evalData.actual_open.toLocaleString('en-IN')}{' '}
-                          <span style={{ color: evalData.open_error_pct <= 0.15 ? '#10b981' : '#eab308', fontWeight: '700', fontSize: '11px' }}>
-                            ({evalData.open_error_pct}%)
+                          ₹{evalData.actual_open ? evalData.actual_open.toLocaleString('en-IN') : '---'}{' '}
+                          <span style={{ color: (evalData.open_error_pct || 0) <= 0.15 ? '#10b981' : '#eab308', fontWeight: '700', fontSize: '11px' }}>
+                            ({evalData.open_error_pct ?? '0'}%)
                           </span>
                         </span>
                       ) : (
@@ -713,14 +713,14 @@ export function PcrVelocityContainer() {
                       )}
                     </td>
                     <td style={{ padding: '10px', color: '#c084fc', fontWeight: '700' }}>
-                      ₹{f.prediction.predicted_close.toLocaleString('en-IN')}
+                      ₹{f.prediction?.predicted_close ? f.prediction.predicted_close.toLocaleString('en-IN') : '---'}
                     </td>
                     <td style={{ padding: '10px' }}>
                       {evalData ? (
                         <span>
-                          ₹{evalData.actual_close.toLocaleString('en-IN')}{' '}
-                          <span style={{ color: evalData.close_error_pct <= 0.25 ? '#10b981' : '#eab308', fontWeight: '700', fontSize: '11px' }}>
-                            ({evalData.close_error_pct}%)
+                          ₹{evalData.actual_close ? evalData.actual_close.toLocaleString('en-IN') : '---'}{' '}
+                          <span style={{ color: (evalData.close_error_pct || 0) <= 0.25 ? '#10b981' : '#eab308', fontWeight: '700', fontSize: '11px' }}>
+                            ({evalData.close_error_pct ?? '0'}%)
                           </span>
                         </span>
                       ) : (

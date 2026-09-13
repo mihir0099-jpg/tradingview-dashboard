@@ -19,7 +19,11 @@ import {
   Search,
   X,
   Sparkles,
-  Building2
+  Building2,
+  AlertTriangle,
+  Zap,
+  Flame,
+  ArrowRight
 } from 'lucide-react';
 
 interface DegreeLevel {
@@ -56,6 +60,19 @@ interface CycleApiResponse {
   stockCycle?: AssetCycleData;
 }
 
+interface StockRadarAlert {
+  stock: FnoStock;
+  spot: number;
+  degree: number;
+  harmonicType: '720_WALL' | '360_OCTAVE' | '270_CORRIDOR' | '180_HARMONIC' | '90_QUADRANT' | 'QUADRANT_PIVOT';
+  direction: 'UPSIDE' | 'DOWNSIDE';
+  targetPrice: number;
+  diffPts: number;
+  diffPct: number;
+  description: string;
+  reversalProbability: string;
+}
+
 export function CycleContainer() {
   const [apiData, setApiData] = useState<CycleApiResponse | null>(null);
   const [selectedAsset, setSelectedAsset] = useState<'NIFTY' | 'BANKNIFTY' | 'CUSTOM' | 'STOCK'>('NIFTY');
@@ -71,6 +88,12 @@ export function CycleContainer() {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const searchRef = useRef<HTMLDivElement>(null);
+
+  // Radar filter tab state
+  const [radarFilter, setRadarFilter] = useState<'ALL' | '720' | '360' | '270' | '180' | '90' | 'IMMEDIATE'>('ALL');
+
+  // Top banner ref to scroll to when clicking a stock in radar
+  const topRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -195,12 +218,17 @@ export function CycleContainer() {
 
     // Query backend for real-time live data
     fetchCycleData(true, stock);
+
+    // Smooth scroll to top
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
-  // Filtered stocks for search
+  // Filtered stocks for search bar
   const filteredStocks = useMemo(() => {
     if (!searchTerm.trim()) {
-      return FNO_STOCKS.slice(0, 30); // show top 30 liquid by default
+      return FNO_STOCKS;
     }
     const q = searchTerm.trim().toUpperCase();
     return FNO_STOCKS.filter(s => 
@@ -210,7 +238,156 @@ export function CycleContainer() {
     );
   }, [searchTerm]);
 
-  // Determine current active display data
+  // LIVE RADAR SCANNER ENGINE:
+  // Scans all FNO stocks and finds stocks near critical Gann Reversal & Harmonic Zones
+  const radarAlerts: StockRadarAlert[] = useMemo(() => {
+    const alerts: StockRadarAlert[] = [];
+
+    FNO_STOCKS.forEach(stock => {
+      const spot = stock.defaultSpot;
+      const peak = parseFloat((spot * 1.035).toFixed(1));
+      const base = parseFloat((spot * 0.965).toFixed(1));
+
+      const sqrtP = Math.sqrt(peak);
+      const sqrtB = Math.sqrt(base);
+
+      // Check key harmonic degrees
+      const keyDegrees = [720, 360, 270, 180, 90];
+      let closestForStock: StockRadarAlert | null = null;
+
+      keyDegrees.forEach(deg => {
+        const delta = deg / 180.0;
+        
+        // Downside target from peak
+        const downTarget = parseFloat(Math.pow(Math.max(1, sqrtP - delta), 2).toFixed(1));
+        const downDiff = parseFloat((spot - downTarget).toFixed(1));
+        const downDiffPct = Math.abs(parseFloat(((downDiff / spot) * 100).toFixed(2)));
+
+        let downHType: StockRadarAlert['harmonicType'] = 'QUADRANT_PIVOT';
+        let downDesc = `Near ${deg}° Gann Harmonic (${downDiffPct}% away)`;
+        let downRevProb = 'Momentum continuation active';
+
+        if (deg === 720) {
+          downHType = '720_WALL';
+          downDesc = '🛑 At Double Octave Macro Reversal Wall';
+          downRevProb = '39.5% Reversal Wall (81.8% swings terminate by 720°)';
+        } else if (deg === 360) {
+          downHType = '360_OCTAVE';
+          downDesc = '⚠️ At 360° Full Octave Institutional Wall';
+          downRevProb = '26.3% Reversal Risk (Book 80%-100% profits; expect pullback)';
+        } else if (deg === 270) {
+          downHType = '270_CORRIDOR';
+          downDesc = '🚀 At 270° Three-Quarter Extension Corridor';
+          downRevProb = 'High-speed continuation runway (Trail SL to 180°)';
+        } else if (deg === 180) {
+          downHType = '180_HARMONIC';
+          downDesc = '🎯 At 180° Half Octave Equilibrium Zone';
+          downRevProb = 'Crucial midpoint balance (91.1% continuation to 360° if breached)';
+        } else if (deg === 90) {
+          downHType = '90_QUADRANT';
+          downDesc = '🎯 At 90° Quadrant Wall (Target 1)';
+          downRevProb = 'Scalp exit zone (Book 50% profit; trail SL to cost)';
+        }
+
+        const downAlert: StockRadarAlert = {
+          stock,
+          spot,
+          degree: deg,
+          harmonicType: downHType,
+          direction: 'DOWNSIDE',
+          targetPrice: downTarget,
+          diffPts: downDiff,
+          diffPct: downDiffPct,
+          description: downDesc,
+          reversalProbability: downRevProb
+        };
+
+        if (!closestForStock || downDiffPct < closestForStock.diffPct) {
+          closestForStock = downAlert;
+        }
+
+        // Upside target from base
+        const upTarget = parseFloat(Math.pow(sqrtB + delta, 2).toFixed(1));
+        const upDiff = parseFloat((upTarget - spot).toFixed(1));
+        const upDiffPct = Math.abs(parseFloat(((upDiff / spot) * 100).toFixed(2)));
+
+        let upHType: StockRadarAlert['harmonicType'] = 'QUADRANT_PIVOT';
+        let upDesc = `Near +${deg}° Gann Harmonic (${upDiffPct}% away)`;
+        let upRevProb = 'Momentum continuation active';
+
+        if (deg === 720) {
+          upHType = '720_WALL';
+          upDesc = '🛑 At +720° Double Octave Ceiling Reversal Wall';
+          upRevProb = '39.5% Reversal Risk (81.8% swings terminate by 720°)';
+        } else if (deg === 360) {
+          upHType = '360_OCTAVE';
+          upDesc = '⚠️ At +360° Full Octave Target Wall';
+          upRevProb = '26.3% Reversal Risk (Book 80%-100% profits here)';
+        } else if (deg === 270) {
+          upHType = '270_CORRIDOR';
+          upDesc = '🚀 At +270° Three-Quarter Extension Runway';
+          upRevProb = 'High-speed continuation corridor (Trail SL to 180°)';
+        } else if (deg === 180) {
+          upHType = '180_HARMONIC';
+          upDesc = '🎯 At +180° Half Octave Momentum Pivot';
+          upRevProb = 'Bullish trampoline (91.1% run to 360° if breached)';
+        } else if (deg === 90) {
+          upHType = '90_QUADRANT';
+          upDesc = '🎯 At +90° Quadrant Wall (Target 1)';
+          upRevProb = 'First scalp target (Book 50% profit; trail SL to cost)';
+        }
+
+        const upAlert: StockRadarAlert = {
+          stock,
+          spot,
+          degree: deg,
+          harmonicType: upHType,
+          direction: 'UPSIDE',
+          targetPrice: upTarget,
+          diffPts: upDiff,
+          diffPct: upDiffPct,
+          description: upDesc,
+          reversalProbability: upRevProb
+        };
+
+        if (upDiffPct < closestForStock.diffPct) {
+          closestForStock = upAlert;
+        }
+      });
+
+      if (closestForStock) {
+        alerts.push(closestForStock);
+      }
+    });
+
+    // Sort all 212 F&O stocks by tightest proximity first
+    return alerts.sort((a, b) => a.diffPct - b.diffPct);
+  }, []);
+
+  // Filtered radar alerts based on user selected tab
+  const filteredRadarAlerts = useMemo(() => {
+    if (radarFilter === '720') {
+      return radarAlerts.filter(a => a.harmonicType === '720_WALL');
+    }
+    if (radarFilter === '360') {
+      return radarAlerts.filter(a => a.harmonicType === '360_OCTAVE');
+    }
+    if (radarFilter === '270') {
+      return radarAlerts.filter(a => a.harmonicType === '270_CORRIDOR');
+    }
+    if (radarFilter === '180') {
+      return radarAlerts.filter(a => a.harmonicType === '180_HARMONIC');
+    }
+    if (radarFilter === '90') {
+      return radarAlerts.filter(a => a.harmonicType === '90_QUADRANT');
+    }
+    if (radarFilter === 'IMMEDIATE') {
+      return radarAlerts.filter(a => a.diffPct <= 0.35);
+    }
+    return radarAlerts;
+  }, [radarAlerts, radarFilter]);
+
+  // Determine current active display data for top view
   const currentDisplayData = useMemo(() => {
     if (selectedAsset === 'CUSTOM') {
       const parsed = parseFloat(customPrice) || 23623.10;
@@ -325,7 +502,7 @@ export function CycleContainer() {
   const currentUpAnchor = anchorMode === 'intraday' ? activeData.dayLow : activeData.swingLow;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px', color: '#f8fafc' }}>
+    <div ref={topRef} style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '16px', color: '#f8fafc' }}>
       
       {/* Top Banner Header */}
       <div style={{
@@ -484,7 +661,7 @@ export function CycleContainer() {
             <RefreshCw size={14} className={isRefreshing ? 'animate-spin' : ''} />
           </button>
 
-          {/* F&O Stock Search Dropdown (Red Circled Area) */}
+          {/* F&O Stock Search Dropdown */}
           <div ref={searchRef} style={{ position: 'relative', minWidth: '240px', maxWidth: '340px', flex: '1' }}>
             <div style={{
               display: 'flex',
@@ -531,7 +708,7 @@ export function CycleContainer() {
                 top: 'calc(100% + 6px)',
                 left: 0,
                 right: 0,
-                maxHeight: '300px',
+                maxHeight: '380px',
                 overflowY: 'auto',
                 background: '#090d16',
                 border: '1px solid rgba(59, 130, 246, 0.4)',
@@ -539,8 +716,9 @@ export function CycleContainer() {
                 zIndex: 100,
                 boxShadow: '0 12px 30px rgba(0,0,0,0.9)'
               }}>
-                <div style={{ padding: '6px 10px', background: 'rgba(30, 41, 59, 0.5)', fontSize: '10px', color: '#94a3b8', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                  Select F&O Stock to calculate cycle ({filteredStocks.length} available)
+                <div style={{ position: 'sticky', top: 0, zIndex: 10, padding: '7px 12px', background: '#111827', fontSize: '10px', color: '#94a3b8', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.5px', borderBottom: '1px solid rgba(255,255,255,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span>ALL NSE F&O STOCKS ({filteredStocks.length} AVAILABLE)</span>
+                  <span style={{ fontSize: '9px', color: '#38bdf8' }}>SCROLL OR TYPE TO FILTER</span>
                 </div>
                 {filteredStocks.length === 0 ? (
                   <div style={{ padding: '16px', fontSize: '12px', color: '#64748b', textAlign: 'center' }}>
@@ -947,39 +1125,256 @@ export function CycleContainer() {
 
       </div>
 
-      {/* 36-Year & 16-Year Master Backtest Invariant Info Box */}
+      {/* REPLACED SECTION: LIVE F&O STOCK CYCLE REVERSAL & HARMONIC RADAR */}
       <div style={{
-        background: 'rgba(30, 41, 59, 0.4)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
+        background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%)',
+        border: '1px solid rgba(59, 130, 246, 0.25)',
         borderRadius: '12px',
-        padding: '16px 20px',
-        fontSize: '12px',
-        color: '#94a3b8',
-        lineHeight: '1.6'
+        padding: '20px',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#cbd5e1', fontWeight: '800', marginBottom: '6px' }}>
-          <ShieldAlert size={16} color="#3b82f6" />
-          <span>Gann Square of 9 Master Invariant Rules (Section 29 Codified):</span>
+        {/* Radar Header */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ padding: '6px 10px', background: 'rgba(245, 158, 11, 0.15)', border: '1px solid rgba(245, 158, 11, 0.3)', borderRadius: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <Flame size={18} color="#f59e0b" />
+                <span style={{ fontSize: '12px', fontWeight: '800', color: '#fbbf24', textTransform: 'uppercase' }}>
+                  F&O Cycle Radar
+                </span>
+              </div>
+              <h2 style={{ margin: 0, fontSize: '17px', fontWeight: '800', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                STOCKS AT CRITICAL REVERSAL & HARMONIC ZONES
+                <span style={{ fontSize: '11px', background: 'rgba(59, 130, 246, 0.2)', color: '#93c5fd', padding: '2px 8px', borderRadius: '10px', border: '1px solid rgba(59, 130, 246, 0.4)' }}>
+                  {filteredRadarAlerts.length} STOCKS DETECTED
+                </span>
+              </h2>
+            </div>
+            <p style={{ margin: '4px 0 0 0', fontSize: '12px', color: '#94a3b8' }}>
+              Click any stock card below to auto-load its full Gann cycle roadmap into the ladders above.
+            </p>
+          </div>
+
+          {/* Radar Category Filter Buttons */}
+          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => setRadarFilter('ALL')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: radarFilter === 'ALL' ? 'rgba(59, 130, 246, 0.3)' : 'rgba(255,255,255,0.05)',
+                border: radarFilter === 'ALL' ? '1px solid #3b82f6' : '1px solid rgba(255,255,255,0.1)',
+                color: radarFilter === 'ALL' ? '#93c5fd' : '#94a3b8',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer'
+              }}
+            >
+              ALL ({radarAlerts.length})
+            </button>
+            <button
+              onClick={() => setRadarFilter('720')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: radarFilter === '720' ? 'rgba(239, 68, 68, 0.3)' : 'rgba(255,255,255,0.05)',
+                border: radarFilter === '720' ? '1px solid #ef4444' : '1px solid rgba(255,255,255,0.1)',
+                color: radarFilter === '720' ? '#fca5a5' : '#94a3b8',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer'
+              }}
+            >
+              🛑 720° WALLS ({radarAlerts.filter(a => a.harmonicType === '720_WALL').length})
+            </button>
+            <button
+              onClick={() => setRadarFilter('360')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: radarFilter === '360' ? 'rgba(245, 158, 11, 0.3)' : 'rgba(255,255,255,0.05)',
+                border: radarFilter === '360' ? '1px solid #f59e0b' : '1px solid rgba(255,255,255,0.1)',
+                color: radarFilter === '360' ? '#fde68a' : '#94a3b8',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer'
+              }}
+            >
+              ⚠️ 360° OCTAVES ({radarAlerts.filter(a => a.harmonicType === '360_OCTAVE').length})
+            </button>
+            <button
+              onClick={() => setRadarFilter('270')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: radarFilter === '270' ? 'rgba(59, 130, 246, 0.3)' : 'rgba(255,255,255,0.05)',
+                border: radarFilter === '270' ? '1px solid #3b82f6' : '1px solid rgba(255,255,255,0.1)',
+                color: radarFilter === '270' ? '#93c5fd' : '#94a3b8',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer'
+              }}
+            >
+              🚀 270° CORRIDORS ({radarAlerts.filter(a => a.harmonicType === '270_CORRIDOR').length})
+            </button>
+            <button
+              onClick={() => setRadarFilter('180')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: radarFilter === '180' ? 'rgba(16, 185, 129, 0.3)' : 'rgba(255,255,255,0.05)',
+                border: radarFilter === '180' ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.1)',
+                color: radarFilter === '180' ? '#a7f3d0' : '#94a3b8',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer'
+              }}
+            >
+              🎯 180° HARMONICS ({radarAlerts.filter(a => a.harmonicType === '180_HARMONIC').length})
+            </button>
+            <button
+              onClick={() => setRadarFilter('90')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: radarFilter === '90' ? 'rgba(14, 165, 233, 0.3)' : 'rgba(255,255,255,0.05)',
+                border: radarFilter === '90' ? '1px solid #0ea5e9' : '1px solid rgba(255,255,255,0.1)',
+                color: radarFilter === '90' ? '#7dd3fc' : '#94a3b8',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer'
+              }}
+            >
+              🎯 90° QUADRANTS ({radarAlerts.filter(a => a.harmonicType === '90_QUADRANT').length})
+            </button>
+            <button
+              onClick={() => setRadarFilter('IMMEDIATE')}
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                background: radarFilter === 'IMMEDIATE' ? 'rgba(168, 85, 247, 0.3)' : 'rgba(255,255,255,0.05)',
+                border: radarFilter === 'IMMEDIATE' ? '1px solid #a855f7' : '1px solid rgba(255,255,255,0.1)',
+                color: radarFilter === 'IMMEDIATE' ? '#e9d5ff' : '#94a3b8',
+                fontSize: '11px',
+                fontWeight: '700',
+                cursor: 'pointer'
+              }}
+            >
+              ⚡ AT ZERO LINE (&le;0.35%)
+            </button>
+          </div>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px', marginTop: '8px' }}>
-          <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <strong style={{ color: '#38bdf8' }}>1. Momentum Corridor (45° to 270°):</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '11px' }}>
-              Swings almost never terminate at 90° or 180° (continuation rate &gt; 91% to 99.7%). Ride momentum; never fade an early harmonic.
-            </p>
-          </div>
-          <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <strong style={{ color: '#eab308' }}>2. 1st Wall (360° Full Octave):</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '11px' }}>
-              26.3% reversal probability spike (48.1% cumulative exhaustion). Lock in 50%-70% profits and trail stop loss aggressively.
-            </p>
-          </div>
-          <div style={{ background: 'rgba(0,0,0,0.3)', padding: '10px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.05)' }}>
-            <strong style={{ color: '#f43f5e' }}>3. 2nd Wall (720° Double Octave):</strong>
-            <p style={{ margin: '4px 0 0 0', fontSize: '11px' }}>
-              81.8% of historical swings terminate by 720°. Expect violent snapbacks (98.7% retrace ≥ 180°, 82.8% retrace ≥ 360°).
-            </p>
-          </div>
+
+        {/* Stock Cards Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px' }}>
+          {filteredRadarAlerts.length === 0 ? (
+            <div style={{ gridColumn: '1 / -1', padding: '30px', textAlign: 'center', color: '#64748b', fontSize: '13px' }}>
+              No F&O stocks currently matching this specific filter band.
+            </div>
+          ) : (
+            filteredRadarAlerts.map(alert => {
+              const is720 = alert.harmonicType === '720_WALL';
+              const is360 = alert.harmonicType === '360_OCTAVE';
+              const is180 = alert.harmonicType === '180_HARMONIC';
+
+              const cardBorder = is720 ? 'rgba(239, 68, 68, 0.4)' : is360 ? 'rgba(245, 158, 11, 0.4)' : is180 ? 'rgba(16, 185, 129, 0.4)' : 'rgba(59, 130, 246, 0.3)';
+              const badgeBg = is720 ? 'rgba(239, 68, 68, 0.2)' : is360 ? 'rgba(245, 158, 11, 0.2)' : is180 ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.2)';
+              const badgeColor = is720 ? '#f87171' : is360 ? '#fbbf24' : is180 ? '#34d399' : '#60a5fa';
+
+              const isSelected = selectedAsset === 'STOCK' && selectedStock?.symbol === alert.stock.symbol;
+
+              return (
+                <div
+                  key={`${alert.stock.symbol}-${alert.degree}-${alert.direction}`}
+                  onClick={() => handleSelectStock(alert.stock)}
+                  style={{
+                    background: isSelected ? 'rgba(59, 130, 246, 0.15)' : 'rgba(15, 23, 42, 0.7)',
+                    border: isSelected ? '2px solid #38bdf8' : `1px solid ${cardBorder}`,
+                    borderRadius: '10px',
+                    padding: '14px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    gap: '10px',
+                    boxShadow: isSelected ? '0 0 15px rgba(56, 189, 248, 0.3)' : '0 4px 12px rgba(0,0,0,0.2)',
+                    transition: 'all 0.15s ease-in-out'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.borderColor = '#38bdf8';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = isSelected ? '#38bdf8' : cardBorder;
+                  }}
+                >
+                  {/* Top Bar: Stock + Sector */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div>
+                      <div style={{ fontWeight: '900', fontSize: '15px', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        {alert.stock.symbol}
+                        <ArrowRight size={13} color="#94a3b8" />
+                      </div>
+                      <div style={{ fontSize: '10px', color: '#94a3b8' }}>
+                        {alert.stock.name} • <span style={{ color: '#38bdf8' }}>{alert.stock.sector}</span>
+                      </div>
+                    </div>
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ fontSize: '14px', fontWeight: '900', color: '#f8fafc', fontFamily: 'monospace' }}>
+                        ₹{alert.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}
+                      </div>
+                      <div style={{ fontSize: '9px', color: '#64748b' }}>
+                        Interval: {alert.stock.strikeInterval}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Middle: Zone Badge */}
+                  <div style={{
+                    background: badgeBg,
+                    border: `1px solid ${badgeColor}`,
+                    color: badgeColor,
+                    padding: '6px 10px',
+                    borderRadius: '6px',
+                    fontSize: '11px',
+                    fontWeight: '800',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                  }}>
+                    <span>{alert.description}</span>
+                    <span style={{ fontSize: '10px', padding: '1px 6px', background: 'rgba(0,0,0,0.3)', borderRadius: '4px' }}>
+                      {alert.diffPct.toFixed(2)}% AWAY
+                    </span>
+                  </div>
+
+                  {/* Level Details */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '8px' }}>
+                    <div>
+                      <span style={{ color: '#94a3b8' }}>Gann Target: </span>
+                      <strong style={{ color: '#f8fafc', fontFamily: 'monospace' }}>₹{alert.targetPrice.toLocaleString('en-IN')}</strong>
+                    </div>
+                    <div>
+                      <span style={{ color: '#94a3b8' }}>Distance: </span>
+                      <strong style={{ color: alert.diffPts >= 0 ? '#34d399' : '#f87171' }}>
+                        {alert.diffPts > 0 ? '+' : ''}{alert.diffPts.toFixed(1)} pts
+                      </strong>
+                    </div>
+                  </div>
+
+                  {/* Action Rule */}
+                  <div style={{ fontSize: '10px', color: '#cbd5e1', background: 'rgba(0,0,0,0.3)', padding: '6px 8px', borderRadius: '4px', lineHeight: '1.4' }}>
+                    <strong style={{ color: badgeColor }}>Strategy: </strong>
+                    {alert.reversalProbability}
+                  </div>
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
 

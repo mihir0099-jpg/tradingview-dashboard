@@ -1,0 +1,754 @@
+{
+  "generatedAt": "2026-09-12T06:37:40.828Z",
+  "totalSessions": 2816,
+  "analysisWindow": "2015-2026",
+  "totalCombinationsTested": 143,
+  "perfectSetups": [
+    {
+      "setup": "PB↑+Bank↑ Low Fri",
+      "n": 45,
+      "winRate": "100.0%",
+      "avgRet": "0.56%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Low Thu",
+      "n": 42,
+      "winRate": "100.0%",
+      "avgRet": "-0.56%"
+    },
+    {
+      "setup": "PB+PC↓ Low Tue",
+      "n": 29,
+      "winRate": "100.0%",
+      "avgRet": "-0.61%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Elev Wed",
+      "n": 25,
+      "winRate": "100.0%",
+      "avgRet": "0.65%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Elev Wed",
+      "n": 23,
+      "winRate": "100.0%",
+      "avgRet": "-0.72%"
+    },
+    {
+      "setup": "PB↓ IB:NormalIB Low Mon",
+      "n": 19,
+      "winRate": "100.0%",
+      "avgRet": "-0.47%"
+    },
+    {
+      "setup": "PB↓ FC:Bear BigFC Low Mon",
+      "n": 19,
+      "winRate": "100.0%",
+      "avgRet": "-0.67%"
+    },
+    {
+      "setup": "PB↓ VIX12-13 Thu",
+      "n": 17,
+      "winRate": "100.0%",
+      "avgRet": "-0.45%"
+    },
+    {
+      "setup": "PB+PC↑ Elev Wed",
+      "n": 17,
+      "winRate": "100.0%",
+      "avgRet": "0.71%"
+    },
+    {
+      "setup": "PB+PC↓ UltraLow Fri",
+      "n": 17,
+      "winRate": "100.0%",
+      "avgRet": "-0.49%"
+    },
+    {
+      "setup": "PB↓ FC:Bear BigFC Elev Tue",
+      "n": 16,
+      "winRate": "100.0%",
+      "avgRet": "-0.95%"
+    },
+    {
+      "setup": "PB↑ VIXdn Elev Fri",
+      "n": 16,
+      "winRate": "100.0%",
+      "avgRet": "0.67%"
+    },
+    {
+      "setup": "PB↓ FC:Bear BigFC Low Wed",
+      "n": 14,
+      "winRate": "100.0%",
+      "avgRet": "-0.69%"
+    },
+    {
+      "setup": "PB↓ VIXup Low Thu",
+      "n": 14,
+      "winRate": "100.0%",
+      "avgRet": "-0.87%"
+    },
+    {
+      "setup": "PB↓ FC:Bear BigFC Mod Tue",
+      "n": 13,
+      "winRate": "100.0%",
+      "avgRet": "-0.78%"
+    },
+    {
+      "setup": "PB+PC↑ UltraLow Fri",
+      "n": 13,
+      "winRate": "100.0%",
+      "avgRet": "0.49%"
+    },
+    {
+      "setup": "PB↑+Bank↑ High+ Wed",
+      "n": 13,
+      "winRate": "100.0%",
+      "avgRet": "1.11%"
+    },
+    {
+      "setup": "PB↑ VIX16-17 Fri",
+      "n": 12,
+      "winRate": "100.0%",
+      "avgRet": "0.75%"
+    },
+    {
+      "setup": "PB↓ VIX17-18 Thu",
+      "n": 12,
+      "winRate": "100.0%",
+      "avgRet": "-0.84%"
+    },
+    {
+      "setup": "PB↓ IB:NormalIB High+ Fri",
+      "n": 12,
+      "winRate": "100.0%",
+      "avgRet": "-1.09%"
+    },
+    {
+      "setup": "PB↑+Bank↑ High+ Tue",
+      "n": 11,
+      "winRate": "100.0%",
+      "avgRet": "1.39%"
+    },
+    {
+      "setup": "PB↓ VIX25+ Tue",
+      "n": 10,
+      "winRate": "100.0%",
+      "avgRet": "-1.28%"
+    },
+    {
+      "setup": "PB↑ Gap:Flat Elev Wed",
+      "n": 10,
+      "winRate": "100.0%",
+      "avgRet": "0.61%"
+    },
+    {
+      "setup": "PB↑ FC:Bull BigFC Low Mon",
+      "n": 10,
+      "winRate": "100.0%",
+      "avgRet": "0.64%"
+    }
+  ],
+  "near100Setups": [
+    {
+      "setup": "PB↓+Bank↓ Low Mon",
+      "n": 36,
+      "winRate": "97.2%",
+      "avgRet": "-0.57%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Mod Tue",
+      "n": 33,
+      "winRate": "97.0%",
+      "avgRet": "-0.71%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Mod Wed",
+      "n": 33,
+      "winRate": "97.0%",
+      "avgRet": "-0.81%"
+    },
+    {
+      "setup": "PB+PC↓ Low Mon",
+      "n": 29,
+      "winRate": "96.6%",
+      "avgRet": "-0.53%"
+    },
+    {
+      "setup": "PA↑+PB↑ agree Elev Wed",
+      "n": 24,
+      "winRate": "95.8%",
+      "avgRet": "0.59%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Low Tue",
+      "n": 47,
+      "winRate": "95.7%",
+      "avgRet": "-0.59%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Elev Fri",
+      "n": 23,
+      "winRate": "95.7%",
+      "avgRet": "-1.02%"
+    },
+    {
+      "setup": "PB↓ VIXup Mod Wed",
+      "n": 21,
+      "winRate": "95.2%",
+      "avgRet": "-0.84%"
+    },
+    {
+      "setup": "PA↓+PB↓ agree Low Mon",
+      "n": 40,
+      "winRate": "95.0%",
+      "avgRet": "-0.50%"
+    },
+    {
+      "setup": "PB↑ VIX13-14 Fri",
+      "n": 20,
+      "winRate": "95.0%",
+      "avgRet": "0.42%"
+    },
+    {
+      "setup": "PB↓ VIX14-15 Mon",
+      "n": 19,
+      "winRate": "94.7%",
+      "avgRet": "-0.46%"
+    },
+    {
+      "setup": "PB↓ VIXup Mod Fri",
+      "n": 19,
+      "winRate": "94.7%",
+      "avgRet": "-0.95%"
+    },
+    {
+      "setup": "PA↑+PB↑ agree Elev Mon",
+      "n": 19,
+      "winRate": "94.7%",
+      "avgRet": "0.63%"
+    },
+    {
+      "setup": "PB↓+Bank↓ High+ Mon",
+      "n": 19,
+      "winRate": "94.7%",
+      "avgRet": "-1.66%"
+    },
+    {
+      "setup": "PB↓+Bank↓ High+ Wed",
+      "n": 19,
+      "winRate": "94.7%",
+      "avgRet": "-1.51%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Elev Fri",
+      "n": 19,
+      "winRate": "94.7%",
+      "avgRet": "0.75%"
+    },
+    {
+      "setup": "PB↓ IB:WideIB Low Thu",
+      "n": 18,
+      "winRate": "94.4%",
+      "avgRet": "-0.55%"
+    },
+    {
+      "setup": "PB+PC↑ Mod Thu",
+      "n": 18,
+      "winRate": "94.4%",
+      "avgRet": "0.60%"
+    },
+    {
+      "setup": "PB↑ VIX18-20 Mon",
+      "n": 17,
+      "winRate": "94.1%",
+      "avgRet": "0.68%"
+    },
+    {
+      "setup": "PB↓ IB:WideIB Low Wed",
+      "n": 17,
+      "winRate": "94.1%",
+      "avgRet": "-0.47%"
+    },
+    {
+      "setup": "PB↓ FC:Bear BigFC Low Thu",
+      "n": 17,
+      "winRate": "94.1%",
+      "avgRet": "-0.65%"
+    },
+    {
+      "setup": "PB↑ FC:Bull BigFC Mod Fri",
+      "n": 17,
+      "winRate": "94.1%",
+      "avgRet": "0.75%"
+    },
+    {
+      "setup": "PB↓ VIXup Elev Fri",
+      "n": 17,
+      "winRate": "94.1%",
+      "avgRet": "-1.13%"
+    },
+    {
+      "setup": "PA↓+PB↓ agree High+ Fri",
+      "n": 17,
+      "winRate": "94.1%",
+      "avgRet": "-1.15%"
+    },
+    {
+      "setup": "PB↓ VIX18-20 Mon",
+      "n": 16,
+      "winRate": "93.8%",
+      "avgRet": "-0.72%"
+    },
+    {
+      "setup": "PB↓ FC:Bear BigFC Mod Thu",
+      "n": 16,
+      "winRate": "93.8%",
+      "avgRet": "-0.82%"
+    },
+    {
+      "setup": "PB↑ VIXdn Elev Wed",
+      "n": 16,
+      "winRate": "93.8%",
+      "avgRet": "0.55%"
+    },
+    {
+      "setup": "PB↓ VIXup High+ Mon",
+      "n": 16,
+      "winRate": "93.8%",
+      "avgRet": "-1.85%"
+    },
+    {
+      "setup": "PB↑ IB:NormalIB Elev Wed",
+      "n": 15,
+      "winRate": "93.3%",
+      "avgRet": "0.46%"
+    },
+    {
+      "setup": "PB↓ VIXup Mod Tue",
+      "n": 15,
+      "winRate": "93.3%",
+      "avgRet": "-0.95%"
+    },
+    {
+      "setup": "PB↑ Sep Elev",
+      "n": 15,
+      "winRate": "93.3%",
+      "avgRet": "0.69%"
+    },
+    {
+      "setup": "PB+PC↓ Elev Tue",
+      "n": 15,
+      "winRate": "93.3%",
+      "avgRet": "-0.83%"
+    },
+    {
+      "setup": "PB+PC↓ High+ Wed",
+      "n": 15,
+      "winRate": "93.3%",
+      "avgRet": "-1.46%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Elev Tue",
+      "n": 29,
+      "winRate": "93.1%",
+      "avgRet": "-0.82%"
+    },
+    {
+      "setup": "PB↑ VIX20-22 Wed",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "0.51%"
+    },
+    {
+      "setup": "PB↓ Gap:Flat UltraLow Thu",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "-0.41%"
+    },
+    {
+      "setup": "PB↓ IB:NormalIB Mod Mon",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "-0.70%"
+    },
+    {
+      "setup": "PB↑ IB:NormalIB Mod Tue",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "0.65%"
+    },
+    {
+      "setup": "PB↓ IB:NormalIB Mod Thu",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "-0.88%"
+    },
+    {
+      "setup": "PB↑ VIXdn UltraLow Fri",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "0.41%"
+    },
+    {
+      "setup": "PB↓ VIXup Mod Thu",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "-1.11%"
+    },
+    {
+      "setup": "FC↑Big VIX18-20 Mon",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "0.65%"
+    },
+    {
+      "setup": "PB↑+Bank↑ High+ Thu",
+      "n": 14,
+      "winRate": "92.9%",
+      "avgRet": "1.04%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Mod Mon",
+      "n": 41,
+      "winRate": "92.7%",
+      "avgRet": "0.72%"
+    },
+    {
+      "setup": "PB↓ VIX18-20 Tue",
+      "n": 27,
+      "winRate": "92.6%",
+      "avgRet": "-0.57%"
+    },
+    {
+      "setup": "PB↓ VIXup Low Mon",
+      "n": 26,
+      "winRate": "92.3%",
+      "avgRet": "-0.57%"
+    },
+    {
+      "setup": "PB↑ VIXdn Low Fri",
+      "n": 26,
+      "winRate": "92.3%",
+      "avgRet": "0.58%"
+    },
+    {
+      "setup": "PB↓ VIX13-14 Mon",
+      "n": 13,
+      "winRate": "92.3%",
+      "avgRet": "-0.57%"
+    },
+    {
+      "setup": "PB↓ VIXup Elev Tue",
+      "n": 13,
+      "winRate": "92.3%",
+      "avgRet": "-1.08%"
+    },
+    {
+      "setup": "PB↑ Jan Elev",
+      "n": 13,
+      "winRate": "92.3%",
+      "avgRet": "0.52%"
+    },
+    {
+      "setup": "PB+PC↓ High+ Fri",
+      "n": 13,
+      "winRate": "92.3%",
+      "avgRet": "-1.18%"
+    },
+    {
+      "setup": "FC↓Big VIX14-15 Wed",
+      "n": 13,
+      "winRate": "92.3%",
+      "avgRet": "-0.50%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Low Fri",
+      "n": 50,
+      "winRate": "92.0%",
+      "avgRet": "-0.61%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Low Wed",
+      "n": 37,
+      "winRate": "91.9%",
+      "avgRet": "0.51%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Low Mon",
+      "n": 48,
+      "winRate": "91.7%",
+      "avgRet": "0.49%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Low Tue",
+      "n": 36,
+      "winRate": "91.7%",
+      "avgRet": "0.43%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Mod Thu",
+      "n": 36,
+      "winRate": "91.7%",
+      "avgRet": "-0.79%"
+    },
+    {
+      "setup": "PB↓ Gap:Flat Low Mon",
+      "n": 24,
+      "winRate": "91.7%",
+      "avgRet": "-0.42%"
+    },
+    {
+      "setup": "PB+PC↑ Mod Mon",
+      "n": 24,
+      "winRate": "91.7%",
+      "avgRet": "0.64%"
+    },
+    {
+      "setup": "PB+PC↑ Mod Fri",
+      "n": 24,
+      "winRate": "91.7%",
+      "avgRet": "0.85%"
+    },
+    {
+      "setup": "PB↓+Bank↓ Elev Thu",
+      "n": 24,
+      "winRate": "91.7%",
+      "avgRet": "-0.79%"
+    },
+    {
+      "setup": "PB↓ VIX25+ Mon",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-1.58%"
+    },
+    {
+      "setup": "PB↓ Gap:SmGapUp Low Mon",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.39%"
+    },
+    {
+      "setup": "PB↓ IB:WideIB Low Mon",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.53%"
+    },
+    {
+      "setup": "PB↓ IB:WideIB Mod Mon",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.97%"
+    },
+    {
+      "setup": "PB↓ IB:WideIB Mod Tue",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.69%"
+    },
+    {
+      "setup": "PB↑ IB:NormalIB Mod Thu",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "0.47%"
+    },
+    {
+      "setup": "PB↑ IB:NormalIB UltraLow Fri",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "0.39%"
+    },
+    {
+      "setup": "PB↑ IB:NarrowIB Elev Fri",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "0.39%"
+    },
+    {
+      "setup": "PB↑ FC:Bull BigFC Mod Tue",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "0.61%"
+    },
+    {
+      "setup": "PB↓ VIXup Low Wed",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.79%"
+    },
+    {
+      "setup": "PB↓ Feb High+",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.83%"
+    },
+    {
+      "setup": "PB↓ Dec UltraLow",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.38%"
+    },
+    {
+      "setup": "PB+PC↑ Elev Fri",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "0.64%"
+    },
+    {
+      "setup": "VIX+5% VIX25+ Mon",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-2.10%"
+    },
+    {
+      "setup": "2BearStreak Elev Thu",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.60%"
+    },
+    {
+      "setup": "VIXup5+Gap:Flat VIX13-14",
+      "n": 12,
+      "winRate": "91.7%",
+      "avgRet": "-0.52%"
+    },
+    {
+      "setup": "PB↓ Low Mon",
+      "n": 46,
+      "winRate": "91.3%",
+      "avgRet": "-0.44%"
+    },
+    {
+      "setup": "PB↓ Gap:Flat Low Thu",
+      "n": 23,
+      "winRate": "91.3%",
+      "avgRet": "-0.45%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Elev Tue",
+      "n": 23,
+      "winRate": "91.3%",
+      "avgRet": "0.64%"
+    },
+    {
+      "setup": "PB↑+Bank↑ UltraLow Fri",
+      "n": 23,
+      "winRate": "91.3%",
+      "avgRet": "0.41%"
+    },
+    {
+      "setup": "PB↑+Bank↑ Mod Thu",
+      "n": 34,
+      "winRate": "91.2%",
+      "avgRet": "0.57%"
+    },
+    {
+      "setup": "PB↑ VIXdn Mod Fri",
+      "n": 22,
+      "winRate": "90.9%",
+      "avgRet": "0.52%"
+    },
+    {
+      "setup": "PB+PC↓ Low Wed",
+      "n": 22,
+      "winRate": "90.9%",
+      "avgRet": "-0.50%"
+    },
+    {
+      "setup": "PB↓+Bank↓ UltraLow Fri",
+      "n": 22,
+      "winRate": "90.9%",
+      "avgRet": "-0.40%"
+    },
+    {
+      "setup": "PB↓ IB:WideIB UltraLow Wed",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "-0.28%"
+    },
+    {
+      "setup": "PB↑ IB:NarrowIB Elev Wed",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "0.40%"
+    },
+    {
+      "setup": "PB↑ FC:Bull BigFC Mod Wed",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "0.66%"
+    },
+    {
+      "setup": "PB↑ VIXdn Mod Mon",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "0.64%"
+    },
+    {
+      "setup": "PB↓ Apr Low",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "-0.51%"
+    },
+    {
+      "setup": "PB↑ Dec Elev",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "0.50%"
+    },
+    {
+      "setup": "GAP:BigGapUp VIX20-22 Thu NextDay↑",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "-0.37%"
+    },
+    {
+      "setup": "FC↓Big VIX12-13 Tue",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "-0.58%"
+    },
+    {
+      "setup": "FC↑Big VIX22-25 Tue",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "0.84%"
+    },
+    {
+      "setup": "FC↑Big VIX15-16 Wed",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "0.56%"
+    },
+    {
+      "setup": "FC↓Big VIX15-16 Fri",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "-0.54%"
+    },
+    {
+      "setup": "PB↓+Bank↓ High+ Tue",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "-1.40%"
+    },
+    {
+      "setup": "PB↓+Bank↓ High+ Thu",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "-1.56%"
+    },
+    {
+      "setup": "VIXdn5+Gap:Flat VIX13-14",
+      "n": 11,
+      "winRate": "90.9%",
+      "avgRet": "0.84%"
+    },
+    {
+      "setup": "PB↑ Elev Wed",
+      "n": 32,
+      "winRate": "90.6%",
+      "avgRet": "0.50%"
+    }
+  ]
+}

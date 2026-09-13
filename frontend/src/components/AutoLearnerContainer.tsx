@@ -13,7 +13,8 @@ import {
   Zap, 
   Layers, 
   BarChart3,
-  Sliders
+  Sliders,
+  Target
 } from 'lucide-react';
 
 interface ErrorCohort {

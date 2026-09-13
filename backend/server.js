@@ -11,6 +11,7 @@ import { evaluateSetupInMemory, recordOutcome, loadState, loadCohorts } from './
 import { computeMicrostructure, scanTopFnoStockSetups, FNO_STOCK_METADATA, fetchRealtimeMicrostructureFeed } from './microstructure.js';
 import { computeStocksTrackerOverview, calculateParticipantPositioning, evaluateEODStocksTrackerOutcomes, startAutonomousEODStocksTrackerScheduler, getAutoSchedulerStatus } from './stocksTracker.js';
 import { computeStocksMovingOverview } from './stocksMoving.js';
+import { runTabHealthAudit } from './auto_heal_tabs.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -5121,6 +5122,32 @@ app.get('/api/system/watchdog-status', (req, res) => {
   });
 });
 
+// Autonomous 24-Tab Health Status API
+app.get('/api/system/tab-health', async (req, res) => {
+  try {
+    const reportPath = path.join(__dirname, 'data', 'tab_health_report.json');
+    if (fs.existsSync(reportPath)) {
+      const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+      return res.json(data);
+    }
+    const freshReport = await runTabHealthAudit();
+    res.json(freshReport);
+  } catch (err) {
+    res.status(500).json({ error: err.message, status: 'ERROR' });
+  }
+});
+
+// On-Demand Tab Self-Healing Trigger API
+app.post('/api/system/trigger-auto-heal', async (req, res) => {
+  try {
+    console.log('[Tab Health] 🛠️ Manual/Watchdog triggered full tab audit & self-healing...');
+    const report = await runTabHealthAudit();
+    res.json({ success: true, report });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
@@ -5335,3 +5362,40 @@ process.on('SIGTERM', () => handleServerStop('SIGTERM'));
 
 
 startAutonomousEODStocksTrackerScheduler();
+
+// ====================================================================
+// 🕒 Autonomous Evening (16:00 IST) Tab Health & Auto-Healing Scheduler
+// ====================================================================
+let lastEveningTabAuditDate = null;
+function startAutonomousTabHealthScheduler() {
+  console.log('[Tab Health] 🕒 Initializing Autonomous 16:00 IST Evening Tab Auditor & Auto-Healer...');
+  
+  // Initial startup verification after 25 seconds
+  setTimeout(() => {
+    runTabHealthAudit().catch(err => console.error('[Tab Health Startup Audit Error]', err.message));
+  }, 25000);
+
+  // Daily evening check (16:00 IST) and every 30 minutes
+  setInterval(async () => {
+    try {
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000;
+      const istDate = new Date(now.getTime() + istOffset);
+      const istHours = istDate.getUTCHours();
+      const istMinutes = istDate.getUTCMinutes();
+      const todayStr = istDate.toISOString().split('T')[0];
+      const isPast1600 = (istHours === 16 && istMinutes >= 0) || (istHours > 16);
+
+      if (isPast1600 && lastEveningTabAuditDate !== todayStr) {
+        console.log(`[Tab Health Evening Auditor] ⏰ 16:00 IST Reached (${istHours}:${istMinutes} IST)! Running autonomous evening full tab audit & self-healing for ${todayStr}...`);
+        lastEveningTabAuditDate = todayStr;
+        await runTabHealthAudit();
+      }
+    } catch (err) {
+      console.error('[Tab Health Scheduler Error]', err.message);
+    }
+  }, 30 * 1000);
+}
+
+startAutonomousTabHealthScheduler();
+

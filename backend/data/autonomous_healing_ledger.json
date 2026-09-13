@@ -1,5 +1,69 @@
 [
   {
+    "timestamp": 1789311300636,
+    "istTime": "13/9/2026, 8:25:00 pm",
+    "component": "🕯️ First Doji Scanner",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Reloaded Doji scan cache",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789311282591,
+    "istTime": "13/9/2026, 8:24:42 pm",
+    "component": "🕯️ First Doji Scanner",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Reloaded Doji scan cache",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789311262900,
+    "istTime": "13/9/2026, 8:24:22 pm",
+    "component": "🕯️ First Doji Scanner",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Reloaded Doji scan cache",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789311119247,
+    "istTime": "13/9/2026, 8:21:59 pm",
+    "component": "🔬 Deep Learnings",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Refreshed deep discoveries knowledge matrix",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789283094122,
+    "istTime": "13/9/2026, 12:34:54 pm",
+    "component": "HealthCheck",
+    "error": "fetch failed",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789099103802,
+    "istTime": "11/9/2026, 9:28:23 am",
+    "component": "MemoryShield",
+    "error": "High RSS Memory (558 MB)",
+    "remedyAction": "Flushed non-critical volatile caches",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789099103798,
+    "istTime": "11/9/2026, 9:28:23 am",
+    "component": "PatternForecaster",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Restored healthy forecast cache in memory",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789098977823,
+    "istTime": "11/9/2026, 9:26:17 am",
+    "component": "MemoryShield",
+    "error": "High RSS Memory (503 MB)",
+    "remedyAction": "Flushed non-critical volatile caches",
+    "status": "AUTO_RESOLVED"
+  },
+  {
     "timestamp": 1788858579751,
     "istTime": "8/9/2026, 2:39:39 pm",
     "component": "RiverMetaLearner",
@@ -365,38 +429,6 @@
     "component": "PatternForecaster",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Restored healthy forecast cache in memory",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857473515,
-    "istTime": "8/9/2026, 2:21:13 pm",
-    "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857463115,
-    "istTime": "8/9/2026, 2:21:03 pm",
-    "component": "ErrorAnalysisEngine",
-    "error": "fetch failed",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857456810,
-    "istTime": "8/9/2026, 2:20:56 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857441316,
-    "istTime": "8/9/2026, 2:20:41 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   }
 ]

@@ -1,4 +1,51 @@
-const ACTIVE_LIVE_BACKEND = 'https://punk-successfully-profiles-anytime.trycloudflare.com';
+let dynamicBackendUrl: string | null = null;
+const urlListeners: Array<(url: string) => void> = [];
+
+export function onBackendChange(listener: (url: string) => void) {
+  urlListeners.push(listener);
+}
+
+function notifyListeners(url: string) {
+  for (const listener of urlListeners) {
+    try { listener(url); } catch (e) {}
+  }
+}
+
+// Fetch live_backend.json to discover active tunnel without rebuilding
+export function refreshBackendUrl(): Promise<string | null> {
+  if (typeof window === 'undefined') return Promise.resolve(null);
+
+  return fetch('./live_backend.json?_t=' + Date.now(), { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : null)
+    .then(data => {
+      if (data && data.backendUrl && typeof data.backendUrl === 'string') {
+        const url = data.backendUrl.trim().replace(/\/$/, '');
+        if (url && url !== dynamicBackendUrl) {
+          dynamicBackendUrl = url;
+          try {
+            localStorage.setItem('tradingview_backend_url', url);
+            console.log('[Auto-Discovery] Connected to live backend tunnel:', url);
+          } catch (e) {}
+          notifyListeners(url);
+          return url;
+        }
+      }
+      return dynamicBackendUrl;
+    })
+    .catch(() => dynamicBackendUrl);
+}
+
+// Immediately auto-fetch live_backend.json on page load to discover active tunnel without rebuilding
+if (typeof window !== 'undefined') {
+  try {
+    const cached = localStorage.getItem('tradingview_backend_url');
+    if (cached) dynamicBackendUrl = cached.trim().replace(/\/$/, '');
+  } catch (e) {}
+
+  refreshBackendUrl();
+  // Periodically refresh in background every 30 seconds
+  setInterval(refreshBackendUrl, 30000);
+}
 
 export function getBackendUrl(): string {
   if (typeof window !== 'undefined') {
@@ -9,15 +56,20 @@ export function getBackendUrl(): string {
       if (paramBackend && paramBackend.trim()) {
         const clean = paramBackend.trim().replace(/\/$/, '');
         localStorage.setItem('tradingview_backend_url', clean);
+        dynamicBackendUrl = clean;
         return clean;
       }
     } catch (e) {}
 
-    // 1. User configured custom backend in localStorage
+    // 1. Dynamically discovered backend from live_backend.json or localStorage
+    if (dynamicBackendUrl && dynamicBackendUrl.trim()) {
+      return dynamicBackendUrl.trim();
+    }
     try {
       const storedBackend = localStorage.getItem('tradingview_backend_url');
       if (storedBackend && storedBackend.trim()) {
-        return storedBackend.trim().replace(/\/$/, '');
+        dynamicBackendUrl = storedBackend.trim().replace(/\/$/, '');
+        return dynamicBackendUrl;
       }
     } catch (e) {}
 
@@ -26,16 +78,7 @@ export function getBackendUrl(): string {
       return (window.location.port && window.location.port !== '3002') ? 'http://localhost:3002' : '';
     }
 
-    // 3. Hosted on Hugging Face Static (*.hf.space, huggingface.co) or GitHub Pages (*.github.io)
-    if (
-      window.location.hostname.endsWith('hf.space') ||
-      window.location.hostname.includes('huggingface.co') ||
-      window.location.hostname.endsWith('github.io')
-    ) {
-      return ACTIVE_LIVE_BACKEND;
-    }
-
-    // 4. Default direct host
+    // 3. Fallback direct host
     return window.location.origin;
   }
   return '';
@@ -45,8 +88,12 @@ export function setCustomBackendUrl(url: string): void {
   if (typeof window !== 'undefined') {
     if (!url || !url.trim()) {
       localStorage.removeItem('tradingview_backend_url');
+      dynamicBackendUrl = null;
     } else {
-      localStorage.setItem('tradingview_backend_url', url.trim().replace(/\/$/, ''));
+      const clean = url.trim().replace(/\/$/, '');
+      localStorage.setItem('tradingview_backend_url', clean);
+      dynamicBackendUrl = clean;
+      notifyListeners(clean);
     }
   }
 }

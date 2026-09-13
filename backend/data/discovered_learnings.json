@@ -1,0 +1,1017 @@
+{
+  "generatedAt": "2026-09-11T07:22:56.809Z",
+  "dataRange": {
+    "nifty50": "1990-07-03 00:00:00 to 2026-05-19 00:00:00",
+    "vix": "2009-03-02 09:15:00 to 2026-05-19 00:00:00",
+    "nifty60min": "2015-01-09 09:15:00 to 2026-05-19 17:15:00",
+    "analysisWindow": "2015-01-01 to 2026-06-01"
+  },
+  "discoveries": {
+    "A_vixRegimeDayRange": {
+      "title": "VIX Regime vs Day Range & Direction Bias",
+      "data": {
+        "moderate (15-18)": {
+          "sessions": 750,
+          "avgDayRange": "1.112%",
+          "medianDayRange": "0.998%",
+          "bullDayRate": "46.7%",
+          "bearDayRate": "53.3%",
+          "rangeByDayOfWeek": {
+            "Thu": "1.054%",
+            "Tue": "1.060%",
+            "Fri": "1.174%",
+            "Mon": "1.171%",
+            "Wed": "1.070%",
+            "Sat": "2.673%",
+            "Sun": "1.576%"
+          }
+        },
+        "low (12-15)": {
+          "sessions": 900,
+          "avgDayRange": "0.870%",
+          "medianDayRange": "0.789%",
+          "bullDayRate": "46.2%",
+          "bearDayRate": "53.8%",
+          "rangeByDayOfWeek": {
+            "Fri": "0.908%",
+            "Mon": "0.855%",
+            "Thu": "0.860%",
+            "Tue": "0.862%",
+            "Wed": "0.863%",
+            "Sat": "0.797%"
+          }
+        },
+        "elevated (18-22)": {
+          "sessions": 487,
+          "avgDayRange": "1.254%",
+          "medianDayRange": "1.105%",
+          "bullDayRate": "48.3%",
+          "bearDayRate": "51.7%",
+          "rangeByDayOfWeek": {
+            "Wed": "1.195%",
+            "Thu": "1.249%",
+            "Tue": "1.341%",
+            "Fri": "1.222%",
+            "Mon": "1.276%",
+            "Sat": "0.420%"
+          }
+        },
+        "high (22-28)": {
+          "sessions": 210,
+          "avgDayRange": "1.616%",
+          "medianDayRange": "1.481%",
+          "bullDayRate": "41.9%",
+          "bearDayRate": "58.1%",
+          "rangeByDayOfWeek": {
+            "Mon": "1.763%",
+            "Tue": "1.745%",
+            "Wed": "1.539%",
+            "Thu": "1.514%",
+            "Fri": "1.478%"
+          }
+        },
+        "extreme (>28)": {
+          "sessions": 88,
+          "avgDayRange": "3.048%",
+          "medianDayRange": "2.309%",
+          "bullDayRate": "46.6%",
+          "bearDayRate": "53.4%",
+          "rangeByDayOfWeek": {
+            "Mon": "2.827%",
+            "Tue": "2.826%",
+            "Wed": "3.141%",
+            "Thu": "2.724%",
+            "Fri": "3.784%"
+          }
+        },
+        "ultra-low (<12)": {
+          "sessions": 382,
+          "avgDayRange": "0.689%",
+          "medianDayRange": "0.646%",
+          "bullDayRate": "47.6%",
+          "bearDayRate": "52.4%",
+          "rangeByDayOfWeek": {
+            "Thu": "0.769%",
+            "Fri": "0.741%",
+            "Tue": "0.615%",
+            "Mon": "0.657%",
+            "Wed": "0.654%",
+            "Sun": "0.189%"
+          }
+        }
+      }
+    },
+    "B_vixCrossings": {
+      "title": "VIX Level Crossing Swing Signals",
+      "data": {
+        "cross_above_15": {
+          "occurrences": 79,
+          "avg1WeekReturn": "0.28%",
+          "positive1WRate": "54.4%",
+          "avg2WeekReturn": "0.06%",
+          "positive2WRate": "59.5%"
+        },
+        "cross_below_15": {
+          "occurrences": 79,
+          "avg1WeekReturn": "0.13%",
+          "positive1WRate": "50.6%",
+          "avg2WeekReturn": "0.20%",
+          "positive2WRate": "57.0%"
+        },
+        "cross_above_18": {
+          "occurrences": 63,
+          "avg1WeekReturn": "-0.36%",
+          "positive1WRate": "41.3%",
+          "avg2WeekReturn": "-0.55%",
+          "positive2WRate": "46.8%"
+        },
+        "cross_below_18": {
+          "occurrences": 62,
+          "avg1WeekReturn": "-0.02%",
+          "positive1WRate": "48.4%",
+          "avg2WeekReturn": "-0.21%",
+          "positive2WRate": "49.2%"
+        },
+        "cross_above_20": {
+          "occurrences": 57,
+          "avg1WeekReturn": "0.40%",
+          "positive1WRate": "57.9%",
+          "avg2WeekReturn": "0.22%",
+          "positive2WRate": "57.9%"
+        },
+        "cross_below_20": {
+          "occurrences": 57,
+          "avg1WeekReturn": "0.25%",
+          "positive1WRate": "63.2%",
+          "avg2WeekReturn": "0.33%",
+          "positive2WRate": "56.1%"
+        }
+      }
+    },
+    "C_gapByDow": {
+      "title": "Opening Gap by Day of Week",
+      "data": {
+        "Fri": {
+          "sessions": 554,
+          "avgGap": "0.084%",
+          "gapUpSessions": 265,
+          "gapDownSessions": 128,
+          "gapUpRate": "47.8%",
+          "gapDownRate": "23.1%",
+          "gapUpFillSameDay": "49.4%",
+          "gapDownFillSameDay": "45.3%",
+          "avgDayReturnAfterGapUp": "-0.019%",
+          "avgDayReturnAfterGapDown": "-0.045%"
+        },
+        "Mon": {
+          "sessions": 560,
+          "avgGap": "0.055%",
+          "gapUpSessions": 281,
+          "gapDownSessions": 140,
+          "gapUpRate": "50.2%",
+          "gapDownRate": "25.0%",
+          "gapUpFillSameDay": "48.0%",
+          "gapDownFillSameDay": "47.1%",
+          "avgDayReturnAfterGapUp": "-0.047%",
+          "avgDayReturnAfterGapDown": "-0.143%"
+        },
+        "Tue": {
+          "sessions": 563,
+          "avgGap": "0.182%",
+          "gapUpSessions": 293,
+          "gapDownSessions": 89,
+          "gapUpRate": "52.0%",
+          "gapDownRate": "15.8%",
+          "gapUpFillSameDay": "57.0%",
+          "gapDownFillSameDay": "55.1%",
+          "avgDayReturnAfterGapUp": "-0.091%",
+          "avgDayReturnAfterGapDown": "0.058%"
+        },
+        "Wed": {
+          "sessions": 566,
+          "avgGap": "0.140%",
+          "gapUpSessions": 281,
+          "gapDownSessions": 114,
+          "gapUpRate": "49.6%",
+          "gapDownRate": "20.1%",
+          "gapUpFillSameDay": "52.7%",
+          "gapDownFillSameDay": "50.0%",
+          "avgDayReturnAfterGapUp": "-0.126%",
+          "avgDayReturnAfterGapDown": "0.079%"
+        },
+        "Thu": {
+          "sessions": 563,
+          "avgGap": "0.103%",
+          "gapUpSessions": 268,
+          "gapDownSessions": 122,
+          "gapUpRate": "47.6%",
+          "gapDownRate": "21.7%",
+          "gapUpFillSameDay": "54.5%",
+          "gapDownFillSameDay": "43.4%",
+          "avgDayReturnAfterGapUp": "-0.097%",
+          "avgDayReturnAfterGapDown": "-0.097%"
+        }
+      }
+    },
+    "D_ibBreakouts": {
+      "title": "Period C IB Breakout Rate by VIX Regime",
+      "data": {
+        "nifty": {
+          "symbol": "NIFTY 50",
+          "totalSessions": 2797,
+          "periodC_BreaksUp": "24.2%",
+          "periodC_BreaksDown": "27.0%",
+          "byVixRegime": {
+            "moderate (15-18)": {
+              "sessions": 739,
+              "periodC_BreaksUp": "23.0%",
+              "periodC_BreaksDown": "27.7%",
+              "avgIBWidth": "0.694%"
+            },
+            "elevated (18-22)": {
+              "sessions": 484,
+              "periodC_BreaksUp": "22.9%",
+              "periodC_BreaksDown": "27.7%",
+              "avgIBWidth": "0.786%"
+            },
+            "high (22-28)": {
+              "sessions": 209,
+              "periodC_BreaksUp": "27.3%",
+              "periodC_BreaksDown": "24.9%",
+              "avgIBWidth": "0.928%"
+            },
+            "low (12-15)": {
+              "sessions": 896,
+              "periodC_BreaksUp": "24.4%",
+              "periodC_BreaksDown": "26.5%",
+              "avgIBWidth": "0.568%"
+            },
+            "extreme (>28)": {
+              "sessions": 88,
+              "periodC_BreaksUp": "25.0%",
+              "periodC_BreaksDown": "28.4%",
+              "avgIBWidth": "2.033%"
+            },
+            "ultra-low (<12)": {
+              "sessions": 380,
+              "periodC_BreaksUp": "26.1%",
+              "periodC_BreaksDown": "26.6%",
+              "avgIBWidth": "0.458%"
+            },
+            "unknown": {
+              "sessions": 1,
+              "periodC_BreaksUp": "0.0%",
+              "periodC_BreaksDown": "0.0%",
+              "avgIBWidth": "0.637%"
+            }
+          }
+        },
+        "bank": {
+          "symbol": "NIFTY BANK",
+          "totalSessions": 2797,
+          "periodC_BreaksUp": "23.7%",
+          "periodC_BreaksDown": "25.2%",
+          "byVixRegime": {
+            "moderate (15-18)": {
+              "sessions": 739,
+              "periodC_BreaksUp": "23.4%",
+              "periodC_BreaksDown": "26.7%",
+              "avgIBWidth": "0.970%"
+            },
+            "elevated (18-22)": {
+              "sessions": 484,
+              "periodC_BreaksUp": "23.3%",
+              "periodC_BreaksDown": "26.4%",
+              "avgIBWidth": "1.158%"
+            },
+            "high (22-28)": {
+              "sessions": 209,
+              "periodC_BreaksUp": "27.3%",
+              "periodC_BreaksDown": "26.8%",
+              "avgIBWidth": "1.394%"
+            },
+            "low (12-15)": {
+              "sessions": 896,
+              "periodC_BreaksUp": "23.2%",
+              "periodC_BreaksDown": "23.5%",
+              "avgIBWidth": "0.787%"
+            },
+            "extreme (>28)": {
+              "sessions": 88,
+              "periodC_BreaksUp": "20.5%",
+              "periodC_BreaksDown": "27.3%",
+              "avgIBWidth": "3.026%"
+            },
+            "ultra-low (<12)": {
+              "sessions": 380,
+              "periodC_BreaksUp": "24.7%",
+              "periodC_BreaksDown": "23.7%",
+              "avgIBWidth": "0.612%"
+            },
+            "unknown": {
+              "sessions": 1,
+              "periodC_BreaksUp": "0.0%",
+              "periodC_BreaksDown": "0.0%",
+              "avgIBWidth": "0.997%"
+            }
+          }
+        }
+      }
+    },
+    "E_weekendGap": {
+      "title": "Weekend Gap Effect (Friday → Monday)",
+      "data": {
+        "nifty": {
+          "symbol": "NIFTY",
+          "total": 514,
+          "avgMondayGap": "0.052%",
+          "gapUpRate": "49.6%",
+          "gapDownRate": "25.1%",
+          "afterBullishFriday": {
+            "sessions": 142,
+            "gapUpNext": "59.2%",
+            "avgGap": "0.136%",
+            "avgMonReturn": "-0.031%"
+          },
+          "afterBearishFriday": {
+            "sessions": 180,
+            "gapDownNext": "34.4%",
+            "avgGap": "-0.062%",
+            "avgMonReturn": "-0.152%"
+          }
+        },
+        "bank": {
+          "symbol": "BANK",
+          "total": 514,
+          "avgMondayGap": "0.044%",
+          "gapUpRate": "48.6%",
+          "gapDownRate": "27.8%",
+          "afterBullishFriday": {
+            "sessions": 175,
+            "gapUpNext": "58.9%",
+            "avgGap": "0.139%",
+            "avgMonReturn": "-0.031%"
+          },
+          "afterBearishFriday": {
+            "sessions": 202,
+            "gapDownNext": "36.6%",
+            "avgGap": "-0.088%",
+            "avgMonReturn": "-0.160%"
+          }
+        }
+      }
+    },
+    "F_seasonality": {
+      "title": "Monthly Seasonality (Bull Day Rate & Avg Range)",
+      "data": {
+        "Jan": {
+          "sessions": 256,
+          "bullDayRate": "47.7%",
+          "avgDayReturn": "-0.123%",
+          "avgDayRange": "1.074%"
+        },
+        "Feb": {
+          "sessions": 241,
+          "bullDayRate": "40.7%",
+          "avgDayReturn": "-0.152%",
+          "avgDayRange": "1.212%"
+        },
+        "Mar": {
+          "sessions": 242,
+          "bullDayRate": "48.8%",
+          "avgDayReturn": "-0.061%",
+          "avgDayRange": "1.544%"
+        },
+        "Apr": {
+          "sessions": 227,
+          "bullDayRate": "51.1%",
+          "avgDayReturn": "0.002%",
+          "avgDayRange": "1.196%"
+        },
+        "May": {
+          "sessions": 245,
+          "bullDayRate": "47.3%",
+          "avgDayReturn": "-0.061%",
+          "avgDayRange": "1.163%"
+        },
+        "Jun": {
+          "sessions": 232,
+          "bullDayRate": "49.6%",
+          "avgDayReturn": "-0.025%",
+          "avgDayRange": "1.086%"
+        },
+        "Jul": {
+          "sessions": 240,
+          "bullDayRate": "49.6%",
+          "avgDayReturn": "-0.012%",
+          "avgDayRange": "0.885%"
+        },
+        "Aug": {
+          "sessions": 229,
+          "bullDayRate": "44.5%",
+          "avgDayReturn": "-0.096%",
+          "avgDayRange": "0.959%"
+        },
+        "Sep": {
+          "sessions": 226,
+          "bullDayRate": "43.4%",
+          "avgDayReturn": "-0.126%",
+          "avgDayRange": "1.074%"
+        },
+        "Oct": {
+          "sessions": 223,
+          "bullDayRate": "44.8%",
+          "avgDayReturn": "-0.110%",
+          "avgDayRange": "1.041%"
+        },
+        "Nov": {
+          "sessions": 222,
+          "bullDayRate": "43.2%",
+          "avgDayReturn": "-0.055%",
+          "avgDayRange": "0.986%"
+        },
+        "Dec": {
+          "sessions": 235,
+          "bullDayRate": "48.1%",
+          "avgDayReturn": "-0.034%",
+          "avgDayRange": "0.956%"
+        }
+      }
+    },
+    "G_vixSpikes": {
+      "title": "VIX Spike Events (>20% single day jump)",
+      "data": {
+        "totalEvents": 24,
+        "avg3DayReturn": "-0.47%",
+        "bounceRate3Day": "58.3%",
+        "events": [
+          {
+            "date": "2015-01-06",
+            "vixPrev": "14.15",
+            "vixNow": "17.42",
+            "vixChangePct": "23.1%",
+            "niftyDayRet": "-2.38%",
+            "nifty3dRet": "2.41%",
+            "nifty1wRet": "4.51%"
+          },
+          {
+            "date": "2015-08-24",
+            "vixPrev": "17.12",
+            "vixNow": "28.13",
+            "vixChangePct": "64.3%",
+            "niftyDayRet": "-3.07%",
+            "nifty3dRet": "2.08%",
+            "nifty1wRet": "-1.18%"
+          },
+          {
+            "date": "2016-09-29",
+            "vixPrev": "13.84",
+            "vixNow": "18.45",
+            "vixChangePct": "33.3%",
+            "niftyDayRet": "-2.29%",
+            "nifty3dRet": "2.07%",
+            "nifty1wRet": "1.37%"
+          },
+          {
+            "date": "2018-02-06",
+            "vixPrev": "16.05",
+            "vixNow": "20.01",
+            "vixChangePct": "24.7%",
+            "niftyDayRet": "1.97%",
+            "nifty3dRet": "0.40%",
+            "nifty1wRet": "0.45%"
+          },
+          {
+            "date": "2020-02-24",
+            "vixPrev": "13.70",
+            "vixNow": "17.00",
+            "vixChangePct": "24.1%",
+            "niftyDayRet": "-1.52%",
+            "nifty3dRet": "-5.89%",
+            "nifty1wRet": "-4.89%"
+          },
+          {
+            "date": "2020-02-28",
+            "vixPrev": "17.77",
+            "vixNow": "23.24",
+            "vixChangePct": "30.8%",
+            "niftyDayRet": "-1.58%",
+            "nifty3dRet": "0.44%",
+            "nifty1wRet": "-6.70%"
+          },
+          {
+            "date": "2020-03-09",
+            "vixPrev": "25.64",
+            "vixNow": "30.80",
+            "vixChangePct": "20.1%",
+            "niftyDayRet": "-2.71%",
+            "nifty3dRet": "-12.00%",
+            "nifty1wRet": "-18.97%"
+          },
+          {
+            "date": "2020-03-12",
+            "vixPrev": "31.56",
+            "vixNow": "41.16",
+            "vixChangePct": "30.4%",
+            "niftyDayRet": "-4.48%",
+            "nifty3dRet": "-6.50%",
+            "nifty1wRet": "-20.65%"
+          },
+          {
+            "date": "2020-03-13",
+            "vixPrev": "41.16",
+            "vixNow": "51.47",
+            "vixChangePct": "25.0%",
+            "niftyDayRet": "9.31%",
+            "nifty3dRet": "-14.93%",
+            "nifty1wRet": "-23.56%"
+          },
+          {
+            "date": "2020-05-04",
+            "vixPrev": "33.99",
+            "vixNow": "43.67",
+            "vixChangePct": "28.5%",
+            "niftyDayRet": "-2.52%",
+            "nifty3dRet": "-0.58%",
+            "nifty1wRet": "0.97%"
+          },
+          {
+            "date": "2020-08-31",
+            "vixPrev": "18.35",
+            "vixNow": "22.84",
+            "vixChangePct": "24.5%",
+            "niftyDayRet": "-3.31%",
+            "nifty3dRet": "-0.28%",
+            "nifty1wRet": "-0.96%"
+          },
+          {
+            "date": "2020-12-21",
+            "vixPrev": "18.62",
+            "vixNow": "23.19",
+            "vixChangePct": "24.5%",
+            "niftyDayRet": "-3.01%",
+            "nifty3dRet": "4.09%",
+            "nifty1wRet": "4.90%"
+          },
+          {
+            "date": "2021-02-26",
+            "vixPrev": "22.89",
+            "vixNow": "28.14",
+            "vixChangePct": "22.9%",
+            "niftyDayRet": "-2.41%",
+            "nifty3dRet": "4.93%",
+            "nifty1wRet": "2.94%"
+          },
+          {
+            "date": "2021-11-26",
+            "vixPrev": "16.66",
+            "vixNow": "20.80",
+            "vixChangePct": "24.8%",
+            "niftyDayRet": "-1.80%",
+            "nifty3dRet": "0.82%",
+            "nifty1wRet": "-0.67%"
+          },
+          {
+            "date": "2022-01-24",
+            "vixPrev": "18.89",
+            "vixNow": "22.83",
+            "vixChangePct": "20.9%",
+            "niftyDayRet": "-2.42%",
+            "nifty3dRet": "1.11%",
+            "nifty1wRet": "3.68%"
+          },
+          {
+            "date": "2022-02-14",
+            "vixPrev": "18.68",
+            "vixNow": "22.98",
+            "vixChangePct": "23.0%",
+            "niftyDayRet": "-1.37%",
+            "nifty3dRet": "2.16%",
+            "nifty1wRet": "1.31%"
+          },
+          {
+            "date": "2022-02-24",
+            "vixPrev": "24.54",
+            "vixNow": "31.98",
+            "vixChangePct": "30.3%",
+            "niftyDayRet": "-1.82%",
+            "nifty3dRet": "2.20%",
+            "nifty1wRet": "-2.37%"
+          },
+          {
+            "date": "2023-03-13",
+            "vixPrev": "13.41",
+            "vixNow": "16.22",
+            "vixChangePct": "21.0%",
+            "niftyDayRet": "-1.54%",
+            "nifty3dRet": "-0.97%",
+            "nifty1wRet": "-0.01%"
+          },
+          {
+            "date": "2024-06-04",
+            "vixPrev": "20.94",
+            "vixNow": "26.75",
+            "vixChangePct": "27.7%",
+            "niftyDayRet": "-5.59%",
+            "nifty3dRet": "6.28%",
+            "nifty1wRet": "6.92%"
+          },
+          {
+            "date": "2024-08-05",
+            "vixPrev": "14.32",
+            "vixNow": "20.37",
+            "vixChangePct": "42.2%",
+            "niftyDayRet": "-1.02%",
+            "nifty3dRet": "1.21%",
+            "nifty1wRet": "0.37%"
+          },
+          {
+            "date": "2025-04-07",
+            "vixPrev": "13.76",
+            "vixNow": "22.79",
+            "vixChangePct": "65.6%",
+            "niftyDayRet": "1.85%",
+            "nifty3dRet": "5.27%",
+            "nifty1wRet": "5.76%"
+          },
+          {
+            "date": "2026-03-02",
+            "vixPrev": "13.70",
+            "vixNow": "17.13",
+            "vixChangePct": "25.0%",
+            "niftyDayRet": "0.84%",
+            "nifty3dRet": "-3.37%",
+            "nifty1wRet": "-4.02%"
+          },
+          {
+            "date": "2026-03-04",
+            "vixPrev": "17.13",
+            "vixNow": "21.14",
+            "vixChangePct": "23.4%",
+            "niftyDayRet": "0.38%",
+            "nifty3dRet": "-1.85%",
+            "nifty1wRet": "-5.43%"
+          },
+          {
+            "date": "2026-03-19",
+            "vixPrev": "18.72",
+            "vixNow": "22.80",
+            "vixChangePct": "21.8%",
+            "niftyDayRet": "-0.84%",
+            "nifty3dRet": "-0.39%",
+            "nifty1wRet": "-2.92%"
+          }
+        ]
+      }
+    },
+    "H_niftyBankDivergence": {
+      "title": "Nifty vs BankNifty Divergence Days",
+      "data": {
+        "totalDays": 17,
+        "events": [
+          {
+            "date": "2015-01-15",
+            "niftyRet": "0.83%",
+            "bankRet": "-0.54%"
+          },
+          {
+            "date": "2015-03-27",
+            "niftyRet": "-0.65%",
+            "bankRet": "1.20%"
+          },
+          {
+            "date": "2015-04-06",
+            "niftyRet": "0.51%",
+            "bankRet": "-0.52%"
+          },
+          {
+            "date": "2015-10-30",
+            "niftyRet": "-0.71%",
+            "bankRet": "0.61%"
+          },
+          {
+            "date": "2016-02-29",
+            "niftyRet": "-0.90%",
+            "bankRet": "0.92%"
+          },
+          {
+            "date": "2016-04-21",
+            "niftyRet": "-0.52%",
+            "bankRet": "0.67%"
+          },
+          {
+            "date": "2018-11-21",
+            "niftyRet": "-0.66%",
+            "bankRet": "0.60%"
+          },
+          {
+            "date": "2019-10-25",
+            "niftyRet": "-0.53%",
+            "bankRet": "0.57%"
+          },
+          {
+            "date": "2019-11-08",
+            "niftyRet": "-0.66%",
+            "bankRet": "0.58%"
+          },
+          {
+            "date": "2020-03-31",
+            "niftyRet": "0.80%",
+            "bankRet": "-0.85%"
+          },
+          {
+            "date": "2020-04-17",
+            "niftyRet": "-0.61%",
+            "bankRet": "1.41%"
+          },
+          {
+            "date": "2020-07-02",
+            "niftyRet": "0.56%",
+            "bankRet": "-0.82%"
+          },
+          {
+            "date": "2020-09-09",
+            "niftyRet": "0.53%",
+            "bankRet": "-0.98%"
+          },
+          {
+            "date": "2021-01-08",
+            "niftyRet": "0.62%",
+            "bankRet": "-0.66%"
+          },
+          {
+            "date": "2021-10-21",
+            "niftyRet": "-1.11%",
+            "bankRet": "0.89%"
+          },
+          {
+            "date": "2021-10-25",
+            "niftyRet": "-0.57%",
+            "bankRet": "0.56%"
+          },
+          {
+            "date": "2024-05-30",
+            "niftyRet": "-0.57%",
+            "bankRet": "0.76%"
+          }
+        ]
+      }
+    },
+    "I_lowVixStreaks": {
+      "title": "Consecutive Low VIX (<15) Streaks",
+      "data": {
+        "totalStreaks": 41,
+        "avgBreakReturn": "-0.59%",
+        "positiveBreakRate": "22.0%",
+        "streaks": [
+          {
+            "start": "2015-03-27",
+            "days": 12,
+            "vixAtBreak": "15.04",
+            "breakDayReturn": "-1.06%"
+          },
+          {
+            "start": "2015-12-17",
+            "days": 11,
+            "vixAtBreak": "16.84",
+            "breakDayReturn": "-1.68%"
+          },
+          {
+            "start": "2016-08-05",
+            "days": 24,
+            "vixAtBreak": "15.24",
+            "breakDayReturn": "-0.20%"
+          },
+          {
+            "start": "2016-09-14",
+            "days": 11,
+            "vixAtBreak": "18.45",
+            "breakDayReturn": "-2.29%"
+          },
+          {
+            "start": "2016-10-04",
+            "days": 5,
+            "vixAtBreak": "15.42",
+            "breakDayReturn": "-1.13%"
+          },
+          {
+            "start": "2016-10-18",
+            "days": 9,
+            "vixAtBreak": "15.49",
+            "breakDayReturn": "-0.54%"
+          },
+          {
+            "start": "2017-02-01",
+            "days": 131,
+            "vixAtBreak": "15.19",
+            "breakDayReturn": "-0.01%"
+          },
+          {
+            "start": "2017-08-14",
+            "days": 77,
+            "vixAtBreak": "15.00",
+            "breakDayReturn": "0.00%"
+          },
+          {
+            "start": "2017-12-15",
+            "days": 25,
+            "vixAtBreak": "15.39",
+            "breakDayReturn": "0.76%"
+          },
+          {
+            "start": "2018-02-22",
+            "days": 6,
+            "vixAtBreak": "15.39",
+            "breakDayReturn": "-0.67%"
+          },
+          {
+            "start": "2018-03-08",
+            "days": 6,
+            "vixAtBreak": "15.22",
+            "breakDayReturn": "-1.45%"
+          },
+          {
+            "start": "2018-04-05",
+            "days": 109,
+            "vixAtBreak": "15.20",
+            "breakDayReturn": "-1.14%"
+          },
+          {
+            "start": "2018-09-12",
+            "days": 5,
+            "vixAtBreak": "15.53",
+            "breakDayReturn": "-1.14%"
+          },
+          {
+            "start": "2019-06-07",
+            "days": 11,
+            "vixAtBreak": "15.22",
+            "breakDayReturn": "-0.22%"
+          },
+          {
+            "start": "2019-06-26",
+            "days": 26,
+            "vixAtBreak": "15.19",
+            "breakDayReturn": "0.61%"
+          },
+          {
+            "start": "2019-11-26",
+            "days": 30,
+            "vixAtBreak": "15.64",
+            "breakDayReturn": "0.72%"
+          },
+          {
+            "start": "2020-01-09",
+            "days": 7,
+            "vixAtBreak": "15.41",
+            "breakDayReturn": "-1.66%"
+          },
+          {
+            "start": "2020-02-04",
+            "days": 13,
+            "vixAtBreak": "17.00",
+            "breakDayReturn": "-1.52%"
+          },
+          {
+            "start": "2021-06-25",
+            "days": 49,
+            "vixAtBreak": "15.11",
+            "breakDayReturn": "-0.12%"
+          },
+          {
+            "start": "2021-09-07",
+            "days": 7,
+            "vixAtBreak": "15.23",
+            "breakDayReturn": "-0.70%"
+          },
+          {
+            "start": "2022-11-17",
+            "days": 24,
+            "vixAtBreak": "15.56",
+            "breakDayReturn": "-1.28%"
+          },
+          {
+            "start": "2023-01-17",
+            "days": 7,
+            "vixAtBreak": "17.32",
+            "breakDayReturn": "-1.53%"
+          },
+          {
+            "start": "2023-02-03",
+            "days": 13,
+            "vixAtBreak": "15.59",
+            "breakDayReturn": "-1.13%"
+          },
+          {
+            "start": "2023-02-24",
+            "days": 10,
+            "vixAtBreak": "16.22",
+            "breakDayReturn": "-1.54%"
+          },
+          {
+            "start": "2023-03-29",
+            "days": 183,
+            "vixAtBreak": "15.56",
+            "breakDayReturn": "0.73%"
+          },
+          {
+            "start": "2023-12-29",
+            "days": 13,
+            "vixAtBreak": "15.08",
+            "breakDayReturn": "-0.35%"
+          },
+          {
+            "start": "2024-01-18",
+            "days": 6,
+            "vixAtBreak": "15.68",
+            "breakDayReturn": "1.42%"
+          },
+          {
+            "start": "2024-03-02",
+            "days": 40,
+            "vixAtBreak": "16.60",
+            "breakDayReturn": "-0.53%"
+          },
+          {
+            "start": "2024-06-11",
+            "days": 27,
+            "vixAtBreak": "15.44",
+            "breakDayReturn": "0.26%"
+          },
+          {
+            "start": "2024-07-23",
+            "days": 9,
+            "vixAtBreak": "20.37",
+            "breakDayReturn": "-1.02%"
+          },
+          {
+            "start": "2024-08-16",
+            "days": 15,
+            "vixAtBreak": "15.22",
+            "breakDayReturn": "-0.96%"
+          },
+          {
+            "start": "2024-09-09",
+            "days": 19,
+            "vixAtBreak": "15.08",
+            "breakDayReturn": "-1.15%"
+          },
+          {
+            "start": "2024-10-08",
+            "days": 16,
+            "vixAtBreak": "15.51",
+            "breakDayReturn": "-0.13%"
+          },
+          {
+            "start": "2024-11-06",
+            "days": 5,
+            "vixAtBreak": "15.44",
+            "breakDayReturn": "-1.11%"
+          },
+          {
+            "start": "2024-11-29",
+            "days": 15,
+            "vixAtBreak": "15.07",
+            "breakDayReturn": "-1.56%"
+          },
+          {
+            "start": "2024-12-23",
+            "days": 9,
+            "vixAtBreak": "15.65",
+            "breakDayReturn": "-1.79%"
+          },
+          {
+            "start": "2025-02-01",
+            "days": 10,
+            "vixAtBreak": "15.02",
+            "breakDayReturn": "-0.72%"
+          },
+          {
+            "start": "2025-02-20",
+            "days": 29,
+            "vixAtBreak": "22.79",
+            "breakDayReturn": "1.85%"
+          },
+          {
+            "start": "2025-06-06",
+            "days": 5,
+            "vixAtBreak": "15.08",
+            "breakDayReturn": "1.00%"
+          },
+          {
+            "start": "2025-06-16",
+            "days": 157,
+            "vixAtBreak": "15.10",
+            "breakDayReturn": "-2.01%"
+          },
+          {
+            "start": "2026-02-02",
+            "days": 20,
+            "vixAtBreak": "17.13",
+            "breakDayReturn": "0.84%"
+          }
+        ]
+      }
+    }
+  }
+}

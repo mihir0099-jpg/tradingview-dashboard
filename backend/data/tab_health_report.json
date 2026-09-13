@@ -1,0 +1,244 @@
+{
+  "timestamp": 1789311505330,
+  "istTime": "13/9/2026, 8:28:25 pm",
+  "totalTabsAudited": 26,
+  "operationalCount": 26,
+  "totalHealsPerformed": 0,
+  "overallStatus": "ALL_SYSTEMS_GREEN",
+  "tabs": [
+    {
+      "tabId": "historical",
+      "tabName": "🏛️ Historical Matching",
+      "endpoint": "/api/historical/matching-cases",
+      "status": "OPERATIONAL",
+      "latencyMs": 17,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "deep_discoveries",
+      "tabName": "🔬 Deep Learnings",
+      "endpoint": "/api/discoveries",
+      "status": "OPERATIONAL",
+      "latencyMs": 6,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "data_learning",
+      "tabName": "🧠 Data Learning",
+      "endpoint": "/api/live-signals",
+      "status": "OPERATIONAL",
+      "latencyMs": 2,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "microstructure",
+      "tabName": "⚡ Gamma & Order Flow",
+      "endpoint": "/api/microstructure/gamma-orderflow",
+      "status": "OPERATIONAL",
+      "latencyMs": 534,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "microstructure_stocks",
+      "tabName": "⚡ Microstructure Stocks",
+      "endpoint": "/api/microstructure/stock-setups",
+      "status": "OPERATIONAL",
+      "latencyMs": 24,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "stocks_tracker",
+      "tabName": "🐋 Stocks Tracker",
+      "endpoint": "/api/stocks-tracker/overview",
+      "status": "OPERATIONAL",
+      "latencyMs": 136,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "stocks_moving",
+      "tabName": "🚀 Stocks Moving",
+      "endpoint": "/api/stocks-moving/overview",
+      "status": "OPERATIONAL",
+      "latencyMs": 9,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "pcr_velocity",
+      "tabName": "⚡ PCR Velocity",
+      "endpoint": "/api/scanner/pcr-velocity",
+      "status": "OPERATIONAL",
+      "latencyMs": 6,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "day_range",
+      "tabName": "📐 Day Range",
+      "endpoint": "/api/day-range",
+      "status": "OPERATIONAL",
+      "latencyMs": 7,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "cycle",
+      "tabName": "🌀 Cycle (Sq of 9)",
+      "endpoint": "/api/cycle/levels?symbol=NSE:NIFTY",
+      "status": "OPERATIONAL",
+      "latencyMs": 5,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "auto_learner",
+      "tabName": "🔬 Auto-Learner & Mistake Miner",
+      "endpoint": "/api/learning/meta-status",
+      "status": "OPERATIONAL",
+      "latencyMs": 3,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "auto_learner_cohorts",
+      "tabName": "🔬 Error Cohorts",
+      "endpoint": "/api/learning/error-cohorts",
+      "status": "OPERATIONAL",
+      "latencyMs": 3,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "quantstats",
+      "tabName": "📊 QuantStats Report",
+      "endpoint": "/api/reports/quantstats",
+      "status": "OPERATIONAL",
+      "latencyMs": 3,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "bhaichara",
+      "tabName": "🤝 Bhaichara Work",
+      "endpoint": "/api/scanner/confluence",
+      "status": "OPERATIONAL",
+      "latencyMs": 3,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "dada_thoughts",
+      "tabName": "🧠 Dada Thoughts",
+      "endpoint": "/api/scanner/weekly-200-ema",
+      "status": "OPERATIONAL",
+      "latencyMs": 3,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "scanner_daily",
+      "tabName": "📊 Matrix Scanner (Daily)",
+      "endpoint": "/api/scanner/results?timeframe=D",
+      "status": "OPERATIONAL",
+      "latencyMs": 4,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "scanner_intraday",
+      "tabName": "📊 Matrix Scanner (5m)",
+      "endpoint": "/api/scanner/results?timeframe=5",
+      "status": "OPERATIONAL",
+      "latencyMs": 7,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "confluences",
+      "tabName": "🎯 Confluences",
+      "endpoint": "/api/scanner/confluences",
+      "status": "OPERATIONAL",
+      "latencyMs": 50,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "options_chain",
+      "tabName": "⛓️ Options Chain",
+      "endpoint": "/api/options/chain?symbol=NSE:NIFTY",
+      "status": "OPERATIONAL",
+      "latencyMs": 8,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "weekly_selling",
+      "tabName": "🔥 Weekly Option Selling Engine",
+      "endpoint": "/api/options/weekly-selling?symbol=NSE:NIFTY",
+      "status": "OPERATIONAL",
+      "latencyMs": 4,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "doji_signals",
+      "tabName": "🕯️ First Doji Scanner",
+      "endpoint": "/api/doji-signals",
+      "status": "OPERATIONAL",
+      "latencyMs": 4,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "volume_breakouts",
+      "tabName": "🔥 Volume Breakouts",
+      "endpoint": "/api/volume-breakouts",
+      "status": "OPERATIONAL",
+      "latencyMs": 2,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "opening_bias",
+      "tabName": "⚡ Opening Bias",
+      "endpoint": "/api/scanner/opening-bias",
+      "status": "OPERATIONAL",
+      "latencyMs": 117,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "early_picks",
+      "tabName": "⚡ Early Picks",
+      "endpoint": "/api/scanner/early-picks",
+      "status": "OPERATIONAL",
+      "latencyMs": 33,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "pattern_forecaster",
+      "tabName": "🔮 AI Pattern Forecaster",
+      "endpoint": "/api/pattern/forecast?symbol=NSE:NIFTY&timeframe=30&window=20&future=10",
+      "status": "OPERATIONAL",
+      "latencyMs": 3,
+      "healed": false,
+      "error": null
+    },
+    {
+      "tabId": "backend_health",
+      "tabName": "🟢 Backend Root Health",
+      "endpoint": "/health",
+      "status": "OPERATIONAL",
+      "latencyMs": 3,
+      "healed": false,
+      "error": null
+    }
+  ]
+}

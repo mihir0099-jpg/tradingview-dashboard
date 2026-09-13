@@ -49,6 +49,9 @@ export function loadDojiCacheFromDisk() {
   }
 }
 
+// Immediately load disk cache on module startup
+loadDojiCacheFromDisk();
+
 // Helper function to fetch candles
 function fetchCandlesForSymbol(tvBridge, symbol, timeframe, limit) {
   let cleanupFn = null;

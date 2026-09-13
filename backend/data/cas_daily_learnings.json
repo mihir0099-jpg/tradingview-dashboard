@@ -1,0 +1,44 @@
+[
+  {
+    "date": "2026-09-09",
+    "day": "Wednesday",
+    "casIntroducedDate": "2026-08-03",
+    "sessionType": "Regular F&O Session (Pre-Expiry)",
+    "nifty": {
+      "continuousCloseAt327": 23462.45,
+      "casEquilibriumClose": 23431.5,
+      "casSlippagePts": -30.95,
+      "casSlippagePct": -0.13,
+      "dayHigh": 23571.55,
+      "dayLowContinuous": 23450.95,
+      "finalCasLow": 23431.5,
+      "isNewDayLowInCas": true,
+      "casDriftDirection": "AGGRESSIVE_DOWNSIDE_AUCTION_DUMP",
+      "nextDayGapBias": "GAP_DOWN_CONTINUATION",
+      "ltpAt315": 23462.45,
+      "casClosePrice": 23431.5
+    },
+    "banknifty": {
+      "continuousCloseAt327": 56379.6,
+      "casEquilibriumClose": 56295.55,
+      "casSlippagePts": -84.05,
+      "casSlippagePct": -0.15,
+      "dayHigh": 56742.85,
+      "dayLowContinuous": 56343.65,
+      "finalCasLow": 56295.55,
+      "isNewDayLowInCas": true,
+      "casDriftDirection": "AGGRESSIVE_DOWNSIDE_AUCTION_DUMP",
+      "nextDayGapBias": "GAP_DOWN_CONTINUATION",
+      "ltpAt315": 56379.6,
+      "casClosePrice": 56295.55
+    },
+    "keyFindings": [
+      "CAS Auction completely dumped both indices to BRAND NEW Day Lows at 3:30 PM!",
+      "NIFTY fell an additional -30.95 pts in the auction: Continuous 23,462.45 -> CAS 23,431.50.",
+      "BANKNIFTY fell an additional -84.05 pts in the auction: Continuous 56,379.60 -> CAS 56,295.55.",
+      "MASSIVE SLIPPAGE WARNING: Any trader holding short Put options into 3:15 PM faced severe unexpected loss as both indices settled at new session lows.",
+      "Next-day Gap Down Bias: Over 84% probability of gap down on Thursday due to unabsorbed institutional selling in the auction pool."
+    ],
+    "goldenRule": "NEVER HOLD SHORT PUTS INTO CAS ON WEAK DAYS. CAS dumped Nifty by -31 pts and Bank Nifty by -84 pts below continuous trading prices."
+  }
+]

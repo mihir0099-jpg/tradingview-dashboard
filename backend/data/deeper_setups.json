@@ -1,0 +1,640 @@
+{
+  "generatedAt": "2026-09-12T06:30:52.811Z",
+  "totalSessions": 2816,
+  "analysisWindow": "2015-2026",
+  "results": {
+    "periodB": [
+      {
+        "setup": "PeriodB_Down|VIX:17-18|Thu",
+        "n": 12,
+        "continuationRate": "100.0%",
+        "avgRet": "-0.84%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:16-17|Fri",
+        "n": 12,
+        "continuationRate": "100.0%",
+        "avgRet": "0.75%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:25+|Tue",
+        "n": 10,
+        "continuationRate": "100.0%",
+        "avgRet": "-1.28%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:12-13|Thu",
+        "n": 17,
+        "continuationRate": "100.0%",
+        "avgRet": "-0.45%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:13-14|Fri",
+        "n": 20,
+        "continuationRate": "95.0%",
+        "avgRet": "0.42%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:14-15|Mon",
+        "n": 19,
+        "continuationRate": "94.7%",
+        "avgRet": "-0.46%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:18-20|Mon",
+        "n": 17,
+        "continuationRate": "94.1%",
+        "avgRet": "0.68%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:18-20|Mon",
+        "n": 16,
+        "continuationRate": "93.8%",
+        "avgRet": "-0.72%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:20-22|Wed",
+        "n": 14,
+        "continuationRate": "92.9%",
+        "avgRet": "0.51%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:13-14|Mon",
+        "n": 13,
+        "continuationRate": "92.3%",
+        "avgRet": "-0.57%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:18-20|Tue",
+        "n": 25,
+        "continuationRate": "92.0%",
+        "avgRet": "-0.61%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:17-18|Tue",
+        "n": 12,
+        "continuationRate": "91.7%",
+        "avgRet": "-0.66%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:13-14|Fri",
+        "n": 24,
+        "continuationRate": "91.7%",
+        "avgRet": "-0.48%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:25+|Mon",
+        "n": 11,
+        "continuationRate": "90.9%",
+        "avgRet": "-1.34%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:18-20|Thu",
+        "n": 10,
+        "continuationRate": "90.0%",
+        "avgRet": "0.35%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:15-16|Mon",
+        "n": 19,
+        "continuationRate": "89.5%",
+        "avgRet": "-0.55%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:18-20|Wed",
+        "n": 18,
+        "continuationRate": "88.9%",
+        "avgRet": "0.49%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:15-16|Thu",
+        "n": 18,
+        "continuationRate": "88.9%",
+        "avgRet": "0.51%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:14-15|Fri",
+        "n": 26,
+        "continuationRate": "88.5%",
+        "avgRet": "-0.52%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:15-16|Mon",
+        "n": 24,
+        "continuationRate": "87.5%",
+        "avgRet": "0.58%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:11-12|Tue",
+        "n": 16,
+        "continuationRate": "87.5%",
+        "avgRet": "-0.25%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:12-13|Fri",
+        "n": 23,
+        "continuationRate": "87.0%",
+        "avgRet": "0.44%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:14-15|Tue",
+        "n": 30,
+        "continuationRate": "86.7%",
+        "avgRet": "-0.48%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:12-13|Thu",
+        "n": 15,
+        "continuationRate": "86.7%",
+        "avgRet": "0.28%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:18-20|Fri",
+        "n": 22,
+        "continuationRate": "86.4%",
+        "avgRet": "0.58%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:16-17|Tue",
+        "n": 13,
+        "continuationRate": "84.6%",
+        "avgRet": "0.66%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:15-16|Tue",
+        "n": 13,
+        "continuationRate": "84.6%",
+        "avgRet": "-0.30%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:12-13|Mon",
+        "n": 13,
+        "continuationRate": "84.6%",
+        "avgRet": "-0.29%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:11-12|Fri",
+        "n": 19,
+        "continuationRate": "84.2%",
+        "avgRet": "-0.33%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:14-15|Wed",
+        "n": 25,
+        "continuationRate": "84.0%",
+        "avgRet": "-0.46%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:16-17|Wed",
+        "n": 12,
+        "continuationRate": "83.3%",
+        "avgRet": "-0.48%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:17-18|Thu",
+        "n": 12,
+        "continuationRate": "83.3%",
+        "avgRet": "0.48%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:<11|Thu",
+        "n": 12,
+        "continuationRate": "83.3%",
+        "avgRet": "0.40%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:15-16|Thu",
+        "n": 17,
+        "continuationRate": "82.4%",
+        "avgRet": "-0.63%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:12-13|Wed",
+        "n": 17,
+        "continuationRate": "82.4%",
+        "avgRet": "0.33%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:14-15|Mon",
+        "n": 22,
+        "continuationRate": "81.8%",
+        "avgRet": "0.41%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:22-25|Fri",
+        "n": 11,
+        "continuationRate": "81.8%",
+        "avgRet": "-0.53%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:<11|Fri",
+        "n": 11,
+        "continuationRate": "81.8%",
+        "avgRet": "0.35%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:25+|Fri",
+        "n": 11,
+        "continuationRate": "81.8%",
+        "avgRet": "-1.29%"
+      },
+      {
+        "setup": "PeriodB_Up|VIX:12-13|Tue",
+        "n": 16,
+        "continuationRate": "81.3%",
+        "avgRet": "0.22%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:13-14|Tue",
+        "n": 16,
+        "continuationRate": "81.3%",
+        "avgRet": "-0.41%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:18-20|Fri",
+        "n": 20,
+        "continuationRate": "80.0%",
+        "avgRet": "-0.55%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:18-20|Thu",
+        "n": 25,
+        "continuationRate": "80.0%",
+        "avgRet": "-0.58%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:13-14|Thu",
+        "n": 20,
+        "continuationRate": "80.0%",
+        "avgRet": "-0.28%"
+      },
+      {
+        "setup": "PeriodB_Down|VIX:12-13|Wed",
+        "n": 10,
+        "continuationRate": "80.0%",
+        "avgRet": "-0.19%"
+      }
+    ],
+    "firstCandle": [
+      {
+        "setup": "BigCandle(>0.5%)|BearCandle|VIXRegime:Mod",
+        "n": 34,
+        "bullDayRate": "11.8%",
+        "avgRet": "-0.82%"
+      },
+      {
+        "setup": "BigCandle(>0.5%)|BullCandle|VIXRegime:High+",
+        "n": 20,
+        "bullDayRate": "85.0%",
+        "avgRet": "0.91%"
+      },
+      {
+        "setup": "BigCandle(>0.5%)|BearCandle|VIXRegime:Low",
+        "n": 17,
+        "bullDayRate": "17.6%",
+        "avgRet": "-0.80%"
+      },
+      {
+        "setup": "BigCandle(>0.5%)|BearCandle|VIXRegime:Elev",
+        "n": 28,
+        "bullDayRate": "21.4%",
+        "avgRet": "-0.60%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BullCandle|VIXRegime:Mod",
+        "n": 84,
+        "bullDayRate": "77.4%",
+        "avgRet": "0.50%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BearCandle|VIXRegime:Low",
+        "n": 130,
+        "bullDayRate": "23.1%",
+        "avgRet": "-0.35%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BullCandle|VIXRegime:Low",
+        "n": 66,
+        "bullDayRate": "75.8%",
+        "avgRet": "0.31%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BearCandle|VIXRegime:UltraLow",
+        "n": 35,
+        "bullDayRate": "25.7%",
+        "avgRet": "-0.28%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BearCandle|VIXRegime:Mod",
+        "n": 122,
+        "bullDayRate": "26.2%",
+        "avgRet": "-0.41%"
+      },
+      {
+        "setup": "BigCandle(>0.5%)|BearCandle|VIXRegime:High+",
+        "n": 54,
+        "bullDayRate": "27.8%",
+        "avgRet": "-1.04%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BullCandle|VIXRegime:Elev",
+        "n": 64,
+        "bullDayRate": "71.9%",
+        "avgRet": "0.28%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BearCandle|VIXRegime:High+",
+        "n": 40,
+        "bullDayRate": "30.0%",
+        "avgRet": "-0.67%"
+      },
+      {
+        "setup": "MidCandle(0.25-0.5%)|BearCandle|VIXRegime:Elev",
+        "n": 76,
+        "bullDayRate": "30.3%",
+        "avgRet": "-0.46%"
+      },
+      {
+        "setup": "BigCandle(>0.5%)|BullCandle|VIXRegime:Mod",
+        "n": 19,
+        "bullDayRate": "68.4%",
+        "avgRet": "0.70%"
+      }
+    ],
+    "outsideDay": [
+      {
+        "setup": "CloseBelowPrevLow|UltraLow",
+        "n": 84,
+        "nextDayBull": "39.3%",
+        "avgNext1": "-0.09%"
+      },
+      {
+        "setup": "CloseAbovePrevHigh|UltraLow",
+        "n": 143,
+        "nextDayBull": "42.0%",
+        "avgNext1": "-0.08%"
+      },
+      {
+        "setup": "CloseBelowPrevLow|Elev",
+        "n": 129,
+        "nextDayBull": "44.2%",
+        "avgNext1": "-0.06%"
+      },
+      {
+        "setup": "CloseBelowPrevLow|Low",
+        "n": 210,
+        "nextDayBull": "44.3%",
+        "avgNext1": "-0.11%"
+      },
+      {
+        "setup": "CloseAbovePrevHigh|Low",
+        "n": 299,
+        "nextDayBull": "45.5%",
+        "avgNext1": "-0.05%"
+      },
+      {
+        "setup": "CloseAbovePrevHigh|Mod",
+        "n": 244,
+        "nextDayBull": "46.7%",
+        "avgNext1": "-0.02%"
+      },
+      {
+        "setup": "CloseAbovePrevHigh|Elev",
+        "n": 150,
+        "nextDayBull": "46.7%",
+        "avgNext1": "-0.14%"
+      },
+      {
+        "setup": "CloseAbovePrevHigh|High+",
+        "n": 80,
+        "nextDayBull": "52.5%",
+        "avgNext1": "-0.09%"
+      },
+      {
+        "setup": "CloseBelowPrevLow|Mod",
+        "n": 215,
+        "nextDayBull": "48.8%",
+        "avgNext1": "-0.05%"
+      },
+      {
+        "setup": "CloseBelowPrevLow|High+",
+        "n": 99,
+        "nextDayBull": "50.5%",
+        "avgNext1": "0.07%"
+      }
+    ],
+    "vixPrecisionBands": [
+      {
+        "vixBand": "<11",
+        "n": 118,
+        "bullRate": "50.0%",
+        "avgDayRange": "0.362%",
+        "avgDayRet": "0.054%"
+      },
+      {
+        "vixBand": "11-12",
+        "n": 264,
+        "bullRate": "46.6%",
+        "avgDayRange": "0.335%",
+        "avgDayRet": "-0.029%"
+      },
+      {
+        "vixBand": "12-13",
+        "n": 255,
+        "bullRate": "52.2%",
+        "avgDayRange": "0.375%",
+        "avgDayRet": "-0.011%"
+      },
+      {
+        "vixBand": "13-14",
+        "n": 322,
+        "bullRate": "46.9%",
+        "avgDayRange": "0.462%",
+        "avgDayRet": "-0.039%"
+      },
+      {
+        "vixBand": "14-15",
+        "n": 323,
+        "bullRate": "40.9%",
+        "avgDayRange": "0.489%",
+        "avgDayRet": "-0.096%"
+      },
+      {
+        "vixBand": "15-16",
+        "n": 294,
+        "bullRate": "46.9%",
+        "avgDayRange": "0.568%",
+        "avgDayRet": "-0.041%"
+      },
+      {
+        "vixBand": "16-17",
+        "n": 253,
+        "bullRate": "47.0%",
+        "avgDayRange": "0.616%",
+        "avgDayRet": "-0.057%"
+      },
+      {
+        "vixBand": "17-18",
+        "n": 202,
+        "bullRate": "45.5%",
+        "avgDayRange": "0.648%",
+        "avgDayRet": "-0.098%"
+      },
+      {
+        "vixBand": "18-20",
+        "n": 288,
+        "bullRate": "46.2%",
+        "avgDayRange": "0.624%",
+        "avgDayRet": "-0.062%"
+      },
+      {
+        "vixBand": "20-22",
+        "n": 199,
+        "bullRate": "51.3%",
+        "avgDayRange": "0.638%",
+        "avgDayRet": "-0.081%"
+      },
+      {
+        "vixBand": "22-25",
+        "n": 159,
+        "bullRate": "46.5%",
+        "avgDayRange": "0.828%",
+        "avgDayRet": "-0.177%"
+      },
+      {
+        "vixBand": "25+",
+        "n": 139,
+        "bullRate": "39.6%",
+        "avgDayRange": "1.500%",
+        "avgDayRet": "-0.323%"
+      }
+    ],
+    "gapPrevDayCombo": [
+      {
+        "setup": "BullPrev|Flat|HighVIX",
+        "n": 15,
+        "bullRate": "26.7%",
+        "avgRet": "-0.49%"
+      },
+      {
+        "setup": "BearPrev|Flat|HighVIX",
+        "n": 26,
+        "bullRate": "30.8%",
+        "avgRet": "-0.57%"
+      }
+    ],
+    "monthPartEffect": {
+      "FirstWeek|LowVIX": {
+        "n": 209,
+        "bullRate": "46.9%",
+        "avgRet": "-0.024%"
+      },
+      "MidMonth|ModVIX": {
+        "n": 392,
+        "bullRate": "44.4%",
+        "avgRet": "-0.088%"
+      },
+      "MidMonth|ElevHighVIX": {
+        "n": 401,
+        "bullRate": "46.6%",
+        "avgRet": "-0.119%"
+      },
+      "LastWeek|ElevHighVIX": {
+        "n": 253,
+        "bullRate": "45.8%",
+        "avgRet": "-0.149%"
+      },
+      "LastWeek|ModVIX": {
+        "n": 242,
+        "bullRate": "49.6%",
+        "avgRet": "0.007%"
+      },
+      "FirstWeek|ElevHighVIX": {
+        "n": 131,
+        "bullRate": "46.6%",
+        "avgRet": "-0.168%"
+      },
+      "FirstWeek|ModVIX": {
+        "n": 115,
+        "bullRate": "47.8%",
+        "avgRet": "-0.117%"
+      },
+      "MidMonth|LowVIX": {
+        "n": 699,
+        "bullRate": "46.8%",
+        "avgRet": "-0.040%"
+      },
+      "LastWeek|LowVIX": {
+        "n": 374,
+        "bullRate": "46.3%",
+        "avgRet": "-0.038%"
+      }
+    },
+    "consecutiveGaps": {
+      "consGapUp": {
+        "n": 556,
+        "sameDay": "48.7%",
+        "nextDay": "50.4%"
+      },
+      "consGapDn": {
+        "n": 100,
+        "sameDay": "46.0%",
+        "nextDay": "43.0%"
+      }
+    },
+    "weeklyAnchor": {
+      "Mon": {
+        "weeks": 446,
+        "highRate": "22.6%",
+        "lowRate": "36.1%"
+      },
+      "Tue": {
+        "weeks": 446,
+        "highRate": "10.1%",
+        "lowRate": "12.8%"
+      },
+      "Wed": {
+        "weeks": 446,
+        "highRate": "13.5%",
+        "lowRate": "13.5%"
+      },
+      "Thu": {
+        "weeks": 446,
+        "highRate": "19.1%",
+        "lowRate": "11.4%"
+      },
+      "Fri": {
+        "weeks": 446,
+        "highRate": "35.0%",
+        "lowRate": "26.2%"
+      }
+    },
+    "mondayVixWeekPrediction": {
+      "MonVIX12-15": {
+        "n": 144,
+        "weekBullRate": "58.3%",
+        "avgWeekRet": "0.14%"
+      },
+      "MonVIX15-18": {
+        "n": 121,
+        "weekBullRate": "51.2%",
+        "avgWeekRet": "-0.01%"
+      },
+      "MonVIX18-22": {
+        "n": 75,
+        "weekBullRate": "57.3%",
+        "avgWeekRet": "0.32%"
+      },
+      "MonVIX22+": {
+        "n": 53,
+        "weekBullRate": "54.7%",
+        "avgWeekRet": "0.16%"
+      },
+      "MonVIX<12": {
+        "n": 53,
+        "weekBullRate": "54.7%",
+        "avgWeekRet": "0.13%"
+      }
+    }
+  }
+}

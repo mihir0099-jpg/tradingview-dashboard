@@ -1,6 +1,314 @@
 [
   {
     "symbol": "NIFTY",
+    "target_date": "2026-09-14",
+    "target_day": "Monday",
+    "computed_at": "2026-09-11T10:17:21.011Z",
+    "baseline_session": {
+      "date": "2026-09-11",
+      "open": 23270.3,
+      "high": 23448.1,
+      "low": 23231.4,
+      "close": 23398.1,
+      "atr14": 179.6
+    },
+    "prediction": {
+      "predicted_open": 23388.9,
+      "predicted_high": 23494.7,
+      "predicted_low": 23324.1,
+      "predicted_close": 23436.7,
+      "predicted_range": 170.6,
+      "predicted_gap_pts": -9.2,
+      "directional_bias": "GREEN",
+      "expected_candle": "GREEN CANDLE (Close > Open)",
+      "cpr": {
+        "P": 23359.2,
+        "BCP": 23339.8,
+        "TCP": 23378.6,
+        "widthPct": 0.17,
+        "type": "NARROW (High Volatility Squeeze)"
+      },
+      "camarilla": {
+        "r4": 23517.3,
+        "r3": 23457.7,
+        "r2": 23437.8,
+        "r1": 23418,
+        "s1": 23378.2,
+        "s2": 23358.4,
+        "s3": 23338.5,
+        "s4": 23278.9
+      }
+    },
+    "actual_evaluation": null
+  },
+  {
+    "symbol": "BANKNIFTY",
+    "target_date": "2026-09-14",
+    "target_day": "Monday",
+    "computed_at": "2026-09-11T10:17:21.122Z",
+    "baseline_session": {
+      "date": "2026-09-11",
+      "open": 55970.15,
+      "high": 56645.85,
+      "low": 55699.45,
+      "close": 56606.55,
+      "atr14": 538.2
+    },
+    "prediction": {
+      "predicted_open": 56728,
+      "predicted_high": 57045,
+      "predicted_low": 56533.7,
+      "predicted_close": 56871.2,
+      "predicted_range": 511.3,
+      "predicted_gap_pts": 121.4,
+      "directional_bias": "GREEN",
+      "expected_candle": "GREEN CANDLE (Close > Open)",
+      "cpr": {
+        "P": 56317.3,
+        "BCP": 56172.6,
+        "TCP": 56462,
+        "widthPct": 0.51,
+        "type": "WIDE (Range Bound Consolidation)"
+      },
+      "camarilla": {
+        "r4": 57127.1,
+        "r3": 56866.8,
+        "r2": 56780.1,
+        "r1": 56693.3,
+        "s1": 56519.8,
+        "s2": 56433,
+        "s3": 56346.3,
+        "s4": 56086
+      }
+    },
+    "actual_evaluation": null
+  },
+  {
+    "symbol": "NIFTY",
+    "target_date": "2026-09-11",
+    "target_day": "Friday",
+    "computed_at": "2026-09-10T14:41:46.590Z",
+    "baseline_session": {
+      "date": "2026-09-10",
+      "open": 23446.6,
+      "high": 23494.95,
+      "low": 23380.1,
+      "close": 23477.8,
+      "atr14": 174.1
+    },
+    "prediction": {
+      "predicted_open": 23500.1,
+      "predicted_high": 23602.6,
+      "predicted_low": 23437.2,
+      "predicted_close": 23546.4,
+      "predicted_range": 165.4,
+      "predicted_gap_pts": 22.3,
+      "directional_bias": "GREEN",
+      "expected_candle": "GREEN CANDLE (Close > Open)",
+      "cpr": {
+        "P": 23451,
+        "BCP": 23437.5,
+        "TCP": 23464.5,
+        "widthPct": 0.12,
+        "type": "NARROW (High Volatility Squeeze)"
+      },
+      "camarilla": {
+        "r4": 23541,
+        "r3": 23509.4,
+        "r2": 23498.9,
+        "r1": 23488.3,
+        "s1": 23467.3,
+        "s2": 23456.7,
+        "s3": 23446.2,
+        "s4": 23414.6
+      }
+    },
+    "actual_evaluation": {
+      "actual_open": 23270.3,
+      "actual_high": 23448.1,
+      "actual_low": 23231.4,
+      "actual_close": 23398.1,
+      "actual_range": 216.7,
+      "open_error_pts": -229.8,
+      "high_error_pts": -154.5,
+      "low_error_pts": -205.8,
+      "close_error_pts": -148.3,
+      "range_error_pts": 51.3,
+      "actual_candle": "GREEN",
+      "directional_bias_match": true,
+      "evaluated_at": "2026-09-11T10:17:21.316Z"
+    }
+  },
+  {
+    "symbol": "BANKNIFTY",
+    "target_date": "2026-09-11",
+    "target_day": "Friday",
+    "computed_at": "2026-09-10T14:41:46.784Z",
+    "baseline_session": {
+      "date": "2026-09-10",
+      "open": 56262.75,
+      "high": 56575.15,
+      "low": 56231.85,
+      "close": 56471.95,
+      "atr14": 515.5
+    },
+    "prediction": {
+      "predicted_open": 56542.9,
+      "predicted_high": 56846.5,
+      "predicted_low": 56356.8,
+      "predicted_close": 56680,
+      "predicted_range": 489.7,
+      "predicted_gap_pts": 71,
+      "directional_bias": "GREEN",
+      "expected_candle": "GREEN CANDLE (Close > Open)",
+      "cpr": {
+        "P": 56426.3,
+        "BCP": 56403.5,
+        "TCP": 56449.1,
+        "widthPct": 0.08,
+        "type": "NARROW (High Volatility Squeeze)"
+      },
+      "camarilla": {
+        "r4": 56660.8,
+        "r3": 56566.4,
+        "r2": 56534.9,
+        "r1": 56503.4,
+        "s1": 56440.5,
+        "s2": 56409,
+        "s3": 56377.5,
+        "s4": 56283.1
+      }
+    },
+    "actual_evaluation": {
+      "actual_open": 55970.15,
+      "actual_high": 56645.85,
+      "actual_low": 55699.45,
+      "actual_close": 56606.55,
+      "actual_range": 946.4,
+      "open_error_pts": -572.75,
+      "high_error_pts": -200.65,
+      "low_error_pts": -657.35,
+      "close_error_pts": -73.45,
+      "range_error_pts": 456.7,
+      "actual_candle": "GREEN",
+      "directional_bias_match": true,
+      "evaluated_at": "2026-09-11T10:17:21.316Z"
+    }
+  },
+  {
+    "symbol": "NIFTY",
+    "target_date": "2026-09-10",
+    "target_day": "Thursday",
+    "computed_at": "2026-09-09T10:17:25.775Z",
+    "baseline_session": {
+      "date": "2026-09-09",
+      "open": 23522.05,
+      "high": 23571.55,
+      "low": 23431.5,
+      "close": 23431.5,
+      "atr14": 171.4
+    },
+    "prediction": {
+      "predicted_open": 23406.2,
+      "predicted_high": 23483.9,
+      "predicted_low": 23298.8,
+      "predicted_close": 23339.6,
+      "predicted_range": 185.1,
+      "predicted_gap_pts": -25.3,
+      "directional_bias": "RED",
+      "expected_candle": "RED CANDLE (Open > Close)",
+      "cpr": {
+        "P": 23478.2,
+        "BCP": 23454.9,
+        "TCP": 23501.5,
+        "widthPct": 0.2,
+        "type": "AVERAGE (Standard Auction)"
+      },
+      "camarilla": {
+        "r4": 23508.5,
+        "r3": 23470,
+        "r2": 23457.2,
+        "r1": 23444.3,
+        "s1": 23418.7,
+        "s2": 23405.8,
+        "s3": 23393,
+        "s4": 23354.5
+      }
+    },
+    "actual_evaluation": {
+      "actual_open": 23446.6,
+      "actual_high": 23494.95,
+      "actual_low": 23380.1,
+      "actual_close": 23477.8,
+      "actual_range": 114.85,
+      "open_error_pts": 40.4,
+      "high_error_pts": 11.05,
+      "low_error_pts": 81.3,
+      "close_error_pts": 138.2,
+      "range_error_pts": -70.25,
+      "actual_candle": "GREEN",
+      "directional_bias_match": false,
+      "evaluated_at": "2026-09-10T10:17:29.547Z"
+    }
+  },
+  {
+    "symbol": "BANKNIFTY",
+    "target_date": "2026-09-10",
+    "target_day": "Thursday",
+    "computed_at": "2026-09-09T10:17:26.036Z",
+    "baseline_session": {
+      "date": "2026-09-09",
+      "open": 56498.85,
+      "high": 56743.05,
+      "low": 56295.55,
+      "close": 56295.55,
+      "atr14": 511.7
+    },
+    "prediction": {
+      "predicted_open": 56171.1,
+      "predicted_high": 56403.2,
+      "predicted_low": 55850.6,
+      "predicted_close": 55972.2,
+      "predicted_range": 552.6,
+      "predicted_gap_pts": -124.5,
+      "directional_bias": "RED",
+      "expected_candle": "RED CANDLE (Open > Close)",
+      "cpr": {
+        "P": 56444.7,
+        "BCP": 56370.1,
+        "TCP": 56519.3,
+        "widthPct": 0.26,
+        "type": "AVERAGE (Standard Auction)"
+      },
+      "camarilla": {
+        "r4": 56541.7,
+        "r3": 56418.6,
+        "r2": 56377.6,
+        "r1": 56336.6,
+        "s1": 56254.5,
+        "s2": 56213.5,
+        "s3": 56172.5,
+        "s4": 56049.4
+      }
+    },
+    "actual_evaluation": {
+      "actual_open": 56262.75,
+      "actual_high": 56575.15,
+      "actual_low": 56231.85,
+      "actual_close": 56471.95,
+      "actual_range": 343.3,
+      "open_error_pts": 91.65,
+      "high_error_pts": 171.95,
+      "low_error_pts": 381.25,
+      "close_error_pts": 499.75,
+      "range_error_pts": -209.3,
+      "actual_candle": "GREEN",
+      "directional_bias_match": false,
+      "evaluated_at": "2026-09-10T10:17:29.547Z"
+    }
+  },
+  {
+    "symbol": "NIFTY",
     "target_date": "2026-09-09",
     "target_day": "Wednesday",
     "computed_at": "2026-09-08T10:36:19.514Z",
@@ -39,7 +347,24 @@
         "s4": 23560.4
       }
     },
-    "actual_evaluation": null
+    "actual_evaluation": {
+      "actual_open": 23522.05,
+      "actual_high": 23571.55,
+      "actual_low": 23431.5,
+      "actual_close": 23431.5,
+      "actual_range": 140.05,
+      "open_error_pts": -89.65,
+      "open_error_pct": 0.38,
+      "high_error_pts": -117.35,
+      "low_error_pts": -73.6,
+      "close_error_pts": -114,
+      "close_error_pct": 0.49,
+      "range_error_pts": -63.2,
+      "actual_candle": "RED",
+      "directional_bias_match": true,
+      "outcome": "ACCURATE_WIN",
+      "evaluated_at": "2026-09-09T15:30:00.000Z"
+    }
   },
   {
     "symbol": "BANKNIFTY",
@@ -81,7 +406,24 @@
         "s4": 56599.6
       }
     },
-    "actual_evaluation": null
+    "actual_evaluation": {
+      "actual_open": 56664.1,
+      "actual_high": 56743.05,
+      "actual_low": 56295.55,
+      "actual_close": 56295.55,
+      "actual_range": 447.3,
+      "open_error_pts": -20.7,
+      "open_error_pct": 0.04,
+      "high_error_pts": -173.25,
+      "low_error_pts": -69.55,
+      "close_error_pts": -190.85,
+      "close_error_pct": 0.34,
+      "range_error_pts": -151.8,
+      "actual_candle": "RED",
+      "directional_bias_match": true,
+      "outcome": "ACCURATE_WIN",
+      "evaluated_at": "2026-09-09T15:30:00.000Z"
+    }
   },
   {
     "target_date": "2026-09-08",
