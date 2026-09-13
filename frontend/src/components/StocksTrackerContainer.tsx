@@ -16,7 +16,8 @@ import {
   ChevronRight,
   Compass,
   DollarSign,
-  BarChart2
+  BarChart2,
+  X
 } from 'lucide-react';
 import { FNO_STOCKS } from '../data/fnoStocks';
 
@@ -179,6 +180,8 @@ export function StocksTrackerContainer() {
   const [activeSubTab, setActiveSubTab] = useState<'signatures' | 'block_tape' | 'liquidity_pools' | 'stealth_delivery' | 'stealth_vault' | 'forensic_deep_dive' | 'participants' | 'sector_rotation' | 'eod_learner'>('signatures');
   const [selectedCaseId, setSelectedCaseId] = useState<string>('HDFCBANK-2024');
   const [expandedForensicSymbol, setExpandedForensicSymbol] = useState<string | null>('MARUTI');
+  const [showAllAllocationsModal, setShowAllAllocationsModal] = useState<boolean>(false);
+  const [allocationsFilterSide, setAllocationsFilterSide] = useState<'ALL' | 'BUY' | 'SELL' | 'CROSS'>('ALL');
   const [eodReport, setEodReport] = useState<any>(null);
   const [eodLoading, setEodLoading] = useState<boolean>(false);
 
@@ -238,6 +241,106 @@ export function StocksTrackerContainer() {
   const sig = data?.selectedSignature;
   const pools = data?.selectedPools;
   const part = data?.participantPositioning;
+
+  // Aggregate all 29 block deals by stock symbol with exact execution levels
+  const aggregatedAllocations = useMemo(() => {
+    if (!data?.blockDeals || data.blockDeals.length === 0) return [];
+    const map: Record<string, {
+      sym: string;
+      symbol: string;
+      name: string;
+      sector: string;
+      totalValCr: number;
+      dealCount: number;
+      buyValCr: number;
+      sellValCr: number;
+      crossValCr: number;
+      levels: {
+        price: number;
+        valueCr: number;
+        volume: number;
+        side: string;
+        timeStr: string;
+        buyer: string;
+        seller: string;
+      }[];
+      buyers: string[];
+      sellers: string[];
+      timeWindows: string[];
+    }> = {};
+
+    data.blockDeals.forEach(d => {
+      const sym = d.cleanSymbol;
+      if (!map[sym]) {
+        map[sym] = {
+          sym,
+          symbol: d.symbol,
+          name: d.name,
+          sector: d.sector,
+          totalValCr: 0,
+          dealCount: 0,
+          buyValCr: 0,
+          sellValCr: 0,
+          crossValCr: 0,
+          levels: [],
+          buyers: [],
+          sellers: [],
+          timeWindows: []
+        };
+      }
+      map[sym].totalValCr = parseFloat((map[sym].totalValCr + d.valueCr).toFixed(2));
+      map[sym].dealCount += 1;
+      if (d.side === 'BUY') map[sym].buyValCr = parseFloat((map[sym].buyValCr + d.valueCr).toFixed(2));
+      else if (d.side === 'SELL') map[sym].sellValCr = parseFloat((map[sym].sellValCr + d.valueCr).toFixed(2));
+      else map[sym].crossValCr = parseFloat((map[sym].crossValCr + d.valueCr).toFixed(2));
+
+      map[sym].levels.push({
+        price: d.price,
+        valueCr: d.valueCr,
+        volume: d.volume,
+        side: d.side,
+        timeStr: d.timeStr,
+        buyer: d.buyer,
+        seller: d.seller
+      });
+
+      if (!map[sym].buyers.includes(d.buyer)) map[sym].buyers.push(d.buyer);
+      if (!map[sym].sellers.includes(d.seller)) map[sym].sellers.push(d.seller);
+      if (!map[sym].timeWindows.includes(d.timeStr)) map[sym].timeWindows.push(d.timeStr);
+    });
+
+    return Object.values(map)
+      .sort((a, b) => b.totalValCr - a.totalValCr)
+      .map(item => {
+        let sideLabel = 'BUY';
+        let color = '#34d399';
+        if (item.sellValCr > item.buyValCr && item.sellValCr > item.crossValCr) {
+          sideLabel = 'SELL';
+          color = '#f87171';
+        } else if (item.crossValCr > item.buyValCr) {
+          sideLabel = 'CROSS_DEAL';
+          color = '#38bdf8';
+        } else if (item.buyValCr > 0 && item.sellValCr > 0) {
+          sideLabel = 'BUY & SELL';
+          color = '#38bdf8';
+        }
+
+        const totalVol = item.levels.reduce((acc, l) => acc + l.volume, 0);
+        const vwapPrice = totalVol > 0
+          ? parseFloat((item.levels.reduce((acc, l) => acc + (l.price * l.volume), 0) / totalVol).toFixed(2))
+          : item.levels[0].price;
+
+        return {
+          ...item,
+          valStr: `₹${item.totalValCr.toFixed(1)} Cr`,
+          vwapPrice,
+          sideLabel,
+          color,
+          timeSummary: item.timeWindows.join(' & '),
+          institutionSummary: item.buyers.slice(0, 2).join(' / ')
+        };
+      });
+  }, [data?.blockDeals]);
 
   return (
     <div style={{ padding: '16px', background: 'var(--bg-primary, #090d16)', minHeight: '100%', color: '#f8fafc', fontFamily: 'Inter, sans-serif' }}>
@@ -437,55 +540,91 @@ export function StocksTrackerContainer() {
         <div style={{ background: '#0b1329', border: '1px solid #1e3a8a', borderRadius: '10px', padding: '14px', marginBottom: '16px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '14px' }}>
             
-            {/* Panel A: How ₹898 Cr was spent across stocks */}
+            {/* Panel A: How ₹898 Cr was spent across stocks with exact execution levels */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                 <span style={{ fontSize: '11px', fontWeight: 800, color: '#38bdf8', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Zap size={13} color="#38bdf8" /> HOW THE ₹898 CR WAS SPENT (TOP 6 ALLOCATIONS)
+                  <Zap size={13} color="#38bdf8" /> HOW THE ₹898 CR WAS SPENT (ALL 29 PRINTS &amp; LEVELS)
                 </span>
-                <span 
-                  onClick={() => setActiveSubTab('block_tape')}
-                  style={{ fontSize: '10.5px', color: '#94a3b8', cursor: 'pointer', textDecoration: 'underline' }}
-                >
-                  See all 29 prints
-                </span>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '6px' }}>
-                {[
-                  { sym: 'LT', val: '₹131.7 Cr', time: '11:24 AM & 02:11 PM', side: 'BUY / CROSS', buyer: 'BlackRock / Axis / SocGen', color: '#34d399' },
-                  { sym: 'ICICIBANK', val: '₹123.9 Cr', time: '11:24 AM & 02:11 PM', side: 'BUY / CROSS', buyer: 'Kotak MF / Goldman / GIC', color: '#34d399' },
-                  { sym: 'BANKNIFTY', val: '₹114.7 Cr', time: '11:24 AM & 08:52 AM', side: 'BUY & SELL', buyer: 'SBI MF / Morgan Stanley', color: '#38bdf8' },
-                  { sym: 'SUNPHARMA', val: '₹81.0 Cr', time: '08:52 AM & 11:24 AM', side: 'BUY / CROSS', buyer: 'SBI MF / Vanguard / GIC', color: '#34d399' },
-                  { sym: 'NIFTY', val: '₹61.6 Cr', time: '02:11 PM & 08:52 AM', side: 'BUY', buyer: 'SBI MF / LIC of India', color: '#34d399' },
-                  { sym: 'TATASTEEL', val: '₹54.3 Cr', time: '08:52 AM Window', side: 'SELL', buyer: 'Vanguard Emerging', color: '#f87171' }
-                ].map(item => (
-                  <div 
-                    key={item.sym}
-                    onClick={() => {
-                      const fullSym = item.sym.includes('NIFTY') ? `NSE:${item.sym}` : `NSE:${item.sym}`;
-                      setSymbol(fullSym);
-                    }}
+                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                  <button
+                    onClick={() => setShowAllAllocationsModal(true)}
                     style={{
-                      background: '#1e293b',
-                      border: '1px solid #334155',
-                      borderRadius: '6px',
-                      padding: '8px',
-                      cursor: 'pointer'
+                      fontSize: '10.5px',
+                      color: '#facc15',
+                      background: 'rgba(234, 179, 8, 0.15)',
+                      border: '1px solid rgba(234, 179, 8, 0.4)',
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                      fontWeight: 800
                     }}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <strong style={{ fontSize: '11.5px', color: '#f8fafc' }}>{item.sym}</strong>
-                      <span style={{ fontSize: '11px', fontWeight: 900, color: item.color, fontFamily: 'monospace' }}>{item.val}</span>
+                    🔍 View All 29 Prints &amp; Levels
+                  </button>
+                  <span 
+                    onClick={() => {
+                      setActiveSubTab('block_tape');
+                      const el = document.getElementById('block_tape_section');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    style={{ fontSize: '10.5px', color: '#38bdf8', cursor: 'pointer', textDecoration: 'underline' }}
+                  >
+                    Tape Table ↓
+                  </span>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(155px, 1fr))', gap: '6px' }}>
+                {(aggregatedAllocations.length > 0 ? aggregatedAllocations.slice(0, 6) : [
+                  { sym: 'LT', valStr: '₹130.2 Cr', timeSummary: '11:24 AM & 02:11 PM', sideLabel: 'BUY / CROSS', institutionSummary: 'BlackRock / Axis', color: '#34d399', vwapPrice: 3915.2, dealCount: 3, levels: [{ price: 3911.05, side: 'BUY' }] },
+                  { sym: 'ICICIBANK', valStr: '₹119.5 Cr', timeSummary: '11:24 AM & 02:11 PM', sideLabel: 'BUY / CROSS', institutionSummary: 'Kotak MF / Goldman', color: '#34d399', vwapPrice: 1378.1, dealCount: 3, levels: [{ price: 1372.4, side: 'BUY' }] },
+                  { sym: 'BANKNIFTY', valStr: '₹114.7 Cr', timeSummary: '11:24 AM & 08:52 AM', sideLabel: 'BUY & SELL', institutionSummary: 'SBI MF / Morgan Stanley', color: '#38bdf8', vwapPrice: 56830.5, dealCount: 2, levels: [{ price: 56946.2, side: 'BUY' }] },
+                  { sym: 'SUNPHARMA', valStr: '₹81.0 Cr', timeSummary: '08:52 AM & 11:24 AM', sideLabel: 'BUY / CROSS', institutionSummary: 'SBI MF / Vanguard', color: '#34d399', vwapPrice: 1837.2, dealCount: 3, levels: [{ price: 1836.32, side: 'BUY' }] },
+                  { sym: 'NIFTY', valStr: '₹61.6 Cr', timeSummary: '02:11 PM & 08:52 AM', sideLabel: 'BUY', institutionSummary: 'SBI MF / LIC', color: '#34d399', vwapPrice: 23481.7, dealCount: 2, levels: [{ price: 23491.69, side: 'BUY' }] },
+                  { sym: 'TATASTEEL', valStr: '₹54.3 Cr', timeSummary: '08:52 AM Window', sideLabel: 'SELL', institutionSummary: 'Vanguard Emerging', color: '#f87171', vwapPrice: 182.63, dealCount: 1, levels: [{ price: 182.63, side: 'SELL' }] }
+                ]).map((item: any) => {
+                  const primaryLevel = item.levels && item.levels.length > 0 ? item.levels[0].price : item.vwapPrice;
+                  return (
+                    <div 
+                      key={item.sym}
+                      onClick={() => {
+                        const fullSym = item.sym.includes('NIFTY') ? `NSE:${item.sym}` : `NSE:${item.sym}`;
+                        setSymbol(fullSym);
+                      }}
+                      style={{
+                        background: '#1e293b',
+                        border: '1px solid #334155',
+                        borderRadius: '6px',
+                        padding: '8px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <strong style={{ fontSize: '11.5px', color: '#f8fafc' }}>{item.sym}</strong>
+                        <span style={{ fontSize: '11px', fontWeight: 900, color: item.color, fontFamily: 'monospace' }}>{item.valStr}</span>
+                      </div>
+                      
+                      {/* Exact Execution Price Level Highlight */}
+                      <div style={{ marginTop: '3px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#facc15', fontFamily: 'monospace' }}>
+                          🎯 Level: ₹{primaryLevel.toLocaleString()}
+                        </span>
+                        <span style={{ fontSize: '8.5px', background: item.sideLabel.includes('BUY') ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)', color: item.sideLabel.includes('BUY') ? '#34d399' : '#f87171', padding: '1px 4px', borderRadius: '3px', fontWeight: 800 }}>
+                          {item.dealCount > 1 ? `${item.dealCount} Prints` : item.sideLabel}
+                        </span>
+                      </div>
+
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '3px' }}>
+                        <span style={{ fontSize: '9px', color: '#cbd5e1' }}>🕒 {item.timeSummary?.split('&')[0]}</span>
+                      </div>
+                      <div style={{ fontSize: '9px', color: '#94a3b8', marginTop: '1px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {item.institutionSummary}
+                      </div>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '3px' }}>
-                      <span style={{ fontSize: '9.5px', color: '#fde047', fontWeight: 700 }}>🕒 {item.time}</span>
-                    </div>
-                    <div style={{ fontSize: '9.5px', color: '#94a3b8', marginTop: '1px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      {item.buyer}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -811,7 +950,7 @@ export function StocksTrackerContainer() {
 
       {/* VIEW 2: REAL-TIME BLOCK & BULK DEALS TAPE */}
       {activeSubTab === 'block_tape' && data && (
-        <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '10px', padding: '16px' }}>
+        <div id="block_tape_section" style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '10px', padding: '16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
             <h3 style={{ fontSize: '14px', fontWeight: 900, margin: 0, color: '#f8fafc' }}>
               ⚡ Real-Time Institutional Block & Bulk Deals Feed (≥₹10 Cr Prints)
@@ -1808,6 +1947,254 @@ export function StocksTrackerContainer() {
                 </div>
               );
             })}
+          </div>
+        </div>
+      )}
+
+      {/* 🚀 MODAL: ALL 29 INSTITUTIONAL BLOCK PRINTS & EXACT EXECUTION LEVELS */}
+      {showAllAllocationsModal && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(3, 7, 18, 0.85)',
+          backdropFilter: 'blur(4px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 99999,
+          padding: '16px'
+        }}>
+          <div style={{
+            background: '#0b1329',
+            border: '1px solid #1e3a8a',
+            borderRadius: '12px',
+            width: '100%',
+            maxWidth: '1000px',
+            maxHeight: '90vh',
+            display: 'flex',
+            flexDirection: 'column',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.7)'
+          }}>
+            {/* Modal Header */}
+            <div style={{
+              padding: '16px 20px',
+              borderBottom: '1px solid #1e3a8a',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              background: '#0d1938',
+              borderTopLeftRadius: '12px',
+              borderTopRightRadius: '12px'
+            }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ background: '#2563eb', color: '#ffffff', padding: '2px 8px', borderRadius: '4px', fontSize: '11px', fontWeight: 900 }}>
+                    EXACT EXECUTION LEVELS
+                  </span>
+                  <h3 style={{ margin: 0, fontSize: '16px', fontWeight: 900, color: '#f8fafc' }}>
+                    🐋 All 29 Institutional Block Prints &amp; Where They Bought / Sold
+                  </h3>
+                </div>
+                <p style={{ margin: '4px 0 0', fontSize: '11.5px', color: '#94a3b8' }}>
+                  Total Turnover: <strong style={{ color: '#38bdf8' }}>₹{data?.executiveMetrics?.totalBlockVolumeCr || '883.2'} Cr</strong> across 16 F&amp;O Stocks &amp; Indices
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <div style={{ display: 'flex', background: '#1e293b', borderRadius: '6px', padding: '2px' }}>
+                  {(['ALL', 'BUY', 'SELL', 'CROSS'] as const).map(f => (
+                    <button
+                      key={f}
+                      onClick={() => setAllocationsFilterSide(f)}
+                      style={{
+                        background: allocationsFilterSide === f ? '#2563eb' : 'transparent',
+                        border: 'none',
+                        color: allocationsFilterSide === f ? '#ffffff' : '#94a3b8',
+                        padding: '3px 8px',
+                        borderRadius: '4px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {f}
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => setShowAllAllocationsModal(false)}
+                  style={{
+                    background: '#1e293b',
+                    border: '1px solid #334155',
+                    color: '#94a3b8',
+                    borderRadius: '6px',
+                    padding: '6px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                >
+                  <X size={18} color="#f8fafc" />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body - Scrollable Table */}
+            <div style={{ padding: '16px 20px', overflowY: 'auto', flex: 1 }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'right' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8', position: 'sticky', top: 0, background: '#0b1329' }}>
+                    <th style={{ textAlign: 'left', padding: '8px' }}>Asset</th>
+                    <th style={{ textAlign: 'left', padding: '8px' }}>Sector</th>
+                    <th style={{ padding: '8px', color: '#38bdf8' }}>Total Value</th>
+                    <th style={{ padding: '8px', textAlign: 'center' }}>Prints</th>
+                    <th style={{ padding: '8px', color: '#facc15', textAlign: 'left' }}>🎯 Exact Execution Levels (Prices)</th>
+                    <th style={{ textAlign: 'left', padding: '8px' }}>Primary Institution(s)</th>
+                    <th style={{ padding: '8px', textAlign: 'center' }}>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {aggregatedAllocations
+                    .filter(item => {
+                      if (allocationsFilterSide === 'ALL') return true;
+                      if (allocationsFilterSide === 'BUY') return item.buyValCr > 0;
+                      if (allocationsFilterSide === 'SELL') return item.sellValCr > 0;
+                      return item.crossValCr > 0;
+                    })
+                    .map((item, idx) => (
+                      <tr 
+                        key={item.sym} 
+                        style={{ 
+                          borderBottom: '1px solid #1e293b',
+                          background: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)'
+                        }}
+                      >
+                        <td style={{ textAlign: 'left', padding: '10px 8px' }}>
+                          <strong style={{ fontSize: '13px', color: '#f8fafc' }}>{item.sym}</strong>
+                          <div style={{ fontSize: '10px', color: '#94a3b8' }}>{item.name}</div>
+                        </td>
+
+                        <td style={{ textAlign: 'left', padding: '10px 8px', color: '#cbd5e1', fontSize: '11px' }}>
+                          {item.sector}
+                        </td>
+
+                        <td style={{ padding: '10px 8px', fontFamily: 'monospace', fontWeight: 900, color: item.color, fontSize: '13px' }}>
+                          {item.valStr}
+                        </td>
+
+                        <td style={{ padding: '10px 8px', textAlign: 'center' }}>
+                          <span style={{
+                            background: item.sideLabel.includes('BUY') ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+                            color: item.sideLabel.includes('BUY') ? '#34d399' : '#f87171',
+                            padding: '3px 8px',
+                            borderRadius: '4px',
+                            fontSize: '10px',
+                            fontWeight: 800
+                          }}>
+                            {item.dealCount} {item.dealCount === 1 ? 'Print' : 'Prints'} ({item.sideLabel})
+                          </span>
+                        </td>
+
+                        <td style={{ textAlign: 'left', padding: '10px 8px' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                            {item.levels.map((lvl, lIdx) => (
+                              <div key={lIdx} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                <span style={{
+                                  fontSize: '11.5px',
+                                  fontFamily: 'monospace',
+                                  fontWeight: 800,
+                                  color: lvl.side === 'BUY' ? '#34d399' : (lvl.side === 'SELL' ? '#f87171' : '#38bdf8'),
+                                  background: '#0f172a',
+                                  padding: '2px 6px',
+                                  borderRadius: '4px',
+                                  border: '1px solid #1e293b'
+                                }}>
+                                  ₹{lvl.price.toLocaleString()}
+                                </span>
+                                <span style={{ fontSize: '10px', color: '#94a3b8' }}>
+                                  ({lvl.side} • ₹{lvl.valueCr} Cr @ {lvl.timeStr.split('(')[0].trim()})
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                        </td>
+
+                        <td style={{ textAlign: 'left', padding: '10px 8px', fontSize: '11px', color: '#cbd5e1' }}>
+                          <div style={{ color: '#a7f3d0', fontWeight: 600 }}>{item.buyers[0] || 'Institutional Pool'}</div>
+                          {item.sellers[0] && (
+                            <div style={{ fontSize: '9.5px', color: '#94a3b8', marginTop: '2px' }}>
+                              vs. {item.sellers[0]}
+                            </div>
+                          )}
+                        </td>
+
+                        <td style={{ padding: '10px 8px', textAlign: 'center' }}>
+                          <button
+                            onClick={() => {
+                              const fullSym = item.sym.includes('NIFTY') ? `NSE:${item.sym}` : `NSE:${item.sym}`;
+                              setSymbol(fullSym);
+                              setShowAllAllocationsModal(false);
+                            }}
+                            style={{
+                              background: '#2563eb',
+                              border: 'none',
+                              color: '#ffffff',
+                              padding: '4px 10px',
+                              borderRadius: '4px',
+                              fontSize: '11px',
+                              fontWeight: 700,
+                              cursor: 'pointer'
+                            }}
+                          >
+                            Spotlight 🎯
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Modal Footer */}
+            <div style={{
+              padding: '12px 20px',
+              borderTop: '1px solid #1e3a8a',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              background: '#090d16',
+              borderBottomLeftRadius: '12px',
+              borderBottomRightRadius: '12px'
+            }}>
+              <span style={{ fontSize: '11px', color: '#94a3b8' }}>
+                💡 Click &quot;Spotlight&quot; on any asset to view its volume profile anchors, stop clusters, and trade plan.
+              </span>
+              <button
+                onClick={() => {
+                  setShowAllAllocationsModal(false);
+                  setActiveSubTab('block_tape');
+                  const el = document.getElementById('block_tape_section');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                style={{
+                  background: 'rgba(56, 189, 248, 0.15)',
+                  border: '1px solid #38bdf8',
+                  color: '#38bdf8',
+                  padding: '5px 12px',
+                  borderRadius: '6px',
+                  fontSize: '11.5px',
+                  fontWeight: 800,
+                  cursor: 'pointer'
+                }}
+              >
+                Go to Full Raw Tape (All 29 Prints) →
+              </button>
+            </div>
+
           </div>
         </div>
       )}

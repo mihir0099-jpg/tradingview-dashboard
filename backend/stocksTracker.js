@@ -844,11 +844,87 @@ export async function computeStocksTrackerOverview(selectedSymbol = 'NSE:NIFTY',
     }
   };
 
+  // Compute exact Top Allocations grouped by symbol with specific executed price levels
+  const allocMap = {};
+  blockDeals.forEach(d => {
+    const sym = d.cleanSymbol;
+    if (!allocMap[sym]) {
+      allocMap[sym] = {
+        sym,
+        symbol: d.symbol,
+        name: d.name,
+        sector: d.sector,
+        totalValCr: 0,
+        dealCount: 0,
+        buyValCr: 0,
+        sellValCr: 0,
+        crossValCr: 0,
+        levels: [],
+        buyers: [],
+        sellers: [],
+        timeWindows: []
+      };
+    }
+    allocMap[sym].totalValCr = parseFloat((allocMap[sym].totalValCr + d.valueCr).toFixed(2));
+    allocMap[sym].dealCount += 1;
+    if (d.side === 'BUY') allocMap[sym].buyValCr = parseFloat((allocMap[sym].buyValCr + d.valueCr).toFixed(2));
+    else if (d.side === 'SELL') allocMap[sym].sellValCr = parseFloat((allocMap[sym].sellValCr + d.valueCr).toFixed(2));
+    else allocMap[sym].crossValCr = parseFloat((allocMap[sym].crossValCr + d.valueCr).toFixed(2));
+
+    allocMap[sym].levels.push({
+      price: d.price,
+      valueCr: d.valueCr,
+      volume: d.volume,
+      side: d.side,
+      timeStr: d.timeStr,
+      buyer: d.buyer,
+      seller: d.seller
+    });
+    if (!allocMap[sym].buyers.includes(d.buyer)) allocMap[sym].buyers.push(d.buyer);
+    if (!allocMap[sym].sellers.includes(d.seller)) allocMap[sym].sellers.push(d.seller);
+    if (!allocMap[sym].timeWindows.includes(d.timeStr)) allocMap[sym].timeWindows.push(d.timeStr);
+  });
+
+  const topAllocations = Object.values(allocMap)
+    .sort((a, b) => b.totalValCr - a.totalValCr)
+    .map(item => {
+      // Primary side
+      let sideLabel = 'BUY';
+      let color = '#34d399';
+      if (item.sellValCr > item.buyValCr && item.sellValCr > item.crossValCr) {
+        sideLabel = 'SELL';
+        color = '#f87171';
+      } else if (item.crossValCr > item.buyValCr) {
+        sideLabel = 'CROSS_DEAL';
+        color = '#38bdf8';
+      } else if (item.buyValCr > 0 && item.sellValCr > 0) {
+        sideLabel = 'BUY & SELL';
+        color = '#38bdf8';
+      }
+
+      // Weighted average executed price level
+      const totalVol = item.levels.reduce((acc, l) => acc + l.volume, 0);
+      const vwapPrice = totalVol > 0 
+        ? parseFloat((item.levels.reduce((acc, l) => acc + (l.price * l.volume), 0) / totalVol).toFixed(2))
+        : item.levels[0].price;
+
+      return {
+        ...item,
+        valStr: `₹${item.totalValCr} Cr`,
+        vwapPrice,
+        sideLabel,
+        color,
+        timeSummary: item.timeWindows.join(' & '),
+        institutionSummary: item.buyers.slice(0, 2).join(' / ')
+      };
+    });
+
   return {
     selectedSymbol,
     selectedSignature,
     selectedPools,
     selectedDeals,
+    topAllocations,
     executiveMetrics: {
       totalBlockVolumeCr,
       avgDarkVolumeRatio,
