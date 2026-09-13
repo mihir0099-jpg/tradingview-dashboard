@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, X, Activity, RefreshCw, Landmark, TrendingUp, Layers, ShieldCheck, CheckCircle2, AlertTriangle, Wrench } from 'lucide-react';
+import { Search, X, Activity, RefreshCw, Landmark, TrendingUp, Layers, ShieldCheck, CheckCircle2, AlertTriangle, Wrench, Zap, Target, ArrowUpRight, ArrowDownRight, Award } from 'lucide-react';
 import { getBackendUrl, setCustomBackendUrl } from '../utils/config';
 
 interface DashboardHeaderProps {
@@ -39,6 +39,11 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const [isHealthModalOpen, setIsHealthModalOpen] = useState(false);
   const [isHealTriggering, setIsHealTriggering] = useState(false);
 
+  // Tomorrow's High-Conviction Watchlist State (Autonomous 212 F&O Chart Miner)
+  const [watchlistData, setWatchlistData] = useState<any>(null);
+  const [isWatchlistModalOpen, setIsWatchlistModalOpen] = useState(false);
+  const [isMiningReplay, setIsMiningReplay] = useState(false);
+
   const fetchHealth = async () => {
     try {
       const backendUrl = getBackendUrl();
@@ -52,9 +57,26 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     }
   };
 
+  const fetchWatchlist = async () => {
+    try {
+      const backendUrl = getBackendUrl();
+      const res = await fetch(`${backendUrl}/api/system/daily-chart-replay`);
+      if (res.ok) {
+        const data = await res.json();
+        setWatchlistData(data);
+      }
+    } catch (err) {
+      // Backend offline or unreachable
+    }
+  };
+
   useEffect(() => {
     fetchHealth();
-    const interval = setInterval(fetchHealth, 45000); // Poll every 45s
+    fetchWatchlist();
+    const interval = setInterval(() => {
+      fetchHealth();
+      fetchWatchlist();
+    }, 45000); // Poll every 45s
     return () => clearInterval(interval);
   }, []);
 
@@ -71,6 +93,22 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
       console.error('Trigger heal error:', err);
     } finally {
       setIsHealTriggering(false);
+    }
+  };
+
+  const handleTriggerReplayMiner = async () => {
+    setIsMiningReplay(true);
+    try {
+      const backendUrl = getBackendUrl();
+      const res = await fetch(`${backendUrl}/api/system/trigger-chart-replay`, { method: 'POST' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.report) setWatchlistData(data.report);
+      }
+    } catch (err) {
+      console.error('Trigger replay miner error:', err);
+    } finally {
+      setIsMiningReplay(false);
     }
   };
 
@@ -317,6 +355,30 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <ShieldCheck size={14} color={healthData?.overallStatus === 'ALL_SYSTEMS_GREEN' ? '#10b981' : '#fde047'} />
             <span style={{ fontSize: '12px', fontWeight: '800', color: healthData?.overallStatus === 'ALL_SYSTEMS_GREEN' ? '#10b981' : '#fde047' }}>
               {healthData ? `${healthData.operationalCount}/${healthData.totalTabsAudited} Tabs 🟢` : 'Tab Health 🟢'}
+            </span>
+          </div>
+
+          {/* Tomorrow's High-Conviction Watchlist Trigger Button */}
+          <div 
+            onClick={() => setIsWatchlistModalOpen(true)}
+            title="Tomorrow's High-Conviction Watchlist (Autonomous 212 F&O Chart Replay Engine)"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px', 
+              background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.16), rgba(249, 115, 22, 0.16))', 
+              border: '1px solid rgba(245, 158, 11, 0.45)', 
+              padding: '6px 12px', 
+              borderRadius: '8px', 
+              cursor: 'pointer',
+              userSelect: 'none',
+              boxShadow: '0 0 12px rgba(245, 158, 11, 0.2)',
+              transition: 'all 0.2s'
+            }}
+          >
+            <Zap size={14} color="#f59e0b" />
+            <span style={{ fontSize: '12px', fontWeight: '800', color: '#fbbf24' }}>
+              🎯 Tomorrow's Watchlist ({watchlistData?.tomorrowHighConvictionWatchlist?.length || 5})
             </span>
           </div>
         </div>
@@ -810,7 +872,291 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
         </div>
       )}
 
-      {/* Embedded fadeIn keyframe styling */}
+      {/* Tomorrow's High-Conviction Watchlist Modal */}
+      {isWatchlistModalOpen && (
+        <div 
+          onClick={() => setIsWatchlistModalOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(3, 7, 18, 0.88)',
+            backdropFilter: 'blur(10px)',
+            zIndex: 10000,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '20px',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: '100%',
+              maxWidth: '920px',
+              backgroundColor: '#0d1117',
+              border: '1px solid rgba(245, 158, 11, 0.35)',
+              borderRadius: '16px',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(245, 158, 11, 0.1)',
+              display: 'flex',
+              flexDirection: 'column',
+              maxHeight: '88vh',
+              overflow: 'hidden',
+              animation: 'fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+            }}
+          >
+            {/* Modal Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 24px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', background: 'linear-gradient(90deg, rgba(245, 158, 11, 0.08), rgba(0, 0, 0, 0))' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ background: 'linear-gradient(135deg, #f59e0b, #d97706)', padding: '8px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(245, 158, 11, 0.4)' }}>
+                  <Zap size={20} color="#fff" />
+                </div>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: '#fff', letterSpacing: '-0.3px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    🎯 Tomorrow's High-Conviction Watchlist
+                    <span style={{ fontSize: '11px', background: 'rgba(245, 158, 11, 0.2)', border: '1px solid rgba(245, 158, 11, 0.4)', color: '#fbbf24', padding: '2px 8px', borderRadius: '4px', fontWeight: '700' }}>
+                      212 F&O Autonomous Miner
+                    </span>
+                  </h3>
+                  <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                    Automated full-day chart replay mined at 16:20 IST • Demat Delivery Hoarding • Institutional Squeeze
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsWatchlistModalOpen(false)}
+                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '6px', borderRadius: '6px', display: 'flex' }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Market Context Banner */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px', padding: '14px 24px', background: 'rgba(255, 255, 255, 0.02)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
+              <div style={{ padding: '8px 12px', background: 'rgba(245, 158, 11, 0.06)', borderRadius: '8px', border: '1px solid rgba(245, 158, 11, 0.15)' }}>
+                <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>Total F&O Audited</div>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: '#fbbf24', marginTop: '2px' }}>
+                  {watchlistData?.totalFnoStocksAnalyzed || 212} Stocks
+                </div>
+              </div>
+              <div style={{ padding: '8px 12px', background: 'rgba(16, 185, 129, 0.06)', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.15)' }}>
+                <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>Demat Coils Forming</div>
+                <div style={{ fontSize: '15px', fontWeight: '800', color: '#10b981', marginTop: '2px' }}>
+                  {watchlistData?.fnoUniverseSummary?.coilingDematCount || 37} Vault Breakouts
+                </div>
+              </div>
+              <div style={{ padding: '8px 12px', background: 'rgba(59, 130, 246, 0.06)', borderRadius: '8px', border: '1px solid rgba(59, 130, 246, 0.15)' }}>
+                <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>Nifty Day Structure</div>
+                <div style={{ fontSize: '13px', fontWeight: '800', color: '#60a5fa', marginTop: '3px' }}>
+                  {watchlistData?.indexAuction?.nifty?.dayType || 'TREND_EXPANSION_DAY'}
+                </div>
+              </div>
+              <div style={{ padding: '8px 12px', background: 'rgba(168, 85, 247, 0.06)', borderRadius: '8px', border: '1px solid rgba(168, 85, 247, 0.15)' }}>
+                <div style={{ fontSize: '10px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: '700' }}>Bank Nifty Structure</div>
+                <div style={{ fontSize: '13px', fontWeight: '800', color: '#c084fc', marginTop: '3px' }}>
+                  {watchlistData?.indexAuction?.banknifty?.dayType || 'DOUBLE_DISTRIBUTION_DAY'}
+                </div>
+              </div>
+            </div>
+
+            {/* Watchlist Cards List */}
+            <div style={{ flex: 1, overflowY: 'auto', padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {(watchlistData?.tomorrowHighConvictionWatchlist || []).map((item: any, idx: number) => {
+                const isBullish = item.trade?.action?.startsWith('BUY') && !item.trade?.action?.includes('PE');
+                return (
+                  <div 
+                    key={idx}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.025)',
+                      border: `1px solid ${isBullish ? 'rgba(16, 185, 129, 0.25)' : 'rgba(239, 68, 68, 0.25)'}`,
+                      borderRadius: '12px',
+                      padding: '16px 20px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '12px',
+                      boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+                      transition: 'transform 0.15s, border-color 0.15s'
+                    }}
+                  >
+                    {/* Header Row */}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <span style={{ 
+                          fontSize: '12px', 
+                          fontWeight: '800', 
+                          color: '#fff', 
+                          background: 'rgba(255, 255, 255, 0.08)', 
+                          padding: '3px 8px', 
+                          borderRadius: '6px' 
+                        }}>
+                          #{idx + 1}
+                        </span>
+                        <div>
+                          <span style={{ fontSize: '16px', fontWeight: '800', color: '#fff', letterSpacing: '0.3px' }}>
+                            {item.symbol}
+                          </span>
+                          <span style={{ fontSize: '12px', color: 'var(--text-muted)', marginLeft: '8px' }}>
+                            {item.name} • <span style={{ color: '#93c5fd' }}>{item.sector}</span>
+                          </span>
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{
+                          fontSize: '11px',
+                          fontWeight: '800',
+                          padding: '3px 8px',
+                          borderRadius: '6px',
+                          background: isBullish ? 'rgba(16, 185, 129, 0.15)' : 'rgba(245, 158, 11, 0.15)',
+                          color: isBullish ? '#34d399' : '#fbbf24',
+                          border: `1px solid ${isBullish ? 'rgba(16, 185, 129, 0.3)' : 'rgba(245, 158, 11, 0.3)'}`
+                        }}>
+                          {item.badge || 'HIGH-CONVICTION'}
+                        </span>
+                        <span style={{
+                          fontSize: '11px',
+                          fontWeight: '800',
+                          padding: '3px 8px',
+                          borderRadius: '6px',
+                          background: 'rgba(59, 130, 246, 0.15)',
+                          color: '#60a5fa',
+                          border: '1px solid rgba(59, 130, 246, 0.3)'
+                        }}>
+                          {item.trade?.winRatePct}% Win Rate
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Trade Action & Chart Switcher */}
+                    <div style={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'space-between', 
+                      background: isBullish ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)',
+                      border: `1px solid ${isBullish ? 'rgba(16, 185, 129, 0.25)' : 'rgba(239, 68, 68, 0.25)'}`,
+                      borderRadius: '8px',
+                      padding: '10px 14px'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        {isBullish ? <ArrowUpRight size={18} color="#10b981" /> : <ArrowDownRight size={18} color="#ef4444" />}
+                        <span style={{ fontSize: '14px', fontWeight: '800', color: isBullish ? '#34d399' : '#f87171' }}>
+                          {item.trade?.action}
+                        </span>
+                      </div>
+                      
+                      <button
+                        onClick={() => {
+                          onSymbolChange(`NSE:${item.symbol}`);
+                          setIsWatchlistModalOpen(false);
+                        }}
+                        style={{
+                          background: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                          border: 'none',
+                          color: '#fff',
+                          padding: '6px 14px',
+                          borderRadius: '6px',
+                          fontSize: '11px',
+                          fontWeight: '800',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          transition: 'opacity 0.15s'
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.opacity = '0.85'}
+                        onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+                      >
+                        <Activity size={13} />
+                        View Live Chart 📊
+                      </button>
+                    </div>
+
+                    {/* Levels & P&L Grid */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
+                      <div style={{ padding: '8px 10px', background: 'rgba(255, 255, 255, 0.02)', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                        <div style={{ fontSize: '10px', color: 'var(--text-muted)' }}>Spot Entry</div>
+                        <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff', marginTop: '2px' }}>
+                          ₹{item.trade?.spotEntry?.toLocaleString('en-IN')}
+                        </div>
+                      </div>
+                      <div style={{ padding: '8px 10px', background: 'rgba(239, 68, 68, 0.04)', borderRadius: '6px', border: '1px solid rgba(239, 68, 68, 0.15)' }}>
+                        <div style={{ fontSize: '10px', color: '#f87171' }}>Spot Stop Loss</div>
+                        <div style={{ fontSize: '13px', fontWeight: '700', color: '#f87171', marginTop: '2px' }}>
+                          ₹{item.trade?.spotSL?.toLocaleString('en-IN')}
+                        </div>
+                        <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>Risk: ₹{item.trade?.spotRiskPts} pts</div>
+                      </div>
+                      <div style={{ padding: '8px 10px', background: 'rgba(16, 185, 129, 0.04)', borderRadius: '6px', border: '1px solid rgba(16, 185, 129, 0.15)' }}>
+                        <div style={{ fontSize: '10px', color: '#34d399' }}>Target 1</div>
+                        <div style={{ fontSize: '13px', fontWeight: '700', color: '#34d399', marginTop: '2px' }}>
+                          ₹{item.trade?.spotTarget1?.toLocaleString('en-IN')}
+                        </div>
+                        <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>+₹{item.trade?.target1GainPerLotINR?.toLocaleString('en-IN')}/lot</div>
+                      </div>
+                      <div style={{ padding: '8px 10px', background: 'rgba(16, 185, 129, 0.06)', borderRadius: '6px', border: '1px solid rgba(16, 185, 129, 0.25)' }}>
+                        <div style={{ fontSize: '10px', color: '#10b981' }}>Target 2</div>
+                        <div style={{ fontSize: '13px', fontWeight: '700', color: '#10b981', marginTop: '2px' }}>
+                          ₹{item.trade?.spotTarget2?.toLocaleString('en-IN')}
+                        </div>
+                        <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>+₹{item.trade?.target2GainPerLotINR?.toLocaleString('en-IN')}/lot</div>
+                      </div>
+                      <div style={{ padding: '8px 10px', background: 'rgba(245, 158, 11, 0.04)', borderRadius: '6px', border: '1px solid rgba(245, 158, 11, 0.15)' }}>
+                        <div style={{ fontSize: '10px', color: '#fbbf24' }}>Reward : Risk</div>
+                        <div style={{ fontSize: '13px', fontWeight: '800', color: '#fbbf24', marginTop: '2px' }}>
+                          {item.trade?.rewardRiskRatio} : 1
+                        </div>
+                        <div style={{ fontSize: '9px', color: 'var(--text-muted)' }}>{item.trade?.expectedMove}</div>
+                      </div>
+                    </div>
+
+                    {/* Rationale & Execution Note */}
+                    <div style={{ fontSize: '12px', color: 'var(--text-secondary)', lineHeight: '1.5', background: 'rgba(255, 255, 255, 0.015)', padding: '8px 12px', borderRadius: '6px', border: '1px solid rgba(255, 255, 255, 0.04)' }}>
+                      <span style={{ color: '#fbbf24', fontWeight: '700' }}>Analysis: </span>
+                      {item.catalystRationale}
+                      <div style={{ marginTop: '4px', fontSize: '11px', color: 'var(--text-muted)' }}>
+                        <span style={{ color: '#f87171', fontWeight: '700' }}>SL Rule: </span>
+                        {item.trade?.exitCondition}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Modal Footer */}
+            <div style={{ padding: '14px 24px', borderTop: '1px solid rgba(255, 255, 255, 0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255, 255, 255, 0.02)' }}>
+              <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>
+                Replayed daily at 16:20 IST across all 212 F&O contracts • Saved to daily ledger
+              </span>
+              <button
+                onClick={handleTriggerReplayMiner}
+                disabled={isMiningReplay}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                  border: 'none',
+                  color: '#fff',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  fontWeight: '800',
+                  cursor: isMiningReplay ? 'not-allowed' : 'pointer',
+                  opacity: isMiningReplay ? 0.7 : 1,
+                  transition: 'all 0.15s'
+                }}
+              >
+                <RefreshCw size={14} className={isMiningReplay ? 'animate-spin' : ''} />
+                <span>{isMiningReplay ? 'Replaying 212 Charts...' : '⚡ Re-Analyze All 212 F&O Charts'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <style>{`
         @keyframes fadeIn {
           from { opacity: 0; transform: scale(0.97); }
