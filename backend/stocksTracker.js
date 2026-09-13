@@ -488,14 +488,12 @@ export function calculateForensicMicrostructure(stocksWithSpot) {
       alertLevel = 'HIGH';
     }
 
-    // Actionable Trade Setup using Rule 1.D (ATM Delta = 0.5)
+    // Live Spot Execution Trade Setup (100% Real Live Spot Levels)
     const atmStrike = Math.round(S / interval) * interval;
     const spotRiskPts = parseFloat((interval * 0.65).toFixed(1));
     const spotSL = parseFloat((S - spotRiskPts).toFixed(2));
     const spotTarget1 = parseFloat((S + (interval * 1.5)).toFixed(2));
     const spotTarget2 = parseFloat((S + (interval * 2.8)).toFixed(2));
-    const estimatedAtmCallPremium = parseFloat((interval * 1.15).toFixed(2));
-    const optionSL = parseFloat(Math.max(1.0, (estimatedAtmCallPremium - (spotRiskPts * 0.5))).toFixed(2));
 
     const tradeSetup = {
       action: `BUY ${stock.cleanSymbol} ${atmStrike} CE / Spot`,
@@ -505,8 +503,7 @@ export function calculateForensicMicrostructure(stocksWithSpot) {
       spotTarget1,
       spotTarget2,
       atmStrike,
-      optionCallPremium: estimatedAtmCallPremium,
-      dynamicOptionSL: optionSL,
+      exitCondition: `Exit trade if Spot crosses below ₹${spotSL}`,
       rationale: `Whales absorbing via ${verdict.replace(/_/g, ' ')}. SAI = ${sai}x (TVPT collapsed ${Math.abs(tvptDropPct)}% to ₹${todayTvpt} with ${deliveryPct}% delivery).`
     };
 
@@ -665,10 +662,7 @@ export function calculateStealthVaultAndIcebergs(stocksWithSpot) {
     const spotTarget1 = parseFloat((S + (interval * 1.5)).toFixed(2));
     const spotTarget2 = parseFloat((S + (interval * 2.8)).toFixed(2));
 
-    // Dynamic Option SL Proxy (Rule 1.D: Delta = 0.5)
     const atmStrike = Math.round(S / interval) * interval;
-    const estimatedAtmCallPremium = parseFloat((interval * 1.15).toFixed(2));
-    const optionSL = parseFloat((estimatedAtmCallPremium - (spotRiskPts * 0.5)).toFixed(2));
 
     let stealthVerdict = 'MODERATE_FLOW';
     let primaryMechanism = 'Standard Multilateral Exchange Matching';
@@ -729,8 +723,7 @@ export function calculateStealthVaultAndIcebergs(stocksWithSpot) {
         spotTarget1,
         spotTarget2,
         atmStrike,
-        estimatedAtmCallPremium,
-        dynamicOptionSL: Math.max(1.0, optionSL),
+        exitCondition: `Exit trade if Spot crosses below ₹${spotSL}`,
         rewardRiskRatio: parseFloat(((spotTarget1 - S) / spotRiskPts).toFixed(2)),
         setupRationale: `Whales absorbing via ${primaryMechanism}. Demat delivery at ${deliveryPct}%. Coiled for immediate range expansion.`
       } : null

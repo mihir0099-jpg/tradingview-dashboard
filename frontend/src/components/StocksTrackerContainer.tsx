@@ -1187,8 +1187,8 @@ export function StocksTrackerContainer() {
                             <span style={{ color: '#34d399' }}>Target 1:</span> <strong style={{ color: '#34d399' }}>₹{t.spotTarget1}</strong>
                           </div>
                         </div>
-                        <div style={{ fontSize: '10px', color: '#fde047', background: 'rgba(0,0,0,0.3)', padding: '4px 6px', borderRadius: '4px' }}>
-                          💡 <strong>Option Setup (Rule 1.D):</strong> {t.atmStrike} CE @ ~₹{t.estimatedAtmCallPremium} | Dynamic Option SL: ₹{t.dynamicOptionSL}
+                        <div style={{ fontSize: '10px', color: '#7dd3fc', background: 'rgba(0,0,0,0.3)', padding: '4px 6px', borderRadius: '4px' }}>
+                          🎯 <strong>Live Execution:</strong> Trade {t.atmStrike} CE. Exit if Spot breaches ₹{t.spotSL}.
                         </div>
                       </div>
                     )}
@@ -1424,7 +1424,7 @@ export function StocksTrackerContainer() {
                               Entry: <strong>₹{item.tradeSetup.spotEntry}</strong> | SL: <strong style={{ color: '#f87171' }}>₹{item.tradeSetup.spotSL}</strong> | T1: <strong style={{ color: '#34d399' }}>₹{item.tradeSetup.spotTarget1}</strong>
                             </div>
                             <div style={{ fontSize: '9.5px', color: '#fde047', marginTop: '2px' }}>
-                              Option: {item.tradeSetup.atmStrike} CE @ ~₹{item.tradeSetup.optionCallPremium} (Dyn SL: ₹{item.tradeSetup.dynamicOptionSL})
+                              ⚡ Option Strike: <strong>{item.tradeSetup.atmStrike} CE</strong> | Exit when Spot touches SL
                             </div>
                           </div>
                         ) : (
@@ -1464,8 +1464,8 @@ export function StocksTrackerContainer() {
                               </div>
                             </div>
 
-                            <div style={{ background: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.3)', borderRadius: '6px', padding: '8px 12px', fontSize: '11px', color: '#fde047', marginBottom: '8px' }}>
-                              💡 <strong>Option Trading Strategy (Rule 1.D):</strong> Buy <strong>{item.tradeSetup.atmStrike} CE</strong> @ ~₹{item.tradeSetup.optionCallPremium}. Set Dynamic Option Stop Loss at <strong>₹{item.tradeSetup.dynamicOptionSL}</strong> [Option SL = Premium - (Risk {item.tradeSetup.spotRiskPts} × 0.5)].
+                            <div style={{ background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.3)', borderRadius: '6px', padding: '8px 12px', fontSize: '11px', color: '#7dd3fc', marginBottom: '8px' }}>
+                              🎯 <strong>Live Market Execution:</strong> Buy <strong>{item.tradeSetup.atmStrike} CE</strong> or Spot. <strong>Rule:</strong> Exit option trade immediately if Spot breaches <strong>₹{item.tradeSetup.spotSL}</strong> on the live chart.
                             </div>
 
                             <div style={{ fontSize: '11px', color: '#cbd5e1' }}>
