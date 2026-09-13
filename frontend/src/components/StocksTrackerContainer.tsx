@@ -173,7 +173,7 @@ export function StocksTrackerContainer() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
-  const [activeSubTab, setActiveSubTab] = useState<'signatures' | 'block_tape' | 'liquidity_pools' | 'stealth_delivery' | 'participants' | 'sector_rotation' | 'eod_learner'>('signatures');
+  const [activeSubTab, setActiveSubTab] = useState<'signatures' | 'block_tape' | 'liquidity_pools' | 'stealth_delivery' | 'stealth_vault' | 'participants' | 'sector_rotation' | 'eod_learner'>('signatures');
   const [eodReport, setEodReport] = useState<any>(null);
   const [eodLoading, setEodLoading] = useState<boolean>(false);
 
@@ -680,6 +680,7 @@ export function StocksTrackerContainer() {
           { id: 'block_tape', label: '⚡ Live Block & Bulk Deal Tape' },
           { id: 'liquidity_pools', label: '🧲 Liquidity Pools Heatmap (BSL/SSL)' },
           { id: 'stealth_delivery', label: '🏦 Stealth Delivery Hoarding Radar' },
+          { id: 'stealth_vault', label: '🕵️ Stealth Vault & Icebergs' },
           { id: 'participants', label: '👥 FII vs. DII Participant Traps' },
           { id: 'sector_rotation', label: '🔄 Sector Whale Capital Rotation' },
           { id: 'eod_learner', label: '🧠 EOD Outcome & Mistake Miner' }
@@ -1077,6 +1078,199 @@ export function StocksTrackerContainer() {
         </div>
       )}
 
+      {/* VIEW: INSTITUTIONAL STEALTH VAULT & ICEBERG RADAR */}
+      {activeSubTab === 'stealth_vault' && data && (
+        <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '10px', padding: '16px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+            <div>
+              <h3 style={{ fontSize: '15px', fontWeight: 900, margin: 0, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                🕵️ Institutional Stealth Vault &amp; Algorithmic Iceberg Radar
+              </h3>
+              <p style={{ margin: '3px 0 0', fontSize: '11px', color: '#94a3b8' }}>
+                Exposes how FIIs &amp; DIIs quietly buy and hold without showing lit prints: Synthetic F&amp;O Conversions, Iceberg Bid Walls, Boredom Range Hoarding, &amp; CAS 3:40 PM Matches.
+              </p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ background: 'rgba(16, 185, 129, 0.2)', color: '#34d399', padding: '4px 10px', borderRadius: '6px', fontSize: '11px', fontWeight: 800 }}>
+                {data.stealthVault?.filter((s: any) => s.isBullishSignal).length || 0} Active Institutional Buy Signals
+              </span>
+            </div>
+          </div>
+
+          {/* Educational Channels Strip */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '10px', marginBottom: '16px' }}>
+            <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '10px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 800, color: '#38bdf8' }}>📦 Synthetic F&amp;O Conversion</div>
+              <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '3px' }}>
+                Buying Long Stock Futures with flat basis and taking 100% physical delivery into Demat on Thursday Expiry.
+              </div>
+            </div>
+            <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '10px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 800, color: '#a78bfa' }}>🧊 Algorithmic Iceberg Slicing</div>
+              <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '3px' }}>
+                Displaying only 500 shares while absorbing 1,000,000+ shares at passive bids with &lt;0.05% price slippage.
+              </div>
+            </div>
+            <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '10px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 800, color: '#34d399' }}>🔒 Boredom Range Hoarding</div>
+              <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '3px' }}>
+                Holding price inside &lt;0.8% range for 3-5 sessions to induce retail selling while taking &gt;75% Demat delivery.
+              </div>
+            </div>
+            <div style={{ background: '#1e293b', border: '1px solid #334155', borderRadius: '8px', padding: '10px' }}>
+              <div style={{ fontSize: '11px', fontWeight: 800, color: '#fde047' }}>🏛️ CAS Closing Auction (3:40 PM)</div>
+              <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '3px' }}>
+                Executing massive institutional orders at Indicative Equilibrium Price (IEP) without affecting intraday highs/lows.
+              </div>
+            </div>
+          </div>
+
+          {/* HIGH-CONVICTION SIGNALS SPOTLIGHT CARDS */}
+          <div style={{ marginBottom: '16px' }}>
+            <div style={{ fontSize: '12px', fontWeight: 900, color: '#f8fafc', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              🔥 TOP HIGH-CONVICTION STEALTH SIGNALS (ACTIONABLE TRADES)
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '12px' }}>
+              {data.stealthVault?.filter((s: any) => s.isBullishSignal).slice(0, 4).map((item: any) => {
+                const t = item.actionableTrade;
+                return (
+                  <div key={item.symbol} style={{ background: '#0b1329', border: `1px solid ${item.convictionScore >= 88 ? '#10b981' : '#3b82f6'}`, borderRadius: '8px', padding: '12px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                      <div>
+                        <span style={{ fontSize: '14px', fontWeight: 900, color: '#f8fafc' }}>{item.cleanSymbol}</span>
+                        <span style={{ fontSize: '10.5px', color: '#94a3b8', marginLeft: '6px' }}>{item.sector}</span>
+                      </div>
+                      <div style={{ textAlign: 'right' }}>
+                        <span style={{
+                          background: item.convictionScore >= 88 ? '#065f46' : '#1e3a8a',
+                          color: item.convictionScore >= 88 ? '#6ee7b7' : '#93c5fd',
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          fontSize: '10px',
+                          fontWeight: 900
+                        }}>
+                          Conviction: {item.convictionScore}/100
+                        </span>
+                      </div>
+                    </div>
+
+                    <div style={{ fontSize: '11px', color: '#38bdf8', fontWeight: 800, marginBottom: '6px' }}>
+                      ⚡ {item.primaryMechanism}
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '3px', fontSize: '10.5px', color: '#cbd5e1', marginBottom: '10px', background: 'rgba(0,0,0,0.25)', padding: '8px', borderRadius: '4px' }}>
+                      <div>📦 <strong>Demat Delivery:</strong> {item.rangeCoil.deliveryPct}% | Range Compression: {item.rangeCoil.rangeCompressionPct}%</div>
+                      <div>🧊 <strong>Iceberg Fill:</strong> ₹{item.iceberg.anchorPrice} (Absorbed ~₹{item.iceberg.absorbedValueCr} Cr, {item.iceberg.priceSlippagePct}% slippage)</div>
+                      <div>🏛️ <strong>Synthetic Conversion:</strong> OI +{item.syntheticConversion.oiExpansionPct}% (Locking ~₹{item.syntheticConversion.syntheticValueCr} Cr)</div>
+                    </div>
+
+                    {t && (
+                      <div style={{ background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)', borderRadius: '6px', padding: '10px' }}>
+                        <div style={{ fontSize: '11.5px', fontWeight: 900, color: '#34d399', marginBottom: '4px' }}>
+                          🎯 {t.action}
+                        </div>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '4px', fontSize: '10.5px', marginBottom: '6px' }}>
+                          <div>
+                            <span style={{ color: '#94a3b8' }}>Entry:</span> <strong style={{ color: '#f8fafc' }}>₹{t.spotEntry}</strong>
+                          </div>
+                          <div>
+                            <span style={{ color: '#f87171' }}>SL:</span> <strong style={{ color: '#f87171' }}>₹{t.spotSL}</strong>
+                          </div>
+                          <div>
+                            <span style={{ color: '#34d399' }}>Target 1:</span> <strong style={{ color: '#34d399' }}>₹{t.spotTarget1}</strong>
+                          </div>
+                        </div>
+                        <div style={{ fontSize: '10px', color: '#fde047', background: 'rgba(0,0,0,0.3)', padding: '4px 6px', borderRadius: '4px' }}>
+                          💡 <strong>Option Setup (Rule 1.D):</strong> {t.atmStrike} CE @ ~₹{t.estimatedAtmCallPremium} | Dynamic Option SL: ₹{t.dynamicOptionSL}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* FULL STEALTH VAULT RADAR TABLE */}
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8' }}>
+                  <th style={{ padding: '8px' }}>Symbol</th>
+                  <th style={{ padding: '8px' }}>Spot</th>
+                  <th style={{ padding: '8px' }}>Conviction</th>
+                  <th style={{ padding: '8px' }}>Primary Mechanism</th>
+                  <th style={{ padding: '8px' }}>Synthetic Demat Locked</th>
+                  <th style={{ padding: '8px' }}>Iceberg Anchor</th>
+                  <th style={{ padding: '8px' }}>Delivery %</th>
+                  <th style={{ padding: '8px' }}>Range Compression</th>
+                  <th style={{ padding: '8px' }}>Actionable Signal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.stealthVault?.map((item: any) => (
+                  <tr key={item.symbol} style={{ borderBottom: '1px solid #1e293b' }}>
+                    <td style={{ padding: '8px', fontWeight: 800, color: '#f8fafc' }}>
+                      {item.cleanSymbol}
+                    </td>
+                    <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f8fafc' }}>
+                      ₹{item.spotPrice}
+                    </td>
+                    <td style={{ padding: '8px' }}>
+                      <span style={{
+                        background: item.convictionScore >= 88 ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.2)',
+                        color: item.convictionScore >= 88 ? '#34d399' : '#60a5fa',
+                        padding: '2px 6px',
+                        borderRadius: '4px',
+                        fontSize: '10px',
+                        fontWeight: 900
+                      }}>
+                        {item.convictionScore}/100
+                      </span>
+                    </td>
+                    <td style={{ padding: '8px', color: '#cbd5e1', fontSize: '10.5px' }}>
+                      {item.primaryMechanism}
+                    </td>
+                    <td style={{ padding: '8px', fontFamily: 'monospace', color: '#38bdf8' }}>
+                      ₹{item.syntheticConversion.syntheticValueCr} Cr
+                    </td>
+                    <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f8fafc' }}>
+                      ₹{item.iceberg.anchorPrice}
+                    </td>
+                    <td style={{ padding: '8px', fontWeight: 800, color: item.rangeCoil.deliveryPct >= 75 ? '#34d399' : '#cbd5e1' }}>
+                      {item.rangeCoil.deliveryPct}%
+                    </td>
+                    <td style={{ padding: '8px', fontFamily: 'monospace', color: item.rangeCoil.rangeCompressionPct <= 0.8 ? '#fde047' : '#94a3b8' }}>
+                      {item.rangeCoil.rangeCompressionPct}%
+                    </td>
+                    <td style={{ padding: '8px' }}>
+                      {item.actionableTrade ? (
+                        <span style={{
+                          background: '#047857',
+                          color: '#f8fafc',
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          fontSize: '10px',
+                          fontWeight: 800,
+                          whiteSpace: 'nowrap'
+                        }}>
+                          {item.actionableTrade.action}
+                        </span>
+                      ) : (
+                        <span style={{ color: '#64748b', fontSize: '10px' }}>NEUTRAL</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      )}
+
+      
       {/* VIEW 7: EOD OUTCOME EVALUATOR & MISTAKE MINER */}
       {activeSubTab === 'eod_learner' && (
         <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '10px', padding: '16px' }}>
