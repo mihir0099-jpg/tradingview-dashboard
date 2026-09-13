@@ -25,6 +25,11 @@ import { PcrVelocityContainer } from './components/PcrVelocityContainer';
 import { DayRangeContainer } from './components/DayRangeContainer';
 import { AutoLearnerContainer } from './components/AutoLearnerContainer';
 import { CycleContainer } from './components/CycleContainer';
+import { HistoricalMatchingCasesContainer } from './components/HistoricalMatchingCasesContainer';
+import { DeepDiscoveriesContainer } from './components/DeepDiscoveriesContainer';
+import { DataLearningContainer } from './components/DataLearningContainer';
+import { MicrostructureContainer } from './components/MicrostructureContainer';
+import { StocksTrackerContainer } from './components/StocksTrackerContainer';
 
 function App() {
   const [symbol, setSymbol] = useState('NSE:NIFTY');
@@ -35,7 +40,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('pcr_velocity');
+  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('stocks_tracker');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -162,6 +167,111 @@ function App() {
 
       {/* Navigation Tabs */}
       <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', paddingBottom: '2px', flexWrap: 'wrap' }}>
+        <button
+          onClick={() => setActiveTab('historical')}
+          style={{
+            background: activeTab === 'historical' ? 'rgba(59, 130, 246, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'historical' ? '2px solid #3b82f6' : '2px solid transparent',
+            color: activeTab === 'historical' ? '#60a5fa' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🏛️ Historical
+        </button>
+        <button
+          onClick={() => setActiveTab('deep_discoveries')}
+          style={{
+            background: activeTab === 'deep_discoveries' ? 'rgba(139, 92, 246, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'deep_discoveries' ? '2px solid #8b5cf6' : '2px solid transparent',
+            color: activeTab === 'deep_discoveries' ? '#a78bfa' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🔬 Deep Learnings
+        </button>
+        <button
+          onClick={() => setActiveTab('data_learning')}
+          style={{
+            background: activeTab === 'data_learning' ? 'rgba(16, 185, 129, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'data_learning' ? '2px solid #10b981' : '2px solid transparent',
+            color: activeTab === 'data_learning' ? '#34d399' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🧠 Data Learning
+        </button>
+        <button
+          onClick={() => setActiveTab('microstructure')}
+          style={{
+            background: activeTab === 'microstructure' ? 'rgba(234, 179, 8, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'microstructure' ? '2px solid #eab308' : '2px solid transparent',
+            color: activeTab === 'microstructure' ? '#fde047' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          ⚡ Gamma & Order Flow
+        </button>
+        <button
+          onClick={() => setActiveTab('stocks_tracker')}
+          style={{
+            background: activeTab === 'stocks_tracker' ? 'rgba(56, 189, 248, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'stocks_tracker' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'stocks_tracker' ? '#38bdf8' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🐋 Stocks Tracker
+        </button>
         <button
           onClick={() => setActiveTab('pcr_velocity')}
           style={{
@@ -571,6 +681,31 @@ function App() {
 
       {/* Main Workspace */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', minHeight: '0' }}>
+        {activeTab === 'historical' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <HistoricalMatchingCasesContainer />
+          </div>
+        )}
+        {activeTab === 'deep_discoveries' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <DeepDiscoveriesContainer />
+          </div>
+        )}
+        {activeTab === 'data_learning' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <DataLearningContainer />
+          </div>
+        )}
+        {activeTab === 'microstructure' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <MicrostructureContainer />
+          </div>
+        )}
+        {activeTab === 'stocks_tracker' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <StocksTrackerContainer />
+          </div>
+        )}
         {activeTab === 'weekly_selling' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
             <WeeklySellingContainer />

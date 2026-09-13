@@ -9,6 +9,7 @@ import { fileURLToPath } from 'url';
 import { startScanner, scannerCache, findClosestValidOptionSymbol, fetchCandlesForSymbol, queueScan } from './scanner.js';
 import { evaluateSetupInMemory, recordOutcome, loadState, loadCohorts } from './meta_learner.js';
 import { computeMicrostructure, scanTopFnoStockSetups, FNO_STOCK_METADATA, fetchRealtimeMicrostructureFeed } from './microstructure.js';
+import { computeStocksTrackerOverview, calculateParticipantPositioning, evaluateEODStocksTrackerOutcomes } from './stocksTracker.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -4223,7 +4224,7 @@ app.get('/api/microstructure/gamma-orderflow', async (req, res) => {
 });
 
 // Dedicated F&O Stock Setups Radar API
-app.get('/api/microstructure/stock-setups', (req, res) => {
+app.get('/api/microstructure/stock-setups', async (req, res) => {
   try {
     const priceMap = {};
     if (scannerCache && scannerCache.levelsCache && scannerCache.levelsCache['5']) {
@@ -4231,12 +4232,92 @@ app.get('/api/microstructure/stock-setups', (req, res) => {
         if (v && v.currentPrice) priceMap[k] = v.currentPrice;
       }
     }
-    const radar = scanTopFnoStockSetups(priceMap);
+    const radar = await scanTopFnoStockSetups(priceMap);
     res.json({
       count: radar.length,
       activeCount: radar.filter(r => r.hasActiveSetup).length,
       stocks: radar
     });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// STOCKS TRACKER: INDIAN DARK POOLS & STEALTH WHALE ENGINE
+// ─────────────────────────────────────────────────────────────────────────────
+app.get('/api/stocks-tracker/overview', async (req, res) => {
+  try {
+    const symbol = req.query.symbol || 'NSE:NIFTY';
+    const priceMap = {};
+    if (scannerCache && scannerCache.levelsCache && scannerCache.levelsCache['5']) {
+      for (const [k, v] of Object.entries(scannerCache.levelsCache['5'])) {
+        if (v && v.currentPrice) priceMap[k] = v.currentPrice;
+      }
+    }
+    const data = await computeStocksTrackerOverview(symbol, priceMap);
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/stocks-tracker/block-deals', async (req, res) => {
+  try {
+    const symbol = req.query.symbol || 'NSE:NIFTY';
+    const priceMap = {};
+    if (scannerCache && scannerCache.levelsCache && scannerCache.levelsCache['5']) {
+      for (const [k, v] of Object.entries(scannerCache.levelsCache['5'])) {
+        if (v && v.currentPrice) priceMap[k] = v.currentPrice;
+      }
+    }
+    const data = await computeStocksTrackerOverview(symbol, priceMap);
+    res.json({
+      count: data.blockDeals.length,
+      deals: data.blockDeals
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/stocks-tracker/stealth-delivery', async (req, res) => {
+  try {
+    const data = await computeStocksTrackerOverview('NSE:NIFTY');
+    res.json({
+      count: data.stealthDelivery.length,
+      stealthHoardCount: data.executiveMetrics.activeStealthHoardCount,
+      stocks: data.stealthDelivery
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/stocks-tracker/participant-oi', (req, res) => {
+  try {
+    const data = calculateParticipantPositioning();
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/stocks-tracker/eod-evaluation', async (req, res) => {
+  try {
+    const symbol = req.query.symbol || 'NSE:NIFTY';
+    const report = await evaluateEODStocksTrackerOutcomes(symbol);
+    res.json(report);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/stocks-tracker/trigger-eod-learning', async (req, res) => {
+  try {
+    const symbol = req.query.symbol || 'NSE:NIFTY';
+    const report = await evaluateEODStocksTrackerOutcomes(symbol);
+    res.json({ success: true, report });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
