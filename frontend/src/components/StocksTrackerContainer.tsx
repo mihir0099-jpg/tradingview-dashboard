@@ -178,6 +178,7 @@ export function StocksTrackerContainer() {
   const [lastRefreshed, setLastRefreshed] = useState<Date | null>(null);
   const [activeSubTab, setActiveSubTab] = useState<'signatures' | 'block_tape' | 'liquidity_pools' | 'stealth_delivery' | 'stealth_vault' | 'forensic_deep_dive' | 'participants' | 'sector_rotation' | 'eod_learner'>('signatures');
   const [selectedCaseId, setSelectedCaseId] = useState<string>('HDFCBANK-2024');
+  const [expandedForensicSymbol, setExpandedForensicSymbol] = useState<string | null>('MARUTI');
   const [eodReport, setEodReport] = useState<any>(null);
   const [eodLoading, setEodLoading] = useState<boolean>(false);
 
@@ -1345,11 +1346,13 @@ export function StocksTrackerContainer() {
                     <th style={{ padding: '8px' }}>Basis Compression</th>
                     <th style={{ padding: '8px' }}>CVD Delta Soaked</th>
                     <th style={{ padding: '8px' }}>Forensic Verdict</th>
+                    <th style={{ padding: '8px', minWidth: '220px' }}>🎯 Actionable Trade Setup</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data.forensicMicrostructure?.map((item: any) => (
-                    <tr key={item.symbol} style={{ borderBottom: '1px solid #1e293b' }}>
+                    <React.Fragment key={item.symbol}>
+                      <tr style={{ borderBottom: '1px solid #1e293b' }}>
                       <td style={{ padding: '8px', fontWeight: 800, color: '#f8fafc' }}>
                         {item.cleanSymbol}
                       </td>
@@ -1399,7 +1402,80 @@ export function StocksTrackerContainer() {
                           {item.verdict}
                         </span>
                       </td>
+                      <td style={{ padding: '8px' }}>
+                        {item.tradeSetup ? (
+                          <div 
+                            onClick={() => setExpandedForensicSymbol(expandedForensicSymbol === item.cleanSymbol ? null : item.cleanSymbol)}
+                            style={{
+                              background: 'rgba(16, 185, 129, 0.15)',
+                              border: '1px solid rgba(16, 185, 129, 0.4)',
+                              borderRadius: '6px',
+                              padding: '6px 10px',
+                              cursor: 'pointer'
+                            }}
+                          >
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <strong style={{ fontSize: '11px', color: '#34d399' }}>{item.tradeSetup.action}</strong>
+                              <span style={{ fontSize: '9px', color: '#fde047', background: 'rgba(0,0,0,0.3)', padding: '1px 5px', borderRadius: '3px' }}>
+                                {expandedForensicSymbol === item.cleanSymbol ? '▲ Hide Plan' : '▼ View Plan'}
+                              </span>
+                            </div>
+                            <div style={{ fontSize: '10px', color: '#cbd5e1', marginTop: '2px' }}>
+                              Entry: <strong>₹{item.tradeSetup.spotEntry}</strong> | SL: <strong style={{ color: '#f87171' }}>₹{item.tradeSetup.spotSL}</strong> | T1: <strong style={{ color: '#34d399' }}>₹{item.tradeSetup.spotTarget1}</strong>
+                            </div>
+                            <div style={{ fontSize: '9.5px', color: '#fde047', marginTop: '2px' }}>
+                              Option: {item.tradeSetup.atmStrike} CE @ ~₹{item.tradeSetup.optionCallPremium} (Dyn SL: ₹{item.tradeSetup.dynamicOptionSL})
+                            </div>
+                          </div>
+                        ) : (
+                          <span style={{ color: '#64748b', fontSize: '10px' }}>No Setup</span>
+                        )}
+                      </td>
                     </tr>
+                    {expandedForensicSymbol === item.cleanSymbol && item.tradeSetup && (
+                      <tr style={{ background: '#0a1020', borderBottom: '1px solid #1e3a8a' }}>
+                        <td colSpan={11} style={{ padding: '12px 16px' }}>
+                          <div style={{ background: '#0f172a', border: '1px solid #10b981', borderRadius: '8px', padding: '12px' }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                              <div style={{ fontSize: '13px', fontWeight: 900, color: '#34d399', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                ⚡ INSTITUTIONAL TRADE PLAN FOR {item.cleanSymbol} (LTP: ₹{item.spotPrice})
+                              </div>
+                              <span style={{ fontSize: '10px', color: '#94a3b8', background: '#1e293b', padding: '2px 8px', borderRadius: '4px' }}>
+                                Rule 1.D Dynamic SL &amp; Volatility Release
+                              </span>
+                            </div>
+
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px', marginBottom: '10px' }}>
+                              <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '10px', color: '#94a3b8' }}>SPOT ENTRY</div>
+                                <div style={{ fontSize: '15px', fontWeight: 900, color: '#f8fafc', fontFamily: 'monospace' }}>₹{item.tradeSetup.spotEntry}</div>
+                              </div>
+                              <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '10px', color: '#f87171' }}>SPOT STOP LOSS</div>
+                                <div style={{ fontSize: '15px', fontWeight: 900, color: '#f87171', fontFamily: 'monospace' }}>₹{item.tradeSetup.spotSL} (-{item.tradeSetup.spotRiskPts} pts)</div>
+                              </div>
+                              <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '10px', color: '#34d399' }}>TARGET 1 (CONSERVATIVE)</div>
+                                <div style={{ fontSize: '15px', fontWeight: 900, color: '#34d399', fontFamily: 'monospace' }}>₹{item.tradeSetup.spotTarget1}</div>
+                              </div>
+                              <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '10px', color: '#38bdf8' }}>TARGET 2 (RUNNER)</div>
+                                <div style={{ fontSize: '15px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>₹{item.tradeSetup.spotTarget2}</div>
+                              </div>
+                            </div>
+
+                            <div style={{ background: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.3)', borderRadius: '6px', padding: '8px 12px', fontSize: '11px', color: '#fde047', marginBottom: '8px' }}>
+                              💡 <strong>Option Trading Strategy (Rule 1.D):</strong> Buy <strong>{item.tradeSetup.atmStrike} CE</strong> @ ~₹{item.tradeSetup.optionCallPremium}. Set Dynamic Option Stop Loss at <strong>₹{item.tradeSetup.dynamicOptionSL}</strong> [Option SL = Premium - (Risk {item.tradeSetup.spotRiskPts} × 0.5)].
+                            </div>
+
+                            <div style={{ fontSize: '11px', color: '#cbd5e1' }}>
+                              🧠 <strong>Institutional Rationale:</strong> {item.tradeSetup.rationale}
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    )}
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>
