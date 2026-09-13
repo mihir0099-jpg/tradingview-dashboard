@@ -1080,36 +1080,78 @@ export function StocksTrackerContainer() {
       {/* VIEW 7: EOD OUTCOME EVALUATOR & MISTAKE MINER */}
       {activeSubTab === 'eod_learner' && (
         <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '10px', padding: '16px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
-            <div>
-              <h3 style={{ fontSize: '15px', fontWeight: 900, margin: 0, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                🧠 End-of-Day Automated Outcome Evaluator & Mistake Miner
-              </h3>
-              <p style={{ margin: '3px 0 0', fontSize: '11px', color: '#94a3b8' }}>
-                Automatically cross-verifies all 29 Block Prints, Dark Levels &amp; 11 Hoarded Stocks against final market close to learn from errors.
-              </p>
+          {/* Autonomous 3:45 PM IST Notice Banner */}
+          <div style={{
+            background: 'linear-gradient(90deg, rgba(16, 185, 129, 0.15), rgba(59, 130, 246, 0.15))',
+            border: '1px solid rgba(16, 185, 129, 0.4)',
+            borderRadius: '8px',
+            padding: '10px 14px',
+            marginBottom: '14px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '10px'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ fontSize: '20px' }}>⏰</div>
+              <div>
+                <div style={{ fontSize: '12.5px', fontWeight: 900, color: '#34d399', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  AUTONOMOUS 03:45 PM IST SELF-EXECUTION ACTIVE
+                  <span style={{
+                    background: '#10b981',
+                    color: '#022c22',
+                    fontSize: '9.5px',
+                    fontWeight: 900,
+                    padding: '1px 6px',
+                    borderRadius: '4px',
+                    letterSpacing: '0.5px'
+                  }}>
+                    NO BUTTON PRESS NEEDED
+                  </span>
+                </div>
+                <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>
+                  The engine automatically triggers at <b>03:45 PM IST</b> everyday after 03:30 PM market settlement, evaluates all 31 setups against closing prices, and mines root-cause mistakes into institutional memory.
+                </div>
+              </div>
             </div>
 
-            <button
-              onClick={fetchEODReport}
-              disabled={eodLoading}
-              style={{
-                background: '#047857',
-                border: '1px solid #10b981',
-                color: '#f8fafc',
-                padding: '6px 14px',
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{
+                background: '#0f172a',
+                border: '1px solid #334155',
+                padding: '4px 10px',
                 borderRadius: '6px',
-                fontSize: '12px',
-                fontWeight: 800,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px'
-              }}
-            >
-              <RefreshCw size={13} className={eodLoading ? 'animate-spin' : ''} />
-              {eodLoading ? 'Mining Mistakes...' : '⚡ Re-Run EOD Auto-Learner'}
-            </button>
+                fontSize: '11px',
+                color: '#38bdf8',
+                fontFamily: 'monospace',
+                fontWeight: 700
+              }}>
+                Daily Run: 15:45:00 IST
+              </div>
+
+              <button
+                onClick={fetchEODReport}
+                disabled={eodLoading}
+                title="Optional manual trigger for testing - system already runs automatically at 3:45 PM"
+                style={{
+                  background: '#1e293b',
+                  border: '1px solid #475569',
+                  color: '#94a3b8',
+                  padding: '5px 12px',
+                  borderRadius: '6px',
+                  fontSize: '11px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                <RefreshCw size={12} className={eodLoading ? 'animate-spin' : ''} />
+                {eodLoading ? 'Evaluating...' : '⚡ Force Re-Test (Optional)'}
+              </button>
+            </div>
           </div>
 
           {eodReport ? (

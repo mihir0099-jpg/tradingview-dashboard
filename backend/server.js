@@ -9,7 +9,7 @@ import { fileURLToPath } from 'url';
 import { startScanner, scannerCache, findClosestValidOptionSymbol, fetchCandlesForSymbol, queueScan } from './scanner.js';
 import { evaluateSetupInMemory, recordOutcome, loadState, loadCohorts } from './meta_learner.js';
 import { computeMicrostructure, scanTopFnoStockSetups, FNO_STOCK_METADATA, fetchRealtimeMicrostructureFeed } from './microstructure.js';
-import { computeStocksTrackerOverview, calculateParticipantPositioning, evaluateEODStocksTrackerOutcomes } from './stocksTracker.js';
+import { computeStocksTrackerOverview, calculateParticipantPositioning, evaluateEODStocksTrackerOutcomes, startAutonomousEODStocksTrackerScheduler, getAutoSchedulerStatus } from './stocksTracker.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -4307,7 +4307,16 @@ app.get('/api/stocks-tracker/eod-evaluation', async (req, res) => {
   try {
     const symbol = req.query.symbol || 'NSE:NIFTY';
     const report = await evaluateEODStocksTrackerOutcomes(symbol);
-    res.json(report);
+    const sched = getAutoSchedulerStatus();
+    res.json({ ...report, scheduler: sched });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/stocks-tracker/scheduler-status', (req, res) => {
+  try {
+    res.json(getAutoSchedulerStatus());
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -5248,3 +5257,5 @@ async function handleServerStop(signal) {
 process.on('SIGINT', () => handleServerStop('SIGINT'));
 process.on('SIGTERM', () => handleServerStop('SIGTERM'));
 
+
+startAutonomousEODStocksTrackerScheduler();

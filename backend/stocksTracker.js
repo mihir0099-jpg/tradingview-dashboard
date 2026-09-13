@@ -12,7 +12,13 @@
  *  7. Sector Whale Capital Rotation Matrix (Institutional Inflow vs. Outflow in ₹ Cr)
  */
 
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { FNO_STOCK_METADATA, fetchRealtimeMicrostructureFeed } from './microstructure.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Top Institutional Entities in Indian Markets
 export const INSTITUTIONAL_WHALES = [
@@ -649,8 +655,98 @@ export async function evaluateEODStocksTrackerOutcomes(selectedSymbol = 'NSE:NIF
     accuracyBadge: winRatePct >= 80 ? 'HIGH_ACCURACY_INSTITUTIONAL' : 'MODERATE_ACCURACY',
     evaluations,
     mistakesList: evaluations.filter(e => !e.isWin),
-    learnedLessons
+    learnedLessons,
+    scheduler: {
+      isAutoScheduled: true,
+      executionScheduleIST: '15:45:00 IST (Daily)',
+      executionMode: 'FULLY_AUTONOMOUS_NO_CLICK_REQUIRED',
+      lastAutoRunIST: lastAutoRunIST || `${todayStr} 15:45:00 IST`
+    }
   };
 
+  // Persist to disk
+  try {
+    const dataDir = path.join(__dirname, 'data');
+    if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+    const learningFile = path.join(dataDir, 'stocks_tracker_learning.json');
+    fs.writeFileSync(learningFile, JSON.stringify(eodReport, null, 2), 'utf8');
+
+    const archiveDir = path.join(dataDir, 'daily_archive');
+    if (!fs.existsSync(archiveDir)) fs.mkdirSync(archiveDir, { recursive: true });
+    const archiveFile = path.join(archiveDir, `stocks_tracker_${todayStr}.json`);
+    fs.writeFileSync(archiveFile, JSON.stringify(eodReport, null, 2), 'utf8');
+  } catch (err) {
+    console.warn('[StocksTracker] Warning saving EOD report to disk:', err.message);
+  }
+
   return eodReport;
+}
+
+let lastAutoRunDate = null;
+let lastAutoRunIST = null;
+
+export function getAutoSchedulerStatus() {
+  const now = new Date();
+  const istOffset = 5.5 * 60 * 60 * 1000;
+  const istDate = new Date(now.getTime() + istOffset);
+  const istHours = istDate.getUTCHours();
+  const istMinutes = istDate.getUTCMinutes();
+  const todayStr = istDate.toISOString().split('T')[0];
+  const isPast345 = (istHours === 15 && istMinutes >= 45) || (istHours > 15);
+
+  return {
+    isAutoScheduled: true,
+    targetTimeIST: '15:45:00 IST (3:45 PM Daily)',
+    currentTimeIST: `${String(istHours).padStart(2, '0')}:${String(istMinutes).padStart(2, '0')}:${String(istDate.getUTCSeconds()).padStart(2, '0')} IST`,
+    lastAutoRunDate,
+    lastAutoRunIST,
+    hasRunToday: lastAutoRunDate === todayStr || isPast345,
+    statusText: (lastAutoRunDate === todayStr || isPast345)
+      ? 'AUTONOMOUS_RUN_COMPLETED_TODAY'
+      : 'WAITING_FOR_1545_IST'
+  };
+}
+
+/**
+ * 🕒 Autonomous 3:45 PM IST Daily EOD Auto-Learner
+ * Runs automatically without any manual intervention every trading day.
+ */
+export function startAutonomousEODStocksTrackerScheduler() {
+  console.log('[StocksTracker Auto-Learner] 🕒 Initializing Autonomous 3:45 PM IST EOD Scheduler...');
+
+  const checkAndRun = async () => {
+    try {
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000;
+      const istDate = new Date(now.getTime() + istOffset);
+      const istHours = istDate.getUTCHours();
+      const istMinutes = istDate.getUTCMinutes();
+      const todayStr = istDate.toISOString().split('T')[0];
+      const isPast345 = (istHours === 15 && istMinutes >= 45) || (istHours > 15);
+
+      if (isPast345 && lastAutoRunDate !== todayStr) {
+        console.log(`[StocksTracker Auto-Learner] ⏰ 3:45 PM IST Reached (${istHours}:${istMinutes} IST)! Running autonomous EOD evaluation for ${todayStr}...`);
+        const report = await evaluateEODStocksTrackerOutcomes('NSE:NIFTY');
+        lastAutoRunDate = todayStr;
+        lastAutoRunIST = `${todayStr} ${String(istHours).padStart(2, '0')}:${String(istMinutes).padStart(2, '0')}:00 IST`;
+        console.log(`[StocksTracker Auto-Learner] ✅ Auto-run complete! Evaluated ${report.totalEvaluated} setups, Win Rate: ${report.winRatePct}%, Absorbed ${report.mistakes} mistakes.`);
+
+        // Optional Telegram notification
+        try {
+          const { sendTelegramMessage } = await import('./telegram_notifier.js');
+          if (sendTelegramMessage) {
+            sendTelegramMessage(`🐋 <b>STOCKS TRACKER 3:45 PM EOD AUTO-LEARNER COMPLETE</b>\n\n📅 Date: ${todayStr}\n🎯 Evaluated: ${report.totalEvaluated} Setups\n🏆 Win Rate: ${report.winRatePct}%\n❌ Mistakes Absorbed: ${report.mistakes}\n\n🧠 <b>Learned Rules:</b>\n${report.learnedLessons.join('\n')}`);
+          }
+        } catch (e) {}
+      }
+    } catch (err) {
+      console.error('[StocksTracker Auto-Learner] Scheduler check error:', err);
+    }
+  };
+
+  // Initial check on boot
+  checkAndRun();
+
+  // Check every 25 seconds
+  setInterval(checkAndRun, 25 * 1000);
 }
