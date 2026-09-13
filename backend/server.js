@@ -13,6 +13,7 @@ import { computeStocksTrackerOverview, calculateParticipantPositioning, evaluate
 import { computeStocksMovingOverview } from './stocksMoving.js';
 import { runTabHealthAudit } from './auto_heal_tabs.js';
 import { executeDailySelfEvolution } from './autonomous_market_brain.js';
+import { executeDailyChartReplay } from './daily_full_chart_miner.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -5179,6 +5180,31 @@ app.post('/api/system/trigger-market-brain', async (req, res) => {
   }
 });
 
+// Autonomous 212 F&O Daily Full-Chart Replay & Intelligence Endpoint
+app.get('/api/system/daily-chart-replay', (req, res) => {
+  try {
+    const reportPath = path.join(__dirname, 'data', 'daily_chart_replay_latest.json');
+    if (fs.existsSync(reportPath)) {
+      const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+      return res.json(data);
+    }
+    res.status(404).json({ error: 'Daily chart replay not yet generated for today.' });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// On-Demand Daily Full-Chart Replay Trigger
+app.post('/api/system/trigger-chart-replay', async (req, res) => {
+  try {
+    console.log('[Chart Miner] 📈 Triggering full 212 F&O chart replay & intelligence cycle...');
+    const result = await executeDailyChartReplay();
+    res.json({ success: true, replay: result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
@@ -5465,4 +5491,40 @@ function startAutonomousMarketBrainScheduler() {
 }
 
 startAutonomousMarketBrainScheduler();
+
+// ====================================================================
+// 📈 Autonomous 16:20 IST Daily 212 F&O Chart Replay & Intelligence Scheduler
+// ====================================================================
+let lastChartReplayDate = null;
+function startAutonomousChartReplayScheduler() {
+  console.log('[Chart Miner] 🕒 Initializing Autonomous 16:20 IST 212 F&O Chart Replay Scheduler...');
+
+  // Initial startup execution after 45 seconds
+  setTimeout(() => {
+    executeDailyChartReplay().catch(err => console.error('[Chart Miner Startup Error]', err.message));
+  }, 45000);
+
+  // Check every 30 seconds for 16:20 IST
+  setInterval(async () => {
+    try {
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000;
+      const istDate = new Date(now.getTime() + istOffset);
+      const istHours = istDate.getUTCHours();
+      const istMinutes = istDate.getUTCMinutes();
+      const todayStr = istDate.toISOString().split('T')[0];
+      const isPast1620 = (istHours === 16 && istMinutes >= 20) || (istHours > 16);
+
+      if (isPast1620 && lastChartReplayDate !== todayStr) {
+        console.log(`[Chart Miner Scheduler] ⏰ 16:20 IST Reached (${istHours}:${istMinutes} IST)! Running full 212 F&O chart replay for ${todayStr}...`);
+        lastChartReplayDate = todayStr;
+        await executeDailyChartReplay();
+      }
+    } catch (err) {
+      console.error('[Chart Miner Scheduler Error]', err.message);
+    }
+  }, 30 * 1000);
+}
+
+startAutonomousChartReplayScheduler();
 

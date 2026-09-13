@@ -147,6 +147,18 @@ while ($true) {
         }
     } catch {}
 
+    # Autonomous 4:20 PM IST Daily 212 F&O Chart Replay & Mining Trigger
+    try {
+        $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
+        $todayKey = $istNow.ToString("yyyy-MM-dd")
+        if (($istNow.Hour -gt 16 -or ($istNow.Hour -eq 16 -and $istNow.Minute -ge 20)) -and $global:lastChartReplayRun -ne $todayKey) {
+            Write-Host "[Watchdog 16:20 IST] 📈 Running Autonomous 212 F&O Chart Replay & Mining for $todayKey..." -ForegroundColor Yellow
+            Start-Process -FilePath "node" -ArgumentList "backend\daily_full_chart_miner.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+            $global:lastChartReplayRun = $todayKey
+            Write-Host "[Watchdog 16:20 IST] 212 F&O Chart Replay finished! High-conviction setups ready for tomorrow." -ForegroundColor Green
+        }
+    } catch {}
+
     # Sleep 30 seconds between health checks
     Start-Sleep -Seconds 30
 }

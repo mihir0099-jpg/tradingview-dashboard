@@ -1,0 +1,341 @@
+{
+  "timestamp": 1789312356148,
+  "dateStr": "2026-09-13",
+  "timeStr": "20:42:36 IST",
+  "totalFnoStocksAnalyzed": 212,
+  "indexAuction": {
+    "nifty": {
+      "spot": 23398.1,
+      "open": 23270.9,
+      "dayHigh": 23398.1,
+      "dayLow": 23398.1,
+      "ibHigh": 23330.9,
+      "ibLow": 23230.9,
+      "ibWidthPts": 60,
+      "openType": "OPEN_DRIVE_BULLISH",
+      "dayType": "TREND_EXPANSION_DAY",
+      "periodCExtension": "BULLISH_IB_EXTENSION",
+      "periodGStatus": "CLOSED_OUTSIDE_IB_VALID",
+      "periodLBehavior": "LATE_DAY_DRIVE_SUSTAINED",
+      "extremeTimingSummary": "Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)",
+      "pcrVelocityDrift": "+0.038 (Institutional Put Writing Support)",
+      "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
+    },
+    "banknifty": {
+      "spot": 56606.55,
+      "open": 56420,
+      "dayHigh": 56606.55,
+      "dayLow": 56606.55,
+      "ibHigh": 56600,
+      "ibLow": 56300,
+      "ibWidthPts": 180,
+      "openType": "OPEN_TEST_DRIVE",
+      "dayType": "DOUBLE_DISTRIBUTION_DAY",
+      "periodFExtension": "PERIOD_F_BULLISH_DRIVE",
+      "periodGStatus": "SPIKE_ACCEPTANCE_FILTER_PASSED",
+      "extremeTimingSummary": "High of day formed in final 45 minutes",
+      "gammaExposureRegime": "Call Wall 57,000 / Put Wall 56,000"
+    }
+  },
+  "fnoUniverseSummary": {
+    "totalTracked": 212,
+    "coilingDematCount": 37,
+    "volumeBreakoutCount": 15,
+    "distributionTrapCount": 7,
+    "swingLowFormations": 37,
+    "swingHighFormations": 7
+  },
+  "tomorrowHighConvictionWatchlist": [
+    {
+      "rank": 1,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "ADANIENSOL",
+      "name": "Adani Energy Solutions Ltd",
+      "sector": "Power Transmission",
+      "trade": {
+        "action": "BUY ADANIENSOL 1380 CE / Spot",
+        "spotEntry": 1373,
+        "spotSL": 1338.02,
+        "spotRiskPts": 34.98,
+        "spotTarget1": 1428.97,
+        "spotTarget2": 1470.94,
+        "atmStrike": 1380,
+        "lotSize": 500,
+        "riskPerLotINR": 17490,
+        "target1GainPerLotINR": 27985,
+        "target2GainPerLotINR": 48970,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹1338.02",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
+      },
+      "confidencePct": 58,
+      "catalystRationale": "Range compressed to 35.7% of ATR with 80% Demat delivery. Smart money hoarding at Demand Floor (₹1348). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
+      "rank": 3,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "PAGEIND",
+      "name": "Page Industries Limited",
+      "sector": "Apparel & Innerwear",
+      "trade": {
+        "action": "BUY PAGEIND 35400 CE / Spot",
+        "spotEntry": 35365,
+        "spotSL": 34788.97,
+        "spotRiskPts": 576.03,
+        "spotTarget1": 36286.65,
+        "spotTarget2": 36977.88,
+        "atmStrike": 35400,
+        "lotSize": 500,
+        "riskPerLotINR": 288015,
+        "target1GainPerLotINR": 460825,
+        "target2GainPerLotINR": 806440,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹34788.97",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
+      },
+      "confidencePct": 75,
+      "catalystRationale": "Range compressed to 38.6% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹34960). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
+      "rank": 4,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "HEROMOTOCO",
+      "name": "Hero MotoCorp Ltd.",
+      "sector": "Automobile",
+      "trade": {
+        "action": "BUY HEROMOTOCO 5200 CE / Spot",
+        "spotEntry": 5221.5,
+        "spotSL": 5141.24,
+        "spotRiskPts": 80.26,
+        "spotTarget1": 5349.92,
+        "spotTarget2": 5446.23,
+        "atmStrike": 5200,
+        "lotSize": 150,
+        "riskPerLotINR": 12039,
+        "target1GainPerLotINR": 19263,
+        "target2GainPerLotINR": 33709,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹5141.24",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
+      },
+      "confidencePct": 71,
+      "catalystRationale": "Range compressed to 44.3% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹5167). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
+      "rank": 4,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "COALINDIA",
+      "name": "Coal India Ltd.",
+      "sector": "Mining & Energy",
+      "trade": {
+        "action": "BUY COALINDIA 425 PE / Short Spot",
+        "spotEntry": 426.4,
+        "spotSL": 438.05,
+        "spotRiskPts": 11.65,
+        "spotTarget1": 407.76,
+        "spotTarget2": 393.78,
+        "atmStrike": 425,
+        "lotSize": 2100,
+        "riskPerLotINR": 24465,
+        "target1GainPerLotINR": 39144,
+        "target2GainPerLotINR": 68502,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹438.05",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
+      },
+      "confidencePct": 45,
+      "catalystRationale": "Tested 20-day Resistance (₹436.3) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    },
+    {
+      "rank": 5,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "APOLLOHOSP",
+      "name": "Apollo Hospitals Enterprise",
+      "sector": "Healthcare",
+      "trade": {
+        "action": "BUY APOLLOHOSP 8850 PE / Short Spot",
+        "spotEntry": 8836,
+        "spotSL": 9082.7,
+        "spotRiskPts": 246.7,
+        "spotTarget1": 8441.28,
+        "spotTarget2": 8145.24,
+        "atmStrike": 8850,
+        "lotSize": 125,
+        "riskPerLotINR": 30838,
+        "target1GainPerLotINR": 49340,
+        "target2GainPerLotINR": 86345,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹9082.7",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
+      },
+      "confidencePct": 45,
+      "catalystRationale": "Tested 20-day Resistance (₹9050) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    }
+  ],
+  "topRankings": {
+    "vaultCoils": [
+      {
+        "symbol": "ADANIENSOL",
+        "price": 1373,
+        "compPct": 35.7,
+        "delivPct": 80,
+        "floor": 1348
+      },
+      {
+        "symbol": "JSWENERGY",
+        "price": 526.45,
+        "compPct": 37.4,
+        "delivPct": 87,
+        "floor": 511.4
+      },
+      {
+        "symbol": "PAGEIND",
+        "price": 35365,
+        "compPct": 38.6,
+        "delivPct": 92,
+        "floor": 34960
+      },
+      {
+        "symbol": "HEROMOTOCO",
+        "price": 5221.5,
+        "compPct": 44.3,
+        "delivPct": 92,
+        "floor": 5167
+      },
+      {
+        "symbol": "IGL",
+        "price": 151.98,
+        "compPct": 44.8,
+        "delivPct": 84,
+        "floor": 146.22
+      }
+    ],
+    "volumeDrives": [
+      {
+        "symbol": "COCHINSHIP",
+        "price": 1381,
+        "volMult": 5.52,
+        "action": "BUY COCHINSHIP 1380 PE / Short Spot"
+      },
+      {
+        "symbol": "YESBANK",
+        "price": 23.48,
+        "volMult": 4.38,
+        "action": "BUY YESBANK 23 CE / Spot"
+      },
+      {
+        "symbol": "GODREJPROP",
+        "price": 1748,
+        "volMult": 3.97
+      },
+      {
+        "symbol": "PIIND",
+        "price": 2259,
+        "volMult": 3.75
+      },
+      {
+        "symbol": "LICHSGFIN",
+        "price": 562.9,
+        "volMult": 3.62
+      }
+    ],
+    "distributionTraps": [
+      {
+        "symbol": "COALINDIA",
+        "price": 426.4,
+        "ceil": 436.3,
+        "distCeilPct": 2.32
+      },
+      {
+        "symbol": "APOLLOHOSP",
+        "price": 8836,
+        "ceil": 9050,
+        "distCeilPct": 2.42
+      },
+      {
+        "symbol": "OIL",
+        "price": 489.8,
+        "ceil": 514.45,
+        "distCeilPct": 5.03
+      },
+      {
+        "symbol": "ONGC",
+        "price": 232.5,
+        "ceil": 245,
+        "distCeilPct": 5.38
+      },
+      {
+        "symbol": "POWERGRID",
+        "price": 269.1,
+        "ceil": 294.1,
+        "distCeilPct": 9.29
+      }
+    ],
+    "sectorLeadership": [
+      {
+        "sector": "Information Technology",
+        "coilingCount": 4,
+        "totalStocks": 12
+      },
+      {
+        "sector": "FMCG & Personal Care",
+        "coilingCount": 2,
+        "totalStocks": 2
+      },
+      {
+        "sector": "Public Sector Banking",
+        "coilingCount": 2,
+        "totalStocks": 7
+      },
+      {
+        "sector": "NBFC",
+        "coilingCount": 2,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Private Banking",
+        "coilingCount": 1,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Metals & Mining",
+        "coilingCount": 2,
+        "totalStocks": 6
+      },
+      {
+        "sector": "Apparel & Innerwear",
+        "coilingCount": 1,
+        "totalStocks": 1
+      },
+      {
+        "sector": "Automobile",
+        "coilingCount": 1,
+        "totalStocks": 7
+      }
+    ]
+  },
+  "forensicTakeaways": [
+    {
+      "title": "Macro Index Auction Character",
+      "finding": "Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
+    },
+    {
+      "title": "212 F&O Universe Capital Concentration",
+      "finding": "37 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+    },
+    {
+      "title": "Institutional Traps Avoided",
+      "finding": "Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names."
+    }
+  ]
+}
