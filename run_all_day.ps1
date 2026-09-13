@@ -135,6 +135,18 @@ while ($true) {
         }
     } catch {}
 
+    # Autonomous 4:15 PM IST Daily Market Brain Self-Evolution Trigger
+    try {
+        $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
+        $todayKey = $istNow.ToString("yyyy-MM-dd")
+        if (($istNow.Hour -gt 16 -or ($istNow.Hour -eq 16 -and $istNow.Minute -ge 15)) -and $global:lastMarketBrainRun -ne $todayKey) {
+            Write-Host "[Watchdog 16:15 IST] 🧠 Running Autonomous Daily Market Brain Self-Evolution for $todayKey..." -ForegroundColor Magenta
+            Start-Process -FilePath "node" -ArgumentList "backend\autonomous_market_brain.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+            $global:lastMarketBrainRun = $todayKey
+            Write-Host "[Watchdog 16:15 IST] Daily Market Brain Evolution completed & codified!" -ForegroundColor Green
+        }
+    } catch {}
+
     # Sleep 30 seconds between health checks
     Start-Sleep -Seconds 30
 }

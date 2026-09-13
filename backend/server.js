@@ -12,6 +12,7 @@ import { computeMicrostructure, scanTopFnoStockSetups, FNO_STOCK_METADATA, fetch
 import { computeStocksTrackerOverview, calculateParticipantPositioning, evaluateEODStocksTrackerOutcomes, startAutonomousEODStocksTrackerScheduler, getAutoSchedulerStatus } from './stocksTracker.js';
 import { computeStocksMovingOverview } from './stocksMoving.js';
 import { runTabHealthAudit } from './auto_heal_tabs.js';
+import { executeDailySelfEvolution } from './autonomous_market_brain.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -5148,6 +5149,36 @@ app.post('/api/system/trigger-auto-heal', async (req, res) => {
   }
 });
 
+// Autonomous Market Brain & Daily Learned Nuances Status API
+app.get('/api/system/market-brain', (req, res) => {
+  try {
+    const nuancesPath = path.join(__dirname, 'data', 'daily_learned_nuances.json');
+    const constraintsPath = path.join(__dirname, 'data', 'auto_learned_constraints.json');
+    const nuances = fs.existsSync(nuancesPath) ? JSON.parse(fs.readFileSync(nuancesPath, 'utf8')) : [];
+    const constraints = fs.existsSync(constraintsPath) ? JSON.parse(fs.readFileSync(constraintsPath, 'utf8')) : {};
+    res.json({
+      status: 'AUTONOMOUS_EVOLUTION_ACTIVE',
+      rulesLearnedCount: constraints.rulesLearnedCount || 0,
+      negativeFilters: constraints.negativeFilters || [],
+      recentDailyNuances: nuances.slice(0, 15),
+      lastEvolutionTime: constraints.lastEvolutionTime
+    });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// On-Demand Market Brain Self-Evolution Trigger
+app.post('/api/system/trigger-market-brain', async (req, res) => {
+  try {
+    console.log('[Market Brain] 🧠 Triggering autonomous daily self-evolution cycle...');
+    const result = await executeDailySelfEvolution();
+    res.json({ success: true, evolution: result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
@@ -5398,4 +5429,40 @@ function startAutonomousTabHealthScheduler() {
 }
 
 startAutonomousTabHealthScheduler();
+
+// ====================================================================
+// 🧠 Autonomous 16:15 IST Daily Market Brain Self-Evolution Scheduler
+// ====================================================================
+let lastMarketBrainDate = null;
+function startAutonomousMarketBrainScheduler() {
+  console.log('[Market Brain] 🕒 Initializing Autonomous 16:15 IST Market Brain Self-Evolution Scheduler...');
+
+  // Initial startup evolution check after 35 seconds
+  setTimeout(() => {
+    executeDailySelfEvolution().catch(err => console.error('[Market Brain Startup Error]', err.message));
+  }, 35000);
+
+  // Check every 30 seconds for 16:15 IST
+  setInterval(async () => {
+    try {
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000;
+      const istDate = new Date(now.getTime() + istOffset);
+      const istHours = istDate.getUTCHours();
+      const istMinutes = istDate.getUTCMinutes();
+      const todayStr = istDate.toISOString().split('T')[0];
+      const isPast1615 = (istHours === 16 && istMinutes >= 15) || (istHours > 16);
+
+      if (isPast1615 && lastMarketBrainDate !== todayStr) {
+        console.log(`[Market Brain Scheduler] ⏰ 16:15 IST Reached (${istHours}:${istMinutes} IST)! Running autonomous daily self-evolution for ${todayStr}...`);
+        lastMarketBrainDate = todayStr;
+        await executeDailySelfEvolution();
+      }
+    } catch (err) {
+      console.error('[Market Brain Scheduler Error]', err.message);
+    }
+  }, 30 * 1000);
+}
+
+startAutonomousMarketBrainScheduler();
 

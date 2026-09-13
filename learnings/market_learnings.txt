@@ -40768,3 +40768,30 @@ B. BEARISH RESISTANCE REJECTIONS (Tested VAH Resistance and Pullback)
 * Lunchtime Theta vs IV Filter: Period G consolidation successfully filtered false breakouts between 12:15 - 12:45 PM.
 * Hero Reversal Traps: Failed morning expansions (C/D/E periods) respected the opposite extreme target.
 ================================================================================
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-09-13 (20:34:53 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 23398.1 (+0.55%) | Day Structure: Rotational Balanced Auction
+* Bank Nifty: 56606.55 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 59 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] INSTITUTIONAL DEMAT ABSORPTION:
+  - Insight: 37 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (PAGEIND, HEROMOTOCO, COLPAL, SBIN).
+  - Applied Rule: Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor.
+
+[2] INDEX VS SECTOR COINTEGRATION:
+  - Insight: On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.
+  - Applied Rule: Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts.
+
+[3] LATE-DAY VOLUME FILTER (PERIOD L):
+  - Insight: Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in MARUTI, COALINDIA, APOLLOHOSP printed exhaustion tails.
+  - Applied Rule: Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 6 institutional rules
+* Auto-Learned Rules Added: 3 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
