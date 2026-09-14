@@ -20,6 +20,8 @@ import {
   DollarSign
 } from 'lucide-react';
 
+const fmt = (v: any, fallback = '--') => (v !== null && v !== undefined && !isNaN(Number(v))) ? Number(v).toLocaleString() : fallback;
+
 interface ActionableTrade {
   action: string;
   spotEntry: number;
@@ -589,7 +591,7 @@ export function StocksMovingContainer() {
                       {item.sector}
                     </td>
                     <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f8fafc', fontWeight: 800 }}>
-                      ₹{item.spotPrice.toLocaleString()}
+                      ₹{fmt(item.spotPrice)}
                     </td>
                     
                     {/* CONFIDENCE METER */}
@@ -643,7 +645,7 @@ export function StocksMovingContainer() {
                     {/* PROFIT PER LOT */}
                     <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 800, color: '#34d399' }}>
                       {item.actionableTrade?.target1GainPerLotINR ? (
-                        <span>+₹{item.actionableTrade.target1GainPerLotINR.toLocaleString()}</span>
+                        <span>+₹{fmt(item.actionableTrade.target1GainPerLotINR, '0')}</span>
                       ) : (
                         <span style={{ color: '#64748b' }}>-</span>
                       )}
@@ -722,31 +724,31 @@ export function StocksMovingContainer() {
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '10px', marginBottom: '12px' }}>
                             <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
                               <div style={{ fontSize: '10px', color: '#94a3b8' }}>SPOT ENTRY (LIVE LTP)</div>
-                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#f8fafc', fontFamily: 'monospace' }}>₹{item.actionableTrade.spotEntry.toLocaleString()}</div>
+                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#f8fafc', fontFamily: 'monospace' }}>₹{fmt(item.actionableTrade.spotEntry)}</div>
                               <div style={{ fontSize: '10px', color: '#64748b' }}>Lot Size: {item.actionableTrade.lotSize || 250} shares</div>
                             </div>
 
                             <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
                               <div style={{ fontSize: '10px', color: '#f87171' }}>SPOT SL (RISK PER LOT)</div>
-                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#f87171', fontFamily: 'monospace' }}>₹{item.actionableTrade.spotSL.toLocaleString()}</div>
+                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#f87171', fontFamily: 'monospace' }}>₹{fmt(item.actionableTrade.spotSL)}</div>
                               <div style={{ fontSize: '10px', color: '#f87171', fontWeight: 700 }}>
-                                Risk: -₹{item.actionableTrade.riskPerLotINR?.toLocaleString() || 0} ({item.actionableTrade.spotRiskPts} pts)
+                                Risk: -₹{fmt(item.actionableTrade.riskPerLotINR, '0')} ({item.actionableTrade.spotRiskPts} pts)
                               </div>
                             </div>
 
                             <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
                               <div style={{ fontSize: '10px', color: '#34d399' }}>TARGET 1 (PROFIT PER LOT)</div>
-                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#34d399', fontFamily: 'monospace' }}>₹{item.actionableTrade.spotTarget1.toLocaleString()}</div>
+                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#34d399', fontFamily: 'monospace' }}>₹{fmt(item.actionableTrade.spotTarget1)}</div>
                               <div style={{ fontSize: '10px', color: '#34d399', fontWeight: 700 }}>
-                                Gain: +₹{item.actionableTrade.target1GainPerLotINR?.toLocaleString() || 0} (1.6x R:R)
+                                Gain: +₹{fmt(item.actionableTrade.target1GainPerLotINR, '0')} (1.6x R:R)
                               </div>
                             </div>
 
                             <div style={{ background: '#1e293b', padding: '8px 10px', borderRadius: '6px' }}>
                               <div style={{ fontSize: '10px', color: '#38bdf8' }}>TARGET 2 (RUNNER PER LOT)</div>
-                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>₹{item.actionableTrade.spotTarget2.toLocaleString()}</div>
+                              <div style={{ fontSize: '16px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>₹{fmt(item.actionableTrade.spotTarget2)}</div>
                               <div style={{ fontSize: '10px', color: '#38bdf8', fontWeight: 700 }}>
-                                Gain: +₹{item.actionableTrade.target2GainPerLotINR?.toLocaleString() || 0} (2.8x R:R)
+                                Gain: +₹{fmt(item.actionableTrade.target2GainPerLotINR, '0')} (2.8x R:R)
                               </div>
                             </div>
                           </div>

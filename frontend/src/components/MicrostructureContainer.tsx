@@ -28,6 +28,8 @@ import {
 } from 'lucide-react';
 import { FNO_STOCKS } from '../data/fnoStocks';
 
+const fmt = (v: any, fallback = '--') => (v !== null && v !== undefined && !isNaN(Number(v))) ? Number(v).toLocaleString() : fallback;
+
 interface StrikeGexItem {
   strike: number;
   isATM: boolean;
@@ -424,7 +426,7 @@ export function MicrostructureContainer() {
                         <div style={{ fontSize: '10px', color: '#94a3b8' }}>{stock.sector}</div>
                       </div>
                       <div style={{ textAlign: 'right' }}>
-                        <div style={{ fontSize: '11.5px', fontWeight: 800, color: '#38bdf8', fontFamily: 'monospace' }}>₹{livePrice.toLocaleString()}</div>
+                        <div style={{ fontSize: '11.5px', fontWeight: 800, color: '#38bdf8', fontFamily: 'monospace' }}>₹{fmt(livePrice)}</div>
                         <div style={{ fontSize: '9.5px', color: '#64748b' }}>Step: ₹{stock.strikeInterval}</div>
                       </div>
                     </div>
@@ -481,7 +483,7 @@ export function MicrostructureContainer() {
                   borderRadius: '3px',
                   fontSize: '10.5px'
                 }}>
-                  ₹{livePrice.toLocaleString()}
+                  ₹{fmt(livePrice)}
                 </span>
               </button>
             );
@@ -550,21 +552,21 @@ export function MicrostructureContainer() {
                   DEVELOPING POINT OF CONTROL (dPOC)
                 </span>
                 <span style={{ color: '#38bdf8', fontSize: '14px', fontWeight: 900, fontFamily: 'monospace' }}>
-                  ₹{sm.dPOC.toLocaleString()}
+                  ₹{fmt(sm.dPOC)}
                 </span>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
                 <span>Value Area (70% Vol):</span>
-                <strong style={{ color: '#facc15', fontFamily: 'monospace' }}>₹{sm.val} - ₹{sm.vah}</strong>
+                <strong style={{ color: '#facc15', fontFamily: 'monospace' }}>₹{fmt(sm.val)} - ₹{fmt(sm.vah)}</strong>
               </div>
 
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
                 <span>Virgin POC Target Magnet:</span>
-                <strong style={{ color: '#38bdf8', fontFamily: 'monospace' }}>₹{sm.vpoc}</strong>
+                <strong style={{ color: '#38bdf8', fontFamily: 'monospace' }}>₹{fmt(sm.vpoc)}</strong>
               </div>
 
-              <div style={{ fontSize: '11px', color: sm.pocMigration.includes('UP') ? '#34d399' : (sm.pocMigration.includes('DOWN') ? '#f87171' : '#94a3b8'), fontWeight: 700, marginTop: '6px' }}>
+              <div style={{ fontSize: '11px', color: sm.pocMigration?.includes('UP') ? '#34d399' : (sm.pocMigration?.includes('DOWN') ? '#f87171' : '#94a3b8'), fontWeight: 700, marginTop: '6px' }}>
                 {sm.pocMigrationLabel}
               </div>
             </div>
@@ -575,7 +577,7 @@ export function MicrostructureContainer() {
                 PASSIVE ICEBERGS & DEALER FLOW
               </div>
 
-              {sm.icebergStatus.active ? (
+              {sm.icebergStatus?.active ? (
                 <div style={{ background: 'rgba(56, 189, 248, 0.15)', border: '1px solid #38bdf8', borderRadius: '6px', padding: '8px', fontSize: '11px', color: '#bae6fd', fontWeight: 700, marginBottom: '6px' }}>
                   {sm.icebergStatus.label}
                 </div>
@@ -611,7 +613,7 @@ export function MicrostructureContainer() {
                     fontWeight: 700
                   }}
                 >
-                  {evt.isBuy ? '🟢' : '🔴'} ₹{evt.price} ({evt.volume.toLocaleString()} lots/shares)
+                  {evt.isBuy ? '🟢' : '🔴'} ₹{evt.price} ({fmt(evt.volume, '0')} lots/shares)
                 </div>
               ))}
             </div>
@@ -733,7 +735,7 @@ export function MicrostructureContainer() {
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11.5px', marginBottom: '4px' }}>
                     <span style={{ color: '#94a3b8' }}>Next HVN Target:</span>
                     <strong style={{ color: '#fbbf24', fontFamily: 'monospace' }}>
-                      ₹{aof.liquidityVoids?.nextHvnTarget?.toLocaleString()}
+                      ₹{fmt(aof.liquidityVoids?.nextHvnTarget)}
                     </strong>
                   </div>
 
@@ -905,7 +907,7 @@ export function MicrostructureContainer() {
                         <span style={{ fontSize: '10px', color: '#94a3b8' }}>{stock.sector}</span>
                       </div>
                       <div style={{ fontSize: '12px', color: '#38bdf8', fontWeight: 900, fontFamily: 'monospace' }}>
-                        Live Spot: ₹{stock.spotPrice.toLocaleString()} • ATM: ₹{stock.atmStrike}
+                        Live Spot: ₹{fmt(stock.spotPrice)} • ATM: ₹{stock.atmStrike}
                       </div>
                     </div>
                     {hasTrap ? (
@@ -985,7 +987,7 @@ export function MicrostructureContainer() {
               ⚡ DEALER GAMMA EXPOSURE (GEX)
             </div>
             <div style={{ fontSize: '20px', fontWeight: 900, color: isPositiveGamma ? '#34d399' : '#f87171', fontFamily: 'monospace' }}>
-              {data.totalNetGexCr >= 0 ? '+' : ''}{data.totalNetGexCr.toLocaleString()} Cr
+              {data.totalNetGexCr >= 0 ? '+' : ''}{fmt(data.totalNetGexCr, '0')} Cr
             </div>
             <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '4px', fontWeight: 700 }}>
               Regime: {data.gexRegime === 'POSITIVE_GAMMA' ? '🛡️ Positive Gamma (Volatility Dampening)' : '🚀 Negative Gamma (Squeeze Acceleration)'}
@@ -998,10 +1000,10 @@ export function MicrostructureContainer() {
               🔄 ZERO GAMMA FLIP LEVEL
             </div>
             <div style={{ fontSize: '20px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>
-              ₹{data.zeroGammaLevel.toLocaleString()}
+              ₹{fmt(data.zeroGammaLevel)}
             </div>
             <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
-              Current Live Spot: <strong>₹{data.spotPrice.toLocaleString()}</strong> ({data.spotPrice >= data.zeroGammaLevel ? '🟢 Above Flip: Mean Reversion' : '🔴 Below Flip: High Volatility'})
+              Current Live Spot: <strong>₹{fmt(data.spotPrice)}</strong> ({data.spotPrice >= data.zeroGammaLevel ? '🟢 Above Flip: Mean Reversion' : '🔴 Below Flip: High Volatility'})
             </div>
           </div>
 
@@ -1031,7 +1033,7 @@ export function MicrostructureContainer() {
               📊 CUMULATIVE VOLUME DELTA (CVD)
             </div>
             <div style={{ fontSize: '20px', fontWeight: 900, color: data.cvd >= 0 ? '#34d399' : '#f87171', fontFamily: 'monospace' }}>
-              {data.cvd >= 0 ? '+' : ''}{data.cvd.toLocaleString()}
+              {data.cvd >= 0 ? '+' : ''}{fmt(data.cvd, '0')}
             </div>
             <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
               Order Flow: <strong>{data.cvd >= 0 ? 'Aggressive Buyers in Control' : 'Aggressive Sellers in Control'}</strong>
@@ -1308,16 +1310,16 @@ export function MicrostructureContainer() {
                         Bar {idx + 1}
                       </td>
                       <td style={{ padding: '6px', fontFamily: 'monospace', color: '#38bdf8', fontWeight: 700 }}>
-                        ₹{bar.price.toLocaleString()}
+                        ₹{fmt(bar.price)}
                       </td>
                       <td style={{ padding: '6px', fontFamily: 'monospace', color: '#cbd5e1' }}>
-                        {bar.volume.toLocaleString()}
+                        {fmt(bar.volume, '0')}
                       </td>
                       <td style={{ padding: '6px', fontFamily: 'monospace', color: bar.delta >= 0 ? '#34d399' : '#f87171', fontWeight: 700 }}>
-                        {bar.delta >= 0 ? '+' : ''}{bar.delta.toLocaleString()}
+                        {bar.delta >= 0 ? '+' : ''}{fmt(bar.delta, '0')}
                       </td>
                       <td style={{ padding: '6px', fontFamily: 'monospace', color: bar.cvd >= 0 ? '#34d399' : '#f87171' }}>
-                        {bar.cvd >= 0 ? '+' : ''}{bar.cvd.toLocaleString()}
+                        {bar.cvd >= 0 ? '+' : ''}{fmt(bar.cvd, '0')}
                       </td>
                     </tr>
                   ))}

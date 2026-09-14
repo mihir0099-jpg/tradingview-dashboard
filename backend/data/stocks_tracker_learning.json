@@ -1,6 +1,6 @@
 {
   "date": "2026-09-14",
-  "timestamp": "2026-09-14T13:01:45.548Z",
+  "timestamp": "2026-09-14T14:07:33.492Z",
   "totalEvaluated": 31,
   "wins": 31,
   "mistakes": 0,
@@ -311,7 +311,7 @@
       "category": "RETAIL_TRAP_DIVERGENCE",
       "symbol": "NIFTY / BANKNIFTY",
       "predictedLevel": "Retail Trap Index: 88/100",
-      "finalClose": 23398.1,
+      "finalClose": 1831.1,
       "result": "WIN_INSTITUTIONAL_DRAG_VERIFIED",
       "isWin": true,
       "detail": "FII net short positioning (-84,250 contracts) successfully capped index rallies. Retail call buyers trapped.",
@@ -328,6 +328,6 @@
     "isAutoScheduled": true,
     "executionScheduleIST": "15:45:00 IST (Daily)",
     "executionMode": "FULLY_AUTONOMOUS_NO_CLICK_REQUIRED",
-    "lastAutoRunIST": "2026-09-14 15:45:00 IST"
+    "lastAutoRunIST": "2026-09-14 18:58:00 IST"
   }
 }

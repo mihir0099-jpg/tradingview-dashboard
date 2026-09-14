@@ -21,6 +21,8 @@ import {
 } from 'lucide-react';
 import { FNO_STOCKS } from '../data/fnoStocks';
 
+const fmt = (v: any, fallback = '--') => (v !== null && v !== undefined && !isNaN(Number(v))) ? Number(v).toLocaleString() : fallback;
+
 interface BlockDealItem {
   id: string;
   timestamp: string;
@@ -415,7 +417,7 @@ export function StocksTrackerContainer() {
               <span style={{ fontSize: '10px', color: '#38bdf8', fontWeight: 700 }}>Inspect Tape →</span>
             </div>
             <div style={{ fontSize: '22px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>
-              ₹{em.totalBlockVolumeCr.toLocaleString()} Cr
+              ₹{fmt(em.totalBlockVolumeCr, '0')} Cr
             </div>
             <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
               {em.totalBlockDealsCount} prints across 8:45 AM & 2:05 PM windows
@@ -456,7 +458,7 @@ export function StocksTrackerContainer() {
               {em.retailTrapScore} / 100
             </div>
             <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
-              FII Net Contracts: <strong style={{ color: em.fiiNetContracts < 0 ? '#f87171' : '#34d399' }}>{em.fiiNetContracts.toLocaleString()}</strong>
+              FII Net Contracts: <strong style={{ color: em.fiiNetContracts < 0 ? '#f87171' : '#34d399' }}>{fmt(em.fiiNetContracts, '0')}</strong>
             </div>
           </div>
 
@@ -609,7 +611,7 @@ export function StocksTrackerContainer() {
                       {/* Exact Execution Price Level Highlight */}
                       <div style={{ marginTop: '3px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                         <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#facc15', fontFamily: 'monospace' }}>
-                          🎯 Level: ₹{primaryLevel.toLocaleString()}
+                          🎯 Level: ₹{fmt(primaryLevel)}
                         </span>
                         <span style={{ fontSize: '8.5px', background: item.sideLabel.includes('BUY') ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)', color: item.sideLabel.includes('BUY') ? '#34d399' : '#f87171', padding: '1px 4px', borderRadius: '3px', fontWeight: 800 }}>
                           {item.dealCount > 1 ? `${item.dealCount} Prints` : item.sideLabel}
@@ -745,7 +747,7 @@ export function StocksTrackerContainer() {
                 {sig.cleanSymbol} SPOTLIGHT
               </span>
               <h3 style={{ fontSize: '16px', fontWeight: 900, margin: 0, color: '#f8fafc' }}>
-                {sig.name} ({sig.sector}) • Live Spot: ₹{sig.spotPrice.toLocaleString()}
+                {sig.name} ({sig.sector}) • Live Spot: ₹{fmt(sig.spotPrice)}
               </h3>
             </div>
             <div style={{ fontSize: '11px', color: '#94a3b8' }}>
@@ -762,7 +764,7 @@ export function StocksTrackerContainer() {
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                 <span style={{ fontSize: '20px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>
-                  ₹{sig.darkPoolLevel.toLocaleString()}
+                  ₹{fmt(sig.darkPoolLevel)}
                 </span>
                 <span style={{ fontSize: '11px', color: sig.distPts >= 0 ? '#34d399' : '#f87171', fontWeight: 700 }}>
                   ({sig.distPts >= 0 ? '+' : ''}{sig.distPts} pts / {sig.distPct}%)
@@ -780,7 +782,7 @@ export function StocksTrackerContainer() {
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                 <span style={{ fontSize: '20px', fontWeight: 900, color: '#fca5a5', fontFamily: 'monospace' }}>
-                  ₹{pools.bsl.price.toLocaleString()}
+                  ₹{fmt(pools.bsl.price)}
                 </span>
                 <span style={{ fontSize: '11px', color: '#94a3b8' }}>
                   (~₹{pools.bsl.volumeCr} Cr resting stops, +{pools.bsl.distPts} pts away)
@@ -798,7 +800,7 @@ export function StocksTrackerContainer() {
               </div>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                 <span style={{ fontSize: '20px', fontWeight: 900, color: '#a7f3d0', fontFamily: 'monospace' }}>
-                  ₹{pools.ssl.price.toLocaleString()}
+                  ₹{fmt(pools.ssl.price)}
                 </span>
                 <span style={{ fontSize: '11px', color: '#94a3b8' }}>
                   (~₹{pools.ssl.volumeCr} Cr resting stops, -{pools.ssl.distPts} pts away)
@@ -913,10 +915,10 @@ export function StocksTrackerContainer() {
                         {item.sector}
                       </td>
                       <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 700 }}>
-                        ₹{item.spotPrice.toLocaleString()}
+                        ₹{fmt(item.spotPrice)}
                       </td>
                       <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 800, color: '#38bdf8' }}>
-                        ₹{item.darkPoolLevel.toLocaleString()}
+                        ₹{fmt(item.darkPoolLevel)}
                       </td>
                       <td style={{ padding: '8px', fontFamily: 'monospace', color: item.distPts >= 0 ? '#34d399' : '#f87171', fontWeight: 700 }}>
                         {item.distPts >= 0 ? '+' : ''}{item.distPts} ({item.distPct}%)
@@ -997,10 +999,10 @@ export function StocksTrackerContainer() {
                       </span>
                     </td>
                     <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 700 }}>
-                      ₹{deal.price.toLocaleString()}
+                      ₹{fmt(deal.price)}
                     </td>
                     <td style={{ padding: '8px', fontFamily: 'monospace', color: '#cbd5e1' }}>
-                      {deal.volume.toLocaleString()}
+                      {fmt(deal.volume, '0')}
                     </td>
                     <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 900, color: '#38bdf8' }}>
                       ₹{deal.valueCr} Cr
@@ -1049,7 +1051,7 @@ export function StocksTrackerContainer() {
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                   <span style={{ fontSize: '13px', fontWeight: 900, color: '#f8fafc' }}>{item.cleanSymbol}</span>
-                  <span style={{ fontSize: '11.5px', color: '#38bdf8', fontFamily: 'monospace', fontWeight: 800 }}>Spot: ₹{item.spotPrice.toLocaleString()}</span>
+                  <span style={{ fontSize: '11.5px', color: '#38bdf8', fontFamily: 'monospace', fontWeight: 800 }}>Spot: ₹{fmt(item.spotPrice)}</span>
                 </div>
 
                 <div style={{ background: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', borderRadius: '6px', padding: '6px 8px', marginBottom: '6px' }}>
@@ -1125,7 +1127,7 @@ export function StocksTrackerContainer() {
                       {item.sector}
                     </td>
                     <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 700 }}>
-                      ₹{item.spotPrice.toLocaleString()}
+                      ₹{fmt(item.spotPrice)}
                     </td>
                     <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 800, color: item.deliveryPct >= 65 ? '#34d399' : '#cbd5e1' }}>
                       {item.deliveryPct}%
@@ -1183,7 +1185,7 @@ export function StocksTrackerContainer() {
                 <span style={{ color: '#f87171' }}>Short: {part.fii.shortPct}%</span>
               </div>
               <div style={{ fontSize: '11px', color: '#cbd5e1' }}>
-                Net Futures: <strong style={{ color: '#f87171' }}>{part.fii.netContracts.toLocaleString()} contracts (Short)</strong>
+                Net Futures: <strong style={{ color: '#f87171' }}>{fmt(part.fii.netContracts, '0')} contracts (Short)</strong>
               </div>
             </div>
 
@@ -1197,7 +1199,7 @@ export function StocksTrackerContainer() {
                 <span style={{ color: '#f87171' }}>Short: {part.dii.shortPct}%</span>
               </div>
               <div style={{ fontSize: '11px', color: '#cbd5e1' }}>
-                Net Futures: <strong style={{ color: '#34d399' }}>+{part.dii.netContracts.toLocaleString()} contracts (Long)</strong>
+                Net Futures: <strong style={{ color: '#34d399' }}>+{fmt(part.dii.netContracts, '0')} contracts (Long)</strong>
               </div>
             </div>
 
@@ -1211,7 +1213,7 @@ export function StocksTrackerContainer() {
                 <span style={{ color: '#f87171' }}>Short: {part.client.shortPct}%</span>
               </div>
               <div style={{ fontSize: '11px', color: '#cbd5e1' }}>
-                Net Futures: <strong style={{ color: '#facc15' }}>+{part.client.netContracts.toLocaleString()} contracts (Trapped Long)</strong>
+                Net Futures: <strong style={{ color: '#facc15' }}>+{fmt(part.client.netContracts, '0')} contracts (Trapped Long)</strong>
               </div>
             </div>
 
@@ -1511,7 +1513,7 @@ export function StocksTrackerContainer() {
                         </span>
                       </td>
                       <td style={{ padding: '8px', fontFamily: 'monospace', color: '#fde047' }}>
-                        ₹{item.todayTvpt.toLocaleString()}
+                        ₹{fmt(item.todayTvpt)}
                       </td>
                       <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f87171', fontWeight: 800 }}>
                         {item.tvptDropPct}%
@@ -1526,7 +1528,7 @@ export function StocksTrackerContainer() {
                         -{item.basisCompressionPct}%
                       </td>
                       <td style={{ padding: '8px', fontFamily: 'monospace', color: '#cbd5e1' }}>
-                        {item.cvdContracts.toLocaleString()}
+                        {fmt(item.cvdContracts, '0')}
                       </td>
                       <td style={{ padding: '8px' }}>
                         <span style={{
@@ -2113,7 +2115,7 @@ export function StocksTrackerContainer() {
                                   borderRadius: '4px',
                                   border: '1px solid #1e293b'
                                 }}>
-                                  ₹{lvl.price.toLocaleString()}
+                                  ₹{fmt(lvl.price)}
                                 </span>
                                 <span style={{ fontSize: '10px', color: '#94a3b8' }}>
                                   ({lvl.side} • ₹{lvl.valueCr} Cr @ {lvl.timeStr.split('(')[0].trim()})

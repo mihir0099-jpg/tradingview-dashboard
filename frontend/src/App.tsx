@@ -31,6 +31,7 @@ import { DataLearningContainer } from './components/DataLearningContainer';
 import { MicrostructureContainer } from './components/MicrostructureContainer';
 import { StocksTrackerContainer } from './components/StocksTrackerContainer';
 import { StocksMovingContainer } from './components/StocksMovingContainer';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
   const [symbol, setSymbol] = useState('NSE:NIFTY');
@@ -703,6 +704,7 @@ function App() {
 
       {/* Main Workspace */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', minHeight: '0' }}>
+        <ErrorBoundary key={activeTab} fallbackTitle={`Error Loading Tab (${activeTab})`}>
         {activeTab === 'historical' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
             <HistoricalMatchingCasesContainer />
@@ -906,6 +908,7 @@ function App() {
             )}
           </div>
         )}
+        </ErrorBoundary>
       </div>
 
       {/* Global Disclaimer Footer */}
