@@ -1,7 +1,7 @@
 let dynamicBackendUrl: string | null = null;
 const urlListeners: Array<(url: string) => void> = [];
 
-export const DEFAULT_PUBLIC_TUNNEL = 'https://skimmer-savage-dipped.ngrok-free.dev';
+export const DEFAULT_PUBLIC_TUNNEL = 'https://enabling-sort-rational-rejected.trycloudflare.com';
 
 export function onBackendChange(listener: (url: string) => void) {
   urlListeners.push(listener);
@@ -18,6 +18,8 @@ function isValidTunnelUrl(url: string | null | undefined): boolean {
   const clean = url.trim().toLowerCase();
   if (!clean.startsWith('http://') && !clean.startsWith('https://')) return false;
   if (clean.includes('api.trycloudflare.com')) return false;
+  if (clean.includes('ngrok-free.dev')) return false;
+  if (clean.includes('loca.lt')) return false;
   return true;
 }
 
@@ -73,10 +75,13 @@ if (typeof window !== 'undefined') {
     const cached = localStorage.getItem('tradingview_backend_url');
     if (isValidTunnelUrl(cached)) {
       dynamicBackendUrl = cached!.trim().replace(/\/$/, '');
-    } else if (cached && !isValidTunnelUrl(cached)) {
+    } else {
       localStorage.removeItem('tradingview_backend_url');
+      dynamicBackendUrl = DEFAULT_PUBLIC_TUNNEL;
     }
-  } catch (e) {}
+  } catch (e) {
+    dynamicBackendUrl = DEFAULT_PUBLIC_TUNNEL;
+  }
 
   refreshBackendUrl();
   // Periodically refresh in background every 30 seconds
@@ -168,8 +173,8 @@ export function getWsUrls(): string[] {
     }
 
     // 3. Known active public tunnel fallback (works for external & local)
-    urls.push('wss://skimmer-savage-dipped.ngrok-free.dev/ws');
-    urls.push('wss://skimmer-savage-dipped.ngrok-free.dev/');
+    urls.push('wss://enabling-sort-rational-rejected.trycloudflare.com/ws');
+    urls.push('wss://enabling-sort-rational-rejected.trycloudflare.com/');
 
     // Deduplicate while preserving priority order
     return Array.from(new Set(urls.filter(Boolean)));
