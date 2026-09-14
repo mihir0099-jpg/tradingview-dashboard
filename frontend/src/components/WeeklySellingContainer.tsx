@@ -1334,6 +1334,90 @@ export function WeeklySellingContainer() {
             </tbody>
           </table>
         </div>
+
+        {/* 📅 EXHAUSTIVE DAY-BY-DAY DRILL-DOWN SELECTOR */}
+        <div style={{ marginTop: '18px', paddingTop: '18px', borderTop: '1px dashed rgba(255,255,255,0.15)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Activity size={18} color="#facc15" />
+              <strong style={{ fontSize: '14px', color: 'white' }}>
+                📅 Day-by-Day Tactical Operator Audit (Select Weekly Series)
+              </strong>
+            </div>
+            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+              {DAY_BY_DAY_DATA.map(w => (
+                <button
+                  key={w.weekNum}
+                  onClick={() => setSelectedAuditWeek(w.weekNum)}
+                  style={{
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    border: selectedAuditWeek === w.weekNum ? '1px solid #facc15' : '1px solid rgba(255,255,255,0.1)',
+                    background: selectedAuditWeek === w.weekNum ? 'rgba(250, 204, 21, 0.2)' : 'rgba(255,255,255,0.03)',
+                    color: selectedAuditWeek === w.weekNum ? '#facc15' : '#94a3b8',
+                    fontSize: '11px',
+                    fontWeight: '800',
+                    cursor: 'pointer'
+                  }}
+                >
+                  W{w.weekNum} ({w.expiryDate.slice(5)})
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Table for selected week */}
+          {(() => {
+            const cur = DAY_BY_DAY_DATA.find(w => w.weekNum === selectedAuditWeek) || DAY_BY_DAY_DATA[0];
+            return (
+              <div style={{ overflowX: 'auto', background: 'rgba(0,0,0,0.3)', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px' }}>
+                  <thead>
+                    <tr style={{ background: 'rgba(255,255,255,0.05)', color: '#94a3b8', borderBottom: '1px solid rgba(255,255,255,0.1)', textAlign: 'left' }}>
+                      <th style={{ padding: '8px 12px' }}>Date</th>
+                      <th style={{ padding: '8px 12px' }}>Spot Range</th>
+                      <th style={{ padding: '8px 12px' }}>Call Wall (Resistance)</th>
+                      <th style={{ padding: '8px 12px' }}>Put Wall (Support)</th>
+                      <th style={{ padding: '8px 12px' }}>Max Pain Strike</th>
+                      <th style={{ padding: '8px 12px' }}>ATM Straddle</th>
+                      <th style={{ padding: '8px 12px' }}>What Big Operators Did</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cur.days.map((d, i) => (
+                      <tr key={d.date} style={{
+                        borderBottom: '1px solid rgba(255,255,255,0.05)',
+                        background: d.isExpiry ? 'rgba(16, 185, 129, 0.08)' : (i % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent')
+                      }}>
+                        <td style={{ padding: '8px 12px', fontWeight: '800', color: d.isExpiry ? '#34d399' : 'white', whiteSpace: 'nowrap' }}>
+                          {d.date}
+                        </td>
+                        <td style={{ padding: '8px 12px', fontFamily: 'monospace', color: '#facc15', whiteSpace: 'nowrap' }}>
+                          {d.spotRange}
+                        </td>
+                        <td style={{ padding: '8px 12px', color: '#f87171', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                          {d.callWall}
+                        </td>
+                        <td style={{ padding: '8px 12px', color: '#34d399', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                          {d.putWall}
+                        </td>
+                        <td style={{ padding: '8px 12px', color: '#60a5fa', fontWeight: '700', whiteSpace: 'nowrap' }}>
+                          {d.maxPain}
+                        </td>
+                        <td style={{ padding: '8px 12px', fontFamily: 'monospace', color: '#cbd5e1', whiteSpace: 'nowrap' }}>
+                          {d.straddle}
+                        </td>
+                        <td style={{ padding: '8px 12px', color: '#e2e8f0', fontSize: '11px', lineHeight: '1.4', minWidth: '320px' }}>
+                          {d.narrative}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })()}
+        </div>
       </div>
 
 

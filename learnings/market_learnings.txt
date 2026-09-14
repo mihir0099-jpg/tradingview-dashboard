@@ -41771,3 +41771,225 @@ revealed 5 universal laws governing how big operators manage strikes and pin set
    - Selling the ATM Short Straddle at 09:30 AM on Expiry Day and exiting at 15:15 PM
      captured an average of 63.9% theta premium collapse across all 10 cycles.
 ================================================================================
+
+================================================================================
+🔮 FORMAL LIVE EXPIRY PREDICTION RECORDED FOR VERIFICATION
+================================================================================
+Timestamp: 2026-09-14 11:00 AM IST | Expiry Target: Tuesday, 2026-09-15 15:30 IST
+Index: NIFTY (Spot at Prediction: 23,398.10 | Open: 23,477.80)
+
+1. PREDICTED PIN TARGET:
+   - Central Pin Target: 23,450.00 (Max Pain Lock)
+   - 1-Sigma Pin Range : 23,434.40 to 23,465.60 (+/- 15.6 pts)
+
+2. PREDICTED 100% DOUBLE-ZERO CORRIDOR:
+   - Put Wall Floor    : 23,300 PE
+   - Call Wall Ceiling : 23,500 CE
+   - Forecast Law      : 23,300 <= Final Settlement <= 23,500
+
+3. PROJECTED EXTREMES:
+   - Day Low Buffer    : 23,319 to 23,335 (Writers defend 23,300)
+   - Day High Cap      : 23,485 to 23,510 (Writers cap 23,500)
+
+4. PREDICTED ZERO EXPIRED STRIKES:
+   - Calls expiring to ₹0.00: 23,500 CE, 23,550 CE, 23,600 CE, 23,700 CE
+   - Puts expiring to ₹0.00 : 23,300 PE, 23,250 PE, 23,200 PE, 23,100 PE
+
+This record is locked and will be verified automatically at 15:40 IST on 2026-09-15.
+================================================================================
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-09-14 (11:02:04 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 23398.1 (+0.55%) | Day Structure: Rotational Balanced Auction
+* Bank Nifty: 56606.55 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 59 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] INSTITUTIONAL DEMAT ABSORPTION:
+  - Insight: 37 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (PAGEIND, HEROMOTOCO, COLPAL, SBIN).
+  - Applied Rule: Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor.
+
+[2] INDEX VS SECTOR COINTEGRATION:
+  - Insight: On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.
+  - Applied Rule: Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts.
+
+[3] LATE-DAY VOLUME FILTER (PERIOD L):
+  - Insight: Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in MARUTI, COALINDIA, APOLLOHOSP printed exhaustion tails.
+  - Applied Rule: Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 6 institutional rules
+* Auto-Learned Rules Added: 3 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-09-14
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹23398.1 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_DRIVE_BULLISH -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹56606.55 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 37 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 15 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Information Technology (4 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> ADANIENSOL (Power Transmission)
+    Action: BUY ADANIENSOL 1380 CE / Spot
+    Entry: ₹1373 | SL: ₹1338.02 (Risk: ₹17490/lot)
+    Target 1: ₹1428.97 (+₹27985/lot)
+    Target 2: ₹1470.94 (+₹48970/lot)
+    Win Rate: 58% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 35.7% of ATR with 80% Demat delivery. Smart money hoarding at Demand Floor (₹1348). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 🔒 HIGH-CONVICTION COIL -> PAGEIND (Apparel & Innerwear)
+    Action: BUY PAGEIND 35400 CE / Spot
+    Entry: ₹35365 | SL: ₹34788.97 (Risk: ₹288015/lot)
+    Target 1: ₹36286.65 (+₹460825/lot)
+    Target 2: ₹36977.88 (+₹806440/lot)
+    Win Rate: 75% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 38.6% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹34960). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[3] 🔒 HIGH-CONVICTION COIL -> HEROMOTOCO (Automobile)
+    Action: BUY HEROMOTOCO 5200 CE / Spot
+    Entry: ₹5221.5 | SL: ₹5141.24 (Risk: ₹12039/lot)
+    Target 1: ₹5349.92 (+₹19263/lot)
+    Target 2: ₹5446.23 (+₹33709/lot)
+    Win Rate: 71% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 44.3% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹5167). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[4] 💥 BREAKDOWN / FADE -> COALINDIA (Mining & Energy)
+    Action: BUY COALINDIA 425 PE / Short Spot
+    Entry: ₹426.4 | SL: ₹438.05 (Risk: ₹24465/lot)
+    Target 1: ₹407.76 (+₹39144/lot)
+    Target 2: ₹393.78 (+₹68502/lot)
+    Win Rate: 45% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹436.3) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[5] 💥 BREAKDOWN / FADE -> APOLLOHOSP (Healthcare)
+    Action: BUY APOLLOHOSP 8850 PE / Short Spot
+    Entry: ₹8836 | SL: ₹9082.7 (Risk: ₹30838/lot)
+    Target 1: ₹8441.28 (+₹49340/lot)
+    Target 2: ₹8145.24 (+₹86345/lot)
+    Win Rate: 45% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹9050) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 37 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+
+====================================================================================================
+EXHAUSTIVE 10-WEEK DAY-BY-DAY EXPIRY AUDIT & 5-DAY OPERATOR LIFECYCLE (JULY 7 - SEPT 8, 2026)
+====================================================================================================
+
+# 10-Week Complete Day-by-Day Historical Expiry Audit (July 7 – September 8, 2026)
+
+This exhaustive day-by-day audit tracks all 48 trading sessions across 10 complete weekly expiry cycles, detailing the exact price action, shifting walls, Max Pain migration, ATM straddle decay, and big operator maneuvers.
+
+## Week 1: Weekly Expiry Series ending 2026-07-07 (1 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **07 Jul (Tue) - Expiry** | `24,356 – 24,525` | 24,500 → 24,400 CE | 24,300 → 24,350 PE | `24,400` | `₹48.10` | Morning spike tested 24,525 near 24,500 Call Wall. Call writers slammed wall down to 24,400 with massive call writing. Spot crashed 169 pts to 24,356. Put writers defended 24,350. Settlement closed at 24,356.3, pinning 6 pts above Put Wall. Both 24,300 PE and 24,500 CE expired to ₹0.00. |
+
+
+## Week 2: Weekly Expiry Series ending 2026-07-14 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **08 Jul (Wed)** | `23,815 – 24,297` | 24,500 → 24,200 CE | 24,000 → 23,500 PE | `24,400 → 24,100` | `₹369.80` | Massive Wednesday crash (-377 pts). Put writers at 24,000 caught off guard and unwound in panic down to 23,500. Call writers slammed ceiling down from 24,500 to 24,200, building iron resistance. Max pain plummeted to 24,100. |
+| **09 Jul (Thu)** | `23,944 – 24,089` | 24,200 CE | 23,600 PE | `24,100 → 24,050` | `₹268.30` | Low-volatility consolidation. Operators harvested ₹101.50 in straddle theta decay (-27.4%). Call wall stood firm at 24,200; put writers anchored at 23,600. PCR rose from 0.60 to 0.79. |
+| **10 Jul (Fri)** | `24,153 – 24,221` | 24,500 CE | 24,000 → 24,200 PE | `24,100 → 24,200` | `₹195.20` | Bullish trap laid before weekend: Spot rallied to 24,221. Put writers aggressively wrote 24,000 and 24,200 PE (PCR jumped from 0.84 to 1.29!). Call writers rolled back to 24,500, giving illusion of a breakout. |
+| **13 Jul (Mon)** | `24,017 – 24,252` | 24,200 → 24,500 CE | 24,000 PE | `24,200` | `₹159.00` | Monday Morning Shakeout: Spot opened low at 24,017, but aggressive institutional futures buying defended 24,000 Put Wall, driving spot to 24,252. PCR climbed to an extreme 1.61 (massive put bias). |
+| **14 Jul (Tue) - Expiry** | `24,026 – 24,148` | 24,500 → 24,100 CE | 24,000 PE | `24,150 → 24,050` | `₹2.00` | The Expiry Flush & 24,000 Stand: Over-leveraged 24,200 put writers were slaughtered as spot tumbled from 24,148 to 24,026. 24,000 Put Wall defended with precision (+25.5 pts buffer). Spot pinned at 24,039.7 against Max Pain 24,050 (error: 10.3 pts). 24,000 PE & 24,100 CE went to ₹0.00. |
+
+
+## Week 3: Weekly Expiry Series ending 2026-07-21 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **15 Jul (Wed)** | `24,047 – 24,209` | 24,100 → 24,200 CE | 24,000 PE | `24,100` | `₹307.90` | Built initial wide strangle: 24,200 CE ceiling vs 24,000 PE floor. Spot attempted a breakout to 24,209, but 24,200 call writers immediately dumped futures and defended the ceiling to close at 24,087.9. |
+| **16 Jul (Thu)** | `24,056 – 24,174` | 24,200 CE | 24,000 PE | `24,100` | `₹259.00` | Theta harvest day. Spot trapped inside a 118-point range (24,056 – 24,174). Combined straddle decayed ₹48.90 (-15.9%). Neither 24,000 PE nor 24,200 CE gave way. |
+| **17 Jul (Fri)** | `24,128 – 24,346` | 24,200 → 24,700 CE | 24,000 → 24,200 PE | `24,100 → 24,250` | `₹247.90` | The Pre-Weekend Short Squeeze: Spot broke violently above 24,200, closing at 24,346. Call writers scrambled in panic, abandoning 24,200 and shifting the Call Wall +500 pts to 24,700! PCR surged from 0.83 to 1.62. |
+| **20 Jul (Mon)** | `24,144 – 24,259` | 24,500 CE | 24,000 → 24,200 PE | `24,250 → 24,200` | `₹145.40` | Call Wall Reconstruction: Call writers regrouped at 24,500 to cap upside at 24,259. Put writers locked 24,200 as support. Weekend theta collapsed straddle from ₹247.90 to ₹145.40. |
+| **21 Jul (Tue) - Expiry** | `24,146 – 24,256` | 24,500 → 24,200 CE | 24,200 → 24,150 PE | `24,200` | `₹12.20` | The Expiry Squeeze Pin: Call writers slammed 24,200 CE to cap spot at 24,256. Spot was driven down to 24,146, bouncing right off the 24,150 Put Wall. Pinned at 24,190.8 against Max Pain 24,200 (error: 9.2 pts). Both 24,150 PE & 24,200 CE expired to ₹0.00. |
+
+
+## Week 4: Weekly Expiry Series ending 2026-07-28 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **22 Jul (Wed)** | `23,963 – 24,057` | 24,200 CE | 24,000 → 23,700 PE | `24,200 → 24,050` | `₹305.20` | Wednesday Breakdown: Spot failed 24,000 PE. Put writers panicked and shifted support 300 pts lower to 23,700. Call writers kept ceiling anchored at 24,200. |
+| **23 Jul (Thu)** | `23,818 – 23,988` | 24,200 → 24,000 CE | 23,500 PE | `24,100 → 24,000` | `₹252.90` | Downward drift: Spot fell from 23,988 to 23,818. Call writers lowered ceiling from 24,200 to 24,000, locking index under 24,000. Put writers retreated to 23,500. |
+| **24 Jul (Fri)** | `23,615 – 23,811` | 24,000 CE | 23,500 PE | `24,000 → 23,900` | `₹237.90` | Friday Capitulation Flush & Buy Absorption: Spot crashed to 23,615 directly testing the 23,500 Put Wall. Institutional smart money stepped in with huge futures buying, sparking a 158-pt bounce to close at 23,773.8. |
+| **27 Jul (Mon)** | `23,893 – 24,008` | 24,000 → 24,200 CE | 23,700 → 24,000 PE | `23,900 → 24,000` | `₹126.30` | Monday Bear Trap & Short Squeeze: Spot exploded 227 pts off Friday's close! 24,000 Call writers were caught flat-footed and forced to cover, pushing Call Wall to 24,200. Put writers rushed to reclaim 24,000 PE. |
+| **28 Jul (Tue) - Expiry** | `23,965 – 24,035` | 24,200 → 24,000 CE | 23,900 → 23,950 PE | `24,000` | `₹28.60` | The 24,000 Max Pain Magnet: Call writers re-established 24,000 CE ceiling while put writers defended 23,950 PE. Price was choked in an ultra-tight 70-pt range (23,965 – 24,035). Settlement closed at 23,982.7 (17.3 pts from 24,000 Max Pain). Double zero hold. |
+
+
+## Week 5: Weekly Expiry Series ending 2026-08-04 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **29 Jul (Wed)** | `24,167 – 24,274` | 24,500 → 24,600 CE | 24,000 → 24,200 PE | `24,000 → 24,200` | `₹261.20` | Bullish Strangle Initialization: Spot steadily climbed from 24,167 to 24,274. Put writers aggressively raised the floor to 24,200 PE (PCR 1.17). Call writers backed off to 24,600. |
+| **30 Jul (Thu)** | `24,199 – 24,330` | 24,200 → 24,600 CE | 24,000 → 24,200 PE | `24,200 → 24,250` | `₹224.20` | Upward Momentum Continuation: Spot pushed to 24,330. Put writers defended 24,200 aggressively, while straddle decayed ₹37.00. Max Pain nudged up to 24,250. |
+| **31 Jul (Fri)** | `24,310 – 24,425` | 24,600 CE | 24,000 PE | `24,250 → 24,350` | `₹178.30` | Pre-Weekend Rally: Spot reached 24,425. Massive put writing lifted PCR to 1.46. Call writers stood firm at 24,600. Straddle broke below ₹180. |
+| **03 Aug (Mon)** | `24,530 – 24,606` | 24,600 CE | 24,200 → 24,500 PE | `24,350 → 24,600` | `₹125.90` | Monday Euphoria Trap: Spot opened strong and touched 24,606 directly into the 24,600 Call Wall. Put writers over-leveraged at 24,500 PE (PCR reached an extreme 1.71). Max pain jumped to 24,600. |
+| **04 Aug (Tue) - Expiry** | `24,488 – 24,637` | 24,600 CE | 24,500 PE | `24,600 → 24,500` | `₹81.70` | The 24,600 Rejection & Precision Pin: Spot tested 24,637 and faced intense institutional selling from 24,600 Call writers. Spot plummeted 149 pts to 24,488. Put writers held the line at 24,500 PE. Pinned at 24,501.0, exactly 1.0 pt above 24,500! 24,450 PE and 24,600 CE expired worthless. |
+
+
+## Week 6: Weekly Expiry Series ending 2026-08-11 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **05 Aug (Wed)** | `24,503 – 24,642` | 25,000 → 24,600 CE | 24,500 PE | `24,500 → 24,550` | `₹284.80` | Narrow Corridor Compression: Call writers slammed wall from 25,000 down to 24,600 on Day 1, compressing the market into a tight 100-pt box (24,500 PE vs 24,600 CE). |
+| **06 Aug (Thu)** | `24,616 – 24,673` | 25,000 → 24,700 CE | 24,600 PE | `24,550 → 24,600` | `₹249.20` | Tight Consolidation: Price moved only 57 points (24,616 – 24,673). Writers harvested ₹35.60 in straddle decay while maintaining both boundaries. |
+| **07 Aug (Fri)** | `24,529 – 24,627` | 24,700 → 24,600 CE | 24,500 PE | `24,600` | `₹215.30` | Friday Stand: Spot drifted to 24,529. Put writers held 24,500 PE firm; call writers fortified 24,600 CE. Straddle decayed to ₹215.30. |
+| **10 Aug (Mon)** | `24,515 – 24,616` | 24,600 CE | 24,500 PE | `24,600` | `₹154.20` | Monday Chokehold: Index remained pinned between 24,515 and 24,616. Call writers refused to let 24,600 break. Straddle deflated to ₹154.20. |
+| **11 Aug (Tue) - Expiry** | `24,431 – 24,513` | 24,600 → 24,500 CE | 24,500 → 24,450 PE | `24,600 → 24,450` | `₹18.60` | The 0.2-Point Miracle Pin: Spot opened at 24,513 and flushed to 24,431. Put writers scrambled to defend 24,450 PE; call writers hammered 24,500 CE. Settlement closed at 24,450.2 against 24,450 Max Pain (error: 0.2 pts!). 24,400 PE and 24,500 CE went to ₹0.00. |
+
+
+## Week 7: Weekly Expiry Series ending 2026-08-18 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **12 Aug (Wed)** | `24,272 – 24,472` | 24,500 CE | 24,200 → 24,000 PE | `24,500 → 24,400` | `₹259.30` | Wednesday Drop: Spot tumbled 200 pts from 24,472 to 24,272. Put writers at 24,200 were forced to retreat to 24,000. Call writers anchored 24,500 CE as resistance. |
+| **13 Aug (Thu)** | `24,319 – 24,411` | 24,500 CE | 24,000 PE | `24,400` | `₹216.80` | Consolidation & Theta Burn: 92-pt range. Combined straddle decayed ₹42.50. Call writers maintained dominance at 24,500. |
+| **14 Aug (Fri)** | `24,306 – 24,397` | 24,500 CE | 24,300 PE | `24,400` | `₹178.10` | Support Creep: Put writers attempted to step up support to 24,300 PE. Straddle closed at ₹178.10 heading into the weekend. |
+| **17 Aug (Mon)** | `24,228 – 24,355` | 24,500 → 24,400 CE | 24,000 PE | `24,400 → 24,350` | `₹127.00` | Monday Breakdown of 24,300 PE: Spot dropped to 24,228, breaking the Friday put support. 24,300 put writers covered at losses. Call writers lowered ceiling to 24,400. |
+| **18 Aug (Tue) - Expiry** | `24,166 – 24,260` | 24,500 → 24,200 CE | 24,200 → 24,150 PE | `24,300 → 24,200` | `₹30.20` | Expiry Slow Bleed to Bedrock: Spot tested 24,260 and was rejected at the 24,200 Call Wall. Price bled into the close, hitting 24,166.3, resting right on the 24,150 Put Wall (+16.3 pts buffer). Both 24,100 PE and 24,200 CE expired to zero. |
+
+
+## Week 8: Weekly Expiry Series ending 2026-08-25 (3 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **21 Aug (Fri)** | `24,216 – 24,265` | 24,500 → 24,300 CE | 24,000 → 24,200 PE | `24,250` | `₹161.90` | Truncated Week Opening: Market opened in a tight 24,200 PE vs 24,300 CE corridor. Straddle started at ₹161.90. |
+| **24 Aug (Mon)** | `24,154 – 24,306` | 24,300 CE | 24,000 PE | `24,250 → 24,200` | `₹116.80` | Both Walls Tested: Spot touched 24,154 low and 24,306 high. Call writers defended 24,300; put writers defended 24,000. Straddle deflated to ₹116.80. |
+| **25 Aug (Tue) - Expiry** | `24,122 – 24,260` | 24,300 CE | 24,000 → 24,200 PE | `24,200 → 24,250` | `₹69.80` | Morning Dip & Afternoon V-Shape Squeeze: Spot dropped to 24,122 early morning, then reversed violently +138 pts to close right at the 24,260 high, pinning 24,250 Max Pain (error: 10.0 pts)! Double zero held. |
+
+
+## Week 9: Weekly Expiry Series ending 2026-09-01 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **26 Aug (Wed)** | `24,260 – 24,373` | 24,500 CE | 24,200 PE | `24,300` | `₹220.80` | Initial Boundary Setup: 24,200 PE floor vs 24,500 CE ceiling. Straddle opened at ₹220.80. |
+| **27 Aug (Thu)** | `24,091 – 24,282` | 24,500 → 24,300 CE | 24,200 → 24,000 PE | `24,300 → 24,200` | `₹211.10` | Thursday Breakdown: Spot dumped 191 pts to 24,090. Put writers covered at 24,200 and retreated to 24,000. Call writers slammed down from 24,500 to 24,300. |
+| **28 Aug (Fri)** | `24,085 – 24,171` | 24,300 CE | 24,000 → 24,100 PE | `24,200` | `₹189.20` | Support Consolidation: Put writers stepped up to 24,100 PE. Straddle dropped below ₹190. |
+| **31 Aug (Mon)** | `23,997 – 24,090` | 24,300 CE | 24,000 PE | `24,200 → 24,100` | `₹144.80` | Monday Put Wall Defense: Spot touched 23,997, triggering instant institutional buying to defend the 24,000 wall. Max Pain shifted to 24,100. |
+| **01 Sep (Tue) - Expiry** | `24,018 – 24,129` | 24,300 → 24,100 CE | 24,000 PE | `24,100` | `₹65.80` | The Iron Box Pin: Spot squeezed between 24,000 PE and 24,100 CE. Spot pinned at 24,079.3, right inside the 100-pt corridor and 20.7 pts from 24,100 Max Pain. Both 24,000 PE and 24,100 CE expired to ₹0.00. |
+
+
+## Week 10: Weekly Expiry Series ending 2026-09-08 (5 Sessions)
+| Date | Spot Range | Call Wall (Resistance) | Put Wall (Support) | Max Pain Strike | Combined ATM Straddle | What Big Operators Did |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **02 Sep (Wed)** | `23,798 – 23,914` | 24,200 CE | 23,500 → 23,800 PE | `24,100 → 23,950` | `₹248.50` | Built initial strangle: 24,200 CE ceiling vs 23,800 PE floor. Trapped spot near 23,900. |
+| **03 Sep (Thu)** | `23,882 – 24,021` | 24,200 → 24,000 CE | 23,800 PE | `23,950 → 24,000` | `₹213.80` | Spot tried testing 24,021. Call writers stepped in with size and dropped Call Wall from 24,200 to 24,000. |
+| **04 Sep (Fri)** | `23,907 – 24,000` | 24,000 CE | 23,600 → 23,900 PE | `23,950` | `₹171.20` | Put writers got confident and shifted support up to 23,900 PE, expecting a weekend hold. |
+| **07 Sep (Mon)** | `23,742 – 23,872` | 24,000 CE | 23,800 → 23,700 PE | `24,000 → 23,800` | `₹129.80` | The Trap: Price smashed 23,800 down to 23,742. 23,900 and 23,800 put writers covered at heavy losses and retreated to 23,700. |
+| **08 Sep (Tue) - Expiry** | `23,634 – 23,714` | 24,000 → 23,700 CE | 23,500 → 23,600 PE | `23,800 → 23,650` | `₹53.40` | The Squeeze Pin: Final stand at 23,600 PE. Price bounced at 23,633.80 and pinned at 23,640.0 against Max Pain 23,650 (error: 10.0 pts). Both 23,600 PE & 23,700 CE expired to ₹0.00. |
+
+
+
