@@ -1,0 +1,34 @@
+{
+  "archive_id": "SESSION_2026-09-14",
+  "date": "2026-09-14",
+  "day_of_week": "Monday",
+  "archived_at": "2026-09-14T04:39:51.396Z",
+  "ist_timestamp": "10:09:51",
+  "captured_till_ist": "10:09:51",
+  "session_status": "IN_PROGRESS",
+  "save_trigger": "STARTUP_MARKET_HOURS_CATCHUP",
+  "indices": {
+    "nifty": {
+      "profile": null,
+      "candles_count": 0,
+      "last_candle_time": "N/A"
+    },
+    "banknifty": {
+      "profile": null,
+      "candles_count": 0,
+      "last_candle_time": "N/A"
+    }
+  },
+  "options_skew_gamma": {
+    "morningSkewNifty": 13.611031723349528,
+    "closingSkewNifty": 29.626032054395335,
+    "morningSkewBank": 4.118484963769715,
+    "closingSkewBank": 24.75624619134674,
+    "pcrDriftNifty": 16.02,
+    "pcrDriftBank": 20.64
+  },
+  "raw_candles": {
+    "nifty_1m": [],
+    "banknifty_1m": []
+  }
+}
