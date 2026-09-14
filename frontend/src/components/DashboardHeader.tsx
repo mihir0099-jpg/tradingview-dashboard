@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, X, Activity, RefreshCw, Landmark, TrendingUp, Layers, ShieldCheck, CheckCircle2, AlertTriangle, Wrench, Zap, Target, ArrowUpRight, ArrowDownRight, Award } from 'lucide-react';
+import { Search, X, Activity, RefreshCw, Landmark, TrendingUp, Layers, ShieldCheck, CheckCircle2, AlertTriangle, Wrench, Zap, Target, ArrowUpRight, ArrowDownRight, Award, Key, ExternalLink, Check } from 'lucide-react';
 import { getBackendUrl, setCustomBackendUrl } from '../utils/config';
 
 interface DashboardHeaderProps {
@@ -44,6 +44,16 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const [isWatchlistModalOpen, setIsWatchlistModalOpen] = useState(false);
   const [isMiningReplay, setIsMiningReplay] = useState(false);
 
+  // Zerodha Kite Data Bridge State
+  const [zerodhaStatus, setZerodhaStatus] = useState<any>(null);
+  const [isZerodhaModalOpen, setIsZerodhaModalOpen] = useState(false);
+  const [zerodhaMode, setZerodhaMode] = useState<'enctoken' | 'kiteconnect'>('enctoken');
+  const [enctokenInput, setEnctokenInput] = useState('');
+  const [apiKeyInput, setApiKeyInput] = useState('');
+  const [accessTokenInput, setAccessTokenInput] = useState('');
+  const [zerodhaConnecting, setZerodhaConnecting] = useState(false);
+  const [zerodhaMessage, setZerodhaMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
   const fetchHealth = async () => {
     try {
       const backendUrl = getBackendUrl();
@@ -70,15 +80,60 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     }
   };
 
+  const fetchZerodhaStatus = async () => {
+    try {
+      const backendUrl = getBackendUrl();
+      const res = await fetch(`${backendUrl}/api/zerodha/status`);
+      if (res.ok) {
+        const data = await res.json();
+        setZerodhaStatus(data);
+      }
+    } catch (err) {
+      // Backend offline or unreachable
+    }
+  };
+
   useEffect(() => {
     fetchHealth();
     fetchWatchlist();
+    fetchZerodhaStatus();
     const interval = setInterval(() => {
       fetchHealth();
       fetchWatchlist();
+      fetchZerodhaStatus();
     }, 45000); // Poll every 45s
     return () => clearInterval(interval);
   }, []);
+
+  const handleConnectZerodha = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setZerodhaConnecting(true);
+    setZerodhaMessage(null);
+    try {
+      const backendUrl = getBackendUrl();
+      const res = await fetch(`${backendUrl}/api/zerodha/connect`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          mode: zerodhaMode,
+          enctoken: enctokenInput,
+          apiKey: apiKeyInput,
+          accessToken: accessTokenInput
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setZerodhaStatus(data.config);
+        setZerodhaMessage({ type: 'success', text: `Verified successfully as ${data.config?.userName || data.config?.clientId}!` });
+      } else {
+        setZerodhaMessage({ type: 'error', text: 'Authentication failed. Please check your token.' });
+      }
+    } catch (err: any) {
+      setZerodhaMessage({ type: 'error', text: err.message || 'Connection error' });
+    } finally {
+      setZerodhaConnecting(false);
+    }
+  };
 
   const handleTriggerAutoHeal = async () => {
     setIsHealTriggering(true);
@@ -379,6 +434,30 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             <Zap size={14} color="#f59e0b" />
             <span style={{ fontSize: '12px', fontWeight: '800', color: '#fbbf24' }}>
               🎯 Tomorrow's Watchlist ({watchlistData?.tomorrowHighConvictionWatchlist?.length || 5})
+            </span>
+          </div>
+
+          {/* Zerodha Kite Data Connection Badge */}
+          <div 
+            onClick={() => setIsZerodhaModalOpen(true)}
+            title="Zerodha Kite Live Data Bridge (Click to configure & connect)"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px', 
+              background: zerodhaStatus?.connected ? 'rgba(16, 185, 129, 0.16)' : 'rgba(239, 68, 68, 0.12)', 
+              border: `1px solid ${zerodhaStatus?.connected ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.35)'}`, 
+              padding: '6px 12px', 
+              borderRadius: '8px', 
+              cursor: 'pointer',
+              userSelect: 'none',
+              boxShadow: zerodhaStatus?.connected ? '0 0 10px rgba(16, 185, 129, 0.2)' : 'none',
+              transition: 'all 0.2s'
+            }}
+          >
+            <span style={{ fontSize: '13px' }}>🪁</span>
+            <span style={{ fontSize: '12px', fontWeight: '800', color: zerodhaStatus?.connected ? '#10b981' : '#f87171' }}>
+              {zerodhaStatus?.connected ? `Zerodha 🟢 (${zerodhaStatus.clientId || 'Live'})` : 'Zerodha Connect'}
             </span>
           </div>
         </div>
@@ -1154,6 +1233,245 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
                 <span>{isMiningReplay ? 'Replaying 212 Charts...' : '⚡ Re-Analyze All 212 F&O Charts'}</span>
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Zerodha Kite Data Connection Modal */}
+      {isZerodhaModalOpen && (
+        <div 
+          onClick={() => setIsZerodhaModalOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            background: 'rgba(3, 7, 18, 0.85)',
+            backdropFilter: 'blur(10px)',
+            zIndex: 10001,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '20px',
+            boxSizing: 'border-box'
+          }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: '100%',
+              maxWidth: '600px',
+              backgroundColor: '#0d1117',
+              border: '1px solid rgba(239, 68, 68, 0.35)',
+              borderRadius: '16px',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.85), 0 0 30px rgba(239, 68, 68, 0.1)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+              animation: 'fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+            }}
+          >
+            {/* Header */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '18px 24px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', background: 'linear-gradient(90deg, rgba(239, 68, 68, 0.08), rgba(0, 0, 0, 0))' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div style={{ background: 'linear-gradient(135deg, #ef4444, #b91c1c)', padding: '8px', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 15px rgba(239, 68, 68, 0.4)' }}>
+                  <span style={{ fontSize: '18px' }}>🪁</span>
+                </div>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: '#fff', letterSpacing: '-0.3px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    Zerodha Kite Market Data Bridge
+                  </h3>
+                  <p style={{ margin: 0, fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
+                    Stream live ticks, real-time depth, and candles directly from Zerodha
+                  </p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setIsZerodhaModalOpen(false)}
+                style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', padding: '6px', borderRadius: '6px', display: 'flex' }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            {/* Status Banner */}
+            <div style={{ padding: '14px 24px', background: 'rgba(255, 255, 255, 0.02)', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div>
+                <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Connection Status</div>
+                <div style={{ fontSize: '14px', fontWeight: '800', color: zerodhaStatus?.connected ? '#10b981' : '#f87171', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: zerodhaStatus?.connected ? '#10b981' : '#ef4444' }} />
+                  {zerodhaStatus?.connected ? `Connected as ${zerodhaStatus.userName || zerodhaStatus.clientId} (${zerodhaStatus.clientId})` : 'Disconnected (Session Token Required)'}
+                </div>
+              </div>
+              {zerodhaStatus?.lastVerified && (
+                <span style={{ fontSize: '10px', color: 'var(--text-muted)' }}>
+                  Verified: {new Date(zerodhaStatus.lastVerified).toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' })} IST
+                </span>
+              )}
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleConnectZerodha} style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {/* Mode Selector */}
+              <div style={{ display: 'flex', background: 'rgba(255, 255, 255, 0.04)', borderRadius: '8px', padding: '4px', gap: '4px' }}>
+                <button
+                  type="button"
+                  onClick={() => setZerodhaMode('enctoken')}
+                  style={{
+                    flex: 1,
+                    padding: '8px',
+                    borderRadius: '6px',
+                    border: 'none',
+                    background: zerodhaMode === 'enctoken' ? '#ef4444' : 'transparent',
+                    color: '#fff',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    cursor: 'pointer'
+                  }}
+                >
+                  ⚡ Direct Web Session (enctoken) - Free
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setZerodhaMode('kiteconnect')}
+                  style={{
+                    flex: 1,
+                    padding: '8px',
+                    borderRadius: '6px',
+                    border: 'none',
+                    background: zerodhaMode === 'kiteconnect' ? '#ef4444' : 'transparent',
+                    color: '#fff',
+                    fontSize: '12px',
+                    fontWeight: '700',
+                    cursor: 'pointer'
+                  }}
+                >
+                  🔑 Official Kite Connect API
+                </button>
+              </div>
+
+              {zerodhaMode === 'enctoken' ? (
+                <>
+                  <div style={{ background: 'rgba(239, 68, 68, 0.06)', border: '1px solid rgba(239, 68, 68, 0.2)', borderRadius: '8px', padding: '12px', fontSize: '12px', color: 'var(--text-secondary)', lineHeight: '1.5' }}>
+                    <div style={{ fontWeight: '700', color: '#f87171', marginBottom: '4px' }}>📌 How to get your enctoken (Free in 10 seconds):</div>
+                    1. Open <a href="https://kite.zerodha.com" target="_blank" rel="noreferrer" style={{ color: '#60a5fa' }}>kite.zerodha.com</a> and log in.<br />
+                    2. Press <b>F12</b> &rarr; go to <b>Application</b> (or Storage) &rarr; <b>Cookies</b> &rarr; <b>kite.zerodha.com</b>.<br />
+                    3. Find the cookie named <b>enctoken</b>, copy its value and paste it below:
+                  </div>
+
+                  <div>
+                    <label style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: '700', display: 'block', marginBottom: '6px' }}>
+                      Zerodha `enctoken` Cookie Value:
+                    </label>
+                    <input
+                      type="password"
+                      value={enctokenInput}
+                      onChange={(e) => setEnctokenInput(e.target.value)}
+                      placeholder="Paste your enctoken here (e.g. k5J8...)"
+                      style={{
+                        width: '100%',
+                        padding: '10px 14px',
+                        borderRadius: '8px',
+                        border: '1px solid var(--border-color)',
+                        background: 'var(--bg-input)',
+                        color: '#fff',
+                        fontSize: '13px',
+                        outline: 'none',
+                        boxSizing: 'border-box'
+                      }}
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <label style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: '700', display: 'block', marginBottom: '6px' }}>
+                      Kite Connect API Key:
+                    </label>
+                    <input
+                      type="text"
+                      value={apiKeyInput}
+                      onChange={(e) => setApiKeyInput(e.target.value)}
+                      placeholder="e.g. abc123xyz"
+                      style={{
+                        width: '100%',
+                        padding: '10px 14px',
+                        borderRadius: '8px',
+                        border: '1px solid var(--border-color)',
+                        background: 'var(--bg-input)',
+                        color: '#fff',
+                        fontSize: '13px',
+                        outline: 'none',
+                        boxSizing: 'border-box'
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <label style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: '700', display: 'block', marginBottom: '6px' }}>
+                      Kite Connect Access Token:
+                    </label>
+                    <input
+                      type="password"
+                      value={accessTokenInput}
+                      onChange={(e) => setAccessTokenInput(e.target.value)}
+                      placeholder="Daily access_token"
+                      style={{
+                        width: '100%',
+                        padding: '10px 14px',
+                        borderRadius: '8px',
+                        border: '1px solid var(--border-color)',
+                        background: 'var(--bg-input)',
+                        color: '#fff',
+                        fontSize: '13px',
+                        outline: 'none',
+                        boxSizing: 'border-box'
+                      }}
+                    />
+                  </div>
+                </>
+              )}
+
+              {/* Message Banner */}
+              {zerodhaMessage && (
+                <div style={{
+                  padding: '10px 14px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  fontWeight: '700',
+                  background: zerodhaMessage.type === 'success' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                  color: zerodhaMessage.type === 'success' ? '#10b981' : '#f87171',
+                  border: `1px solid ${zerodhaMessage.type === 'success' ? 'rgba(16, 185, 129, 0.3)' : 'rgba(239, 68, 68, 0.3)'}`
+                }}>
+                  {zerodhaMessage.text}
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={zerodhaConnecting}
+                style={{
+                  padding: '12px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #ef4444, #dc2626)',
+                  color: '#fff',
+                  fontSize: '13px',
+                  fontWeight: '800',
+                  cursor: zerodhaConnecting ? 'not-allowed' : 'pointer',
+                  opacity: zerodhaConnecting ? 0.7 : 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  boxShadow: '0 4px 15px rgba(239, 68, 68, 0.3)'
+                }}
+              >
+                {zerodhaConnecting ? <RefreshCw size={15} className="animate-spin" /> : <Key size={15} />}
+                <span>{zerodhaConnecting ? 'Verifying Session...' : '⚡ Verify & Connect Zerodha'}</span>
+              </button>
+            </form>
           </div>
         </div>
       )}

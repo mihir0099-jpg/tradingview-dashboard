@@ -14,6 +14,7 @@ import { computeStocksMovingOverview } from './stocksMoving.js';
 import { runTabHealthAudit } from './auto_heal_tabs.js';
 import { executeDailySelfEvolution } from './autonomous_market_brain.js';
 import { executeDailyChartReplay } from './daily_full_chart_miner.js';
+import zerodhaBridge from './zerodha_data_bridge.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -5200,6 +5201,44 @@ app.post('/api/system/trigger-chart-replay', async (req, res) => {
     console.log('[Chart Miner] 📈 Triggering full 212 F&O chart replay & intelligence cycle...');
     const result = await executeDailyChartReplay();
     res.json({ success: true, replay: result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Zerodha Kite Data Bridge Endpoints ---
+app.get('/api/zerodha/status', (req, res) => {
+  res.json(zerodhaBridge.getStatus());
+});
+
+app.post('/api/zerodha/connect', async (req, res) => {
+  try {
+    const { mode, enctoken, apiKey, accessToken } = req.body || {};
+    const result = await zerodhaBridge.setCredentials({ mode, enctoken, apiKey, accessToken });
+    res.json(result);
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/zerodha/quote', async (req, res) => {
+  try {
+    const symbols = req.query.symbols ? req.query.symbols.split(',') : (req.query.symbol ? [req.query.symbol] : ['NSE:NIFTY 50']);
+    const quotes = await zerodhaBridge.getQuotes(symbols);
+    res.json({ success: true, quotes });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/zerodha/candles', async (req, res) => {
+  try {
+    const { token, interval = 'minute', from, to } = req.query;
+    if (!token || !from || !to) {
+      return res.status(400).json({ error: 'Missing token, from, or to query parameter' });
+    }
+    const candles = await zerodhaBridge.getHistoricalCandles(token, interval, from, to);
+    res.json({ success: true, candles });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
