@@ -2,9 +2,9 @@
   {
     "date": "2026-09-14",
     "day_of_week": "Monday",
-    "captured_till": "10:45:43",
-    "session_status": "IN_PROGRESS",
-    "save_trigger": "INTRADAY_5MIN_AUTO",
+    "captured_till": "15:47:06",
+    "session_status": "COMPLETE",
+    "save_trigger": "CLI_EXECUTION",
     "nifty_open": null,
     "nifty_close": null,
     "nifty_change_pts": null,

@@ -1,0 +1,53 @@
+{
+  "activePrediction": {
+    "predictionDate": "2026-09-14",
+    "predictionTimeIST": "11:00 AM",
+    "targetExpiryDate": "2026-09-15",
+    "index": "NIFTY",
+    "spotAtPrediction": 23398.1,
+    "morningOpen": 23477.8,
+    "predictedPinCenter": 23450.0,
+    "predictedPinRange": {
+      "min": 23434.4,
+      "max": 23465.6,
+      "description": "15.6-point Max Pain 1-Sigma error window"
+    },
+    "predictedDoubleZeroCorridor": {
+      "putWallFloor": 23300,
+      "callWallCeiling": 23500,
+      "rule": "Put Wall <= Final Settlement <= Call Wall (100% historical hold rate)"
+    },
+    "projectedExtremes": {
+      "projectedDayLow": "23319 to 23335 (+19.0 pt Put Wall buffer bounce)",
+      "projectedDayHigh": "23485 to 23510 (23,500 Call Wall resistance cap)"
+    },
+    "predictedStrikesToExpireZero": {
+      "calls": [
+        23500,
+        23550,
+        23600,
+        23650,
+        23700,
+        23800
+      ],
+      "puts": [
+        23300,
+        23250,
+        23200,
+        23100,
+        23000
+      ]
+    },
+    "bankNiftyPrediction": {
+      "spotAtPrediction": 56606.55,
+      "predictedCorridor": "56300 to 56800",
+      "putWall": 56000,
+      "callWall": 57000
+    },
+    "verified": false,
+    "actualSettlement": null,
+    "actualSettlementErrorPts": null,
+    "doubleZeroCorridorHeld": null
+  },
+  "pastPredictions": []
+}

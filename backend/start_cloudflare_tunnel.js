@@ -31,14 +31,24 @@ function startTunnel() {
     const text = data.toString();
     logStream.write(text);
     
-    // Look for https://*.trycloudflare.com
-    const match = text.match(/https:\/\/[a-zA-Z0-9-]+\.trycloudflare\.com/);
-    if (match) {
+    // Look for https://*.trycloudflare.com, ignoring internal api.trycloudflare.com
+    const match = text.match(/https:\/\/(?!api\.)[a-zA-Z0-9-]+\.trycloudflare\.com/);
+    if (match && !match[0].includes('api.trycloudflare.com')) {
       const url = match[0];
       if (lastPublishedUrl !== url) {
         lastPublishedUrl = url;
         fs.writeFileSync(urlFile, url, 'utf8');
         fs.writeFileSync(activeFile, url, 'utf8');
+
+        // Write live_backend.json locally for instant frontend auto-discovery
+        const jsonPayload = JSON.stringify({ backendUrl: url, updatedAt: Date.now() }, null, 2);
+        try {
+          const docsDir = path.join(__dirname, '../docs');
+          const pubDir = path.join(__dirname, '../frontend/public');
+          if (fs.existsSync(docsDir)) fs.writeFileSync(path.join(docsDir, 'live_backend.json'), jsonPayload, 'utf8');
+          if (fs.existsSync(pubDir)) fs.writeFileSync(path.join(pubDir, 'live_backend.json'), jsonPayload, 'utf8');
+        } catch (e) {}
+
         console.log('====================================================');
         console.log('[Cloudflare Tunnel] ACTIVE PUBLIC URL: ' + url);
         console.log('====================================================');

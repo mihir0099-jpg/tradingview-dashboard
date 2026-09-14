@@ -2,11 +2,11 @@
   "archive_id": "SESSION_2026-09-14",
   "date": "2026-09-14",
   "day_of_week": "Monday",
-  "archived_at": "2026-09-14T05:15:43.707Z",
-  "ist_timestamp": "10:45:43",
-  "captured_till_ist": "10:45:43",
-  "session_status": "IN_PROGRESS",
-  "save_trigger": "INTRADAY_5MIN_AUTO",
+  "archived_at": "2026-09-14T10:17:06.136Z",
+  "ist_timestamp": "15:47:06",
+  "captured_till_ist": "15:47:06",
+  "session_status": "COMPLETE",
+  "save_trigger": "CLI_EXECUTION",
   "indices": {
     "nifty": {
       "profile": null,

@@ -365,13 +365,20 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           <div 
             onClick={() => {
               const current = getBackendUrl();
-              const next = window.prompt('Active Backend API & WebSocket URL:\n(Leave empty to reset to default)', current);
+              const next = window.prompt(
+                'Active Backend API & WebSocket Endpoint:\n' +
+                '• Leave empty / type "auto" for Auto-Detection\n' +
+                '• Type "local" for http://localhost:3002\n' +
+                '• Type "ngrok" for https://skimmer-savage-dipped.ngrok-free.dev\n\n' +
+                'Current active endpoint:',
+                current || 'http://localhost:3002'
+              );
               if (next !== null) {
                 setCustomBackendUrl(next);
                 window.location.reload();
               }
             }}
-            title={`Backend: ${getBackendUrl() || 'Auto'} (Tap to edit)`}
+            title={`Backend: ${getBackendUrl() || 'Auto'} (Tap to configure/reset)`}
             style={{ 
               display: 'flex', 
               alignItems: 'center', 

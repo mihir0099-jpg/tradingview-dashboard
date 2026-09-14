@@ -42,6 +42,7 @@ function Test-HttpOk ($url, $timeoutMs = 4000) {
     try {
         $req = [System.Net.WebRequest]::Create($url)
         $req.Timeout = $timeoutMs
+        try { $req.Headers.Add("ngrok-skip-browser-warning", "true") } catch {}
         $res = $req.GetResponse()
         $status = [int]$res.StatusCode
         $res.Close()

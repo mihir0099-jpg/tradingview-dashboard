@@ -425,6 +425,31 @@ class WeeklyStrikeDecayLearner {
     try {
       fs.appendFileSync(LEARNINGS_FILE, ruleLog, 'utf8');
       console.log(`[Strike Zero Tracker] ✅ Cycle ${cycle.cycleId} finalized! Absorbed new empirical writing boundaries.`);
+
+      // 🔮 Check and verify active prediction scorecard
+      const predPath = path.join(__dirname, 'data', 'expiry_predictions.json');
+      if (fs.existsSync(predPath)) {
+        const pData = JSON.parse(fs.readFileSync(predPath, 'utf8'));
+        if (pData.activePrediction && pData.activePrediction.targetExpiryDate === cycle.expiryDate) {
+          const pred = pData.activePrediction;
+          pred.verified = true;
+          pred.actualSettlement = finalNiftySpot;
+          pred.actualSettlementErrorPts = parseFloat(Math.abs(finalNiftySpot - pred.predictedPinCenter).toFixed(2));
+          pred.doubleZeroCorridorHeld = (finalNiftySpot >= pred.predictedDoubleZeroCorridor.putWallFloor && finalNiftySpot <= pred.predictedDoubleZeroCorridor.callWallCeiling);
+          
+          pData.pastPredictions.push(pred);
+          pData.activePrediction = null;
+          fs.writeFileSync(predPath, JSON.stringify(pData, null, 2), 'utf8');
+
+          const verLog = `\n[EXPIRY PREDICTION SCORECARD - ${cycle.expiryDate}]\n` +
+            `* Target: NIFTY Predicted Pin ${pred.predictedPinCenter} | Actual Settlement: ${finalNiftySpot}\n` +
+            `* Pin Error: ${pred.actualSettlementErrorPts} pts (Within 15.6 pt Target Range: ${pred.actualSettlementErrorPts <= 15.6 ? 'YES ✅' : 'NO ❌'})\n` +
+            `* Double-Zero Corridor [${pred.predictedDoubleZeroCorridor.putWallFloor} - ${pred.predictedDoubleZeroCorridor.callWallCeiling}]: ${pred.doubleZeroCorridorHeld ? 'HELD PERFECTLY (100% DOUBLE ZERO) ✅' : 'BREACHED ❌'}\n`;
+
+          fs.appendFileSync(LEARNINGS_FILE, verLog, 'utf8');
+          console.log(`[Strike Zero Tracker] 🎯 Expiry prediction for ${cycle.expiryDate} verified! Pin Error: ${pred.actualSettlementErrorPts} pts.`);
+        }
+      }
     } catch(e) {
       console.error('[Strike Zero Tracker] Error appending to learnings file:', e.message);
     }

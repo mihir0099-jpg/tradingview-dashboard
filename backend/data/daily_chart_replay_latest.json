@@ -1,13 +1,13 @@
 {
-  "timestamp": 1789361728225,
+  "timestamp": 1789389199008,
   "dateStr": "2026-09-14",
-  "timeStr": "10:25:28 IST",
+  "timeStr": "18:03:18 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
       "spot": 23398.1,
       "open": 23270.9,
-      "dayHigh": 23435.3,
+      "dayHigh": 23398.1,
       "dayLow": 23398.1,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
@@ -39,10 +39,10 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 37,
+    "coilingDematCount": 39,
     "volumeBreakoutCount": 15,
     "distributionTrapCount": 7,
-    "swingLowFormations": 37,
+    "swingLowFormations": 39,
     "swingHighFormations": 7
   },
   "tomorrowHighConvictionWatchlist": [
@@ -74,7 +74,7 @@
       "catalystRationale": "Range compressed to 35.7% of ATR with 80% Demat delivery. Smart money hoarding at Demand Floor (₹1348). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
-      "rank": 3,
+      "rank": 4,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
       "symbol": "PAGEIND",
@@ -83,52 +83,25 @@
       "trade": {
         "action": "BUY PAGEIND 35400 CE / Spot",
         "spotEntry": 35365,
-        "spotSL": 34788.97,
-        "spotRiskPts": 576.03,
-        "spotTarget1": 36286.65,
-        "spotTarget2": 36977.88,
+        "spotSL": 34806.65,
+        "spotRiskPts": 558.35,
+        "spotTarget1": 36258.36,
+        "spotTarget2": 36928.38,
         "atmStrike": 35400,
         "lotSize": 500,
-        "riskPerLotINR": 288015,
-        "target1GainPerLotINR": 460825,
-        "target2GainPerLotINR": 806440,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹34788.97",
+        "riskPerLotINR": 279175,
+        "target1GainPerLotINR": 446680,
+        "target2GainPerLotINR": 781690,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹34806.65",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 75,
-      "catalystRationale": "Range compressed to 38.6% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹34960). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 73,
+      "catalystRationale": "Range compressed to 43% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹34960). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
-      "rank": 4,
-      "type": "LONG_DEMAT_COIL_EXPANSION",
-      "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "HEROMOTOCO",
-      "name": "Hero MotoCorp Ltd.",
-      "sector": "Automobile",
-      "trade": {
-        "action": "BUY HEROMOTOCO 5200 CE / Spot",
-        "spotEntry": 5221.5,
-        "spotSL": 5141.24,
-        "spotRiskPts": 80.26,
-        "spotTarget1": 5349.92,
-        "spotTarget2": 5446.23,
-        "atmStrike": 5200,
-        "lotSize": 150,
-        "riskPerLotINR": 12039,
-        "target1GainPerLotINR": 19263,
-        "target2GainPerLotINR": 33709,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹5141.24",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
-        "winRatePct": 82.5
-      },
-      "confidencePct": 71,
-      "catalystRationale": "Range compressed to 44.3% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹5167). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
-    },
-    {
-      "rank": 4,
+      "rank": 3,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
       "symbol": "COALINDIA",
@@ -155,7 +128,7 @@
       "catalystRationale": "Tested 20-day Resistance (₹436.3) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     },
     {
-      "rank": 5,
+      "rank": 4,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
       "symbol": "APOLLOHOSP",
@@ -199,9 +172,16 @@
         "floor": 511.4
       },
       {
+        "symbol": "IGL",
+        "price": 151.98,
+        "compPct": 41,
+        "delivPct": 86,
+        "floor": 146.22
+      },
+      {
         "symbol": "PAGEIND",
         "price": 35365,
-        "compPct": 38.6,
+        "compPct": 43,
         "delivPct": 92,
         "floor": 34960
       },
@@ -211,13 +191,6 @@
         "compPct": 44.3,
         "delivPct": 92,
         "floor": 5167
-      },
-      {
-        "symbol": "IGL",
-        "price": 151.98,
-        "compPct": 44.8,
-        "delivPct": 84,
-        "floor": 146.22
       }
     ],
     "volumeDrives": [
@@ -331,7 +304,7 @@
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "37 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "39 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

@@ -77,31 +77,54 @@ class TVWebSocketStreamer {
     }, 10000);
   }
 
+  private connectTimeout: any = null;
+
   private stopHeartbeat() {
     if (this.pingInterval) {
       clearInterval(this.pingInterval);
       this.pingInterval = null;
     }
+    if (this.connectTimeout) {
+      clearTimeout(this.connectTimeout);
+      this.connectTimeout = null;
+    }
   }
 
   private fetchHttpCandlesSnapshot(symbol: string, timeframe: string) {
     const apiBase = getBackendUrl();
+    const candidateBases = [
+      apiBase,
+      (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) ? 'http://localhost:3002' : '',
+      'https://skimmer-savage-dipped.ngrok-free.dev'
+    ].filter(Boolean);
 
-    fetch(`${apiBase}/api/chart/candles?symbol=${encodeURIComponent(symbol)}&timeframe=${encodeURIComponent(timeframe)}`)
-      .then(res => res.json())
-      .then(data => {
-        if (data && data.type === 'data' && this.onDataCallback) {
-          this.onDataCallback(data);
-          if (this.status === 'connecting') {
-            this.setStatus('connected');
-          }
-        }
+    const tryFetch = (index: number) => {
+      if (index >= candidateBases.length) return;
+      const base = candidateBases[index].replace(/\/$/, '');
+      fetch(`${base}/api/chart/candles?symbol=${encodeURIComponent(symbol)}&timeframe=${encodeURIComponent(timeframe)}`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
       })
-      .catch(() => {});
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+          if (data && data.type === 'data' && this.onDataCallback) {
+            this.onDataCallback(data);
+            if (this.status !== 'connected') {
+              this.setStatus('connected');
+            }
+          } else {
+            tryFetch(index + 1);
+          }
+        })
+        .catch(() => {
+          tryFetch(index + 1);
+        });
+    };
+
+    tryFetch(0);
   }
 
   public connect() {
-    if (this.ws && (this.ws.readyState === WebSocket.OPEN || this.ws.readyState === WebSocket.CONNECTING)) {
+    if (this.ws && this.ws.readyState === WebSocket.OPEN) {
       return;
     }
 
@@ -112,13 +135,34 @@ class TVWebSocketStreamer {
       return;
     }
 
+    // Clean up any stale connecting socket
+    if (this.ws) {
+      try { this.ws.close(); } catch (e) {}
+      this.ws = null;
+    }
+
     this.setStatus('connecting');
     console.log(`Connecting to backend WebSocket at ${this.url}...`);
 
     try {
       this.ws = new WebSocket(this.url);
 
+      // Enforce 4-second timeout on initial handshake to avoid getting stuck in CONNECTING
+      if (this.connectTimeout) clearTimeout(this.connectTimeout);
+      this.connectTimeout = setTimeout(() => {
+        if (this.ws && this.ws.readyState === WebSocket.CONNECTING) {
+          console.warn(`[tvStreamer] WebSocket handshake timed out on ${this.url}. Trying next candidate...`);
+          try { this.ws.close(); } catch (e) {}
+          this.ws = null;
+          this.triggerReconnect();
+        }
+      }, 4000);
+
       this.ws.onopen = () => {
+        if (this.connectTimeout) {
+          clearTimeout(this.connectTimeout);
+          this.connectTimeout = null;
+        }
         console.log(`WebSocket connection established on ${this.url}`);
         this.setStatus('connected');
         this.startHeartbeat();
@@ -142,6 +186,9 @@ class TVWebSocketStreamer {
             if (this.onDataCallback) {
               this.onDataCallback(payload);
             }
+            if (this.status !== 'connected') {
+              this.setStatus('connected');
+            }
           } else if (payload.type === 'error') {
             console.error('WebSocket Error message from server:', payload.message);
             if (this.onErrorCallback) {
@@ -156,23 +203,21 @@ class TVWebSocketStreamer {
       this.ws.onclose = () => {
         console.log(`WebSocket connection closed (${this.url})`);
         this.stopHeartbeat();
-        this.setStatus('disconnected');
         this.ws = null;
         this.triggerReconnect();
       };
 
       this.ws.onerror = (err) => {
-        console.error('WebSocket connection error:', err);
+        console.error('WebSocket connection error on ' + this.url, err);
         this.stopHeartbeat();
-        this.setStatus('disconnected');
         if (this.onErrorCallback) {
           this.onErrorCallback('WebSocket server connection error');
         }
+        this.triggerReconnect();
       };
     } catch (err) {
       console.error('Failed to create WebSocket client:', err);
       this.stopHeartbeat();
-      this.setStatus('disconnected');
       this.triggerReconnect();
     }
   }
@@ -187,9 +232,9 @@ class TVWebSocketStreamer {
         this.currentUrlIndex = (this.currentUrlIndex + 1) % this.wsUrls.length;
         this.url = this.wsUrls[this.currentUrlIndex];
       }
-      console.log(`Attempting to reconnect with ${this.url}...`);
+      console.log(`Attempting to reconnect with candidate #${this.currentUrlIndex}: ${this.url}...`);
       this.connect();
-    }, 3000);
+    }, 1500);
   }
 
   private sendSubscription(symbol: string, timeframe: string) {
