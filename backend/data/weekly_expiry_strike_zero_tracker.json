@@ -19,6 +19,20 @@
         "time": "10:19:12 am",
         "niftySpot": 23398.1,
         "bankSpot": 56606.55
+      },
+      {
+        "date": "2026-09-14",
+        "day": "Mon",
+        "time": "10:23:38 am",
+        "niftySpot": 23398.1,
+        "bankSpot": 56606.55
+      },
+      {
+        "date": "2026-09-14",
+        "day": "Mon",
+        "time": "10:23:55 am",
+        "niftySpot": 23398.1,
+        "bankSpot": 56606.55
       }
     ],
     "niftyStrikes": [
@@ -1172,7 +1186,9 @@
         "breached": false,
         "lowestLtp": 0.85
       }
-    ]
+    ],
+    "bankExpiryDate": "2026-09-29",
+    "expirySource": "ONLINE_EXCHANGE_CONTRACTS"
   },
   "completedCycles": [],
   "cumulativeStats": {
@@ -1183,5 +1199,18 @@
     "safeDistanceNiftyPts": 180,
     "safeDistanceBankNiftyPts": 650
   },
-  "lastUpdated": "2026-09-14 10:19:12 am"
+  "lastUpdated": "2026-09-14 10:23:55 am",
+  "onlineExpiriesCache": {
+    "NIFTY": [
+      "2026-09-15",
+      "2026-09-29",
+      "2026-10-06",
+      "2026-12-29"
+    ],
+    "BANKNIFTY": [
+      "2026-09-29",
+      "2026-10-27"
+    ],
+    "lastFetched": "2026-09-14T04:53:56.331Z"
+  }
 }
