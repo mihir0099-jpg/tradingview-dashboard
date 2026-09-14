@@ -15,6 +15,7 @@ import { runTabHealthAudit } from './auto_heal_tabs.js';
 import { executeDailySelfEvolution } from './autonomous_market_brain.js';
 import { executeDailyChartReplay } from './daily_full_chart_miner.js';
 import zerodhaBridge from './zerodha_data_bridge.js';
+import weeklyStrikeLearner from './weekly_strike_decay_learner.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -3023,6 +3024,53 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
   }
 });
 
+// ====================================================================
+// 🎯 40-Strike Weekly Expiry Decay & Zero-Settlement Learner Endpoints
+// ====================================================================
+app.get('/api/options/expiry-decay-tracker', (req, res) => {
+  try {
+    const status = weeklyStrikeLearner.getStatus();
+    res.json(status);
+  } catch (err) {
+    console.error('[Decay Tracker Status Error]:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.get('/api/options/expiry-decay-grid', (req, res) => {
+  try {
+    const symbol = (req.query.symbol || 'NIFTY').toUpperCase();
+    const grid = weeklyStrikeLearner.getActiveGrid(symbol);
+    const status = weeklyStrikeLearner.getStatus();
+    res.json({
+      symbol,
+      activeCycle: status.activeCycle,
+      strikesCount: grid.length,
+      grid
+    });
+  } catch (err) {
+    console.error('[Decay Tracker Grid Error]:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/api/options/trigger-decay-tracker', async (req, res) => {
+  try {
+    const liveIndices = await fetchLiveMarketIndices();
+    const niftySpot = liveIndices.nifty?.spot || lastPriceValue.NIFTY || 23486.75;
+    const bankSpot = liveIndices.banknifty?.spot || lastPriceValue.BANKNIFTY || 56488.40;
+    const result = await weeklyStrikeLearner.recordDailySnapshot(niftySpot, bankSpot);
+    res.json({
+      success: true,
+      result,
+      status: weeklyStrikeLearner.getStatus()
+    });
+  } catch (err) {
+    console.error('[Trigger Decay Tracker Error]:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Endpoint to retrieve Live Weekly Option Selling & Strike Decay Engine metrics
 app.get('/api/options/weekly-selling', async (req, res) => {
   try {
@@ -5626,4 +5674,39 @@ function startAutonomousChartReplayScheduler() {
 }
 
 startAutonomousChartReplayScheduler();
+
+// ====================================================================
+// 🎯 Autonomous 15:40 IST 40-Strike Weekly Expiry Decay & Zero-Settlement Scheduler
+// ====================================================================
+let lastDecayTrackerDate = null;
+function startAutonomousDecayTrackerScheduler() {
+  console.log('[Decay Tracker] 🕒 Initializing Autonomous 15:40 IST 40-Strike Weekly Expiry Decay Scheduler...');
+
+  // Check every 30 seconds for 15:40 IST
+  setInterval(async () => {
+    try {
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000;
+      const istDate = new Date(now.getTime() + istOffset);
+      const istHours = istDate.getUTCHours();
+      const istMinutes = istDate.getUTCMinutes();
+      const todayStr = istDate.toISOString().split('T')[0];
+      const isPast1540 = (istHours === 15 && istMinutes >= 40) || (istHours > 15);
+
+      if (isPast1540 && lastDecayTrackerDate !== todayStr) {
+        console.log(`[Decay Tracker Scheduler] ⏰ 15:40 IST Reached (${istHours}:${istMinutes} IST)! Recording daily 40-strike snapshot & zero-settlement for ${todayStr}...`);
+        lastDecayTrackerDate = todayStr;
+        const liveIndices = await fetchLiveMarketIndices();
+        const niftySpot = liveIndices.nifty?.spot || lastPriceValue.NIFTY || 23486.75;
+        const bankSpot = liveIndices.banknifty?.spot || lastPriceValue.BANKNIFTY || 56488.40;
+        await weeklyStrikeLearner.recordDailySnapshot(niftySpot, bankSpot);
+      }
+    } catch (err) {
+      console.error('[Decay Tracker Scheduler Error]', err.message);
+    }
+  }, 30 * 1000);
+}
+
+startAutonomousDecayTrackerScheduler();
+
 

@@ -109,6 +109,20 @@ while ($true) {
         $cfConsecutiveFails = 0
     }
 
+    # Autonomous 3:40 PM IST 40-Strike Weekly Expiry Decay & Zero-Settlement Trigger
+    try {
+        $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
+        $todayKey = $istNow.ToString("yyyy-MM-dd")
+        if ($istNow.Hour -eq 15 -and $istNow.Minute -ge 40 -and $global:lastDecayTrackerRun -ne $todayKey) {
+            Write-Host "[Watchdog 15:40 IST] 🎯 Auto-triggering 40-Strike Weekly Expiry Decay & Zero-Settlement Learner for $todayKey..." -ForegroundColor Yellow
+            $resp = Invoke-RestMethod -Uri "http://localhost:3002/api/options/trigger-decay-tracker" -Method Post -TimeoutSec 10 -ErrorAction SilentlyContinue
+            if ($resp) {
+                $global:lastDecayTrackerRun = $todayKey
+                Write-Host "[Watchdog 15:40 IST] 40-Strike Expiry Decay Learner snapshot recorded successfully!" -ForegroundColor Green
+            }
+        }
+    } catch {}
+
     # Autonomous 3:45 PM IST EOD Auto-Learner Trigger
     try {
         $istNow = [System.DateTime]::UtcNow.AddHours(5.5)

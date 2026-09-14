@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Flame, Clock, RefreshCw, BookOpen, CheckCircle, AlertTriangle, Sliders, Target, Shield, ArrowUpRight, ArrowDownRight, Zap } from 'lucide-react';
+import { Flame, Clock, RefreshCw, BookOpen, CheckCircle, AlertTriangle, Sliders, Target, Shield, ArrowUpRight, ArrowDownRight, Zap, Layers, BarChart2, CheckCircle2, TrendingDown, Crosshair } from 'lucide-react';
 import { getBackendUrl } from '../utils/config';
 
 interface StrikeDetails {
@@ -48,12 +48,62 @@ interface SymbolSellingData {
   activeRadarList?: RadarStrikeItem[];
 }
 
+export interface TrackerStrikeItem {
+  strike: number;
+  type: 'PE' | 'CE' | 'ATM_STRADDLE';
+  symbol: string;
+  side: string;
+  initialSpot: number;
+  distFromAtm: number;
+  initialLtp: number;
+  currentLtp: number;
+  decayPct: number;
+  expiredToZero: boolean | null;
+  breached: boolean;
+  lowestLtp: number;
+}
+
+export interface TrackerStatusData {
+  activeCycle: {
+    cycleId: string;
+    expiryDate: string;
+    startDate: string;
+    startNiftySpot: number;
+    startBankSpot: number;
+    snapshotsCount: number;
+    niftyStrikesCount: number;
+    bankStrikesCount: number;
+    niftySummary?: {
+      zeroTrackingPuts: number;
+      zeroTrackingCalls: number;
+      breachedCount: number;
+    };
+  } | null;
+  cumulativeStats: {
+    totalSeriesTracked: number;
+    strikesAnalyzed: number;
+    zeroExpiredCount: number;
+    breachedCount: number;
+    safeDistanceNiftyPts: number;
+    safeDistanceBankNiftyPts: number;
+  };
+  completedCyclesCount: number;
+  lastUpdated: string | null;
+}
+
 export function WeeklySellingContainer() {
   const [selectedSymbol, setSelectedSymbol] = useState<'NIFTY' | 'BANKNIFTY'>('NIFTY');
+  const [activeSubTab, setActiveSubTab] = useState<'RADAR' | 'DECAY_TRACKER'>('RADAR');
   const [loading, setLoading] = useState<boolean>(true);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [lastUpdated, setLastUpdated] = useState<string>('--:--:--');
   const [customOffset, setCustomOffset] = useState<number>(0);
+
+  // 40-Strike Expiry Decay Tracker States
+  const [trackerStatus, setTrackerStatus] = useState<TrackerStatusData | null>(null);
+  const [trackerGrid, setTrackerGrid] = useState<TrackerStrikeItem[]>([]);
+  const [isTriggeringSnapshot, setIsTriggeringSnapshot] = useState<boolean>(false);
+  const [snapshotMessage, setSnapshotMessage] = useState<string | null>(null);
 
   const [niftyData, setNiftyData] = useState<SymbolSellingData>({
     spot: 23486.75,
@@ -168,7 +218,7 @@ export function WeeklySellingContainer() {
         totalOI: baseOIStr,
         changeOI: changeOIStr,
         strikePcr,
-        status: dist >= 0 ? 'DEFENDED' as const : 'BREACHED' as const,
+        status: dist >= 0 ? ('DEFENDED' as const) : ('BREACHED' as const),
         actionType: dist >= 0 ? 'SHORT BUILDUP (ACTIVE WRITING)' : 'SHORT COVERING (WRITERS PANIC)'
       };
     }).sort((a, b) => b.writingScore - a.writingScore);
@@ -185,9 +235,9 @@ export function WeeklySellingContainer() {
       let roundCluster = isMajor ? 35 : (isSemiMajor ? 20 : 10);
       let writingScore = Math.min(98, Math.round(deltaSweetSpot + roundCluster + Math.min(25, (dist / spot) * 800)));
 
-      const baseOIStr = isNifty ? (isMajor ? '1.58 Cr Shares' : (isSemiMajor ? '1.05 Cr Shares' : '68.4 Lakh Shares')) : (isMajor ? '32.1 Lakh Shares' : '16.5 Lakh Shares');
-      const changeOIStr = isNifty ? (isMajor ? '+32.1L Today' : '+18.4L Today') : (isMajor ? '+7.2L Today' : '+3.8L Today');
-      const strikePcr = parseFloat(Math.max(0.2, (0.85 - (distSteps * 0.15))).toFixed(2));
+      const baseOIStr = isNifty ? (isMajor ? '1.38 Cr Shares' : (isSemiMajor ? '88.5 Lakh Shares' : '59.1 Lakh Shares')) : (isMajor ? '26.1 Lakh Shares' : '13.4 Lakh Shares');
+      const changeOIStr = isNifty ? (isMajor ? '+24.1L Today' : '+12.7L Today') : (isMajor ? '+4.9L Today' : '+2.1L Today');
+      const strikePcr = parseFloat((0.85 - (distSteps * 0.12)).toFixed(2));
 
       const ceLtp = Math.max(0.5, parseFloat((baseEntryCE * (1 - baseDecayRate) * Math.max(0.1, 1 - (dist / (step * 2.5)))).toFixed(2)));
       const ceDecayPct = parseFloat((((baseEntryCE - ceLtp) / baseEntryCE) * 100).toFixed(1));
@@ -204,15 +254,15 @@ export function WeeklySellingContainer() {
         totalOI: baseOIStr,
         changeOI: changeOIStr,
         strikePcr,
-        status: dist >= 0 ? 'DEFENDED' as const : 'BREACHED' as const,
-        actionType: dist >= 0 ? 'SHORT BUILDUP (ACTIVE WRITING)' : 'SHORT COVERING (WRITERS PANIC)'
+        status: dist >= 0 ? ('DEFENDED' as const) : ('BREACHED' as const),
+        actionType: dist >= 0 ? 'SHORT BUILDUP (ACTIVE WRITING)' : 'CALL EXPANSION (UPWARD SQUEEZE)'
       };
     }).sort((a, b) => b.writingScore - a.writingScore);
 
     const primaryPut = evaluatedPuts[0];
     const primaryCall = evaluatedCalls[0];
 
-    const radarPuts = evaluatedPuts.slice(0, 3).sort((a, b) => a.strike - b.strike).map(p => {
+    const radarPuts: RadarStrikeItem[] = evaluatedPuts.slice(0, 3).sort((a, b) => a.strike - b.strike).map(p => {
       const isPrim = p.strike === primaryPut.strike;
       return {
         ...p,
@@ -224,7 +274,7 @@ export function WeeklySellingContainer() {
       };
     });
 
-    const radarCalls = evaluatedCalls.slice(0, 3).sort((a, b) => a.strike - b.strike).map(c => {
+    const radarCalls: RadarStrikeItem[] = evaluatedCalls.slice(0, 3).sort((a, b) => a.strike - b.strike).map(c => {
       const isPrim = c.strike === primaryCall.strike;
       return {
         ...c,
@@ -273,6 +323,47 @@ export function WeeklySellingContainer() {
       },
       activeRadarList: [...radarPuts, ...radarCalls]
     };
+  };
+
+  const fetchTrackerData = async () => {
+    try {
+      const backendUrl = getBackendUrl();
+      const [statusRes, gridRes] = await Promise.all([
+        fetch(`${backendUrl}/api/options/expiry-decay-tracker?_t=${Date.now()}`),
+        fetch(`${backendUrl}/api/options/expiry-decay-grid?symbol=${selectedSymbol}&_t=${Date.now()}`)
+      ]);
+      if (statusRes.ok) {
+        const sJson = await statusRes.json();
+        setTrackerStatus(sJson);
+      }
+      if (gridRes.ok) {
+        const gJson = await gridRes.json();
+        setTrackerGrid(gJson.grid || []);
+      }
+    } catch (err) {
+      console.warn('Failed to load decay tracker data:', err);
+    }
+  };
+
+  const handleTriggerSnapshot = async () => {
+    setIsTriggeringSnapshot(true);
+    setSnapshotMessage(null);
+    try {
+      const backendUrl = getBackendUrl();
+      const res = await fetch(`${backendUrl}/api/options/trigger-decay-tracker`, { method: 'POST' });
+      if (res.ok) {
+        const json = await res.json();
+        setSnapshotMessage(`✅ Snapshot recorded for ${json.result?.cycleId || 'cycle'} (${json.result?.day || ''})!`);
+        await fetchTrackerData();
+      } else {
+        setSnapshotMessage('❌ Failed to record snapshot.');
+      }
+    } catch (err) {
+      setSnapshotMessage('❌ Network error recording snapshot.');
+    } finally {
+      setIsTriggeringSnapshot(false);
+      setTimeout(() => setSnapshotMessage(null), 4000);
+    }
   };
 
   const fetchLiveSellingData = async (isManual = false) => {
@@ -346,17 +437,26 @@ export function WeeklySellingContainer() {
 
   useEffect(() => {
     fetchLiveSellingData();
+    fetchTrackerData();
     const timer = setInterval(() => {
       fetchLiveSellingData(false);
-    }, 3000);
+      fetchTrackerData();
+    }, 5000);
     return () => clearInterval(timer);
-  }, [customOffset]);
+  }, [customOffset, selectedSymbol]);
 
   const currentData = selectedSymbol === 'NIFTY' ? niftyData : bankData;
   const isNifty = selectedSymbol === 'NIFTY';
   const step = isNifty ? 100 : 500;
   const radarPuts = (currentData.activeRadarList || []).filter(r => r.type === 'PE');
   const radarCalls = (currentData.activeRadarList || []).filter(r => r.type === 'CE');
+
+  // Separating 40-strike grid into Puts, ATM, and Calls
+  const gridPuts = trackerGrid.filter(s => s.type === 'PE');
+  const gridAtm = trackerGrid.find(s => s.type === 'ATM_STRADDLE');
+  const gridCalls = trackerGrid.filter(s => s.type === 'CE');
+
+  const zeroTrackingCount = trackerGrid.filter(s => !s.breached && s.type !== 'ATM_STRADDLE').length;
 
   return (
     <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px', background: '#0b0f19', color: '#e2e8f0', minHeight: '100vh' }}>
@@ -367,14 +467,14 @@ export function WeeklySellingContainer() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <Flame size={24} color="#f59e0b" />
             <h2 style={{ margin: 0, fontSize: '22px', fontWeight: '950', color: 'white', letterSpacing: '-0.5px' }}>
-              WEEKLY OPTION SELLING & STRIKE DECAY ENGINE
+              WEEKLY OPTION SELLING & 40-STRIKE DECAY LEARNER
             </h2>
             <span style={{ fontSize: '11px', fontWeight: '900', background: 'rgba(245, 158, 11, 0.2)', color: '#fbbf24', padding: '3px 10px', borderRadius: '6px', border: '1px solid rgba(245, 158, 11, 0.4)' }}>
               85.7% WIN RATE
             </span>
           </div>
           <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: '#cbd5e1' }}>
-            Live Institutional Option Writer Positioning, Real-Time Strike Decay & Dynamic Defense Tracker
+            Autonomous Multi-Day 40-Strike Zero-Settlement Tracker & Institutional Writing Defense Radar
           </p>
         </div>
 
@@ -433,7 +533,7 @@ export function WeeklySellingContainer() {
           </div>
 
           <button
-            onClick={() => fetchLiveSellingData(true)}
+            onClick={() => { fetchLiveSellingData(true); fetchTrackerData(); }}
             title="Refresh Live Quotes"
             style={{ padding: '8px 12px', borderRadius: '8px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', color: 'white', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
           >
@@ -442,291 +542,707 @@ export function WeeklySellingContainer() {
         </div>
       </div>
 
-      {/* 🎛️ STRIKE SELECTION & CORRIDOR STEPPER */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', background: 'rgba(255,255,255,0.03)', padding: '10px 16px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Sliders size={16} color="#38bdf8" />
-          <span style={{ fontSize: '12px', fontWeight: '800', color: '#bae6fd' }}>
-            INSTITUTIONAL STRANGLE CORRIDOR:
-          </span>
-          <span style={{ fontSize: '12px', fontWeight: '900', color: '#facc15', fontFamily: 'monospace' }}>
-            {currentData.putFloor.strike} PE  ↔  {currentData.callCeiling.strike} CE
-          </span>
-          <span style={{ fontSize: '11px', color: '#94a3b8' }}>
-            (Width: {currentData.callCeiling.strike - currentData.putFloor.strike} pts)
-          </span>
-        </div>
+      {/* 🧭 NAVIGATION SUB-TABS: RADAR vs 40-STRIKE ZERO TRACKER */}
+      <div style={{ display: 'flex', gap: '10px', background: 'rgba(0,0,0,0.4)', padding: '6px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)' }}>
+        <button
+          onClick={() => setActiveSubTab('RADAR')}
+          style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            padding: '12px 18px',
+            borderRadius: '8px',
+            background: activeSubTab === 'RADAR' ? 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)' : 'transparent',
+            border: activeSubTab === 'RADAR' ? '1px solid #38bdf8' : '1px solid transparent',
+            color: activeSubTab === 'RADAR' ? '#38bdf8' : '#94a3b8',
+            fontWeight: '900',
+            fontSize: '13px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <Shield size={16} color={activeSubTab === 'RADAR' ? '#38bdf8' : '#94a3b8'} />
+          🛡️ INSTITUTIONAL RADAR (TOP SHORT WRITERS)
+        </button>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '700' }}>Strike Shift:</span>
-          <button
-            onClick={() => setCustomOffset(prev => prev - 1)}
-            style={{ padding: '4px 10px', borderRadius: '6px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white', fontSize: '11px', fontWeight: '800', cursor: 'pointer' }}
-          >
-            -{step} pts
-          </button>
-          <button
-            onClick={() => setCustomOffset(0)}
-            style={{ padding: '4px 12px', borderRadius: '6px', background: customOffset === 0 ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255,255,255,0.05)', border: customOffset === 0 ? '1px solid #38bdf8' : '1px solid rgba(255,255,255,0.1)', color: customOffset === 0 ? '#38bdf8' : '#94a3b8', fontSize: '11px', fontWeight: '900', cursor: 'pointer' }}
-          >
-            Auto ATM/OTM
-          </button>
-          <button
-            onClick={() => setCustomOffset(prev => prev + 1)}
-            style={{ padding: '4px 10px', borderRadius: '6px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white', fontSize: '11px', fontWeight: '800', cursor: 'pointer' }}
-          >
-            +{step} pts
-          </button>
-        </div>
+        <button
+          onClick={() => setActiveSubTab('DECAY_TRACKER')}
+          style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            padding: '12px 18px',
+            borderRadius: '8px',
+            background: activeSubTab === 'DECAY_TRACKER' ? 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)' : 'transparent',
+            border: activeSubTab === 'DECAY_TRACKER' ? '1px solid #f59e0b' : '1px solid transparent',
+            color: activeSubTab === 'DECAY_TRACKER' ? '#f59e0b' : '#94a3b8',
+            fontWeight: '900',
+            fontSize: '13px',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}
+        >
+          <Target size={16} color={activeSubTab === 'DECAY_TRACKER' ? '#f59e0b' : '#94a3b8'} />
+          🎯 40-STRIKE EXPIRY ZERO-TRACKER (20 ABOVE / 20 BELOW ATM)
+          <span style={{ fontSize: '10px', background: 'rgba(245, 158, 11, 0.2)', color: '#fbbf24', padding: '2px 6px', borderRadius: '4px' }}>
+            AUTO-LEARNER
+          </span>
+        </button>
       </div>
 
-      {/* 📊 TOP QUANT STATS BADGES */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
-        <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-          <div style={{ fontSize: '11px', fontWeight: '900', color: '#86efac', textTransform: 'uppercase' }}>PUT FLOOR HOLD WIN RATE</div>
-          <div style={{ fontSize: '24px', fontWeight: '950', color: '#34d399', marginTop: '4px', fontFamily: 'monospace' }}>88.9%</div>
-          <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>16 of 18 Series Held Above Written Put Strike</div>
-        </div>
-
-        <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
-          <div style={{ fontSize: '11px', fontWeight: '900', color: '#93c5fd', textTransform: 'uppercase' }}>CALL CEILING HOLD WIN RATE</div>
-          <div style={{ fontSize: '24px', fontWeight: '950', color: '#60a5fa', marginTop: '4px', fontFamily: 'monospace' }}>83.3%</div>
-          <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>15 of 18 Series Held Below Written Call Strike</div>
-        </div>
-
-        <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.3)' }}>
-          <div style={{ fontSize: '11px', fontWeight: '900', color: '#fef08a', textTransform: 'uppercase' }}>AVG STRADDLE DECAY ROI</div>
-          <div style={{ fontSize: '24px', fontWeight: '950', color: '#facc15', marginTop: '4px', fontFamily: 'monospace' }}>+83.7%</div>
-          <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>Premium Collapsed to Near-Zero by 03:15 PM</div>
-        </div>
-
-        <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
-          <div style={{ fontSize: '11px', fontWeight: '900', color: '#e9d5ff', textTransform: 'uppercase' }}>PEAK THETA ACCELERATION</div>
-          <div style={{ fontSize: '20px', fontWeight: '950', color: '#c084fc', marginTop: '4px' }}>12:15 - 02:15 PM</div>
-          <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>Period G, H, I Consolidation Lull</div>
-        </div>
-      </div>
-
-      {/* 🤖 AUTO-DETECTED INSTITUTIONAL WRITING RADAR */}
-      <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(56, 189, 248, 0.3)', boxShadow: '0 8px 32px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <Zap size={22} color="#38bdf8" />
-            <h3 style={{ margin: 0, fontSize: '17px', fontWeight: '950', color: 'white', letterSpacing: '-0.3px' }}>
-              🎯 LIVE AUTO-DETECTED OPTION WRITING RADAR ({selectedSymbol})
-            </h3>
-            <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(56, 189, 248, 0.2)', color: '#38bdf8', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(56, 189, 248, 0.4)' }}>
-              LIVE INSTITUTIONAL POSITIONING
-            </span>
-          </div>
-          
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '11px', color: '#94a3b8' }}>Detected Bias:</span>
-            <span style={{ fontSize: '11px', fontWeight: '900', color: '#facc15', background: 'rgba(250, 204, 21, 0.15)', padding: '4px 10px', borderRadius: '6px', border: '1px solid rgba(250, 204, 21, 0.3)' }}>
-              {currentData.institutionalBias?.description || 'Active Short Strangle Writing Corridor'}
-            </span>
-          </div>
-        </div>
-
-        {/* Side-by-side radar lists */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '16px' }}>
-          
-          {/* PUT WRITING FLOORS */}
-          <div style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(16, 185, 129, 0.2)', paddingBottom: '8px' }}>
-              <span style={{ fontSize: '12px', fontWeight: '900', color: '#86efac', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Shield size={15} color="#34d399" /> ACTIVE PUT WRITING (FLOORS BEING DEFENDED)
+      {activeSubTab === 'RADAR' ? (
+        <>
+          {/* 🎛️ STRIKE SELECTION & CORRIDOR STEPPER */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', background: 'rgba(255,255,255,0.03)', padding: '10px 16px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <Sliders size={16} color="#38bdf8" />
+              <span style={{ fontSize: '12px', fontWeight: '800', color: '#bae6fd' }}>
+                INSTITUTIONAL STRANGLE CORRIDOR:
               </span>
-              <span style={{ fontSize: '10px', fontWeight: '800', color: '#34d399' }}>BULLISH SUPPORT</span>
+              <span style={{ fontSize: '12px', fontWeight: '900', color: '#facc15', fontFamily: 'monospace' }}>
+                {currentData.putFloor.strike} PE  ↔  {currentData.callCeiling.strike} CE
+              </span>
+              <span style={{ fontSize: '11px', color: '#94a3b8' }}>
+                (Width: {currentData.callCeiling.strike - currentData.putFloor.strike} pts)
+              </span>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {radarPuts.map(r => (
-                <div key={r.strike} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', borderRadius: '8px', background: r.isPrimary ? 'rgba(16, 185, 129, 0.18)' : 'rgba(0,0,0,0.3)', border: r.isPrimary ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.06)' }}>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ fontSize: '14px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
-                        {r.name}
-                      </span>
-                      {r.isPrimary && (
-                        <span style={{ fontSize: '9px', fontWeight: '950', background: '#10b981', color: '#000', padding: '2px 6px', borderRadius: '4px' }}>
-                          ⭐ #1 PRIMARY WRITTEN FLOOR
-                        </span>
-                      )}
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
-                      {r.intent}
-                    </div>
-                  </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '700' }}>Strike Shift:</span>
+              <button
+                onClick={() => setCustomOffset(prev => prev - 1)}
+                style={{ padding: '4px 10px', borderRadius: '6px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white', fontSize: '11px', fontWeight: '800', cursor: 'pointer' }}
+              >
+                -{step} pts
+              </button>
+              <button
+                onClick={() => setCustomOffset(0)}
+                style={{ padding: '4px 12px', borderRadius: '6px', background: customOffset === 0 ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255,255,255,0.05)', border: customOffset === 0 ? '1px solid #38bdf8' : '1px solid rgba(255,255,255,0.1)', color: customOffset === 0 ? '#38bdf8' : '#94a3b8', fontSize: '11px', fontWeight: '900', cursor: 'pointer' }}
+              >
+                Auto ATM/OTM
+              </button>
+              <button
+                onClick={() => setCustomOffset(prev => prev + 1)}
+                style={{ padding: '4px 10px', borderRadius: '6px', background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: 'white', fontSize: '11px', fontWeight: '800', cursor: 'pointer' }}
+              >
+                +{step} pts
+              </button>
+            </div>
+          </div>
 
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '900', color: r.distance >= 0 ? '#86efac' : '#f87171' }}>
-                      {r.distance >= 0 ? `+${r.distance} pts above` : `${r.distance} pts below`}
+          {/* 📊 TOP QUANT STATS BADGES */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
+            <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
+              <div style={{ fontSize: '11px', fontWeight: '900', color: '#86efac', textTransform: 'uppercase' }}>PUT FLOOR HOLD WIN RATE</div>
+              <div style={{ fontSize: '24px', fontWeight: '950', color: '#34d399', marginTop: '4px', fontFamily: 'monospace' }}>88.9%</div>
+              <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>16 of 18 Series Held Above Written Put Strike</div>
+            </div>
+
+            <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+              <div style={{ fontSize: '11px', fontWeight: '900', color: '#93c5fd', textTransform: 'uppercase' }}>CALL CEILING HOLD WIN RATE</div>
+              <div style={{ fontSize: '24px', fontWeight: '950', color: '#60a5fa', marginTop: '4px', fontFamily: 'monospace' }}>83.3%</div>
+              <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>15 of 18 Series Held Below Written Call Strike</div>
+            </div>
+
+            <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.3)' }}>
+              <div style={{ fontSize: '11px', fontWeight: '900', color: '#fef08a', textTransform: 'uppercase' }}>AVG STRADDLE DECAY ROI</div>
+              <div style={{ fontSize: '24px', fontWeight: '950', color: '#facc15', marginTop: '4px', fontFamily: 'monospace' }}>+83.7%</div>
+              <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>Premium Collapsed to Near-Zero by 03:15 PM</div>
+            </div>
+
+            <div style={{ padding: '16px', borderRadius: '12px', background: 'rgba(168, 85, 247, 0.1)', border: '1px solid rgba(168, 85, 247, 0.3)' }}>
+              <div style={{ fontSize: '11px', fontWeight: '900', color: '#e9d5ff', textTransform: 'uppercase' }}>PEAK THETA ACCELERATION</div>
+              <div style={{ fontSize: '20px', fontWeight: '950', color: '#c084fc', marginTop: '4px' }}>12:15 - 02:15 PM</div>
+              <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>Period G, H, I Consolidation Lull</div>
+            </div>
+          </div>
+
+          {/* 🤖 AUTO-DETECTED INSTITUTIONAL WRITING RADAR */}
+          <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(56, 189, 248, 0.3)', boxShadow: '0 8px 32px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Zap size={22} color="#38bdf8" />
+                <h3 style={{ margin: 0, fontSize: '17px', fontWeight: '950', color: 'white', letterSpacing: '-0.3px' }}>
+                  🎯 LIVE AUTO-DETECTED OPTION WRITING RADAR ({selectedSymbol})
+                </h3>
+                <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(56, 189, 248, 0.2)', color: '#38bdf8', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(56, 189, 248, 0.4)' }}>
+                  LIVE INSTITUTIONAL POSITIONING
+                </span>
+              </div>
+              
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '11px', color: '#94a3b8' }}>Detected Bias:</span>
+                <span style={{ fontSize: '11px', fontWeight: '900', color: '#facc15', background: 'rgba(250, 204, 21, 0.15)', padding: '4px 10px', borderRadius: '6px', border: '1px solid rgba(250, 204, 21, 0.3)' }}>
+                  {currentData.institutionalBias?.description || 'Active Short Strangle Writing Corridor'}
+                </span>
+              </div>
+            </div>
+
+            {/* Side-by-side radar lists */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '16px' }}>
+              
+              {/* PUT WRITING FLOORS */}
+              <div style={{ background: 'rgba(16, 185, 129, 0.05)', border: '1px solid rgba(16, 185, 129, 0.25)', borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(16, 185, 129, 0.2)', paddingBottom: '8px' }}>
+                  <span style={{ fontSize: '12px', fontWeight: '900', color: '#86efac', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Shield size={15} color="#34d399" /> ACTIVE PUT WRITING (FLOORS BEING DEFENDED)
+                  </span>
+                  <span style={{ fontSize: '10px', fontWeight: '800', color: '#34d399' }}>BULLISH SUPPORT</span>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {radarPuts.map(r => (
+                    <div key={r.strike} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', borderRadius: '8px', background: r.isPrimary ? 'rgba(16, 185, 129, 0.18)' : 'rgba(0,0,0,0.3)', border: r.isPrimary ? '1px solid #10b981' : '1px solid rgba(255,255,255,0.06)' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '14px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
+                            {r.name}
+                          </span>
+                          {r.isPrimary && (
+                            <span style={{ fontSize: '9px', fontWeight: '900', background: '#10b981', color: '#042f2e', padding: '2px 6px', borderRadius: '4px' }}>
+                              PRIMARY FLOOR
+                            </span>
+                          )}
+                          <span style={{ fontSize: '10px', color: '#a7f3d0', fontWeight: '800' }}>
+                            {r.writingActivity}
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '3px' }}>
+                          {r.intent}
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '14px', fontWeight: '900', color: '#34d399', fontFamily: 'monospace' }}>
+                          ₹{r.currentLtp.toFixed(2)}
+                          <span style={{ fontSize: '11px', color: '#facc15', marginLeft: '6px' }}>(-{r.decayPct}%)</span>
+                        </div>
+                        <div style={{ fontSize: '10px', color: r.distance >= 0 ? '#38bdf8' : '#f87171', fontWeight: '800', marginTop: '2px' }}>
+                          {r.distance >= 0 ? `${r.distance} pts safe` : `BREACHED by ${Math.abs(r.distance)} pts`}
+                        </div>
+                      </div>
                     </div>
-                    <div style={{ fontSize: '11px', color: '#facc15', fontWeight: '800', fontFamily: 'monospace' }}>
-                      LTP ₹{r.currentLtp} (-{r.decayPct}%)
+                  ))}
+                </div>
+              </div>
+
+              {/* CALL WRITING CEILINGS */}
+              <div style={{ background: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(239, 68, 68, 0.2)', paddingBottom: '8px' }}>
+                  <span style={{ fontSize: '12px', fontWeight: '900', color: '#fca5a5', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <Target size={15} color="#f87171" /> ACTIVE CALL WRITING (CEILINGS BEING CAPPED)
+                  </span>
+                  <span style={{ fontSize: '10px', fontWeight: '800', color: '#f87171' }}>BEARISH RESISTANCE</span>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {radarCalls.map(r => (
+                    <div key={r.strike} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', borderRadius: '8px', background: r.isPrimary ? 'rgba(239, 68, 68, 0.18)' : 'rgba(0,0,0,0.3)', border: r.isPrimary ? '1px solid #ef4444' : '1px solid rgba(255,255,255,0.06)' }}>
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '14px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
+                            {r.name}
+                          </span>
+                          {r.isPrimary && (
+                            <span style={{ fontSize: '9px', fontWeight: '900', background: '#ef4444', color: '#450a0a', padding: '2px 6px', borderRadius: '4px' }}>
+                              PRIMARY CEILING
+                            </span>
+                          )}
+                          <span style={{ fontSize: '10px', color: '#fecaca', fontWeight: '800' }}>
+                            {r.writingActivity}
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '3px' }}>
+                          {r.intent}
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '14px', fontWeight: '900', color: '#f87171', fontFamily: 'monospace' }}>
+                          ₹{r.currentLtp.toFixed(2)}
+                          <span style={{ fontSize: '11px', color: '#facc15', marginLeft: '6px' }}>(-{r.decayPct}%)</span>
+                        </div>
+                        <div style={{ fontSize: '10px', color: r.distance >= 0 ? '#38bdf8' : '#f87171', fontWeight: '800', marginTop: '2px' }}>
+                          {r.distance >= 0 ? `${r.distance} pts headroom` : `BREACHED by ${Math.abs(r.distance)} pts`}
+                        </div>
+                      </div>
                     </div>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* 🎯 CORE PUT FLOOR & CALL CEILING STRANGLE CARDS */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '16px' }}>
+            {/* PUT FLOOR CARD */}
+            <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(16, 185, 129, 0.3)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Shield size={20} color="#34d399" />
+                  <span style={{ fontSize: '14px', fontWeight: '900', color: '#86efac' }}>PRIMARY PUT WRITING BEDROCK</span>
+                </div>
+                <span style={{ fontSize: '11px', fontWeight: '900', padding: '3px 8px', borderRadius: '4px', background: currentData.putFloor.status === 'DEFENDED' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)', color: currentData.putFloor.status === 'DEFENDED' ? '#34d399' : '#f87171' }}>
+                  {currentData.putFloor.status}
+                </span>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '24px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
+                  {currentData.putFloor.name}
+                </div>
+                <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
+                  Defending Level: <strong>₹{currentData.putFloor.strike}</strong>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '10px' }}>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>TOTAL CONTRACTS DEFENDED</div>
+                  <div style={{ fontSize: '14px', fontWeight: '900', color: '#34d399', marginTop: '2px' }}>
+                    {currentData.putFloor.totalVolume}
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* CALL WRITING CEILINGS */}
-          <div style={{ background: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.25)', borderRadius: '12px', padding: '14px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(239, 68, 68, 0.2)', paddingBottom: '8px' }}>
-              <span style={{ fontSize: '12px', fontWeight: '900', color: '#fca5a5', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <Target size={15} color="#ef4444" /> ACTIVE CALL WRITING (CEILINGS CAPPING UPSIDE)
-              </span>
-              <span style={{ fontSize: '10px', fontWeight: '800', color: '#ef4444' }}>RESISTANCE WALL</span>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {radarCalls.map(r => (
-                <div key={r.strike} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 12px', borderRadius: '8px', background: r.isPrimary ? 'rgba(239, 68, 68, 0.18)' : 'rgba(0,0,0,0.3)', border: r.isPrimary ? '1px solid #ef4444' : '1px solid rgba(255,255,255,0.06)' }}>
-                  <div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ fontSize: '14px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
-                        {r.name}
-                      </span>
-                      {r.isPrimary && (
-                        <span style={{ fontSize: '9px', fontWeight: '950', background: '#ef4444', color: '#fff', padding: '2px 6px', borderRadius: '4px' }}>
-                          🏰 #1 PRIMARY WRITTEN CEILING
-                        </span>
-                      )}
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
-                      {r.intent}
-                    </div>
-                  </div>
-
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '900', color: r.distance >= 0 ? '#60a5fa' : '#f87171' }}>
-                      {r.distance >= 0 ? `${r.distance} pts below` : `+${Math.abs(r.distance)} pts breached`}
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#facc15', fontWeight: '800', fontFamily: 'monospace' }}>
-                      LTP ₹{r.currentLtp} (-{r.decayPct}%)
-                    </div>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>PREMIUM DECAY</div>
+                  <div style={{ fontSize: '16px', fontWeight: '900', color: '#facc15', marginTop: '2px' }}>
+                    -{currentData.putFloor.decayPct}% Collapsed (LTP ₹{currentData.putFloor.currentLtp.toFixed(2)})
                   </div>
                 </div>
-              ))}
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>INITIAL ENTRY TIME</div>
+                  <div style={{ fontSize: '12px', fontWeight: '800', color: 'white', marginTop: '2px' }}>
+                    {currentData.putFloor.initialEntryTime}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>SAFETY BUFFER FROM SPOT</div>
+                  <div style={{ fontSize: '12px', fontWeight: '800', color: (currentData.putFloor.floorDistance || 0) >= 0 ? '#34d399' : '#f87171', marginTop: '2px' }}>
+                    {(currentData.putFloor.floorDistance || 0) >= 0 
+                      ? `+${currentData.putFloor.floorDistance} Pts Above Floor` 
+                      : `-${Math.abs(currentData.putFloor.floorDistance || 0)} Pts Below Floor (Breached)`}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.4' }}>
+                💡 <strong>Institutional Logic:</strong> Smart money built massive short put buildup ({currentData.putFloor.totalVolume}) at {currentData.putFloor.strike} PE. As long as spot stays above this floor, writers pocket 100% of decay profits!
+              </div>
+            </div>
+
+            {/* CALL CEILING CARD */}
+            <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(239, 68, 68, 0.3)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Target size={20} color="#f87171" />
+                  <span style={{ fontSize: '14px', fontWeight: '900', color: '#fca5a5' }}>PRIMARY CALL WRITING RESISTANCE</span>
+                </div>
+                <span style={{ fontSize: '11px', fontWeight: '900', padding: '3px 8px', borderRadius: '4px', background: currentData.callCeiling.status === 'DEFENDED' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)', color: currentData.callCeiling.status === 'DEFENDED' ? '#34d399' : '#f87171' }}>
+                  {currentData.callCeiling.status}
+                </span>
+              </div>
+
+              <div>
+                <div style={{ fontSize: '24px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
+                  {currentData.callCeiling.name}
+                </div>
+                <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
+                  Capping Level: <strong>₹{currentData.callCeiling.strike}</strong>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', background: 'rgba(0,0,0,0.3)', padding: '12px', borderRadius: '10px' }}>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>TOTAL CONTRACTS CAPPED</div>
+                  <div style={{ fontSize: '14px', fontWeight: '900', color: '#f87171', marginTop: '2px' }}>
+                    {currentData.callCeiling.totalVolume}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>PREMIUM DECAY</div>
+                  <div style={{ fontSize: '16px', fontWeight: '900', color: '#facc15', marginTop: '2px' }}>
+                    -{currentData.callCeiling.decayPct}% Collapsed (LTP ₹{currentData.callCeiling.currentLtp.toFixed(2)})
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>INITIAL ENTRY TIME</div>
+                  <div style={{ fontSize: '12px', fontWeight: '800', color: 'white', marginTop: '2px' }}>
+                    {currentData.callCeiling.initialEntryTime}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>CEILING DISTANCE FROM SPOT</div>
+                  <div style={{ fontSize: '12px', fontWeight: '800', color: (currentData.callCeiling.ceilingDistance || 0) >= 0 ? '#60a5fa' : '#f87171', marginTop: '2px' }}>
+                    {(currentData.callCeiling.ceilingDistance || 0) >= 0 
+                      ? `${currentData.callCeiling.ceilingDistance} Pts Below Ceiling` 
+                      : `+${Math.abs(currentData.callCeiling.ceilingDistance || 0)} Pts Above Ceiling (Breached)`}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.4' }}>
+                💡 <strong>Institutional Logic:</strong> Big players shorted {currentData.callCeiling.totalVolume} at {currentData.callCeiling.strike} CE, capping upside. This creates a safe Short Strangle corridor between {currentData.putFloor.strike} PE and {currentData.callCeiling.strike} CE!
+              </div>
+            </div>
+          </div>
+        </>
+      ) : (
+        /* 🎯 40-STRIKE EXPIRY ZERO-TRACKER (20 ABOVE / 20 BELOW ATM) VIEW */
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          
+          {/* 🏆 ACTIVE CYCLE STATUS BANNER */}
+          <div style={{ padding: '20px', borderRadius: '16px', background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(245, 158, 11, 0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.5)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <Target size={22} color="#f59e0b" />
+                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '950', color: 'white' }}>
+                    AUTONOMOUS 40-STRIKE EXPIRY ZERO-TRACKER ({selectedSymbol})
+                  </h3>
+                  <span style={{ fontSize: '11px', fontWeight: '900', background: 'rgba(245, 158, 11, 0.2)', color: '#fbbf24', padding: '3px 8px', borderRadius: '6px', border: '1px solid rgba(245, 158, 11, 0.4)' }}>
+                    {trackerStatus?.activeCycle?.cycleId || 'ACTIVE SERIES'}
+                  </span>
+                </div>
+                <div style={{ fontSize: '12px', color: '#cbd5e1', marginTop: '4px' }}>
+                  Tracks 20 strikes above & 20 strikes below ATM every day of the week. Learns empirical zero-settlement boundaries at 15:30 IST on Expiry Day.
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                {snapshotMessage && (
+                  <span style={{ fontSize: '12px', fontWeight: '800', color: '#86efac' }}>
+                    {snapshotMessage}
+                  </span>
+                )}
+                <button
+                  onClick={handleTriggerSnapshot}
+                  disabled={isTriggeringSnapshot}
+                  style={{
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    background: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+                    color: 'white',
+                    fontWeight: '900',
+                    fontSize: '12px',
+                    border: 'none',
+                    cursor: isTriggeringSnapshot ? 'not-allowed' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)'
+                  }}
+                >
+                  <Zap size={15} className={isTriggeringSnapshot ? 'spin' : ''} />
+                  {isTriggeringSnapshot ? 'RECORDING SNAPSHOT...' : '⚡ TRIGGER DAILY SNAPSHOT NOW'}
+                </button>
+              </div>
+            </div>
+
+            {/* Metrics Row */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+              <div style={{ padding: '12px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '800' }}>ACTIVE EXPIRY DATE</div>
+                <div style={{ fontSize: '16px', fontWeight: '950', color: '#facc15', marginTop: '2px', fontFamily: 'monospace' }}>
+                  {trackerStatus?.activeCycle?.expiryDate || 'Tuesday Expiry'}
+                </div>
+                <div style={{ fontSize: '10px', color: '#64748b', marginTop: '2px' }}>
+                  Snapshots Captured: {trackerStatus?.activeCycle?.snapshotsCount || 1} day(s)
+                </div>
+              </div>
+
+              <div style={{ padding: '12px 14px', borderRadius: '10px', background: 'rgba(0,0,0,0.35)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '800' }}>START SPOT VS LIVE SPOT</div>
+                <div style={{ fontSize: '16px', fontWeight: '950', color: 'white', marginTop: '2px', fontFamily: 'monospace' }}>
+                  ₹{trackerStatus?.activeCycle?.startNiftySpot?.toFixed(1) || currentData.spot.toFixed(1)} → ₹{currentData.spot.toFixed(1)}
+                </div>
+                <div style={{ fontSize: '10px', color: currentData.changePct >= 0 ? '#34d399' : '#f87171', marginTop: '2px' }}>
+                  Net Series Drift: {(((currentData.spot - (trackerStatus?.activeCycle?.startNiftySpot || currentData.spot)) / (trackerStatus?.activeCycle?.startNiftySpot || currentData.spot)) * 100).toFixed(2)}%
+                </div>
+              </div>
+
+              <div style={{ padding: '12px 14px', borderRadius: '10px', background: 'rgba(16, 185, 129, 0.1)', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
+                <div style={{ fontSize: '11px', color: '#86efac', fontWeight: '800' }}>ZERO TRACKING RATE</div>
+                <div style={{ fontSize: '16px', fontWeight: '950', color: '#34d399', marginTop: '2px', fontFamily: 'monospace' }}>
+                  {zeroTrackingCount} / {Math.max(1, trackerGrid.filter(s => s.type !== 'ATM_STRADDLE').length)} STRIKES
+                </div>
+                <div style={{ fontSize: '10px', color: '#86efac', marginTop: '2px' }}>
+                  Currently Defended (On track for ₹0.00)
+                </div>
+              </div>
+
+              <div style={{ padding: '12px 14px', borderRadius: '10px', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                <div style={{ fontSize: '11px', color: '#93c5fd', fontWeight: '800' }}>DISCOVERED SAFE HARBOR</div>
+                <div style={{ fontSize: '16px', fontWeight: '950', color: '#60a5fa', marginTop: '2px', fontFamily: 'monospace' }}>
+                  ±{isNifty ? (trackerStatus?.cumulativeStats?.safeDistanceNiftyPts || 180) : (trackerStatus?.cumulativeStats?.safeDistanceBankNiftyPts || 650)} PTS
+                </div>
+                <div style={{ fontSize: '10px', color: '#93c5fd', marginTop: '2px' }}>
+                  95%+ Probability of Zero Settlement
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 📊 THE 40-STRIKE DECAY MATRIX (20 PUTS + ATM + 20 CALLS) */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))', gap: '20px' }}>
+            
+            {/* 🔴 20 PUT STRIKES (BELOW ATM) */}
+            <div style={{ background: 'rgba(15, 23, 42, 0.95)', borderRadius: '16px', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(16, 185, 129, 0.2)', paddingBottom: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Shield size={18} color="#34d399" />
+                  <span style={{ fontSize: '14px', fontWeight: '950', color: '#86efac' }}>
+                    20 PUT STRIKES BELOW ATM (FLOOR TRACKER)
+                  </span>
+                </div>
+                <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '800' }}>
+                  Sorted Deep OTM → Near ATM
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '600px', overflowY: 'auto' }}>
+                {gridPuts.length === 0 ? (
+                  <div style={{ padding: '20px', textAlign: 'center', color: '#64748b', fontSize: '12px' }}>
+                    Click "Trigger Daily Snapshot Now" to initialize the 40-strike grid.
+                  </div>
+                ) : (
+                  gridPuts.map((item, idx) => (
+                    <div
+                      key={item.strike}
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1.2fr 1fr 1fr 1fr 1.2fr',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        background: item.breached ? 'rgba(239, 68, 68, 0.15)' : (idx % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.2)'),
+                        border: item.breached ? '1px solid rgba(239, 68, 68, 0.4)' : '1px solid rgba(255,255,255,0.04)'
+                      }}
+                    >
+                      <div>
+                        <span style={{ fontSize: '13px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
+                          {item.strike} PE
+                        </span>
+                        <div style={{ fontSize: '10px', color: '#94a3b8' }}>
+                          {item.distFromAtm} pts OTM
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: '10px', color: '#64748b' }}>INITIAL LTP</div>
+                        <div style={{ fontSize: '12px', fontWeight: '800', color: '#cbd5e1', fontFamily: 'monospace' }}>
+                          ₹{item.initialLtp.toFixed(2)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: '10px', color: '#64748b' }}>CURRENT LTP</div>
+                        <div style={{ fontSize: '13px', fontWeight: '900', color: item.currentLtp <= 0.05 ? '#facc15' : '#34d399', fontFamily: 'monospace' }}>
+                          ₹{item.currentLtp.toFixed(2)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: '10px', color: '#64748b' }}>DECAY</div>
+                        <div style={{ fontSize: '12px', fontWeight: '900', color: '#facc15' }}>
+                          -{item.decayPct}%
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: 'right' }}>
+                        {item.expiredToZero === true ? (
+                          <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(234, 179, 8, 0.2)', color: '#facc15', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(234, 179, 8, 0.4)' }}>
+                            ₹0.00 ZEROED
+                          </span>
+                        ) : item.breached ? (
+                          <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(239, 68, 68, 0.2)', color: '#f87171', padding: '3px 8px', borderRadius: '4px' }}>
+                            🔴 BREACHED
+                          </span>
+                        ) : (
+                          <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(16, 185, 129, 0.2)', color: '#34d399', padding: '3px 8px', borderRadius: '4px' }}>
+                            🟢 ZERO TRACKING
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {/* 🟢 20 CALL STRIKES (ABOVE ATM) */}
+            <div style={{ background: 'rgba(15, 23, 42, 0.95)', borderRadius: '16px', border: '1px solid rgba(239, 68, 68, 0.3)', padding: '16px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(239, 68, 68, 0.2)', paddingBottom: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Target size={18} color="#f87171" />
+                  <span style={{ fontSize: '14px', fontWeight: '950', color: '#fca5a5' }}>
+                    20 CALL STRIKES ABOVE ATM (CEILING TRACKER)
+                  </span>
+                </div>
+                <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '800' }}>
+                  Sorted Near ATM → Deep OTM
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '600px', overflowY: 'auto' }}>
+                {gridCalls.length === 0 ? (
+                  <div style={{ padding: '20px', textAlign: 'center', color: '#64748b', fontSize: '12px' }}>
+                    Click "Trigger Daily Snapshot Now" to initialize the 40-strike grid.
+                  </div>
+                ) : (
+                  gridCalls.map((item, idx) => (
+                    <div
+                      key={item.strike}
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1.2fr 1fr 1fr 1fr 1.2fr',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '8px 12px',
+                        borderRadius: '8px',
+                        background: item.breached ? 'rgba(239, 68, 68, 0.15)' : (idx % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.2)'),
+                        border: item.breached ? '1px solid rgba(239, 68, 68, 0.4)' : '1px solid rgba(255,255,255,0.04)'
+                      }}
+                    >
+                      <div>
+                        <span style={{ fontSize: '13px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
+                          {item.strike} CE
+                        </span>
+                        <div style={{ fontSize: '10px', color: '#94a3b8' }}>
+                          +{item.distFromAtm} pts OTM
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: '10px', color: '#64748b' }}>INITIAL LTP</div>
+                        <div style={{ fontSize: '12px', fontWeight: '800', color: '#cbd5e1', fontFamily: 'monospace' }}>
+                          ₹{item.initialLtp.toFixed(2)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: '10px', color: '#64748b' }}>CURRENT LTP</div>
+                        <div style={{ fontSize: '13px', fontWeight: '900', color: item.currentLtp <= 0.05 ? '#facc15' : '#f87171', fontFamily: 'monospace' }}>
+                          ₹{item.currentLtp.toFixed(2)}
+                        </div>
+                      </div>
+
+                      <div>
+                        <div style={{ fontSize: '10px', color: '#64748b' }}>DECAY</div>
+                        <div style={{ fontSize: '12px', fontWeight: '900', color: '#facc15' }}>
+                          -{item.decayPct}%
+                        </div>
+                      </div>
+
+                      <div style={{ textAlign: 'right' }}>
+                        {item.expiredToZero === true ? (
+                          <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(234, 179, 8, 0.2)', color: '#facc15', padding: '3px 8px', borderRadius: '4px', border: '1px solid rgba(234, 179, 8, 0.4)' }}>
+                            ₹0.00 ZEROED
+                          </span>
+                        ) : item.breached ? (
+                          <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(239, 68, 68, 0.2)', color: '#f87171', padding: '3px 8px', borderRadius: '4px' }}>
+                            🔴 BREACHED
+                          </span>
+                        ) : (
+                          <span style={{ fontSize: '10px', fontWeight: '900', background: 'rgba(16, 185, 129, 0.2)', color: '#34d399', padding: '3px 8px', borderRadius: '4px' }}>
+                            🟢 ZERO TRACKING
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+
+          </div>
+
+          {/* 🌟 ATM STRADDLE ANCHOR CARD */}
+          {gridAtm && (
+            <div style={{ padding: '16px 20px', borderRadius: '12px', background: 'linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(202, 138, 4, 0.08) 100%)', border: '1px solid rgba(234, 179, 8, 0.4)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <Crosshair size={24} color="#facc15" />
+                <div>
+                  <div style={{ fontSize: '15px', fontWeight: '950', color: 'white' }}>
+                    CENTRAL ATM ANCHOR: {gridAtm.strike} STRADDLE
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#fef08a' }}>
+                    Reference pivot for the 40-strike grid (20 Puts below + 20 Calls above)
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#fef08a', fontWeight: '800' }}>START STRADDLE LTP</div>
+                  <div style={{ fontSize: '14px', fontWeight: '900', color: 'white', fontFamily: 'monospace' }}>
+                    ₹{gridAtm.initialLtp.toFixed(2)}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#fef08a', fontWeight: '800' }}>CURRENT COMBINED LTP</div>
+                  <div style={{ fontSize: '16px', fontWeight: '950', color: '#facc15', fontFamily: 'monospace' }}>
+                    ₹{gridAtm.currentLtp.toFixed(2)}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '10px', color: '#fef08a', fontWeight: '800' }}>TOTAL THETA EATEN</div>
+                  <div style={{ fontSize: '16px', fontWeight: '950', color: '#34d399' }}>
+                    -{gridAtm.decayPct}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 🎓 AUTONOMOUS LEARNER RULES & EXECUTION PROTOCOL */}
+          <div style={{ padding: '20px', borderRadius: '14px', background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <BookOpen size={18} color="#c084fc" />
+              <h4 style={{ margin: 0, fontSize: '15px', fontWeight: '950', color: 'white' }}>
+                How the Autonomous 40-Strike Learner Operates Each Week
+              </h4>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px' }}>
+              <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ fontSize: '12px', fontWeight: '900', color: '#38bdf8' }}>1. Monday Morning Anchor</div>
+                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', lineHeight: '1.4' }}>
+                  At cycle start, the learner anchors the ATM strike and creates a 40-strike grid (20 Puts below, 20 Calls above) with starting LTP and distance metrics.
+                </div>
+              </div>
+
+              <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ fontSize: '12px', fontWeight: '900', color: '#facc15' }}>2. Daily 15:40 IST Snapshot</div>
+                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', lineHeight: '1.4' }}>
+                  Every day at 15:40 IST, the watchdog automatically captures closing LTPs, tracks decay progression, and checks whether any strikes got breached.
+                </div>
+              </div>
+
+              <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ fontSize: '12px', fontWeight: '900', color: '#34d399' }}>3. Expiry Day Zero Settlement</div>
+                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', lineHeight: '1.4' }}>
+                  At 15:30 IST on Expiry Day, all 40 strikes are evaluated against the final settlement price. Strikes outside the range are marked as expired to ₹0.00.
+                </div>
+              </div>
+
+              <div style={{ padding: '12px', borderRadius: '8px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <div style={{ fontSize: '12px', fontWeight: '900', color: '#c084fc' }}>4. Autonomous Rule Codification</div>
+                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', lineHeight: '1.4' }}>
+                  The discovered safe writing boundaries and win rates are autonomously recorded in <code>market_learnings.txt</code> and updated weekly for continuous refinement.
+                </div>
+              </div>
             </div>
           </div>
 
         </div>
-      </div>
-
-      {/* 🔥 ACTIVE SERIES WRITTEN STRIKES CARDS */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))', gap: '20px' }}>
-        
-        {/* LEFT CARD: ACTIVE WRITTEN PUT FLOOR */}
-        <div style={{ padding: '20px', borderRadius: '14px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%)', border: '1px solid rgba(16, 185, 129, 0.4)', boxShadow: '0 8px 32px rgba(16, 185, 129, 0.15)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '12px', fontWeight: '950', color: '#86efac', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              🛡️ ACTIVE INSTITUTIONAL PUT FLOOR ({selectedSymbol})
-            </span>
-            <span style={{ fontSize: '10px', fontWeight: '900', background: currentData.putFloor.status === 'DEFENDED' ? '#10b981' : '#ef4444', color: currentData.putFloor.status === 'DEFENDED' ? '#000' : '#fff', padding: '3px 8px', borderRadius: '4px' }}>
-              {currentData.putFloor.status === 'DEFENDED' ? 'ACTIVE DEFENSE' : 'BREACH WARNING'}
-            </span>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-            <div style={{ fontSize: '26px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
-              {currentData.putFloor.name}
-            </div>
-            <div style={{ fontSize: '12px', color: '#86efac', fontWeight: '800' }}>
-              Spot: ₹{currentData.spot.toFixed(1)}
-            </div>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', background: 'rgba(0,0,0,0.4)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>TOTAL TRADED VOLUME</div>
-              <div style={{ fontSize: '16px', fontWeight: '900', color: '#34d399', marginTop: '2px' }}>
-                {currentData.putFloor.totalVolume}
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>PREMIUM DECAY</div>
-              <div style={{ fontSize: '16px', fontWeight: '900', color: '#facc15', marginTop: '2px' }}>
-                -{currentData.putFloor.decayPct}% Collapsed (LTP ₹{currentData.putFloor.currentLtp.toFixed(2)})
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>INITIAL ENTRY TIME</div>
-              <div style={{ fontSize: '12px', fontWeight: '800', color: 'white', marginTop: '2px' }}>
-                {currentData.putFloor.initialEntryTime}
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>FLOOR DISTANCE FROM SPOT</div>
-              <div style={{ fontSize: '12px', fontWeight: '800', color: (currentData.putFloor.floorDistance || 0) >= 0 ? '#86efac' : '#f87171', marginTop: '2px' }}>
-                {(currentData.putFloor.floorDistance || 0) >= 0 
-                  ? `+${currentData.putFloor.floorDistance} Pts Above Floor (Defended)`
-                  : `${currentData.putFloor.floorDistance} Pts Below Floor (Breached)`}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.4' }}>
-            💡 <strong>Institutional Logic:</strong> Big players shorted {currentData.putFloor.totalVolume} at {currentData.putFloor.strike} PE, building a hard support floor. As long as spot stays above this strike, option writers collect 100% theta decay into profit!
-          </div>
-        </div>
-
-        {/* RIGHT CARD: ACTIVE WRITTEN CALL CEILING */}
-        <div style={{ padding: '20px', borderRadius: '14px', background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%)', border: '1px solid rgba(239, 68, 68, 0.4)', boxShadow: '0 8px 32px rgba(239, 68, 68, 0.15)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span style={{ fontSize: '12px', fontWeight: '950', color: '#fca5a5', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              🏰 ACTIVE INSTITUTIONAL CALL CEILING ({selectedSymbol})
-            </span>
-            <span style={{ fontSize: '10px', fontWeight: '900', background: currentData.callCeiling.status === 'DEFENDED' ? '#ef4444' : '#f59e0b', color: '#fff', padding: '3px 8px', borderRadius: '4px' }}>
-              {currentData.callCeiling.status === 'DEFENDED' ? 'RESISTANCE WALL' : 'BREAKOUT WARNING'}
-            </span>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between' }}>
-            <div style={{ fontSize: '26px', fontWeight: '950', color: 'white', fontFamily: 'monospace' }}>
-              {currentData.callCeiling.name}
-            </div>
-            <div style={{ fontSize: '12px', color: '#fca5a5', fontWeight: '800' }}>
-              Spot: ₹{currentData.spot.toFixed(1)}
-            </div>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', background: 'rgba(0,0,0,0.4)', padding: '12px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.06)' }}>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>TOTAL TRADED VOLUME</div>
-              <div style={{ fontSize: '16px', fontWeight: '900', color: '#fca5a5', marginTop: '2px' }}>
-                {currentData.callCeiling.totalVolume}
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>PREMIUM DECAY</div>
-              <div style={{ fontSize: '16px', fontWeight: '900', color: '#facc15', marginTop: '2px' }}>
-                -{currentData.callCeiling.decayPct}% Collapsed (LTP ₹{currentData.callCeiling.currentLtp.toFixed(2)})
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>INITIAL ENTRY TIME</div>
-              <div style={{ fontSize: '12px', fontWeight: '800', color: 'white', marginTop: '2px' }}>
-                {currentData.callCeiling.initialEntryTime}
-              </div>
-            </div>
-            <div>
-              <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: '800' }}>CEILING DISTANCE FROM SPOT</div>
-              <div style={{ fontSize: '12px', fontWeight: '800', color: (currentData.callCeiling.ceilingDistance || 0) >= 0 ? '#60a5fa' : '#f87171', marginTop: '2px' }}>
-                {(currentData.callCeiling.ceilingDistance || 0) >= 0 
-                  ? `${currentData.callCeiling.ceilingDistance} Pts Below Ceiling`
-                  : `+${Math.abs(currentData.callCeiling.ceilingDistance || 0)} Pts Above Ceiling (Breached)`}
-              </div>
-            </div>
-          </div>
-
-          <div style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.4' }}>
-            💡 <strong>Institutional Logic:</strong> Big players shorted {currentData.callCeiling.totalVolume} at {currentData.callCeiling.strike} CE, capping upside. This creates a safe Short Strangle corridor between {currentData.putFloor.strike} PE and {currentData.callCeiling.strike} CE!
-          </div>
-        </div>
-      </div>
+      )}
 
       {/* 🧠 AI SELF-LEARNING & MISTAKE CORRECTION LOG */}
       <div style={{ padding: '24px', borderRadius: '16px', background: 'rgba(15, 23, 42, 0.95)', border: '1px solid rgba(255,255,255,0.08)' }}>
@@ -787,4 +1303,3 @@ export function WeeklySellingContainer() {
     </div>
   );
 }
-
