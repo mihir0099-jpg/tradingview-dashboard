@@ -1,14 +1,14 @@
 {
-  "timestamp": 1789457435268,
+  "timestamp": 1789460781625,
   "dateStr": "2026-09-15",
-  "timeStr": "13:00:35 IST",
+  "timeStr": "13:56:21 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23326.95,
+      "spot": 23273.35,
       "open": 23270.9,
-      "dayHigh": 23335.25,
-      "dayLow": 23314.05,
+      "dayHigh": 23309.85,
+      "dayLow": 23264.45,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
@@ -22,10 +22,10 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 56221.5,
+      "spot": 56144.8,
       "open": 56420,
-      "dayHigh": 56245.35,
-      "dayLow": 56128.85,
+      "dayHigh": 56215.55,
+      "dayLow": 56125.95,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
@@ -39,11 +39,11 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 17,
+    "coilingDematCount": 11,
     "volumeBreakoutCount": 2,
-    "distributionTrapCount": 8,
-    "swingLowFormations": 17,
-    "swingHighFormations": 8
+    "distributionTrapCount": 15,
+    "swingLowFormations": 11,
+    "swingHighFormations": 15
   },
   "tomorrowHighConvictionWatchlist": [
     {
@@ -55,53 +55,26 @@
       "sector": "Financial Institutions",
       "trade": {
         "action": "BUY RECLTD 315 CE / Spot",
-        "spotEntry": 313.65,
+        "spotEntry": 313.05,
         "spotSL": 308.65,
-        "spotRiskPts": 5,
-        "spotTarget1": 321.65,
-        "spotTarget2": 327.65,
+        "spotRiskPts": 4.4,
+        "spotTarget1": 320.09,
+        "spotTarget2": 325.37,
         "atmStrike": 315,
         "lotSize": 1400,
-        "riskPerLotINR": 7000,
-        "target1GainPerLotINR": 11200,
-        "target2GainPerLotINR": 19600,
+        "riskPerLotINR": 6160,
+        "target1GainPerLotINR": 9856,
+        "target2GainPerLotINR": 17248,
         "exitCondition": "Exit option immediately if Spot crosses below ₹308.65",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 74,
-      "catalystRationale": "Range compressed to 36.6% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹310.4). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 70,
+      "catalystRationale": "Range compressed to 36.6% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹310.4). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 2,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "NYKAA",
-      "name": "FSN E-Commerce Ventures Ltd.",
-      "sector": "Beauty & Fashion E-Commerce",
-      "trade": {
-        "action": "BUY NYKAA 340 PE / Short Spot",
-        "spotEntry": 342.2,
-        "spotSL": 351.3,
-        "spotRiskPts": 9.1,
-        "spotTarget1": 327.64,
-        "spotTarget2": 316.72,
-        "atmStrike": 340,
-        "lotSize": 500,
-        "riskPerLotINR": 4550,
-        "target1GainPerLotINR": 7280,
-        "target2GainPerLotINR": 12740,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹351.3",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
-      },
-      "confidencePct": 51,
-      "catalystRationale": "Tested 20-day Resistance (₹349.55) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
-    },
-    {
-      "rank": 3,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
       "symbol": "LAURUSLABS",
@@ -109,16 +82,16 @@
       "sector": "Pharmaceuticals",
       "trade": {
         "action": "BUY LAURUSLABS 1940 PE / Short Spot",
-        "spotEntry": 1938.2,
+        "spotEntry": 1938.8,
         "spotSL": 1990.57,
-        "spotRiskPts": 52.37,
-        "spotTarget1": 1854.41,
-        "spotTarget2": 1791.56,
+        "spotRiskPts": 51.77,
+        "spotTarget1": 1855.97,
+        "spotTarget2": 1793.84,
         "atmStrike": 1940,
         "lotSize": 1700,
-        "riskPerLotINR": 89029,
-        "target1GainPerLotINR": 142443,
-        "target2GainPerLotINR": 249288,
+        "riskPerLotINR": 88009,
+        "target1GainPerLotINR": 140811,
+        "target2GainPerLotINR": 246432,
         "exitCondition": "Exit option immediately if Spot crosses above ₹1990.57",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
@@ -126,126 +99,141 @@
       },
       "confidencePct": 49,
       "catalystRationale": "Tested 20-day Resistance (₹1981.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    },
+    {
+      "rank": 3,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "ANGELONE",
+      "name": "Angel One Limited",
+      "sector": "Fintech & Brokerage",
+      "trade": {
+        "action": "BUY ANGELONE 300 PE / Short Spot",
+        "spotEntry": 302.4,
+        "spotSL": 311.84,
+        "spotRiskPts": 9.44,
+        "spotTarget1": 287.3,
+        "spotTarget2": 275.97,
+        "atmStrike": 300,
+        "lotSize": 500,
+        "riskPerLotINR": 4720,
+        "target1GainPerLotINR": 7550,
+        "target2GainPerLotINR": 13215,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹311.84",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
+      },
+      "confidencePct": 44,
+      "catalystRationale": "Tested 20-day Resistance (₹310) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
         "symbol": "RECLTD",
-        "price": 313.65,
+        "price": 313.05,
         "compPct": 36.6,
-        "delivPct": 92,
+        "delivPct": 90,
         "floor": 310.4
       },
       {
-        "symbol": "BALKRISIND",
-        "price": 2155.6,
-        "compPct": 38,
-        "delivPct": 89,
-        "floor": 2150
-      },
-      {
-        "symbol": "NAM-INDIA",
-        "price": 1180.1,
-        "compPct": 45.8,
-        "delivPct": 75,
-        "floor": 1146.8
-      },
-      {
-        "symbol": "JIOFIN",
-        "price": 230,
-        "compPct": 46.5,
-        "delivPct": 75,
-        "floor": 226.44
-      },
-      {
         "symbol": "KALYANKJIL",
-        "price": 611.45,
+        "price": 610.9,
         "compPct": 46.9,
-        "delivPct": 83,
+        "delivPct": 75,
         "floor": 556.5
+      },
+      {
+        "symbol": "BALKRISIND",
+        "price": 2144.2,
+        "compPct": 49.2,
+        "delivPct": 84,
+        "floor": 2142.1
+      },
+      {
+        "symbol": "RELIANCE",
+        "price": 1250.2,
+        "compPct": 49.7,
+        "delivPct": 84,
+        "floor": 1249.2
+      },
+      {
+        "symbol": "BRITANNIA",
+        "price": 4987,
+        "compPct": 50,
+        "delivPct": 84,
+        "floor": 4945
       }
     ],
     "volumeDrives": [
       {
         "symbol": "BSOFT",
-        "price": 291.75,
-        "volMult": 4.88
+        "price": 288,
+        "volMult": 5.28,
+        "action": "BUY BSOFT 290 PE / Short Spot"
       },
       {
         "symbol": "DABUR",
-        "price": 390,
-        "volMult": 2.44,
+        "price": 387.8,
+        "volMult": 3.49,
         "action": "BUY DABUR 390 CE / Spot"
       },
       {
+        "symbol": "KPITTECH",
+        "price": 566.15,
+        "volMult": 2.31
+      },
+      {
         "symbol": "MPHASIS",
-        "price": 2393.8,
-        "volMult": 2.05
+        "price": 2368.6,
+        "volMult": 2.27,
+        "action": "BUY MPHASIS 2360 PE / Short Spot"
       },
       {
         "symbol": "TATAELXSI",
-        "price": 3480.6,
-        "volMult": 1.74
-      },
-      {
-        "symbol": "KPITTECH",
-        "price": 572.2,
-        "volMult": 1.61
+        "price": 3443,
+        "volMult": 1.97,
+        "action": "BUY TATAELXSI 3450 PE / Short Spot"
       }
     ],
     "distributionTraps": [
       {
-        "symbol": "NYKAA",
-        "price": 342.2,
-        "ceil": 349.55,
-        "distCeilPct": 2.15
-      },
-      {
         "symbol": "LAURUSLABS",
-        "price": 1938.2,
+        "price": 1938.8,
         "ceil": 1981.8,
-        "distCeilPct": 2.25
+        "distCeilPct": 2.22
       },
       {
         "symbol": "ANGELONE",
-        "price": 302.5,
+        "price": 302.4,
         "ceil": 310,
-        "distCeilPct": 2.48
+        "distCeilPct": 2.51
       },
       {
-        "symbol": "ADANIPORTS",
-        "price": 1745.9,
-        "ceil": 1791.4,
-        "distCeilPct": 2.61
+        "symbol": "NYKAA",
+        "price": 339.75,
+        "ceil": 349.55,
+        "distCeilPct": 2.88
       },
       {
         "symbol": "APOLLOHOSP",
-        "price": 8812,
+        "price": 8789.5,
         "ceil": 9050,
-        "distCeilPct": 2.7
+        "distCeilPct": 2.96
+      },
+      {
+        "symbol": "ADANIPORTS",
+        "price": 1739.8,
+        "ceil": 1791.4,
+        "distCeilPct": 2.97
       }
     ],
     "sectorLeadership": [
       {
-        "sector": "Energy & Petrochemicals",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
         "sector": "Financial Institutions",
         "coilingCount": 1,
         "totalStocks": 2
-      },
-      {
-        "sector": "Insurance",
-        "coilingCount": 1,
-        "totalStocks": 5
-      },
-      {
-        "sector": "Telecom",
-        "coilingCount": 1,
-        "totalStocks": 1
       },
       {
         "sector": "FMCG",
@@ -253,17 +241,32 @@
         "totalStocks": 4
       },
       {
-        "sector": "Pharma",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
         "sector": "Batteries & Storage",
         "coilingCount": 1,
         "totalStocks": 1
       },
       {
-        "sector": "Apparel & Innerwear",
+        "sector": "Retail Supermarkets",
+        "coilingCount": 1,
+        "totalStocks": 1
+      },
+      {
+        "sector": "Pharma",
+        "coilingCount": 1,
+        "totalStocks": 1
+      },
+      {
+        "sector": "FMCG & Personal Care",
+        "coilingCount": 1,
+        "totalStocks": 2
+      },
+      {
+        "sector": "Cables & Electricals",
+        "coilingCount": 1,
+        "totalStocks": 2
+      },
+      {
+        "sector": "Restaurants & Fast Food",
         "coilingCount": 1,
         "totalStocks": 1
       }
@@ -276,7 +279,7 @@
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "17 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Energy & Petrochemicals (1 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "11 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Financial Institutions (1 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

@@ -15,6 +15,22 @@ interface PriceLevel {
   delta: number;
 }
 
+interface ClimaxZone {
+  id: string;
+  type: 'BC' | 'SC' | 'VCB' | 'VCS';
+  candleIdx: number;
+  timestamp: number;
+  highPrice: number;
+  lowPrice: number;
+  zoneTop: number;
+  zoneBtm: number;
+  label: string;
+  subLabel: string;
+  volRatio: number;
+  delta: number;
+  isResistance: boolean;
+}
+
 interface FootprintCandle {
   timestamp: number;
   timeStr: string;
@@ -95,6 +111,8 @@ export const OrderFlowContainer: React.FC = () => {
   const [imbalanceRatio, setImbalanceRatio] = useState<number>(3.0);
   const [showSteppedPoc, setShowSteppedPoc] = useState(true);
   const [showCotBadges, setShowCotBadges] = useState(true); // COT on candle top & bottom
+  const [showClimaxZones, setShowClimaxZones] = useState(true); // VCB, VCS, SC, BC Climax Zones
+  const [isVsaGuideOpen, setIsVsaGuideOpen] = useState(false); // VSA Educational Guide Modal
   const [showCrCaps, setShowCrCaps] = useState(true);
   const [showProfile, setShowProfile] = useState(true);
 
@@ -202,6 +220,115 @@ export const OrderFlowContainer: React.FC = () => {
     window.addEventListener('click', handleOutsideClick);
     return () => window.removeEventListener('click', handleOutsideClick);
   }, []);
+
+  // =========================================================================
+  // VSA CLIMAX ZONES (BC, SC, VCB, VCS) DETECTION ENGINE
+  // =========================================================================
+  const climaxZones: ClimaxZone[] = React.useMemo(() => {
+    if (!state?.candles || state.candles.length === 0) return [];
+    
+    const candles = state.candles;
+    const totalVol = candles.reduce((acc, c) => acc + (c.volume || 0), 0);
+    const avgVol = totalVol / candles.length;
+
+    const totalRange = candles.reduce((acc, c) => acc + Math.max(step, c.high - c.low), 0);
+    const avgRange = totalRange / candles.length;
+
+    const zones: ClimaxZone[] = [];
+
+    candles.forEach((c, idx) => {
+      const cRange = Math.max(step, c.high - c.low);
+      const volRatio = avgVol > 0 ? (c.volume / avgVol) : 1;
+      const rangeRatio = avgRange > 0 ? (cRange / avgRange) : 1;
+      const upperWick = c.high - Math.max(c.open, c.close);
+      const lowerWick = Math.min(c.open, c.close) - c.low;
+      const upperWickRatio = upperWick / cRange;
+      const lowerWickRatio = lowerWick / cRange;
+      const prevC = idx > 0 ? candles[idx - 1] : null;
+
+      // 1. BC (Buying Climax): Late stage uptrend, ultra-high volume, wide spread, closes off highs
+      const isUptrend = (c.close > c.open) || (prevC && c.high > prevC.high);
+      const isBC = isUptrend && volRatio >= 1.6 && rangeRatio >= 1.25 && (upperWickRatio >= 0.22 || (c.high - c.close) / cRange >= 0.30);
+
+      // 2. SC (Selling Climax): Extended downtrend, ultra-high volume, wide spread, closes off lows
+      const isDowntrend = (c.close < c.open) || (prevC && c.low < prevC.low);
+      const isSC = isDowntrend && volRatio >= 1.6 && rangeRatio >= 1.25 && (lowerWickRatio >= 0.22 || (c.close - c.low) / cRange >= 0.30);
+
+      // 3. VCB (Volume Buying Climax): Aggressive buying absorbed at high with narrow/stalled spread
+      const isVCB = !isBC && !isSC && (c.delta > 0 || c.volume >= avgVol * 1.3) && rangeRatio <= 1.05 && (c.high - c.close) / cRange >= 0.25;
+
+      // 4. VCS (Volume Selling Climax): Aggressive selling absorbed at low with narrow/stalled spread
+      const isVCS = !isBC && !isSC && !isVCB && (c.delta < 0 || c.volume >= avgVol * 1.3) && rangeRatio <= 1.05 && (c.close - c.low) / cRange >= 0.25;
+
+      if (isBC) {
+        zones.push({
+          id: `BC-${c.timestamp || idx}`,
+          type: 'BC',
+          candleIdx: idx,
+          timestamp: c.timestamp,
+          highPrice: c.high,
+          lowPrice: c.low,
+          zoneTop: c.high,
+          zoneBtm: Math.max(c.open, c.close),
+          label: 'BC (Buying Climax)',
+          subLabel: 'Wholesale Distribution / Resistance',
+          volRatio: parseFloat(volRatio.toFixed(1)),
+          delta: c.delta,
+          isResistance: true
+        });
+      } else if (isSC) {
+        zones.push({
+          id: `SC-${c.timestamp || idx}`,
+          type: 'SC',
+          candleIdx: idx,
+          timestamp: c.timestamp,
+          highPrice: c.high,
+          lowPrice: c.low,
+          zoneTop: Math.min(c.open, c.close),
+          zoneBtm: c.low,
+          label: 'SC (Selling Climax)',
+          subLabel: 'Institutional Accumulation / Floor',
+          volRatio: parseFloat(volRatio.toFixed(1)),
+          delta: c.delta,
+          isResistance: false
+        });
+      } else if (isVCB) {
+        zones.push({
+          id: `VCB-${c.timestamp || idx}`,
+          type: 'VCB',
+          candleIdx: idx,
+          timestamp: c.timestamp,
+          highPrice: c.high,
+          lowPrice: c.low,
+          zoneTop: c.high,
+          zoneBtm: parseFloat((c.high - (step * 2)).toFixed(2)),
+          label: 'VCB (Volume Buying Climax)',
+          subLabel: 'Ask Absorption / Resistance Peak',
+          volRatio: parseFloat(volRatio.toFixed(1)),
+          delta: c.delta,
+          isResistance: true
+        });
+      } else if (isVCS) {
+        zones.push({
+          id: `VCS-${c.timestamp || idx}`,
+          type: 'VCS',
+          candleIdx: idx,
+          timestamp: c.timestamp,
+          highPrice: c.high,
+          lowPrice: c.low,
+          zoneTop: parseFloat((c.low + (step * 2)).toFixed(2)),
+          zoneBtm: c.low,
+          label: 'VCS (Volume Selling Climax)',
+          subLabel: 'Bid Absorption / Floor Support',
+          volRatio: parseFloat(volRatio.toFixed(1)),
+          delta: c.delta,
+          isResistance: false
+        });
+      }
+    });
+
+    return zones;
+  }, [state?.candles, step]);
 
   // Build the global continuous price scale with headroom & footroom padding using current step
   const paddingSteps = 20;
@@ -736,6 +863,44 @@ export const OrderFlowContainer: React.FC = () => {
             >
               Profile
             </button>
+            <button
+              onClick={() => setShowClimaxZones(!showClimaxZones)}
+              style={{
+                backgroundColor: showClimaxZones ? '#312e81' : 'transparent',
+                color: showClimaxZones ? '#c7d2fe' : '#64748b',
+                border: showClimaxZones ? '1px solid #6366f1' : '1px solid transparent',
+                borderRadius: '3px',
+                padding: '3px 7px',
+                fontSize: '10px',
+                fontWeight: '800',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '3px'
+              }}
+              title="Toggle VSA Climax Zones: VCB, VCS, SC, BC"
+            >
+              <span>🎯 Climax (VSA)</span>
+            </button>
+            <button
+              onClick={() => setIsVsaGuideOpen(true)}
+              style={{
+                backgroundColor: '#1e1b4b',
+                color: '#a5b4fc',
+                border: '1px solid #4f46e5',
+                borderRadius: '3px',
+                padding: '3px 7px',
+                fontSize: '10px',
+                fontWeight: '800',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '2px'
+              }}
+              title="Open Institutional VSA Climax Matrix & Rules"
+            >
+              <span>📖 Matrix Guide</span>
+            </button>
           </div>
 
           {/* ========================================================================= */}
@@ -1146,6 +1311,9 @@ export const OrderFlowContainer: React.FC = () => {
                 const isBullDivergence = (candle.close < candle.open && candle.delta > 0) || 
                                          (prevCandle && candle.low < prevCandle.low && candle.delta > 0 && candle.close > candle.low);
 
+                // Check if this candle established a VSA Climax Zone (BC, SC, VCB, VCS)
+                const candleClimax = showClimaxZones ? climaxZones.find(z => z.candleIdx === cIdx) : null;
+
                 return (
                   <div
                     key={candle.timestamp || cIdx}
@@ -1194,6 +1362,27 @@ export const OrderFlowContainer: React.FC = () => {
                         const isExtremeHigh = Math.abs(p - topRung) < step / 2;
                         const isExtremeLow = Math.abs(p - btmRung) < step / 2;
 
+                        // Check if current rung falls inside an active Climax horizontal zone
+                        const activeClimaxZone = showClimaxZones ? climaxZones.find(z => cIdx >= z.candleIdx && p <= (z.zoneTop + step / 4) && p >= (z.zoneBtm - step / 4)) : null;
+
+                        let climaxBg = 'transparent';
+                        let climaxBorderStyle = 'none';
+                        if (activeClimaxZone) {
+                          if (activeClimaxZone.type === 'BC') {
+                            climaxBg = 'rgba(239, 68, 68, 0.09)';
+                            if (Math.abs(p - activeClimaxZone.zoneTop) < step / 2) climaxBorderStyle = '1px dashed #ef4444';
+                          } else if (activeClimaxZone.type === 'VCB') {
+                            climaxBg = 'rgba(245, 158, 11, 0.09)';
+                            if (Math.abs(p - activeClimaxZone.zoneTop) < step / 2) climaxBorderStyle = '1px dashed #f59e0b';
+                          } else if (activeClimaxZone.type === 'SC') {
+                            climaxBg = 'rgba(16, 185, 129, 0.09)';
+                            if (Math.abs(p - activeClimaxZone.zoneBtm) < step / 2) climaxBorderStyle = '1px dashed #10b981';
+                          } else if (activeClimaxZone.type === 'VCS') {
+                            climaxBg = 'rgba(6, 182, 212, 0.09)';
+                            if (Math.abs(p - activeClimaxZone.zoneBtm) < step / 2) climaxBorderStyle = '1px dashed #06b6d4';
+                          }
+                        }
+
                         return (
                           <div
                             key={p}
@@ -1203,8 +1392,8 @@ export const OrderFlowContainer: React.FC = () => {
                               display: 'flex',
                               alignItems: 'center',
                               position: 'relative',
-                              borderBottom: '1px solid rgba(255, 255, 255, 0.02)',
-                              backgroundColor: isPoc ? 'rgba(234, 179, 8, 0.14)' : (inCandleRange ? 'rgba(255, 255, 255, 0.012)' : 'transparent'),
+                              borderBottom: climaxBorderStyle !== 'none' ? climaxBorderStyle : '1px solid rgba(255, 255, 255, 0.02)',
+                              backgroundColor: isPoc ? 'rgba(234, 179, 8, 0.14)' : (activeClimaxZone ? climaxBg : (inCandleRange ? 'rgba(255, 255, 255, 0.012)' : 'transparent')),
                               border: isPoc ? '2px solid #ef4444' : 'none',
                               boxSizing: 'border-box'
                             }}
@@ -1222,6 +1411,67 @@ export const OrderFlowContainer: React.FC = () => {
                                 zIndex: 1,
                                 boxShadow: '0 0 6px #38bdf8'
                               }} />
+                            )}
+
+                            {/* VSA CLIMAX ZONE BADGES (BC, VCB on High; SC, VCS on Low) */}
+                            {showClimaxZones && isExtremeHigh && candleClimax && (candleClimax.type === 'BC' || candleClimax.type === 'VCB') && (
+                              <div
+                                title={`🚨 ${candleClimax.label}\n• Volume Ratio: ${candleClimax.volRatio}x average\n• Delta: ${candleClimax.delta > 0 ? '+' : ''}${candleClimax.delta}\n• Zone: ${candleClimax.zoneBtm} - ${candleClimax.zoneTop}\n• Meaning: ${candleClimax.subLabel}\n• Action: Stop buying breakouts. Look for short setups on upthrusts/breakdown below ${candleClimax.zoneBtm}.`}
+                                onClick={(e) => { e.stopPropagation(); setIsVsaGuideOpen(true); }}
+                                style={{
+                                  position: 'absolute',
+                                  top: isBearDivergence ? '-56px' : (showCotBadges ? '-38px' : '-22px'),
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  backgroundColor: candleClimax.type === 'BC' ? '#b91c1c' : '#d97706',
+                                  color: '#fff',
+                                  fontSize: '8px',
+                                  fontWeight: '900',
+                                  padding: '2px 6px',
+                                  borderRadius: '3px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '3px',
+                                  boxShadow: candleClimax.type === 'BC' ? '0 0 10px rgba(185, 28, 28, 0.9)' : '0 0 10px rgba(217, 119, 6, 0.9)',
+                                  zIndex: 16,
+                                  whiteSpace: 'nowrap',
+                                  border: candleClimax.type === 'BC' ? '1px solid #fca5a5' : '1px solid #fde047',
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <span>{candleClimax.type === 'BC' ? '🚨 BC ZONE' : '⚡ VCB'}</span>
+                                <span style={{ fontSize: '7.5px', opacity: 0.9 }}>({candleClimax.volRatio}x)</span>
+                              </div>
+                            )}
+
+                            {showClimaxZones && isExtremeLow && candleClimax && (candleClimax.type === 'SC' || candleClimax.type === 'VCS') && (
+                              <div
+                                title={`🛡️ ${candleClimax.label}\n• Volume Ratio: ${candleClimax.volRatio}x average\n• Delta: ${candleClimax.delta > 0 ? '+' : ''}${candleClimax.delta}\n• Zone: ${candleClimax.zoneBtm} - ${candleClimax.zoneTop}\n• Meaning: ${candleClimax.subLabel}\n• Action: Cease shorting. Wait for low-volume retest to enter long with SL below ${candleClimax.zoneBtm}.`}
+                                onClick={(e) => { e.stopPropagation(); setIsVsaGuideOpen(true); }}
+                                style={{
+                                  position: 'absolute',
+                                  bottom: isBullDivergence ? '-56px' : (showCotBadges ? '-38px' : '-22px'),
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  backgroundColor: candleClimax.type === 'SC' ? '#047857' : '#0e7490',
+                                  color: '#fff',
+                                  fontSize: '8px',
+                                  fontWeight: '900',
+                                  padding: '2px 6px',
+                                  borderRadius: '3px',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '3px',
+                                  boxShadow: candleClimax.type === 'SC' ? '0 0 10px rgba(4, 120, 87, 0.9)' : '0 0 10px rgba(14, 116, 144, 0.9)',
+                                  zIndex: 16,
+                                  whiteSpace: 'nowrap',
+                                  border: candleClimax.type === 'SC' ? '1px solid #86efac' : '1px solid #38bdf8',
+                                  cursor: 'pointer'
+                                }}
+                              >
+                                <span>{candleClimax.type === 'SC' ? '🛡️ SC ZONE' : '⚡ VCS'}</span>
+                                <span style={{ fontSize: '7.5px', opacity: 0.9 }}>({candleClimax.volRatio}x)</span>
+                              </div>
                             )}
 
                             {/* DELTA DIVERGENCE SYMBOLS ON THE CHART ONLY */}
@@ -1846,6 +2096,191 @@ export const OrderFlowContainer: React.FC = () => {
           </button>
         </div>
       </div>
+      {/* ========================================================================= */}
+      {/* 4. INSTITUTIONAL VSA CLIMAX MATRIX & EDUCATIONAL TRADING GUIDE MODAL        */}
+      {/* ========================================================================= */}
+      {isVsaGuideOpen && (
+        <div 
+          onClick={() => setIsVsaGuideOpen(false)}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backdropFilter: 'blur(5px)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999,
+            padding: '20px'
+          }}
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              backgroundColor: '#11151f',
+              border: '1px solid #312e81',
+              borderRadius: '12px',
+              width: '95%',
+              maxWidth: '900px',
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.9)',
+              padding: '24px',
+              color: '#e2e8f0',
+              position: 'relative'
+            }}
+          >
+            {/* Header */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', borderBottom: '1px solid #1e293b', paddingBottom: '14px', marginBottom: '16px' }}>
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '18px' }}>🎯</span>
+                  <h2 style={{ margin: 0, fontSize: '18px', fontWeight: '900', color: '#f8fafc', letterSpacing: '-0.3px' }}>
+                    Institutional VSA Climax Matrix (VCB, VCS, SC, BC)
+                  </h2>
+                  <span style={{ fontSize: '10px', backgroundColor: '#312e81', color: '#c7d2fe', padding: '2px 8px', borderRadius: '4px', fontWeight: '800' }}>
+                    Bell Order Flow & VSA
+                  </span>
+                </div>
+                <p style={{ margin: '6px 0 0 0', fontSize: '12px', color: '#94a3b8' }}>
+                  Identify institutional exhaustion, smart-money absorption, and market turning points using Volume (effort) alongside Spread (result).
+                </p>
+              </div>
+              <button 
+                onClick={() => setIsVsaGuideOpen(false)}
+                style={{
+                  backgroundColor: '#1e293b',
+                  color: '#94a3b8',
+                  border: 'none',
+                  borderRadius: '6px',
+                  padding: '6px 12px',
+                  cursor: 'pointer',
+                  fontWeight: '700',
+                  fontSize: '13px'
+                }}
+              >
+                ✕ Close
+              </button>
+            </div>
+
+            {/* Matrix Table */}
+            <div style={{ marginBottom: '20px', overflowX: 'auto' }}>
+              <h3 style={{ fontSize: '13px', fontWeight: '800', color: '#e2e8f0', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span>📊</span> 1. VSA Climax Matrix Overview
+              </h3>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', textAlign: 'left' }}>
+                <thead>
+                  <tr style={{ backgroundColor: '#1e2638', color: '#cbd5e1' }}>
+                    <th style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Zone</th>
+                    <th style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Trend Context</th>
+                    <th style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Volume vs. Spread Signature</th>
+                    <th style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Institutional Dynamic</th>
+                    <th style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Trading Action (Nifty / Bank Nifty / F&O)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style={{ backgroundColor: 'rgba(239, 68, 68, 0.08)' }}>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', fontWeight: '900', color: '#ef4444' }}>
+                      🚨 BC
+                    </td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#fca5a5' }}>Late Stage Uptrend</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Ultra-High Vol (≥1.8x) + Wide Spread, Closes off High</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#f87171' }}>Wholesale Distribution to late retail buyers</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#fca5a5' }}>Stop buying breakouts; scout for short setups on upthrusts.</td>
+                  </tr>
+                  <tr style={{ backgroundColor: 'rgba(16, 185, 129, 0.08)' }}>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', fontWeight: '900', color: '#10b981' }}>
+                      🛡️ SC
+                    </td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#86efac' }}>Extended Downtrend</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Ultra-High Vol (≥1.8x) + Wide Spread, Closes off Low</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#34d399' }}>Institutional Accumulation & panic absorption</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#86efac' }}>Cease shorting; wait for a low-volume retest to go long.</td>
+                  </tr>
+                  <tr style={{ backgroundColor: 'rgba(245, 158, 11, 0.08)' }}>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', fontWeight: '900', color: '#f59e0b' }}>
+                      ⚡ VCB
+                    </td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#fde047' }}>Micro Rejection Peak</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Delta Surge + Narrowing Spread (High Effort / Low Result)</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#fbbf24' }}>Aggressive Buyers Absorbed by Limit Sell Walls</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#fde047' }}>Initiate tactical short if price breaks below the VCB zone.</td>
+                  </tr>
+                  <tr style={{ backgroundColor: 'rgba(6, 182, 212, 0.08)' }}>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', fontWeight: '900', color: '#06b6d4' }}>
+                      ⚡ VCS
+                    </td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#67e8f9' }}>Micro Rejection Trough</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748' }}>Delta Drop + Narrowing Spread (High Effort / Low Result)</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#22d3ee' }}>Aggressive Sellers Absorbed by Limit Buy Orders</td>
+                    <td style={{ padding: '8px 10px', border: '1px solid #2d3748', color: '#67e8f9' }}>Initiate tactical long if price clears above the VCS zone.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Trading Playbooks */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))', gap: '14px', marginBottom: '20px' }}>
+              
+              {/* Playbook A */}
+              <div style={{ backgroundColor: '#0f172a', border: '1px solid #10b98144', borderRadius: '8px', padding: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#10b981', fontWeight: '800', fontSize: '13px', marginBottom: '8px' }}>
+                  <span>🛡️</span> Strategy A: The SC / VCS Bottom Long (Reversal)
+                </div>
+                <div style={{ fontSize: '11px', lineHeight: '1.6', color: '#cbd5e1' }}>
+                  <p style={{ margin: '0 0 6px 0' }}>
+                    <strong>1. Identify the Pattern:</strong> Wait for Nifty or Bank Nifty to drop sharply into key support (Value Area Low, Yesterday's Low, or IB Low).
+                  </p>
+                  <p style={{ margin: '0 0 6px 0' }}>
+                    <strong>2. Confirm the Climax:</strong> Look for the <code>SC</code> or <code>VCS</code> zone badge to print accompanied by an ultra-high volume spike.
+                  </p>
+                  <p style={{ margin: '0 0 0 0' }}>
+                    <strong>3. Execution:</strong> Do not buy the climax candle instantly. Wait for the next 1 or 2 candles to form a low-volume retest ("No Supply" bar) that holds above the SC/VCS green floor zone. Enter long with Stop Loss below the zone low. Target: POC / VWAP.
+                  </p>
+                </div>
+              </div>
+
+              {/* Playbook B */}
+              <div style={{ backgroundColor: '#0f172a', border: '1px solid #ef444444', borderRadius: '8px', padding: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#ef4444', fontWeight: '800', fontSize: '13px', marginBottom: '8px' }}>
+                  <span>🚨</span> Strategy B: The BC / VCB Top Short (Exhaustion Fade)
+                </div>
+                <div style={{ fontSize: '11px', lineHeight: '1.6', color: '#cbd5e1' }}>
+                  <p style={{ margin: '0 0 6px 0' }}>
+                    <strong>1. Identify the Pattern:</strong> Look for Nifty, Bank Nifty, or high-beta F&O stocks rallying heavily toward key overhead resistance (VAH, Yesterday High).
+                  </p>
+                  <p style={{ margin: '0 0 6px 0' }}>
+                    <strong>2. Confirm the Climax:</strong> A <code>BC</code> or <code>VCB</code> zone prints with high volume effort on the Ask, but the candle spread stalls and closes off its highs.
+                  </p>
+                  <p style={{ margin: '0 0 0 0' }}>
+                    <strong>3. Execution:</strong> Wait for price to break down and close below the red/amber VCB/BC zone floor. Short the breakdown or the subsequent test of the zone from below. Target: Session POC / Midpoint.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* How to Read On Your Chart */}
+            <div style={{ backgroundColor: '#181e2b', borderRadius: '8px', padding: '14px', border: '1px solid #283548' }}>
+              <h4 style={{ margin: '0 0 8px 0', fontSize: '12px', fontWeight: '800', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span>👁️</span> Visual Legend On Your Footprint Chart:
+              </h4>
+              <ul style={{ margin: 0, paddingLeft: '18px', fontSize: '11px', lineHeight: '1.7', color: '#94a3b8' }}>
+                <li><strong style={{ color: '#ef4444' }}>Red Pill [ 🚨 BC ZONE ]:</strong> Printed on the candle high when ultra-volume and wide spread distribute into retail buyers.</li>
+                <li><strong style={{ color: '#f59e0b' }}>Amber Pill [ ⚡ VCB ]:</strong> Printed on the candle high when aggressive market buyers get absorbed by passive limit sellers.</li>
+                <li><strong style={{ color: '#10b981' }}>Green Pill [ 🛡️ SC ZONE ]:</strong> Printed on the candle low when panic selling volume is absorbed by smart money accumulation.</li>
+                <li><strong style={{ color: '#06b6d4' }}>Cyan Pill [ ⚡ VCS ]:</strong> Printed on the candle low when aggressive sellers hitting the Bid get absorbed by institutional limit buy floors.</li>
+                <li><strong>Horizontal Bands & Dashed Lines:</strong> The chart automatically shades the active support/resistance zones from the climax candle forward across subsequent candles.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </div>
   );
 };
