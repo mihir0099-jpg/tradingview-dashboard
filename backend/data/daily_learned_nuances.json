@@ -1,21 +1,21 @@
 [
   {
     "date": "2026-09-15",
-    "timestamp": 1789460771618,
-    "istTime": "2026-09-15 13:56:11 IST",
+    "timestamp": 1789464660301,
+    "istTime": "2026-09-15 15:01:00 IST",
     "macroProfile": {
-      "niftySpot": 23273.35,
+      "niftySpot": 23167.1,
       "niftyOpen": 23270.9,
-      "niftyChangePct": "0.01%",
-      "bankniftySpot": 56144.8,
+      "niftyChangePct": "-0.45%",
+      "bankniftySpot": 55886.25,
       "dayType": "ROTATIONAL_BALANCED_AUCTION",
       "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 28
+      "activeFnoOpportunities": 26
     },
     "autonomousLearnings": [
       {
         "domain": "Institutional Demat Absorption",
-        "observation": "11 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (RECLTD, BRITANNIA, EXIDEIND, DMART).",
+        "observation": "3 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (CIPLA, FEDERALBNK, SONACOMS).",
         "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
       },
       {
@@ -25,7 +25,7 @@
       },
       {
         "domain": "Late-Day Volume Filter (Period L)",
-        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in LAURUSLABS, NYKAA, ADANIPORTS printed exhaustion tails.",
+        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in GODREJPROP, SHRIRAMFIN, INDIGO printed exhaustion tails.",
         "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
       }
     ]

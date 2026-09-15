@@ -1364,26 +1364,51 @@ export const OrderFlowContainer: React.FC = () => {
                         const isExtremeHigh = Math.abs(p - topRung) < step / 2;
                         const isExtremeLow = Math.abs(p - btmRung) < step / 2;
 
-                        // Check if current rung falls inside an active Climax horizontal zone
-                        const activeClimaxZone = showClimaxZones ? climaxZones.find(z => cIdx >= z.candleIdx && p <= (z.zoneTop + step / 4) && p >= (z.zoneBtm - step / 4)) : null;
+                        // Check if current rung falls inside an active Climax horizontal zone (match most recent relevant zone)
+                        const activeClimaxZone = showClimaxZones 
+                          ? [...climaxZones].reverse().find(z => cIdx >= z.candleIdx && (cIdx - z.candleIdx) <= 12 && p <= (z.zoneTop + step / 4) && p >= (z.zoneBtm - step / 4)) 
+                          : null;
 
                         let climaxBg = 'transparent';
-                        let climaxBorderStyle = 'none';
+                        let climaxBorderTop = 'none';
+                        let climaxBorderBottom = 'none';
+                        let isZoneTopEdge = false;
+                        let isZoneBtmEdge = false;
+                        let zoneTagText = '';
+                        let zoneTagColor = '#fff';
+
                         if (activeClimaxZone) {
+                          isZoneTopEdge = Math.abs(p - activeClimaxZone.zoneTop) < step / 2;
+                          isZoneBtmEdge = Math.abs(p - activeClimaxZone.zoneBtm) < step / 2;
+
                           if (activeClimaxZone.type === 'BC') {
-                            climaxBg = 'rgba(239, 68, 68, 0.09)';
-                            if (Math.abs(p - activeClimaxZone.zoneTop) < step / 2) climaxBorderStyle = '1px dashed #ef4444';
+                            climaxBg = 'rgba(239, 68, 68, 0.22)';
+                            if (isZoneTopEdge) climaxBorderTop = '2px solid #ef4444';
+                            if (isZoneBtmEdge) climaxBorderBottom = '1px dashed rgba(239, 68, 68, 0.7)';
+                            zoneTagText = '🚨 BC RES';
+                            zoneTagColor = '#fca5a5';
                           } else if (activeClimaxZone.type === 'VCB') {
-                            climaxBg = 'rgba(245, 158, 11, 0.09)';
-                            if (Math.abs(p - activeClimaxZone.zoneTop) < step / 2) climaxBorderStyle = '1px dashed #f59e0b';
+                            climaxBg = 'rgba(245, 158, 11, 0.22)';
+                            if (isZoneTopEdge) climaxBorderTop = '2px solid #f59e0b';
+                            if (isZoneBtmEdge) climaxBorderBottom = '1px dashed rgba(245, 158, 11, 0.7)';
+                            zoneTagText = '⚡ VCB RES';
+                            zoneTagColor = '#fde047';
                           } else if (activeClimaxZone.type === 'SC') {
-                            climaxBg = 'rgba(16, 185, 129, 0.09)';
-                            if (Math.abs(p - activeClimaxZone.zoneBtm) < step / 2) climaxBorderStyle = '1px dashed #10b981';
+                            climaxBg = 'rgba(16, 185, 129, 0.22)';
+                            if (isZoneBtmEdge) climaxBorderBottom = '2px solid #10b981';
+                            if (isZoneTopEdge) climaxBorderTop = '1px dashed rgba(16, 185, 129, 0.7)';
+                            zoneTagText = '🛡️ SC SUPP';
+                            zoneTagColor = '#86efac';
                           } else if (activeClimaxZone.type === 'VCS') {
-                            climaxBg = 'rgba(6, 182, 212, 0.09)';
-                            if (Math.abs(p - activeClimaxZone.zoneBtm) < step / 2) climaxBorderStyle = '1px dashed #06b6d4';
+                            climaxBg = 'rgba(6, 182, 212, 0.22)';
+                            if (isZoneBtmEdge) climaxBorderBottom = '2px solid #06b6d4';
+                            if (isZoneTopEdge) climaxBorderTop = '1px dashed rgba(6, 182, 212, 0.7)';
+                            zoneTagText = '⚡ VCS SUPP';
+                            zoneTagColor = '#67e8f9';
                           }
                         }
+
+                        const showZoneLabel = activeClimaxZone && cIdx === activeClimaxZone.candleIdx && (isZoneTopEdge || isZoneBtmEdge);
 
                         return (
                           <div
@@ -1394,12 +1419,34 @@ export const OrderFlowContainer: React.FC = () => {
                               display: 'flex',
                               alignItems: 'center',
                               position: 'relative',
-                              borderBottom: climaxBorderStyle !== 'none' ? climaxBorderStyle : '1px solid rgba(255, 255, 255, 0.02)',
+                              borderTop: climaxBorderTop !== 'none' ? climaxBorderTop : 'none',
+                              borderBottom: climaxBorderBottom !== 'none' ? climaxBorderBottom : '1px solid rgba(255, 255, 255, 0.02)',
                               backgroundColor: isPoc ? 'rgba(234, 179, 8, 0.14)' : (activeClimaxZone ? climaxBg : (inCandleRange ? 'rgba(255, 255, 255, 0.012)' : 'transparent')),
-                              border: isPoc ? '2px solid #ef4444' : 'none',
+                              border: isPoc ? '2px solid #ef4444' : (activeClimaxZone && (climaxBorderTop !== 'none' || climaxBorderBottom !== 'none') ? undefined : 'none'),
                               boxSizing: 'border-box'
                             }}
                           >
+                            {/* In-Zone Watermark / Name Label */}
+                            {showZoneLabel && (
+                              <div style={{
+                                position: 'absolute',
+                                left: '4px',
+                                top: isZoneTopEdge ? '1px' : 'auto',
+                                bottom: isZoneBtmEdge ? '1px' : 'auto',
+                                fontSize: '7.5px',
+                                fontWeight: '900',
+                                color: zoneTagColor,
+                                textShadow: '0 0 4px #000',
+                                backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                                padding: '0 4px',
+                                borderRadius: '2px',
+                                zIndex: 10,
+                                pointerEvents: 'none',
+                                whiteSpace: 'nowrap'
+                              }}>
+                                {zoneTagText} ({activeClimaxZone.zoneBtm.toFixed(1)} - {activeClimaxZone.zoneTop.toFixed(1)})
+                              </div>
+                            )}
                             {/* Stepped POC Line */}
                             {showSteppedPoc && isPoc && (
                               <div style={{

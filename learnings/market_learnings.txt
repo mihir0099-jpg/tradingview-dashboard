@@ -44215,3 +44215,137 @@ AUTONOMOUS SESSION FORENSIC: 2026-09-15 (13:56:11 IST)
 * 212 F&O UNIVERSE CAPITAL CONCENTRATION: 11 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Financial Institutions (1 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
 * INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
 ================================================================================
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-09-15 (14:59:03 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 23167.1 (-0.45%) | Day Structure: Rotational Balanced Auction
+* Bank Nifty: 55886.25 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 25 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] INSTITUTIONAL DEMAT ABSORPTION:
+  - Insight: 3 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (CIPLA, FEDERALBNK, SONACOMS).
+  - Applied Rule: Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor.
+
+[2] INDEX VS SECTOR COINTEGRATION:
+  - Insight: On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.
+  - Applied Rule: Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts.
+
+[3] LATE-DAY VOLUME FILTER (PERIOD L):
+  - Insight: Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in INDIGO, SHRIRAMFIN, DELHIVERY printed exhaustion tails.
+  - Applied Rule: Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 6 institutional rules
+* Auto-Learned Rules Added: 3 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-09-15
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹23167.1 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> ROTATIONAL_BALANCED_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹55886.25 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 3 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 2 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Pharma (1 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 💥 BREAKDOWN / FADE -> LAURUSLABS (Pharmaceuticals)
+    Action: BUY LAURUSLABS 1920 PE / Short Spot
+    Entry: ₹1926.3 | SL: ₹1990.61 (Risk: ₹109327/lot)
+    Target 1: ₹1823.4 (+₹174930/lot)
+    Target 2: ₹1746.23 (+₹306119/lot)
+    Win Rate: 46% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹1981.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[2] 💥 BREAKDOWN / FADE -> APOLLOHOSP (Healthcare)
+    Action: BUY APOLLOHOSP 8800 PE / Short Spot
+    Entry: ₹8793.5 | SL: ₹9081.94 (Risk: ₹36055/lot)
+    Target 1: ₹8332 (+₹57688/lot)
+    Target 2: ₹7985.87 (+₹100954/lot)
+    Win Rate: 42% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹9050) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a ROTATIONAL_BALANCED_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 3 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Pharma (1 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-09-15 (15:01:00 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 23167.1 (-0.45%) | Day Structure: Rotational Balanced Auction
+* Bank Nifty: 55886.25 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 26 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] INSTITUTIONAL DEMAT ABSORPTION:
+  - Insight: 3 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (CIPLA, FEDERALBNK, SONACOMS).
+  - Applied Rule: Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor.
+
+[2] INDEX VS SECTOR COINTEGRATION:
+  - Insight: On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.
+  - Applied Rule: Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts.
+
+[3] LATE-DAY VOLUME FILTER (PERIOD L):
+  - Insight: Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in GODREJPROP, SHRIRAMFIN, INDIGO printed exhaustion tails.
+  - Applied Rule: Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 6 institutional rules
+* Auto-Learned Rules Added: 3 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-09-15
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹23167.1 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> ROTATIONAL_BALANCED_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹55886.25 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 3 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 2 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Pharma (1 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 💥 BREAKDOWN / FADE -> APOLLOHOSP (Healthcare)
+    Action: BUY APOLLOHOSP 8800 PE / Short Spot
+    Entry: ₹8788 | SL: ₹9081.94 (Risk: ₹36743/lot)
+    Target 1: ₹8317.7 (+₹58787/lot)
+    Target 2: ₹7964.97 (+₹102879/lot)
+    Win Rate: 42% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹9050) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[2] 💥 BREAKDOWN / FADE -> LAURUSLABS (Pharmaceuticals)
+    Action: BUY LAURUSLABS 1920 PE / Short Spot
+    Entry: ₹1924.2 | SL: ₹1990.64 (Risk: ₹112948/lot)
+    Target 1: ₹1817.9 (+₹180710/lot)
+    Target 2: ₹1738.17 (+₹316251/lot)
+    Win Rate: 44% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹1981.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a ROTATIONAL_BALANCED_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 3 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Pharma (1 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
