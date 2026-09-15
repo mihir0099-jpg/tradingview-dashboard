@@ -29,6 +29,8 @@ interface ClimaxZone {
   volRatio: number;
   delta: number;
   isResistance: boolean;
+  breachedAtIdx: number | null;
+  isBreached: boolean;
 }
 
 interface FootprintCandle {
@@ -276,7 +278,9 @@ export const OrderFlowContainer: React.FC = () => {
           subLabel: 'Wholesale Distribution / Resistance',
           volRatio: parseFloat(volRatio.toFixed(1)),
           delta: c.delta,
-          isResistance: true
+          isResistance: true,
+          breachedAtIdx: null,
+          isBreached: false
         });
       } else if (isSC) {
         zones.push({
@@ -292,7 +296,9 @@ export const OrderFlowContainer: React.FC = () => {
           subLabel: 'Institutional Accumulation / Floor',
           volRatio: parseFloat(volRatio.toFixed(1)),
           delta: c.delta,
-          isResistance: false
+          isResistance: false,
+          breachedAtIdx: null,
+          isBreached: false
         });
       } else if (isVCB) {
         zones.push({
@@ -308,7 +314,9 @@ export const OrderFlowContainer: React.FC = () => {
           subLabel: 'Ask Absorption / Resistance Peak',
           volRatio: parseFloat(volRatio.toFixed(1)),
           delta: c.delta,
-          isResistance: true
+          isResistance: true,
+          breachedAtIdx: null,
+          isBreached: false
         });
       } else if (isVCS) {
         zones.push({
@@ -324,9 +332,34 @@ export const OrderFlowContainer: React.FC = () => {
           subLabel: 'Bid Absorption / Floor Support',
           volRatio: parseFloat(volRatio.toFixed(1)),
           delta: c.delta,
-          isResistance: false
+          isResistance: false,
+          breachedAtIdx: null,
+          isBreached: false
         });
       }
+    });
+
+    // Unbreached / Mitigation Engine: Keep zone extending forward across all candles UNTIL breached!
+    zones.forEach(z => {
+      let bIdx: number | null = null;
+      for (let k = z.candleIdx + 1; k < candles.length; k++) {
+        const ck = candles[k];
+        if (z.isResistance) {
+          // Resistance breached when price closes above zoneTop
+          if (ck.close > z.zoneTop) {
+            bIdx = k;
+            break;
+          }
+        } else {
+          // Support floor breached when price closes below zoneBtm
+          if (ck.close < z.zoneBtm) {
+            bIdx = k;
+            break;
+          }
+        }
+      }
+      z.breachedAtIdx = bIdx;
+      z.isBreached = bIdx !== null;
     });
 
     return zones;
@@ -1364,9 +1397,14 @@ export const OrderFlowContainer: React.FC = () => {
                         const isExtremeHigh = Math.abs(p - topRung) < step / 2;
                         const isExtremeLow = Math.abs(p - btmRung) < step / 2;
 
-                        // Check if current rung falls inside an active Climax horizontal zone (match most recent relevant zone)
+                        // Check if current rung falls inside an active Climax horizontal zone (extends UNTIL breached!)
                         const activeClimaxZone = showClimaxZones 
-                          ? [...climaxZones].reverse().find(z => cIdx >= z.candleIdx && (cIdx - z.candleIdx) <= 12 && p <= (z.zoneTop + step / 4) && p >= (z.zoneBtm - step / 4)) 
+                          ? [...climaxZones].reverse().find(z => 
+                              cIdx >= z.candleIdx && 
+                              (z.breachedAtIdx === null || cIdx <= z.breachedAtIdx) && 
+                              p <= (z.zoneTop + step / 4) && 
+                              p >= (z.zoneBtm - step / 4)
+                            ) 
                           : null;
 
                         let climaxBg = 'transparent';
@@ -1385,25 +1423,25 @@ export const OrderFlowContainer: React.FC = () => {
                             climaxBg = 'rgba(239, 68, 68, 0.22)';
                             if (isZoneTopEdge) climaxBorderTop = '2px solid #ef4444';
                             if (isZoneBtmEdge) climaxBorderBottom = '1px dashed rgba(239, 68, 68, 0.7)';
-                            zoneTagText = '🚨 BC RES';
+                            zoneTagText = activeClimaxZone.isBreached ? '🚨 BC RES' : '🚨 BC RES (HOLDING)';
                             zoneTagColor = '#fca5a5';
                           } else if (activeClimaxZone.type === 'VCB') {
                             climaxBg = 'rgba(245, 158, 11, 0.22)';
                             if (isZoneTopEdge) climaxBorderTop = '2px solid #f59e0b';
                             if (isZoneBtmEdge) climaxBorderBottom = '1px dashed rgba(245, 158, 11, 0.7)';
-                            zoneTagText = '⚡ VCB RES';
+                            zoneTagText = activeClimaxZone.isBreached ? '⚡ VCB RES' : '⚡ VCB RES (HOLDING)';
                             zoneTagColor = '#fde047';
                           } else if (activeClimaxZone.type === 'SC') {
                             climaxBg = 'rgba(16, 185, 129, 0.22)';
                             if (isZoneBtmEdge) climaxBorderBottom = '2px solid #10b981';
                             if (isZoneTopEdge) climaxBorderTop = '1px dashed rgba(16, 185, 129, 0.7)';
-                            zoneTagText = '🛡️ SC SUPP';
+                            zoneTagText = activeClimaxZone.isBreached ? '🛡️ SC SUPP' : '🛡️ SC SUPP (HOLDING)';
                             zoneTagColor = '#86efac';
                           } else if (activeClimaxZone.type === 'VCS') {
                             climaxBg = 'rgba(6, 182, 212, 0.22)';
                             if (isZoneBtmEdge) climaxBorderBottom = '2px solid #06b6d4';
                             if (isZoneTopEdge) climaxBorderTop = '1px dashed rgba(6, 182, 212, 0.7)';
-                            zoneTagText = '⚡ VCS SUPP';
+                            zoneTagText = activeClimaxZone.isBreached ? '⚡ VCS SUPP' : '⚡ VCS SUPP (HOLDING)';
                             zoneTagColor = '#67e8f9';
                           }
                         }

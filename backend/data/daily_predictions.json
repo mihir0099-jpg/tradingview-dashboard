@@ -1,6 +1,90 @@
 [
   {
     "symbol": "NIFTY",
+    "target_date": "2026-09-16",
+    "target_day": "Wednesday",
+    "computed_at": "2026-09-15T10:17:30.608Z",
+    "baseline_session": {
+      "date": "2026-09-15",
+      "open": 23576.15,
+      "high": 23592.85,
+      "low": 23118.6,
+      "close": 23118.6,
+      "atr14": 197.8
+    },
+    "prediction": {
+      "predicted_open": 23091.7,
+      "predicted_high": 23181.4,
+      "predicted_low": 22967.8,
+      "predicted_close": 23014.8,
+      "predicted_range": 213.6,
+      "predicted_gap_pts": -26.9,
+      "directional_bias": "RED",
+      "expected_candle": "RED CANDLE (Open > Close)",
+      "cpr": {
+        "P": 23276.7,
+        "BCP": 23197.7,
+        "TCP": 23355.7,
+        "widthPct": 0.68,
+        "type": "WIDE (Range Bound Consolidation)"
+      },
+      "camarilla": {
+        "r4": 23379.4,
+        "r3": 23249,
+        "r2": 23205.5,
+        "r1": 23162.1,
+        "s1": 23075.1,
+        "s2": 23031.7,
+        "s3": 22988.2,
+        "s4": 22857.8
+      }
+    },
+    "actual_evaluation": null
+  },
+  {
+    "symbol": "BANKNIFTY",
+    "target_date": "2026-09-16",
+    "target_day": "Wednesday",
+    "computed_at": "2026-09-15T10:17:30.769Z",
+    "baseline_session": {
+      "date": "2026-09-15",
+      "open": 56884.25,
+      "high": 56996.35,
+      "low": 55794.75,
+      "close": 55794.75,
+      "atr14": 593.9
+    },
+    "prediction": {
+      "predicted_open": 55655.8,
+      "predicted_high": 55925.2,
+      "predicted_low": 55283.8,
+      "predicted_close": 55424.9,
+      "predicted_range": 641.4,
+      "predicted_gap_pts": -138.9,
+      "directional_bias": "RED",
+      "expected_candle": "RED CANDLE (Open > Close)",
+      "cpr": {
+        "P": 56195.3,
+        "BCP": 55995,
+        "TCP": 56395.6,
+        "widthPct": 0.71,
+        "type": "WIDE (Range Bound Consolidation)"
+      },
+      "camarilla": {
+        "r4": 56455.6,
+        "r3": 56125.2,
+        "r2": 56015,
+        "r1": 55904.9,
+        "s1": 55684.6,
+        "s2": 55574.5,
+        "s3": 55464.3,
+        "s4": 55133.9
+      }
+    },
+    "actual_evaluation": null
+  },
+  {
+    "symbol": "NIFTY",
     "target_date": "2026-09-14",
     "target_day": "Monday",
     "computed_at": "2026-09-14T10:17:06.117Z",

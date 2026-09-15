@@ -2,21 +2,21 @@
   "archive_id": "SESSION_2026-09-15",
   "date": "2026-09-15",
   "day_of_week": "Tuesday",
-  "archived_at": "2026-09-15T09:55:28.720Z",
-  "ist_timestamp": "15:25:28",
-  "captured_till_ist": "15:25:20",
-  "session_status": "IN_PROGRESS",
-  "save_trigger": "INTRADAY_5MIN_AUTO",
+  "archived_at": "2026-09-15T10:17:31.679Z",
+  "ist_timestamp": "15:47:31",
+  "captured_till_ist": "15:30:00",
+  "session_status": "COMPLETE",
+  "save_trigger": "CLI_EXECUTION",
   "indices": {
     "nifty": {
       "profile": {
         "openPrice": 23576.15,
-        "closePrice": 23172.35,
-        "changePts": -403.8,
-        "changePct": -1.71,
+        "closePrice": 23118.6,
+        "changePts": -457.55,
+        "changePct": -1.94,
         "dayHigh": 23588.3,
-        "dayLow": 23152.5,
-        "totalRange": 435.8,
+        "dayLow": 23118.6,
+        "totalRange": 469.7,
         "ibHigh": 23588.3,
         "ibLow": 23369.8,
         "ibRange": 218.5,
@@ -35,21 +35,21 @@
         },
         "sessionExtremes": {
           "hodTime": "09:15:00",
-          "lodTime": "14:48:00"
+          "lodTime": "15:29:00"
         }
       },
-      "candles_count": 371,
-      "last_candle_time": "15:25:20"
+      "candles_count": 376,
+      "last_candle_time": "15:30:00"
     },
     "banknifty": {
       "profile": {
         "openPrice": 56928.55,
-        "closePrice": 55908.95,
-        "changePts": -1019.6,
-        "changePct": -1.79,
+        "closePrice": 55794.75,
+        "changePts": -1133.8,
+        "changePct": -1.99,
         "dayHigh": 56995.7,
-        "dayLow": 55870.1,
-        "totalRange": 1125.6,
+        "dayLow": 55794.75,
+        "totalRange": 1200.95,
         "ibHigh": 56995.7,
         "ibLow": 56279.5,
         "ibRange": 716.2,
@@ -68,11 +68,11 @@
         },
         "sessionExtremes": {
           "hodTime": "09:15:00",
-          "lodTime": "14:48:00"
+          "lodTime": "15:29:00"
         }
       },
-      "candles_count": 371,
-      "last_candle_time": "15:25:24"
+      "candles_count": 376,
+      "last_candle_time": "15:30:00"
     }
   },
   "options_skew_gamma": {
@@ -3416,12 +3416,57 @@
         "volume": 0
       },
       {
-        "time": 1789466120,
-        "timeIST": "15:25:20",
+        "time": 1789466100,
+        "timeIST": "15:25:00",
         "open": 23172.35,
         "high": 23172.35,
         "low": 23172.35,
         "close": 23172.35,
+        "volume": 0
+      },
+      {
+        "time": 1789466160,
+        "timeIST": "15:26:00",
+        "open": 23172.35,
+        "high": 23172.35,
+        "low": 23172.35,
+        "close": 23172.35,
+        "volume": 0
+      },
+      {
+        "time": 1789466220,
+        "timeIST": "15:27:00",
+        "open": 23172.35,
+        "high": 23172.35,
+        "low": 23172.35,
+        "close": 23172.35,
+        "volume": 0
+      },
+      {
+        "time": 1789466280,
+        "timeIST": "15:28:00",
+        "open": 23172.35,
+        "high": 23172.35,
+        "low": 23172.35,
+        "close": 23172.35,
+        "volume": 0
+      },
+      {
+        "time": 1789466340,
+        "timeIST": "15:29:00",
+        "open": 23172.35,
+        "high": 23172.35,
+        "low": 23118.6,
+        "close": 23118.6,
+        "volume": 0
+      },
+      {
+        "time": 1789466400,
+        "timeIST": "15:30:00",
+        "open": 23118.6,
+        "high": 23118.6,
+        "low": 23118.6,
+        "close": 23118.6,
         "volume": 0
       }
     ],
@@ -6757,12 +6802,57 @@
         "volume": 0
       },
       {
-        "time": 1789466124,
-        "timeIST": "15:25:24",
+        "time": 1789466100,
+        "timeIST": "15:25:00",
         "open": 55908.95,
         "high": 55908.95,
         "low": 55908.95,
         "close": 55908.95,
+        "volume": 0
+      },
+      {
+        "time": 1789466160,
+        "timeIST": "15:26:00",
+        "open": 55908.95,
+        "high": 55908.95,
+        "low": 55908.95,
+        "close": 55908.95,
+        "volume": 0
+      },
+      {
+        "time": 1789466220,
+        "timeIST": "15:27:00",
+        "open": 55908.95,
+        "high": 55908.95,
+        "low": 55908.95,
+        "close": 55908.95,
+        "volume": 0
+      },
+      {
+        "time": 1789466280,
+        "timeIST": "15:28:00",
+        "open": 55908.95,
+        "high": 55908.95,
+        "low": 55908.95,
+        "close": 55908.95,
+        "volume": 0
+      },
+      {
+        "time": 1789466340,
+        "timeIST": "15:29:00",
+        "open": 55908.95,
+        "high": 55908.95,
+        "low": 55794.75,
+        "close": 55794.75,
+        "volume": 0
+      },
+      {
+        "time": 1789466400,
+        "timeIST": "15:30:00",
+        "open": 55794.75,
+        "high": 55794.75,
+        "low": 55794.75,
+        "close": 55794.75,
         "volume": 0
       }
     ]
