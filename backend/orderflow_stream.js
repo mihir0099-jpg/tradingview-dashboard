@@ -68,7 +68,12 @@ class OrderFlowStreamEngine {
       const payload = JSON.stringify({
         exchange: meta.exchange,
         symboltoken: meta.token,
-        interval: this.timeframeMinutes === 1 ? 'ONE_MINUTE' : (this.timeframeMinutes === 3 ? 'THREE_MINUTE' : 'FIVE_MINUTE'),
+        interval: this.timeframeMinutes === 1 ? 'ONE_MINUTE' :
+                  (this.timeframeMinutes === 3 ? 'THREE_MINUTE' :
+                  (this.timeframeMinutes === 10 ? 'TEN_MINUTE' :
+                  (this.timeframeMinutes === 15 ? 'FIFTEEN_MINUTE' :
+                  (this.timeframeMinutes === 30 ? 'THIRTY_MINUTE' :
+                  (this.timeframeMinutes === 60 ? 'ONE_HOUR' : 'FIVE_MINUTE'))))),
         fromdate: `${dateStr} 09:15`,
         todate: `${dateStr} 15:30`
       });

@@ -1,5 +1,13 @@
 [
   {
+    "timestamp": 1789449475084,
+    "istTime": "15/9/2026, 10:47:55 am",
+    "component": "⚡ Opening Bias",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Recomputed opening auction drive classifications",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
     "timestamp": 1789446347725,
     "istTime": "15/9/2026, 9:55:47 am",
     "component": "⚡ Opening Bias",
