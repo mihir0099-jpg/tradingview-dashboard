@@ -420,18 +420,18 @@ export function StocksTrackerContainer() {
               ₹{fmt(em.totalBlockVolumeCr, '0')} Cr
             </div>
             <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '4px' }}>
-              {em.totalBlockDealsCount} prints across 8:45 AM & 2:05 PM windows
+              {em.totalBlockDealsCount} prints executed today (Live Market)
             </div>
             {/* Exact Time Breakdown Badges on Card */}
             <div style={{ marginTop: '8px', display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
               <span style={{ fontSize: '9.5px', background: 'rgba(234, 179, 8, 0.2)', color: '#fde047', padding: '2px 6px', borderRadius: '3px', fontWeight: 800 }}>
-                🌅 08:52 AM: ₹352.2 Cr (14)
+                🌅 08:52 AM: {em.timeWindows?.morning?.isExecuted ? `₹${em.timeWindows.morning.valueCr} Cr (${em.timeWindows.morning.count})` : 'Pending'}
               </span>
-              <span style={{ fontSize: '9.5px', background: 'rgba(56, 189, 248, 0.2)', color: '#7dd3fc', padding: '2px 6px', borderRadius: '3px', fontWeight: 800 }}>
-                ☀️ 11:24 AM: ₹299.7 Cr (6)
+              <span style={{ fontSize: '9.5px', background: 'rgba(56, 189, 248, 0.2)', color: '#7dd3fc', padding: '2px 6px', borderRadius: '3px', fontWeight: 800, opacity: em.timeWindows?.midday?.isExecuted ? 1 : 0.6 }}>
+                ☀️ 11:24 AM: {em.timeWindows?.midday?.isExecuted ? `₹${em.timeWindows.midday.valueCr} Cr (${em.timeWindows.midday.count})` : '⏳ Pending'}
               </span>
-              <span style={{ fontSize: '9.5px', background: 'rgba(168, 85, 247, 0.2)', color: '#d8b4fe', padding: '2px 6px', borderRadius: '3px', fontWeight: 800 }}>
-                🌇 02:11 PM: ₹246.1 Cr (9)
+              <span style={{ fontSize: '9.5px', background: 'rgba(168, 85, 247, 0.2)', color: '#d8b4fe', padding: '2px 6px', borderRadius: '3px', fontWeight: 800, opacity: em.timeWindows?.afternoon?.isExecuted ? 1 : 0.6 }}>
+                🌇 02:11 PM: {em.timeWindows?.afternoon?.isExecuted ? `₹${em.timeWindows.afternoon.valueCr} Cr (${em.timeWindows.afternoon.count})` : '⏳ Pending'}
               </span>
             </div>
           </div>
@@ -500,53 +500,62 @@ export function StocksTrackerContainer() {
         </div>
       )}
 
-      {/* ⏰ INSTITUTIONAL EXECUTION TIMELINE (WHEN THE ₹898 CR HAPPENED) */}
+      {/* ⏰ INSTITUTIONAL EXECUTION TIMELINE (TODAY ONLY) */}
       {em && (
         <div style={{ background: '#0a1020', border: '1px solid #1e3a8a', borderRadius: '8px', padding: '10px 16px', marginBottom: '14px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{ fontSize: '11px', fontWeight: 900, color: '#facc15', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-              ⏰ INSTITUTIONAL EXECUTION TIMELINE (₹898 CR):
+              ⏰ TODAY'S EXECUTION TIMELINE (₹{fmt(em.totalBlockVolumeCr, '0')} CR EXECUTED):
+            </span>
+            <span style={{ fontSize: '9.5px', background: 'rgba(16, 185, 129, 0.2)', color: '#34d399', border: '1px solid #059669', borderRadius: '4px', padding: '2px 6px', fontWeight: 800 }}>
+              🟢 TODAY'S SESSION ONLY
             </span>
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-            <div style={{ background: 'rgba(234, 179, 8, 0.15)', border: '1px solid #eab308', borderRadius: '6px', padding: '4px 10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ background: em.timeWindows?.morning?.isExecuted ? 'rgba(234, 179, 8, 0.15)' : 'rgba(30, 41, 59, 0.5)', border: `1px solid ${em.timeWindows?.morning?.isExecuted ? '#eab308' : '#334155'}`, borderRadius: '6px', padding: '4px 10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ fontSize: '12px' }}>🌅</span>
               <div>
-                <strong style={{ fontSize: '11px', color: '#fde047' }}>08:52 AM IST (Morning Window):</strong>
-                <span style={{ fontSize: '11px', color: '#f8fafc', fontWeight: 800, marginLeft: '4px' }}>₹352.2 Cr (14 Prints)</span>
+                <strong style={{ fontSize: '11px', color: em.timeWindows?.morning?.isExecuted ? '#fde047' : '#94a3b8' }}>08:52 AM (Morning Window):</strong>
+                <span style={{ fontSize: '11px', color: '#f8fafc', fontWeight: 800, marginLeft: '4px' }}>
+                  {em.timeWindows?.morning?.isExecuted ? `₹${em.timeWindows.morning.valueCr} Cr (${em.timeWindows.morning.count} Prints) ✅` : '⏳ Upcoming'}
+                </span>
               </div>
             </div>
 
-            <div style={{ background: 'rgba(56, 189, 248, 0.15)', border: '1px solid #38bdf8', borderRadius: '6px', padding: '4px 10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ background: em.timeWindows?.midday?.isExecuted ? 'rgba(56, 189, 248, 0.15)' : 'rgba(30, 41, 59, 0.5)', border: `1px solid ${em.timeWindows?.midday?.isExecuted ? '#38bdf8' : '#334155'}`, borderRadius: '6px', padding: '4px 10px', display: 'flex', alignItems: 'center', gap: '6px', opacity: em.timeWindows?.midday?.isExecuted ? 1 : 0.65 }}>
               <span style={{ fontSize: '12px' }}>☀️</span>
               <div>
-                <strong style={{ fontSize: '11px', color: '#7dd3fc' }}>11:24 AM IST (Mid-Day Bulk):</strong>
-                <span style={{ fontSize: '11px', color: '#f8fafc', fontWeight: 800, marginLeft: '4px' }}>₹299.7 Cr (6 Prints)</span>
+                <strong style={{ fontSize: '11px', color: em.timeWindows?.midday?.isExecuted ? '#7dd3fc' : '#94a3b8' }}>11:24 AM (Mid-Day Bulk):</strong>
+                <span style={{ fontSize: '11px', color: em.timeWindows?.midday?.isExecuted ? '#f8fafc' : '#94a3b8', fontWeight: 800, marginLeft: '4px' }}>
+                  {em.timeWindows?.midday?.isExecuted ? `₹${em.timeWindows.midday.valueCr} Cr (${em.timeWindows.midday.count} Prints) ✅` : '⏳ Upcoming at 11:24 AM'}
+                </span>
               </div>
             </div>
 
-            <div style={{ background: 'rgba(168, 85, 247, 0.15)', border: '1px solid #a855f7', borderRadius: '6px', padding: '4px 10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ background: em.timeWindows?.afternoon?.isExecuted ? 'rgba(168, 85, 247, 0.15)' : 'rgba(30, 41, 59, 0.5)', border: `1px solid ${em.timeWindows?.afternoon?.isExecuted ? '#a855f7' : '#334155'}`, borderRadius: '6px', padding: '4px 10px', display: 'flex', alignItems: 'center', gap: '6px', opacity: em.timeWindows?.afternoon?.isExecuted ? 1 : 0.65 }}>
               <span style={{ fontSize: '12px' }}>🌇</span>
               <div>
-                <strong style={{ fontSize: '11px', color: '#d8b4fe' }}>02:11 PM IST (Afternoon Window):</strong>
-                <span style={{ fontSize: '11px', color: '#f8fafc', fontWeight: 800, marginLeft: '4px' }}>₹246.1 Cr (9 Prints)</span>
+                <strong style={{ fontSize: '11px', color: em.timeWindows?.afternoon?.isExecuted ? '#d8b4fe' : '#94a3b8' }}>02:11 PM (Afternoon Window):</strong>
+                <span style={{ fontSize: '11px', color: em.timeWindows?.afternoon?.isExecuted ? '#f8fafc' : '#94a3b8', fontWeight: 800, marginLeft: '4px' }}>
+                  {em.timeWindows?.afternoon?.isExecuted ? `₹${em.timeWindows.afternoon.valueCr} Cr (${em.timeWindows.afternoon.count} Prints) ✅` : '⏳ Upcoming at 02:05 PM'}
+                </span>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* 🔍 QUICK WHALE TRANSPARENCY STRIP: 29 PRINTS SPEND & 11 STEALTH HOARDED STOCKS */}
+      {/* 🔍 QUICK WHALE TRANSPARENCY STRIP: TODAY'S PRINTS & STEALTH HOARDED STOCKS */}
       {data && (
         <div style={{ background: '#0b1329', border: '1px solid #1e3a8a', borderRadius: '10px', padding: '14px', marginBottom: '16px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '14px' }}>
             
-            {/* Panel A: How ₹898 Cr was spent across stocks with exact execution levels */}
+            {/* Panel A: How today's block volume was spent across stocks with exact execution levels */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                 <span style={{ fontSize: '11px', fontWeight: 800, color: '#38bdf8', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <Zap size={13} color="#38bdf8" /> HOW THE ₹898 CR WAS SPENT (ALL 29 PRINTS &amp; LEVELS)
+                  <Zap size={13} color="#38bdf8" /> HOW TODAY'S ₹{fmt(em?.totalBlockVolumeCr || 0, '0')} CR WAS SPENT ({data.blockDeals.length} PRINTS TODAY)
                 </span>
                 <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
                   <button
@@ -562,7 +571,7 @@ export function StocksTrackerContainer() {
                       fontWeight: 800
                     }}
                   >
-                    🔍 View All 29 Prints &amp; Levels
+                    🔍 View All {data.blockDeals.length} Prints &amp; Levels
                   </button>
                   <span 
                     onClick={() => {

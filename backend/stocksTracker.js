@@ -43,68 +43,60 @@ export const INSTITUTIONAL_WHALES = [
  */
 export function generateBlockDeals(stocksWithSpot) {
   const deals = [];
-  const todayStr = new Date().toISOString().split('T')[0];
+  const now = new Date();
+  const istOffset = 5.5 * 60 * 60 * 1000;
+  const istDate = new Date(now.getTime() + istOffset);
+  const istYear = istDate.getUTCFullYear();
+  const istMonth = String(istDate.getUTCMonth() + 1).padStart(2, '0');
+  const istDay = String(istDate.getUTCDate()).padStart(2, '0');
+  const todayStr = `${istYear}-${istMonth}-${istDay}`;
+
+  const istHours = istDate.getUTCHours();
+  const istMins = istDate.getUTCMinutes();
+  const currentTotalMins = istHours * 60 + istMins;
+
+  // Window execution times (in IST total minutes):
+  // 1. Morning Window: 08:45 AM (525 mins)
+  // 2. Mid-Day Bulk Window: 11:15 AM (675 mins)
+  // 3. Afternoon Window: 02:05 PM (845 mins)
+  const isMorningExecuted = currentTotalMins >= 525; // 8:45 AM IST
+  const isMiddayExecuted = currentTotalMins >= 675;  // 11:15 AM IST
+  const isAfternoonExecuted = currentTotalMins >= 845; // 02:05 PM IST
 
   stocksWithSpot.forEach((stock, idx) => {
     const spot = stock.spotPrice || 1000;
     const interval = stock.strikeInterval || 20;
 
-    // 1. Morning Block Deal Window (8:45 AM - 9:00 AM)
-    const morningVol = Math.round((stock.lotSize || 250) * (150 + (idx * 23) % 400));
-    const morningPrice = parseFloat((spot * (1 + ((idx % 3 === 0 ? 0.003 : -0.002)))).toFixed(2));
-    const morningValueCr = parseFloat(((morningVol * morningPrice) / 1e7).toFixed(2));
+    // 1. Morning Block Deal Window (8:45 AM - 9:00 AM) - Only if 08:45 AM has passed today
+    if (isMorningExecuted) {
+      const morningVol = Math.round((stock.lotSize || 250) * (150 + (idx * 23) % 400));
+      const morningPrice = parseFloat((spot * (1 + ((idx % 3 === 0 ? 0.003 : -0.002)))).toFixed(2));
+      const morningValueCr = parseFloat(((morningVol * morningPrice) / 1e7).toFixed(2));
 
-    if (morningValueCr >= 10.0) {
-      deals.push({
-        id: `BLK-${stock.cleanSymbol}-MORN`,
-        timestamp: `${todayStr}T08:52:14.000Z`,
-        timeStr: '08:52 AM (Morning Window)',
-        window: 'MORNING_BLOCK_WINDOW',
-        symbol: stock.symbol,
-        cleanSymbol: stock.cleanSymbol,
-        name: stock.name,
-        sector: stock.sector,
-        price: morningPrice,
-        volume: morningVol,
-        valueCr: morningValueCr,
-        side: idx % 2 === 0 ? 'BUY' : 'SELL',
-        buyer: INSTITUTIONAL_WHALES[idx % INSTITUTIONAL_WHALES.length],
-        seller: INSTITUTIONAL_WHALES[(idx + 4) % INSTITUTIONAL_WHALES.length],
-        premiumDiscountPct: parseFloat((((morningPrice - spot) / spot) * 100).toFixed(2)),
-        status: 'EXECUTED_CLEARED'
-      });
-    }
-
-    // 2. Afternoon Block Deal Window (2:05 PM - 2:20 PM)
-    if (idx % 2 === 0) {
-      const aftVol = Math.round((stock.lotSize || 250) * (200 + (idx * 37) % 500));
-      const aftPrice = parseFloat((spot * (1 + (idx % 4 === 0 ? 0.004 : -0.003))).toFixed(2));
-      const aftValueCr = parseFloat(((aftVol * aftPrice) / 1e7).toFixed(2));
-
-      if (aftValueCr >= 10.0) {
+      if (morningValueCr >= 10.0) {
         deals.push({
-          id: `BLK-${stock.cleanSymbol}-AFT`,
-          timestamp: `${todayStr}T14:11:40.000Z`,
-          timeStr: '02:11 PM (Afternoon Window)',
-          window: 'AFTERNOON_BLOCK_WINDOW',
+          id: `BLK-${stock.cleanSymbol}-MORN`,
+          timestamp: `${todayStr}T08:52:14.000Z`,
+          timeStr: '08:52 AM (Morning Window)',
+          window: 'MORNING_BLOCK_WINDOW',
           symbol: stock.symbol,
           cleanSymbol: stock.cleanSymbol,
           name: stock.name,
           sector: stock.sector,
-          price: aftPrice,
-          volume: aftVol,
-          valueCr: aftValueCr,
-          side: idx % 3 === 0 ? 'BUY' : 'CROSS_DEAL',
-          buyer: INSTITUTIONAL_WHALES[(idx + 2) % INSTITUTIONAL_WHALES.length],
-          seller: INSTITUTIONAL_WHALES[(idx + 6) % INSTITUTIONAL_WHALES.length],
-          premiumDiscountPct: parseFloat((((aftPrice - spot) / spot) * 100).toFixed(2)),
+          price: morningPrice,
+          volume: morningVol,
+          valueCr: morningValueCr,
+          side: idx % 2 === 0 ? 'BUY' : 'SELL',
+          buyer: INSTITUTIONAL_WHALES[idx % INSTITUTIONAL_WHALES.length],
+          seller: INSTITUTIONAL_WHALES[(idx + 4) % INSTITUTIONAL_WHALES.length],
+          premiumDiscountPct: parseFloat((((morningPrice - spot) / spot) * 100).toFixed(2)),
           status: 'EXECUTED_CLEARED'
         });
       }
     }
 
-    // 3. Open Market Bulk Deal (>0.5% of Equity)
-    if (idx % 3 === 1) {
+    // 2. Open Market Bulk Deal (>0.5% of Equity) - Only if 11:15 AM has passed today
+    if (isMiddayExecuted && idx % 3 === 1) {
       const bulkVol = Math.round((stock.lotSize || 250) * (450 + (idx * 50) % 800));
       const bulkPrice = parseFloat((spot * (1 + (idx % 2 === 0 ? -0.005 : 0.006))).toFixed(2));
       const bulkValueCr = parseFloat(((bulkVol * bulkPrice) / 1e7).toFixed(2));
@@ -127,6 +119,34 @@ export function generateBlockDeals(stocksWithSpot) {
           seller: 'Institutional Open Market Pool',
           premiumDiscountPct: parseFloat((((bulkPrice - spot) / spot) * 100).toFixed(2)),
           status: 'DISCLOSED_SEBI'
+        });
+      }
+    }
+
+    // 3. Afternoon Block Deal Window (2:05 PM - 2:20 PM) - Only if 02:05 PM has passed today
+    if (isAfternoonExecuted && idx % 2 === 0) {
+      const aftVol = Math.round((stock.lotSize || 250) * (200 + (idx * 37) % 500));
+      const aftPrice = parseFloat((spot * (1 + (idx % 4 === 0 ? 0.004 : -0.003))).toFixed(2));
+      const aftValueCr = parseFloat(((aftVol * aftPrice) / 1e7).toFixed(2));
+
+      if (aftValueCr >= 10.0) {
+        deals.push({
+          id: `BLK-${stock.cleanSymbol}-AFT`,
+          timestamp: `${todayStr}T14:11:40.000Z`,
+          timeStr: '02:11 PM (Afternoon Window)',
+          window: 'AFTERNOON_BLOCK_WINDOW',
+          symbol: stock.symbol,
+          cleanSymbol: stock.cleanSymbol,
+          name: stock.name,
+          sector: stock.sector,
+          price: aftPrice,
+          volume: aftVol,
+          valueCr: aftValueCr,
+          side: idx % 3 === 0 ? 'BUY' : 'CROSS_DEAL',
+          buyer: INSTITUTIONAL_WHALES[(idx + 2) % INSTITUTIONAL_WHALES.length],
+          seller: INSTITUTIONAL_WHALES[(idx + 6) % INSTITUTIONAL_WHALES.length],
+          premiumDiscountPct: parseFloat((((aftPrice - spot) / spot) * 100).toFixed(2)),
+          status: 'EXECUTED_CLEARED'
         });
       }
     }
@@ -820,12 +840,25 @@ export async function computeStocksTrackerOverview(selectedSymbol = 'NSE:NIFTY',
   const middayValueCr = parseFloat(middayDeals.reduce((a, d) => a + d.valueCr, 0).toFixed(2));
   const afternoonValueCr = parseFloat(afternoonDeals.reduce((a, d) => a + d.valueCr, 0).toFixed(2));
 
+  const now = new Date();
+  const istOffset = 5.5 * 60 * 60 * 1000;
+  const istDate = new Date(now.getTime() + istOffset);
+  const istHours = istDate.getUTCHours();
+  const istMins = istDate.getUTCMinutes();
+  const currentTotalMins = istHours * 60 + istMins;
+
+  const isMorningExecuted = currentTotalMins >= 525; // 8:45 AM IST
+  const isMiddayExecuted = currentTotalMins >= 675;  // 11:15 AM IST
+  const isAfternoonExecuted = currentTotalMins >= 845; // 02:05 PM IST
+
   const timeWindows = {
     morning: {
       name: 'Morning Block Window',
       timeStr: '08:52 AM IST',
       valueCr: morningValueCr,
       count: morningDeals.length,
+      isExecuted: isMorningExecuted,
+      statusLabel: isMorningExecuted ? '✅ EXECUTED TODAY' : '⏳ UPCOMING (08:45 AM)',
       label: 'Pre-Market (08:45 - 09:00 AM)'
     },
     midday: {
@@ -833,6 +866,8 @@ export async function computeStocksTrackerOverview(selectedSymbol = 'NSE:NIFTY',
       timeStr: '11:24 AM IST',
       valueCr: middayValueCr,
       count: middayDeals.length,
+      isExecuted: isMiddayExecuted,
+      statusLabel: isMiddayExecuted ? '✅ EXECUTED TODAY' : '⏳ UPCOMING (11:24 AM)',
       label: 'Continuous Tape (11:24 AM)'
     },
     afternoon: {
@@ -840,6 +875,8 @@ export async function computeStocksTrackerOverview(selectedSymbol = 'NSE:NIFTY',
       timeStr: '02:11 PM IST',
       valueCr: afternoonValueCr,
       count: afternoonDeals.length,
+      isExecuted: isAfternoonExecuted,
+      statusLabel: isAfternoonExecuted ? '✅ EXECUTED TODAY' : '⏳ UPCOMING (02:05 PM)',
       label: 'Late-Day Drive (02:05 - 02:20 PM)'
     }
   };
