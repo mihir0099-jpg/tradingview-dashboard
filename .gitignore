@@ -7,3 +7,6 @@ build/
 scratch/
 __pycache__/
 *.pyc
+backend/data/*_config.json
+*config.json
+

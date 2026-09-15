@@ -15,7 +15,9 @@ import { runTabHealthAudit } from './auto_heal_tabs.js';
 import { executeDailySelfEvolution } from './autonomous_market_brain.js';
 import { executeDailyChartReplay } from './daily_full_chart_miner.js';
 import zerodhaBridge from './zerodha_data_bridge.js';
+import { angelOneBridge } from './angelone_bridge.js';
 import weeklyStrikeLearner from './weekly_strike_decay_learner.js';
+import { imbalanceMeterEngine } from './imbalance_meter.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -5356,6 +5358,97 @@ app.get('/api/zerodha/candles', async (req, res) => {
   }
 });
 
+// --- Angel One SmartAPI Bridge Endpoints ---
+app.get('/api/angelone/status', (req, res) => {
+  res.json(angelOneBridge.getStatus());
+});
+
+app.post('/api/angelone/connect', async (req, res) => {
+  try {
+    const result = await angelOneBridge.login();
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/angelone/profile', async (req, res) => {
+  try {
+    const profile = await angelOneBridge.getProfile();
+    res.json({ success: true, data: profile });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/angelone/funds', async (req, res) => {
+  try {
+    const funds = await angelOneBridge.getFunds();
+    res.json({ success: true, data: funds });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/angelone/positions', async (req, res) => {
+  try {
+    const positions = await angelOneBridge.getPositions();
+    res.json({ success: true, data: positions });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/angelone/holdings', async (req, res) => {
+  try {
+    const holdings = await angelOneBridge.getHoldings();
+    res.json({ success: true, data: holdings });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/angelone/orders', async (req, res) => {
+  try {
+    const orders = await angelOneBridge.getOrderBook();
+    res.json({ success: true, data: orders });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// --- Live Level 2 Imbalance Meter & Mistake Miner Endpoints ---
+app.get('/api/imbalance/live', async (req, res) => {
+  try {
+    const data = await imbalanceMeterEngine.getLiveImbalance(req.query.refresh === 'true');
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/imbalance/journal', (req, res) => {
+  try {
+    res.json(imbalanceMeterEngine.getJournal());
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/imbalance/evaluate', async (req, res) => {
+  try {
+    const result = await imbalanceMeterEngine.evaluateOutcomes();
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Periodic evaluation of live predictions every 10 minutes
+setInterval(() => {
+  imbalanceMeterEngine.evaluateOutcomes().catch(e => console.warn('[Imbalance Eval]:', e.message));
+}, 10 * 60 * 1000);
+
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
@@ -5539,6 +5632,8 @@ server.listen(PORT, '0.0.0.0', () => {
   startPostMarketScheduler();
   startIntradayCheckpointScheduler();
   start247KeepAliveEngine(PORT);
+  // Auto-login Angel One SmartAPI if configured
+  angelOneBridge.login().catch(e => console.warn('[AngelOne Auto-Login]:', e.message));
 });
 
 // Graceful Shutdown & Stop Interceptor:

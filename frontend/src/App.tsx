@@ -31,6 +31,7 @@ import { DataLearningContainer } from './components/DataLearningContainer';
 import { MicrostructureContainer } from './components/MicrostructureContainer';
 import { StocksTrackerContainer } from './components/StocksTrackerContainer';
 import { StocksMovingContainer } from './components/StocksMovingContainer';
+import { ImbalanceMeterContainer } from './components/ImbalanceMeterContainer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -42,7 +43,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('stocks_tracker');
+  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'imbalance_meter' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('imbalance_meter');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -294,6 +295,27 @@ function App() {
           }}
         >
           🚀 Stocks Moving
+        </button>
+        <button
+          onClick={() => setActiveTab('imbalance_meter')}
+          style={{
+            background: activeTab === 'imbalance_meter' ? 'rgba(0, 230, 118, 0.22)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'imbalance_meter' ? '2px solid #00e676' : '2px solid transparent',
+            color: activeTab === 'imbalance_meter' ? '#00e676' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          ⚖️ Imbalance Meter
         </button>
         <button
           onClick={() => setActiveTab('pcr_velocity')}
@@ -733,6 +755,11 @@ function App() {
         {activeTab === 'stocks_moving' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
             <StocksMovingContainer />
+          </div>
+        )}
+        {activeTab === 'imbalance_meter' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <ImbalanceMeterContainer />
           </div>
         )}
         {activeTab === 'weekly_selling' && (

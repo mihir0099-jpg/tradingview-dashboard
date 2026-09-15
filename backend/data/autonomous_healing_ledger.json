@@ -1,5 +1,37 @@
 [
   {
+    "timestamp": 1789446347725,
+    "istTime": "15/9/2026, 9:55:47 am",
+    "component": "⚡ Opening Bias",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Recomputed opening auction drive classifications",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789446007620,
+    "istTime": "15/9/2026, 9:50:07 am",
+    "component": "⚡ Opening Bias",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Recomputed opening auction drive classifications",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789443401911,
+    "istTime": "15/9/2026, 9:06:41 am",
+    "component": "RiverMetaLearner",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789439917284,
+    "istTime": "15/9/2026, 8:08:37 am",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
     "timestamp": 1789392517794,
     "istTime": "14/9/2026, 6:58:37 pm",
     "component": "HealthCheck",
@@ -381,22 +413,6 @@
     "component": "ErrorAnalysisEngine",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857829397,
-    "istTime": "8/9/2026, 2:27:09 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857809605,
-    "istTime": "8/9/2026, 2:26:49 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   }
 ]

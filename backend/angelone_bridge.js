@@ -1,0 +1,244 @@
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import https from 'https';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const CONFIG_FILE = path.join(__dirname, 'data', 'angelone_config.json');
+
+function base32Decode(base32) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  let bits = 0, value = 0;
+  const output = [];
+  for (let i = 0; i < base32.length; i++) {
+    const char = base32[i].toUpperCase();
+    if (char === '=') break;
+    const index = alphabet.indexOf(char);
+    if (index === -1) continue;
+    value = (value << 5) | index;
+    bits += 5;
+    if (bits >= 8) {
+      output.push((value >>> (bits - 8)) & 255);
+      bits -= 8;
+    }
+  }
+  return Buffer.from(output);
+}
+
+export function generateTOTP(secretKey) {
+  const key = base32Decode(secretKey.replace(/\\s+/g, ''));
+  const epoch = Math.floor(Date.now() / 1000);
+  const counter = Math.floor(epoch / 30);
+  const buf = Buffer.alloc(8);
+  buf.writeBigInt64BE(BigInt(counter));
+  const hmac = crypto.createHmac('sha1', key);
+  hmac.update(buf);
+  const digest = hmac.digest();
+  const offset = digest[digest.length - 1] & 0x0f;
+  const code = (
+    ((digest[offset] & 0x7f) << 24) |
+    ((digest[offset + 1] & 0xff) << 16) |
+    ((digest[offset + 2] & 0xff) << 8) |
+    (digest[offset + 3] & 0xff)
+  ) % 1000000;
+  return code.toString().padStart(6, '0');
+}
+
+class AngelOneBridge {
+  constructor() {
+    this.config = {
+      apiKey: '',
+      clientCode: '',
+      mpin: '',
+      totpKey: '',
+      connected: false,
+      lastLogin: null
+    };
+    this.session = {
+      jwtToken: null,
+      refreshToken: null,
+      feedToken: null,
+      userName: null,
+      clientName: null,
+      loginTime: null
+    };
+    this.loadConfig();
+  }
+
+  loadConfig() {
+    try {
+      if (fs.existsSync(CONFIG_FILE)) {
+        const raw = fs.readFileSync(CONFIG_FILE, 'utf8');
+        this.config = { ...this.config, ...JSON.parse(raw) };
+      }
+    } catch (err) {
+      console.error('[AngelOne] Error reading config:', err.message);
+    }
+  }
+
+  saveConfig() {
+    try {
+      const dir = path.dirname(CONFIG_FILE);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(CONFIG_FILE, JSON.stringify(this.config, null, 2), 'utf8');
+    } catch (err) {
+      console.error('[AngelOne] Error saving config:', err.message);
+    }
+  }
+
+  async login() {
+    this.loadConfig();
+    if (!this.config.apiKey || !this.config.clientCode || !this.config.mpin || !this.config.totpKey) {
+      throw new Error('Angel One credentials incomplete in angelone_config.json');
+    }
+
+    const currentTOTP = generateTOTP(this.config.totpKey);
+    const payload = JSON.stringify({
+      clientcode: this.config.clientCode,
+      password: this.config.mpin,
+      totp: currentTOTP
+    });
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-UserType': 'USER',
+      'X-SourceID': 'WEB',
+      'X-ClientLocalIP': '127.0.0.1',
+      'X-ClientPublicIP': '106.193.147.98',
+      'X-MACAddress': 'fe80::216e:6507:4b90:3719',
+      'X-PrivateKey': this.config.apiKey,
+      'Content-Length': Buffer.byteLength(payload)
+    };
+
+    const res = await this._makeRequest('https://apiconnect.angelone.in/rest/auth/angelbroking/user/v1/loginByPassword', 'POST', headers, payload);
+    
+    if (res && res.status && res.data && res.data.jwtToken) {
+      this.session.jwtToken = res.data.jwtToken;
+      this.session.refreshToken = res.data.refreshToken;
+      this.session.feedToken = res.data.feedToken;
+      this.session.loginTime = new Date().toISOString();
+      this.config.connected = true;
+      this.config.lastLogin = this.session.loginTime;
+      this.saveConfig();
+
+      try {
+        const prof = await this.getProfile();
+        if (prof && prof.name) {
+          this.session.clientName = prof.name;
+        }
+      } catch (pe) {}
+
+      console.log(`[AngelOne] Live login successful for ${this.session.clientName || this.config.clientCode} (TOTP: ${currentTOTP})`);
+      return {
+        success: true,
+        clientCode: this.config.clientCode,
+        clientName: this.session.clientName,
+        loginTime: this.session.loginTime
+      };
+    } else {
+      this.config.connected = false;
+      this.saveConfig();
+      throw new Error(res?.message || 'Login failed from Angel One API');
+    }
+  }
+
+  async _authedGet(url) {
+    if (!this.session.jwtToken) {
+      await this.login();
+    }
+    const headers = {
+      'Authorization': `Bearer ${this.session.jwtToken}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-UserType': 'USER',
+      'X-SourceID': 'WEB',
+      'X-ClientLocalIP': '127.0.0.1',
+      'X-ClientPublicIP': '106.193.147.98',
+      'X-MACAddress': 'fe80::216e:6507:4b90:3719',
+      'X-PrivateKey': this.config.apiKey
+    };
+    return this._makeRequest(url, 'GET', headers);
+  }
+
+  async getProfile() {
+    const res = await this._authedGet('https://apiconnect.angelone.in/rest/secure/angelbroking/user/v1/getProfile');
+    return res?.data || null;
+  }
+
+  async getFunds() {
+    const res = await this._authedGet('https://apiconnect.angelone.in/rest/secure/angelbroking/user/v1/getRMS');
+    return res?.data || null;
+  }
+
+  async getPositions() {
+    const res = await this._authedGet('https://apiconnect.angelone.in/rest/secure/angelbroking/order/v1/getPosition');
+    return res?.data || [];
+  }
+
+  async getHoldings() {
+    const res = await this._authedGet('https://apiconnect.angelone.in/rest/secure/angelbroking/portfolio/v1/getAllHolding');
+    return res?.data || [];
+  }
+
+  async getOrderBook() {
+    const res = await this._authedGet('https://apiconnect.angelone.in/rest/secure/angelbroking/order/v1/getOrderBook');
+    return res?.data || [];
+  }
+
+  getStatus() {
+    return {
+      broker: 'ANGEL_ONE',
+      mode: 'READ_ONLY_DATA_ADVISORY',
+      orderExecutionBlocked: true,
+      connected: this.config.connected && !!this.session.jwtToken,
+      clientCode: this.config.clientCode,
+      clientName: this.session.clientName || 'MIHIRKUMAR NARENDRABHAI PATEL',
+      lastLogin: this.session.loginTime || this.config.lastLogin,
+      hasCredentials: !!(this.config.apiKey && this.config.clientCode && this.config.mpin && this.config.totpKey)
+    };
+  }
+
+  // STRICT USER RULE: NEVER EXECUTE TRADES. READ-ONLY DATA AND ADVISORY ONLY.
+  async placeOrder() {
+    throw new Error('TRADE_EXECUTION_BLOCKED: User rule strictly prohibits trade execution. Angel One is locked in READ-ONLY mode.');
+  }
+
+  _makeRequest(urlStr, method, headers, payload = null) {
+    return new Promise((resolve, reject) => {
+      const url = new URL(urlStr);
+      const req = https.request({
+        hostname: url.hostname,
+        path: url.pathname + url.search,
+        method: method,
+        headers: headers,
+        timeout: 10000
+      }, (res) => {
+        let body = '';
+        res.on('data', chunk => body += chunk);
+        res.on('end', () => {
+          try {
+            const data = JSON.parse(body);
+            resolve(data);
+          } catch (e) {
+            resolve({ rawBody: body, statusCode: res.statusCode });
+          }
+        });
+      });
+
+      req.on('error', (err) => reject(err));
+      req.on('timeout', () => {
+        req.destroy();
+        reject(new Error('Request timeout to ' + urlStr));
+      });
+
+      if (payload) req.write(payload);
+      req.end();
+    });
+  }
+}
+
+export const angelOneBridge = new AngelOneBridge();
