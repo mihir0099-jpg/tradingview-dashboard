@@ -55,8 +55,8 @@ interface OrderFlowState {
 const AVAILABLE_INSTRUMENTS = [
   { symbol: 'NIFTYFUT', label: 'NIFTY FUT', type: 'FUTURES', defaultTick: 1.0, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
   { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', type: 'FUTURES', defaultTick: 1.0, tickOptions: [1.0, 5.0, 10.0, 20.0, 50.0] },
-  { symbol: 'NIFTY', label: 'NIFTY 50', type: 'INDEX', defaultTick: 5.0, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
-  { symbol: 'BANKNIFTY', label: 'BANK NIFTY', type: 'INDEX', defaultTick: 20.0, tickOptions: [5.0, 10.0, 20.0, 50.0, 100.0] },
+  { symbol: 'NIFTY', label: 'NIFTY 50', type: 'INDEX', defaultTick: 1.0, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
+  { symbol: 'BANKNIFTY', label: 'BANK NIFTY', type: 'INDEX', defaultTick: 1.0, tickOptions: [1.0, 5.0, 10.0, 20.0, 50.0] },
   { symbol: 'RELIANCE', label: 'RELIANCE', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
   { symbol: 'HDFCBANK', label: 'HDFC BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
   { symbol: 'ICICIBANK', label: 'ICICI BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
@@ -376,17 +376,13 @@ export const OrderFlowContainer: React.FC = () => {
 
     for (let p = maxRung; p >= minRung; p = parseFloat((p - step).toFixed(2))) {
       if (!map.has(p)) {
-        // Interpolate smooth order flow across the gap
-        const buyBias = isBull ? 0.58 : 0.42;
-        const totalVol = Math.max(25, Math.round(avgVol * (0.65 + Math.random() * 0.5)));
-        const askVol = Math.round(totalVol * buyBias);
-        const bidVol = totalVol - askVol;
+        // For prices inside candle range with no recorded orders, initialize with 0 orders
         map.set(p, {
           price: p,
-          bidVol,
-          askVol,
-          totalVol,
-          delta: askVol - bidVol
+          bidVol: 0,
+          askVol: 0,
+          totalVol: 0,
+          delta: 0
         });
       }
     }
@@ -1158,7 +1154,11 @@ export const OrderFlowContainer: React.FC = () => {
                       {priceRungs.map((p) => {
                         const levelData = candleMap.get(p);
                         const isPoc = levelData && Math.abs(levelData.price - candle.pocPrice) < step / 2;
-                        const inCandleRange = p >= candle.low && p <= candle.high;
+                        const minCandleRung = Math.floor(candle.low / step) * step;
+                        const maxCandleRung = Math.ceil(candle.high / step) * step;
+                        const inCandleRange = p >= (minCandleRung - step / 4) && p <= (maxCandleRung + step / 4);
+                        const hasBidOrders = levelData && levelData.bidVol > 0;
+                        const hasAskOrders = levelData && levelData.askVol > 0;
                         
                         const inBody = p <= (bodyTop + step / 4) && p >= (bodyBtm - step / 4);
                         const isBodyTop = Math.abs(p - bodyTop) < step / 2;
@@ -1394,11 +1394,12 @@ export const OrderFlowContainer: React.FC = () => {
                                   )}
                                   <span style={{
                                     fontSize: rungHeight < 18 ? '8px' : '9px',
-                                    fontWeight: hasSellImbalance ? '900' : '600',
-                                    color: hasSellImbalance ? '#fff' : (levelData ? '#fca5a5' : 'transparent'),
-                                    fontFamily: 'monospace'
+                                    fontWeight: hasSellImbalance ? '900' : (hasBidOrders ? '600' : '400'),
+                                    color: hasSellImbalance ? '#fff' : (hasBidOrders ? '#fca5a5' : '#475569'),
+                                    fontFamily: 'monospace',
+                                    opacity: hasBidOrders ? 1 : 0.55
                                   }}>
-                                    {levelData ? levelData.bidVol : ''}
+                                    {inCandleRange ? (levelData ? levelData.bidVol : 0) : ''}
                                   </span>
                                 </div>
 
@@ -1462,11 +1463,12 @@ export const OrderFlowContainer: React.FC = () => {
                                   )}
                                   <span style={{
                                     fontSize: rungHeight < 18 ? '8px' : '9px',
-                                    fontWeight: hasBuyImbalance ? '900' : '600',
-                                    color: hasBuyImbalance ? '#fff' : (levelData ? '#86efac' : 'transparent'),
-                                    fontFamily: 'monospace'
+                                    fontWeight: hasBuyImbalance ? '900' : (hasAskOrders ? '600' : '400'),
+                                    color: hasBuyImbalance ? '#fff' : (hasAskOrders ? '#86efac' : '#475569'),
+                                    fontFamily: 'monospace',
+                                    opacity: hasAskOrders ? 1 : 0.55
                                   }}>
-                                    {levelData ? levelData.askVol : ''}
+                                    {inCandleRange ? (levelData ? levelData.askVol : 0) : ''}
                                   </span>
                                 </div>
                               </div>
@@ -1495,10 +1497,11 @@ export const OrderFlowContainer: React.FC = () => {
                                   )}
                                   <span style={{
                                     fontSize: rungHeight < 18 ? '8px' : '9px',
-                                    fontWeight: hasSellImbalance ? '900' : '600',
-                                    color: hasSellImbalance ? '#fff' : '#fca5a5'
+                                    fontWeight: hasSellImbalance ? '900' : (hasBidOrders ? '600' : '400'),
+                                    color: hasSellImbalance ? '#fff' : (hasBidOrders ? '#fca5a5' : '#475569'),
+                                    opacity: hasBidOrders ? 1 : 0.55
                                   }}>
-                                    {levelData ? levelData.bidVol : ''}
+                                    {inCandleRange ? (levelData ? levelData.bidVol : 0) : ''}
                                   </span>
                                 </div>
 
@@ -1523,10 +1526,11 @@ export const OrderFlowContainer: React.FC = () => {
                                   )}
                                   <span style={{
                                     fontSize: rungHeight < 18 ? '8px' : '9px',
-                                    fontWeight: hasBuyImbalance ? '900' : '600',
-                                    color: hasBuyImbalance ? '#fff' : '#86efac'
+                                    fontWeight: hasBuyImbalance ? '900' : (hasAskOrders ? '600' : '400'),
+                                    color: hasBuyImbalance ? '#fff' : (hasAskOrders ? '#86efac' : '#475569'),
+                                    opacity: hasAskOrders ? 1 : 0.55
                                   }}>
-                                    {levelData ? levelData.askVol : ''}
+                                    {inCandleRange ? (levelData ? levelData.askVol : 0) : ''}
                                   </span>
                                 </div>
                               </div>

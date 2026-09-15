@@ -410,8 +410,9 @@ class OrderFlowStreamEngine {
   processTick(price, qty, dayVol) {
     const now = Date.now();
     const meta = this.getActiveMeta();
-    const step = meta.groupSize;
+    const step = meta.groupSize || 1.0;
 
+    const prevPrice = this.lastLtp;
     let side = this.lastSide;
     if (this.lastLtp !== null) {
       if (price > this.lastLtp) side = 'BUY';
@@ -493,25 +494,32 @@ class OrderFlowStreamEngine {
     c.maxDelta = Math.max(c.maxDelta, c.delta);
     c.minDelta = Math.min(c.minDelta, c.delta);
 
-    // Group price into step rung
-    const roundedPrice = Math.round(price / step) * step;
-    const priceKey = roundedPrice.toFixed(2);
+    // Distribute tick across all traversed price levels if price moved across multiple rungs
+    const pStart = prevPrice !== null ? prevPrice : price;
+    const minP = Math.min(pStart, price);
+    const maxP = Math.max(pStart, price);
+    const rStart = Math.floor(minP / step) * step;
+    const rEnd = Math.ceil(maxP / step) * step;
+    const rungsCount = Math.max(1, Math.round((rEnd - rStart) / step) + 1);
+    const qtyPerRung = Math.max(1, Math.round(qty / rungsCount));
 
-    if (!c.priceLevels[priceKey]) {
-      c.priceLevels[priceKey] = {
-        price: parseFloat(priceKey),
-        bidVol: 0,
-        askVol: 0,
-        totalVol: 0,
-        delta: 0
-      };
+    for (let p = rEnd; p >= rStart; p = parseFloat((p - step).toFixed(2))) {
+      const priceKey = p.toFixed(2);
+      if (!c.priceLevels[priceKey]) {
+        c.priceLevels[priceKey] = {
+          price: p,
+          bidVol: 0,
+          askVol: 0,
+          totalVol: 0,
+          delta: 0
+        };
+      }
+      const pl = c.priceLevels[priceKey];
+      if (side === 'BUY') pl.askVol += qtyPerRung;
+      else pl.bidVol += qtyPerRung;
+      pl.totalVol += qtyPerRung;
+      pl.delta = pl.askVol - pl.bidVol;
     }
-
-    const pl = c.priceLevels[priceKey];
-    if (side === 'BUY') pl.askVol += qty;
-    else pl.bidVol += qty;
-    pl.totalVol += qty;
-    pl.delta = pl.askVol - pl.bidVol;
 
     let maxLvlVol = 0;
     let poc = c.open;
@@ -525,21 +533,43 @@ class OrderFlowStreamEngine {
   }
 
   getState() {
-    const allCandles = this.candles.map(c => ({
-      ...c,
-      priceLevels: Array.isArray(c.priceLevels)
+    const meta = this.getActiveMeta();
+    const step = meta.groupSize || 1.0;
+
+    const normalizeCandleLevels = (c) => {
+      const minStep = Math.floor(c.low / step) * step;
+      const maxStep = Math.ceil(c.high / step) * step;
+      const map = {};
+      const existing = Array.isArray(c.priceLevels)
         ? c.priceLevels
-        : Object.values(c.priceLevels || {}).sort((a, b) => b.price - a.price)
-    }));
+        : Object.values(c.priceLevels || {});
+      existing.forEach(pl => {
+        const pk = pl.price.toFixed(2);
+        map[pk] = pl;
+      });
+      // Guarantee every integer price level inside [low, high] exists
+      for (let p = maxStep; p >= minStep; p = parseFloat((p - step).toFixed(2))) {
+        const pk = p.toFixed(2);
+        if (!map[pk]) {
+          map[pk] = {
+            price: p,
+            bidVol: 0,
+            askVol: 0,
+            totalVol: 0,
+            delta: 0
+          };
+        }
+      }
+      return {
+        ...c,
+        priceLevels: Object.values(map).sort((a, b) => b.price - a.price)
+      };
+    };
+
+    const allCandles = this.candles.map(normalizeCandleLevels);
 
     if (this.currentCandle) {
-      const currentClone = {
-        ...this.currentCandle,
-        priceLevels: Array.isArray(this.currentCandle.priceLevels)
-          ? this.currentCandle.priceLevels
-          : Object.values(this.currentCandle.priceLevels || {}).sort((a, b) => b.price - a.price)
-      };
-      allCandles.push(currentClone);
+      allCandles.push(normalizeCandleLevels(this.currentCandle));
     }
 
     // Determine Global Price Scale (Min price and Max price across all candles on screen)
