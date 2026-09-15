@@ -1,14 +1,14 @@
 {
-  "timestamp": 1789448210824,
+  "timestamp": 1789448917585,
   "dateStr": "2026-09-15",
-  "timeStr": "10:26:50 IST",
+  "timeStr": "10:38:37 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23385.35,
+      "spot": 23368.15,
       "open": 23270.9,
       "dayHigh": 23396.7,
-      "dayLow": 23370.4,
+      "dayLow": 23353.05,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
@@ -22,10 +22,10 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 56290.5,
+      "spot": 56275.55,
       "open": 56420,
       "dayHigh": 56362.55,
-      "dayLow": 56272.85,
+      "dayLow": 56226.45,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
@@ -39,42 +39,15 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 26,
+    "coilingDematCount": 18,
     "volumeBreakoutCount": 1,
-    "distributionTrapCount": 5,
-    "swingLowFormations": 26,
-    "swingHighFormations": 5
+    "distributionTrapCount": 7,
+    "swingLowFormations": 18,
+    "swingHighFormations": 7
   },
   "tomorrowHighConvictionWatchlist": [
     {
       "rank": 1,
-      "type": "LONG_DEMAT_COIL_EXPANSION",
-      "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "NATIONALUM",
-      "name": "National Aluminium Co.",
-      "sector": "Aluminium Mining",
-      "trade": {
-        "action": "BUY NATIONALUM 360 CE / Spot",
-        "spotEntry": 357.8,
-        "spotSL": 349.91,
-        "spotRiskPts": 7.89,
-        "spotTarget1": 370.42,
-        "spotTarget2": 379.89,
-        "atmStrike": 360,
-        "lotSize": 3750,
-        "riskPerLotINR": 29588,
-        "target1GainPerLotINR": 47325,
-        "target2GainPerLotINR": 82837,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹349.91",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
-        "winRatePct": 82.5
-      },
-      "confidencePct": 62,
-      "catalystRationale": "Range compressed to 29.5% of ATR with 85% Demat delivery. Smart money hoarding at Demand Floor (₹352.35). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
-    },
-    {
-      "rank": 2,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
       "symbol": "LAURUSLABS",
@@ -82,26 +55,26 @@
       "sector": "Pharmaceuticals",
       "trade": {
         "action": "BUY LAURUSLABS 1940 PE / Short Spot",
-        "spotEntry": 1943.4,
+        "spotEntry": 1941.5,
         "spotSL": 1990.57,
-        "spotRiskPts": 47.17,
-        "spotTarget1": 1867.93,
-        "spotTarget2": 1811.32,
+        "spotRiskPts": 49.07,
+        "spotTarget1": 1862.99,
+        "spotTarget2": 1804.1,
         "atmStrike": 1940,
         "lotSize": 1700,
-        "riskPerLotINR": 80189,
-        "target1GainPerLotINR": 128299,
-        "target2GainPerLotINR": 224536,
+        "riskPerLotINR": 83419,
+        "target1GainPerLotINR": 133467,
+        "target2GainPerLotINR": 233580,
         "exitCondition": "Exit option immediately if Spot crosses above ₹1990.57",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
       },
-      "confidencePct": 48,
+      "confidencePct": 49,
       "catalystRationale": "Tested 20-day Resistance (₹1981.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     },
     {
-      "rank": 3,
+      "rank": 2,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
       "symbol": "ANGELONE",
@@ -109,16 +82,16 @@
       "sector": "Fintech & Brokerage",
       "trade": {
         "action": "BUY ANGELONE 305 PE / Short Spot",
-        "spotEntry": 303.3,
+        "spotEntry": 303.2,
         "spotSL": 311.84,
-        "spotRiskPts": 8.54,
-        "spotTarget1": 289.64,
-        "spotTarget2": 279.39,
+        "spotRiskPts": 8.64,
+        "spotTarget1": 289.38,
+        "spotTarget2": 279.01,
         "atmStrike": 305,
         "lotSize": 500,
-        "riskPerLotINR": 4270,
-        "target1GainPerLotINR": 6830,
-        "target2GainPerLotINR": 11955,
+        "riskPerLotINR": 4320,
+        "target1GainPerLotINR": 6910,
+        "target2GainPerLotINR": 12095,
         "exitCondition": "Exit option immediately if Spot crosses above ₹311.84",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
@@ -132,89 +105,84 @@
     "vaultCoils": [
       {
         "symbol": "NATIONALUM",
-        "price": 357.8,
+        "price": 357.25,
         "compPct": 29.5,
-        "delivPct": 85,
+        "delivPct": 92,
         "floor": 352.35
       },
       {
         "symbol": "ICICIPRULI",
-        "price": 469.7,
+        "price": 469.1,
         "compPct": 29.7,
         "delivPct": 85,
         "floor": 455.3
       },
       {
         "symbol": "CROMPTON",
-        "price": 230,
+        "price": 229.89,
         "compPct": 30.5,
         "delivPct": 84,
         "floor": 226.05
       },
       {
-        "symbol": "HINDZINC",
-        "price": 570.1,
-        "compPct": 32.6,
-        "delivPct": 83,
-        "floor": 546.55
-      },
-      {
         "symbol": "MUTHOOTFIN",
-        "price": 2771.9,
+        "price": 2771.6,
         "compPct": 33.2,
         "delivPct": 82,
         "floor": 2728.6
+      },
+      {
+        "symbol": "JUBLFOOD",
+        "price": 468.3,
+        "compPct": 34.4,
+        "delivPct": 91,
+        "floor": 461.6
       }
     ],
     "volumeDrives": [
       {
         "symbol": "BSOFT",
-        "price": 296.3,
-        "volMult": 4.03
+        "price": 292.9,
+        "volMult": 4.27
       }
     ],
     "distributionTraps": [
       {
         "symbol": "LAURUSLABS",
-        "price": 1943.4,
+        "price": 1941.5,
         "ceil": 1981.8,
-        "distCeilPct": 1.98
+        "distCeilPct": 2.08
       },
       {
         "symbol": "ANGELONE",
-        "price": 303.3,
+        "price": 303.2,
         "ceil": 310,
-        "distCeilPct": 2.21
+        "distCeilPct": 2.24
       },
       {
         "symbol": "APOLLOHOSP",
-        "price": 8827,
+        "price": 8833.5,
         "ceil": 9050,
-        "distCeilPct": 2.53
+        "distCeilPct": 2.45
+      },
+      {
+        "symbol": "AUROPHARMA",
+        "price": 1672.9,
+        "ceil": 1717,
+        "distCeilPct": 2.64
       },
       {
         "symbol": "ADANIPORTS",
-        "price": 1744.9,
+        "price": 1744.6,
         "ceil": 1791.4,
-        "distCeilPct": 2.66
-      },
-      {
-        "symbol": "RBLBANK",
-        "price": 409.4,
-        "ceil": 420.4,
-        "distCeilPct": 2.69
+        "distCeilPct": 2.68
       }
     ],
     "sectorLeadership": [
       {
         "sector": "Auto Tyres",
-        "coilingCount": 3,
-        "totalStocks": 3
-      },
-      {
-        "sector": "Public Sector Banking",
         "coilingCount": 2,
-        "totalStocks": 7
+        "totalStocks": 3
       },
       {
         "sector": "Energy & Petrochemicals",
@@ -227,24 +195,29 @@
         "totalStocks": 1
       },
       {
+        "sector": "Insurance",
+        "coilingCount": 1,
+        "totalStocks": 5
+      },
+      {
         "sector": "Financial Institutions",
         "coilingCount": 1,
         "totalStocks": 2
       },
       {
-        "sector": "Distilleries & Spirits",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Distilleries & Beverages",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
         "sector": "FMCG",
         "coilingCount": 1,
         "totalStocks": 4
+      },
+      {
+        "sector": "Metals & Mining",
+        "coilingCount": 1,
+        "totalStocks": 6
+      },
+      {
+        "sector": "Retail Supermarkets",
+        "coilingCount": 1,
+        "totalStocks": 1
       }
     ]
   },
@@ -255,7 +228,7 @@
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "26 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Auto Tyres (3 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "18 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Auto Tyres (2 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",
