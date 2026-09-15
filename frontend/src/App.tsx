@@ -32,6 +32,7 @@ import { MicrostructureContainer } from './components/MicrostructureContainer';
 import { StocksTrackerContainer } from './components/StocksTrackerContainer';
 import { StocksMovingContainer } from './components/StocksMovingContainer';
 import { ImbalanceMeterContainer } from './components/ImbalanceMeterContainer';
+import { OrderFlowContainer } from './components/OrderFlowContainer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -43,7 +44,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'imbalance_meter' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('imbalance_meter');
+  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('orderflow');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -316,6 +317,27 @@ function App() {
           }}
         >
           ⚖️ Imbalance Meter
+        </button>
+        <button
+          onClick={() => setActiveTab('orderflow')}
+          style={{
+            background: activeTab === 'orderflow' ? 'rgba(56, 189, 248, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'orderflow' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'orderflow' ? '#38bdf8' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🌊 Order Flow & Footprint
         </button>
         <button
           onClick={() => setActiveTab('pcr_velocity')}
@@ -760,6 +782,11 @@ function App() {
         {activeTab === 'imbalance_meter' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
             <ImbalanceMeterContainer />
+          </div>
+        )}
+        {activeTab === 'orderflow' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <OrderFlowContainer />
           </div>
         )}
         {activeTab === 'weekly_selling' && (

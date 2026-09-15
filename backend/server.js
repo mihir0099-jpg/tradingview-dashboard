@@ -18,6 +18,7 @@ import zerodhaBridge from './zerodha_data_bridge.js';
 import { angelOneBridge } from './angelone_bridge.js';
 import weeklyStrikeLearner from './weekly_strike_decay_learner.js';
 import { imbalanceMeterEngine } from './imbalance_meter.js';
+import { orderFlowStreamEngine, ORDERFLOW_SYMBOLS } from './orderflow_stream.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -5449,6 +5450,29 @@ setInterval(() => {
   imbalanceMeterEngine.evaluateOutcomes().catch(e => console.warn('[Imbalance Eval]:', e.message));
 }, 10 * 60 * 1000);
 
+// --- Live Angel One WebSocket Order Flow & Footprint Endpoints ---
+app.get('/api/orderflow/state', (req, res) => {
+  try {
+    res.json(orderFlowStreamEngine.getState());
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/orderflow/symbols', (req, res) => {
+  res.json({ success: true, symbols: ORDERFLOW_SYMBOLS });
+});
+
+app.post('/api/orderflow/switch', (req, res) => {
+  try {
+    const { symbol, timeframe } = req.body || {};
+    const result = orderFlowStreamEngine.switchSymbol(symbol, timeframe || 1);
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(400).json({ success: false, error: err.message });
+  }
+});
+
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api') || req.path.startsWith('/ws')) {
@@ -5633,7 +5657,9 @@ server.listen(PORT, '0.0.0.0', () => {
   startIntradayCheckpointScheduler();
   start247KeepAliveEngine(PORT);
   // Auto-login Angel One SmartAPI if configured
-  angelOneBridge.login().catch(e => console.warn('[AngelOne Auto-Login]:', e.message));
+  angelOneBridge.login().then(() => {
+    orderFlowStreamEngine.start();
+  }).catch(e => console.warn('[AngelOne Auto-Login]:', e.message));
 });
 
 // Graceful Shutdown & Stop Interceptor:
