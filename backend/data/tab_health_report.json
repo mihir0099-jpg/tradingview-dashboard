@@ -1,6 +1,6 @@
 {
-  "timestamp": 1789449651285,
-  "istTime": "15/9/2026, 10:50:51 am",
+  "timestamp": 1789451422756,
+  "istTime": "15/9/2026, 11:20:22 am",
   "totalTabsAudited": 26,
   "operationalCount": 26,
   "totalHealsPerformed": 0,
@@ -11,7 +11,7 @@
       "tabName": "🏛️ Historical Matching",
       "endpoint": "/api/historical/matching-cases",
       "status": "OPERATIONAL",
-      "latencyMs": 7,
+      "latencyMs": 8,
       "healed": false,
       "error": null
     },
@@ -20,7 +20,7 @@
       "tabName": "🔬 Deep Learnings",
       "endpoint": "/api/discoveries",
       "status": "OPERATIONAL",
-      "latencyMs": 4,
+      "latencyMs": 7,
       "healed": false,
       "error": null
     },
@@ -38,7 +38,7 @@
       "tabName": "⚡ Gamma & Order Flow",
       "endpoint": "/api/microstructure/gamma-orderflow",
       "status": "OPERATIONAL",
-      "latencyMs": 28,
+      "latencyMs": 676,
       "healed": false,
       "error": null
     },
@@ -56,7 +56,7 @@
       "tabName": "🐋 Stocks Tracker",
       "endpoint": "/api/stocks-tracker/overview",
       "status": "OPERATIONAL",
-      "latencyMs": 9,
+      "latencyMs": 122,
       "healed": false,
       "error": null
     },
@@ -65,7 +65,7 @@
       "tabName": "🚀 Stocks Moving",
       "endpoint": "/api/stocks-moving/overview",
       "status": "OPERATIONAL",
-      "latencyMs": 7,
+      "latencyMs": 8,
       "healed": false,
       "error": null
     },
@@ -74,7 +74,7 @@
       "tabName": "⚡ PCR Velocity",
       "endpoint": "/api/scanner/pcr-velocity",
       "status": "OPERATIONAL",
-      "latencyMs": 10,
+      "latencyMs": 6,
       "healed": false,
       "error": null
     },
@@ -92,7 +92,7 @@
       "tabName": "🌀 Cycle (Sq of 9)",
       "endpoint": "/api/cycle/levels?symbol=NSE:NIFTY",
       "status": "OPERATIONAL",
-      "latencyMs": 9,
+      "latencyMs": 7,
       "healed": false,
       "error": null
     },
@@ -101,7 +101,7 @@
       "tabName": "🔬 Auto-Learner & Mistake Miner",
       "endpoint": "/api/learning/meta-status",
       "status": "OPERATIONAL",
-      "latencyMs": 5,
+      "latencyMs": 4,
       "healed": false,
       "error": null
     },
@@ -119,7 +119,7 @@
       "tabName": "📊 QuantStats Report",
       "endpoint": "/api/reports/quantstats",
       "status": "OPERATIONAL",
-      "latencyMs": 4,
+      "latencyMs": 6,
       "healed": false,
       "error": null
     },
@@ -128,7 +128,7 @@
       "tabName": "🤝 Bhaichara Work",
       "endpoint": "/api/scanner/confluence",
       "status": "OPERATIONAL",
-      "latencyMs": 2,
+      "latencyMs": 4,
       "healed": false,
       "error": null
     },
@@ -137,7 +137,7 @@
       "tabName": "🧠 Dada Thoughts",
       "endpoint": "/api/scanner/weekly-200-ema",
       "status": "OPERATIONAL",
-      "latencyMs": 3,
+      "latencyMs": 6,
       "healed": false,
       "error": null
     },
@@ -146,7 +146,7 @@
       "tabName": "📊 Matrix Scanner (Daily)",
       "endpoint": "/api/scanner/results?timeframe=D",
       "status": "OPERATIONAL",
-      "latencyMs": 5,
+      "latencyMs": 4,
       "healed": false,
       "error": null
     },
@@ -155,7 +155,7 @@
       "tabName": "📊 Matrix Scanner (5m)",
       "endpoint": "/api/scanner/results?timeframe=5",
       "status": "OPERATIONAL",
-      "latencyMs": 4,
+      "latencyMs": 7,
       "healed": false,
       "error": null
     },
@@ -164,7 +164,7 @@
       "tabName": "🎯 Confluences",
       "endpoint": "/api/scanner/confluences",
       "status": "OPERATIONAL",
-      "latencyMs": 36,
+      "latencyMs": 65,
       "healed": false,
       "error": null
     },
@@ -173,7 +173,7 @@
       "tabName": "⛓️ Options Chain",
       "endpoint": "/api/options/chain?symbol=NSE:NIFTY",
       "status": "OPERATIONAL",
-      "latencyMs": 69,
+      "latencyMs": 42,
       "healed": false,
       "error": null
     },
@@ -182,7 +182,7 @@
       "tabName": "🔥 Weekly Option Selling Engine",
       "endpoint": "/api/options/weekly-selling?symbol=NSE:NIFTY",
       "status": "OPERATIONAL",
-      "latencyMs": 12,
+      "latencyMs": 19,
       "healed": false,
       "error": null
     },
@@ -191,7 +191,7 @@
       "tabName": "🕯️ First Doji Scanner",
       "endpoint": "/api/doji-signals",
       "status": "OPERATIONAL",
-      "latencyMs": 2,
+      "latencyMs": 6,
       "healed": false,
       "error": null
     },
@@ -200,7 +200,7 @@
       "tabName": "🔥 Volume Breakouts",
       "endpoint": "/api/volume-breakouts",
       "status": "OPERATIONAL",
-      "latencyMs": 1,
+      "latencyMs": 4,
       "healed": false,
       "error": null
     },
@@ -209,7 +209,7 @@
       "tabName": "⚡ Opening Bias",
       "endpoint": "/api/scanner/opening-bias",
       "status": "OPERATIONAL",
-      "latencyMs": 30,
+      "latencyMs": 74,
       "healed": false,
       "error": null
     },
@@ -218,7 +218,7 @@
       "tabName": "⚡ Early Picks",
       "endpoint": "/api/scanner/early-picks",
       "status": "OPERATIONAL",
-      "latencyMs": 18,
+      "latencyMs": 33,
       "healed": false,
       "error": null
     },
@@ -227,7 +227,7 @@
       "tabName": "🔮 AI Pattern Forecaster",
       "endpoint": "/api/pattern/forecast?symbol=NSE:NIFTY&timeframe=30&window=20&future=10",
       "status": "OPERATIONAL",
-      "latencyMs": 2,
+      "latencyMs": 6,
       "healed": false,
       "error": null
     },
@@ -236,7 +236,7 @@
       "tabName": "🟢 Backend Root Health",
       "endpoint": "/health",
       "status": "OPERATIONAL",
-      "latencyMs": 3,
+      "latencyMs": 4,
       "healed": false,
       "error": null
     }

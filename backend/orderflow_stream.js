@@ -3,18 +3,20 @@ import { angelOneBridge } from './angelone_bridge.js';
 
 // Supported Order Flow Instruments
 export const ORDERFLOW_SYMBOLS = [
-  { symbol: 'NIFTY', token: '99926000', exchange: 'NSE', tickSize: 5.0, lotSize: 75, groupSize: 5.0 },
-  { symbol: 'BANKNIFTY', token: '99926009', exchange: 'NSE', tickSize: 20.0, lotSize: 30, groupSize: 20.0 },
-  { symbol: 'RELIANCE', token: '2885', exchange: 'NSE', tickSize: 1.0, lotSize: 250, groupSize: 1.0 },
-  { symbol: 'SBIN', token: '3045', exchange: 'NSE', tickSize: 1.0, lotSize: 750, groupSize: 1.0 },
-  { symbol: 'HDFCBANK', token: '1333', exchange: 'NSE', tickSize: 1.0, lotSize: 550, groupSize: 1.0 },
-  { symbol: 'ICICIBANK', token: '4963', exchange: 'NSE', tickSize: 1.0, lotSize: 700, groupSize: 1.0 },
-  { symbol: 'INFY', token: '1594', exchange: 'NSE', tickSize: 1.0, lotSize: 400, groupSize: 1.0 },
-  { symbol: 'TCS', token: '11536', exchange: 'NSE', tickSize: 2.0, lotSize: 175, groupSize: 2.0 },
-  { symbol: 'AXISBANK', token: '5900', exchange: 'NSE', tickSize: 1.0, lotSize: 625, groupSize: 1.0 },
-  { symbol: 'BHARTIARTL', token: '10604', exchange: 'NSE', tickSize: 1.0, lotSize: 475, groupSize: 1.0 },
-  { symbol: 'LT', token: '11483', exchange: 'NSE', tickSize: 2.0, lotSize: 175, groupSize: 2.0 },
-  { symbol: 'KOTAKBANK', token: '1922', exchange: 'NSE', tickSize: 1.0, lotSize: 400, groupSize: 1.0 }
+  { symbol: 'NIFTYFUT', label: 'NIFTY FUT', token: '68407', exchange: 'NFO', tickSize: 1.0, lotSize: 25, groupSize: 1.0 },
+  { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', token: '68390', exchange: 'NFO', tickSize: 1.0, lotSize: 15, groupSize: 1.0 },
+  { symbol: 'NIFTY', label: 'NIFTY 50', token: '99926000', exchange: 'NSE', tickSize: 1.0, lotSize: 75, groupSize: 1.0 },
+  { symbol: 'BANKNIFTY', label: 'BANK NIFTY', token: '99926009', exchange: 'NSE', tickSize: 1.0, lotSize: 30, groupSize: 1.0 },
+  { symbol: 'RELIANCE', label: 'RELIANCE', token: '2885', exchange: 'NSE', tickSize: 0.5, lotSize: 250, groupSize: 0.5 },
+  { symbol: 'SBIN', label: 'SBIN', token: '3045', exchange: 'NSE', tickSize: 0.5, lotSize: 750, groupSize: 0.5 },
+  { symbol: 'HDFCBANK', label: 'HDFC BANK', token: '1333', exchange: 'NSE', tickSize: 0.5, lotSize: 550, groupSize: 0.5 },
+  { symbol: 'ICICIBANK', label: 'ICICI BANK', token: '4963', exchange: 'NSE', tickSize: 0.5, lotSize: 700, groupSize: 0.5 },
+  { symbol: 'INFY', label: 'INFY', token: '1594', exchange: 'NSE', tickSize: 0.5, lotSize: 400, groupSize: 0.5 },
+  { symbol: 'TCS', label: 'TCS', token: '11536', exchange: 'NSE', tickSize: 1.0, lotSize: 175, groupSize: 1.0 },
+  { symbol: 'AXISBANK', label: 'AXIS BANK', token: '5900', exchange: 'NSE', tickSize: 0.5, lotSize: 625, groupSize: 0.5 },
+  { symbol: 'BHARTIARTL', label: 'BHARTI AIRTEL', token: '10604', exchange: 'NSE', tickSize: 0.5, lotSize: 475, groupSize: 0.5 },
+  { symbol: 'LT', label: 'L&T', token: '11483', exchange: 'NSE', tickSize: 1.0, lotSize: 175, groupSize: 1.0 },
+  { symbol: 'KOTAKBANK', label: 'KOTAK BANK', token: '1922', exchange: 'NSE', tickSize: 0.5, lotSize: 400, groupSize: 0.5 }
 ];
 
 // Session period letters matching Market Profile standard (A = 9:15-9:45, B = 9:45-10:15, etc.)
@@ -33,8 +35,8 @@ class OrderFlowStreamEngine {
   constructor() {
     this.ws = null;
     this.connected = false;
-    this.activeSymbol = 'NIFTY';
-    this.activeToken = '99926000';
+    this.activeSymbol = 'NIFTYFUT';
+    this.activeToken = '68407';
     this.timeframeMinutes = 5; // 5-minute footprint candles default
     this.lastLtp = null;
     this.lastSide = 'BUY';
@@ -214,8 +216,10 @@ class OrderFlowStreamEngine {
   generateSyntheticSeed(meta) {
     // Generate realistic today's intraday profile from 9:15 AM
     this.candles = [];
-    const basePrice = meta.symbol === 'NIFTY' ? 23380 : (meta.symbol === 'BANKNIFTY' ? 56260 : 1255);
-    const step = meta.groupSize;
+    const isNifty = meta.symbol.includes('NIFTY') && !meta.symbol.includes('BANK');
+    const isBankNifty = meta.symbol.includes('BANK');
+    const basePrice = isNifty ? 23380 : (isBankNifty ? 56260 : 1255);
+    const step = meta.groupSize || 1.0;
     let price = basePrice;
     let cvd = 0;
 
@@ -230,7 +234,7 @@ class OrderFlowStreamEngine {
       const timeStr = candleTime.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
       const period = getPeriodLetter(candleTime);
 
-      const change = (Math.random() - 0.48) * (meta.symbol === 'NIFTY' ? 25 : (meta.symbol === 'BANKNIFTY' ? 90 : 4));
+      const change = (Math.random() - 0.48) * (isNifty ? 25 : (isBankNifty ? 90 : 4));
       const open = price;
       const close = parseFloat((open + change).toFixed(2));
       const high = parseFloat((Math.max(open, close) + Math.random() * (step * 2)).toFixed(2));
