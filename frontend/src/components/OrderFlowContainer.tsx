@@ -4,7 +4,7 @@ import {
   Waves, Activity, TrendingUp, TrendingDown, RefreshCw, 
   BarChart2, Zap, ArrowUpRight, ArrowDownRight, Radio, Shield, ChevronRight,
   Crosshair, ZoomIn, ZoomOut, Move, RotateCcw, Target, Sliders, ChevronDown,
-  Maximize2, Eye, Check, Clock, Layers, Plus
+  Maximize2, Eye, Check, Clock, Layers, Plus, CandlestickChart
 } from 'lucide-react';
 
 interface PriceLevel {
@@ -85,6 +85,10 @@ export const OrderFlowContainer: React.FC = () => {
   const [switching, setSwitching] = useState(false);
 
   // NinjaTrader View & Setting options
+  // 'CANDLE_ORDERS' = Candlestick in center with Orders on Left (Bid) and Right (Ask)
+  // 'CLASSIC_SPLIT' = Classic split Bid x Ask grid
+  // 'PURE_CANDLE' = Pure Candlestick chart view
+  const [layoutStyle, setLayoutStyle] = useState<'CANDLE_ORDERS' | 'CLASSIC_SPLIT'>('CANDLE_ORDERS');
   const [viewMode, setViewMode] = useState<'IMBALANCE' | 'DELTA' | 'VOLUME'>('IMBALANCE');
   const [imbalanceRatio, setImbalanceRatio] = useState<number>(3.0); // 2.5x, 3.0x, 4.0x
   const [showSteppedPoc, setShowSteppedPoc] = useState(true);
@@ -99,7 +103,7 @@ export const OrderFlowContainer: React.FC = () => {
 
   // Layout & Interactive Zoom/Scale states
   const [rungHeight, setRungHeight] = useState(22); // Height per price level in px (12px to 60px)
-  const [candleWidth, setCandleWidth] = useState(130); // Width per candle in px (80px to 220px)
+  const [candleWidth, setCandleWidth] = useState(140); // Width per candle in px (90px to 240px)
   const [isPanning, setIsPanning] = useState(false);
   const [isDraggingScale, setIsDraggingScale] = useState(false);
 
@@ -200,7 +204,7 @@ export const OrderFlowContainer: React.FC = () => {
   if (maxPrice > minPrice && step > 0) {
     for (let p = maxPrice; p >= minPrice; p = parseFloat((p - step).toFixed(2))) {
       priceRungs.push(p);
-      if (priceRungs.length > 350) break; // Generous ceiling of 350 price rows
+      if (priceRungs.length > 350) break; // Generous limit of 350 price rows
     }
   }
 
@@ -360,7 +364,7 @@ export const OrderFlowContainer: React.FC = () => {
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.5)',
         gap: '10px'
       }}>
-        {/* Left: Chart Brand, Instrument Dropdown, Timeframe Dropdown, View Mode, Imbalance Ratio */}
+        {/* Left: Chart Brand, Instrument Dropdown, Timeframe Dropdown, Layout Mode, Imbalance Ratio */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           
           {/* NinjaTrader "Chart" Menu Button */}
@@ -504,68 +508,44 @@ export const OrderFlowContainer: React.FC = () => {
             )}
           </div>
 
-          {/* Footprint View Mode Dropdown (Bid/Ask Imbalance, Delta Profile, Volume Profile) */}
-          <div style={{ position: 'relative' }} onClick={(e) => e.stopPropagation()}>
+          {/* CANDLESTICK + ORDERS LAYOUT TOGGLE (The core user request!) */}
+          <div style={{ display: 'flex', gap: '3px', backgroundColor: '#10141d', padding: '2px', borderRadius: '5px', border: '1px solid #232a3b' }}>
             <button
-              onClick={() => setIsModeDropdownOpen(!isModeDropdownOpen)}
+              onClick={() => setLayoutStyle('CANDLE_ORDERS')}
               style={{
+                backgroundColor: layoutStyle === 'CANDLE_ORDERS' ? '#0284c7' : 'transparent',
+                color: layoutStyle === 'CANDLE_ORDERS' ? '#fff' : '#94a3b8',
+                border: 'none',
+                borderRadius: '3px',
+                padding: '4px 10px',
+                fontSize: '11px',
+                fontWeight: '800',
+                cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '6px',
-                backgroundColor: '#1a2234',
-                color: '#fff',
-                border: '1px solid #2d3748',
-                padding: '5px 12px',
-                borderRadius: '5px',
-                fontSize: '12px',
-                fontWeight: '700',
+                gap: '5px'
+              }}
+              title="Candlestick in center with Bid orders on left and Ask orders on right"
+            >
+              <CandlestickChart size={13} />
+              <span>Candle + Orders (L/R)</span>
+            </button>
+            <button
+              onClick={() => setLayoutStyle('CLASSIC_SPLIT')}
+              style={{
+                backgroundColor: layoutStyle === 'CLASSIC_SPLIT' ? '#0284c7' : 'transparent',
+                color: layoutStyle === 'CLASSIC_SPLIT' ? '#fff' : '#94a3b8',
+                border: 'none',
+                borderRadius: '3px',
+                padding: '4px 10px',
+                fontSize: '11px',
+                fontWeight: '800',
                 cursor: 'pointer'
               }}
+              title="Classic Footprint split grid"
             >
-              <Layers size={13} color="#10b981" />
-              <span>
-                {viewMode === 'IMBALANCE' ? 'Bid/Ask Imbalance' : (viewMode === 'DELTA' ? 'Delta Ladder' : 'Volume Profile')}
-              </span>
-              <ChevronDown size={14} color="#94a3b8" />
+              Split Grid
             </button>
-
-            {isModeDropdownOpen && (
-              <div style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                marginTop: '4px',
-                backgroundColor: '#161b26',
-                border: '1px solid #2d3748',
-                borderRadius: '6px',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.7)',
-                zIndex: 100,
-                width: '170px'
-              }}>
-                {[
-                  { mode: 'IMBALANCE', label: 'Bid/Ask Imbalance', desc: 'Diagonal Imbalance Highlighting' },
-                  { mode: 'DELTA', label: 'Delta Ladder', desc: 'Net Bid/Ask Delta per level' },
-                  { mode: 'VOLUME', label: 'Volume Profile', desc: 'Total Traded Volume per level' }
-                ].map((item) => (
-                  <div
-                    key={item.mode}
-                    onClick={() => { setViewMode(item.mode as any); setIsModeDropdownOpen(false); }}
-                    style={{
-                      padding: '8px 12px',
-                      fontSize: '12px',
-                      fontWeight: viewMode === item.mode ? '800' : '500',
-                      color: viewMode === item.mode ? '#10b981' : '#e0e0e0',
-                      backgroundColor: viewMode === item.mode ? '#1e2638' : 'transparent',
-                      cursor: 'pointer',
-                      borderBottom: '1px solid #1e2533'
-                    }}
-                  >
-                    <div>{item.label}</div>
-                    <div style={{ fontSize: '9px', color: '#64748b' }}>{item.desc}</div>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
 
           {/* Imbalance Multiplier Selector (2.5x, 3.0x, 4.0x) */}
@@ -772,7 +752,7 @@ export const OrderFlowContainer: React.FC = () => {
               fontWeight: '900',
               cursor: 'pointer'
             }}
-            title="Auto-Fit chart to screen (F)"
+            title="Auto-Fit Price Scale to Screen (F)"
           >
             F
           </button>
@@ -803,7 +783,7 @@ export const OrderFlowContainer: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '2px', backgroundColor: '#10141d', padding: '2px 4px', borderRadius: '5px', border: '1px solid #232a3b' }}>
             <span style={{ fontSize: '9px', fontWeight: '700', color: '#64748b', marginRight: '2px' }}>X:</span>
             <button
-              onClick={() => setCandleWidth(prev => Math.max(80, prev - 15))}
+              onClick={() => setCandleWidth(prev => Math.max(90, prev - 15))}
               style={{ backgroundColor: '#1a2234', color: '#cbd5e1', border: 'none', borderRadius: '3px', padding: '2px 5px', cursor: 'pointer', fontWeight: '800', fontSize: '11px' }}
               title="Compress Time"
             >
@@ -813,7 +793,7 @@ export const OrderFlowContainer: React.FC = () => {
               {candleWidth}
             </span>
             <button
-              onClick={() => setCandleWidth(prev => Math.min(220, prev + 15))}
+              onClick={() => setCandleWidth(prev => Math.min(240, prev + 15))}
               style={{ backgroundColor: '#1a2234', color: '#cbd5e1', border: 'none', borderRadius: '3px', padding: '2px 5px', cursor: 'pointer', fontWeight: '800', fontSize: '11px' }}
               title="Expand Time"
             >
@@ -825,7 +805,7 @@ export const OrderFlowContainer: React.FC = () => {
           <button
             onClick={() => {
               setRungHeight(22);
-              setCandleWidth(130);
+              setCandleWidth(140);
               setTimeout(recenterChart, 50);
             }}
             style={{
@@ -961,7 +941,7 @@ export const OrderFlowContainer: React.FC = () => {
             </div>
           )}
 
-          {/* 2. Middle Grid: 2D Interactive Footprint Candles Grid */}
+          {/* 2. Middle Grid: 2D Interactive Footprint Candles Grid with Candlestick in Center */}
           <div
             ref={gridRef}
             onScroll={handleGridScroll}
@@ -991,12 +971,9 @@ export const OrderFlowContainer: React.FC = () => {
                 const topLevelVol = candle.priceLevels[0]?.totalVol || 0;
                 const btmLevelVol = candle.priceLevels[candle.priceLevels.length - 1]?.totalVol || 0;
 
-                // Check candle body bounds (Open vs Close)
+                // Exact Candle Body Bounds (from Open to Close)
                 const bodyTop = Math.max(candle.open, candle.close);
                 const bodyBtm = Math.min(candle.open, candle.close);
-
-                // Check stepped POC connection to next candle
-                const nextCandle = state.candles[cIdx + 1];
 
                 return (
                   <div
@@ -1017,13 +994,17 @@ export const OrderFlowContainer: React.FC = () => {
                         const levelData = candleMap.get(p);
                         const isPoc = levelData && Math.abs(levelData.price - candle.pocPrice) < step / 2;
                         const inCandleRange = p >= candle.low && p <= candle.high;
-                        const inBody = p <= bodyTop && p >= bodyBtm;
+                        
+                        // Check if p is inside candle body (between Open and Close)
+                        const inBody = p <= (bodyTop + step / 4) && p >= (bodyBtm - step / 4);
+                        const isBodyTop = Math.abs(p - bodyTop) < step / 2;
+                        const isBodyBtm = Math.abs(p - bodyBtm) < step / 2;
 
                         // Calculate diagonal imbalance dynamically using user-selected multiplier
                         let hasBuyImbalance = false;
                         let hasSellImbalance = false;
 
-                        if (viewMode === 'IMBALANCE' && levelData) {
+                        if (levelData) {
                           const lowerLevel = candleMap.get(parseFloat((p - step).toFixed(2)));
                           if (lowerLevel && lowerLevel.bidVol > 0 && levelData.askVol >= lowerLevel.bidVol * imbalanceRatio && levelData.askVol >= 50) {
                             hasBuyImbalance = true;
@@ -1038,8 +1019,6 @@ export const OrderFlowContainer: React.FC = () => {
                         const maxLevelVol = Math.max(1, ...(candle.priceLevels.map(pl => pl.totalVol) || [1]));
                         const bidWidthPct = levelData ? Math.min(100, (levelData.bidVol / maxLevelVol) * 100) : 0;
                         const askWidthPct = levelData ? Math.min(100, (levelData.askVol / maxLevelVol) * 100) : 0;
-                        const deltaWidthPct = levelData ? Math.min(100, (Math.abs(levelData.delta) / maxLevelVol) * 100) : 0;
-                        const totalVolWidthPct = levelData ? Math.min(100, (levelData.totalVol / maxLevelVol) * 100) : 0;
 
                         // Check if this rung is the absolute high or low for CR Caps
                         const isExtremeHigh = Math.abs(p - candle.high) < step / 2;
@@ -1055,37 +1034,22 @@ export const OrderFlowContainer: React.FC = () => {
                               alignItems: 'center',
                               position: 'relative',
                               borderBottom: '1px solid rgba(255, 255, 255, 0.02)',
-                              // NinjaTrader Candle Body Container (Clean light body or subtle fill)
-                              backgroundColor: isPoc ? 'rgba(234, 179, 8, 0.18)' : (inBody ? (isBull ? 'rgba(16, 185, 129, 0.08)' : 'rgba(239, 68, 68, 0.08)') : (inCandleRange ? 'rgba(255, 255, 255, 0.015)' : 'transparent')),
-                              // Exact Red Outline Box for POC
+                              backgroundColor: isPoc ? 'rgba(234, 179, 8, 0.14)' : (inCandleRange ? 'rgba(255, 255, 255, 0.012)' : 'transparent'),
+                              // Red Outline Box for POC
                               border: isPoc ? '2px solid #ef4444' : 'none',
                               boxSizing: 'border-box'
                             }}
                           >
-                            {/* Thin vertical wick indicator when in candle range */}
-                            {inCandleRange && (
-                              <div style={{
-                                position: 'absolute',
-                                left: '50%',
-                                top: 0,
-                                bottom: 0,
-                                width: '1px',
-                                backgroundColor: isBull ? '#00e67644' : '#ff525244',
-                                transform: 'translateX(-50%)',
-                                zIndex: 0
-                              }} />
-                            )}
-
-                            {/* Stepped Developing POC Support / Resistance Line Spanning Across Candles */}
+                            {/* Stepped Developing POC Line Spanning Across Candles */}
                             {showSteppedPoc && isPoc && (
                               <div style={{
                                 position: 'absolute',
                                 left: 0,
                                 right: 0,
                                 top: '50%',
-                                height: '3px',
+                                height: '2px',
                                 backgroundColor: '#38bdf8',
-                                opacity: 0.6,
+                                opacity: 0.65,
                                 zIndex: 1,
                                 boxShadow: '0 0 6px #38bdf8'
                               }} />
@@ -1095,7 +1059,7 @@ export const OrderFlowContainer: React.FC = () => {
                             {showCrCaps && isExtremeHigh && (
                               <div style={{
                                 position: 'absolute',
-                                top: '-14px',
+                                top: '-13px',
                                 left: '50%',
                                 transform: 'translateX(-50%)',
                                 backgroundColor: '#ef4444',
@@ -1104,9 +1068,9 @@ export const OrderFlowContainer: React.FC = () => {
                                 fontWeight: '800',
                                 padding: '1px 5px',
                                 borderRadius: '2px',
-                                zIndex: 5,
+                                zIndex: 6,
                                 whiteSpace: 'nowrap',
-                                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.5)'
+                                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
                               }}>
                                 CR {topLevelVol}
                               </div>
@@ -1116,7 +1080,7 @@ export const OrderFlowContainer: React.FC = () => {
                             {showCrCaps && isExtremeLow && (
                               <div style={{
                                 position: 'absolute',
-                                bottom: '-14px',
+                                bottom: '-13px',
                                 left: '50%',
                                 transform: 'translateX(-50%)',
                                 backgroundColor: '#10b981',
@@ -1125,27 +1089,140 @@ export const OrderFlowContainer: React.FC = () => {
                                 fontWeight: '800',
                                 padding: '1px 5px',
                                 borderRadius: '2px',
-                                zIndex: 5,
+                                zIndex: 6,
                                 whiteSpace: 'nowrap',
-                                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.5)'
+                                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
                               }}>
                                 CR {btmLevelVol}
                               </div>
                             )}
 
-                            {levelData ? (
-                              viewMode === 'IMBALANCE' ? (
-                                /* 1. Bid x Ask Diagonal Imbalance View */
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', width: '100%', height: '100%', position: 'relative', zIndex: 2 }}>
-                                  {/* Left: Bid Volume (Sells) */}
-                                  <div style={{
-                                    position: 'relative',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-end',
-                                    paddingRight: '4px',
-                                    borderRight: '1px solid rgba(255, 255, 255, 0.08)'
+                            {/* ================================================================= */}
+                            {/* CANDLESTICK IN CENTER + BID ORDERS ON LEFT + ASK ORDERS ON RIGHT  */}
+                            {/* ================================================================= */}
+                            {layoutStyle === 'CANDLE_ORDERS' ? (
+                              <div style={{
+                                display: 'grid',
+                                gridTemplateColumns: '1fr 18px 1fr', // Left: Bid Orders | Center: Candlestick | Right: Ask Orders
+                                width: '100%',
+                                height: '100%',
+                                position: 'relative',
+                                zIndex: 2
+                              }}>
+                                {/* 1. LEFT COLUMN: BID ORDERS (SELLING AGGRESSION) */}
+                                <div style={{
+                                  position: 'relative',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'flex-end',
+                                  paddingRight: '5px',
+                                  borderRight: '1px solid rgba(255, 255, 255, 0.08)'
+                                }}>
+                                  {levelData && (
+                                    <div style={{
+                                      position: 'absolute',
+                                      right: 0,
+                                      top: 0,
+                                      bottom: 0,
+                                      width: `${bidWidthPct}%`,
+                                      backgroundColor: hasSellImbalance ? '#ef4444' : 'rgba(239, 68, 68, 0.22)',
+                                      opacity: hasSellImbalance ? 0.85 : 0.45,
+                                      zIndex: -1,
+                                      borderRadius: '2px 0 0 2px'
+                                    }} />
+                                  )}
+                                  <span style={{
+                                    fontSize: rungHeight < 18 ? '8px' : '9px',
+                                    fontWeight: hasSellImbalance ? '900' : '600',
+                                    color: hasSellImbalance ? '#fff' : (levelData ? '#fca5a5' : 'transparent'),
+                                    fontFamily: 'monospace'
                                   }}>
+                                    {levelData ? levelData.bidVol : ''}
+                                  </span>
+                                </div>
+
+                                {/* 2. CENTER COLUMN: THE REAL CANDLESTICK (Body & Wick) */}
+                                <div style={{
+                                  position: 'relative',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center'
+                                }}>
+                                  {/* Central Candlestick Wick (High to Low) */}
+                                  {inCandleRange && (
+                                    <div style={{
+                                      position: 'absolute',
+                                      top: 0,
+                                      bottom: 0,
+                                      width: '2px',
+                                      backgroundColor: isBull ? '#00e676' : '#ff5252',
+                                      opacity: 0.75,
+                                      zIndex: 1
+                                    }} />
+                                  )}
+
+                                  {/* Candlestick Solid Body (Open to Close) */}
+                                  {inBody && (
+                                    <div style={{
+                                      position: 'absolute',
+                                      top: 0,
+                                      bottom: 0,
+                                      left: '2px',
+                                      right: '2px',
+                                      backgroundColor: isBull ? '#00e676' : '#ff5252',
+                                      borderLeft: `1px solid ${isBull ? '#4ade80' : '#f87171'}`,
+                                      borderRight: `1px solid ${isBull ? '#4ade80' : '#f87171'}`,
+                                      borderRadius: (isBodyTop ? '2px 2px 0 0' : '') + (isBodyBtm ? ' 0 0 2px 2px' : ''),
+                                      zIndex: 3,
+                                      boxShadow: isBull ? '0 0 4px rgba(0, 230, 118, 0.5)' : '0 0 4px rgba(255, 82, 82, 0.5)'
+                                    }} />
+                                  )}
+                                </div>
+
+                                {/* 3. RIGHT COLUMN: ASK ORDERS (BUYING AGGRESSION) */}
+                                <div style={{
+                                  position: 'relative',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'flex-start',
+                                  paddingLeft: '5px',
+                                  borderLeft: '1px solid rgba(255, 255, 255, 0.08)'
+                                }}>
+                                  {levelData && (
+                                    <div style={{
+                                      position: 'absolute',
+                                      left: 0,
+                                      top: 0,
+                                      bottom: 0,
+                                      width: `${askWidthPct}%`,
+                                      backgroundColor: hasBuyImbalance ? '#10b981' : 'rgba(16, 185, 129, 0.22)',
+                                      opacity: hasBuyImbalance ? 0.85 : 0.45,
+                                      zIndex: -1,
+                                      borderRadius: '0 2px 2px 0'
+                                    }} />
+                                  )}
+                                  <span style={{
+                                    fontSize: rungHeight < 18 ? '8px' : '9px',
+                                    fontWeight: hasBuyImbalance ? '900' : '600',
+                                    color: hasBuyImbalance ? '#fff' : (levelData ? '#86efac' : 'transparent'),
+                                    fontFamily: 'monospace'
+                                  }}>
+                                    {levelData ? levelData.askVol : ''}
+                                  </span>
+                                </div>
+                              </div>
+                            ) : (
+                              /* Classic 2-column split grid view */
+                              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', width: '100%', height: '100%', position: 'relative', zIndex: 2 }}>
+                                <div style={{
+                                  position: 'relative',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'flex-end',
+                                  paddingRight: '4px',
+                                  borderRight: '1px solid rgba(255, 255, 255, 0.08)'
+                                }}>
+                                  {levelData && (
                                     <div style={{
                                       position: 'absolute',
                                       right: 0,
@@ -1156,23 +1233,24 @@ export const OrderFlowContainer: React.FC = () => {
                                       opacity: hasSellImbalance ? 0.75 : 0.35,
                                       zIndex: -1
                                     }} />
-                                    <span style={{
-                                      fontSize: rungHeight < 18 ? '8px' : '9px',
-                                      fontWeight: hasSellImbalance ? '900' : '600',
-                                      color: hasSellImbalance ? '#fff' : '#fca5a5'
-                                    }}>
-                                      {levelData.bidVol}
-                                    </span>
-                                  </div>
-
-                                  {/* Right: Ask Volume (Buys) */}
-                                  <div style={{
-                                    position: 'relative',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-start',
-                                    paddingLeft: '4px'
+                                  )}
+                                  <span style={{
+                                    fontSize: rungHeight < 18 ? '8px' : '9px',
+                                    fontWeight: hasSellImbalance ? '900' : '600',
+                                    color: hasSellImbalance ? '#fff' : '#fca5a5'
                                   }}>
+                                    {levelData ? levelData.bidVol : ''}
+                                  </span>
+                                </div>
+
+                                <div style={{
+                                  position: 'relative',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'flex-start',
+                                  paddingLeft: '4px'
+                                }}>
+                                  {levelData && (
                                     <div style={{
                                       position: 'absolute',
                                       left: 0,
@@ -1183,76 +1261,17 @@ export const OrderFlowContainer: React.FC = () => {
                                       opacity: hasBuyImbalance ? 0.75 : 0.35,
                                       zIndex: -1
                                     }} />
-                                    <span style={{
-                                      fontSize: rungHeight < 18 ? '8px' : '9px',
-                                      fontWeight: hasBuyImbalance ? '900' : '600',
-                                      color: hasBuyImbalance ? '#fff' : '#86efac'
-                                    }}>
-                                      {levelData.askVol}
-                                    </span>
-                                  </div>
-                                </div>
-                              ) : viewMode === 'DELTA' ? (
-                                /* 2. Net Delta Ladder View */
-                                <div style={{
-                                  position: 'relative',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  width: '100%',
-                                  height: '100%',
-                                  zIndex: 2
-                                }}>
-                                  <div style={{
-                                    position: 'absolute',
-                                    left: levelData.delta >= 0 ? '50%' : undefined,
-                                    right: levelData.delta < 0 ? '50%' : undefined,
-                                    top: 0,
-                                    bottom: 0,
-                                    width: `${deltaWidthPct / 2}%`,
-                                    backgroundColor: levelData.delta >= 0 ? '#10b981' : '#ef4444',
-                                    opacity: 0.5,
-                                    zIndex: -1
-                                  }} />
+                                  )}
                                   <span style={{
                                     fontSize: rungHeight < 18 ? '8px' : '9px',
-                                    fontWeight: '800',
-                                    color: levelData.delta >= 0 ? '#34d399' : '#f87171'
+                                    fontWeight: hasBuyImbalance ? '900' : '600',
+                                    color: hasBuyImbalance ? '#fff' : '#86efac'
                                   }}>
-                                    {levelData.delta >= 0 ? '+' : ''}{levelData.delta}
+                                    {levelData ? levelData.askVol : ''}
                                   </span>
                                 </div>
-                              ) : (
-                                /* 3. Total Volume Profile View */
-                                <div style={{
-                                  position: 'relative',
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'space-between',
-                                  padding: '0 6px',
-                                  width: '100%',
-                                  height: '100%',
-                                  zIndex: 2
-                                }}>
-                                  <div style={{
-                                    position: 'absolute',
-                                    left: 0,
-                                    top: 0,
-                                    bottom: 0,
-                                    width: `${totalVolWidthPct}%`,
-                                    backgroundColor: '#0284c7',
-                                    opacity: 0.45,
-                                    zIndex: -1
-                                  }} />
-                                  <span style={{ fontSize: '9px', fontWeight: '700', color: '#fff' }}>
-                                    {levelData.totalVol}
-                                  </span>
-                                  <span style={{ fontSize: '8px', color: levelData.delta >= 0 ? '#34d399' : '#f87171' }}>
-                                    ({levelData.delta >= 0 ? '+' : ''}{levelData.delta})
-                                  </span>
-                                </div>
-                              )
-                            ) : null}
+                              </div>
+                            )}
                           </div>
                         );
                       })}
@@ -1281,7 +1300,7 @@ export const OrderFlowContainer: React.FC = () => {
             }}
             title="Click and drag up/down to compress or expand price scale"
           >
-            {/* Top Right "F" Button Header (Just like NinjaTrader in screenshot!) */}
+            {/* Top Right "F" Button Header */}
             <div style={{ 
               position: 'sticky', 
               top: 0, 
@@ -1402,13 +1421,14 @@ export const OrderFlowContainer: React.FC = () => {
                   fontSize: '10px',
                   backgroundColor: '#151a24'
                 }}>
-                  {/* 1. Mini Candlestick */}
+                  {/* 1. Mini Candlestick Preview */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '18px' }}>
                     <div style={{
                       width: '8px',
                       height: '14px',
                       backgroundColor: isBull ? '#00e676' : '#ff5252',
-                      borderRadius: '1px'
+                      borderRadius: '1px',
+                      boxShadow: isBull ? '0 0 3px #00e676' : '0 0 3px #ff5252'
                     }} />
                   </div>
 
