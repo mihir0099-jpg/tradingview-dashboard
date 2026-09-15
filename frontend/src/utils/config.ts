@@ -72,7 +72,11 @@ export async function refreshBackendUrl(): Promise<string | null> {
 if (typeof window !== 'undefined') {
   try {
     const cached = localStorage.getItem('tradingview_backend_url');
-    if (isValidTunnelUrl(cached)) {
+    // If cached URL is an old dead Cloudflare tunnel, clear it and use static ngrok
+    if (cached && (cached.includes('electoral-federal') || cached.includes('enabling-sort'))) {
+      localStorage.removeItem('tradingview_backend_url');
+      dynamicBackendUrl = DEFAULT_PUBLIC_TUNNEL;
+    } else if (isValidTunnelUrl(cached)) {
       dynamicBackendUrl = cached!.trim().replace(/\/$/, '');
     } else {
       localStorage.removeItem('tradingview_backend_url');

@@ -131,7 +131,7 @@ export const OrderFlowContainer: React.FC = () => {
   const [isPanning, setIsPanning] = useState(false);
   const [isDraggingScale, setIsDraggingScale] = useState(false);
 
-  const backendUrl = getBackendUrl();
+  // backendUrl evaluated dynamically in fetchState
 
   // Scroll synchronization refs
   const gridRef = useRef<HTMLDivElement>(null);
@@ -148,17 +148,36 @@ export const OrderFlowContainer: React.FC = () => {
   const step = customTickSize || activeInstMeta.defaultTick || state?.tickSize || 1.0;
 
   const fetchState = async () => {
-    try {
-      const res = await fetch(`${backendUrl}/api/orderflow/state?_t=${Date.now()}`, {
+    const primaryUrl = getBackendUrl() || 'https://skimmer-savage-dipped.ngrok-free.dev';
+    const fallbackUrl = 'https://skimmer-savage-dipped.ngrok-free.dev';
+
+    const tryFetch = async (targetUrl: string) => {
+      const cleanTarget = targetUrl.replace(/\/$/, '');
+      const res = await fetch(`${cleanTarget}/api/orderflow/state?_t=${Date.now()}`, {
         headers: { 'ngrok-skip-browser-warning': 'true' }
       });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.success) {
-          setState(data);
-          if (data.activeSymbol && data.activeSymbol !== selectedSymbol) {
-            setSelectedSymbol(data.activeSymbol);
-          }
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (!data || !data.success) throw new Error('Invalid state response');
+      return data;
+    };
+
+    try {
+      let data: any = null;
+      try {
+        data = await tryFetch(primaryUrl);
+      } catch (err) {
+        if (primaryUrl !== fallbackUrl) {
+          data = await tryFetch(fallbackUrl);
+        } else {
+          throw err;
+        }
+      }
+
+      if (data && data.success) {
+        setState(data);
+        if (data.activeSymbol && data.activeSymbol !== selectedSymbol) {
+          setSelectedSymbol(data.activeSymbol);
         }
       }
     } catch (e) {
