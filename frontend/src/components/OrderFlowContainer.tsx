@@ -4,7 +4,7 @@ import {
   Waves, Activity, TrendingUp, TrendingDown, RefreshCw, 
   BarChart2, Zap, ArrowUpRight, ArrowDownRight, Radio, Shield, ChevronRight,
   Crosshair, ZoomIn, ZoomOut, Move, RotateCcw, Target, Sliders, ChevronDown,
-  Maximize2, Eye, Check, Clock, Layers, Plus, CandlestickChart
+  Maximize2, Eye, Check, Clock, Layers, Plus, CandlestickChart, AlertCircle
 } from 'lucide-react';
 
 interface PriceLevel {
@@ -53,18 +53,18 @@ interface OrderFlowState {
 }
 
 const AVAILABLE_INSTRUMENTS = [
-  { symbol: 'NIFTY', label: 'NIFTY 50', type: 'INDEX', tick: 5.0 },
-  { symbol: 'BANKNIFTY', label: 'BANK NIFTY', type: 'INDEX', tick: 20.0 },
-  { symbol: 'RELIANCE', label: 'RELIANCE', type: 'STOCK', tick: 1.0 },
-  { symbol: 'HDFCBANK', label: 'HDFC BANK', type: 'STOCK', tick: 1.0 },
-  { symbol: 'ICICIBANK', label: 'ICICI BANK', type: 'STOCK', tick: 1.0 },
-  { symbol: 'SBIN', label: 'SBIN', type: 'STOCK', tick: 1.0 },
-  { symbol: 'INFY', label: 'INFY', type: 'STOCK', tick: 1.0 },
-  { symbol: 'TCS', label: 'TCS', type: 'STOCK', tick: 2.0 },
-  { symbol: 'AXISBANK', label: 'AXIS BANK', type: 'STOCK', tick: 1.0 },
-  { symbol: 'LT', label: 'L&T', type: 'STOCK', tick: 2.0 },
-  { symbol: 'BHARTIARTL', label: 'BHARTI AIRTEL', type: 'STOCK', tick: 1.0 },
-  { symbol: 'KOTAKBANK', label: 'KOTAK BANK', type: 'STOCK', tick: 1.0 }
+  { symbol: 'NIFTY', label: 'NIFTY 50', type: 'INDEX', defaultTick: 5.0, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
+  { symbol: 'BANKNIFTY', label: 'BANK NIFTY', type: 'INDEX', defaultTick: 20.0, tickOptions: [5.0, 10.0, 20.0, 50.0, 100.0] },
+  { symbol: 'RELIANCE', label: 'RELIANCE', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
+  { symbol: 'HDFCBANK', label: 'HDFC BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
+  { symbol: 'ICICIBANK', label: 'ICICI BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
+  { symbol: 'SBIN', label: 'SBIN', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
+  { symbol: 'INFY', label: 'INFY', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
+  { symbol: 'TCS', label: 'TCS', type: 'STOCK', defaultTick: 2.0, tickOptions: [1.0, 2.0, 5.0, 10.0] },
+  { symbol: 'AXISBANK', label: 'AXIS BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
+  { symbol: 'LT', label: 'L&T', type: 'STOCK', defaultTick: 2.0, tickOptions: [1.0, 2.0, 5.0, 10.0] },
+  { symbol: 'BHARTIARTL', label: 'BHARTI AIRTEL', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
+  { symbol: 'KOTAKBANK', label: 'KOTAK BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] }
 ];
 
 const TIMEFRAMES = [
@@ -84,14 +84,15 @@ export const OrderFlowContainer: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [switching, setSwitching] = useState(false);
 
-  // NinjaTrader View & Setting options
-  // 'CANDLE_ORDERS' = Candlestick in center with Orders on Left (Bid) and Right (Ask)
-  // 'CLASSIC_SPLIT' = Classic split Bid x Ask grid
-  // 'PURE_CANDLE' = Pure Candlestick chart view
+  // User Configured Tick Size (Cluster / Block Size as in GoCharting Image 2)
+  const [customTickSize, setCustomTickSize] = useState<number | null>(null);
+
+  // Layout & Settings
   const [layoutStyle, setLayoutStyle] = useState<'CANDLE_ORDERS' | 'CLASSIC_SPLIT'>('CANDLE_ORDERS');
   const [viewMode, setViewMode] = useState<'IMBALANCE' | 'DELTA' | 'VOLUME'>('IMBALANCE');
   const [imbalanceRatio, setImbalanceRatio] = useState<number>(3.0); // 2.5x, 3.0x, 4.0x
   const [showSteppedPoc, setShowSteppedPoc] = useState(true);
+  const [showCotBadges, setShowCotBadges] = useState(true); // COT on candle top & bottom
   const [showCrCaps, setShowCrCaps] = useState(true);
   const [showProfile, setShowProfile] = useState(true);
 
@@ -100,8 +101,9 @@ export const OrderFlowContainer: React.FC = () => {
   const [isModeDropdownOpen, setIsModeDropdownOpen] = useState(false);
   const [isImbDropdownOpen, setIsImbDropdownOpen] = useState(false);
   const [isInstDropdownOpen, setIsInstDropdownOpen] = useState(false);
+  const [isTickDropdownOpen, setIsTickDropdownOpen] = useState(false);
 
-  // Layout & Interactive Zoom/Scale states
+  // Zoom & Pan states
   const [rungHeight, setRungHeight] = useState(22); // Height per price level in px (12px to 60px)
   const [candleWidth, setCandleWidth] = useState(140); // Width per candle in px (90px to 240px)
   const [isPanning, setIsPanning] = useState(false);
@@ -119,6 +121,9 @@ export const OrderFlowContainer: React.FC = () => {
   const panStartRef = useRef<{ x: number; y: number; scrollLeft: number; scrollTop: number } | null>(null);
   const scaleDragRef = useRef<{ y: number; initialRungHeight: number; initialScrollTop: number } | null>(null);
   const initialCenteredRef = useRef(false);
+
+  const activeInstMeta = AVAILABLE_INSTRUMENTS.find(i => i.symbol === selectedSymbol) || AVAILABLE_INSTRUMENTS[0];
+  const step = customTickSize || activeInstMeta.defaultTick || state?.tickSize || 5;
 
   const fetchState = async () => {
     try {
@@ -144,7 +149,8 @@ export const OrderFlowContainer: React.FC = () => {
   const handleSymbolChange = async (newSym: string) => {
     setSelectedSymbol(newSym);
     setSwitching(true);
-    initialCenteredRef.current = false; // Trigger recenter on new symbol
+    setCustomTickSize(null); // Reset tick size to instrument default
+    initialCenteredRef.current = false;
     setIsInstDropdownOpen(false);
     try {
       await fetch(`${backendUrl}/api/orderflow/switch`, {
@@ -186,14 +192,14 @@ export const OrderFlowContainer: React.FC = () => {
       setIsModeDropdownOpen(false);
       setIsImbDropdownOpen(false);
       setIsInstDropdownOpen(false);
+      setIsTickDropdownOpen(false);
     };
     window.addEventListener('click', handleOutsideClick);
     return () => window.removeEventListener('click', handleOutsideClick);
   }, []);
 
-  // Build the global continuous price scale with headroom & footroom padding
-  const step = state?.tickSize || (selectedSymbol === 'NIFTY' ? 5 : (selectedSymbol === 'BANKNIFTY' ? 20 : 1));
-  const paddingSteps = 20; // 20 rungs above and below to give room for dragging/scrolling
+  // Build the global continuous price scale with headroom & footroom padding using current step
+  const paddingSteps = 20;
   const rawMin = state?.globalMin ? Math.floor(state.globalMin / step) * step : 0;
   const rawMax = state?.globalMax ? Math.ceil(state.globalMax / step) * step : 100;
 
@@ -204,14 +210,14 @@ export const OrderFlowContainer: React.FC = () => {
   if (maxPrice > minPrice && step > 0) {
     for (let p = maxPrice; p >= minPrice; p = parseFloat((p - step).toFixed(2))) {
       priceRungs.push(p);
-      if (priceRungs.length > 350) break; // Generous limit of 350 price rows
+      if (priceRungs.length > 350) break;
     }
   }
 
   // Max volume across composite profile for bar scaling
   const maxCompVol = Math.max(1, ...(state?.compositeProfile?.map(cp => cp.volume) || [1]));
 
-  // Synchronize scrolling across Left Profile, Center Candles, Right Price Scale, and Bottom Matrix
+  // Synchronize scrolling
   const handleGridScroll = useCallback(() => {
     if (!gridRef.current) return;
     const { scrollTop, scrollLeft } = gridRef.current;
@@ -220,7 +226,7 @@ export const OrderFlowContainer: React.FC = () => {
     if (bottomMatrixRef.current) bottomMatrixRef.current.scrollLeft = scrollLeft;
   }, []);
 
-  // Recenter on Current LTP (Last Traded Price)
+  // Recenter on Current LTP
   const recenterChart = useCallback(() => {
     if (!gridRef.current || !state?.lastPrice || priceRungs.length === 0) return;
     const ltpIdx = priceRungs.findIndex(p => Math.abs(p - state.lastPrice!) < step / 2);
@@ -228,11 +234,10 @@ export const OrderFlowContainer: React.FC = () => {
       const targetY = (ltpIdx * rungHeight) - (gridRef.current.clientHeight / 2) + (rungHeight / 2);
       gridRef.current.scrollTop = Math.max(0, targetY);
     }
-    // Scroll to latest (rightmost) candle
     gridRef.current.scrollLeft = gridRef.current.scrollWidth;
   }, [state?.lastPrice, priceRungs, rungHeight, step]);
 
-  // "F" (Auto-Fit) to Screen: Calculates optimal rung height to fit all candles in view
+  // Auto-Fit (F) button
   const autoFitChart = useCallback(() => {
     if (!gridRef.current || !state?.candles || state.candles.length === 0) return;
     const candleHighs = state.candles.map(c => c.high);
@@ -261,7 +266,7 @@ export const OrderFlowContainer: React.FC = () => {
     }
   }, [state?.lastPrice, priceRungs.length, recenterChart]);
 
-  // Handle Grid Pan (2D Dragging: Left, Right, Up, Down)
+  // 2D Pan Drag
   const handleGridMouseDown = (e: React.MouseEvent) => {
     if (e.button !== 0 || !gridRef.current) return;
     panStartRef.current = {
@@ -273,7 +278,7 @@ export const OrderFlowContainer: React.FC = () => {
     setIsPanning(true);
   };
 
-  // Handle Price Scale Drag (Click & drag right column up/down to zoom vertical price scale)
+  // Price Scale Drag (Y-Axis Zoom)
   const handlePriceScaleMouseDown = (e: React.MouseEvent) => {
     if (e.button !== 0 || !gridRef.current) return;
     scaleDragRef.current = {
@@ -285,10 +290,8 @@ export const OrderFlowContainer: React.FC = () => {
     e.preventDefault();
   };
 
-  // Global mousemove and mouseup listeners for smooth dragging outside element bounds
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // 1. Chart 2D Pan Drag
       if (panStartRef.current && gridRef.current) {
         const dx = e.clientX - panStartRef.current.x;
         const dy = e.clientY - panStartRef.current.y;
@@ -296,7 +299,6 @@ export const OrderFlowContainer: React.FC = () => {
         gridRef.current.scrollTop = panStartRef.current.scrollTop - dy;
       }
 
-      // 2. Price Scale Zoom Drag
       if (scaleDragRef.current && gridRef.current) {
         const dy = e.clientY - scaleDragRef.current.y;
         const newRungHeight = Math.max(12, Math.min(60, Math.round(scaleDragRef.current.initialRungHeight - dy * 0.25)));
@@ -324,7 +326,6 @@ export const OrderFlowContainer: React.FC = () => {
     };
   }, [rungHeight]);
 
-  // Mouse wheel handler for smooth Ctrl+Wheel Price Zoom
   const handleWheel = (e: React.WheelEvent) => {
     if (!gridRef.current) return;
     if (e.ctrlKey) {
@@ -335,6 +336,30 @@ export const OrderFlowContainer: React.FC = () => {
   };
 
   const activeTfObj = TIMEFRAMES.find(t => t.value === timeframe) || TIMEFRAMES[2];
+
+  // Helper to dynamically aggregate candle levels into user selected step size
+  const getAggregatedCandleMap = (candle: FootprintCandle) => {
+    const map = new Map<number, PriceLevel>();
+    candle.priceLevels.forEach(pl => {
+      const bucketPrice = parseFloat((Math.round(pl.price / step) * step).toFixed(2));
+      const existing = map.get(bucketPrice);
+      if (existing) {
+        existing.bidVol += pl.bidVol;
+        existing.askVol += pl.askVol;
+        existing.totalVol += pl.totalVol;
+        existing.delta = existing.askVol - existing.bidVol;
+      } else {
+        map.set(bucketPrice, {
+          price: bucketPrice,
+          bidVol: pl.bidVol,
+          askVol: pl.askVol,
+          totalVol: pl.totalVol,
+          delta: pl.askVol - pl.bidVol
+        });
+      }
+    });
+    return map;
+  };
 
   return (
     <div 
@@ -350,7 +375,7 @@ export const OrderFlowContainer: React.FC = () => {
       }}
     >
       {/* ========================================================================= */}
-      {/* 1. TOP NINJATRADER / BELL-TPO STYLE CONTROL TOOLBAR                        */}
+      {/* 1. TOP TOOLBAR: Controls, Timeframe, Layout, Tick Size (Circled in Image 1)*/}
       {/* ========================================================================= */}
       <div style={{
         display: 'flex',
@@ -508,7 +533,7 @@ export const OrderFlowContainer: React.FC = () => {
             )}
           </div>
 
-          {/* CANDLESTICK + ORDERS LAYOUT TOGGLE (The core user request!) */}
+          {/* Candle + Orders Layout Toggle */}
           <div style={{ display: 'flex', gap: '3px', backgroundColor: '#10141d', padding: '2px', borderRadius: '5px', border: '1px solid #232a3b' }}>
             <button
               onClick={() => setLayoutStyle('CANDLE_ORDERS')}
@@ -610,8 +635,8 @@ export const OrderFlowContainer: React.FC = () => {
             )}
           </div>
 
-          {/* Toggle Features: Stepped POC & CR Caps */}
-          <div style={{ display: 'flex', gap: '4px', backgroundColor: '#10141d', padding: '2px', borderRadius: '5px', border: '1px solid #232a3b' }}>
+          {/* Toggle Features: POC Line, COT Badges, CR Caps, Profile */}
+          <div style={{ display: 'flex', gap: '3px', backgroundColor: '#10141d', padding: '2px', borderRadius: '5px', border: '1px solid #232a3b' }}>
             <button
               onClick={() => setShowSteppedPoc(!showSteppedPoc)}
               style={{
@@ -619,7 +644,7 @@ export const OrderFlowContainer: React.FC = () => {
                 color: showSteppedPoc ? '#38bdf8' : '#64748b',
                 border: 'none',
                 borderRadius: '3px',
-                padding: '3px 8px',
+                padding: '3px 7px',
                 fontSize: '10px',
                 fontWeight: '700',
                 cursor: 'pointer'
@@ -629,18 +654,34 @@ export const OrderFlowContainer: React.FC = () => {
               POC Line
             </button>
             <button
+              onClick={() => setShowCotBadges(!showCotBadges)}
+              style={{
+                backgroundColor: showCotBadges ? '#1e293b' : 'transparent',
+                color: showCotBadges ? '#f59e0b' : '#64748b',
+                border: 'none',
+                borderRadius: '3px',
+                padding: '3px 7px',
+                fontSize: '10px',
+                fontWeight: '800',
+                cursor: 'pointer'
+              }}
+              title="Toggle COT (Commitment of Traders / Trapped Volume) at Candle Top & Bottom"
+            >
+              COT
+            </button>
+            <button
               onClick={() => setShowCrCaps(!showCrCaps)}
               style={{
                 backgroundColor: showCrCaps ? '#1e293b' : 'transparent',
                 color: showCrCaps ? '#10b981' : '#64748b',
                 border: 'none',
                 borderRadius: '3px',
-                padding: '3px 8px',
+                padding: '3px 7px',
                 fontSize: '10px',
                 fontWeight: '700',
                 cursor: 'pointer'
               }}
-              title="Toggle Candle Range (CR) top and bottom volume caps"
+              title="Toggle Candle Range (CR) volume caps"
             >
               CR Caps
             </button>
@@ -651,7 +692,7 @@ export const OrderFlowContainer: React.FC = () => {
                 color: showProfile ? '#eab308' : '#64748b',
                 border: 'none',
                 borderRadius: '3px',
-                padding: '3px 8px',
+                padding: '3px 7px',
                 fontSize: '10px',
                 fontWeight: '700',
                 cursor: 'pointer'
@@ -660,6 +701,100 @@ export const OrderFlowContainer: React.FC = () => {
             >
               Profile
             </button>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* TICK SIZE / CLUSTER MANAGER (CIRCLED IN RED IN IMAGE 1 & AS IN IMAGE 2)   */}
+          {/* ========================================================================= */}
+          <div style={{ position: 'relative' }} onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setIsTickDropdownOpen(!isTickDropdownOpen)}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px',
+                backgroundColor: '#1a2234',
+                color: '#38bdf8',
+                border: '1px solid #38bdf8',
+                padding: '5px 12px',
+                borderRadius: '5px',
+                fontSize: '11px',
+                fontWeight: '800',
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(56, 189, 248, 0.25)'
+              }}
+              title="Tick Manager / Block Size (GoCharting Style Cluster Height)"
+            >
+              <Sliders size={12} color="#38bdf8" />
+              <span>Tick: {step} pts</span>
+              <ChevronDown size={12} color="#38bdf8" />
+            </button>
+
+            {isTickDropdownOpen && (
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                marginTop: '4px',
+                backgroundColor: '#161b26',
+                border: '1px solid #38bdf8',
+                borderRadius: '6px',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.8)',
+                zIndex: 100,
+                width: '200px',
+                padding: '6px'
+              }}>
+                <div style={{ fontSize: '10px', fontWeight: '800', color: '#38bdf8', padding: '4px 6px', borderBottom: '1px solid #232a3b', display: 'flex', justifyContent: 'space-between' }}>
+                  <span>TICK MANAGER (BLOCK)</span>
+                  <span style={{ color: '#64748b' }}>CLUSTER</span>
+                </div>
+
+                <div style={{ padding: '6px 4px', fontSize: '9px', color: '#94a3b8' }}>
+                  Select price cluster grouping height for {selectedSymbol}:
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                  {activeInstMeta.tickOptions.map((opt) => (
+                    <div
+                      key={opt}
+                      onClick={() => { setCustomTickSize(opt); setIsTickDropdownOpen(false); }}
+                      style={{
+                        padding: '6px 10px',
+                        fontSize: '11px',
+                        fontWeight: step === opt ? '800' : '600',
+                        color: step === opt ? '#38bdf8' : '#e0e0e0',
+                        backgroundColor: step === opt ? '#1e2638' : 'transparent',
+                        borderRadius: '4px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                      }}
+                    >
+                      <span>{opt} pts {opt === activeInstMeta.defaultTick ? '(Default)' : ''}</span>
+                      {step === opt && <Check size={12} color="#38bdf8" />}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Reset to Default */}
+                <div 
+                  onClick={() => { setCustomTickSize(null); setIsTickDropdownOpen(false); }}
+                  style={{
+                    marginTop: '6px',
+                    padding: '5px',
+                    textAlign: 'center',
+                    fontSize: '10px',
+                    fontWeight: '700',
+                    color: '#94a3b8',
+                    borderTop: '1px solid #232a3b',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Reset to Exchange Default ({activeInstMeta.defaultTick} pts)
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -801,7 +936,7 @@ export const OrderFlowContainer: React.FC = () => {
             </button>
           </div>
 
-          {/* Reset Zoom to Default */}
+          {/* Reset Zoom */}
           <button
             onClick={() => {
               setRungHeight(22);
@@ -822,25 +957,6 @@ export const OrderFlowContainer: React.FC = () => {
           </button>
         </div>
       </div>
-
-      {/* Divergence Alert if active */}
-      {state?.divergence && state.divergence !== 'NONE' && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px',
-          padding: '6px 12px',
-          backgroundColor: state.divergence.includes('BULLISH') ? 'rgba(0, 230, 118, 0.15)' : 'rgba(255, 82, 82, 0.15)',
-          borderRadius: '6px',
-          border: `1px solid ${state.divergence.includes('BULLISH') ? '#00e67666' : '#ff525266'}`,
-          color: state.divergence.includes('BULLISH') ? '#00e676' : '#ff5252',
-          fontSize: '11px',
-          fontWeight: '700'
-        }}>
-          <Zap size={13} />
-          <span>ORDER FLOW DIVERGENCE: {state.divergence}</span>
-        </div>
-      )}
 
       {/* ========================================================================= */}
       {/* 2. TRUE BELL-TPO / NINJATRADER ORDER FLOW CANVAS                          */}
@@ -875,7 +991,7 @@ export const OrderFlowContainer: React.FC = () => {
                 borderRight: '1px solid #232a3b',
                 display: 'flex',
                 flexDirection: 'column',
-                overflowY: 'hidden', // Synchronized with gridRef
+                overflowY: 'hidden',
                 overflowX: 'hidden',
                 flexShrink: 0
               }}
@@ -917,7 +1033,6 @@ export const OrderFlowContainer: React.FC = () => {
                         boxSizing: 'border-box'
                       }}
                     >
-                      {/* Volume Bar Fill */}
                       <div style={{
                         position: 'absolute',
                         left: 0,
@@ -941,7 +1056,7 @@ export const OrderFlowContainer: React.FC = () => {
             </div>
           )}
 
-          {/* 2. Middle Grid: 2D Interactive Footprint Candles Grid with Candlestick in Center */}
+          {/* 2. Middle Grid: 2D Interactive Footprint Candles Grid */}
           <div
             ref={gridRef}
             onScroll={handleGridScroll}
@@ -965,15 +1080,36 @@ export const OrderFlowContainer: React.FC = () => {
             ) : (
               state.candles.map((candle, cIdx) => {
                 const isBull = candle.close >= candle.open;
-                const candleMap = new Map(candle.priceLevels.map(pl => [pl.price, pl]));
-
-                // Calculate top and bottom auction volumes for Candle Range (CR) Caps
-                const topLevelVol = candle.priceLevels[0]?.totalVol || 0;
-                const btmLevelVol = candle.priceLevels[candle.priceLevels.length - 1]?.totalVol || 0;
+                const candleMap = getAggregatedCandleMap(candle);
+                const prevCandle = cIdx > 0 ? state.candles[cIdx - 1] : null;
 
                 // Exact Candle Body Bounds (from Open to Close)
                 const bodyTop = Math.max(candle.open, candle.close);
                 const bodyBtm = Math.min(candle.open, candle.close);
+
+                // Extreme rungs in candle
+                const candleRungKeys = Array.from(candleMap.keys());
+                const topRung = candleRungKeys.length > 0 ? Math.max(...candleRungKeys) : candle.high;
+                const btmRung = candleRungKeys.length > 0 ? Math.min(...candleRungKeys) : candle.low;
+
+                const topLevelData = candleMap.get(topRung);
+                const btmLevelData = candleMap.get(btmRung);
+
+                // 1. COT (Commitment of Traders) calculation at extreme top and bottom
+                const cotTopDelta = topLevelData ? (topLevelData.askVol - topLevelData.bidVol) : 0;
+                const cotBtmDelta = btmLevelData ? (btmLevelData.askVol - btmLevelData.bidVol) : 0;
+
+                const isTrappedBuyers = cotTopDelta > 0 && candle.close < candle.high;
+                const isTrappedSellers = cotBtmDelta < 0 && candle.close > candle.low;
+
+                // 2. DELTA DIVERGENCE ON THE CHART ONLY (User Request!)
+                // Bearish Divergence: Candle closed Green or made higher high, but net Delta is NEGATIVE (selling absorption)
+                const isBearDivergence = (candle.close > candle.open && candle.delta < 0) || 
+                                         (prevCandle && candle.high > prevCandle.high && candle.delta < 0 && candle.close < candle.high);
+                
+                // Bullish Divergence: Candle closed Red or made lower low, but net Delta is POSITIVE (buying absorption)
+                const isBullDivergence = (candle.close < candle.open && candle.delta > 0) || 
+                                         (prevCandle && candle.low < prevCandle.low && candle.delta > 0 && candle.close > candle.low);
 
                 return (
                   <div
@@ -995,34 +1131,31 @@ export const OrderFlowContainer: React.FC = () => {
                         const isPoc = levelData && Math.abs(levelData.price - candle.pocPrice) < step / 2;
                         const inCandleRange = p >= candle.low && p <= candle.high;
                         
-                        // Check if p is inside candle body (between Open and Close)
                         const inBody = p <= (bodyTop + step / 4) && p >= (bodyBtm - step / 4);
                         const isBodyTop = Math.abs(p - bodyTop) < step / 2;
                         const isBodyBtm = Math.abs(p - bodyBtm) < step / 2;
 
-                        // Calculate diagonal imbalance dynamically using user-selected multiplier
+                        // Diagonal imbalance check
                         let hasBuyImbalance = false;
                         let hasSellImbalance = false;
 
                         if (levelData) {
                           const lowerLevel = candleMap.get(parseFloat((p - step).toFixed(2)));
-                          if (lowerLevel && lowerLevel.bidVol > 0 && levelData.askVol >= lowerLevel.bidVol * imbalanceRatio && levelData.askVol >= 50) {
+                          if (lowerLevel && lowerLevel.bidVol > 0 && levelData.askVol >= lowerLevel.bidVol * imbalanceRatio && levelData.askVol >= 40) {
                             hasBuyImbalance = true;
                           }
                           const upperLevel = candleMap.get(parseFloat((p + step).toFixed(2)));
-                          if (upperLevel && upperLevel.askVol > 0 && levelData.bidVol >= upperLevel.askVol * imbalanceRatio && levelData.bidVol >= 50) {
+                          if (upperLevel && upperLevel.askVol > 0 && levelData.bidVol >= upperLevel.askVol * imbalanceRatio && levelData.bidVol >= 40) {
                             hasSellImbalance = true;
                           }
                         }
 
-                        // Background widths
-                        const maxLevelVol = Math.max(1, ...(candle.priceLevels.map(pl => pl.totalVol) || [1]));
+                        const maxLevelVol = Math.max(1, ...(Array.from(candleMap.values()).map(pl => pl.totalVol) || [1]));
                         const bidWidthPct = levelData ? Math.min(100, (levelData.bidVol / maxLevelVol) * 100) : 0;
                         const askWidthPct = levelData ? Math.min(100, (levelData.askVol / maxLevelVol) * 100) : 0;
 
-                        // Check if this rung is the absolute high or low for CR Caps
-                        const isExtremeHigh = Math.abs(p - candle.high) < step / 2;
-                        const isExtremeLow = Math.abs(p - candle.low) < step / 2;
+                        const isExtremeHigh = Math.abs(p - topRung) < step / 2;
+                        const isExtremeLow = Math.abs(p - btmRung) < step / 2;
 
                         return (
                           <div
@@ -1035,12 +1168,11 @@ export const OrderFlowContainer: React.FC = () => {
                               position: 'relative',
                               borderBottom: '1px solid rgba(255, 255, 255, 0.02)',
                               backgroundColor: isPoc ? 'rgba(234, 179, 8, 0.14)' : (inCandleRange ? 'rgba(255, 255, 255, 0.012)' : 'transparent'),
-                              // Red Outline Box for POC
                               border: isPoc ? '2px solid #ef4444' : 'none',
                               boxSizing: 'border-box'
                             }}
                           >
-                            {/* Stepped Developing POC Line Spanning Across Candles */}
+                            {/* Stepped POC Line Spanning Across Candles */}
                             {showSteppedPoc && isPoc && (
                               <div style={{
                                 position: 'absolute',
@@ -1055,8 +1187,118 @@ export const OrderFlowContainer: React.FC = () => {
                               }} />
                             )}
 
-                            {/* Candle Range (CR) Top Cap Badge */}
-                            {showCrCaps && isExtremeHigh && (
+                            {/* ================================================================= */}
+                            {/* DELTA DIVERGENCE SYMBOLS ON THE CHART ONLY                        */}
+                            {/* ================================================================= */}
+                            {isExtremeHigh && isBearDivergence && (
+                              <div style={{
+                                position: 'absolute',
+                                top: '-38px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                backgroundColor: '#dc2626',
+                                color: '#fff',
+                                fontSize: '9px',
+                                fontWeight: '900',
+                                padding: '2px 7px',
+                                borderRadius: '4px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '3px',
+                                boxShadow: '0 0 12px rgba(220, 38, 38, 0.9)',
+                                zIndex: 15,
+                                whiteSpace: 'nowrap',
+                                border: '1px solid #fca5a5',
+                                animation: 'pulse 2s infinite'
+                              }}>
+                                <span>▼ BEAR DIV</span>
+                                <span style={{ fontSize: '8px', opacity: 0.9 }}>({candle.delta})</span>
+                              </div>
+                            )}
+
+                            {isExtremeLow && isBullDivergence && (
+                              <div style={{
+                                position: 'absolute',
+                                bottom: '-38px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                backgroundColor: '#059669',
+                                color: '#fff',
+                                fontSize: '9px',
+                                fontWeight: '900',
+                                padding: '2px 7px',
+                                borderRadius: '4px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '3px',
+                                boxShadow: '0 0 12px rgba(5, 150, 105, 0.9)',
+                                zIndex: 15,
+                                whiteSpace: 'nowrap',
+                                border: '1px solid #86efac',
+                                animation: 'pulse 2s infinite'
+                              }}>
+                                <span>▲ BULL DIV</span>
+                                <span style={{ fontSize: '8px', opacity: 0.9 }}>(+{candle.delta})</span>
+                              </div>
+                            )}
+
+                            {/* ================================================================= */}
+                            {/* COT (COMMITMENT OF TRADERS) ON CANDLE TOP & BOTTOM                */}
+                            {/* ================================================================= */}
+                            {showCotBadges && isExtremeHigh && (
+                              <div style={{
+                                position: 'absolute',
+                                top: isBearDivergence ? '-18px' : '-14px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                backgroundColor: isTrappedBuyers ? '#f59e0b' : '#ef4444',
+                                color: '#000',
+                                fontSize: '8px',
+                                fontWeight: '900',
+                                padding: '1px 5px',
+                                borderRadius: '3px',
+                                zIndex: 8,
+                                whiteSpace: 'nowrap',
+                                boxShadow: '0 1px 6px rgba(0, 0, 0, 0.7)',
+                                border: isTrappedBuyers ? '1px solid #fde047' : 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '2px'
+                              }}>
+                                <span>COT:</span>
+                                <span>{cotTopDelta > 0 ? '+' : ''}{cotTopDelta}</span>
+                                {isTrappedBuyers && <span style={{ fontSize: '7px' }}>⚠️TRAP</span>}
+                              </div>
+                            )}
+
+                            {showCotBadges && isExtremeLow && (
+                              <div style={{
+                                position: 'absolute',
+                                bottom: isBullDivergence ? '-18px' : '-14px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                backgroundColor: isTrappedSellers ? '#10b981' : '#059669',
+                                color: '#000',
+                                fontSize: '8px',
+                                fontWeight: '900',
+                                padding: '1px 5px',
+                                borderRadius: '3px',
+                                zIndex: 8,
+                                whiteSpace: 'nowrap',
+                                boxShadow: '0 1px 6px rgba(0, 0, 0, 0.7)',
+                                border: isTrappedSellers ? '1px solid #86efac' : 'none',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '2px'
+                              }}>
+                                <span>COT:</span>
+                                <span>{cotBtmDelta > 0 ? '+' : ''}{cotBtmDelta}</span>
+                                {isTrappedSellers && <span style={{ fontSize: '7px' }}>⚠️TRAP</span>}
+                              </div>
+                            )}
+
+                            {/* Candle Range (CR) Caps */}
+                            {showCrCaps && isExtremeHigh && !showCotBadges && (
                               <div style={{
                                 position: 'absolute',
                                 top: '-13px',
@@ -1069,15 +1311,13 @@ export const OrderFlowContainer: React.FC = () => {
                                 padding: '1px 5px',
                                 borderRadius: '2px',
                                 zIndex: 6,
-                                whiteSpace: 'nowrap',
-                                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+                                whiteSpace: 'nowrap'
                               }}>
-                                CR {topLevelVol}
+                                CR {topLevelData?.totalVol || 0}
                               </div>
                             )}
 
-                            {/* Candle Range (CR) Bottom Cap Badge */}
-                            {showCrCaps && isExtremeLow && (
+                            {showCrCaps && isExtremeLow && !showCotBadges && (
                               <div style={{
                                 position: 'absolute',
                                 bottom: '-13px',
@@ -1090,10 +1330,9 @@ export const OrderFlowContainer: React.FC = () => {
                                 padding: '1px 5px',
                                 borderRadius: '2px',
                                 zIndex: 6,
-                                whiteSpace: 'nowrap',
-                                boxShadow: '0 1px 4px rgba(0, 0, 0, 0.6)'
+                                whiteSpace: 'nowrap'
                               }}>
-                                CR {btmLevelVol}
+                                CR {btmLevelData?.totalVol || 0}
                               </div>
                             )}
 
@@ -1103,7 +1342,7 @@ export const OrderFlowContainer: React.FC = () => {
                             {layoutStyle === 'CANDLE_ORDERS' ? (
                               <div style={{
                                 display: 'grid',
-                                gridTemplateColumns: '1fr 18px 1fr', // Left: Bid Orders | Center: Candlestick | Right: Ask Orders
+                                gridTemplateColumns: '1fr 18px 1fr',
                                 width: '100%',
                                 height: '100%',
                                 position: 'relative',
@@ -1212,7 +1451,7 @@ export const OrderFlowContainer: React.FC = () => {
                                 </div>
                               </div>
                             ) : (
-                              /* Classic 2-column split grid view */
+                              /* Classic split grid view */
                               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', width: '100%', height: '100%', position: 'relative', zIndex: 2 }}>
                                 <div style={{
                                   position: 'relative',
@@ -1282,7 +1521,7 @@ export const OrderFlowContainer: React.FC = () => {
             )}
           </div>
 
-          {/* 3. Right Column: Shared Continuous Price Ladder (Y-Axis) with Interactive Drag Zoom & "F" Fit Button */}
+          {/* 3. Right Column: Shared Continuous Price Ladder (Y-Axis) */}
           <div 
             ref={priceScaleRef}
             onMouseDown={handlePriceScaleMouseDown}
@@ -1292,10 +1531,10 @@ export const OrderFlowContainer: React.FC = () => {
               borderLeft: '1px solid #232a3b',
               display: 'flex',
               flexDirection: 'column',
-              overflowY: 'hidden', // Synchronized with gridRef
+              overflowY: 'hidden',
               overflowX: 'hidden',
               flexShrink: 0,
-              cursor: 'ns-resize', // North-South drag resize cursor just like TradingView!
+              cursor: 'ns-resize',
               userSelect: 'none'
             }}
             title="Click and drag up/down to compress or expand price scale"
@@ -1369,7 +1608,6 @@ export const OrderFlowContainer: React.FC = () => {
           borderTop: '2px solid #232a3b',
           height: '140px'
         }}>
-          {/* Left Label Column */}
           {showProfile && (
             <div style={{
               width: '120px',
@@ -1393,12 +1631,11 @@ export const OrderFlowContainer: React.FC = () => {
             </div>
           )}
 
-          {/* Metrics for Each Candle Column */}
           <div 
             ref={bottomMatrixRef}
             style={{
               flex: 1,
-              overflowX: 'hidden', // Synchronized with gridRef
+              overflowX: 'hidden',
               display: 'flex'
             }}
           >
@@ -1480,12 +1717,11 @@ export const OrderFlowContainer: React.FC = () => {
             })}
           </div>
 
-          {/* Right Price axis alignment blank */}
           <div style={{ width: '94px', backgroundColor: '#0f131a', borderLeft: '1px solid #232a3b', flexShrink: 0 }} />
         </div>
 
         {/* ========================================================================= */}
-        {/* 4. BOTTOM INSTRUMENT TABS (EXACT NINJATRADER / BELL-TPO TAB STRIP)        */}
+        {/* 4. BOTTOM INSTRUMENT TABS                                                 */}
         {/* ========================================================================= */}
         <div style={{
           display: 'flex',
@@ -1495,7 +1731,6 @@ export const OrderFlowContainer: React.FC = () => {
           borderTop: '1px solid #1e2533',
           padding: '4px 10px'
         }}>
-          {/* Bottom Tabs */}
           <div style={{ display: 'flex', gap: '3px', overflowX: 'auto' }}>
             {AVAILABLE_INSTRUMENTS.slice(0, 8).map((inst) => {
               const isActive = selectedSymbol === inst.symbol;
@@ -1526,7 +1761,6 @@ export const OrderFlowContainer: React.FC = () => {
               );
             })}
             
-            {/* "+" Tab to open full symbol selector */}
             <button
               onClick={(e) => { e.stopPropagation(); setIsInstDropdownOpen(!isInstDropdownOpen); }}
               style={{
@@ -1548,7 +1782,6 @@ export const OrderFlowContainer: React.FC = () => {
             </button>
           </div>
 
-          {/* Quick Scroll to Live (Rightmost) Button */}
           <button
             onClick={() => {
               if (gridRef.current) gridRef.current.scrollLeft = gridRef.current.scrollWidth;
