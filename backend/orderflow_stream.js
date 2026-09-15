@@ -432,7 +432,25 @@ class OrderFlowStreamEngine {
 
     if (!this.currentCandle || this.currentCandle.timestamp !== bucketTime) {
       if (this.currentCandle) {
-        this.candles.push(this.currentCandle);
+        const rawLevels = Array.isArray(this.currentCandle.priceLevels)
+          ? this.currentCandle.priceLevels
+          : Object.values(this.currentCandle.priceLevels || {}).sort((a, b) => b.price - a.price);
+        const completed = {
+          ...this.currentCandle,
+          priceLevels: rawLevels
+        };
+        // Calculate diagonal imbalances for completed candle
+        for (let i = 0; i < completed.priceLevels.length - 1; i++) {
+          const upper = completed.priceLevels[i];
+          const lower = completed.priceLevels[i + 1];
+          if (lower.bidVol > 0 && upper.askVol >= lower.bidVol * 3 && upper.askVol >= 150) {
+            completed.imbalanceLevels.push({ price: upper.price, type: 'BUY_IMBALANCE', ratio: (upper.askVol / Math.max(1, lower.bidVol)).toFixed(1) + 'x' });
+          }
+          if (upper.askVol > 0 && lower.bidVol >= upper.askVol * 3 && lower.bidVol >= 150) {
+            completed.imbalanceLevels.push({ price: lower.price, type: 'SELL_IMBALANCE', ratio: (lower.bidVol / Math.max(1, upper.askVol)).toFixed(1) + 'x' });
+          }
+        }
+        this.candles.push(completed);
         if (this.candles.length > 25) this.candles.shift();
       }
 
@@ -498,12 +516,19 @@ class OrderFlowStreamEngine {
   }
 
   getState() {
-    const allCandles = [...this.candles];
+    const allCandles = this.candles.map(c => ({
+      ...c,
+      priceLevels: Array.isArray(c.priceLevels)
+        ? c.priceLevels
+        : Object.values(c.priceLevels || {}).sort((a, b) => b.price - a.price)
+    }));
+
     if (this.currentCandle) {
-      // Clone current candle and convert priceLevels to sorted array
       const currentClone = {
         ...this.currentCandle,
-        priceLevels: Object.values(this.currentCandle.priceLevels).sort((a, b) => b.price - a.price)
+        priceLevels: Array.isArray(this.currentCandle.priceLevels)
+          ? this.currentCandle.priceLevels
+          : Object.values(this.currentCandle.priceLevels || {}).sort((a, b) => b.price - a.price)
       };
       allCandles.push(currentClone);
     }
@@ -516,7 +541,8 @@ class OrderFlowStreamEngine {
     allCandles.forEach(c => {
       globalMin = Math.min(globalMin, c.low);
       globalMax = Math.max(globalMax, c.high);
-      (c.priceLevels || []).forEach(pl => {
+      const levels = Array.isArray(c.priceLevels) ? c.priceLevels : Object.values(c.priceLevels || {});
+      levels.forEach(pl => {
         const pk = pl.price.toFixed(2);
         compositeProfile[pk] = (compositeProfile[pk] || 0) + pl.totalVol;
       });
