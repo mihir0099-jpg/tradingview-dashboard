@@ -131,7 +131,8 @@ export const OrderFlowContainer: React.FC = () => {
   const [isPanning, setIsPanning] = useState(false);
   const [isDraggingScale, setIsDraggingScale] = useState(false);
 
-  // backendUrl evaluated dynamically in fetchState
+  // backendUrl evaluated dynamically
+  const backendUrl = (getBackendUrl() || 'https://skimmer-savage-dipped.ngrok-free.dev').replace(/\/$/, '');
 
   // Scroll synchronization refs
   const gridRef = useRef<HTMLDivElement>(null);
@@ -148,7 +149,7 @@ export const OrderFlowContainer: React.FC = () => {
   const step = customTickSize || activeInstMeta.defaultTick || state?.tickSize || 1.0;
 
   const fetchState = async () => {
-    const primaryUrl = getBackendUrl() || 'https://skimmer-savage-dipped.ngrok-free.dev';
+    const primaryUrl = backendUrl;
     const fallbackUrl = 'https://skimmer-savage-dipped.ngrok-free.dev';
 
     const tryFetch = async (targetUrl: string) => {
@@ -450,6 +451,7 @@ export const OrderFlowContainer: React.FC = () => {
       }, 120);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [state?.lastPrice, priceRungs.length, recenterChart]);
 
   // 2D Pan Drag

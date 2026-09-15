@@ -141,9 +141,9 @@ interface StocksTrackerData {
     retailTrapScore: number;
     fiiNetContracts: number;
     timeWindows?: {
-      morning: { name: string; timeStr: string; valueCr: number; count: number; label: string };
-      midday: { name: string; timeStr: string; valueCr: number; count: number; label: string };
-      afternoon: { name: string; timeStr: string; valueCr: number; count: number; label: string };
+      morning: { name: string; timeStr: string; valueCr: number; count: number; label: string; isExecuted?: boolean };
+      midday: { name: string; timeStr: string; valueCr: number; count: number; label: string; isExecuted?: boolean };
+      afternoon: { name: string; timeStr: string; valueCr: number; count: number; label: string; isExecuted?: boolean };
     };
   };
   blockDeals: BlockDealItem[];

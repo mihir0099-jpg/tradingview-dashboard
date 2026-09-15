@@ -13,7 +13,7 @@ interface SymbolSkewData {
 }
 
 export function HourlyUpdatesContainer() {
-  const [timeline, setTimeline] = useState<HourlyTimelineSlot[]>([]);
+  const [timeline, setTimeline] = useState<any[]>([]);
   const [niftySpot, setNiftySpot] = useState<number>(0);
   const [bankSpot, setBankSpot] = useState<number>(0);
   const [niftySkewData, setNiftySkewData] = useState<SymbolSkewData | null>(null);

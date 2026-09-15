@@ -1,12 +1,12 @@
 {
   "totalPredictions": 26,
-  "wins": 0,
-  "losses": 0,
-  "winRate": 0,
+  "wins": 5,
+  "losses": 9,
+  "winRate": 35.7,
   "mistakePatterns": {
     "INDEX_DRAG_OVERWHELM": 0,
-    "LOW_VOLUME_DRIFT": 0,
-    "RETAIL_TRAP_SPOOFING": 0,
+    "LOW_VOLUME_DRIFT": 4,
+    "RETAIL_TRAP_SPOOFING": 3,
     "RESISTANCE_CLUSTER": 0
   },
   "learnedRules": [
@@ -284,11 +284,11 @@
       "targetPrice": 116.41,
       "stopLossPrice": 115.26,
       "niftyPressureAtEntry": 59.6,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
-      "mistakeType": null,
-      "learnedLesson": null
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "SL hit at ₹114.7. Diagnosed Mistake: LOW_VOLUME_DRIFT",
+      "mistakeType": "LOW_VOLUME_DRIFT",
+      "learnedLesson": "Bids did not hold under low volume drift. Level absorbed temporarily then broke."
     },
     {
       "id": "PRED-mu26p04i-292",
@@ -304,11 +304,11 @@
       "targetPrice": 1088.89,
       "stopLossPrice": 1078.07,
       "niftyPressureAtEntry": 59.6,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
-      "mistakeType": null,
-      "learnedLesson": null
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "SL hit at ₹1077. Diagnosed Mistake: RETAIL_TRAP_SPOOFING",
+      "mistakeType": "RETAIL_TRAP_SPOOFING",
+      "learnedLesson": "Order count showed retail crowd rather than whale accumulation. Require Whale Ratio >= 1.8."
     },
     {
       "id": "PRED-mu26ok6i-984",
@@ -324,9 +324,9 @@
       "targetPrice": 523.14,
       "stopLossPrice": 528.41,
       "niftyPressureAtEntry": 52.2,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
+      "status": "WIN",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "Target hit at ₹516.1 (+1.94%)",
       "mistakeType": null,
       "learnedLesson": null
     },
@@ -344,9 +344,9 @@
       "targetPrice": 1817.83,
       "stopLossPrice": 1836.12,
       "niftyPressureAtEntry": 54.8,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "Time exit after 3 hours at ₹1830.4",
       "mistakeType": null,
       "learnedLesson": null
     },
@@ -364,11 +364,11 @@
       "targetPrice": 529.61,
       "stopLossPrice": 524.34,
       "niftyPressureAtEntry": 60.3,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
-      "mistakeType": null,
-      "learnedLesson": null
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "SL hit at ₹516.1. Diagnosed Mistake: RETAIL_TRAP_SPOOFING",
+      "mistakeType": "RETAIL_TRAP_SPOOFING",
+      "learnedLesson": "Order count showed retail crowd rather than whale accumulation. Require Whale Ratio >= 1.8."
     },
     {
       "id": "PRED-mu26nz5d-586",
@@ -384,9 +384,9 @@
       "targetPrice": 1839.67,
       "stopLossPrice": 1821.39,
       "niftyPressureAtEntry": 57.3,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
+      "status": "WIN",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "Time exit after 3 hours at ₹1830.4",
       "mistakeType": null,
       "learnedLesson": null
     },
@@ -404,11 +404,11 @@
       "targetPrice": 2307.86,
       "stopLossPrice": 2284.92,
       "niftyPressureAtEntry": 57.3,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
-      "mistakeType": null,
-      "learnedLesson": null
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "SL hit at ₹2251. Diagnosed Mistake: LOW_VOLUME_DRIFT",
+      "mistakeType": "LOW_VOLUME_DRIFT",
+      "learnedLesson": "Bids did not hold under low volume drift. Level absorbed temporarily then broke."
     },
     {
       "id": "PRED-mu26nwt7-810",
@@ -424,9 +424,9 @@
       "targetPrice": 3877.43,
       "stopLossPrice": 3838.88,
       "niftyPressureAtEntry": 70.8,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "Time exit after 3 hours at ₹3850.7",
       "mistakeType": null,
       "learnedLesson": null
     },
@@ -444,11 +444,11 @@
       "targetPrice": 987.59,
       "stopLossPrice": 977.77,
       "niftyPressureAtEntry": 56.3,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
-      "mistakeType": null,
-      "learnedLesson": null
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "SL hit at ₹968. Diagnosed Mistake: RETAIL_TRAP_SPOOFING",
+      "mistakeType": "RETAIL_TRAP_SPOOFING",
+      "learnedLesson": "Order count showed retail crowd rather than whale accumulation. Require Whale Ratio >= 1.8."
     },
     {
       "id": "PRED-mu26i4xa-798",
@@ -464,9 +464,9 @@
       "targetPrice": 1230.57,
       "stopLossPrice": 1242.95,
       "niftyPressureAtEntry": 54.6,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
+      "status": "WIN",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "Target hit at ₹1222.9 (+1.22%)",
       "mistakeType": null,
       "learnedLesson": null
     },
@@ -484,9 +484,9 @@
       "targetPrice": 3832.57,
       "stopLossPrice": 3871.12,
       "niftyPressureAtEntry": 57,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
+      "status": "WIN",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "Time exit after 3 hours at ₹3850.7",
       "mistakeType": null,
       "learnedLesson": null
     },
@@ -504,11 +504,11 @@
       "targetPrice": 1366.25,
       "stopLossPrice": 1352.67,
       "niftyPressureAtEntry": 57,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
-      "mistakeType": null,
-      "learnedLesson": null
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "SL hit at ₹1350.4. Diagnosed Mistake: LOW_VOLUME_DRIFT",
+      "mistakeType": "LOW_VOLUME_DRIFT",
+      "learnedLesson": "Bids did not hold under low volume drift. Level absorbed temporarily then broke."
     },
     {
       "id": "PRED-mu26h471-955",
@@ -524,9 +524,9 @@
       "targetPrice": 722.59,
       "stopLossPrice": 729.86,
       "niftyPressureAtEntry": 57,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
+      "status": "WIN",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "Target hit at ₹716.55 (+1.43%)",
       "mistakeType": null,
       "learnedLesson": null
     },
@@ -544,11 +544,11 @@
       "targetPrice": 1261.73,
       "stopLossPrice": 1249.18,
       "niftyPressureAtEntry": 57,
-      "status": "ACTIVE",
-      "resolvedAt": null,
-      "outcome": null,
-      "mistakeType": null,
-      "learnedLesson": null
+      "status": "LOSS",
+      "resolvedAt": "4:38:28 pm",
+      "outcome": "SL hit at ₹1235.3. Diagnosed Mistake: LOW_VOLUME_DRIFT",
+      "mistakeType": "LOW_VOLUME_DRIFT",
+      "learnedLesson": "Bids did not hold under low volume drift. Level absorbed temporarily then broke."
     }
   ]
 }
