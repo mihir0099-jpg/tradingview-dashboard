@@ -33,6 +33,7 @@ import { StocksTrackerContainer } from './components/StocksTrackerContainer';
 import { StocksMovingContainer } from './components/StocksMovingContainer';
 import { ImbalanceMeterContainer } from './components/ImbalanceMeterContainer';
 import { OrderFlowContainer } from './components/OrderFlowContainer';
+import { MacroCotContainer } from './components/MacroCotContainer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('orderflow');
+  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'imbalance_meter' | 'orderflow' | 'macro_cot' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('macro_cot');
   const [biasData, setBiasData] = useState<any>(null);
 
   useEffect(() => {
@@ -338,6 +339,27 @@ function App() {
           }}
         >
           🌊 Order Flow & Footprint
+        </button>
+        <button
+          onClick={() => setActiveTab('macro_cot')}
+          style={{
+            background: activeTab === 'macro_cot' ? 'rgba(56, 189, 248, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'macro_cot' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'macro_cot' ? '#38bdf8' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🛡️ Macro COT
         </button>
         <button
           onClick={() => setActiveTab('pcr_velocity')}
@@ -787,6 +809,11 @@ function App() {
         {activeTab === 'orderflow' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
             <OrderFlowContainer />
+          </div>
+        )}
+        {activeTab === 'macro_cot' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <MacroCotContainer />
           </div>
         )}
         {activeTab === 'weekly_selling' && (

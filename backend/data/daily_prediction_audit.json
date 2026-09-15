@@ -2,16 +2,16 @@
   {
     "date": "2026-09-15",
     "timeframe": "DAILY",
-    "actual_range": 271.75,
+    "actual_range": 286.6,
     "predicted_range": 297,
-    "range_error_pts": 25.3,
-    "range_accuracy_pct": 90.69,
+    "range_error_pts": 10.4,
+    "range_accuracy_pct": 96.37,
     "ib_range": 218.5,
     "is_wide_ib": true,
     "day_type": "NORMAL_VARIATION_BEAR",
     "mistake_diagnosed": "High prediction accuracy maintained (≥85%).",
     "remedy_applied": "Apply 1.36x compression cap on morning climax.",
-    "logged_at": "2026-09-15T05:55:56.655Z"
+    "logged_at": "2026-09-15T07:30:01.107Z"
   },
   {
     "date": "2026-09-13",
