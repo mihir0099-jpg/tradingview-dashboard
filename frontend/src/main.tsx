@@ -1,3 +1,27 @@
+// Global fetch interceptor to automatically bypass ngrok free warning across ALL tabs & requests
+if (typeof window !== 'undefined') {
+  const originalFetch = window.fetch;
+  window.fetch = async function (input: RequestInfo | URL, init?: RequestInit) {
+    const customInit: RequestInit = init ? { ...init } : {};
+    let headers: Headers;
+    if (customInit.headers instanceof Headers) {
+      headers = customInit.headers;
+    } else if (Array.isArray(customInit.headers)) {
+      headers = new Headers(customInit.headers);
+    } else if (typeof customInit.headers === 'object' && customInit.headers !== null) {
+      headers = new Headers(customInit.headers as Record<string, string>);
+    } else {
+      headers = new Headers();
+    }
+    
+    if (!headers.has('ngrok-skip-browser-warning')) {
+      headers.set('ngrok-skip-browser-warning', 'true');
+    }
+    customInit.headers = headers;
+    return originalFetch.call(this, input, customInit);
+  };
+}
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
