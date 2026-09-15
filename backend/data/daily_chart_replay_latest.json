@@ -1,13 +1,13 @@
 {
-  "timestamp": 1789469429851,
+  "timestamp": 1789476201859,
   "dateStr": "2026-09-15",
-  "timeStr": "16:20:29 IST",
+  "timeStr": "18:13:21 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
       "spot": 23118.6,
       "open": 23270.9,
-      "dayHigh": 23302.65,
+      "dayHigh": 23118.6,
       "dayLow": 23118.6,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
@@ -24,7 +24,7 @@
     "banknifty": {
       "spot": 55794.75,
       "open": 56420,
-      "dayHigh": 56215.55,
+      "dayHigh": 55794.75,
       "dayLow": 55794.75,
       "ibHigh": 56600,
       "ibLow": 56300,

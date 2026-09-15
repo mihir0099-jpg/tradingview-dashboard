@@ -2930,6 +2930,70 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
     const bankC_BullPts = Math.max(250, Math.round(bankSpot * 0.0059));
     const bankC_BearPts = Math.max(270, Math.round(bankSpot * 0.0067));
 
+    // 🔒 10:15 AM Rule 2D Locked Anchor Calculation
+    let nifty1015Spot = null;
+    let bank1015Spot = null;
+
+    if (currentMins >= 615 || currentMins < 555) { // Past 10:15 AM or after market hours
+      try {
+        const todayStr = now.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+        const sessionFile = path.join(__dirname, 'data', 'daily_archive', `session_${todayStr}.json`);
+        if (fs.existsSync(sessionFile)) {
+          const sData = JSON.parse(fs.readFileSync(sessionFile, 'utf8'));
+          const nCandles = sData?.raw_candles?.nifty_1m || [];
+          const bCandles = sData?.raw_candles?.banknifty_1m || [];
+          const c1015N = nCandles.find(c => c.timeIST && c.timeIST.startsWith('10:15'));
+          const c1015B = bCandles.find(c => c.timeIST && c.timeIST.startsWith('10:15'));
+          if (c1015N) nifty1015Spot = c1015N.close;
+          if (c1015B) bank1015Spot = c1015B.close;
+        }
+      } catch (e) {}
+
+      if (!nifty1015Spot) {
+        nifty1015Spot = niftyLive?.ibClose || (niftySpot < niftyIbLow ? niftyIbLow : (niftySpot > niftyIbHigh ? niftyIbHigh : niftySpot));
+      }
+      if (!bank1015Spot) {
+        bank1015Spot = bankLive?.ibClose || (bankSpot < bankIbLow ? bankIbLow : (bankSpot > bankIbHigh ? bankIbHigh : bankSpot));
+      }
+    }
+
+    const calcLockedMetrics = (basePcr, openPrice, spot1015, mult) => {
+      if (!spot1015) return null;
+      const chgPct = ((spot1015 - openPrice) / openPrice) * 100;
+      const pcr1015 = parseFloat((basePcr * (1 + (chgPct * mult))).toFixed(3));
+      const drift1015 = parseFloat((pcr1015 - basePcr).toFixed(3));
+      const velPct1015 = parseFloat(((drift1015 / basePcr) * 100).toFixed(1));
+      return {
+        isLocked: true,
+        timeStr: '10:15 AM',
+        spot: spot1015,
+        pcr: pcr1015,
+        drift: drift1015,
+        velocityPct: velPct1015,
+        verdict: getVerdict(drift1015)
+      };
+    };
+
+    const niftyLocked1015 = calcLockedMetrics(niftyBasePcr, niftyOpen, nifty1015Spot, 0.15) || {
+      isLocked: false,
+      timeStr: 'Pending (10:15 AM)',
+      spot: niftySpot,
+      pcr: niftyCurrentPcr,
+      drift: niftyDrift,
+      velocityPct: niftyVelocityPct,
+      verdict: niftyVerdict
+    };
+
+    const bankLocked1015 = calcLockedMetrics(bankBasePcr, bankOpen, bank1015Spot, 0.18) || {
+      isLocked: false,
+      timeStr: 'Pending (10:15 AM)',
+      spot: bankSpot,
+      pcr: bankCurrentPcr,
+      drift: bankDrift,
+      velocityPct: bankVelocityPct,
+      verdict: bankVerdict
+    };
+
     const niftyAction = niftyVerdict.signal === 'BULLISH'
       ? { type: 'BUY CE', strike: `${niftyAtm} CE`, target: `+${niftyC_BullPts} pts (Period C Bull Target)`, sl: `-30.0 pts (Period A Extreme)` }
       : (niftyVerdict.signal === 'BEARISH'
@@ -2995,6 +3059,7 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
         currentPcr: niftyCurrentPcr,
         drift: niftyDrift,
         velocityPct: niftyVelocityPct,
+        locked1015: niftyLocked1015,
         verdict: niftyVerdict,
         periodC_Status: niftyPeriodC_Breakout,
         confluenceScore: niftyConfluenceScore,
@@ -3009,6 +3074,7 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
         currentPcr: bankCurrentPcr,
         drift: bankDrift,
         velocityPct: bankVelocityPct,
+        locked1015: bankLocked1015,
         verdict: bankVerdict,
         periodC_Status: bankPeriodC_Breakout,
         confluenceScore: bankConfluenceScore,

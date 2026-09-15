@@ -11,6 +11,18 @@ interface IndexVelocityData {
   currentPcr: number;
   drift: number;
   velocityPct: number;
+  locked1015?: {
+    isLocked: boolean;
+    timeStr: string;
+    spot: number;
+    pcr: number;
+    drift: number;
+    velocityPct: number;
+    verdict?: {
+      signal: 'BULLISH' | 'BEARISH' | 'NEUTRAL';
+      label: string;
+    };
+  };
   verdict: {
     signal: 'BULLISH' | 'BEARISH' | 'NEUTRAL';
     label: string;
@@ -289,7 +301,7 @@ export function PcrVelocityContainer() {
         }}
       >
         {/* Card Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <h2 style={{ margin: 0, fontSize: '20px', fontWeight: '800', color: '#fff' }}>{name}</h2>
@@ -317,6 +329,54 @@ export function PcrVelocityContainer() {
             </p>
           </div>
 
+          {/* 🔒 10:15 AM RULE 2D LOCKED IN BADGE (Requested Middle Header Area) */}
+          {asset.locked1015 && (
+            <div
+              style={{
+                background: 'rgba(15, 23, 42, 0.85)',
+                border: `1px solid ${asset.locked1015.drift <= -0.03 ? '#ef4444' : (asset.locked1015.drift >= 0.03 ? '#10b981' : '#eab308')}45`,
+                borderRadius: '10px',
+                padding: '7px 14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                boxShadow: `0 4px 16px ${asset.locked1015.drift <= -0.03 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)'}`
+              }}
+            >
+              <div>
+                <div style={{ fontSize: '10px', color: '#94a3b8', textTransform: 'uppercase', fontWeight: '800', display: 'flex', alignItems: 'center', gap: '4px', letterSpacing: '0.4px' }}>
+                  <span>🔒</span> 10:15 AM LOCKED IN (RULE 2D)
+                </div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: '2px' }}>
+                  <span style={{ fontSize: '15px', fontWeight: '900', color: asset.locked1015.drift <= -0.03 ? '#ef4444' : (asset.locked1015.drift >= 0.03 ? '#10b981' : '#eab308') }}>
+                    Δ {asset.locked1015.drift > 0 ? `+${asset.locked1015.drift.toFixed(3)}` : asset.locked1015.drift.toFixed(3)}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: '12px',
+                      fontWeight: '800',
+                      color: asset.locked1015.drift <= -0.03 ? '#ef4444' : (asset.locked1015.drift >= 0.03 ? '#10b981' : '#eab308'),
+                      background: asset.locked1015.drift <= -0.03 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+                      padding: '1px 6px',
+                      borderRadius: '4px'
+                    }}
+                  >
+                    {asset.locked1015.velocityPct > 0 ? `+${asset.locked1015.velocityPct}%` : `${asset.locked1015.velocityPct}%`}
+                  </span>
+                  <span style={{ fontSize: '11px', color: '#64748b' }}>
+                    PCR: {asset.locked1015.pcr.toFixed(2)}
+                  </span>
+                </div>
+              </div>
+              <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.12)', paddingLeft: '10px' }}>
+                <div style={{ fontSize: '9.5px', color: '#64748b', textTransform: 'uppercase', fontWeight: '700' }}>10:15 Spot</div>
+                <div style={{ fontSize: '12.5px', fontWeight: '800', color: '#e2e8f0', fontFamily: 'monospace' }}>
+                  ₹{asset.locked1015.spot.toLocaleString('en-IN')}
+                </div>
+              </div>
+            </div>
+          )}
+
           <div style={{ textAlign: 'right' }}>
             <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Spot / Open</div>
             <div style={{ fontSize: '18px', fontWeight: '800', color: '#fff' }}>
@@ -328,29 +388,47 @@ export function PcrVelocityContainer() {
           </div>
         </div>
 
-        {/* PCR Drift Metrics Row */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
-          <div style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', padding: '12px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-            <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>09:15 Base PCR</div>
-            <div style={{ fontSize: '17px', fontWeight: '700', color: '#94a3b8', marginTop: '4px' }}>{asset.basePcr.toFixed(2)}</div>
-          </div>
-          <div style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', padding: '12px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
-            <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>Live PCR</div>
-            <div style={{ fontSize: '17px', fontWeight: '700', color: '#fff', marginTop: '4px' }}>{asset.currentPcr.toFixed(2)}</div>
-          </div>
-          <div style={{ background: badgeBg, borderRadius: '8px', padding: '12px', border: `1px solid ${badgeColor}30` }}>
-            <div style={{ fontSize: '11px', color: badgeColor, textTransform: 'uppercase', fontWeight: '700' }}>PCR Drift (Δ)</div>
-            <div style={{ fontSize: '17px', fontWeight: '800', color: badgeColor, marginTop: '4px' }}>
-              {asset.drift > 0 ? `+${asset.drift.toFixed(3)}` : asset.drift.toFixed(3)}
+        {/* PCR Drift Metrics Row (With exact time label) */}
+        {(() => {
+          const currentTimeLabel = (() => {
+            if (!data?.istTimeStr) return 'Live';
+            const [hh, mm] = data.istTimeStr.split(':').map(Number);
+            const m = hh * 60 + mm;
+            if (m >= 930 || m < 555) return 'EOD (15:30)';
+            return `Live (${data.istTimeStr.slice(0, 5)})`;
+          })();
+
+          return (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
+              <div style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', padding: '12px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>09:15 Base PCR</div>
+                <div style={{ fontSize: '17px', fontWeight: '700', color: '#94a3b8', marginTop: '4px' }}>{asset.basePcr.toFixed(2)}</div>
+              </div>
+              <div style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', padding: '12px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
+                <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
+                  {currentTimeLabel} PCR
+                </div>
+                <div style={{ fontSize: '17px', fontWeight: '700', color: '#fff', marginTop: '4px' }}>{asset.currentPcr.toFixed(2)}</div>
+              </div>
+              <div style={{ background: badgeBg, borderRadius: '8px', padding: '12px', border: `1px solid ${badgeColor}30` }}>
+                <div style={{ fontSize: '11px', color: badgeColor, textTransform: 'uppercase', fontWeight: '700' }}>
+                  {currentTimeLabel} Drift (Δ)
+                </div>
+                <div style={{ fontSize: '17px', fontWeight: '800', color: badgeColor, marginTop: '4px' }}>
+                  {asset.drift > 0 ? `+${asset.drift.toFixed(3)}` : asset.drift.toFixed(3)}
+                </div>
+              </div>
+              <div style={{ background: badgeBg, borderRadius: '8px', padding: '12px', border: `1px solid ${badgeColor}30` }}>
+                <div style={{ fontSize: '11px', color: badgeColor, textTransform: 'uppercase', fontWeight: '700' }}>
+                  {currentTimeLabel} Velocity %
+                </div>
+                <div style={{ fontSize: '17px', fontWeight: '800', color: badgeColor, marginTop: '4px' }}>
+                  {asset.velocityPct > 0 ? `+${asset.velocityPct}%` : `${asset.velocityPct}%`}
+                </div>
+              </div>
             </div>
-          </div>
-          <div style={{ background: badgeBg, borderRadius: '8px', padding: '12px', border: `1px solid ${badgeColor}30` }}>
-            <div style={{ fontSize: '11px', color: badgeColor, textTransform: 'uppercase', fontWeight: '700' }}>Velocity %</div>
-            <div style={{ fontSize: '17px', fontWeight: '800', color: badgeColor, marginTop: '4px' }}>
-              {asset.velocityPct > 0 ? `+${asset.velocityPct}%` : `${asset.velocityPct}%`}
-            </div>
-          </div>
-        </div>
+          );
+        })()}
 
         {/* Period C Breakout (10:15 - 10:45 AM) Status */}
         <div style={{ background: 'rgba(255, 255, 255, 0.02)', borderRadius: '10px', padding: '12px 14px', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
