@@ -147,7 +147,9 @@ export const OrderFlowContainer: React.FC = () => {
 
   const fetchState = async () => {
     try {
-      const res = await fetch(`${backendUrl}/api/orderflow/state?_t=${Date.now()}`);
+      const res = await fetch(`${backendUrl}/api/orderflow/state?_t=${Date.now()}`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.success) {

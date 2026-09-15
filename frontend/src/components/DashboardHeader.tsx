@@ -44,6 +44,9 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const [isWatchlistModalOpen, setIsWatchlistModalOpen] = useState(false);
   const [isMiningReplay, setIsMiningReplay] = useState(false);
 
+  // Angel One & TradingView Feed States
+  const [angelOneStatus, setAngelOneStatus] = useState<any>(null);
+
   // Zerodha Kite Data Bridge State
   const [zerodhaStatus, setZerodhaStatus] = useState<any>(null);
   const [isZerodhaModalOpen, setIsZerodhaModalOpen] = useState(false);
@@ -83,10 +86,27 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   const fetchZerodhaStatus = async () => {
     try {
       const backendUrl = getBackendUrl();
-      const res = await fetch(`${backendUrl}/api/zerodha/status`);
+      const res = await fetch(`${backendUrl}/api/zerodha/status`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
       if (res.ok) {
         const data = await res.json();
         setZerodhaStatus(data);
+      }
+    } catch (err) {
+      // Backend offline or unreachable
+    }
+  };
+
+  const fetchAngelOneStatus = async () => {
+    try {
+      const backendUrl = getBackendUrl();
+      const res = await fetch(`${backendUrl}/api/angelone/status`, {
+        headers: { 'ngrok-skip-browser-warning': 'true' }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setAngelOneStatus(data);
       }
     } catch (err) {
       // Backend offline or unreachable
@@ -97,11 +117,13 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
     fetchHealth();
     fetchWatchlist();
     fetchZerodhaStatus();
+    fetchAngelOneStatus();
     const interval = setInterval(() => {
       fetchHealth();
       fetchWatchlist();
       fetchZerodhaStatus();
-    }, 45000); // Poll every 45s
+      fetchAngelOneStatus();
+    }, 15000); // Poll every 15s
     return () => clearInterval(interval);
   }, []);
 
@@ -444,7 +466,49 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
             </span>
           </div>
 
-          {/* Zerodha Kite Data Connection Badge */}
+          {/* 1. TradingView Continuous Real-Time Feed Badge */}
+          <div 
+            title="TradingView Real-Time Data Feed (212 F&O Universe Continuous Live Candles)"
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px', 
+              background: connectionStatus === 'connected' ? 'rgba(56, 189, 248, 0.14)' : 'rgba(100, 116, 139, 0.15)', 
+              border: `1px solid ${connectionStatus === 'connected' ? 'rgba(56, 189, 248, 0.45)' : 'rgba(100, 116, 139, 0.35)'}`, 
+              padding: '6px 12px', 
+              borderRadius: '8px', 
+              userSelect: 'none',
+              boxShadow: connectionStatus === 'connected' ? '0 0 10px rgba(56, 189, 248, 0.2)' : 'none'
+            }}
+          >
+            <span style={{ fontSize: '13px' }}>📈</span>
+            <span style={{ fontSize: '12px', fontWeight: '800', color: connectionStatus === 'connected' ? '#38bdf8' : '#94a3b8' }}>
+              {connectionStatus === 'connected' ? 'TradingView 🟢' : 'TradingView 🟡'}
+            </span>
+          </div>
+
+          {/* 2. Angel One SmartStream Live Futures & Order Flow Badge */}
+          <div 
+            title={`Angel One SmartStream WebSocket: Live Ticks & Order Flow Ladder (${angelOneStatus?.clientCode || 'P337882'})`}
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '6px', 
+              background: (angelOneStatus?.connected || connectionStatus === 'connected') ? 'rgba(16, 185, 129, 0.14)' : 'rgba(234, 179, 8, 0.15)', 
+              border: `1px solid ${(angelOneStatus?.connected || connectionStatus === 'connected') ? 'rgba(16, 185, 129, 0.45)' : 'rgba(234, 179, 8, 0.35)'}`, 
+              padding: '6px 12px', 
+              borderRadius: '8px', 
+              userSelect: 'none',
+              boxShadow: (angelOneStatus?.connected || connectionStatus === 'connected') ? '0 0 10px rgba(16, 185, 129, 0.2)' : 'none'
+            }}
+          >
+            <span style={{ fontSize: '13px' }}>👼</span>
+            <span style={{ fontSize: '12px', fontWeight: '800', color: (angelOneStatus?.connected || connectionStatus === 'connected') ? '#10b981' : '#fde047' }}>
+              {angelOneStatus?.connected ? `Angel One 🟢 (${angelOneStatus.clientCode || 'P337882'})` : (connectionStatus === 'connected' ? 'Angel One 🟢 (Live)' : 'Angel One 🟡 Connecting')}
+            </span>
+          </div>
+
+          {/* 3. Zerodha Kite Data Connection Badge */}
           <div 
             onClick={() => setIsZerodhaModalOpen(true)}
             title="Zerodha Kite Live Data Bridge (Click to configure & connect)"
