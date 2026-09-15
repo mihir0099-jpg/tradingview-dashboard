@@ -2,29 +2,29 @@
   "archive_id": "SESSION_2026-09-15",
   "date": "2026-09-15",
   "day_of_week": "Tuesday",
-  "archived_at": "2026-09-15T04:56:16.013Z",
-  "ist_timestamp": "10:26:16",
-  "captured_till_ist": "10:26:13",
+  "archived_at": "2026-09-15T05:08:02.950Z",
+  "ist_timestamp": "10:38:02",
+  "captured_till_ist": "10:37:59",
   "session_status": "IN_PROGRESS",
   "save_trigger": "STARTUP_MARKET_HOURS_CATCHUP",
   "indices": {
     "nifty": {
       "profile": {
         "openPrice": 23576.15,
-        "closePrice": 23378.1,
-        "changePts": -198.05,
-        "changePct": -0.84,
+        "closePrice": 23370.55,
+        "changePts": -205.6,
+        "changePct": -0.87,
         "dayHigh": 23588.3,
-        "dayLow": 23369.8,
-        "totalRange": 218.5,
+        "dayLow": 23351.5,
+        "totalRange": 236.8,
         "ibHigh": 23588.3,
         "ibLow": 23369.8,
         "ibRange": 218.5,
-        "dayType": "NORMAL_DAY",
+        "dayType": "NORMAL_VARIATION_BEAR",
         "periodC": {
           "brokeHigh": false,
-          "brokeLow": false,
-          "close": 23378.1,
+          "brokeLow": true,
+          "close": 23370.55,
           "closedAboveIB": false,
           "closedBelowIB": false
         },
@@ -35,21 +35,21 @@
         },
         "sessionExtremes": {
           "hodTime": "09:15:00",
-          "lodTime": "10:10:00"
+          "lodTime": "10:30:00"
         }
       },
-      "candles_count": 72,
-      "last_candle_time": "10:26:13"
+      "candles_count": 83,
+      "last_candle_time": "10:37:59"
     },
     "banknifty": {
       "profile": {
         "openPrice": 56928.55,
-        "closePrice": 56272.4,
-        "changePts": -656.15,
-        "changePct": -1.15,
+        "closePrice": 56284.6,
+        "changePts": -643.95,
+        "changePct": -1.13,
         "dayHigh": 56995.7,
-        "dayLow": 56262.85,
-        "totalRange": 732.85,
+        "dayLow": 56224.85,
+        "totalRange": 770.85,
         "ibHigh": 56995.7,
         "ibLow": 56279.5,
         "ibRange": 716.2,
@@ -57,9 +57,9 @@
         "periodC": {
           "brokeHigh": false,
           "brokeLow": true,
-          "close": 56272.4,
+          "close": 56284.6,
           "closedAboveIB": false,
-          "closedBelowIB": true
+          "closedBelowIB": false
         },
         "periodG": {
           "close": null,
@@ -68,20 +68,20 @@
         },
         "sessionExtremes": {
           "hodTime": "09:15:00",
-          "lodTime": "10:25:00"
+          "lodTime": "10:30:00"
         }
       },
-      "candles_count": 72,
-      "last_candle_time": "10:26:12"
+      "candles_count": 83,
+      "last_candle_time": "10:37:00"
     }
   },
   "options_skew_gamma": {
-    "morningSkewNifty": -10.43276661514683,
-    "closingSkewNifty": -10.177705977382875,
-    "morningSkewBank": 16.135839618586115,
-    "closingSkewBank": 14.334898278560255,
-    "pcrDriftNifty": 0.26,
-    "pcrDriftBank": -1.8
+    "morningSkewNifty": -9.92604126119112,
+    "closingSkewNifty": 17.800407331975556,
+    "morningSkewBank": 17.353113410111263,
+    "closingSkewBank": 13.043820003930048,
+    "pcrDriftNifty": 27.73,
+    "pcrDriftBank": -4.31
   },
   "raw_candles": {
     "nifty_1m": [
@@ -725,12 +725,111 @@
         "volume": 0
       },
       {
-        "time": 1789448173,
-        "timeIST": "10:26:13",
-        "open": 23378.1,
-        "high": 23378.1,
-        "low": 23378.1,
-        "close": 23378.1,
+        "time": 1789448160,
+        "timeIST": "10:26:00",
+        "open": 23374.6,
+        "high": 23384,
+        "low": 23374.2,
+        "close": 23382.45,
+        "volume": 0
+      },
+      {
+        "time": 1789448220,
+        "timeIST": "10:27:00",
+        "open": 23381.7,
+        "high": 23384.7,
+        "low": 23375.15,
+        "close": 23375.15,
+        "volume": 0
+      },
+      {
+        "time": 1789448280,
+        "timeIST": "10:28:00",
+        "open": 23374.95,
+        "high": 23376.95,
+        "low": 23365.35,
+        "close": 23366.65,
+        "volume": 0
+      },
+      {
+        "time": 1789448340,
+        "timeIST": "10:29:00",
+        "open": 23366.3,
+        "high": 23367.75,
+        "low": 23361.25,
+        "close": 23362.65,
+        "volume": 0
+      },
+      {
+        "time": 1789448400,
+        "timeIST": "10:30:00",
+        "open": 23362.75,
+        "high": 23365.25,
+        "low": 23351.5,
+        "close": 23365.25,
+        "volume": 0
+      },
+      {
+        "time": 1789448460,
+        "timeIST": "10:31:00",
+        "open": 23365.15,
+        "high": 23370.65,
+        "low": 23361.85,
+        "close": 23362.55,
+        "volume": 0
+      },
+      {
+        "time": 1789448520,
+        "timeIST": "10:32:00",
+        "open": 23362.7,
+        "high": 23363.95,
+        "low": 23359.05,
+        "close": 23363.5,
+        "volume": 0
+      },
+      {
+        "time": 1789448580,
+        "timeIST": "10:33:00",
+        "open": 23363.7,
+        "high": 23367.1,
+        "low": 23362.9,
+        "close": 23365.55,
+        "volume": 0
+      },
+      {
+        "time": 1789448640,
+        "timeIST": "10:34:00",
+        "open": 23365.6,
+        "high": 23367.45,
+        "low": 23362.9,
+        "close": 23365.6,
+        "volume": 0
+      },
+      {
+        "time": 1789448700,
+        "timeIST": "10:35:00",
+        "open": 23365.1,
+        "high": 23368.75,
+        "low": 23364.25,
+        "close": 23367.9,
+        "volume": 0
+      },
+      {
+        "time": 1789448760,
+        "timeIST": "10:36:00",
+        "open": 23368.15,
+        "high": 23374.35,
+        "low": 23367.4,
+        "close": 23373.2,
+        "volume": 0
+      },
+      {
+        "time": 1789448879,
+        "timeIST": "10:37:59",
+        "open": 23370.55,
+        "high": 23370.55,
+        "low": 23370.55,
+        "close": 23370.55,
         "volume": 0
       }
     ],
@@ -1375,12 +1474,111 @@
         "volume": 0
       },
       {
-        "time": 1789448172,
-        "timeIST": "10:26:12",
-        "open": 56272.4,
-        "high": 56272.4,
-        "low": 56272.4,
-        "close": 56272.4,
+        "time": 1789448160,
+        "timeIST": "10:26:00",
+        "open": 56269,
+        "high": 56302.25,
+        "low": 56260.4,
+        "close": 56296.8,
+        "volume": 0
+      },
+      {
+        "time": 1789448220,
+        "timeIST": "10:27:00",
+        "open": 56294.2,
+        "high": 56307.95,
+        "low": 56289.85,
+        "close": 56299.45,
+        "volume": 0
+      },
+      {
+        "time": 1789448280,
+        "timeIST": "10:28:00",
+        "open": 56285.05,
+        "high": 56293.1,
+        "low": 56255.8,
+        "close": 56262.25,
+        "volume": 0
+      },
+      {
+        "time": 1789448340,
+        "timeIST": "10:29:00",
+        "open": 56259.85,
+        "high": 56267.1,
+        "low": 56243,
+        "close": 56249.5,
+        "volume": 0
+      },
+      {
+        "time": 1789448400,
+        "timeIST": "10:30:00",
+        "open": 56249.4,
+        "high": 56274.4,
+        "low": 56224.85,
+        "close": 56273.7,
+        "volume": 0
+      },
+      {
+        "time": 1789448460,
+        "timeIST": "10:31:00",
+        "open": 56272.15,
+        "high": 56280.95,
+        "low": 56259.65,
+        "close": 56266.2,
+        "volume": 0
+      },
+      {
+        "time": 1789448520,
+        "timeIST": "10:32:00",
+        "open": 56264.95,
+        "high": 56269.9,
+        "low": 56254.05,
+        "close": 56267.1,
+        "volume": 0
+      },
+      {
+        "time": 1789448580,
+        "timeIST": "10:33:00",
+        "open": 56266,
+        "high": 56275.5,
+        "low": 56260,
+        "close": 56263.5,
+        "volume": 0
+      },
+      {
+        "time": 1789448640,
+        "timeIST": "10:34:00",
+        "open": 56260.9,
+        "high": 56269.5,
+        "low": 56251.45,
+        "close": 56260.45,
+        "volume": 0
+      },
+      {
+        "time": 1789448700,
+        "timeIST": "10:35:00",
+        "open": 56258.35,
+        "high": 56279.55,
+        "low": 56256.45,
+        "close": 56273.85,
+        "volume": 0
+      },
+      {
+        "time": 1789448760,
+        "timeIST": "10:36:00",
+        "open": 56275.55,
+        "high": 56294.1,
+        "low": 56271.7,
+        "close": 56288.45,
+        "volume": 0
+      },
+      {
+        "time": 1789448820,
+        "timeIST": "10:37:00",
+        "open": 56285.7,
+        "high": 56299.8,
+        "low": 56281.2,
+        "close": 56284.6,
         "volume": 0
       }
     ]
