@@ -31,6 +31,10 @@ interface FootprintCandle {
   minDelta: number;
   priceLevels: PriceLevel[];
   imbalanceLevels: Array<{ price: number; type: string; ratio: string }>;
+  cot?: {
+    top: { net: number; cotIndex: number; oi: number; isTrapped: boolean };
+    btm: { net: number; cotIndex: number; oi: number; isTrapped: boolean };
+  };
 }
 
 interface OrderFlowState {
@@ -1123,12 +1127,17 @@ export const OrderFlowContainer: React.FC = () => {
                 const topLevelData = candleMap.get(topRung);
                 const btmLevelData = candleMap.get(btmRung);
 
-                // COT Calculation
-                const cotTopDelta = topLevelData ? (topLevelData.askVol - topLevelData.bidVol) : 0;
-                const cotBtmDelta = btmLevelData ? (btmLevelData.askVol - btmLevelData.bidVol) : 0;
+                // Macro COT (Commitment of Traders): Net Positions + COT Index % + Open Interest + Traps
+                const cotTopNet = topLevelData ? (topLevelData.askVol - topLevelData.bidVol) : (candle.cot?.top.net || 0);
+                const cotTopOi = topLevelData ? topLevelData.totalVol : (candle.cot?.top.oi || 0);
+                const cotTopIndex = cotTopOi > 0 ? Math.round((topLevelData!.askVol / cotTopOi) * 100) : (candle.cot?.top.cotIndex || 50);
 
-                const isTrappedBuyers = cotTopDelta > 0 && candle.close < candle.high;
-                const isTrappedSellers = cotBtmDelta < 0 && candle.close > candle.low;
+                const cotBtmNet = btmLevelData ? (btmLevelData.askVol - btmLevelData.bidVol) : (candle.cot?.btm.net || 0);
+                const cotBtmOi = btmLevelData ? btmLevelData.totalVol : (candle.cot?.btm.oi || 0);
+                const cotBtmIndex = cotBtmOi > 0 ? Math.round((btmLevelData!.bidVol / cotBtmOi) * 100) : (candle.cot?.btm.cotIndex || 50);
+
+                const isTrappedBuyers = (cotTopNet > 0 || cotTopIndex >= 60) && candle.close < candle.high;
+                const isTrappedSellers = (cotBtmNet < 0 || cotBtmIndex >= 60) && candle.close > candle.low;
 
                 // Delta Divergence ON THE CHART ONLY
                 const isBearDivergence = (candle.close > candle.open && candle.delta < 0) || 
@@ -1268,55 +1277,65 @@ export const OrderFlowContainer: React.FC = () => {
                               </div>
                             )}
 
-                            {/* COT (Commitment of Traders) Top & Bottom Badges */}
+                            {/* Macro COT (Commitment of Traders) Top & Bottom Badges */}
                             {showCotBadges && isExtremeHigh && (
-                              <div style={{
-                                position: 'absolute',
-                                top: isBearDivergence ? '-18px' : '-14px',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                backgroundColor: isTrappedBuyers ? '#f59e0b' : '#ef4444',
-                                color: '#000',
-                                fontSize: '8px',
-                                fontWeight: '900',
-                                padding: '1px 5px',
-                                borderRadius: '3px',
-                                zIndex: 8,
-                                whiteSpace: 'nowrap',
-                                boxShadow: '0 1px 6px rgba(0, 0, 0, 0.7)',
-                                border: isTrappedBuyers ? '1px solid #fde047' : 'none',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '2px'
-                              }}>
+                              <div 
+                                title={`Macro COT High (Resistance Absorption):\n• Net Position: ${cotTopNet > 0 ? '+' : ''}${cotTopNet} contracts (Long - Short)\n• COT Index: ${cotTopIndex}% (Buyer Commitment Ratio)\n• Open Interest: ${cotTopOi} contracts\n• Status: ${isTrappedBuyers ? '⚠️ EXTREME SENTIMENT TRAP (Trapped Buyers)' : 'Normal Flow'}`}
+                                style={{
+                                  position: 'absolute',
+                                  top: isBearDivergence ? '-20px' : '-16px',
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  backgroundColor: isTrappedBuyers ? '#f59e0b' : (cotTopNet >= 0 ? '#10b981' : '#ef4444'),
+                                  color: '#000',
+                                  fontSize: '8px',
+                                  fontWeight: '900',
+                                  padding: '1px 5px',
+                                  borderRadius: '3px',
+                                  zIndex: 8,
+                                  whiteSpace: 'nowrap',
+                                  boxShadow: '0 1px 6px rgba(0, 0, 0, 0.7)',
+                                  border: isTrappedBuyers ? '1px solid #fde047' : 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '2px',
+                                  cursor: 'help'
+                                }}
+                              >
                                 <span>COT:</span>
-                                <span>{cotTopDelta > 0 ? '+' : ''}{cotTopDelta}</span>
+                                <span style={{ fontFamily: 'monospace' }}>{cotTopNet > 0 ? '+' : ''}{cotTopNet}</span>
+                                <span style={{ opacity: 0.85, fontSize: '7.5px' }}>({cotTopIndex}%)</span>
                                 {isTrappedBuyers && <span style={{ fontSize: '7px' }}>⚠️TRAP</span>}
                               </div>
                             )}
 
                             {showCotBadges && isExtremeLow && (
-                              <div style={{
-                                position: 'absolute',
-                                bottom: isBullDivergence ? '-18px' : '-14px',
-                                left: '50%',
-                                transform: 'translateX(-50%)',
-                                backgroundColor: isTrappedSellers ? '#10b981' : '#059669',
-                                color: '#000',
-                                fontSize: '8px',
-                                fontWeight: '900',
-                                padding: '1px 5px',
-                                borderRadius: '3px',
-                                zIndex: 8,
-                                whiteSpace: 'nowrap',
-                                boxShadow: '0 1px 6px rgba(0, 0, 0, 0.7)',
-                                border: isTrappedSellers ? '1px solid #86efac' : 'none',
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '2px'
-                              }}>
+                              <div 
+                                title={`Macro COT Low (Support Absorption):\n• Net Position: ${cotBtmNet > 0 ? '+' : ''}${cotBtmNet} contracts (Long - Short)\n• COT Index: ${cotBtmIndex}% (Seller Commitment Ratio)\n• Open Interest: ${cotBtmOi} contracts\n• Status: ${isTrappedSellers ? '⚠️ EXTREME SENTIMENT TRAP (Trapped Sellers)' : 'Normal Flow'}`}
+                                style={{
+                                  position: 'absolute',
+                                  bottom: isBullDivergence ? '-20px' : '-16px',
+                                  left: '50%',
+                                  transform: 'translateX(-50%)',
+                                  backgroundColor: isTrappedSellers ? '#10b981' : (cotBtmNet <= 0 ? '#ef4444' : '#059669'),
+                                  color: '#000',
+                                  fontSize: '8px',
+                                  fontWeight: '900',
+                                  padding: '1px 5px',
+                                  borderRadius: '3px',
+                                  zIndex: 8,
+                                  whiteSpace: 'nowrap',
+                                  boxShadow: '0 1px 6px rgba(0, 0, 0, 0.7)',
+                                  border: isTrappedSellers ? '1px solid #86efac' : 'none',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  gap: '2px',
+                                  cursor: 'help'
+                                }}
+                              >
                                 <span>COT:</span>
-                                <span>{cotBtmDelta > 0 ? '+' : ''}{cotBtmDelta}</span>
+                                <span style={{ fontFamily: 'monospace' }}>{cotBtmNet > 0 ? '+' : ''}{cotBtmNet}</span>
+                                <span style={{ opacity: 0.85, fontSize: '7.5px' }}>({cotBtmIndex}%)</span>
                                 {isTrappedSellers && <span style={{ fontSize: '7px' }}>⚠️TRAP</span>}
                               </div>
                             )}

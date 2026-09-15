@@ -1,21 +1,21 @@
 [
   {
     "date": "2026-09-15",
-    "timestamp": 1789457425276,
-    "istTime": "2026-09-15 13:00:25 IST",
+    "timestamp": 1789457846203,
+    "istTime": "2026-09-15 13:07:26 IST",
     "macroProfile": {
-      "niftySpot": 23326.95,
+      "niftySpot": 23309.75,
       "niftyOpen": 23270.9,
-      "niftyChangePct": "0.24%",
-      "bankniftySpot": 56221.5,
+      "niftyChangePct": "0.17%",
+      "bankniftySpot": 56182.15,
       "dayType": "ROTATIONAL_BALANCED_AUCTION",
       "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 27
+      "activeFnoOpportunities": 30
     },
     "autonomousLearnings": [
       {
         "domain": "Institutional Demat Absorption",
-        "observation": "17 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (RELIANCE, RECLTD, SBILIFE, BHARTIARTL).",
+        "observation": "17 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (RELIANCE, EXIDEIND, HINDALCO, NATIONALUM).",
         "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
       },
       {

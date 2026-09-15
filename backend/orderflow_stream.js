@@ -560,9 +560,39 @@ class OrderFlowStreamEngine {
           };
         }
       }
+      const sortedLevels = Object.values(map).sort((a, b) => b.price - a.price);
+      const topLvl = sortedLevels[0];
+      const btmLvl = sortedLevels[sortedLevels.length - 1];
+
+      // Macro COT (Commitment of Traders): Net Position, COT Index (0-100%), OI, Extreme Sentiment Traps
+      const topNet = topLvl ? (topLvl.askVol - topLvl.bidVol) : 0;
+      const topOi = topLvl ? topLvl.totalVol : 0;
+      const topCotIndex = topOi > 0 ? Math.round((topLvl.askVol / topOi) * 100) : 50;
+
+      const btmNet = btmLvl ? (btmLvl.askVol - btmLvl.bidVol) : 0;
+      const btmOi = btmLvl ? btmLvl.totalVol : 0;
+      const btmCotIndex = btmOi > 0 ? Math.round((btmLvl.bidVol / btmOi) * 100) : 50;
+
+      const isTrappedBuyers = (topNet > 0 || topCotIndex >= 60) && c.close < c.high;
+      const isTrappedSellers = (btmNet < 0 || btmCotIndex >= 60) && c.close > c.low;
+
       return {
         ...c,
-        priceLevels: Object.values(map).sort((a, b) => b.price - a.price)
+        priceLevels: sortedLevels,
+        cot: {
+          top: {
+            net: topNet,
+            cotIndex: topCotIndex,
+            oi: topOi,
+            isTrapped: isTrappedBuyers
+          },
+          btm: {
+            net: btmNet,
+            cotIndex: btmCotIndex,
+            oi: btmOi,
+            isTrapped: isTrappedSellers
+          }
+        }
       };
     };
 

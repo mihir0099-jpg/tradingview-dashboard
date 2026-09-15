@@ -19,7 +19,6 @@ import { angelOneBridge } from './angelone_bridge.js';
 import weeklyStrikeLearner from './weekly_strike_decay_learner.js';
 import { imbalanceMeterEngine } from './imbalance_meter.js';
 import { orderFlowStreamEngine, ORDERFLOW_SYMBOLS } from './orderflow_stream.js';
-import { macroCotService } from './macro_cot_service.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -5471,25 +5470,6 @@ app.post('/api/orderflow/switch', (req, res) => {
     res.json({ success: true, ...result });
   } catch (err) {
     res.status(400).json({ success: false, error: err.message });
-  }
-});
-
-// --- Macro COT (Commitment of Traders) Analytics Endpoints ---
-app.get('/api/macro-cot', (req, res) => {
-  try {
-    const lookback = parseInt(req.query.lookback || '52');
-    res.json(macroCotService.getCotAnalysis(lookback));
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-
-app.post('/api/macro-cot/refresh', (req, res) => {
-  try {
-    const lookback = parseInt(req.body?.lookback || '52');
-    res.json(macroCotService.getCotAnalysis(lookback));
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
   }
 });
 
