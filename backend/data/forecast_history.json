@@ -2088,5 +2088,115 @@
     "predicted_low": 23818.18,
     "predicted_close": 23826.44,
     "createdAt": 1789099127558
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789485943,
+    "predicted": 23850.68,
+    "predicted_open": 23863.35,
+    "predicted_high": 23869.51,
+    "predicted_low": 23856.98,
+    "predicted_close": 23862.13,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789487743,
+    "predicted": 23853.59,
+    "predicted_open": 23852.47,
+    "predicted_high": 23859.96,
+    "predicted_low": 23848.32,
+    "predicted_close": 23853.14,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789489543,
+    "predicted": 23841,
+    "predicted_open": 23843.97,
+    "predicted_high": 23850.4,
+    "predicted_low": 23837.62,
+    "predicted_close": 23843.66,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789491343,
+    "predicted": 23822.24,
+    "predicted_open": 23832.41,
+    "predicted_high": 23840.3,
+    "predicted_low": 23827.13,
+    "predicted_close": 23834.35,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789493143,
+    "predicted": 23836.73,
+    "predicted_open": 23826.95,
+    "predicted_high": 23832.46,
+    "predicted_low": 23820.52,
+    "predicted_close": 23825.83,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789494943,
+    "predicted": 23805.73,
+    "predicted_open": 23817,
+    "predicted_high": 23824.92,
+    "predicted_low": 23809.22,
+    "predicted_close": 23818.62,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789496743,
+    "predicted": 23801.4,
+    "predicted_open": 23814.67,
+    "predicted_high": 23820.99,
+    "predicted_low": 23807.74,
+    "predicted_close": 23813.12,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789498543,
+    "predicted": 23818.05,
+    "predicted_open": 23808.72,
+    "predicted_high": 23816.35,
+    "predicted_low": 23802.29,
+    "predicted_close": 23809.54,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789500343,
+    "predicted": 23818.47,
+    "predicted_open": 23808.42,
+    "predicted_high": 23814.64,
+    "predicted_low": 23800.6,
+    "predicted_close": 23807.96,
+    "createdAt": 1789484199817
+  },
+  {
+    "symbol": "[object Object]",
+    "timeframe": "30",
+    "targetTime": 1789502143,
+    "predicted": 23831.4,
+    "predicted_open": 23808,
+    "predicted_high": 23814.23,
+    "predicted_low": 23801.55,
+    "predicted_close": 23808.26,
+    "createdAt": 1789484199817
   }
 ]

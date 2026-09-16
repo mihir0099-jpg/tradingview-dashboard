@@ -1,34 +1,10 @@
 [
   {
-    "timestamp": 1789451785646,
-    "istTime": "15/9/2026, 11:26:25 am",
-    "component": "⚡ Opening Bias",
-    "error": "Request timeout (>6000ms)",
-    "remedyAction": "Recomputed opening auction drive classifications",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789449475084,
-    "istTime": "15/9/2026, 10:47:55 am",
-    "component": "⚡ Opening Bias",
-    "error": "Request timeout (>6000ms)",
-    "remedyAction": "Recomputed opening auction drive classifications",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789446347725,
-    "istTime": "15/9/2026, 9:55:47 am",
-    "component": "⚡ Opening Bias",
-    "error": "Request timeout (>6000ms)",
-    "remedyAction": "Recomputed opening auction drive classifications",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789446007620,
-    "istTime": "15/9/2026, 9:50:07 am",
-    "component": "⚡ Opening Bias",
-    "error": "Request timeout (>6000ms)",
-    "remedyAction": "Recomputed opening auction drive classifications",
+    "timestamp": 1789524832633,
+    "istTime": "16/9/2026, 7:43:52 am",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
@@ -419,14 +395,6 @@
     "timestamp": 1788857847598,
     "istTime": "8/9/2026, 2:27:27 pm",
     "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857835981,
-    "istTime": "8/9/2026, 2:27:15 pm",
-    "component": "ErrorAnalysisEngine",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"

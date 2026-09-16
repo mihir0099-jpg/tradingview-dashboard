@@ -467,44 +467,44 @@ export const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           </div>
 
           {/* 1. TradingView Continuous Real-Time Feed Badge */}
+          {/* 1. Angel One SmartStream Live Exchange Ticks & Order Flow Badge (PRIMARY BROKER FEED) */}
           <div 
-            title="TradingView Real-Time Data Feed (212 F&O Universe Continuous Live Candles)"
+            title={`Angel One SmartStream WebSocket: Live Ticks & Order Flow (${angelOneStatus?.clientCode || 'P337882'} - Official Real-Time Exchange Feed)`}
             style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '6px', 
-              background: connectionStatus === 'connected' ? 'rgba(56, 189, 248, 0.14)' : 'rgba(100, 116, 139, 0.15)', 
-              border: `1px solid ${connectionStatus === 'connected' ? 'rgba(56, 189, 248, 0.45)' : 'rgba(100, 116, 139, 0.35)'}`, 
-              padding: '6px 12px', 
+              background: (angelOneStatus?.connected || connectionStatus === 'connected') ? 'rgba(16, 185, 129, 0.18)' : 'rgba(234, 179, 8, 0.15)', 
+              border: `1px solid ${(angelOneStatus?.connected || connectionStatus === 'connected') ? 'rgba(16, 185, 129, 0.6)' : 'rgba(234, 179, 8, 0.35)'}`, 
+              padding: '6px 14px', 
               borderRadius: '8px', 
               userSelect: 'none',
-              boxShadow: connectionStatus === 'connected' ? '0 0 10px rgba(56, 189, 248, 0.2)' : 'none'
+              boxShadow: (angelOneStatus?.connected || connectionStatus === 'connected') ? '0 0 14px rgba(16, 185, 129, 0.35)' : 'none'
             }}
           >
-            <span style={{ fontSize: '13px' }}>📈</span>
-            <span style={{ fontSize: '12px', fontWeight: '800', color: connectionStatus === 'connected' ? '#38bdf8' : '#94a3b8' }}>
-              {connectionStatus === 'connected' ? 'TradingView 🟢' : 'TradingView 🟡'}
+            <span style={{ fontSize: '13px' }}>⚡</span>
+            <span style={{ fontSize: '12px', fontWeight: '900', color: (angelOneStatus?.connected || connectionStatus === 'connected') ? '#10b981' : '#fde047' }}>
+              {angelOneStatus?.connected ? `Angel One 🟢 Live Ticks (${angelOneStatus.clientCode || 'P337882'})` : (connectionStatus === 'connected' ? 'Angel One 🟢 Live' : 'Angel One 🟡 Connecting')}
             </span>
           </div>
 
-          {/* 2. Angel One SmartStream Live Futures & Order Flow Badge */}
+          {/* 2. TradingView Secondary / Auxiliary Feed */}
           <div 
-            title={`Angel One SmartStream WebSocket: Live Ticks & Order Flow Ladder (${angelOneStatus?.clientCode || 'P337882'})`}
+            title="TradingView Auxiliary Feed (Charts & Historical Reference)"
             style={{ 
               display: 'flex', 
               alignItems: 'center', 
               gap: '6px', 
-              background: (angelOneStatus?.connected || connectionStatus === 'connected') ? 'rgba(16, 185, 129, 0.14)' : 'rgba(234, 179, 8, 0.15)', 
-              border: `1px solid ${(angelOneStatus?.connected || connectionStatus === 'connected') ? 'rgba(16, 185, 129, 0.45)' : 'rgba(234, 179, 8, 0.35)'}`, 
-              padding: '6px 12px', 
+              background: 'rgba(100, 116, 139, 0.10)', 
+              border: '1px solid rgba(100, 116, 139, 0.25)', 
+              padding: '6px 10px', 
               borderRadius: '8px', 
-              userSelect: 'none',
-              boxShadow: (angelOneStatus?.connected || connectionStatus === 'connected') ? '0 0 10px rgba(16, 185, 129, 0.2)' : 'none'
+              userSelect: 'none'
             }}
           >
-            <span style={{ fontSize: '13px' }}>👼</span>
-            <span style={{ fontSize: '12px', fontWeight: '800', color: (angelOneStatus?.connected || connectionStatus === 'connected') ? '#10b981' : '#fde047' }}>
-              {angelOneStatus?.connected ? `Angel One 🟢 (${angelOneStatus.clientCode || 'P337882'})` : (connectionStatus === 'connected' ? 'Angel One 🟢 (Live)' : 'Angel One 🟡 Connecting')}
+            <span style={{ fontSize: '12px' }}>📈</span>
+            <span style={{ fontSize: '11px', fontWeight: '700', color: '#94a3b8' }}>
+              TV Auxiliary
             </span>
           </div>
 

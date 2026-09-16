@@ -164,6 +164,143 @@ class AngelOneBridge {
     return this._makeRequest(url, 'GET', headers);
   }
 
+  async _authedPost(url, payloadObj) {
+    if (!this.session.jwtToken) {
+      await this.login();
+    }
+    const payload = typeof payloadObj === 'string' ? payloadObj : JSON.stringify(payloadObj);
+    const headers = {
+      'Authorization': `Bearer ${this.session.jwtToken}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-UserType': 'USER',
+      'X-SourceID': 'WEB',
+      'X-ClientLocalIP': '127.0.0.1',
+      'X-ClientPublicIP': '106.193.147.98',
+      'X-MACAddress': 'fe80::216e:6507:4b90:3719',
+      'X-PrivateKey': this.config.apiKey,
+      'Content-Length': Buffer.byteLength(payload)
+    };
+
+    let res = await this._makeRequest(url, 'POST', headers, payload);
+    // If token expired or unauthorized, attempt 1 auto-login and retry
+    if (res && (res.errorcode === 'AG8001' || res.errorcode === 'AG8002' || res.message?.includes('Invalid Token') || res.message?.includes('Unauthorized'))) {
+      console.warn('[AngelOne] Session expired, auto-renewing login...');
+      await this.login();
+      headers['Authorization'] = `Bearer ${this.session.jwtToken}`;
+      res = await this._makeRequest(url, 'POST', headers, payload);
+    }
+    return res;
+  }
+
+  async getLtp(exchange, tradingsymbol, symboltoken) {
+    try {
+      const res = await this._authedPost('https://apiconnect.angelone.in/rest/secure/angelbroking/order/v1/getLtpData', {
+        exchange,
+        tradingsymbol,
+        symboltoken
+      });
+      return res?.data || null;
+    } catch (e) {
+      console.warn(`[AngelOne getLtp Error for ${tradingsymbol}]:`, e.message);
+      return null;
+    }
+  }
+
+  async searchScrip(exchange, searchscrip) {
+    try {
+      const res = await this._authedPost('https://apiconnect.angelone.in/rest/secure/angelbroking/order/v1/searchScrip', {
+        exchange: exchange || 'NSE',
+        searchscrip
+      });
+      return res?.data || [];
+    } catch (e) {
+      console.warn(`[AngelOne searchScrip Error for ${searchscrip}]:`, e.message);
+      return [];
+    }
+  }
+
+  async getCandles(exchange, symboltoken, interval = 'FIVE_MINUTE', fromdate, todate) {
+    try {
+      const todayStr = new Date().toISOString().split('T')[0];
+      const from = fromdate || `${todayStr} 09:15`;
+      const to = todate || `${todayStr} 15:30`;
+      const res = await this._authedPost('https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData', {
+        exchange,
+        symboltoken,
+        interval,
+        fromdate: from,
+        todate: to
+      });
+      return res?.data || [];
+    } catch (e) {
+      console.warn(`[AngelOne getCandles Error]:`, e.message);
+      return [];
+    }
+  }
+
+  // High-performance Spot & Index Resolver with token caching & 2s LTP cache
+  async resolveAndGetLtp(symbol) {
+    if (!this._tokenMap) {
+      this._tokenMap = new Map([
+        ['NIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty 50', symboltoken: '99926000' }],
+        ['BANKNIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty Bank', symboltoken: '99926009' }],
+        ['FINNIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty Fin Services', symboltoken: '99926037' }],
+        ['MIDCPNIFTY', { exchange: 'NSE', tradingsymbol: 'NIFTY MID SELECT', symboltoken: '99926074' }],
+        ['SENSEX', { exchange: 'BSE', tradingsymbol: 'SENSEX', symboltoken: '99919000' }],
+        ['RELIANCE', { exchange: 'NSE', tradingsymbol: 'RELIANCE-EQ', symboltoken: '2885' }],
+        ['HDFCBANK', { exchange: 'NSE', tradingsymbol: 'HDFCBANK-EQ', symboltoken: '1333' }],
+        ['ICICIBANK', { exchange: 'NSE', tradingsymbol: 'ICICIBANK-EQ', symboltoken: '4963' }],
+        ['SBIN', { exchange: 'NSE', tradingsymbol: 'SBIN-EQ', symboltoken: '3045' }],
+        ['INFY', { exchange: 'NSE', tradingsymbol: 'INFY-EQ', symboltoken: '1594' }],
+        ['TCS', { exchange: 'NSE', tradingsymbol: 'TCS-EQ', symboltoken: '11536' }],
+        ['AXISBANK', { exchange: 'NSE', tradingsymbol: 'AXISBANK-EQ', symboltoken: '5900' }],
+        ['BHARTIARTL', { exchange: 'NSE', tradingsymbol: 'BHARTIARTL-EQ', symboltoken: '10604' }],
+        ['LT', { exchange: 'NSE', tradingsymbol: 'LT-EQ', symboltoken: '11483' }],
+        ['KOTAKBANK', { exchange: 'NSE', tradingsymbol: 'KOTAKBANK-EQ', symboltoken: '1922' }],
+        ['TATASTEEL', { exchange: 'NSE', tradingsymbol: 'TATASTEEL-EQ', symboltoken: '3499' }],
+        ['TATAMOTORS', { exchange: 'NSE', tradingsymbol: 'TATAMOTORS-EQ', symboltoken: '3456' }],
+        ['BAJFINANCE', { exchange: 'NSE', tradingsymbol: 'BAJFINANCE-EQ', symboltoken: '317' }],
+        ['MARUTI', { exchange: 'NSE', tradingsymbol: 'MARUTI-EQ', symboltoken: '10999' }],
+        ['SUNPHARMA', { exchange: 'NSE', tradingsymbol: 'SUNPHARMA-EQ', symboltoken: '3351' }],
+        ['TITAN', { exchange: 'NSE', tradingsymbol: 'TITAN-EQ', symboltoken: '3506' }],
+        ['ITC', { exchange: 'NSE', tradingsymbol: 'ITC-EQ', symboltoken: '1660' }],
+        ['ADANIENT', { exchange: 'NSE', tradingsymbol: 'ADANIENT-EQ', symboltoken: '25' }]
+      ]);
+      this._ltpCache = new Map();
+    }
+
+    const clean = symbol.replace('NSE:', '').replace('BSE:', '').toUpperCase().trim();
+    const now = Date.now();
+
+    // Check LTP cache (2-second freshness)
+    const cached = this._ltpCache.get(clean);
+    if (cached && (now - cached.time < 2000)) {
+      return cached.ltp;
+    }
+
+    let meta = this._tokenMap.get(clean);
+    if (!meta) {
+      // Dynamically search scrip
+      const results = await this.searchScrip('NSE', clean);
+      const exact = results.find(r => r.tradingsymbol === clean + '-EQ') || results[0];
+      if (exact) {
+        meta = { exchange: exact.exchange || 'NSE', tradingsymbol: exact.tradingsymbol, symboltoken: exact.symboltoken };
+        this._tokenMap.set(clean, meta);
+      }
+    }
+
+    if (meta) {
+      const data = await this.getLtp(meta.exchange, meta.tradingsymbol, meta.symboltoken);
+      if (data && data.ltp > 0) {
+        this._ltpCache.set(clean, { ltp: data.ltp, time: now, data });
+        return data.ltp;
+      }
+    }
+
+    return null;
+  }
+
   async getProfile() {
     const res = await this._authedGet('https://apiconnect.angelone.in/rest/secure/angelbroking/user/v1/getProfile');
     return res?.data || null;
@@ -242,3 +379,4 @@ class AngelOneBridge {
 }
 
 export const angelOneBridge = new AngelOneBridge();
+

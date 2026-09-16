@@ -1285,15 +1285,22 @@ function getExpiriesForSymbol(symbol) {
 
 // Endpoint to retrieve option chain strikes and expiries
 async function resolveSpotPrice(symbol) {
-  // 1. Try Scanner Levels Cache
+  // 1. Try Angel One SmartAPI (Instant real-time official broker quote)
+  try {
+    const angelLtp = await angelOneBridge.resolveAndGetLtp(symbol);
+    if (angelLtp && angelLtp > 0) {
+      return angelLtp;
+    }
+  } catch (e) {}
+
+  // 2. Try Scanner Levels Cache
   const cached = (scannerCache && scannerCache.levelsCache && scannerCache.levelsCache['5']?.[symbol]) || 
                  (scannerCache && scannerCache.levelsCache && scannerCache.levelsCache['D']?.[symbol]);
   if (cached && cached.currentPrice) {
-    console.log(`[Spot Price Resolve] Found in Scanner Levels Cache for ${symbol}: ${cached.currentPrice}`);
     return cached.currentPrice;
   }
   
-  // 2. Try global liveHistory for Nifty/Bank Nifty specifically
+  // 3. Try global liveHistory for Nifty/Bank Nifty specifically
   const cleanSym = symbol.replace('NSE:', '').toUpperCase();
   if (cleanSym === 'NIFTY' || cleanSym === 'BANKNIFTY') {
     try {
@@ -1301,32 +1308,33 @@ async function resolveSpotPrice(symbol) {
         const latest = liveHistory[liveHistory.length - 1];
         const spot = cleanSym === 'NIFTY' ? latest.niftySpot : latest.bankniftySpot;
         if (spot) {
-          console.log(`[Spot Price Resolve] Found in in-memory liveHistory for ${symbol}: ${spot}`);
           return spot;
         }
       }
     } catch (e) {}
   }
   
-  // 3. Fallback: query TV Bridge
-  console.log(`[Spot Price Resolve] Falling back to TV Bridge subscription for ${symbol}...`);
-  const candles = await new Promise((resolve) => {
-    let resolved = false;
-    const timeout = setTimeout(() => { if (!resolved) { resolved = true; resolve(null); } }, 1500);
-    tvBridge.subscribeSymbol(symbol, 'D', (data) => {
-      if (data.isSnapshot && !resolved) {
-        resolved = true;
-        clearTimeout(timeout);
-        resolve(data.candles);
-      }
-    }, () => { if (!resolved) { resolved = true; resolve(null); } }, 2).catch(() => {
-      if (!resolved) { resolved = true; resolve(null); }
+  // 4. Fallback: query TV Bridge if session exists
+  if (tvBridge && tvBridge.sharedSession) {
+    const candles = await new Promise((resolve) => {
+      let resolved = false;
+      const timeout = setTimeout(() => { if (!resolved) { resolved = true; resolve(null); } }, 1500);
+      tvBridge.subscribeSymbol(symbol, 'D', (data) => {
+        if (data.isSnapshot && !resolved) {
+          resolved = true;
+          clearTimeout(timeout);
+          resolve(data.candles);
+        }
+      }, () => { if (!resolved) { resolved = true; resolve(null); } }, 2).catch(() => {
+        if (!resolved) { resolved = true; resolve(null); }
+      });
     });
-  });
-  
-  if (candles && candles.length > 0) {
-    return candles[candles.length - 1].close;
+    
+    if (candles && candles.length > 0) {
+      return candles[candles.length - 1].close;
+    }
   }
+
   return null;
 }
 
@@ -2763,6 +2771,78 @@ async function fetchLiveMarketIndices() {
 
 async function updateLiveMarketIndicesAsync() {
   const now = Date.now();
+  
+  // 1. PRIMARY SOURCE: Angel One SmartAPI (Official 0ms Live Exchange Ticks)
+  try {
+    const [niftyData, bankData] = await Promise.all([
+      angelOneBridge.getLtp('NSE', 'Nifty 50', '99926000'),
+      angelOneBridge.getLtp('NSE', 'Nifty Bank', '99926009')
+    ]);
+
+    let angelCaptured = false;
+    if (niftyData && niftyData.ltp > 0) {
+      const spot = parseFloat(niftyData.ltp.toFixed(2));
+      const open = parseFloat((niftyData.open || spot).toFixed(2));
+      const dayHigh = parseFloat((niftyData.high || spot).toFixed(2));
+      const dayLow = parseFloat((niftyData.low || spot).toFixed(2));
+      const prevClose = parseFloat((niftyData.close || open).toFixed(2));
+
+      const ibHigh = liveMarketIndicesCache.nifty?.ibHigh || Math.round(open * 1.0029);
+      const ibLow = liveMarketIndicesCache.nifty?.ibLow || Math.round(open * 0.9971);
+
+      lastPriceValue.NIFTY = spot;
+      global.indexOpenPrices.NIFTY = open;
+      lastPriceChangeTime.NIFTY = now;
+
+      liveMarketIndicesCache.nifty = {
+        spot,
+        open,
+        dayHigh,
+        dayLow,
+        ibHigh: parseFloat(ibHigh.toFixed(2)),
+        ibLow: parseFloat(ibLow.toFixed(2)),
+        prevClose,
+        feedSource: 'ANGEL_ONE_OFFICIAL'
+      };
+      angelCaptured = true;
+    }
+
+    if (bankData && bankData.ltp > 0) {
+      const spot = parseFloat(bankData.ltp.toFixed(2));
+      const open = parseFloat((bankData.open || spot).toFixed(2));
+      const dayHigh = parseFloat((bankData.high || spot).toFixed(2));
+      const dayLow = parseFloat((bankData.low || spot).toFixed(2));
+      const prevClose = parseFloat((bankData.close || open).toFixed(2));
+
+      const ibHigh = liveMarketIndicesCache.banknifty?.ibHigh || Math.round(open * 1.0042);
+      const ibLow = liveMarketIndicesCache.banknifty?.ibLow || Math.round(open * 0.9958);
+
+      lastPriceValue.BANKNIFTY = spot;
+      global.indexOpenPrices.BANKNIFTY = open;
+      lastPriceChangeTime.BANKNIFTY = now;
+
+      liveMarketIndicesCache.banknifty = {
+        spot,
+        open,
+        dayHigh,
+        dayLow,
+        ibHigh: parseFloat(ibHigh.toFixed(2)),
+        ibLow: parseFloat(ibLow.toFixed(2)),
+        prevClose,
+        feedSource: 'ANGEL_ONE_OFFICIAL'
+      };
+      angelCaptured = true;
+    }
+
+    if (angelCaptured) {
+      liveMarketIndicesCache.lastUpdated = now;
+      return liveMarketIndicesCache;
+    }
+  } catch (angelErr) {
+    // console.warn('[AngelOne Indices Fallback]:', angelErr.message);
+  }
+
+  // 2. SECONDARY FALLBACK: Yahoo Finance / Cache
   try {
     const [resNifty, resBank] = await Promise.all([
       fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?interval=1m&range=1d', {
@@ -2800,7 +2880,8 @@ async function updateLiveMarketIndicesAsync() {
           dayLow: meta.regularMarketDayLow || spot,
           ibHigh: parseFloat(ibHigh.toFixed(2)),
           ibLow: parseFloat(ibLow.toFixed(2)),
-          prevClose: meta.chartPreviousClose || open
+          prevClose: meta.chartPreviousClose || open,
+          feedSource: 'YAHOO_FALLBACK'
         };
       }
     }
@@ -2830,7 +2911,8 @@ async function updateLiveMarketIndicesAsync() {
           dayLow: meta.regularMarketDayLow || spot,
           ibHigh: parseFloat(ibHigh.toFixed(2)),
           ibLow: parseFloat(ibLow.toFixed(2)),
-          prevClose: meta.chartPreviousClose || open
+          prevClose: meta.chartPreviousClose || open,
+          feedSource: 'YAHOO_FALLBACK'
         };
       }
     }

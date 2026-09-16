@@ -58,6 +58,10 @@ interface FootprintCandle {
 interface OrderFlowState {
   success: boolean;
   connected: boolean;
+  feedSource?: string;
+  clientCode?: string;
+  totalTicksReceived?: number;
+  lastTickTime?: string;
   activeSymbol: string;
   activeToken: string;
   timeframe: number;
@@ -1056,21 +1060,29 @@ export const OrderFlowContainer: React.FC = () => {
         {/* Right: WebSocket Status, LTP, CVD, and Viewport Fit/Recenter Buttons */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           
-          {/* WebSocket Status */}
+          {/* Angel One SmartStream WebSocket & Tick Feed Badge */}
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '5px',
-            padding: '4px 8px',
+            gap: '6px',
+            padding: '4px 10px',
             borderRadius: '5px',
             fontSize: '11px',
-            fontWeight: '700',
-            backgroundColor: state?.connected ? 'rgba(0, 230, 118, 0.15)' : 'rgba(255, 82, 82, 0.15)',
-            color: state?.connected ? '#00e676' : '#ff5252',
-            border: `1px solid ${state?.connected ? '#00e67644' : '#ff525244'}`
-          }}>
-            <Radio size={11} className={state?.connected ? 'animate-pulse' : ''} />
-            {state?.connected ? 'LIVE WS' : 'RECONNECTING'}
+            fontWeight: '800',
+            backgroundColor: state?.connected ? 'rgba(16, 185, 129, 0.15)' : 'rgba(234, 179, 8, 0.15)',
+            color: state?.connected ? '#10b981' : '#fde047',
+            border: `1px solid ${state?.connected ? 'rgba(16, 185, 129, 0.4)' : 'rgba(234, 179, 8, 0.4)'}`,
+            boxShadow: state?.connected ? '0 0 10px rgba(16, 185, 129, 0.2)' : 'none'
+          }}
+          title={`Angel One SmartStream WebSocket (${state?.clientCode || 'P337882'}): Real-Time NSE/NFO Tick Data Stream`}
+          >
+            <Radio size={12} className={state?.connected ? 'animate-pulse' : ''} />
+            <span>{state?.connected ? '⚡ ANGEL ONE TICKS (LIVE)' : 'ANGEL ONE CONNECTING'}</span>
+            {state?.totalTicksReceived ? (
+              <span style={{ fontSize: '9.5px', opacity: 0.9, background: 'rgba(0,0,0,0.35)', padding: '1px 5px', borderRadius: '3px', fontFamily: 'monospace' }}>
+                {state.totalTicksReceived.toLocaleString()} ticks
+              </span>
+            ) : null}
           </div>
 
           {/* Current Spot & Running CVD */}

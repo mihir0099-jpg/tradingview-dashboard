@@ -44,6 +44,8 @@ class OrderFlowStreamEngine {
     this.candles = [];
     this.currentCandle = null;
     this.recentTicks = [];
+    this.totalTicksReceived = 0;
+    this.lastTickTime = null;
     this.reconnectTimer = null;
     this.pingTimer = null;
     this.historicalLoaded = false;
@@ -423,9 +425,11 @@ class OrderFlowStreamEngine {
 
     const tickDelta = side === 'BUY' ? qty : -qty;
     this.runningCvd += tickDelta;
+    this.totalTicksReceived++;
 
     const d = new Date();
     const timeStr = d.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour12: false }) + '.' + String(d.getMilliseconds()).padStart(3, '0');
+    this.lastTickTime = timeStr;
 
     this.recentTicks.unshift({
       id: now + '-' + Math.random(),
@@ -435,7 +439,7 @@ class OrderFlowStreamEngine {
       side,
       delta: tickDelta
     });
-    if (this.recentTicks.length > 25) this.recentTicks.pop();
+    if (this.recentTicks.length > 35) this.recentTicks.pop();
 
     const bucketMs = this.timeframeMinutes * 60 * 1000;
     const bucketTime = Math.floor(now / bucketMs) * bucketMs;
@@ -646,6 +650,8 @@ class OrderFlowStreamEngine {
 
     return {
       success: true,
+      feedSource: 'ANGEL_ONE_SMARTSTREAM',
+      clientCode: angelOneBridge.config.clientCode || 'P337882',
       connected: this.connected,
       activeSymbol: this.activeSymbol,
       activeToken: this.activeToken,
@@ -653,6 +659,8 @@ class OrderFlowStreamEngine {
       tickSize: this.getActiveMeta().groupSize,
       lastPrice: this.lastLtp,
       runningCvd: this.runningCvd,
+      totalTicksReceived: this.totalTicksReceived,
+      lastTickTime: this.lastTickTime,
       divergence,
       globalMin,
       globalMax,

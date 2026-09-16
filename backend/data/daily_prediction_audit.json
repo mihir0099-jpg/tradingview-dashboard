@@ -1,5 +1,19 @@
 [
   {
+    "date": "2026-09-16",
+    "timeframe": "DAILY",
+    "actual_range": 105.15,
+    "predicted_range": 143,
+    "range_error_pts": 37.8,
+    "range_accuracy_pct": 64.05,
+    "ib_range": 105.15,
+    "is_wide_ib": true,
+    "day_type": "NORMAL_DAY",
+    "mistake_diagnosed": "Range deviated by 37.8 pts. Check VIX shifts and day-of-week multipliers.",
+    "remedy_applied": "Apply 1.36x compression cap on morning climax.",
+    "logged_at": "2026-09-16T04:04:12.203Z"
+  },
+  {
     "date": "2026-09-15",
     "timeframe": "DAILY",
     "actual_range": 469.7,
