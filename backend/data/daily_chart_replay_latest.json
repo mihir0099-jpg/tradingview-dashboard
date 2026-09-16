@@ -1,19 +1,19 @@
 {
-  "timestamp": 1789476201859,
-  "dateStr": "2026-09-15",
-  "timeStr": "18:13:21 IST",
+  "timestamp": 1789531744766,
+  "dateStr": "2026-09-16",
+  "timeStr": "09:39:04 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23118.6,
+      "spot": 23187.25,
       "open": 23270.9,
-      "dayHigh": 23118.6,
+      "dayHigh": 23277.85,
       "dayLow": 23118.6,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
       "openType": "OPEN_AUCTION_IN_RANGE",
-      "dayType": "TREND_EXPANSION_DAY",
+      "dayType": "ROTATIONAL_BALANCED_DAY",
       "periodCExtension": "ROTATIONAL_AUCTION",
       "periodGStatus": "CLOSED_OUTSIDE_IB_VALID",
       "periodLBehavior": "LATE_DAY_DRIVE_SUSTAINED",
@@ -22,9 +22,9 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 55794.75,
+      "spot": 55942,
       "open": 56420,
-      "dayHigh": 55794.75,
+      "dayHigh": 56198.4,
       "dayLow": 55794.75,
       "ibHigh": 56600,
       "ibLow": 56300,
@@ -39,233 +39,127 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 6,
-    "volumeBreakoutCount": 0,
-    "distributionTrapCount": 36,
-    "swingLowFormations": 6,
-    "swingHighFormations": 36
+    "coilingDematCount": 103,
+    "volumeBreakoutCount": 1,
+    "distributionTrapCount": 0,
+    "swingLowFormations": 103,
+    "swingHighFormations": 0
   },
   "tomorrowHighConvictionWatchlist": [
     {
       "rank": 3,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "BHARTIARTL",
-      "name": "Bharti Airtel Ltd.",
-      "sector": "Telecom",
+      "symbol": "DEEPAKNTR",
+      "name": "Deepak Nitrite Ltd.",
+      "sector": "Chemicals",
       "trade": {
-        "action": "BUY BHARTIARTL 1840 CE / Spot",
-        "spotEntry": 1830.4,
-        "spotSL": 1804.9,
-        "spotRiskPts": 25.5,
-        "spotTarget1": 1871.2,
-        "spotTarget2": 1901.8,
-        "atmStrike": 1840,
-        "lotSize": 475,
-        "riskPerLotINR": 12113,
-        "target1GainPerLotINR": 19380,
-        "target2GainPerLotINR": 33915,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹1804.9",
+        "action": "BUY DEEPAKNTR 1560 CE / Spot",
+        "spotEntry": 1564.7,
+        "spotSL": 1546.21,
+        "spotRiskPts": 18.49,
+        "spotTarget1": 1594.28,
+        "spotTarget2": 1616.47,
+        "atmStrike": 1560,
+        "lotSize": 300,
+        "riskPerLotINR": 5547,
+        "target1GainPerLotINR": 8874,
+        "target2GainPerLotINR": 15531,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹1546.21",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 48,
-      "catalystRationale": "Range compressed to 70.1% of ATR with 79% Demat delivery. Smart money hoarding at Demand Floor (₹1811.9). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
-    },
-    {
-      "rank": 2,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "LAURUSLABS",
-      "name": "Laurus Labs Ltd.",
-      "sector": "Pharmaceuticals",
-      "trade": {
-        "action": "BUY LAURUSLABS 1920 PE / Short Spot",
-        "spotEntry": 1926.9,
-        "spotSL": 1990.68,
-        "spotRiskPts": 63.78,
-        "spotTarget1": 1824.85,
-        "spotTarget2": 1748.32,
-        "atmStrike": 1920,
-        "lotSize": 1700,
-        "riskPerLotINR": 108426,
-        "target1GainPerLotINR": 173485,
-        "target2GainPerLotINR": 303586,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹1990.68",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
-      },
-      "confidencePct": 41,
-      "catalystRationale": "Tested 20-day Resistance (₹1981.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
-    },
-    {
-      "rank": 3,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "YESBANK",
-      "name": "Yes Bank Limited",
-      "sector": "Private Sector Banking",
-      "trade": {
-        "action": "BUY YESBANK 23 PE / Short Spot",
-        "spotEntry": 23.07,
-        "spotSL": 24.3,
-        "spotRiskPts": 1.23,
-        "spotTarget1": 21.1,
-        "spotTarget2": 19.63,
-        "atmStrike": 23,
-        "lotSize": 500,
-        "riskPerLotINR": 615,
-        "target1GainPerLotINR": 985,
-        "target2GainPerLotINR": 1720,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹24.3",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-4.5% to -7.0% Trend Down",
-        "winRatePct": 82
-      },
-      "confidencePct": 48,
-      "catalystRationale": "Tested 20-day Resistance (₹23.95) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 82,
+      "catalystRationale": "Range compressed to 22.2% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹1556.1). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
-        "symbol": "KALYANKJIL",
-        "price": 604.2,
-        "compPct": 55.3,
-        "delivPct": 72,
-        "floor": 556.5
+        "symbol": "HINDZINC",
+        "price": 567.2,
+        "compPct": 18.6,
+        "delivPct": 92,
+        "floor": 548.8
       },
       {
-        "symbol": "BAJAJHLDNG",
-        "price": 11100,
-        "compPct": 66.4,
-        "delivPct": 70,
-        "floor": 10811
+        "symbol": "TITAN",
+        "price": 4879,
+        "compPct": 21.7,
+        "delivPct": 92,
+        "floor": 4856
       },
       {
-        "symbol": "BHARTIARTL",
-        "price": 1830.4,
-        "compPct": 70.1,
-        "delivPct": 79,
-        "floor": 1811.9
+        "symbol": "DEEPAKNTR",
+        "price": 1564.7,
+        "compPct": 22.2,
+        "delivPct": 92,
+        "floor": 1556.1
       },
       {
-        "symbol": "DMART",
-        "price": 3680,
-        "compPct": 71.1,
-        "delivPct": 79,
-        "floor": 3650
+        "symbol": "INDUSTOWER",
+        "price": 380,
+        "compPct": 22.9,
+        "delivPct": 86,
+        "floor": 363.5
       },
       {
-        "symbol": "MAXHEALTH",
-        "price": 1030,
-        "compPct": 71.5,
-        "delivPct": 69,
-        "floor": 974
+        "symbol": "SAIL",
+        "price": 173.93,
+        "compPct": 22.9,
+        "delivPct": 86,
+        "floor": 158.73
       }
     ],
     "volumeDrives": [
       {
-        "symbol": "BSOFT",
-        "price": 286.45,
-        "volMult": 5.89,
-        "action": "BUY BSOFT 285 PE / Short Spot"
-      },
-      {
-        "symbol": "DABUR",
-        "price": 384.9,
-        "volMult": 4.69
-      },
-      {
-        "symbol": "MPHASIS",
-        "price": 2378,
-        "volMult": 2.64
-      },
-      {
-        "symbol": "KPITTECH",
-        "price": 563,
-        "volMult": 2.59,
-        "action": "BUY KPITTECH 560 PE / Short Spot"
-      },
-      {
-        "symbol": "TATAELXSI",
-        "price": 3440,
-        "volMult": 2.28
+        "symbol": "LALPATHLAB",
+        "price": 1999.5,
+        "volMult": 1.54,
+        "action": "BUY LALPATHLAB 2000 CE / Spot"
       }
     ],
-    "distributionTraps": [
-      {
-        "symbol": "LAURUSLABS",
-        "price": 1926.9,
-        "ceil": 1981.8,
-        "distCeilPct": 2.85
-      },
-      {
-        "symbol": "YESBANK",
-        "price": 23.07,
-        "ceil": 23.95,
-        "distCeilPct": 3.81
-      },
-      {
-        "symbol": "IDFCFIRSTB",
-        "price": 84.8,
-        "ceil": 88.1,
-        "distCeilPct": 3.89
-      },
-      {
-        "symbol": "HDFCBANK",
-        "price": 716.55,
-        "ceil": 753.2,
-        "distCeilPct": 5.11
-      },
-      {
-        "symbol": "INDHOTEL",
-        "price": 715,
-        "ceil": 752.9,
-        "distCeilPct": 5.3
-      }
-    ],
+    "distributionTraps": [],
     "sectorLeadership": [
       {
-        "sector": "Telecom",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Oil & Gas Exploration",
-        "coilingCount": 1,
-        "totalStocks": 2
-      },
-      {
-        "sector": "Restaurants & Fast Food",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Precision Automotive Components",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Private Banking",
-        "coilingCount": 1,
-        "totalStocks": 5
-      },
-      {
-        "sector": "Asset Management",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Defense & Aerospace",
-        "coilingCount": 0,
-        "totalStocks": 2
+        "sector": "Public Sector Banking",
+        "coilingCount": 6,
+        "totalStocks": 7
       },
       {
         "sector": "NBFC",
-        "coilingCount": 0,
+        "coilingCount": 4,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Automobile",
+        "coilingCount": 4,
+        "totalStocks": 7
+      },
+      {
+        "sector": "Metals & Mining",
+        "coilingCount": 4,
+        "totalStocks": 6
+      },
+      {
+        "sector": "Insurance",
+        "coilingCount": 4,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Banking & Financials",
+        "coilingCount": 3,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Oil Refining & Marketing",
+        "coilingCount": 3,
+        "totalStocks": 3
+      },
+      {
+        "sector": "Real Estate & Property",
+        "coilingCount": 3,
         "totalStocks": 5
       }
     ]
@@ -273,11 +167,11 @@
   "forensicTakeaways": [
     {
       "title": "Macro Index Auction Character",
-      "finding": "Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
+      "finding": "Nifty printed a ROTATIONAL_BALANCED_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "6 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Telecom (1 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "103 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (6 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

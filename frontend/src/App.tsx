@@ -46,6 +46,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('orderflow');
   const [biasData, setBiasData] = useState<any>(null);
+  const [chartFeedSource, setChartFeedSource] = useState<'angelone' | 'tradingview'>('angelone');
 
   useEffect(() => {
     const backendUrl = getBackendUrl();
@@ -64,12 +65,44 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  // Subscribe to symbol data via TradingView WebSocket
+  // Subscribe to symbol data: Angel One (Primary) or TradingView (Secondary)
   useEffect(() => {
     setLoading(true);
     setError(null);
     setCandles([]);
     setMatrixHistory(null);
+
+    const backendUrl = getBackendUrl();
+
+    if (chartFeedSource === 'angelone') {
+      let isCancelled = false;
+      const fetchAngelCandles = async (isInitial = false) => {
+        try {
+          const res = await fetch(`${backendUrl}/api/angelone/candles?symbol=${encodeURIComponent(symbol)}&timeframe=${encodeURIComponent(timeframe)}&_t=${Date.now()}`);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          if (!isCancelled && data.candles && data.candles.length > 0) {
+            setCandles(data.candles);
+            setConnectionStatus('connected');
+            if (isInitial) setLoading(false);
+          }
+        } catch (err: any) {
+          if (!isCancelled && isInitial) {
+            console.warn('Angel One candle error, fallback to TV:', err.message);
+            // Auto-fallback to TV if Angel One has no historical candles for this symbol
+            setChartFeedSource('tradingview');
+          }
+        }
+      };
+
+      fetchAngelCandles(true);
+      const interval = setInterval(() => fetchAngelCandles(false), 3000);
+
+      return () => {
+        isCancelled = true;
+        clearInterval(interval);
+      };
+    }
 
     tvStreamer.setStatusListener((status) => {
       setConnectionStatus(status);
@@ -112,7 +145,7 @@ function App() {
     return () => {
       tvStreamer.unsubscribe();
     };
-  }, [symbol, timeframe, refreshKey]);
+  }, [symbol, timeframe, refreshKey, chartFeedSource]);
 
   const handleRefresh = () => {
     setLoading(true);
@@ -925,6 +958,59 @@ function App() {
         {/* Chart Workspace (default fallback) */}
         {activeTab === 'chart' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            {/* Feed Source Switcher Toolbar */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '10px',
+              padding: '6px 14px',
+              background: '#121620',
+              borderRadius: '8px',
+              border: '1px solid #232a3b',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.3)'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '11px', fontWeight: '800', color: 'var(--text-muted)' }}>FEED ENGINE:</span>
+                <button
+                  type="button"
+                  onClick={() => setChartFeedSource('angelone')}
+                  style={{
+                    padding: '4px 12px',
+                    borderRadius: '5px',
+                    border: chartFeedSource === 'angelone' ? '1px solid #10b981' : '1px solid rgba(255, 255, 255, 0.1)',
+                    background: chartFeedSource === 'angelone' ? 'rgba(16, 185, 129, 0.2)' : 'transparent',
+                    color: chartFeedSource === 'angelone' ? '#34d399' : '#94a3b8',
+                    fontSize: '11px',
+                    fontWeight: '800',
+                    cursor: 'pointer',
+                    boxShadow: chartFeedSource === 'angelone' ? '0 0 10px rgba(16, 185, 129, 0.3)' : 'none'
+                  }}
+                >
+                  ⚡ Angel One SmartAPI (Official 0ms Live Exchange)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setChartFeedSource('tradingview')}
+                  style={{
+                    padding: '4px 10px',
+                    borderRadius: '5px',
+                    border: chartFeedSource === 'tradingview' ? '1px solid #38bdf8' : '1px solid rgba(255, 255, 255, 0.1)',
+                    background: chartFeedSource === 'tradingview' ? 'rgba(56, 189, 248, 0.2)' : 'transparent',
+                    color: chartFeedSource === 'tradingview' ? '#38bdf8' : '#94a3b8',
+                    fontSize: '11px',
+                    fontWeight: '700',
+                    cursor: 'pointer'
+                  }}
+                >
+                  📈 TradingView WebSocket
+                </button>
+              </div>
+              <div style={{ fontSize: '11px', fontWeight: '700', color: chartFeedSource === 'angelone' ? '#10b981' : '#f59e0b' }}>
+                {chartFeedSource === 'angelone' ? `Angel One Official Candles (${candles.length} bars)` : `TV Auxiliary Feed (${candles.length} bars)`}
+              </div>
+            </div>
+
             {error && (
               <div className="glass-panel animate-fade-in" style={{ padding: '16px', display: 'flex', alignItems: 'center', gap: '12px', border: '1px solid rgba(239, 68, 68, 0.3)', backgroundColor: 'rgba(239, 68, 68, 0.05)', borderRadius: '12px', marginBottom: '20px' }}>
                 <AlertCircle color="#ef4444" size={20} />
@@ -938,7 +1024,7 @@ function App() {
             {loading ? (
               <div className="glass-panel" style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '12px', minHeight: '400px' }}>
                 <Loader2 className="animate-spin" size={32} color="var(--accent-blue)" style={{ animation: 'spin 1.5s linear infinite' }} />
-                <p style={{ color: 'var(--text-secondary)', fontSize: '14px', margin: 0 }}>Connecting to TradingView WebSocket & streaming data...</p>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '14px', margin: 0 }}>Connecting to {chartFeedSource === 'angelone' ? 'Angel One SmartAPI' : 'TradingView WebSocket'} & streaming data...</p>
               </div>
             ) : (
               <div style={{ flex: '1', display: 'flex', minHeight: '0' }}>

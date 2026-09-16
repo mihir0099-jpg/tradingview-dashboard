@@ -5566,6 +5566,90 @@ app.get('/api/angelone/orders', async (req, res) => {
   }
 });
 
+// Official Angel One Live Candlestick Feed (0ms delay, no TradingView paid restrictions)
+app.get('/api/angelone/candles', async (req, res) => {
+  try {
+    const symbol = req.query.symbol || 'NSE:NIFTY';
+    const tf = req.query.timeframe || '5';
+    
+    let interval = 'FIVE_MINUTE';
+    if (tf === '1') interval = 'ONE_MINUTE';
+    else if (tf === '3') interval = 'THREE_MINUTE';
+    else if (tf === '5') interval = 'FIVE_MINUTE';
+    else if (tf === '10') interval = 'TEN_MINUTE';
+    else if (tf === '15') interval = 'FIFTEEN_MINUTE';
+    else if (tf === '30') interval = 'THIRTY_MINUTE';
+    else if (tf === '60' || tf === '1H') interval = 'ONE_HOUR';
+    else if (tf === 'D' || tf === '1D') interval = 'ONE_DAY';
+
+    const cleanSym = symbol.replace('NSE:', '').replace('BSE:', '').toUpperCase().trim();
+    let exchange = 'NSE';
+    let token = '99926000'; // Default Nifty 50
+
+    if (cleanSym === 'NIFTY') {
+      token = '99926000';
+    } else if (cleanSym === 'BANKNIFTY') {
+      token = '99926009';
+    } else if (cleanSym === 'FINNIFTY') {
+      token = '99926037';
+    } else if (cleanSym === 'MIDCPNIFTY') {
+      token = '99926074';
+    } else if (cleanSym === 'NIFTYFUT') {
+      exchange = 'NFO';
+      token = '68407';
+    } else if (cleanSym === 'BANKNIFTYFUT') {
+      exchange = 'NFO';
+      token = '68390';
+    } else {
+      const meta = angelOneBridge._tokenMap?.get(cleanSym);
+      if (meta) {
+        token = meta.symboltoken;
+        exchange = meta.exchange || 'NSE';
+      } else {
+        const results = await angelOneBridge.searchScrip('NSE', cleanSym);
+        const match = results.find(r => r.tradingsymbol === cleanSym + '-EQ') || results[0];
+        if (match) {
+          token = match.symboltoken;
+          exchange = match.exchange || 'NSE';
+        }
+      }
+    }
+
+    const now = new Date();
+    const pastDays = (interval === 'ONE_DAY') ? 60 : ((interval === 'ONE_MINUTE' || interval === 'THREE_MINUTE') ? 2 : 4);
+    const past = new Date(now.getTime() - pastDays * 24 * 60 * 60 * 1000);
+    const fromStr = `${past.toISOString().split('T')[0]} 09:15`;
+    const toStr = `${now.toISOString().split('T')[0]} 15:30`;
+
+    const rawCandles = await angelOneBridge.getCandles(exchange, token, interval, fromStr, toStr);
+
+    const formatted = (rawCandles || []).map(c => {
+      const dt = new Date(c[0]);
+      return {
+        time: Math.floor(dt.getTime() / 1000),
+        open: c[1],
+        high: c[2],
+        low: c[3],
+        close: c[4],
+        volume: c[5] || 0
+      };
+    }).sort((a, b) => a.time - b.time);
+
+    res.json({
+      success: true,
+      source: 'ANGEL_ONE_OFFICIAL',
+      symbol,
+      exchange,
+      token,
+      interval,
+      candlesCount: formatted.length,
+      candles: formatted
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // --- Live Level 2 Imbalance Meter & Mistake Miner Endpoints ---
 app.get('/api/imbalance/live', async (req, res) => {
   try {
