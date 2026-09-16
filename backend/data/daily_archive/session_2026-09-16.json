@@ -2,18 +2,18 @@
   "archive_id": "SESSION_2026-09-16",
   "date": "2026-09-16",
   "day_of_week": "Wednesday",
-  "archived_at": "2026-09-16T04:20:19.563Z",
-  "ist_timestamp": "09:50:19",
-  "captured_till_ist": "09:50:14",
+  "archived_at": "2026-09-16T04:27:47.265Z",
+  "ist_timestamp": "09:57:47",
+  "captured_till_ist": "09:57:37",
   "session_status": "IN_PROGRESS",
   "save_trigger": "STARTUP_MARKET_HOURS_CATCHUP",
   "indices": {
     "nifty": {
       "profile": {
         "openPrice": 23201.05,
-        "closePrice": 23159.15,
-        "changePts": -41.9,
-        "changePct": -0.18,
+        "closePrice": 23224.3,
+        "changePts": 23.25,
+        "changePct": 0.1,
         "dayHigh": 23281.05,
         "dayLow": 23116.35,
         "totalRange": 164.7,
@@ -38,15 +38,15 @@
           "lodTime": "09:45:00"
         }
       },
-      "candles_count": 36,
-      "last_candle_time": "09:50:14"
+      "candles_count": 43,
+      "last_candle_time": "09:57:37"
     },
     "banknifty": {
       "profile": {
         "openPrice": 55994.35,
-        "closePrice": 55914.05,
-        "changePts": -80.3,
-        "changePct": -0.14,
+        "closePrice": 56068.7,
+        "changePts": 74.35,
+        "changePct": 0.13,
         "dayHigh": 56203.85,
         "dayLow": 55813.85,
         "totalRange": 390,
@@ -71,17 +71,17 @@
           "lodTime": "09:47:00"
         }
       },
-      "candles_count": 36,
-      "last_candle_time": "09:50:08"
+      "candles_count": 43,
+      "last_candle_time": "09:57:42"
     }
   },
   "options_skew_gamma": {
-    "morningSkewNifty": -32.071040657566414,
-    "closingSkewNifty": 32.95916935597025,
-    "morningSkewBank": -5.872875829529322,
-    "closingSkewBank": 28.76342067722802,
-    "pcrDriftNifty": 65.03,
-    "pcrDriftBank": 34.64
+    "morningSkewNifty": 13.61573373676248,
+    "closingSkewNifty": 14.205800088326221,
+    "morningSkewBank": 17.36545682102628,
+    "closingSkewBank": 19.480121151708012,
+    "pcrDriftNifty": 0.59,
+    "pcrDriftBank": 2.11
   },
   "raw_candles": {
     "nifty_1m": [
@@ -401,12 +401,75 @@
         "volume": 0
       },
       {
-        "time": 1789532414,
-        "timeIST": "09:50:14",
-        "open": 23159.15,
-        "high": 23159.15,
-        "low": 23159.15,
-        "close": 23159.15,
+        "time": 1789532400,
+        "timeIST": "09:50:00",
+        "open": 23152.6,
+        "high": 23178.85,
+        "low": 23150.35,
+        "close": 23162.85,
+        "volume": 0
+      },
+      {
+        "time": 1789532460,
+        "timeIST": "09:51:00",
+        "open": 23162.7,
+        "high": 23166.55,
+        "low": 23155.15,
+        "close": 23165.75,
+        "volume": 0
+      },
+      {
+        "time": 1789532520,
+        "timeIST": "09:52:00",
+        "open": 23166.2,
+        "high": 23193.2,
+        "low": 23166.2,
+        "close": 23188.45,
+        "volume": 0
+      },
+      {
+        "time": 1789532580,
+        "timeIST": "09:53:00",
+        "open": 23188.45,
+        "high": 23191.3,
+        "low": 23174.1,
+        "close": 23191.15,
+        "volume": 0
+      },
+      {
+        "time": 1789532640,
+        "timeIST": "09:54:00",
+        "open": 23191.25,
+        "high": 23212.9,
+        "low": 23190.8,
+        "close": 23212.8,
+        "volume": 0
+      },
+      {
+        "time": 1789532700,
+        "timeIST": "09:55:00",
+        "open": 23212.4,
+        "high": 23228,
+        "low": 23211.65,
+        "close": 23226.85,
+        "volume": 0
+      },
+      {
+        "time": 1789532760,
+        "timeIST": "09:56:00",
+        "open": 23227.4,
+        "high": 23235.75,
+        "low": 23218.95,
+        "close": 23222.9,
+        "volume": 0
+      },
+      {
+        "time": 1789532857,
+        "timeIST": "09:57:37",
+        "open": 23224.3,
+        "high": 23224.3,
+        "low": 23224.3,
+        "close": 23224.3,
         "volume": 0
       }
     ],
@@ -727,12 +790,75 @@
         "volume": 0
       },
       {
-        "time": 1789532408,
-        "timeIST": "09:50:08",
-        "open": 55914.05,
-        "high": 55914.05,
-        "low": 55914.05,
-        "close": 55914.05,
+        "time": 1789532400,
+        "timeIST": "09:50:00",
+        "open": 55905.8,
+        "high": 55962.95,
+        "low": 55900.85,
+        "close": 55932.25,
+        "volume": 0
+      },
+      {
+        "time": 1789532460,
+        "timeIST": "09:51:00",
+        "open": 55931.25,
+        "high": 55937.9,
+        "low": 55898.1,
+        "close": 55934.15,
+        "volume": 0
+      },
+      {
+        "time": 1789532520,
+        "timeIST": "09:52:00",
+        "open": 55935.05,
+        "high": 55983.05,
+        "low": 55935.05,
+        "close": 55965.35,
+        "volume": 0
+      },
+      {
+        "time": 1789532580,
+        "timeIST": "09:53:00",
+        "open": 55966.25,
+        "high": 55987.85,
+        "low": 55940.45,
+        "close": 55987,
+        "volume": 0
+      },
+      {
+        "time": 1789532640,
+        "timeIST": "09:54:00",
+        "open": 55988.85,
+        "high": 56040.35,
+        "low": 55986.5,
+        "close": 56037.5,
+        "volume": 0
+      },
+      {
+        "time": 1789532700,
+        "timeIST": "09:55:00",
+        "open": 56039.1,
+        "high": 56056.5,
+        "low": 56004.55,
+        "close": 56051.95,
+        "volume": 0
+      },
+      {
+        "time": 1789532760,
+        "timeIST": "09:56:00",
+        "open": 56051.75,
+        "high": 56078.95,
+        "low": 56028.9,
+        "close": 56049.35,
+        "volume": 0
+      },
+      {
+        "time": 1789532862,
+        "timeIST": "09:57:42",
+        "open": 56068.7,
+        "high": 56068.7,
+        "low": 56068.7,
+        "close": 56068.7,
         "volume": 0
       }
     ]

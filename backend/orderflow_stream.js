@@ -63,56 +63,27 @@ class OrderFlowStreamEngine {
   async seedHistoricalCandles() {
     try {
       const meta = this.getActiveMeta();
-      if (!angelOneBridge.session.jwtToken) {
-        await angelOneBridge.login();
-      }
-
       const today = new Date();
       const dateStr = today.toISOString().split('T')[0];
-      const payload = JSON.stringify({
-        exchange: meta.exchange,
-        symboltoken: meta.token,
-        interval: this.timeframeMinutes === 1 ? 'ONE_MINUTE' :
-                  (this.timeframeMinutes === 3 ? 'THREE_MINUTE' :
-                  (this.timeframeMinutes === 10 ? 'TEN_MINUTE' :
-                  (this.timeframeMinutes === 15 ? 'FIFTEEN_MINUTE' :
-                  (this.timeframeMinutes === 30 ? 'THIRTY_MINUTE' :
-                  (this.timeframeMinutes === 60 ? 'ONE_HOUR' : 'FIVE_MINUTE'))))),
-        fromdate: `${dateStr} 09:15`,
-        todate: `${dateStr} 15:30`
-      });
+      const interval = this.timeframeMinutes === 1 ? 'ONE_MINUTE' :
+                       (this.timeframeMinutes === 3 ? 'THREE_MINUTE' :
+                       (this.timeframeMinutes === 10 ? 'TEN_MINUTE' :
+                       (this.timeframeMinutes === 15 ? 'FIFTEEN_MINUTE' :
+                       (this.timeframeMinutes === 30 ? 'THIRTY_MINUTE' :
+                       (this.timeframeMinutes === 60 ? 'ONE_HOUR' : 'FIVE_MINUTE')))));
 
-      const headers = {
-        'Authorization': 'Bearer ' + angelOneBridge.session.jwtToken,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-UserType': 'USER',
-        'X-SourceID': 'WEB',
-        'X-ClientLocalIP': '127.0.0.1',
-        'X-ClientPublicIP': '106.193.147.98',
-        'X-MACAddress': 'fe80::216e:6507:4b90:3719',
-        'X-PrivateKey': angelOneBridge.config.apiKey,
-        'Content-Length': Buffer.byteLength(payload)
-      };
+      const rawCandles = await angelOneBridge.getCandles(meta.exchange, meta.token, interval, `${dateStr} 09:15`, `${dateStr} 15:30`);
 
-      const res = await angelOneBridge._makeRequest(
-        'https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData',
-        'POST',
-        headers,
-        payload
-      );
-
-      const rawCandles = res?.data || [];
-      if (rawCandles.length > 0) {
+      if (rawCandles && rawCandles.length > 0) {
         this.buildHistoricalFootprint(rawCandles, meta);
         this.historicalLoaded = true;
-        console.log(`[OrderFlow] Seeded ${rawCandles.length} historical footprint candles for ${this.activeSymbol}`);
+        console.log(`[OrderFlow] Seeded ${rawCandles.length} official historical footprint candles for ${this.activeSymbol}`);
       } else {
-        this.generateSyntheticSeed(meta);
+        await this.generateSyntheticSeed(meta);
       }
     } catch (e) {
       console.warn(`[OrderFlow Historical Fallback]: ${e.message}. Using synthetic profile seed.`);
-      this.generateSyntheticSeed(this.getActiveMeta());
+      await this.generateSyntheticSeed(this.getActiveMeta());
     }
   }
 
@@ -120,10 +91,19 @@ class OrderFlowStreamEngine {
     this.candles = [];
     let cvd = 0;
     const step = meta.groupSize;
+    const now = Date.now();
+    const bucketMs = this.timeframeMinutes * 60 * 1000;
+    const currentBucket = Math.floor(now / bucketMs) * bucketMs;
+
+    const seenBuckets = new Set();
 
     rawCandles.forEach((bar) => {
       // bar format: [timestamp, open, high, low, close, volume]
       const ts = new Date(bar[0]).getTime();
+      const candleBucket = Math.floor(ts / bucketMs) * bucketMs;
+      if (seenBuckets.has(candleBucket)) return;
+      seenBuckets.add(candleBucket);
+
       const open = bar[1];
       const high = bar[2];
       const low = bar[3];
@@ -131,7 +111,7 @@ class OrderFlowStreamEngine {
       const rawVol = bar[5] > 0 ? bar[5] : Math.round(1500 + Math.random() * 4000);
       const isBull = close >= open;
 
-      const dateObj = new Date(ts);
+      const dateObj = new Date(candleBucket);
       const timeStr = dateObj.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
       const period = getPeriodLetter(dateObj);
 
@@ -190,8 +170,8 @@ class OrderFlowStreamEngine {
         }
       }
 
-      this.candles.push({
-        timestamp: ts,
+      const candleObj = {
+        timestamp: candleBucket,
         timeStr,
         period,
         open,
@@ -206,21 +186,38 @@ class OrderFlowStreamEngine {
         minDelta: Math.round(barDelta * -0.4),
         priceLevels,
         imbalanceLevels: imbalances
-      });
+      };
+
+      if (candleBucket === currentBucket) {
+        const levelsObj = {};
+        priceLevels.forEach(pl => {
+          levelsObj[pl.price.toFixed(2)] = pl;
+        });
+        this.currentCandle = {
+          ...candleObj,
+          priceLevels: levelsObj
+        };
+      } else {
+        this.candles.push(candleObj);
+      }
     });
 
     this.runningCvd = cvd;
-    if (this.candles.length > 0) {
+    if (this.currentCandle) {
+      this.lastLtp = this.currentCandle.close;
+    } else if (this.candles.length > 0) {
       this.lastLtp = this.candles[this.candles.length - 1].close;
     }
   }
 
-  generateSyntheticSeed(meta) {
+  async generateSyntheticSeed(meta) {
     // Generate realistic today's intraday profile from 9:15 AM
     this.candles = [];
+    const cleanSym = meta.symbol.replace('FUT', '');
+    const realLtp = await angelOneBridge.resolveAndGetLtp(cleanSym).catch(() => null);
     const isNifty = meta.symbol.includes('NIFTY') && !meta.symbol.includes('BANK');
     const isBankNifty = meta.symbol.includes('BANK');
-    const basePrice = isNifty ? 23380 : (isBankNifty ? 56260 : 1255);
+    const basePrice = realLtp || this.lastLtp || (isNifty ? 23200 : (isBankNifty ? 55800 : 1250));
     const step = meta.groupSize || 1.0;
     let price = basePrice;
     let cvd = 0;
@@ -464,8 +461,13 @@ class OrderFlowStreamEngine {
             completed.imbalanceLevels.push({ price: lower.price, type: 'SELL_IMBALANCE', ratio: (lower.bidVol / Math.max(1, upper.askVol)).toFixed(1) + 'x' });
           }
         }
-        this.candles.push(completed);
-        if (this.candles.length > 25) this.candles.shift();
+        const existingIdx = this.candles.findIndex(c => c.timestamp === completed.timestamp);
+        if (existingIdx >= 0) {
+          this.candles[existingIdx] = completed;
+        } else {
+          this.candles.push(completed);
+        }
+        if (this.candles.length > 100) this.candles.shift();
       }
 
       const dateObj = new Date(bucketTime);
@@ -603,7 +605,13 @@ class OrderFlowStreamEngine {
     const allCandles = this.candles.map(normalizeCandleLevels);
 
     if (this.currentCandle) {
-      allCandles.push(normalizeCandleLevels(this.currentCandle));
+      const currentNorm = normalizeCandleLevels(this.currentCandle);
+      const existIdx = allCandles.findIndex(c => c.timestamp === currentNorm.timestamp);
+      if (existIdx >= 0) {
+        allCandles[existIdx] = currentNorm;
+      } else {
+        allCandles.push(currentNorm);
+      }
     }
 
     // Determine Global Price Scale (Min price and Max price across all candles on screen)

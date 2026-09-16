@@ -160,5 +160,23 @@
     "mathTrigger": "AXISBANK Spot (₹1267.00) defended S5/S6 Support with +16.4% Call Skew accumulation.",
     "conceptUsed": "TPO Stock Breakout + Dynamic SL (Δ=0.5)",
     "isUrgent": false
+  },
+  {
+    "id": "NIFTY-LIVE-PE-23250",
+    "timestamp": "09:57 am",
+    "symbol": "NIFTY 50",
+    "action": "BUY PE",
+    "strike": "23250 PE",
+    "currentOptionPrice": 191.45,
+    "entryRange": "₹183.8 - ₹195.3",
+    "spotPrice": 23229.6,
+    "spotSL": 23254.6,
+    "optionSL": 178.95,
+    "target1": 248.88,
+    "target2": 325.46,
+    "confidence": 94,
+    "mathTrigger": "Nifty Skew (-16.5%) with 📉 IMMINENT BEARISH BREAKDOWN DETECTED (60-90s).",
+    "conceptUsed": "Premium Elasticity + Put-Call Asymmetry",
+    "isUrgent": true
   }
 ]

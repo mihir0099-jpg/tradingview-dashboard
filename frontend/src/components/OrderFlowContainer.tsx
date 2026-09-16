@@ -79,10 +79,10 @@ interface OrderFlowState {
 }
 
 const AVAILABLE_INSTRUMENTS = [
-  { symbol: 'NIFTYFUT', label: 'NIFTY FUT', type: 'FUTURES', defaultTick: 1.0, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
-  { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', type: 'FUTURES', defaultTick: 1.0, tickOptions: [1.0, 5.0, 10.0, 20.0, 50.0] },
-  { symbol: 'NIFTY', label: 'NIFTY 50', type: 'INDEX', defaultTick: 1.0, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
-  { symbol: 'BANKNIFTY', label: 'BANK NIFTY', type: 'INDEX', defaultTick: 1.0, tickOptions: [1.0, 5.0, 10.0, 20.0, 50.0] },
+  { symbol: 'NIFTYFUT', label: 'NIFTY FUT', type: 'FUTURES', defaultTick: 2.5, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
+  { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', type: 'FUTURES', defaultTick: 10.0, tickOptions: [2.0, 5.0, 10.0, 20.0, 50.0] },
+  { symbol: 'NIFTY', label: 'NIFTY 50', type: 'INDEX', defaultTick: 2.5, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
+  { symbol: 'BANKNIFTY', label: 'BANK NIFTY', type: 'INDEX', defaultTick: 10.0, tickOptions: [2.0, 5.0, 10.0, 20.0, 50.0] },
   { symbol: 'RELIANCE', label: 'RELIANCE', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
   { symbol: 'HDFCBANK', label: 'HDFC BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
   { symbol: 'ICICIBANK', label: 'ICICI BANK', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
@@ -428,23 +428,57 @@ export const OrderFlowContainer: React.FC = () => {
     gridRef.current.scrollLeft = gridRef.current.scrollWidth;
   }, [state?.lastPrice, priceRungs, rungHeight, step]);
 
-  // Auto-Fit (F) button
-  const autoFitChart = useCallback(() => {
+  // Fit All Candles (Session High-to-Low Overview from 09:15 AM to Now)
+  const fitAllCandles = useCallback(() => {
     if (!gridRef.current || !state?.candles || state.candles.length === 0) return;
     const candleHighs = state.candles.map(c => c.high);
     const candleLows = state.candles.map(c => c.low);
     const highest = Math.max(...candleHighs);
     const lowest = Math.min(...candleLows);
-    const totalRungs = Math.max(10, Math.ceil((highest - lowest) / step) + 6);
+    const range = highest - lowest;
 
+    // For index futures with high range (>50 pts), choose 2.5 or 5.0 pts step so rungs fit comfortably
+    let targetStep = step;
+    if (selectedSymbol.includes('BANKNIFTY') && range > 100 && step < 5.0) {
+      targetStep = 10.0;
+      setCustomTickSize(10.0);
+    } else if (selectedSymbol.includes('NIFTY') && range > 50 && step < 2.5) {
+      targetStep = 5.0;
+      setCustomTickSize(5.0);
+    }
+
+    const totalRungs = Math.max(10, Math.ceil(range / targetStep) + 8);
     const availableHeight = gridRef.current.clientHeight || 620;
-    const optimalRungHeight = Math.max(12, Math.min(38, Math.floor(availableHeight / totalRungs)));
+    const optimalRungHeight = Math.max(14, Math.min(34, Math.floor(availableHeight / totalRungs)));
     setRungHeight(optimalRungHeight);
 
     setTimeout(() => {
-      recenterChart();
-    }, 50);
-  }, [state?.candles, step, recenterChart]);
+      if (!gridRef.current) return;
+      const midPrice = (highest + lowest) / 2;
+      const midIdx = priceRungs.findIndex(p => Math.abs(p - midPrice) < targetStep * 1.5);
+      if (midIdx >= 0) {
+        const targetY = (midIdx * optimalRungHeight) - (gridRef.current.clientHeight / 2) + (optimalRungHeight / 2);
+        gridRef.current.scrollTop = Math.max(0, targetY);
+      }
+      gridRef.current.scrollLeft = 0;
+    }, 80);
+  }, [state?.candles, step, selectedSymbol, priceRungs]);
+
+  // Auto-Fit (F) button
+  const autoFitChart = useCallback(() => {
+    fitAllCandles();
+  }, [fitAllCandles]);
+
+  // Jump viewport directly to any candle's price range
+  const jumpToCandle = (candle: FootprintCandle) => {
+    if (!gridRef.current || priceRungs.length === 0) return;
+    const candleMid = (candle.high + candle.low) / 2;
+    const idx = priceRungs.findIndex(p => Math.abs(p - candleMid) <= step * 1.5);
+    if (idx >= 0) {
+      const targetY = (idx * rungHeight) - (gridRef.current.clientHeight / 2) + (rungHeight / 2);
+      gridRef.current.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    }
+  };
 
   // Initial auto-centering on price load
   useEffect(() => {
@@ -1055,6 +1089,29 @@ export const OrderFlowContainer: React.FC = () => {
               </div>
             )}
           </div>
+
+          {/* Quick Tick Cluster Switcher */}
+          <div style={{ display: 'flex', gap: '2px', backgroundColor: '#10141d', padding: '2px', borderRadius: '5px', border: '1px solid #232a3b' }}>
+            {(selectedSymbol.includes('BANKNIFTY') ? [2.0, 5.0, 10.0, 20.0] : [1.0, 2.5, 5.0, 10.0]).map((tVal) => (
+              <button
+                key={tVal}
+                onClick={() => setCustomTickSize(tVal)}
+                style={{
+                  backgroundColor: step === tVal ? '#38bdf8' : 'transparent',
+                  color: step === tVal ? '#000' : '#94a3b8',
+                  border: 'none',
+                  borderRadius: '3px',
+                  padding: '3px 7px',
+                  fontSize: '10px',
+                  fontWeight: '800',
+                  cursor: 'pointer'
+                }}
+                title={`Group orders into ${tVal} pts rungs`}
+              >
+                {tVal}pt
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Right: WebSocket Status, LTP, CVD, and Viewport Fit/Recenter Buttons */}
@@ -1113,6 +1170,29 @@ export const OrderFlowContainer: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Fit All Back Candles Button */}
+          <button
+            onClick={fitAllCandles}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px',
+              backgroundColor: '#1e1b4b',
+              color: '#a5b4fc',
+              border: '1px solid #6366f1',
+              padding: '4px 10px',
+              borderRadius: '5px',
+              fontSize: '11px',
+              fontWeight: '800',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(99, 102, 241, 0.35)'
+            }}
+            title="Auto-Fit all back candles and current price from 09:15 AM to screen"
+          >
+            <Maximize2 size={12} />
+            <span>Fit All (09:15 - Now)</span>
+          </button>
 
           {/* Recenter LTP Button */}
           <button
@@ -1396,6 +1476,33 @@ export const OrderFlowContainer: React.FC = () => {
                     }}
                   >
                     <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                      {/* Sticky Header: Time, High/Low, and Quick Jump */}
+                      <div
+                        onClick={() => jumpToCandle(candle)}
+                        style={{
+                          position: 'sticky',
+                          top: 0,
+                          zIndex: 15,
+                          backgroundColor: '#121722',
+                          borderBottom: '1px solid #1e293b',
+                          padding: '3px 6px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          fontSize: '10px',
+                          cursor: 'pointer',
+                          boxShadow: '0 2px 6px rgba(0,0,0,0.5)',
+                          userSelect: 'none'
+                        }}
+                        title={`Click to jump directly to ${candle.timeStr} candle (${candle.low} - ${candle.high})`}
+                      >
+                        <span style={{ fontWeight: '800', color: isBull ? '#34d399' : '#f87171' }}>
+                          {candle.period} ({candle.timeStr})
+                        </span>
+                        <span style={{ fontSize: '9px', color: '#94a3b8', fontWeight: '700' }}>
+                          {candle.high.toFixed(0)} / {candle.low.toFixed(0)}
+                        </span>
+                      </div>
                       {priceRungs.map((p) => {
                         const levelData = candleMap.get(p);
                         const isPoc = levelData && Math.abs(levelData.price - candle.pocPrice) < step / 2;
