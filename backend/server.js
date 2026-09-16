@@ -5616,24 +5616,31 @@ app.get('/api/angelone/candles', async (req, res) => {
     }
 
     const now = new Date();
-    const pastDays = (interval === 'ONE_DAY') ? 60 : ((interval === 'ONE_MINUTE' || interval === 'THREE_MINUTE') ? 2 : 4);
+    const pastDays = (interval === 'ONE_DAY') ? 90 : ((interval === 'ONE_MINUTE' || interval === 'THREE_MINUTE') ? 2 : 4);
     const past = new Date(now.getTime() - pastDays * 24 * 60 * 60 * 1000);
     const fromStr = `${past.toISOString().split('T')[0]} 09:15`;
     const toStr = `${now.toISOString().split('T')[0]} 15:30`;
 
     const rawCandles = await angelOneBridge.getCandles(exchange, token, interval, fromStr, toStr);
 
-    const formatted = (rawCandles || []).map(c => {
+    const seenTimes = new Set();
+    const formatted = [];
+    for (const c of (rawCandles || [])) {
       const dt = new Date(c[0]);
-      return {
-        time: Math.floor(dt.getTime() / 1000),
-        open: c[1],
-        high: c[2],
-        low: c[3],
-        close: c[4],
-        volume: c[5] || 0
-      };
-    }).sort((a, b) => a.time - b.time);
+      const time = Math.floor(dt.getTime() / 1000);
+      if (!seenTimes.has(time) && !isNaN(time)) {
+        seenTimes.add(time);
+        formatted.push({
+          time,
+          open: c[1],
+          high: c[2],
+          low: c[3],
+          close: c[4],
+          volume: c[5] || 0
+        });
+      }
+    }
+    formatted.sort((a, b) => a.time - b.time);
 
     res.json({
       success: true,

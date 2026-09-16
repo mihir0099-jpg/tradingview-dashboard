@@ -1,19 +1,19 @@
 {
-  "timestamp": 1789531744766,
+  "timestamp": 1789532454288,
   "dateStr": "2026-09-16",
-  "timeStr": "09:39:04 IST",
+  "timeStr": "09:50:54 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23187.25,
+      "spot": 23124.15,
       "open": 23270.9,
       "dayHigh": 23277.85,
-      "dayLow": 23118.6,
+      "dayLow": 23116.5,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
       "openType": "OPEN_AUCTION_IN_RANGE",
-      "dayType": "ROTATIONAL_BALANCED_DAY",
+      "dayType": "TREND_EXPANSION_DAY",
       "periodCExtension": "ROTATIONAL_AUCTION",
       "periodGStatus": "CLOSED_OUTSIDE_IB_VALID",
       "periodLBehavior": "LATE_DAY_DRIVE_SUSTAINED",
@@ -22,10 +22,10 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 55942,
+      "spot": 55841.35,
       "open": 56420,
-      "dayHigh": 56198.4,
-      "dayLow": 55794.75,
+      "dayHigh": 56153.5,
+      "dayLow": 55816.85,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
@@ -39,11 +39,11 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 103,
-    "volumeBreakoutCount": 1,
-    "distributionTrapCount": 0,
-    "swingLowFormations": 103,
-    "swingHighFormations": 0
+    "coilingDematCount": 62,
+    "volumeBreakoutCount": 0,
+    "distributionTrapCount": 2,
+    "swingLowFormations": 62,
+    "swingHighFormations": 2
   },
   "tomorrowHighConvictionWatchlist": [
     {
@@ -55,123 +55,222 @@
       "sector": "Chemicals",
       "trade": {
         "action": "BUY DEEPAKNTR 1560 CE / Spot",
-        "spotEntry": 1564.7,
-        "spotSL": 1546.21,
-        "spotRiskPts": 18.49,
-        "spotTarget1": 1594.28,
-        "spotTarget2": 1616.47,
+        "spotEntry": 1565.9,
+        "spotSL": 1546.19,
+        "spotRiskPts": 19.71,
+        "spotTarget1": 1597.44,
+        "spotTarget2": 1621.09,
         "atmStrike": 1560,
         "lotSize": 300,
-        "riskPerLotINR": 5547,
-        "target1GainPerLotINR": 8874,
-        "target2GainPerLotINR": 15531,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹1546.21",
+        "riskPerLotINR": 5913,
+        "target1GainPerLotINR": 9462,
+        "target2GainPerLotINR": 16557,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹1546.19",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 82,
-      "catalystRationale": "Range compressed to 22.2% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹1556.1). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 83,
+      "catalystRationale": "Range compressed to 28.3% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹1556.1). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
+      "rank": 4,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "DALBHARAT",
+      "name": "Dalmia Bharat Ltd.",
+      "sector": "Cement & Building Materials",
+      "trade": {
+        "action": "BUY DALBHARAT 1700 CE / Spot",
+        "spotEntry": 1694.4,
+        "spotSL": 1661.97,
+        "spotRiskPts": 32.43,
+        "spotTarget1": 1746.29,
+        "spotTarget2": 1785.2,
+        "atmStrike": 1700,
+        "lotSize": 500,
+        "riskPerLotINR": 16215,
+        "target1GainPerLotINR": 25945,
+        "target2GainPerLotINR": 45400,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹1661.97",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
+      },
+      "confidencePct": 77,
+      "catalystRationale": "Range compressed to 30.3% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹1671.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
+      "rank": 3,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "LALPATHLAB",
+      "name": "Dr. Lal PathLabs Ltd.",
+      "sector": "Healthcare Diagnostics",
+      "trade": {
+        "action": "BUY LALPATHLAB 1940 PE / Short Spot",
+        "spotEntry": 1931.7,
+        "spotSL": 2048.46,
+        "spotRiskPts": 116.76,
+        "spotTarget1": 1744.88,
+        "spotTarget2": 1604.77,
+        "atmStrike": 1940,
+        "lotSize": 300,
+        "riskPerLotINR": 35028,
+        "target1GainPerLotINR": 56046,
+        "target2GainPerLotINR": 98079,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹2048.46",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-4.5% to -7.0% Trend Down",
+        "winRatePct": 82
+      },
+      "confidencePct": 42,
+      "catalystRationale": "Tested 20-day Resistance (₹2038.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    },
+    {
+      "rank": 4,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "PAYTM",
+      "name": "One 97 Communications Ltd.",
+      "sector": "Fintech & Digital Payments",
+      "trade": {
+        "action": "BUY PAYTM 1740 PE / Short Spot",
+        "spotEntry": 1742.3,
+        "spotSL": 1867.79,
+        "spotRiskPts": 125.49,
+        "spotTarget1": 1541.52,
+        "spotTarget2": 1390.93,
+        "atmStrike": 1740,
+        "lotSize": 500,
+        "riskPerLotINR": 62745,
+        "target1GainPerLotINR": 100390,
+        "target2GainPerLotINR": 175685,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹1867.79",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-4.5% to -7.0% Trend Down",
+        "winRatePct": 82
+      },
+      "confidencePct": 19,
+      "catalystRationale": "Tested 20-day Resistance (₹1855.5) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
         "symbol": "HINDZINC",
-        "price": 567.2,
-        "compPct": 18.6,
-        "delivPct": 92,
+        "price": 565.05,
+        "compPct": 25.3,
+        "delivPct": 86,
         "floor": 548.8
       },
       {
-        "symbol": "TITAN",
-        "price": 4879,
-        "compPct": 21.7,
+        "symbol": "BALKRISIND",
+        "price": 2119,
+        "compPct": 26.3,
         "delivPct": 92,
-        "floor": 4856
+        "floor": 2116.7
       },
       {
         "symbol": "DEEPAKNTR",
-        "price": 1564.7,
-        "compPct": 22.2,
+        "price": 1565.9,
+        "compPct": 28.3,
         "delivPct": 92,
         "floor": 1556.1
       },
       {
-        "symbol": "INDUSTOWER",
-        "price": 380,
-        "compPct": 22.9,
-        "delivPct": 86,
-        "floor": 363.5
+        "symbol": "DALBHARAT",
+        "price": 1694.4,
+        "compPct": 30.3,
+        "delivPct": 92,
+        "floor": 1671.8
       },
       {
-        "symbol": "SAIL",
-        "price": 173.93,
-        "compPct": 22.9,
-        "delivPct": 86,
-        "floor": 158.73
+        "symbol": "NATIONALUM",
+        "price": 353.7,
+        "compPct": 32.5,
+        "delivPct": 92,
+        "floor": 350.25
       }
     ],
     "volumeDrives": [
       {
         "symbol": "LALPATHLAB",
-        "price": 1999.5,
-        "volMult": 1.54,
-        "action": "BUY LALPATHLAB 2000 CE / Spot"
+        "price": 1931.7,
+        "volMult": 3.01,
+        "action": "BUY LALPATHLAB 1940 PE / Short Spot"
+      },
+      {
+        "symbol": "APOLLOTYRE",
+        "price": 407.8,
+        "volMult": 1.68
       }
     ],
-    "distributionTraps": [],
+    "distributionTraps": [
+      {
+        "symbol": "LALPATHLAB",
+        "price": 1931.7,
+        "ceil": 2038.6,
+        "distCeilPct": 5.53
+      },
+      {
+        "symbol": "PAYTM",
+        "price": 1742.3,
+        "ceil": 1855.5,
+        "distCeilPct": 6.5
+      }
+    ],
     "sectorLeadership": [
       {
         "sector": "Public Sector Banking",
-        "coilingCount": 6,
-        "totalStocks": 7
-      },
-      {
-        "sector": "NBFC",
-        "coilingCount": 4,
-        "totalStocks": 5
-      },
-      {
-        "sector": "Automobile",
         "coilingCount": 4,
         "totalStocks": 7
       },
       {
-        "sector": "Metals & Mining",
-        "coilingCount": 4,
-        "totalStocks": 6
-      },
-      {
-        "sector": "Insurance",
-        "coilingCount": 4,
-        "totalStocks": 5
-      },
-      {
-        "sector": "Banking & Financials",
+        "sector": "Information Technology",
         "coilingCount": 3,
-        "totalStocks": 5
-      },
-      {
-        "sector": "Oil Refining & Marketing",
-        "coilingCount": 3,
-        "totalStocks": 3
+        "totalStocks": 12
       },
       {
         "sector": "Real Estate & Property",
         "coilingCount": 3,
         "totalStocks": 5
+      },
+      {
+        "sector": "Insurance",
+        "coilingCount": 3,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Cement & Building Materials",
+        "coilingCount": 2,
+        "totalStocks": 2
+      },
+      {
+        "sector": "Automobile",
+        "coilingCount": 2,
+        "totalStocks": 7
+      },
+      {
+        "sector": "NBFC",
+        "coilingCount": 2,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Oil Refining & Marketing",
+        "coilingCount": 2,
+        "totalStocks": 3
       }
     ]
   },
   "forensicTakeaways": [
     {
       "title": "Macro Index Auction Character",
-      "finding": "Nifty printed a ROTATIONAL_BALANCED_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
+      "finding": "Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "103 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (6 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "62 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

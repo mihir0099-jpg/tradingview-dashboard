@@ -65,6 +65,36 @@ class AngelOneBridge {
       clientName: null,
       loginTime: null
     };
+    this._tokenMap = new Map([
+      ['NIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty 50', symboltoken: '99926000' }],
+      ['BANKNIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty Bank', symboltoken: '99926009' }],
+      ['FINNIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty Fin Services', symboltoken: '99926037' }],
+      ['MIDCPNIFTY', { exchange: 'NSE', tradingsymbol: 'NIFTY MID SELECT', symboltoken: '99926074' }],
+      ['SENSEX', { exchange: 'BSE', tradingsymbol: 'SENSEX', symboltoken: '99919000' }],
+      ['RELIANCE', { exchange: 'NSE', tradingsymbol: 'RELIANCE-EQ', symboltoken: '2885' }],
+      ['HDFCBANK', { exchange: 'NSE', tradingsymbol: 'HDFCBANK-EQ', symboltoken: '1333' }],
+      ['ICICIBANK', { exchange: 'NSE', tradingsymbol: 'ICICIBANK-EQ', symboltoken: '4963' }],
+      ['SBIN', { exchange: 'NSE', tradingsymbol: 'SBIN-EQ', symboltoken: '3045' }],
+      ['INFY', { exchange: 'NSE', tradingsymbol: 'INFY-EQ', symboltoken: '1594' }],
+      ['TCS', { exchange: 'NSE', tradingsymbol: 'TCS-EQ', symboltoken: '11536' }],
+      ['AXISBANK', { exchange: 'NSE', tradingsymbol: 'AXISBANK-EQ', symboltoken: '5900' }],
+      ['BHARTIARTL', { exchange: 'NSE', tradingsymbol: 'BHARTIARTL-EQ', symboltoken: '10604' }],
+      ['LT', { exchange: 'NSE', tradingsymbol: 'LT-EQ', symboltoken: '11483' }],
+      ['KOTAKBANK', { exchange: 'NSE', tradingsymbol: 'KOTAKBANK-EQ', symboltoken: '1922' }],
+      ['TATASTEEL', { exchange: 'NSE', tradingsymbol: 'TATASTEEL-EQ', symboltoken: '3499' }],
+      ['TATAMOTORS', { exchange: 'NSE', tradingsymbol: 'TATAMOTORS-EQ', symboltoken: '3456' }],
+      ['BAJFINANCE', { exchange: 'NSE', tradingsymbol: 'BAJFINANCE-EQ', symboltoken: '317' }],
+      ['MARUTI', { exchange: 'NSE', tradingsymbol: 'MARUTI-EQ', symboltoken: '10999' }],
+      ['SUNPHARMA', { exchange: 'NSE', tradingsymbol: 'SUNPHARMA-EQ', symboltoken: '3351' }],
+      ['TITAN', { exchange: 'NSE', tradingsymbol: 'TITAN-EQ', symboltoken: '3506' }],
+      ['ITC', { exchange: 'NSE', tradingsymbol: 'ITC-EQ', symboltoken: '1660' }],
+      ['ADANIENT', { exchange: 'NSE', tradingsymbol: 'ADANIENT-EQ', symboltoken: '25' }]
+    ]);
+    this._ltpCache = new Map();
+    this._candleCache = new Map();
+    this._searchCache = new Map();
+    this._candleQueue = Promise.resolve();
+    this._lastCandleReqTime = 0;
     this.loadConfig();
   }
 
@@ -72,7 +102,11 @@ class AngelOneBridge {
     try {
       if (fs.existsSync(CONFIG_FILE)) {
         const raw = fs.readFileSync(CONFIG_FILE, 'utf8');
-        this.config = { ...this.config, ...JSON.parse(raw) };
+        const parsed = JSON.parse(raw);
+        this.config = { ...this.config, ...parsed };
+        if (parsed.session && parsed.session.jwtToken) {
+          this.session = { ...this.session, ...parsed.session };
+        }
       }
     } catch (err) {
       console.error('[AngelOne] Error reading config:', err.message);
@@ -83,16 +117,31 @@ class AngelOneBridge {
     try {
       const dir = path.dirname(CONFIG_FILE);
       if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-      fs.writeFileSync(CONFIG_FILE, JSON.stringify(this.config, null, 2), 'utf8');
+      fs.writeFileSync(CONFIG_FILE, JSON.stringify({ ...this.config, session: this.session }, null, 2), 'utf8');
     } catch (err) {
       console.error('[AngelOne] Error saving config:', err.message);
     }
   }
 
-  async login() {
+  async login(force = false) {
     this.loadConfig();
     if (!this.config.apiKey || !this.config.clientCode || !this.config.mpin || !this.config.totpKey) {
       throw new Error('Angel One credentials incomplete in angelone_config.json');
+    }
+
+    if (!force && this.session.jwtToken && this.session.loginTime) {
+      const loginDate = new Date(this.session.loginTime).toDateString();
+      const todayDate = new Date().toDateString();
+      if (loginDate === todayDate) {
+        this.config.connected = true;
+        return {
+          success: true,
+          clientCode: this.config.clientCode,
+          clientName: this.session.clientName,
+          loginTime: this.session.loginTime,
+          cached: true
+        };
+      }
     }
 
     const currentTOTP = generateTOTP(this.config.totpKey);
@@ -209,11 +258,18 @@ class AngelOneBridge {
 
   async searchScrip(exchange, searchscrip) {
     try {
+      if (!this._searchCache) this._searchCache = new Map();
+      const key = `${exchange || 'NSE'}:${searchscrip.toUpperCase().trim()}`;
+      if (this._searchCache.has(key)) {
+        return this._searchCache.get(key);
+      }
       const res = await this._authedPost('https://apiconnect.angelone.in/rest/secure/angelbroking/order/v1/searchScrip', {
         exchange: exchange || 'NSE',
         searchscrip
       });
-      return res?.data || [];
+      const data = res?.data || [];
+      this._searchCache.set(key, data);
+      return data;
     } catch (e) {
       console.warn(`[AngelOne searchScrip Error for ${searchscrip}]:`, e.message);
       return [];
@@ -225,51 +281,67 @@ class AngelOneBridge {
       const todayStr = new Date().toISOString().split('T')[0];
       const from = fromdate || `${todayStr} 09:15`;
       const to = todate || `${todayStr} 15:30`;
-      const res = await this._authedPost('https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData', {
-        exchange,
-        symboltoken,
-        interval,
-        fromdate: from,
-        todate: to
-      });
-      return res?.data || [];
+      const cacheKey = `${exchange}:${symboltoken}:${interval}:${from}:${to}`;
+      const now = Date.now();
+
+      if (!this._candleCache) this._candleCache = new Map();
+      const cached = this._candleCache.get(cacheKey);
+      const ttl = (interval === 'ONE_DAY') ? 300000 : 3000; // 5 mins for daily, 3s for intraday
+      if (cached && (now - cached.time < ttl)) {
+        return cached.data;
+      }
+
+      // Throttle queue to strictly obey Angel One max 3 requests/sec rate limit
+      const execute = async () => {
+        const timeSinceLast = Date.now() - (this._lastCandleReqTime || 0);
+        if (timeSinceLast < 350) {
+          await new Promise(r => setTimeout(r, 350 - timeSinceLast));
+        }
+        this._lastCandleReqTime = Date.now();
+
+        let res = await this._authedPost('https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData', {
+          exchange,
+          symboltoken,
+          interval,
+          fromdate: from,
+          todate: to
+        });
+
+        // If rate limited or 403, retry once after 600ms backoff
+        if (!res?.data && (res?.statusCode === 403 || res?.rawBody?.includes('exceeding') || res?.message?.includes('exceeding'))) {
+          await new Promise(r => setTimeout(r, 600));
+          this._lastCandleReqTime = Date.now();
+          res = await this._authedPost('https://apiconnect.angelone.in/rest/secure/angelbroking/historical/v1/getCandleData', {
+            exchange,
+            symboltoken,
+            interval,
+            fromdate: from,
+            todate: to
+          });
+        }
+
+        if (res?.data && Array.isArray(res.data) && res.data.length > 0) {
+          this._candleCache.set(cacheKey, { time: Date.now(), data: res.data });
+          return res.data;
+        }
+
+        // Return stale cache if available
+        if (cached?.data) return cached.data;
+        return res?.data || [];
+      };
+
+      if (!this._candleQueue) this._candleQueue = Promise.resolve();
+      const result = await (this._candleQueue = this._candleQueue.then(execute, execute));
+      return result;
     } catch (e) {
       console.warn(`[AngelOne getCandles Error]:`, e.message);
-      return [];
+      const cached = this._candleCache?.get(`${exchange}:${symboltoken}:${interval}:${fromdate}:${todate}`);
+      return cached?.data || [];
     }
   }
 
   // High-performance Spot & Index Resolver with token caching & 2s LTP cache
   async resolveAndGetLtp(symbol) {
-    if (!this._tokenMap) {
-      this._tokenMap = new Map([
-        ['NIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty 50', symboltoken: '99926000' }],
-        ['BANKNIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty Bank', symboltoken: '99926009' }],
-        ['FINNIFTY', { exchange: 'NSE', tradingsymbol: 'Nifty Fin Services', symboltoken: '99926037' }],
-        ['MIDCPNIFTY', { exchange: 'NSE', tradingsymbol: 'NIFTY MID SELECT', symboltoken: '99926074' }],
-        ['SENSEX', { exchange: 'BSE', tradingsymbol: 'SENSEX', symboltoken: '99919000' }],
-        ['RELIANCE', { exchange: 'NSE', tradingsymbol: 'RELIANCE-EQ', symboltoken: '2885' }],
-        ['HDFCBANK', { exchange: 'NSE', tradingsymbol: 'HDFCBANK-EQ', symboltoken: '1333' }],
-        ['ICICIBANK', { exchange: 'NSE', tradingsymbol: 'ICICIBANK-EQ', symboltoken: '4963' }],
-        ['SBIN', { exchange: 'NSE', tradingsymbol: 'SBIN-EQ', symboltoken: '3045' }],
-        ['INFY', { exchange: 'NSE', tradingsymbol: 'INFY-EQ', symboltoken: '1594' }],
-        ['TCS', { exchange: 'NSE', tradingsymbol: 'TCS-EQ', symboltoken: '11536' }],
-        ['AXISBANK', { exchange: 'NSE', tradingsymbol: 'AXISBANK-EQ', symboltoken: '5900' }],
-        ['BHARTIARTL', { exchange: 'NSE', tradingsymbol: 'BHARTIARTL-EQ', symboltoken: '10604' }],
-        ['LT', { exchange: 'NSE', tradingsymbol: 'LT-EQ', symboltoken: '11483' }],
-        ['KOTAKBANK', { exchange: 'NSE', tradingsymbol: 'KOTAKBANK-EQ', symboltoken: '1922' }],
-        ['TATASTEEL', { exchange: 'NSE', tradingsymbol: 'TATASTEEL-EQ', symboltoken: '3499' }],
-        ['TATAMOTORS', { exchange: 'NSE', tradingsymbol: 'TATAMOTORS-EQ', symboltoken: '3456' }],
-        ['BAJFINANCE', { exchange: 'NSE', tradingsymbol: 'BAJFINANCE-EQ', symboltoken: '317' }],
-        ['MARUTI', { exchange: 'NSE', tradingsymbol: 'MARUTI-EQ', symboltoken: '10999' }],
-        ['SUNPHARMA', { exchange: 'NSE', tradingsymbol: 'SUNPHARMA-EQ', symboltoken: '3351' }],
-        ['TITAN', { exchange: 'NSE', tradingsymbol: 'TITAN-EQ', symboltoken: '3506' }],
-        ['ITC', { exchange: 'NSE', tradingsymbol: 'ITC-EQ', symboltoken: '1660' }],
-        ['ADANIENT', { exchange: 'NSE', tradingsymbol: 'ADANIENT-EQ', symboltoken: '25' }]
-      ]);
-      this._ltpCache = new Map();
-    }
-
     const clean = symbol.replace('NSE:', '').replace('BSE:', '').toUpperCase().trim();
     const now = Date.now();
 

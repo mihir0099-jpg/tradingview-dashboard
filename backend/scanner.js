@@ -1,6 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { angelOneBridge } from './angelone_bridge.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -256,6 +257,89 @@ try {
 export { getExpiriesForSymbol, findClosestValidOptionSymbol, fetchCandlesForSymbol };
 
 async function fetchCandlesForSymbol(tvBridge, symbol, timeframe, limit = 10) {
+  // 1. PRIMARY SOURCE: Angel One SmartAPI (Instant 0ms Official Exchange Candles)
+  try {
+    const cleanSym = symbol.replace('NSE:', '').replace('BSE:', '').toUpperCase().trim();
+    let exchange = 'NSE';
+    let token = null;
+
+    if (cleanSym === 'NIFTY') token = '99926000';
+    else if (cleanSym === 'BANKNIFTY') token = '99926009';
+    else if (cleanSym === 'FINNIFTY') token = '99926037';
+    else if (cleanSym === 'MIDCPNIFTY') token = '99926074';
+    else if (cleanSym === 'NIFTYFUT') { exchange = 'NFO'; token = '68407'; }
+    else if (cleanSym === 'BANKNIFTYFUT') { exchange = 'NFO'; token = '68390'; }
+    else {
+      const meta = angelOneBridge._tokenMap?.get(cleanSym);
+      if (meta) {
+        token = meta.symboltoken;
+        exchange = meta.exchange || 'NSE';
+      } else {
+        const results = await angelOneBridge.searchScrip('NSE', cleanSym);
+        const match = results.find(r => r.tradingsymbol === cleanSym + '-EQ') || results[0];
+        if (match) {
+          token = match.symboltoken;
+          exchange = match.exchange || 'NSE';
+        }
+      }
+    }
+
+    if (token) {
+      let interval = 'FIVE_MINUTE';
+      let fromDays = 3;
+      if (timeframe === 'D' || timeframe === '1D') {
+        interval = 'ONE_DAY';
+        fromDays = 60;
+      } else if (timeframe === 'M' || timeframe === '1M') {
+        interval = 'ONE_DAY';
+        fromDays = 365;
+      } else if (timeframe === '15') {
+        interval = 'FIFTEEN_MINUTE';
+        fromDays = 5;
+      } else if (timeframe === '30') {
+        interval = 'THIRTY_MINUTE';
+        fromDays = 10;
+      } else if (timeframe === '1') {
+        interval = 'ONE_MINUTE';
+        fromDays = 2;
+      }
+
+      const now = new Date();
+      const past = new Date(now.getTime() - fromDays * 24 * 60 * 60 * 1000);
+      const fromStr = `${past.toISOString().split('T')[0]} 09:15`;
+      const toStr = `${now.toISOString().split('T')[0]} 15:30`;
+
+      const rawCandles = await angelOneBridge.getCandles(exchange, token, interval, fromStr, toStr);
+      if (rawCandles && rawCandles.length > 0) {
+        const seenTimes = new Set();
+        const formatted = [];
+        for (const c of rawCandles) {
+          const time = Math.floor(new Date(c[0]).getTime() / 1000);
+          if (!seenTimes.has(time) && !isNaN(time)) {
+            seenTimes.add(time);
+            formatted.push({
+              time,
+              open: c[1],
+              high: c[2],
+              low: c[3],
+              close: c[4],
+              volume: c[5] || 0
+            });
+          }
+        }
+        formatted.sort((a, b) => a.time - b.time);
+        return formatted.slice(-limit);
+      }
+    }
+  } catch (angelErr) {
+    // Graceful fallback to TV bridge if Angel One network drops
+  }
+
+  // 2. FALLBACK: TradingView Bridge (if session available)
+  if (!tvBridge || !tvBridge.sharedSession) {
+    return [];
+  }
+
   let cleanupFn = null;
   let resolved = false;
   let cachedData = null;
@@ -267,9 +351,9 @@ async function fetchCandlesForSymbol(tvBridge, symbol, timeframe, limit = 10) {
         if (cleanupFn) {
           try { await cleanupFn(); } catch (e) {}
         }
-        reject(new Error(`Timeout fetching candles for ${symbol} on tf ${timeframe}`));
+        resolve([]); // Resolve empty instead of breaking scanner on TV timeout
       }
-    }, 7500); // 7.5s timeout for index & option WebSocket snapshots
+    }, 4500);
 
     const onData = async (data) => {
       if (data.isSnapshot && !resolved) {
@@ -277,7 +361,7 @@ async function fetchCandlesForSymbol(tvBridge, symbol, timeframe, limit = 10) {
           resolved = true;
           clearTimeout(timeout);
           try { await cleanupFn(); } catch (err) {}
-          resolve(data.candles);
+          resolve(data.candles || []);
         } else {
           cachedData = data.candles;
         }
@@ -291,7 +375,7 @@ async function fetchCandlesForSymbol(tvBridge, symbol, timeframe, limit = 10) {
         if (cleanupFn) {
           try { await cleanupFn(); } catch (e) {}
         }
-        reject(err);
+        resolve([]);
       }
     };
 
@@ -313,7 +397,7 @@ async function fetchCandlesForSymbol(tvBridge, symbol, timeframe, limit = 10) {
         if (!resolved) {
           resolved = true;
           clearTimeout(timeout);
-          reject(err);
+          resolve([]);
         }
       });
   });
@@ -473,9 +557,10 @@ export async function runScan(tvBridge, timeframe) {
     console.log('[Scanner] Outside active market hours. Running scan to populate cache for confluences & early picks (live signals touch logging is disabled).');
   }
   
-  const hasToken = process.env.TRADINGVIEW_TOKEN && process.env.TRADINGVIEW_TOKEN.length > 15;
+  const hasAngelOne = angelOneBridge.config.connected || !!angelOneBridge.session?.jwtToken;
+  const hasToken = (process.env.TRADINGVIEW_TOKEN && process.env.TRADINGVIEW_TOKEN.length > 15) || hasAngelOne;
   if (!hasToken) {
-    console.log(`[Scanner] No valid TRADINGVIEW_TOKEN configured. Serving ${timeframe} scan from persistent disk cache.`);
+    console.log(`[Scanner] No valid TRADINGVIEW_TOKEN or Angel One session. Serving ${timeframe} scan from persistent disk cache.`);
     scannerCache.isScanning[timeframe] = false;
     return;
   }

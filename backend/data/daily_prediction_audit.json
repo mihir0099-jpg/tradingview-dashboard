@@ -2,16 +2,16 @@
   {
     "date": "2026-09-16",
     "timeframe": "DAILY",
-    "actual_range": 115,
-    "predicted_range": 156,
-    "range_error_pts": 41,
-    "range_accuracy_pct": 64.35,
-    "ib_range": 115,
+    "actual_range": 164.7,
+    "predicted_range": 224,
+    "range_error_pts": 59.3,
+    "range_accuracy_pct": 64,
+    "ib_range": 164.7,
     "is_wide_ib": true,
     "day_type": "NORMAL_DAY",
-    "mistake_diagnosed": "Range deviated by 41 pts. Check VIX shifts and day-of-week multipliers.",
+    "mistake_diagnosed": "Range deviated by 59.3 pts. Check VIX shifts and day-of-week multipliers.",
     "remedy_applied": "Apply 1.36x compression cap on morning climax.",
-    "logged_at": "2026-09-16T04:08:30.320Z"
+    "logged_at": "2026-09-16T04:20:20.111Z"
   },
   {
     "date": "2026-09-15",
