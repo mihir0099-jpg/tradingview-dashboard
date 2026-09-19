@@ -1,0 +1,45 @@
+{
+  "asOfDate": "18-09-2026",
+  "fetchedAt": "2026-09-19T05:26:48.164Z",
+  "cashMarket": {
+    "fiiNetCrores": 599.54,
+    "fiiBuyCrores": 38461.63,
+    "fiiSellCrores": 37862.09,
+    "diiNetCrores": 1019.69,
+    "diiBuyCrores": 17310.04,
+    "diiSellCrores": 16290.35,
+    "cashDate": "18-Sep-2026"
+  },
+  "fnoDerivatives": {
+    "fii": {
+      "futureIndexLong": 48406,
+      "futureIndexShort": 336834,
+      "netIndexFutures": -288428,
+      "longRatioPct": 12.6,
+      "netIndexCall": -268402,
+      "netIndexPut": 630453,
+      "stance": "HEAVILY_SHORT"
+    },
+    "pro": {
+      "netIndexFutures": 34041,
+      "longRatioPct": 67.9,
+      "netIndexCall": 29767,
+      "netIndexPut": 108858
+    },
+    "clientRetail": {
+      "netIndexFutures": 241420,
+      "longRatioPct": 84,
+      "netIndexCall": 233015,
+      "netIndexPut": -796597
+    },
+    "dii": {
+      "netIndexFutures": 12967,
+      "longRatioPct": 59.5
+    }
+  },
+  "verdict": {
+    "bias": "EXTREME_BEARISH_TRAP_RISK",
+    "message": "FIIs hold a massive 2,88,428 net short contracts in Index Futures (12.6% Long). Extreme short concentration means any sharp intraday dip will see aggressive short covering rallies, while resistance near POC will be defended.",
+    "cashFlowDirection": "NET_INFLOW"
+  }
+}

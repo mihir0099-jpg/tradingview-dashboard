@@ -8,10 +8,18 @@
     "start": "node backend/supervisor.js",
     "dev:backend": "npm run dev --prefix backend",
     "dev:frontend": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "pm2:stop": "pm2 stop trading-engine",
+    "pm2:restart": "pm2 restart trading-engine",
+    "pm2:status": "pm2 status",
+    "pm2:logs": "pm2 logs trading-engine",
+    "pm2:monit": "pm2 monit",
+    "backup": "python scripts/backup.py"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "pm2": "^7.0.4"
   },
   "dependencies": {
     "tunnelmole": "^2.4.0"

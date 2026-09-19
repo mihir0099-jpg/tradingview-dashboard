@@ -1,400 +1,568 @@
 [
   {
-    "timestamp": 1789524832633,
-    "istTime": "16/9/2026, 7:43:52 am",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
+    "timestamp": 1789794791931,
+    "istTime": "19/9/2026, 10:43:11 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789443401911,
-    "istTime": "15/9/2026, 9:06:41 am",
-    "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
+    "timestamp": 1789794282114,
+    "istTime": "19/9/2026, 10:34:42 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789439917284,
-    "istTime": "15/9/2026, 8:08:37 am",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
+    "timestamp": 1789793589530,
+    "istTime": "19/9/2026, 10:23:09 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789392517794,
-    "istTime": "14/9/2026, 6:58:37 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
+    "timestamp": 1789791974441,
+    "istTime": "19/9/2026, 9:56:14 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789392511587,
-    "istTime": "14/9/2026, 6:58:31 pm",
+    "timestamp": 1789791695569,
+    "istTime": "19/9/2026, 9:51:35 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789790916558,
+    "istTime": "19/9/2026, 9:38:36 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789789698084,
+    "istTime": "19/9/2026, 9:18:18 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789789375563,
+    "istTime": "19/9/2026, 9:12:55 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789788653841,
+    "istTime": "19/9/2026, 9:00:53 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789788065662,
+    "istTime": "19/9/2026, 8:51:05 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789788032040,
+    "istTime": "19/9/2026, 8:50:32 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789787337329,
+    "istTime": "19/9/2026, 8:38:57 am",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789730495106,
+    "istTime": "18/9/2026, 4:51:35 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789730489624,
+    "istTime": "18/9/2026, 4:51:29 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789728688484,
+    "istTime": "18/9/2026, 4:21:28 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789728684346,
+    "istTime": "18/9/2026, 4:21:24 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789727552780,
+    "istTime": "18/9/2026, 4:02:32 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789727548885,
+    "istTime": "18/9/2026, 4:02:28 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789727420519,
+    "istTime": "18/9/2026, 4:00:20 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789727414560,
+    "istTime": "18/9/2026, 4:00:14 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789727411934,
+    "istTime": "18/9/2026, 4:00:11 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789653028826,
+    "istTime": "17/9/2026, 7:20:28 pm",
     "component": "FrontendRoot",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789392498421,
-    "istTime": "14/9/2026, 6:58:18 pm",
+    "timestamp": 1789653020819,
+    "istTime": "17/9/2026, 7:20:20 pm",
     "component": "HealthCheck",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789392391536,
-    "istTime": "14/9/2026, 6:56:31 pm",
+    "timestamp": 1789634848500,
+    "istTime": "17/9/2026, 2:17:28 pm",
     "component": "FrontendRoot",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789392382036,
-    "istTime": "14/9/2026, 6:56:22 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789392375250,
-    "istTime": "14/9/2026, 6:56:15 pm",
+    "timestamp": 1789634848494,
+    "istTime": "17/9/2026, 2:17:28 pm",
     "component": "FrontendRoot",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789392368536,
-    "istTime": "14/9/2026, 6:56:08 pm",
+    "timestamp": 1789634833668,
+    "istTime": "17/9/2026, 2:17:13 pm",
     "component": "HealthCheck",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789392247595,
-    "istTime": "14/9/2026, 6:54:07 pm",
+    "timestamp": 1789634833664,
+    "istTime": "17/9/2026, 2:17:13 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634711350,
+    "istTime": "17/9/2026, 2:15:11 pm",
     "component": "FrontendRoot",
     "error": "fetch failed",
     "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789392243874,
-    "istTime": "14/9/2026, 6:54:03 pm",
+    "timestamp": 1789634710535,
+    "istTime": "17/9/2026, 2:15:10 pm",
     "component": "HealthCheck",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789392232837,
-    "istTime": "14/9/2026, 6:53:52 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "timestamp": 1789634708070,
+    "istTime": "17/9/2026, 2:15:08 pm",
+    "component": "FrontendRoot",
+    "error": "fetch failed",
+    "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789283094122,
-    "istTime": "13/9/2026, 12:34:54 pm",
+    "timestamp": 1789634708041,
+    "istTime": "17/9/2026, 2:15:08 pm",
     "component": "HealthCheck",
     "error": "fetch failed",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789099103802,
-    "istTime": "11/9/2026, 9:28:23 am",
+    "timestamp": 1789634585376,
+    "istTime": "17/9/2026, 2:13:05 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634585368,
+    "istTime": "17/9/2026, 2:13:05 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634579342,
+    "istTime": "17/9/2026, 2:12:59 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634461367,
+    "istTime": "17/9/2026, 2:11:01 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634453740,
+    "istTime": "17/9/2026, 2:10:53 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634453730,
+    "istTime": "17/9/2026, 2:10:53 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634447524,
+    "istTime": "17/9/2026, 2:10:47 pm",
+    "component": "HealthCheck",
+    "error": "fetch failed",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634339605,
+    "istTime": "17/9/2026, 2:08:59 pm",
+    "component": "FrontendRoot",
+    "error": "fetch failed",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634339577,
+    "istTime": "17/9/2026, 2:08:59 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634339574,
+    "istTime": "17/9/2026, 2:08:59 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634330033,
+    "istTime": "17/9/2026, 2:08:50 pm",
+    "component": "HealthCheck",
+    "error": "fetch failed",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634220947,
+    "istTime": "17/9/2026, 2:07:00 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634220938,
+    "istTime": "17/9/2026, 2:07:00 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634214392,
+    "istTime": "17/9/2026, 2:06:54 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634212900,
+    "istTime": "17/9/2026, 2:06:52 pm",
+    "component": "HealthCheck",
+    "error": "fetch failed",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634101772,
+    "istTime": "17/9/2026, 2:05:01 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634097559,
+    "istTime": "17/9/2026, 2:04:57 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634093663,
+    "istTime": "17/9/2026, 2:04:53 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789634090758,
+    "istTime": "17/9/2026, 2:04:50 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789617275317,
+    "istTime": "17/9/2026, 9:24:35 am",
     "component": "MemoryShield",
-    "error": "High RSS Memory (558 MB)",
+    "error": "High RSS Memory (534 MB)",
     "remedyAction": "Flushed non-critical volatile caches",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789099103798,
-    "istTime": "11/9/2026, 9:28:23 am",
+    "timestamp": 1789617275312,
+    "istTime": "17/9/2026, 9:24:35 am",
     "component": "PatternForecaster",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Restored healthy forecast cache in memory",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789098977823,
-    "istTime": "11/9/2026, 9:26:17 am",
+    "timestamp": 1789617149140,
+    "istTime": "17/9/2026, 9:22:29 am",
     "component": "MemoryShield",
-    "error": "High RSS Memory (503 MB)",
+    "error": "High RSS Memory (484 MB)",
     "remedyAction": "Flushed non-critical volatile caches",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788858579751,
-    "istTime": "8/9/2026, 2:39:39 pm",
+    "timestamp": 1789614553470,
+    "istTime": "17/9/2026, 8:39:13 am",
+    "component": "PatternForecaster",
+    "error": "fetch failed",
+    "remedyAction": "Restored healthy forecast cache in memory",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789614553408,
+    "istTime": "17/9/2026, 8:39:13 am",
+    "component": "PatternForecaster",
+    "error": "fetch failed",
+    "remedyAction": "Restored healthy forecast cache in memory",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789614553328,
+    "istTime": "17/9/2026, 8:39:13 am",
+    "component": "PatternForecaster",
+    "error": "fetch failed",
+    "remedyAction": "Restored healthy forecast cache in memory",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789614552899,
+    "istTime": "17/9/2026, 8:39:12 am",
     "component": "RiverMetaLearner",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788858573616,
-    "istTime": "8/9/2026, 2:39:33 pm",
-    "component": "ErrorAnalysisEngine",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858563597,
-    "istTime": "8/9/2026, 2:39:23 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858541544,
-    "istTime": "8/9/2026, 2:39:01 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858532287,
-    "istTime": "8/9/2026, 2:38:52 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858462523,
-    "istTime": "8/9/2026, 2:37:42 pm",
+    "timestamp": 1789614552748,
+    "istTime": "17/9/2026, 8:39:12 am",
     "component": "RiverMetaLearner",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788858450788,
-    "istTime": "8/9/2026, 2:37:30 pm",
-    "component": "ErrorAnalysisEngine",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858439779,
-    "istTime": "8/9/2026, 2:37:19 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858420224,
-    "istTime": "8/9/2026, 2:37:00 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858409468,
-    "istTime": "8/9/2026, 2:36:49 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858337688,
-    "istTime": "8/9/2026, 2:35:37 pm",
-    "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858327362,
-    "istTime": "8/9/2026, 2:35:27 pm",
-    "component": "ErrorAnalysisEngine",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858315914,
-    "istTime": "8/9/2026, 2:35:15 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858293950,
-    "istTime": "8/9/2026, 2:34:53 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858283894,
-    "istTime": "8/9/2026, 2:34:43 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858214235,
-    "istTime": "8/9/2026, 2:33:34 pm",
+    "timestamp": 1789614552149,
+    "istTime": "17/9/2026, 8:39:11 am",
     "component": "PatternForecaster",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Restored healthy forecast cache in memory",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788858207707,
-    "istTime": "8/9/2026, 2:33:27 pm",
-    "component": "RiverMetaLearner",
+    "timestamp": 1789596073149,
+    "istTime": "17/9/2026, 3:31:13 am",
+    "component": "HealthCheck",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788858195414,
-    "istTime": "8/9/2026, 2:33:15 pm",
-    "component": "ErrorAnalysisEngine",
+    "timestamp": 1789596072058,
+    "istTime": "17/9/2026, 3:31:12 am",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789551725596,
+    "istTime": "16/9/2026, 3:12:05 pm",
+    "component": "FrontendRoot",
     "error": "fetch failed",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858189403,
-    "istTime": "8/9/2026, 2:33:09 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858173826,
-    "istTime": "8/9/2026, 2:32:53 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
     "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788858162160,
-    "istTime": "8/9/2026, 2:32:42 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858087941,
-    "istTime": "8/9/2026, 2:31:27 pm",
-    "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858080793,
-    "istTime": "8/9/2026, 2:31:20 pm",
-    "component": "ErrorAnalysisEngine",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858074260,
-    "istTime": "8/9/2026, 2:31:14 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858054869,
-    "istTime": "8/9/2026, 2:30:54 pm",
+    "timestamp": 1789551725589,
+    "istTime": "16/9/2026, 3:12:05 pm",
     "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788858043918,
-    "istTime": "8/9/2026, 2:30:43 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857977048,
-    "istTime": "8/9/2026, 2:29:37 pm",
-    "component": "PatternForecaster",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Restored healthy forecast cache in memory",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857967559,
-    "istTime": "8/9/2026, 2:29:27 pm",
-    "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857957657,
-    "istTime": "8/9/2026, 2:29:17 pm",
-    "component": "ErrorAnalysisEngine",
     "error": "fetch failed",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857951200,
-    "istTime": "8/9/2026, 2:29:11 pm",
-    "component": "PcrVelocity",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1788857935346,
-    "istTime": "8/9/2026, 2:28:55 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
     "remedyAction": "Reloaded static index.html into RAM cache",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788857923564,
-    "istTime": "8/9/2026, 2:28:43 pm",
+    "timestamp": 1789551725555,
+    "istTime": "16/9/2026, 3:12:05 pm",
     "component": "HealthCheck",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1788857847598,
-    "istTime": "8/9/2026, 2:27:27 pm",
-    "component": "RiverMetaLearner",
+    "timestamp": 1789551725549,
+    "istTime": "16/9/2026, 3:12:05 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789551366642,
+    "istTime": "16/9/2026, 3:06:06 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789551362083,
+    "istTime": "16/9/2026, 3:06:02 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789551356723,
+    "istTime": "16/9/2026, 3:05:56 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789551124074,
+    "istTime": "16/9/2026, 3:02:04 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789551124066,
+    "istTime": "16/9/2026, 3:02:04 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1789551116119,
+    "istTime": "16/9/2026, 3:01:56 pm",
+    "component": "HealthCheck",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"

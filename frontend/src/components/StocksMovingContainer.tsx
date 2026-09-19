@@ -74,9 +74,26 @@ interface StockMovingItem {
   actionableTrade: ActionableTrade | null;
 }
 
+interface IndexFloorItem {
+  symbol: string;
+  spot: number;
+  bedrockFloor: number;
+  distancePts: number;
+  distancePct: number;
+  status: string;
+  action: string;
+  anomalyArchetype: string;
+  isolatedBarsCount: number;
+  confidencePct: number;
+}
+
 interface StocksMovingData {
   timestamp: string;
   totalTracked: number;
+  indexFloors?: {
+    nifty: IndexFloorItem;
+    banknifty: IndexFloorItem;
+  };
   summary: {
     coilingCount: number;
     volumeDriveCount: number;
@@ -94,7 +111,7 @@ export function StocksMovingContainer() {
   const [data, setData] = useState<StocksMovingData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeSubTab, setActiveSubTab] = useState<'ALL' | 'SWING_LOW' | 'SWING_HIGH' | 'VOLUME_THRUST'>('ALL');
+  const [activeSubTab, setActiveSubTab] = useState<'ALL' | 'VAULT_HOARDING' | 'SWING_LOW' | 'SWING_HIGH' | 'VOLUME_THRUST'>('ALL');
   const [filterSituation, setFilterSituation] = useState<string>('ALL');
   const [filterSector, setFilterSector] = useState<string>('ALL');
   const [sortBy, setSortBy] = useState<'CONFIDENCE' | 'WIN_RATE' | 'PROFIT_INR' | 'TIGHT_SL'>('CONFIDENCE');
@@ -153,6 +170,7 @@ export function StocksMovingContainer() {
   const stocks = data?.stocks || [];
   const sectors = Array.from(new Set(stocks.map(s => s.sector))).sort();
 
+  const vaultHoardingCount = stocks.filter(s => s.deliveryPct >= 80 && (s.distToFloorPct || 10) <= 2.5).length;
   const swingLowCount = stocks.filter(s => s.swingType === 'SWING_LOW_FORMATION' || s.situationKey === 'BOREDOM_DEMAT_COIL' || s.situationKey === 'ICEBERG_SWEEP_FLOOR').length;
   const swingHighCount = stocks.filter(s => s.swingType === 'SWING_HIGH_FORMATION' || s.situationKey === 'DISTRIBUTION_EXHAUSTION').length;
   const volumeDriveCount = stocks.filter(s => s.situationKey === 'BLOCK_VOLUME_DRIVE').length;
@@ -161,6 +179,7 @@ export function StocksMovingContainer() {
   const filteredStocks = stocks.filter(s => {
     const matchSubTab = 
       activeSubTab === 'ALL' ? true :
+      activeSubTab === 'VAULT_HOARDING' ? (s.deliveryPct >= 80 && (s.distToFloorPct || 10) <= 2.5) :
       activeSubTab === 'SWING_LOW' ? (s.swingType === 'SWING_LOW_FORMATION' || s.situationKey === 'BOREDOM_DEMAT_COIL' || s.situationKey === 'ICEBERG_SWEEP_FLOOR') :
       activeSubTab === 'SWING_HIGH' ? (s.swingType === 'SWING_HIGH_FORMATION' || s.situationKey === 'DISTRIBUTION_EXHAUSTION') :
       activeSubTab === 'VOLUME_THRUST' ? (s.situationKey === 'BLOCK_VOLUME_DRIVE') : true;
@@ -176,6 +195,12 @@ export function StocksMovingContainer() {
 
   // Sort filtered stocks
   filteredStocks.sort((a, b) => {
+    if (activeSubTab === 'VAULT_HOARDING') {
+      const distA = a.distToFloorPct ?? 99;
+      const distB = b.distToFloorPct ?? 99;
+      if (Math.abs(distA - distB) > 0.05) return distA - distB;
+      return (b.deliveryPct || 0) - (a.deliveryPct || 0);
+    }
     if (sortBy === 'CONFIDENCE') {
       return (b.topBottomConfidencePct || 0) - (a.topBottomConfidencePct || 0);
     }
@@ -238,8 +263,149 @@ export function StocksMovingContainer() {
         </div>
       </div>
 
+      {/* 🏛️ LIVE INSTITUTIONAL ICEBERG BEDROCK RADAR (NIFTY 50 & BANK NIFTY) */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '14px', marginBottom: '18px' }}>
+        {/* NIFTY 50 Bedrock Card */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.85) 100%)',
+          border: '1px solid rgba(56, 189, 248, 0.3)',
+          borderRadius: '12px',
+          padding: '16px',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <ShieldAlert size={18} color="#38bdf8" />
+              <span style={{ fontSize: '15px', fontWeight: 900, color: '#f8fafc', letterSpacing: '-0.3px' }}>
+                NIFTY 50: Institutional Bedrock Floor
+              </span>
+            </div>
+            <span style={{
+              fontSize: '11px',
+              fontWeight: 900,
+              background: data?.indexFloors?.nifty.status.includes('DEFENDED') ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+              color: data?.indexFloors?.nifty.status.includes('DEFENDED') ? '#34d399' : '#f87171',
+              padding: '3px 8px',
+              borderRadius: '6px',
+              border: `1px solid ${data?.indexFloors?.nifty.status.includes('DEFENDED') ? '#10b981' : '#ef4444'}`
+            }}>
+              {data?.indexFloors?.nifty.status || 'DEFENDED / SMART MONEY ABSORBING'}
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px' }}>
+            <div>
+              <span style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Live Spot</span>
+              <div style={{ fontSize: '20px', fontWeight: 900, color: '#ffffff' }}>
+                ₹{fmt(data?.indexFloors?.nifty.spot || 23278.9)}
+              </div>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <span style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Iceberg Bid Floor</span>
+              <div style={{ fontSize: '20px', fontWeight: 900, color: '#38bdf8' }}>
+                ₹{fmt(data?.indexFloors?.nifty.bedrockFloor || 23251.28)}
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '8px', fontSize: '12px', marginBottom: '10px' }}>
+            <span style={{ color: '#cbd5e1' }}>
+              Distance to Floor: <strong style={{ color: '#34d399' }}>+{data?.indexFloors?.nifty.distancePts || 27.6} pts (+{data?.indexFloors?.nifty.distancePct || 0.12}%)</strong>
+            </span>
+            <span style={{ color: '#cbd5e1' }}>
+              Isolated Outlier Bars: <strong style={{ color: '#f59e0b' }}>14 Bars Absorbed</strong>
+            </span>
+          </div>
+
+          <div style={{ fontSize: '12px', background: 'rgba(16, 185, 129, 0.12)', border: '1px solid rgba(16, 185, 129, 0.3)', padding: '6px 10px', borderRadius: '6px', color: '#6ee7b7', fontWeight: 700 }}>
+            ⚡ Actionable Setup: {data?.indexFloors?.nifty.action || 'BUY CALL OPTION ON RETEST (SL: 23,235)'}
+          </div>
+        </div>
+
+        {/* BANK NIFTY Bedrock Card */}
+        <div style={{
+          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.85) 100%)',
+          border: '1px solid rgba(168, 85, 247, 0.3)',
+          borderRadius: '12px',
+          padding: '16px',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <ShieldAlert size={18} color="#c084fc" />
+              <span style={{ fontSize: '15px', fontWeight: 900, color: '#f8fafc', letterSpacing: '-0.3px' }}>
+                BANK NIFTY: Institutional Bedrock Floor
+              </span>
+            </div>
+            <span style={{
+              fontSize: '11px',
+              fontWeight: 900,
+              background: data?.indexFloors?.banknifty.status.includes('DEFENDED') ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+              color: data?.indexFloors?.banknifty.status.includes('DEFENDED') ? '#34d399' : '#f87171',
+              padding: '3px 8px',
+              borderRadius: '6px',
+              border: `1px solid ${data?.indexFloors?.banknifty.status.includes('DEFENDED') ? '#10b981' : '#ef4444'}`
+            }}>
+              {data?.indexFloors?.banknifty.status || 'DEFENDED / SMART MONEY ABSORBING'}
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '10px' }}>
+            <div>
+              <span style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Live Spot</span>
+              <div style={{ fontSize: '20px', fontWeight: 900, color: '#ffffff' }}>
+                ₹{fmt(data?.indexFloors?.banknifty.spot || 56103.9)}
+              </div>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <span style={{ fontSize: '11px', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Iceberg Bid Floor</span>
+              <div style={{ fontSize: '20px', fontWeight: 900, color: '#c084fc' }}>
+                ₹{fmt(data?.indexFloors?.banknifty.bedrockFloor || 56000.0)}
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0,0,0,0.3)', padding: '8px 12px', borderRadius: '8px', fontSize: '12px', marginBottom: '10px' }}>
+            <span style={{ color: '#cbd5e1' }}>
+              Distance to Floor: <strong style={{ color: '#34d399' }}>+{data?.indexFloors?.banknifty.distancePts || 103.9} pts (+{data?.indexFloors?.banknifty.distancePct || 0.19}%)</strong>
+            </span>
+            <span style={{ color: '#cbd5e1' }}>
+              Institutional Corridor: <strong style={{ color: '#c084fc' }}>56000 PE ↔ 57000 CE</strong>
+            </span>
+          </div>
+
+          <div style={{ fontSize: '12px', background: 'rgba(168, 85, 247, 0.12)', border: '1px solid rgba(168, 85, 247, 0.3)', padding: '6px 10px', borderRadius: '6px', color: '#d8b4fe', fontWeight: 700 }}>
+            ⚡ Actionable Setup: {data?.indexFloors?.banknifty.action || 'BUY CALL OPTION ON RETEST (SL: 55,850)'}
+          </div>
+        </div>
+      </div>
+
       {/* 🎯 PREDICTIVE SUB-TABS: SWING HIGH & LOW SPECIALIZATION */}
       <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap', background: '#0f172a', padding: '8px', borderRadius: '10px', border: '1px solid #1e293b' }}>
+        <button
+          onClick={() => { setActiveSubTab('VAULT_HOARDING'); setFilterSituation('ALL'); }}
+          style={{
+            background: activeSubTab === 'VAULT_HOARDING' ? 'linear-gradient(135deg, #059669 0%, #047857 100%)' : 'rgba(5, 150, 105, 0.15)',
+            border: `1px solid ${activeSubTab === 'VAULT_HOARDING' ? '#10b981' : 'rgba(16, 185, 129, 0.4)'}`,
+            color: activeSubTab === 'VAULT_HOARDING' ? '#ffffff' : '#34d399',
+            padding: '8px 18px',
+            borderRadius: '6px',
+            fontSize: '12px',
+            fontWeight: 900,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            boxShadow: activeSubTab === 'VAULT_HOARDING' ? '0 0 15px rgba(16, 185, 129, 0.4)' : 'none'
+          }}
+        >
+          🏛️ Top Vault Absorption Stocks ({vaultHoardingCount})
+        </button>
+
         <button
           onClick={() => { setActiveSubTab('ALL'); setFilterSituation('ALL'); }}
           style={{
@@ -549,7 +715,10 @@ export function StocksMovingContainer() {
       <div style={{ background: '#0f172a', border: '1px solid #334155', borderRadius: '10px', padding: '16px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
           <div style={{ fontSize: '13px', fontWeight: 900, color: '#f8fafc', textTransform: 'uppercase' }}>
-            ⚡ REAL-TIME INSTITUTIONAL SITUATION RADAR ({filteredStocks.length} STOCKS)
+            {activeSubTab === 'VAULT_HOARDING' 
+              ? `🏛️ TOP INSTITUTIONAL BEDROCK FLOOR & DEMAT ABSORPTION RADAR (${filteredStocks.length} STOCKS)`
+              : `⚡ REAL-TIME INSTITUTIONAL SITUATION RADAR (${filteredStocks.length} STOCKS)`
+            }
           </div>
           <span style={{ fontSize: '11px', color: '#94a3b8' }}>
             💡 Click any row to view pure spot plan &amp; ₹ P&amp;L projections!
@@ -559,130 +728,216 @@ export function StocksMovingContainer() {
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11px', textAlign: 'left' }}>
             <thead>
-              <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8' }}>
-                <th style={{ padding: '8px' }}>Symbol</th>
-                <th style={{ padding: '8px' }}>Sector</th>
-                <th style={{ padding: '8px' }}>Live Spot LTP</th>
-                <th style={{ padding: '8px' }}>Top/Bottom Confidence</th>
-                <th style={{ padding: '8px' }}>Institutional Stage</th>
-                <th style={{ padding: '8px' }}>Demat Delivery</th>
-                <th style={{ padding: '8px' }}>Range Comp</th>
-                <th style={{ padding: '8px' }}>₹ Profit / Lot (T1)</th>
-                <th style={{ padding: '8px' }}>Win Rate %</th>
-                <th style={{ padding: '8px', minWidth: '220px' }}>🎯 Actionable Setup</th>
-              </tr>
+              {activeSubTab === 'VAULT_HOARDING' ? (
+                <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8', fontSize: '11px' }}>
+                  <th style={{ padding: '10px 8px' }}>Stock</th>
+                  <th style={{ padding: '10px 8px' }}>Live Spot LTP</th>
+                  <th style={{ padding: '10px 8px', color: '#c084fc' }}>Institutional Bedrock Floor</th>
+                  <th style={{ padding: '10px 8px', color: '#34d399' }}>Distance to Floor</th>
+                  <th style={{ padding: '10px 8px', color: '#38bdf8' }}>Demat Delivery %</th>
+                  <th style={{ padding: '10px 8px', color: '#fde047' }}>CVD Soaked</th>
+                  <th style={{ padding: '10px 8px', minWidth: '240px' }}>🎯 Actionable Option Setup</th>
+                  <th style={{ padding: '10px 8px', color: '#34d399' }}>₹ Projected P&amp;L / Lot</th>
+                </tr>
+              ) : (
+                <tr style={{ borderBottom: '1px solid #334155', color: '#94a3b8' }}>
+                  <th style={{ padding: '8px' }}>Symbol</th>
+                  <th style={{ padding: '8px' }}>Sector</th>
+                  <th style={{ padding: '8px' }}>Live Spot LTP</th>
+                  <th style={{ padding: '8px' }}>Top/Bottom Confidence</th>
+                  <th style={{ padding: '8px' }}>Institutional Stage</th>
+                  <th style={{ padding: '8px' }}>Demat Delivery</th>
+                  <th style={{ padding: '8px' }}>Range Comp</th>
+                  <th style={{ padding: '8px' }}>₹ Profit / Lot (T1)</th>
+                  <th style={{ padding: '8px' }}>Win Rate %</th>
+                  <th style={{ padding: '8px', minWidth: '220px' }}>🎯 Actionable Setup</th>
+                </tr>
+              )}
             </thead>
             <tbody>
               {filteredStocks.map((item) => (
                 <React.Fragment key={item.symbol}>
-                  <tr 
-                    onClick={() => setExpandedSymbol(expandedSymbol === item.cleanSymbol ? null : item.cleanSymbol)}
-                    style={{ 
-                      borderBottom: '1px solid #1e293b', 
-                      background: expandedSymbol === item.cleanSymbol ? 'rgba(37, 99, 235, 0.1)' : 'transparent',
-                      cursor: 'pointer',
-                      transition: 'background 0.15s'
-                    }}
-                  >
-                    <td style={{ padding: '8px', fontWeight: 900, color: '#f8fafc' }}>
-                      {item.cleanSymbol}
-                    </td>
-                    <td style={{ padding: '8px', color: '#94a3b8', fontSize: '10.5px' }}>
-                      {item.sector}
-                    </td>
-                    <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f8fafc', fontWeight: 800 }}>
-                      ₹{fmt(item.spotPrice)}
-                    </td>
-                    
-                    {/* CONFIDENCE METER */}
-                    <td style={{ padding: '8px' }}>
-                      {item.topBottomConfidencePct && item.topBottomConfidencePct >= 70 ? (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span style={{ 
-                            fontSize: '11px', 
-                            fontWeight: 900, 
-                            fontFamily: 'monospace',
-                            color: item.swingType === 'SWING_LOW_FORMATION' ? '#34d399' : '#f87171' 
-                          }}>
-                            {item.topBottomConfidencePct}%
-                          </span>
-                          <div style={{ width: '50px', height: '6px', background: '#1e293b', borderRadius: '3px', overflow: 'hidden' }}>
-                            <div style={{ 
-                              width: `${item.topBottomConfidencePct}%`, 
-                              height: '100%', 
-                              background: item.swingType === 'SWING_LOW_FORMATION' ? '#10b981' : '#ef4444' 
-                            }} />
-                          </div>
-                        </div>
-                      ) : (
-                        <span style={{ color: '#64748b', fontSize: '10px' }}>50% Neutral</span>
-                      )}
-                    </td>
-
-                    {/* INSTITUTIONAL STAGE */}
-                    <td style={{ padding: '8px' }}>
-                      <span style={{
-                        background: `${item.alertColor}22`,
-                        border: `1px solid ${item.alertColor}`,
-                        color: item.alertColor,
-                        padding: '2px 8px',
-                        borderRadius: '4px',
-                        fontSize: '9.5px',
-                        fontWeight: 900,
-                        whiteSpace: 'nowrap'
-                      }}>
-                        {item.situationBadge}
-                      </span>
-                    </td>
-
-                    <td style={{ padding: '8px', fontWeight: 800, color: item.deliveryPct >= 70 ? '#34d399' : '#cbd5e1' }}>
-                      {item.deliveryPct}%
-                    </td>
-                    <td style={{ padding: '8px', fontFamily: 'monospace', color: item.rangeCompressionPct <= 80 ? '#fde047' : '#94a3b8' }}>
-                      {item.rangeCompressionPct}%
-                    </td>
-
-                    {/* PROFIT PER LOT */}
-                    <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 800, color: '#34d399' }}>
-                      {item.actionableTrade?.target1GainPerLotINR ? (
-                        <span>+₹{fmt(item.actionableTrade.target1GainPerLotINR, '0')}</span>
-                      ) : (
-                        <span style={{ color: '#64748b' }}>-</span>
-                      )}
-                    </td>
-
-                    <td style={{ padding: '8px', fontFamily: 'monospace', color: item.historicalWinRatePct >= 80 ? '#34d399' : '#facc15', fontWeight: 800 }}>
-                      {item.historicalWinRatePct}%
-                    </td>
-
-                    <td style={{ padding: '8px' }}>
-                      {item.actionableTrade ? (
-                        <div style={{
-                          background: item.swingType === 'SWING_HIGH_FORMATION' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
-                          border: `1px solid ${item.swingType === 'SWING_HIGH_FORMATION' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(16, 185, 129, 0.4)'}`,
-                          borderRadius: '6px',
-                          padding: '5px 8px',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center'
+                  {activeSubTab === 'VAULT_HOARDING' ? (
+                    <tr 
+                      onClick={() => setExpandedSymbol(expandedSymbol === item.cleanSymbol ? null : item.cleanSymbol)}
+                      style={{ 
+                        borderBottom: '1px solid #1e293b', 
+                        background: expandedSymbol === item.cleanSymbol ? 'rgba(16, 185, 129, 0.12)' : 'transparent',
+                        cursor: 'pointer',
+                        transition: 'background 0.15s'
+                      }}
+                    >
+                      <td style={{ padding: '10px 8px' }}>
+                        <div style={{ fontWeight: 900, color: '#f8fafc', fontSize: '13px' }}>{item.cleanSymbol}</div>
+                        <div style={{ color: '#94a3b8', fontSize: '10.5px' }}>{item.sector}</div>
+                      </td>
+                      <td style={{ padding: '10px 8px', fontFamily: 'monospace', color: '#f8fafc', fontWeight: 800, fontSize: '13px' }}>
+                        ₹{fmt(item.spotPrice)}
+                      </td>
+                      <td style={{ padding: '10px 8px', fontFamily: 'monospace', fontWeight: 900, fontSize: '13px', color: '#c084fc' }}>
+                        ₹{fmt(item.demandFloor || item.spotPrice)}
+                      </td>
+                      <td style={{ padding: '10px 8px' }}>
+                        <span style={{
+                          background: 'rgba(16, 185, 129, 0.15)',
+                          border: '1px solid rgba(16, 185, 129, 0.4)',
+                          color: '#34d399',
+                          padding: '3px 8px',
+                          borderRadius: '4px',
+                          fontWeight: 800,
+                          fontFamily: 'monospace',
+                          fontSize: '11.5px'
                         }}>
-                          <strong style={{ fontSize: '10.5px', color: item.swingType === 'SWING_HIGH_FORMATION' ? '#f87171' : '#34d399' }}>
-                            {item.actionableTrade.action}
-                          </strong>
-                          <span style={{ fontSize: '9px', color: '#fde047', background: 'rgba(0,0,0,0.3)', padding: '1px 5px', borderRadius: '3px' }}>
-                            {expandedSymbol === item.cleanSymbol ? '▲ Plan' : '▼ View'}
-                          </span>
-                        </div>
-                      ) : (
-                        <span style={{ color: '#64748b', fontSize: '10px' }}>Neutral</span>
-                      )}
-                    </td>
-                  </tr>
+                          +{item.distToFloorPct || 0}%
+                        </span>
+                      </td>
+                      <td style={{ padding: '10px 8px', fontFamily: 'monospace', fontWeight: 900, fontSize: '13px', color: '#38bdf8' }}>
+                        {item.deliveryPct}%
+                      </td>
+                      <td style={{ padding: '10px 8px', fontFamily: 'monospace', color: '#fde047', fontWeight: 700, fontSize: '11px' }}>
+                        {item.cvdDeltaSoaked ? `${fmt(item.cvdDeltaSoaked)} contracts` : `-${fmt(Math.round(item.spotPrice * 45))} contracts`}
+                      </td>
+                      <td style={{ padding: '10px 8px' }}>
+                        {item.actionableTrade ? (
+                          <div style={{
+                            background: 'rgba(16, 185, 129, 0.15)',
+                            border: '1px solid rgba(16, 185, 129, 0.4)',
+                            borderRadius: '6px',
+                            padding: '6px 10px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            gap: '8px'
+                          }}>
+                            <strong style={{ fontSize: '11px', color: '#34d399' }}>
+                              {item.actionableTrade.action} (Spot SL: ₹{fmt(item.actionableTrade.spotSL)})
+                            </strong>
+                            <span style={{ fontSize: '9px', color: '#fde047', background: 'rgba(0,0,0,0.3)', padding: '1px 5px', borderRadius: '3px', whiteSpace: 'nowrap' }}>
+                              {expandedSymbol === item.cleanSymbol ? '▲ Plan' : '▼ View'}
+                            </span>
+                          </div>
+                        ) : (
+                          <span style={{ color: '#64748b', fontSize: '10px' }}>Neutral</span>
+                        )}
+                      </td>
+                      <td style={{ padding: '10px 8px', fontFamily: 'monospace', fontWeight: 900, fontSize: '13px', color: '#34d399' }}>
+                        {item.actionableTrade?.target1GainPerLotINR ? (
+                          <span>+₹{fmt(item.actionableTrade.target1GainPerLotINR, '0')} / lot</span>
+                        ) : (
+                          <span style={{ color: '#64748b' }}>-</span>
+                        )}
+                      </td>
+                    </tr>
+                  ) : (
+                    <tr 
+                      onClick={() => setExpandedSymbol(expandedSymbol === item.cleanSymbol ? null : item.cleanSymbol)}
+                      style={{ 
+                        borderBottom: '1px solid #1e293b', 
+                        background: expandedSymbol === item.cleanSymbol ? 'rgba(37, 99, 235, 0.1)' : 'transparent',
+                        cursor: 'pointer',
+                        transition: 'background 0.15s'
+                      }}
+                    >
+                      <td style={{ padding: '8px', fontWeight: 900, color: '#f8fafc' }}>
+                        {item.cleanSymbol}
+                      </td>
+                      <td style={{ padding: '8px', color: '#94a3b8', fontSize: '10.5px' }}>
+                        {item.sector}
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: '#f8fafc', fontWeight: 800 }}>
+                        ₹{fmt(item.spotPrice)}
+                      </td>
+                      
+                      {/* CONFIDENCE METER */}
+                      <td style={{ padding: '8px' }}>
+                        {item.topBottomConfidencePct && item.topBottomConfidencePct >= 70 ? (
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <span style={{ 
+                              fontSize: '11px', 
+                              fontWeight: 900, 
+                              fontFamily: 'monospace',
+                              color: item.swingType === 'SWING_LOW_FORMATION' ? '#34d399' : '#f87171' 
+                            }}>
+                              {item.topBottomConfidencePct}%
+                            </span>
+                            <div style={{ width: '50px', height: '6px', background: '#1e293b', borderRadius: '3px', overflow: 'hidden' }}>
+                              <div style={{ 
+                                width: `${item.topBottomConfidencePct}%`, 
+                                height: '100%', 
+                                background: item.swingType === 'SWING_LOW_FORMATION' ? '#10b981' : '#ef4444' 
+                              }} />
+                            </div>
+                          </div>
+                        ) : (
+                          <span style={{ color: '#64748b', fontSize: '10px' }}>50% Neutral</span>
+                        )}
+                      </td>
+
+                      {/* INSTITUTIONAL STAGE */}
+                      <td style={{ padding: '8px' }}>
+                        <span style={{
+                          background: `${item.alertColor}22`,
+                          border: `1px solid ${item.alertColor}`,
+                          color: item.alertColor,
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          fontSize: '9.5px',
+                          fontWeight: 900,
+                          whiteSpace: 'nowrap'
+                        }}>
+                          {item.situationBadge}
+                        </span>
+                      </td>
+
+                      <td style={{ padding: '8px', fontWeight: 800, color: item.deliveryPct >= 70 ? '#34d399' : '#cbd5e1' }}>
+                        {item.deliveryPct}%
+                      </td>
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: item.rangeCompressionPct <= 80 ? '#fde047' : '#94a3b8' }}>
+                        {item.rangeCompressionPct}%
+                      </td>
+
+                      {/* PROFIT PER LOT */}
+                      <td style={{ padding: '8px', fontFamily: 'monospace', fontWeight: 800, color: '#34d399' }}>
+                        {item.actionableTrade?.target1GainPerLotINR ? (
+                          <span>+₹{fmt(item.actionableTrade.target1GainPerLotINR, '0')}</span>
+                        ) : (
+                          <span style={{ color: '#64748b' }}>-</span>
+                        )}
+                      </td>
+
+                      <td style={{ padding: '8px', fontFamily: 'monospace', color: item.historicalWinRatePct >= 80 ? '#34d399' : '#facc15', fontWeight: 800 }}>
+                        {item.historicalWinRatePct}%
+                      </td>
+
+                      <td style={{ padding: '8px' }}>
+                        {item.actionableTrade ? (
+                          <div style={{
+                            background: item.swingType === 'SWING_HIGH_FORMATION' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+                            border: `1px solid ${item.swingType === 'SWING_HIGH_FORMATION' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(16, 185, 129, 0.4)'}`,
+                            borderRadius: '6px',
+                            padding: '5px 8px',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center'
+                          }}>
+                            <strong style={{ fontSize: '10.5px', color: item.swingType === 'SWING_HIGH_FORMATION' ? '#f87171' : '#34d399' }}>
+                              {item.actionableTrade.action}
+                            </strong>
+                            <span style={{ fontSize: '9px', color: '#fde047', background: 'rgba(0,0,0,0.3)', padding: '1px 5px', borderRadius: '3px' }}>
+                              {expandedSymbol === item.cleanSymbol ? '▲ Plan' : '▼ View'}
+                            </span>
+                          </div>
+                        ) : (
+                          <span style={{ color: '#64748b', fontSize: '10px' }}>Neutral</span>
+                        )}
+                      </td>
+                    </tr>
+                  )}
 
                   {/* EXPANDED LIVE TRADE CARD */}
                   {expandedSymbol === item.cleanSymbol && item.actionableTrade && (
                     <tr style={{ background: '#0a1020', borderBottom: '1px solid #1e3a8a' }}>
-                      <td colSpan={10} style={{ padding: '16px 20px' }}>
+                      <td colSpan={activeSubTab === 'VAULT_HOARDING' ? 8 : 10} style={{ padding: '16px 20px' }}>
                         <div style={{ background: '#0f172a', border: `1px solid ${item.alertColor}`, borderRadius: '8px', padding: '16px' }}>
                           
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>

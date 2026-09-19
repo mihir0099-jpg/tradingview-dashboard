@@ -1,0 +1,3841 @@
+{
+  "timeframe": "30m",
+  "updatedAt": "10:43:03 IST",
+  "totalScanned": 47,
+  "kpis": {
+    "totalActiveSetups": 37,
+    "v1Longs": 9,
+    "v1Shorts": 10,
+    "v2Longs": 10,
+    "v2Shorts": 8,
+    "extremeDiscount": 7,
+    "extremePremium": 12,
+    "benchmarkTargetHitRate": "78.4%"
+  },
+  "stocks": [
+    {
+      "symbol": "NSE:NIFTY",
+      "cleanSymbol": "NIFTY",
+      "name": "NIFTY 50 Index",
+      "sector": "Broad Market",
+      "timeframe": "30m",
+      "spotPrice": 23346.4,
+      "dayChangePts": 0,
+      "dayChangePct": 0,
+      "atr": 41.76,
+      "ema": 23316.53,
+      "bands": {
+        "bandPlus3": 23441.81,
+        "bandPlus2": 23400.05,
+        "bandPlus1": 23358.29,
+        "fairValue": 23316.53,
+        "bandMinus1": 23274.77,
+        "bandMinus2": 23233.01,
+        "bandMinus3": 23191.25
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.72,
+        "text": "Near Fair Value (0.72 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 13.45,
+          "penetrationAtr": 0.3,
+          "entry": 23341.75,
+          "stopLoss": 23389.15,
+          "target1": 23295.94,
+          "target2": 23310.57,
+          "rrRatio": 0.97,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.68,
+            "text": "Near Fair Value (0.68 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 2,
+        "penetrationPts": 13.45,
+        "penetrationAtr": 0.3,
+        "entry": 23341.75,
+        "stopLoss": 23389.15,
+        "target1": 23295.94,
+        "target2": 23310.57,
+        "rrRatio": 0.97,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.68,
+          "text": "Near Fair Value (0.68 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:BANKNIFTY",
+      "cleanSymbol": "BANKNIFTY",
+      "name": "NIFTY Bank Index",
+      "sector": "Banking",
+      "timeframe": "30m",
+      "spotPrice": 56358.7,
+      "dayChangePts": 0,
+      "dayChangePct": 0,
+      "atr": 136.62,
+      "ema": 56274.37,
+      "bands": {
+        "bandPlus3": 56684.23,
+        "bandPlus2": 56547.61,
+        "bandPlus1": 56410.99,
+        "fairValue": 56274.37,
+        "bandMinus1": 56137.75,
+        "bandMinus2": 56001.13,
+        "bandMinus3": 55864.51
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.62,
+        "text": "Near Fair Value (0.62 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 21.35,
+          "penetrationAtr": 0.14,
+          "entry": 56360.2,
+          "stopLoss": 56497.45,
+          "target1": 56209.65,
+          "target2": 56257.54,
+          "rrRatio": 1.1,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.68,
+            "text": "Near Fair Value (0.68 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 2,
+        "penetrationPts": 21.35,
+        "penetrationAtr": 0.14,
+        "entry": 56360.2,
+        "stopLoss": 56497.45,
+        "target1": 56209.65,
+        "target2": 56257.54,
+        "rrRatio": 1.1,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.68,
+          "text": "Near Fair Value (0.68 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:RELIANCE",
+      "cleanSymbol": "RELIANCE",
+      "name": "Reliance Industries",
+      "sector": "Energy & Retail",
+      "timeframe": "30m",
+      "spotPrice": 1226.4,
+      "dayChangePts": -17.5,
+      "dayChangePct": -1.41,
+      "atr": 4.45,
+      "ema": 1242.17,
+      "bands": {
+        "bandPlus3": 1255.52,
+        "bandPlus2": 1251.07,
+        "bandPlus1": 1246.62,
+        "fairValue": 1242.17,
+        "bandMinus1": 1237.72,
+        "bandMinus2": 1233.27,
+        "bandMinus3": 1228.82
+      },
+      "currentLocation": {
+        "label": "EXTREME_DISCOUNT",
+        "zone": "DEEP_VALUE",
+        "atrOffset": -3.54,
+        "text": "Below -2 ATR (-3.54 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 0.5,
+          "penetrationAtr": 0.12,
+          "entry": 1242.8,
+          "stopLoss": 1242,
+          "target1": 1246.66,
+          "target2": 1243.65,
+          "rrRatio": 4.83,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.22,
+            "text": "Near Fair Value (-0.22 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45",
+          "d3Date": "18 Sept 14:15"
+        },
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 1.4,
+          "penetrationAtr": 0.36,
+          "entry": 1226.4,
+          "stopLoss": 1245.4,
+          "target1": 1221.95,
+          "target2": 1242.17,
+          "rrRatio": 0.23,
+          "location": {
+            "label": "EXTREME_DISCOUNT",
+            "zone": "DEEP_VALUE",
+            "atrOffset": -3.54,
+            "text": "Below -2 ATR (-3.54 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA",
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 1.4,
+        "penetrationAtr": 0.36,
+        "entry": 1226.4,
+        "stopLoss": 1245.4,
+        "target1": 1221.95,
+        "target2": 1242.17,
+        "rrRatio": 0.23,
+        "location": {
+          "label": "EXTREME_DISCOUNT",
+          "zone": "DEEP_VALUE",
+          "atrOffset": -3.54,
+          "text": "Below -2 ATR (-3.54 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA",
+          "EMA - 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:HDFCBANK",
+      "cleanSymbol": "HDFCBANK",
+      "name": "HDFC Bank Ltd.",
+      "sector": "Private Banks",
+      "timeframe": "30m",
+      "spotPrice": 731,
+      "dayChangePts": -0.1,
+      "dayChangePct": -0.01,
+      "atr": 3.25,
+      "ema": 724.12,
+      "bands": {
+        "bandPlus3": 733.87,
+        "bandPlus2": 730.62,
+        "bandPlus1": 727.37,
+        "fairValue": 724.12,
+        "bandMinus1": 720.87,
+        "bandMinus2": 717.62,
+        "bandMinus3": 714.37
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 2.12,
+        "text": "Above +2 ATR (+2.12 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 0.5,
+          "penetrationAtr": 0.15,
+          "entry": 733.05,
+          "stopLoss": 727.8,
+          "target1": 736.54,
+          "target2": 721.95,
+          "rrRatio": 0.66,
+          "location": {
+            "label": "EXTREME_PREMIUM",
+            "zone": "OVERBOUGHT",
+            "atrOffset": 3.18,
+            "text": "Above +2 ATR (+3.18 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 0.8,
+          "penetrationAtr": 0.23,
+          "entry": 731.1,
+          "stopLoss": 730,
+          "target1": 734.5,
+          "target2": 723.47,
+          "rrRatio": 3.09,
+          "location": {
+            "label": "EXTREME_PREMIUM",
+            "zone": "OVERBOUGHT",
+            "atrOffset": 2.24,
+            "text": "Above +2 ATR (+2.24 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 0.8,
+        "penetrationAtr": 0.23,
+        "entry": 731.1,
+        "stopLoss": 730,
+        "target1": 734.5,
+        "target2": 723.47,
+        "rrRatio": 3.09,
+        "location": {
+          "label": "EXTREME_PREMIUM",
+          "zone": "OVERBOUGHT",
+          "atrOffset": 2.24,
+          "text": "Above +2 ATR (+2.24 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:ICICIBANK",
+      "cleanSymbol": "ICICIBANK",
+      "name": "ICICI Bank Ltd.",
+      "sector": "Private Banks",
+      "timeframe": "30m",
+      "spotPrice": 1338.9,
+      "dayChangePts": -1.1,
+      "dayChangePct": -0.08,
+      "atr": 4.83,
+      "ema": 1346.01,
+      "bands": {
+        "bandPlus3": 1360.5,
+        "bandPlus2": 1355.67,
+        "bandPlus1": 1350.84,
+        "fairValue": 1346.01,
+        "bandMinus1": 1341.18,
+        "bandMinus2": 1336.35,
+        "bandMinus3": 1331.52
+      },
+      "currentLocation": {
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.47,
+        "text": "-1 to -2 ATR (-1.47 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 0.7,
+          "penetrationAtr": 0.14,
+          "entry": 1340,
+          "stopLoss": 1346,
+          "target1": 1335.05,
+          "target2": 1346.69,
+          "rrRatio": 0.83,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.35,
+            "text": "-1 to -2 ATR (-1.35 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 0.7,
+        "penetrationAtr": 0.14,
+        "entry": 1340,
+        "stopLoss": 1346,
+        "target1": 1335.05,
+        "target2": 1346.69,
+        "rrRatio": 0.83,
+        "location": {
+          "label": "VALUE_DISCOUNT",
+          "zone": "VALUE_ZONE",
+          "atrOffset": -1.35,
+          "text": "-1 to -2 ATR (-1.35 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA - 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:SBIN",
+      "cleanSymbol": "SBIN",
+      "name": "State Bank of India",
+      "sector": "PSU Banks",
+      "timeframe": "30m",
+      "spotPrice": 996.2,
+      "dayChangePts": 3,
+      "dayChangePct": 0.3,
+      "atr": 3.37,
+      "ema": 990.67,
+      "bands": {
+        "bandPlus3": 1000.78,
+        "bandPlus2": 997.41,
+        "bandPlus1": 994.04,
+        "fairValue": 990.67,
+        "bandMinus1": 987.3,
+        "bandMinus2": 983.93,
+        "bandMinus3": 980.56
+      },
+      "currentLocation": {
+        "label": "VALUE_PREMIUM",
+        "zone": "PREMIUM_ZONE",
+        "atrOffset": 1.64,
+        "text": "+1 to +2 ATR (+1.64 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 0.8,
+          "penetrationAtr": 0.22,
+          "entry": 992.3,
+          "stopLoss": 990.2,
+          "target1": 995.83,
+          "target2": 989.63,
+          "rrRatio": 1.68,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.76,
+            "text": "Near Fair Value (0.76 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 1,
+          "penetrationAtr": 0.28,
+          "entry": 992.2,
+          "stopLoss": 993.6,
+          "target1": 988.77,
+          "target2": 989.85,
+          "rrRatio": 2.45,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.69,
+            "text": "Near Fair Value (0.69 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:15",
+        "isLatestBar": false,
+        "barsAgo": 2,
+        "penetrationPts": 1,
+        "penetrationAtr": 0.28,
+        "entry": 992.2,
+        "stopLoss": 993.6,
+        "target1": 988.77,
+        "target2": 989.85,
+        "rrRatio": 2.45,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.69,
+          "text": "Near Fair Value (0.69 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 13:45",
+        "d2Date": "18 Sept 14:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:TCS",
+      "cleanSymbol": "TCS",
+      "name": "Tata Consultancy Services",
+      "sector": "IT",
+      "timeframe": "30m",
+      "spotPrice": 2105,
+      "dayChangePts": -7.1,
+      "dayChangePct": -0.34,
+      "atr": 15.03,
+      "ema": 2146.62,
+      "bands": {
+        "bandPlus3": 2191.71,
+        "bandPlus2": 2176.68,
+        "bandPlus1": 2161.65,
+        "fairValue": 2146.62,
+        "bandMinus1": 2131.59,
+        "bandMinus2": 2116.56,
+        "bandMinus3": 2101.53
+      },
+      "currentLocation": {
+        "label": "EXTREME_DISCOUNT",
+        "zone": "DEEP_VALUE",
+        "atrOffset": -2.77,
+        "text": "Below -2 ATR (-2.77 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:15",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 1.9,
+          "penetrationAtr": 0.12,
+          "entry": 2116,
+          "stopLoss": 2111.2,
+          "target1": 2132.01,
+          "target2": 2158.06,
+          "rrRatio": 3.34,
+          "location": {
+            "label": "EXTREME_DISCOUNT",
+            "zone": "DEEP_VALUE",
+            "atrOffset": -2.63,
+            "text": "Below -2 ATR (-2.63 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 12:45",
+          "d2Date": "18 Sept 13:15"
+        },
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 3.7,
+          "penetrationAtr": 0.24,
+          "entry": 2112.1,
+          "stopLoss": 2120.6,
+          "target1": 2097.02,
+          "target2": 2150.58,
+          "rrRatio": 1.77,
+          "location": {
+            "label": "EXTREME_DISCOUNT",
+            "zone": "DEEP_VALUE",
+            "atrOffset": -2.55,
+            "text": "Below -2 ATR (-2.55 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:15",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 3.7,
+        "penetrationAtr": 0.24,
+        "entry": 2112.1,
+        "stopLoss": 2120.6,
+        "target1": 2097.02,
+        "target2": 2150.58,
+        "rrRatio": 1.77,
+        "location": {
+          "label": "EXTREME_DISCOUNT",
+          "zone": "DEEP_VALUE",
+          "atrOffset": -2.55,
+          "text": "Below -2 ATR (-2.55 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 13:45",
+        "d2Date": "18 Sept 14:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:INFY",
+      "cleanSymbol": "INFY",
+      "name": "Infosys Ltd.",
+      "sector": "IT",
+      "timeframe": "30m",
+      "spotPrice": 1051.4,
+      "dayChangePts": 8.7,
+      "dayChangePct": 0.83,
+      "atr": 5.6,
+      "ema": 1049.81,
+      "bands": {
+        "bandPlus3": 1066.61,
+        "bandPlus2": 1061.01,
+        "bandPlus1": 1055.41,
+        "fairValue": 1049.81,
+        "bandMinus1": 1044.21,
+        "bandMinus2": 1038.61,
+        "bandMinus3": 1033.01
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.28,
+        "text": "Near Fair Value (0.28 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 1.2,
+          "penetrationAtr": 0.22,
+          "entry": 1042.9,
+          "stopLoss": 1045.1,
+          "target1": 1037.6,
+          "target2": 1050.32,
+          "rrRatio": 2.41,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.4,
+            "text": "-1 to -2 ATR (-1.4 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 3.9,
+          "penetrationAtr": 0.75,
+          "entry": 1051.4,
+          "stopLoss": 1038,
+          "target1": 1057,
+          "target2": 1049.81,
+          "rrRatio": 0.42,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.28,
+            "text": "Near Fair Value (0.28 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 2 ATR",
+            "EMA - 1 ATR",
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 3.9,
+        "penetrationAtr": 0.75,
+        "entry": 1051.4,
+        "stopLoss": 1038,
+        "target1": 1057,
+        "target2": 1049.81,
+        "rrRatio": 0.42,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.28,
+          "text": "Near Fair Value (0.28 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA - 2 ATR",
+          "EMA - 1 ATR",
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:BAJFINANCE",
+      "cleanSymbol": "BAJFINANCE",
+      "name": "Bajaj Finance Ltd.",
+      "sector": "NBFC",
+      "timeframe": "30m",
+      "spotPrice": 1040.3,
+      "dayChangePts": 5.4,
+      "dayChangePct": 0.52,
+      "atr": 5.05,
+      "ema": 1024.66,
+      "bands": {
+        "bandPlus3": 1039.81,
+        "bandPlus2": 1034.76,
+        "bandPlus1": 1029.71,
+        "fairValue": 1024.66,
+        "bandMinus1": 1019.61,
+        "bandMinus2": 1014.56,
+        "bandMinus3": 1009.51
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 3.1,
+        "text": "Above +2 ATR (+3.1 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:AXISBANK",
+      "cleanSymbol": "AXISBANK",
+      "name": "Axis Bank Ltd.",
+      "sector": "Private Banks",
+      "timeframe": "30m",
+      "spotPrice": 1257,
+      "dayChangePts": 12,
+      "dayChangePct": 0.96,
+      "atr": 5.08,
+      "ema": 1245.69,
+      "bands": {
+        "bandPlus3": 1260.93,
+        "bandPlus2": 1255.85,
+        "bandPlus1": 1250.77,
+        "fairValue": 1245.69,
+        "bandMinus1": 1240.61,
+        "bandMinus2": 1235.53,
+        "bandMinus3": 1230.45
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 2.23,
+        "text": "Above +2 ATR (+2.23 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 0.9,
+          "penetrationAtr": 0.19,
+          "entry": 1245,
+          "stopLoss": 1243.5,
+          "target1": 1249.73,
+          "target2": 1244.62,
+          "rrRatio": 3.15,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.08,
+            "text": "Near Fair Value (0.08 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 0.9,
+        "penetrationAtr": 0.19,
+        "entry": 1245,
+        "stopLoss": 1243.5,
+        "target1": 1249.73,
+        "target2": 1244.62,
+        "rrRatio": 3.15,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.08,
+          "text": "Near Fair Value (0.08 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:KOTAKBANK",
+      "cleanSymbol": "KOTAKBANK",
+      "name": "Kotak Mahindra Bank",
+      "sector": "Private Banks",
+      "timeframe": "30m",
+      "spotPrice": 412.5,
+      "dayChangePts": -6.5,
+      "dayChangePct": -1.55,
+      "atr": 2.02,
+      "ema": 416.22,
+      "bands": {
+        "bandPlus3": 422.28,
+        "bandPlus2": 420.26,
+        "bandPlus1": 418.24,
+        "fairValue": 416.22,
+        "bandMinus1": 414.2,
+        "bandMinus2": 412.18,
+        "bandMinus3": 410.16
+      },
+      "currentLocation": {
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.84,
+        "text": "-1 to -2 ATR (-1.84 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 2.85,
+          "penetrationAtr": 1.7,
+          "entry": 419,
+          "stopLoss": 415,
+          "target1": 420.8,
+          "target2": 416.57,
+          "rrRatio": 0.45,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.35,
+            "text": "+1 to +2 ATR (+1.35 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA",
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 2.85,
+        "penetrationAtr": 1.7,
+        "entry": 419,
+        "stopLoss": 415,
+        "target1": 420.8,
+        "target2": 416.57,
+        "rrRatio": 0.45,
+        "location": {
+          "label": "VALUE_PREMIUM",
+          "zone": "PREMIUM_ZONE",
+          "atrOffset": 1.35,
+          "text": "+1 to +2 ATR (+1.35 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA",
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:BHARTIARTL",
+      "cleanSymbol": "BHARTIARTL",
+      "name": "Bharti Airtel Ltd.",
+      "sector": "Telecom",
+      "timeframe": "30m",
+      "spotPrice": 1893.3,
+      "dayChangePts": 57.5,
+      "dayChangePct": 3.13,
+      "atr": 8.75,
+      "ema": 1843.68,
+      "bands": {
+        "bandPlus3": 1869.93,
+        "bandPlus2": 1861.18,
+        "bandPlus1": 1852.43,
+        "fairValue": 1843.68,
+        "bandMinus1": 1834.93,
+        "bandMinus2": 1826.18,
+        "bandMinus3": 1817.43
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 5.67,
+        "text": "Above +2 ATR (+5.67 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 3.7,
+          "penetrationAtr": 0.6,
+          "entry": 1835.8,
+          "stopLoss": 1847.2,
+          "target1": 1829.49,
+          "target2": 1838.96,
+          "rrRatio": 0.55,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.5,
+            "text": "Near Fair Value (-0.5 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15",
+          "d3Date": "18 Sept 14:45"
+        },
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 4.9,
+          "penetrationAtr": 0.79,
+          "entry": 1893.3,
+          "stopLoss": 1835.8,
+          "target1": 1902.05,
+          "target2": 1843.68,
+          "rrRatio": 0.15,
+          "location": {
+            "label": "EXTREME_PREMIUM",
+            "zone": "OVERBOUGHT",
+            "atrOffset": 5.67,
+            "text": "Above +2 ATR (+5.67 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA",
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 4.9,
+        "penetrationAtr": 0.79,
+        "entry": 1893.3,
+        "stopLoss": 1835.8,
+        "target1": 1902.05,
+        "target2": 1843.68,
+        "rrRatio": 0.15,
+        "location": {
+          "label": "EXTREME_PREMIUM",
+          "zone": "OVERBOUGHT",
+          "atrOffset": 5.67,
+          "text": "Above +2 ATR (+5.67 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA",
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:LT",
+      "cleanSymbol": "LT",
+      "name": "Larsen & Toubro Ltd.",
+      "sector": "Infrastructure",
+      "timeframe": "30m",
+      "spotPrice": 3885,
+      "dayChangePts": -12,
+      "dayChangePct": -0.31,
+      "atr": 15.5,
+      "ema": 3868.37,
+      "bands": {
+        "bandPlus3": 3914.87,
+        "bandPlus2": 3899.37,
+        "bandPlus1": 3883.87,
+        "fairValue": 3868.37,
+        "bandMinus1": 3852.87,
+        "bandMinus2": 3837.37,
+        "bandMinus3": 3821.87
+      },
+      "currentLocation": {
+        "label": "VALUE_PREMIUM",
+        "zone": "PREMIUM_ZONE",
+        "atrOffset": 1.07,
+        "text": "+1 to +2 ATR (+1.07 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:ITC",
+      "cleanSymbol": "ITC",
+      "name": "ITC Ltd.",
+      "sector": "FMCG",
+      "timeframe": "30m",
+      "spotPrice": 262.3,
+      "dayChangePts": -2.45,
+      "dayChangePct": -0.93,
+      "atr": 1.04,
+      "ema": 264.7,
+      "bands": {
+        "bandPlus3": 267.82,
+        "bandPlus2": 266.78,
+        "bandPlus1": 265.74,
+        "fairValue": 264.7,
+        "bandMinus1": 263.66,
+        "bandMinus2": 262.62,
+        "bandMinus3": 261.58
+      },
+      "currentLocation": {
+        "label": "EXTREME_DISCOUNT",
+        "zone": "DEEP_VALUE",
+        "atrOffset": -2.31,
+        "text": "Below -2 ATR (-2.31 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 0.35,
+          "penetrationAtr": 0.34,
+          "entry": 264.65,
+          "stopLoss": 264.1,
+          "target1": 265.64,
+          "target2": 264.94,
+          "rrRatio": 1.8,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.29,
+            "text": "Near Fair Value (-0.29 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45",
+          "d3Date": "18 Sept 14:15"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 0.1,
+          "penetrationAtr": 0.1,
+          "entry": 264.75,
+          "stopLoss": 264.3,
+          "target1": 265.72,
+          "target2": 264.93,
+          "rrRatio": 2.16,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.19,
+            "text": "Near Fair Value (-0.19 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 0.1,
+        "penetrationAtr": 0.1,
+        "entry": 264.75,
+        "stopLoss": 264.3,
+        "target1": 265.72,
+        "target2": 264.93,
+        "rrRatio": 2.16,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": -0.19,
+          "text": "Near Fair Value (-0.19 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:SUNPHARMA",
+      "cleanSymbol": "SUNPHARMA",
+      "name": "Sun Pharmaceutical",
+      "sector": "Pharma",
+      "timeframe": "30m",
+      "spotPrice": 1837.3,
+      "dayChangePts": -15.9,
+      "dayChangePct": -0.86,
+      "atr": 7.28,
+      "ema": 1852.58,
+      "bands": {
+        "bandPlus3": 1874.42,
+        "bandPlus2": 1867.14,
+        "bandPlus1": 1859.86,
+        "fairValue": 1852.58,
+        "bandMinus1": 1845.3,
+        "bandMinus2": 1838.02,
+        "bandMinus3": 1830.74
+      },
+      "currentLocation": {
+        "label": "EXTREME_DISCOUNT",
+        "zone": "DEEP_VALUE",
+        "atrOffset": -2.1,
+        "text": "Below -2 ATR (-2.1 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 1.1,
+          "penetrationAtr": 0.16,
+          "entry": 1837.3,
+          "stopLoss": 1855.3,
+          "target1": 1830.02,
+          "target2": 1852.58,
+          "rrRatio": 0.4,
+          "location": {
+            "label": "EXTREME_DISCOUNT",
+            "zone": "DEEP_VALUE",
+            "atrOffset": -2.1,
+            "text": "Below -2 ATR (-2.1 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA",
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15",
+          "d3Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 1.1,
+        "penetrationAtr": 0.16,
+        "entry": 1837.3,
+        "stopLoss": 1855.3,
+        "target1": 1830.02,
+        "target2": 1852.58,
+        "rrRatio": 0.4,
+        "location": {
+          "label": "EXTREME_DISCOUNT",
+          "zone": "DEEP_VALUE",
+          "atrOffset": -2.1,
+          "text": "Below -2 ATR (-2.1 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA",
+          "EMA - 1 ATR"
+        ],
+        "d1Date": "18 Sept 13:45",
+        "d2Date": "18 Sept 14:15",
+        "d3Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:MARUTI",
+      "cleanSymbol": "MARUTI",
+      "name": "Maruti Suzuki India",
+      "sector": "Automotive",
+      "timeframe": "30m",
+      "spotPrice": 12103,
+      "dayChangePts": -67,
+      "dayChangePct": -0.55,
+      "atr": 48.41,
+      "ema": 12232.79,
+      "bands": {
+        "bandPlus3": 12378.02,
+        "bandPlus2": 12329.61,
+        "bandPlus1": 12281.2,
+        "fairValue": 12232.79,
+        "bandMinus1": 12184.38,
+        "bandMinus2": 12135.97,
+        "bandMinus3": 12087.56
+      },
+      "currentLocation": {
+        "label": "EXTREME_DISCOUNT",
+        "zone": "DEEP_VALUE",
+        "atrOffset": -2.68,
+        "text": "Below -2 ATR (-2.68 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 9,
+          "penetrationAtr": 0.18,
+          "entry": 12169,
+          "stopLoss": 12157,
+          "target1": 12218.78,
+          "target2": 12260.53,
+          "rrRatio": 4.15,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.84,
+            "text": "-1 to -2 ATR (-1.84 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 2 ATR"
+          ],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 5,
+          "penetrationAtr": 0.1,
+          "entry": 12166,
+          "stopLoss": 12184,
+          "target1": 12117.49,
+          "target2": 12252.31,
+          "rrRatio": 2.7,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.78,
+            "text": "-1 to -2 ATR (-1.78 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:15",
+        "isLatestBar": false,
+        "barsAgo": 2,
+        "penetrationPts": 5,
+        "penetrationAtr": 0.1,
+        "entry": 12166,
+        "stopLoss": 12184,
+        "target1": 12117.49,
+        "target2": 12252.31,
+        "rrRatio": 2.7,
+        "location": {
+          "label": "VALUE_DISCOUNT",
+          "zone": "VALUE_ZONE",
+          "atrOffset": -1.78,
+          "text": "-1 to -2 ATR (-1.78 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 13:45",
+        "d2Date": "18 Sept 14:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:TITAN",
+      "cleanSymbol": "TITAN",
+      "name": "Titan Company Ltd.",
+      "sector": "Consumer Discretionary",
+      "timeframe": "30m",
+      "spotPrice": 4798.5,
+      "dayChangePts": -40.5,
+      "dayChangePct": -0.84,
+      "atr": 19.78,
+      "ema": 4828.82,
+      "bands": {
+        "bandPlus3": 4888.16,
+        "bandPlus2": 4868.38,
+        "bandPlus1": 4848.6,
+        "fairValue": 4828.82,
+        "bandMinus1": 4809.04,
+        "bandMinus2": 4789.26,
+        "bandMinus3": 4769.48
+      },
+      "currentLocation": {
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.53,
+        "text": "-1 to -2 ATR (-1.53 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 14.5,
+          "penetrationAtr": 0.77,
+          "entry": 4798.5,
+          "stopLoss": 4839,
+          "target1": 4778.72,
+          "target2": 4828.82,
+          "rrRatio": 0.49,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.53,
+            "text": "-1 to -2 ATR (-1.53 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 14.5,
+        "penetrationAtr": 0.77,
+        "entry": 4798.5,
+        "stopLoss": 4839,
+        "target1": 4778.72,
+        "target2": 4828.82,
+        "rrRatio": 0.49,
+        "location": {
+          "label": "VALUE_DISCOUNT",
+          "zone": "VALUE_ZONE",
+          "atrOffset": -1.53,
+          "text": "-1 to -2 ATR (-1.53 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA - 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:TATASTEEL",
+      "cleanSymbol": "TATASTEEL",
+      "name": "Tata Steel Ltd.",
+      "sector": "Metals",
+      "timeframe": "30m",
+      "spotPrice": 185.54,
+      "dayChangePts": -0.54,
+      "dayChangePct": -0.29,
+      "atr": 0.96,
+      "ema": 186.15,
+      "bands": {
+        "bandPlus3": 189.03,
+        "bandPlus2": 188.07,
+        "bandPlus1": 187.11,
+        "fairValue": 186.15,
+        "bandMinus1": 185.19,
+        "bandMinus2": 184.23,
+        "bandMinus3": 183.27
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": -0.64,
+        "text": "Near Fair Value (-0.64 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:HINDALCO",
+      "cleanSymbol": "HINDALCO",
+      "name": "Hindalco Industries",
+      "sector": "Metals",
+      "timeframe": "30m",
+      "spotPrice": 986.5,
+      "dayChangePts": 1.2,
+      "dayChangePct": 0.12,
+      "atr": 4.7,
+      "ema": 984.65,
+      "bands": {
+        "bandPlus3": 998.75,
+        "bandPlus2": 994.05,
+        "bandPlus1": 989.35,
+        "fairValue": 984.65,
+        "bandMinus1": 979.95,
+        "bandMinus2": 975.25,
+        "bandMinus3": 970.55
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.39,
+        "text": "Near Fair Value (0.39 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 0.8,
+          "penetrationAtr": 0.16,
+          "entry": 983.9,
+          "stopLoss": 982.5,
+          "target1": 988.78,
+          "target2": 984.4,
+          "rrRatio": 3.49,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.1,
+            "text": "Near Fair Value (-0.1 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 12:45",
+          "d2Date": "18 Sept 13:15",
+          "d3Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 0.9,
+          "penetrationAtr": 0.19,
+          "entry": 986.5,
+          "stopLoss": 982.9,
+          "target1": 991.2,
+          "target2": 984.65,
+          "rrRatio": 1.31,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.39,
+            "text": "Near Fair Value (0.39 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 0.9,
+        "penetrationAtr": 0.19,
+        "entry": 986.5,
+        "stopLoss": 982.9,
+        "target1": 991.2,
+        "target2": 984.65,
+        "rrRatio": 1.31,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.39,
+          "text": "Near Fair Value (0.39 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:JSWSTEEL",
+      "cleanSymbol": "JSWSTEEL",
+      "name": "JSW Steel Ltd.",
+      "sector": "Metals",
+      "timeframe": "30m",
+      "spotPrice": 1275.6,
+      "dayChangePts": 7.6,
+      "dayChangePct": 0.6,
+      "atr": 5.84,
+      "ema": 1264.28,
+      "bands": {
+        "bandPlus3": 1281.8,
+        "bandPlus2": 1275.96,
+        "bandPlus1": 1270.12,
+        "fairValue": 1264.28,
+        "bandMinus1": 1258.44,
+        "bandMinus2": 1252.6,
+        "bandMinus3": 1246.76
+      },
+      "currentLocation": {
+        "label": "VALUE_PREMIUM",
+        "zone": "PREMIUM_ZONE",
+        "atrOffset": 1.94,
+        "text": "+1 to +2 ATR (+1.94 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 0.6,
+          "penetrationAtr": 0.1,
+          "entry": 1269.7,
+          "stopLoss": 1266.4,
+          "target1": 1275.36,
+          "target2": 1261.89,
+          "rrRatio": 1.72,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.38,
+            "text": "+1 to +2 ATR (+1.38 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 12:45",
+          "d2Date": "18 Sept 13:15",
+          "d3Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 2.2,
+          "penetrationAtr": 0.39,
+          "entry": 1268,
+          "stopLoss": 1276.1,
+          "target1": 1262.24,
+          "target2": 1263.21,
+          "rrRatio": 0.71,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.83,
+            "text": "Near Fair Value (0.83 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 2 ATR",
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        },
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 2.7,
+          "penetrationAtr": 0.48,
+          "entry": 1275.6,
+          "stopLoss": 1267,
+          "target1": 1281.44,
+          "target2": 1264.28,
+          "rrRatio": 0.68,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.94,
+            "text": "+1 to +2 ATR (+1.94 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 2.7,
+        "penetrationAtr": 0.48,
+        "entry": 1275.6,
+        "stopLoss": 1267,
+        "target1": 1281.44,
+        "target2": 1264.28,
+        "rrRatio": 0.68,
+        "location": {
+          "label": "VALUE_PREMIUM",
+          "zone": "PREMIUM_ZONE",
+          "atrOffset": 1.94,
+          "text": "+1 to +2 ATR (+1.94 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 3
+    },
+    {
+      "symbol": "NSE:ADANIENT",
+      "cleanSymbol": "ADANIENT",
+      "name": "Adani Enterprises",
+      "sector": "Conglomerate",
+      "timeframe": "30m",
+      "spotPrice": 3020,
+      "dayChangePts": 40,
+      "dayChangePct": 1.34,
+      "atr": 17.73,
+      "ema": 2963.69,
+      "bands": {
+        "bandPlus3": 3016.88,
+        "bandPlus2": 2999.15,
+        "bandPlus1": 2981.42,
+        "fairValue": 2963.69,
+        "bandMinus1": 2945.96,
+        "bandMinus2": 2928.23,
+        "bandMinus3": 2910.5
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 3.18,
+        "text": "Above +2 ATR (+3.18 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 8.2,
+          "penetrationAtr": 0.49,
+          "entry": 3020,
+          "stopLoss": 2976.3,
+          "target1": 3037.73,
+          "target2": 2963.69,
+          "rrRatio": 0.41,
+          "location": {
+            "label": "EXTREME_PREMIUM",
+            "zone": "OVERBOUGHT",
+            "atrOffset": 3.18,
+            "text": "Above +2 ATR (+3.18 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 8.2,
+        "penetrationAtr": 0.49,
+        "entry": 3020,
+        "stopLoss": 2976.3,
+        "target1": 3037.73,
+        "target2": 2963.69,
+        "rrRatio": 0.41,
+        "location": {
+          "label": "EXTREME_PREMIUM",
+          "zone": "OVERBOUGHT",
+          "atrOffset": 3.18,
+          "text": "Above +2 ATR (+3.18 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:ADANIPORTS",
+      "cleanSymbol": "ADANIPORTS",
+      "name": "Adani Ports & SEZ",
+      "sector": "Infrastructure",
+      "timeframe": "30m",
+      "spotPrice": 1824,
+      "dayChangePts": 56.5,
+      "dayChangePct": 3.2,
+      "atr": 10.23,
+      "ema": 1762.43,
+      "bands": {
+        "bandPlus3": 1793.12,
+        "bandPlus2": 1782.89,
+        "bandPlus1": 1772.66,
+        "fairValue": 1762.43,
+        "bandMinus1": 1752.2,
+        "bandMinus2": 1741.97,
+        "bandMinus3": 1731.74
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 6.02,
+        "text": "Above +2 ATR (+6.02 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 10.3,
+          "penetrationAtr": 1.35,
+          "entry": 1824,
+          "stopLoss": 1765.1,
+          "target1": 1834.23,
+          "target2": 1762.43,
+          "rrRatio": 0.17,
+          "location": {
+            "label": "EXTREME_PREMIUM",
+            "zone": "OVERBOUGHT",
+            "atrOffset": 6.02,
+            "text": "Above +2 ATR (+6.02 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 10.3,
+        "penetrationAtr": 1.35,
+        "entry": 1824,
+        "stopLoss": 1765.1,
+        "target1": 1834.23,
+        "target2": 1762.43,
+        "rrRatio": 0.17,
+        "location": {
+          "label": "EXTREME_PREMIUM",
+          "zone": "OVERBOUGHT",
+          "atrOffset": 6.02,
+          "text": "Above +2 ATR (+6.02 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:POWERGRID",
+      "cleanSymbol": "POWERGRID",
+      "name": "Power Grid Corp.",
+      "sector": "Power",
+      "timeframe": "30m",
+      "spotPrice": 270.3,
+      "dayChangePts": 3.5,
+      "dayChangePct": 1.31,
+      "atr": 1.19,
+      "ema": 265.66,
+      "bands": {
+        "bandPlus3": 269.23,
+        "bandPlus2": 268.04,
+        "bandPlus1": 266.85,
+        "fairValue": 265.66,
+        "bandMinus1": 264.47,
+        "bandMinus2": 263.28,
+        "bandMinus3": 262.09
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 3.9,
+        "text": "Above +2 ATR (+3.9 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 0.15,
+          "penetrationAtr": 0.14,
+          "entry": 265.95,
+          "stopLoss": 265.15,
+          "target1": 267.03,
+          "target2": 264.93,
+          "rrRatio": 1.35,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.94,
+            "text": "Near Fair Value (0.94 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 13:45",
+        "isLatestBar": false,
+        "barsAgo": 3,
+        "penetrationPts": 0.15,
+        "penetrationAtr": 0.14,
+        "entry": 265.95,
+        "stopLoss": 265.15,
+        "target1": 267.03,
+        "target2": 264.93,
+        "rrRatio": 1.35,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.94,
+          "text": "Near Fair Value (0.94 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 13:15",
+        "d2Date": "18 Sept 13:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:NTPC",
+      "cleanSymbol": "NTPC",
+      "name": "NTPC Ltd.",
+      "sector": "Power",
+      "timeframe": "30m",
+      "spotPrice": 323.65,
+      "dayChangePts": -3.4,
+      "dayChangePct": -1.04,
+      "atr": 1.35,
+      "ema": 328.08,
+      "bands": {
+        "bandPlus3": 332.13,
+        "bandPlus2": 330.78,
+        "bandPlus1": 329.43,
+        "fairValue": 328.08,
+        "bandMinus1": 326.73,
+        "bandMinus2": 325.38,
+        "bandMinus3": 324.03
+      },
+      "currentLocation": {
+        "label": "EXTREME_DISCOUNT",
+        "zone": "DEEP_VALUE",
+        "atrOffset": -3.28,
+        "text": "Below -2 ATR (-3.28 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:ONGC",
+      "cleanSymbol": "ONGC",
+      "name": "Oil & Natural Gas Corp.",
+      "sector": "Energy",
+      "timeframe": "30m",
+      "spotPrice": 232.8,
+      "dayChangePts": 0.04,
+      "dayChangePct": 0.02,
+      "atr": 0.79,
+      "ema": 233.09,
+      "bands": {
+        "bandPlus3": 235.46,
+        "bandPlus2": 234.67,
+        "bandPlus1": 233.88,
+        "fairValue": 233.09,
+        "bandMinus1": 232.3,
+        "bandMinus2": 231.51,
+        "bandMinus3": 230.72
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": -0.37,
+        "text": "Near Fair Value (-0.37 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 0.54,
+          "penetrationAtr": 0.68,
+          "entry": 232.76,
+          "stopLoss": 234.26,
+          "target1": 231.94,
+          "target2": 233.12,
+          "rrRatio": 0.55,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.44,
+            "text": "Near Fair Value (-0.44 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR",
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 0.54,
+        "penetrationAtr": 0.68,
+        "entry": 232.76,
+        "stopLoss": 234.26,
+        "target1": 231.94,
+        "target2": 233.12,
+        "rrRatio": 0.55,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": -0.44,
+          "text": "Near Fair Value (-0.44 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR",
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:COALINDIA",
+      "cleanSymbol": "COALINDIA",
+      "name": "Coal India Ltd.",
+      "sector": "Energy",
+      "timeframe": "30m",
+      "spotPrice": 409.9,
+      "dayChangePts": -3.1,
+      "dayChangePct": -0.75,
+      "atr": 1.61,
+      "ema": 414.4,
+      "bands": {
+        "bandPlus3": 419.23,
+        "bandPlus2": 417.62,
+        "bandPlus1": 416.01,
+        "fairValue": 414.4,
+        "bandMinus1": 412.79,
+        "bandMinus2": 411.18,
+        "bandMinus3": 409.57
+      },
+      "currentLocation": {
+        "label": "EXTREME_DISCOUNT",
+        "zone": "DEEP_VALUE",
+        "atrOffset": -2.8,
+        "text": "Below -2 ATR (-2.8 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 1.1,
+          "penetrationAtr": 0.72,
+          "entry": 409.9,
+          "stopLoss": 413.55,
+          "target1": 408.29,
+          "target2": 414.4,
+          "rrRatio": 0.44,
+          "location": {
+            "label": "EXTREME_DISCOUNT",
+            "zone": "DEEP_VALUE",
+            "atrOffset": -2.8,
+            "text": "Below -2 ATR (-2.8 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 1.1,
+        "penetrationAtr": 0.72,
+        "entry": 409.9,
+        "stopLoss": 413.55,
+        "target1": 408.29,
+        "target2": 414.4,
+        "rrRatio": 0.44,
+        "location": {
+          "label": "EXTREME_DISCOUNT",
+          "zone": "DEEP_VALUE",
+          "atrOffset": -2.8,
+          "text": "Below -2 ATR (-2.8 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA - 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:WIPRO",
+      "cleanSymbol": "WIPRO",
+      "name": "Wipro Ltd.",
+      "sector": "IT",
+      "timeframe": "30m",
+      "spotPrice": 166.83,
+      "dayChangePts": 2.83,
+      "dayChangePct": 1.73,
+      "atr": 0.79,
+      "ema": 165.16,
+      "bands": {
+        "bandPlus3": 167.53,
+        "bandPlus2": 166.74,
+        "bandPlus1": 165.95,
+        "fairValue": 165.16,
+        "bandMinus1": 164.37,
+        "bandMinus2": 163.58,
+        "bandMinus3": 162.79
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 2.11,
+        "text": "Above +2 ATR (+2.11 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 0.24,
+          "penetrationAtr": 0.34,
+          "entry": 163.75,
+          "stopLoss": 163.36,
+          "target1": 164.43,
+          "target2": 165.1,
+          "rrRatio": 1.74,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.99,
+            "text": "-1 to -2 ATR (-1.99 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 2 ATR"
+          ],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45",
+          "d3Date": "18 Sept 14:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:15",
+        "isLatestBar": false,
+        "barsAgo": 2,
+        "penetrationPts": 0.24,
+        "penetrationAtr": 0.34,
+        "entry": 163.75,
+        "stopLoss": 163.36,
+        "target1": 164.43,
+        "target2": 165.1,
+        "rrRatio": 1.74,
+        "location": {
+          "label": "VALUE_DISCOUNT",
+          "zone": "VALUE_ZONE",
+          "atrOffset": -1.99,
+          "text": "-1 to -2 ATR (-1.99 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA - 2 ATR"
+        ],
+        "d1Date": "18 Sept 13:15",
+        "d2Date": "18 Sept 13:45",
+        "d3Date": "18 Sept 14:15"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:HCLTECH",
+      "cleanSymbol": "HCLTECH",
+      "name": "HCL Technologies",
+      "sector": "IT",
+      "timeframe": "30m",
+      "spotPrice": 1249.3,
+      "dayChangePts": 8.7,
+      "dayChangePct": 0.7,
+      "atr": 7.44,
+      "ema": 1245.5,
+      "bands": {
+        "bandPlus3": 1267.82,
+        "bandPlus2": 1260.38,
+        "bandPlus1": 1252.94,
+        "fairValue": 1245.5,
+        "bandMinus1": 1238.06,
+        "bandMinus2": 1230.62,
+        "bandMinus3": 1223.18
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.51,
+        "text": "Near Fair Value (0.51 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 1.9,
+          "penetrationAtr": 0.24,
+          "entry": 1244,
+          "stopLoss": 1246.3,
+          "target1": 1236.38,
+          "target2": 1245.83,
+          "rrRatio": 3.31,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.24,
+            "text": "Near Fair Value (-0.24 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 2,
+          "penetrationAtr": 0.27,
+          "entry": 1240.6,
+          "stopLoss": 1246.9,
+          "target1": 1233.22,
+          "target2": 1245.14,
+          "rrRatio": 1.17,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.62,
+            "text": "Near Fair Value (-0.62 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        },
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 2,
+          "penetrationAtr": 0.27,
+          "entry": 1249.3,
+          "stopLoss": 1240,
+          "target1": 1256.74,
+          "target2": 1245.5,
+          "rrRatio": 0.8,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.51,
+            "text": "Near Fair Value (0.51 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 2,
+        "penetrationAtr": 0.27,
+        "entry": 1249.3,
+        "stopLoss": 1240,
+        "target1": 1256.74,
+        "target2": 1245.5,
+        "rrRatio": 0.8,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.51,
+          "text": "Near Fair Value (0.51 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 3
+    },
+    {
+      "symbol": "NSE:M&M",
+      "cleanSymbol": "M&M",
+      "name": "Mahindra & Mahindra",
+      "sector": "Automotive",
+      "timeframe": "30m",
+      "spotPrice": 3052,
+      "dayChangePts": -38,
+      "dayChangePct": -1.23,
+      "atr": 15.26,
+      "ema": 3077.5,
+      "bands": {
+        "bandPlus3": 3123.28,
+        "bandPlus2": 3108.02,
+        "bandPlus1": 3092.76,
+        "fairValue": 3077.5,
+        "bandMinus1": 3062.24,
+        "bandMinus2": 3046.98,
+        "bandMinus3": 3031.72
+      },
+      "currentLocation": {
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.67,
+        "text": "-1 to -2 ATR (-1.67 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 3.2,
+          "penetrationAtr": 0.22,
+          "entry": 3071,
+          "stopLoss": 3065.1,
+          "target1": 3085.31,
+          "target2": 3079.69,
+          "rrRatio": 2.43,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.61,
+            "text": "Near Fair Value (-0.61 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 18.4,
+          "penetrationAtr": 1.33,
+          "entry": 3052,
+          "stopLoss": 3092,
+          "target1": 3036.74,
+          "target2": 3077.5,
+          "rrRatio": 0.38,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.67,
+            "text": "-1 to -2 ATR (-1.67 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA",
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 18.4,
+        "penetrationAtr": 1.33,
+        "entry": 3052,
+        "stopLoss": 3092,
+        "target1": 3036.74,
+        "target2": 3077.5,
+        "rrRatio": 0.38,
+        "location": {
+          "label": "VALUE_DISCOUNT",
+          "zone": "VALUE_ZONE",
+          "atrOffset": -1.67,
+          "text": "-1 to -2 ATR (-1.67 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA",
+          "EMA - 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:BAJAJ-AUTO",
+      "cleanSymbol": "BAJAJ-AUTO",
+      "name": "Bajaj Auto Ltd.",
+      "sector": "Automotive",
+      "timeframe": "30m",
+      "spotPrice": 11414,
+      "dayChangePts": -75,
+      "dayChangePct": -0.65,
+      "atr": 46.91,
+      "ema": 11475.56,
+      "bands": {
+        "bandPlus3": 11616.29,
+        "bandPlus2": 11569.38,
+        "bandPlus1": 11522.47,
+        "fairValue": 11475.56,
+        "bandMinus1": 11428.65,
+        "bandMinus2": 11381.74,
+        "bandMinus3": 11334.83
+      },
+      "currentLocation": {
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.31,
+        "text": "-1 to -2 ATR (-1.31 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 12,
+          "penetrationAtr": 0.27,
+          "entry": 11480,
+          "stopLoss": 11452,
+          "target1": 11524.88,
+          "target2": 11482.96,
+          "rrRatio": 1.6,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.07,
+            "text": "Near Fair Value (-0.07 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 9,
+          "penetrationAtr": 0.2,
+          "entry": 11489,
+          "stopLoss": 11433,
+          "target1": 11534.5,
+          "target2": 11481.42,
+          "rrRatio": 0.81,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.17,
+            "text": "Near Fair Value (0.17 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR",
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 9,
+        "penetrationAtr": 0.2,
+        "entry": 11489,
+        "stopLoss": 11433,
+        "target1": 11534.5,
+        "target2": 11481.42,
+        "rrRatio": 0.81,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.17,
+          "text": "Near Fair Value (0.17 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA - 1 ATR",
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:HEROMOTOCO",
+      "cleanSymbol": "HEROMOTOCO",
+      "name": "Hero MotoCorp",
+      "sector": "Automotive",
+      "timeframe": "30m",
+      "spotPrice": 5285.5,
+      "dayChangePts": -57,
+      "dayChangePct": -1.07,
+      "atr": 25.5,
+      "ema": 5306.77,
+      "bands": {
+        "bandPlus3": 5383.27,
+        "bandPlus2": 5357.77,
+        "bandPlus1": 5332.27,
+        "fairValue": 5306.77,
+        "bandMinus1": 5281.27,
+        "bandMinus2": 5255.77,
+        "bandMinus3": 5230.27
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": -0.83,
+        "text": "Near Fair Value (-0.83 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 2.5,
+          "penetrationAtr": 0.1,
+          "entry": 5285.5,
+          "stopLoss": 5342.5,
+          "target1": 5260,
+          "target2": 5306.77,
+          "rrRatio": 0.45,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.83,
+            "text": "Near Fair Value (-0.83 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR",
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15",
+          "d3Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 2.5,
+        "penetrationAtr": 0.1,
+        "entry": 5285.5,
+        "stopLoss": 5342.5,
+        "target1": 5260,
+        "target2": 5306.77,
+        "rrRatio": 0.45,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": -0.83,
+          "text": "Near Fair Value (-0.83 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR",
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 13:45",
+        "d2Date": "18 Sept 14:15",
+        "d3Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:ASIANPAINT",
+      "cleanSymbol": "ASIANPAINT",
+      "name": "Asian Paints Ltd.",
+      "sector": "Paints & Chemicals",
+      "timeframe": "30m",
+      "spotPrice": 2451.3,
+      "dayChangePts": -13.2,
+      "dayChangePct": -0.54,
+      "atr": 10.1,
+      "ema": 2447.36,
+      "bands": {
+        "bandPlus3": 2477.66,
+        "bandPlus2": 2467.56,
+        "bandPlus1": 2457.46,
+        "fairValue": 2447.36,
+        "bandMinus1": 2437.26,
+        "bandMinus2": 2427.16,
+        "bandMinus3": 2417.06
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.39,
+        "text": "Near Fair Value (0.39 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 12.2,
+          "penetrationAtr": 1.25,
+          "entry": 2451.3,
+          "stopLoss": 2470,
+          "target1": 2441.2,
+          "target2": 2447.36,
+          "rrRatio": 0.54,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.39,
+            "text": "Near Fair Value (0.39 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 12.2,
+        "penetrationAtr": 1.25,
+        "entry": 2451.3,
+        "stopLoss": 2470,
+        "target1": 2441.2,
+        "target2": 2447.36,
+        "rrRatio": 0.54,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.39,
+          "text": "Near Fair Value (0.39 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:ULTRACEMCO",
+      "cleanSymbol": "ULTRACEMCO",
+      "name": "UltraTech Cement",
+      "sector": "Cement",
+      "timeframe": "30m",
+      "spotPrice": 11014,
+      "dayChangePts": 19,
+      "dayChangePct": 0.17,
+      "atr": 47.16,
+      "ema": 10927.82,
+      "bands": {
+        "bandPlus3": 11069.3,
+        "bandPlus2": 11022.14,
+        "bandPlus1": 10974.98,
+        "fairValue": 10927.82,
+        "bandMinus1": 10880.66,
+        "bandMinus2": 10833.5,
+        "bandMinus3": 10786.34
+      },
+      "currentLocation": {
+        "label": "VALUE_PREMIUM",
+        "zone": "PREMIUM_ZONE",
+        "atrOffset": 1.83,
+        "text": "+1 to +2 ATR (+1.83 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 8,
+          "penetrationAtr": 0.15,
+          "entry": 10989,
+          "stopLoss": 10971,
+          "target1": 11037.82,
+          "target2": 10912.43,
+          "rrRatio": 2.71,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.57,
+            "text": "+1 to +2 ATR (+1.57 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45",
+          "d3Date": "18 Sept 14:15"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 10,
+          "penetrationAtr": 0.2,
+          "entry": 10995,
+          "stopLoss": 10970,
+          "target1": 11043.02,
+          "target2": 10919.61,
+          "rrRatio": 1.92,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.57,
+            "text": "+1 to +2 ATR (+1.57 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 10,
+        "penetrationAtr": 0.2,
+        "entry": 10995,
+        "stopLoss": 10970,
+        "target1": 11043.02,
+        "target2": 10919.61,
+        "rrRatio": 1.92,
+        "location": {
+          "label": "VALUE_PREMIUM",
+          "zone": "PREMIUM_ZONE",
+          "atrOffset": 1.57,
+          "text": "+1 to +2 ATR (+1.57 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:GRASIM",
+      "cleanSymbol": "GRASIM",
+      "name": "Grasim Industries",
+      "sector": "Materials",
+      "timeframe": "30m",
+      "spotPrice": 3209.2,
+      "dayChangePts": 7.8,
+      "dayChangePct": 0.24,
+      "atr": 12.18,
+      "ema": 3188.67,
+      "bands": {
+        "bandPlus3": 3225.21,
+        "bandPlus2": 3213.03,
+        "bandPlus1": 3200.85,
+        "fairValue": 3188.67,
+        "bandMinus1": 3176.49,
+        "bandMinus2": 3164.31,
+        "bandMinus3": 3152.13
+      },
+      "currentLocation": {
+        "label": "VALUE_PREMIUM",
+        "zone": "PREMIUM_ZONE",
+        "atrOffset": 1.69,
+        "text": "+1 to +2 ATR (+1.69 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:INDUSINDBK",
+      "cleanSymbol": "INDUSINDBK",
+      "name": "IndusInd Bank",
+      "sector": "Private Banks",
+      "timeframe": "30m",
+      "spotPrice": 966.3,
+      "dayChangePts": 4.8,
+      "dayChangePct": 0.5,
+      "atr": 4.78,
+      "ema": 962.05,
+      "bands": {
+        "bandPlus3": 976.39,
+        "bandPlus2": 971.61,
+        "bandPlus1": 966.83,
+        "fairValue": 962.05,
+        "bandMinus1": 957.27,
+        "bandMinus2": 952.49,
+        "bandMinus3": 947.71
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.89,
+        "text": "Near Fair Value (0.89 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 0.6,
+          "penetrationAtr": 0.13,
+          "entry": 961.5,
+          "stopLoss": 966.9,
+          "target1": 956.72,
+          "target2": 961.65,
+          "rrRatio": 0.89,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.03,
+            "text": "Near Fair Value (-0.03 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR",
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        },
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 6,
+          "penetrationAtr": 1.33,
+          "entry": 966.3,
+          "stopLoss": 956.9,
+          "target1": 971.08,
+          "target2": 962.05,
+          "rrRatio": 0.51,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.89,
+            "text": "Near Fair Value (0.89 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 6,
+        "penetrationAtr": 1.33,
+        "entry": 966.3,
+        "stopLoss": 956.9,
+        "target1": 971.08,
+        "target2": 962.05,
+        "rrRatio": 0.51,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.89,
+          "text": "Near Fair Value (0.89 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:CIPLA",
+      "cleanSymbol": "CIPLA",
+      "name": "Cipla Ltd.",
+      "sector": "Pharma",
+      "timeframe": "30m",
+      "spotPrice": 1394.5,
+      "dayChangePts": 7.9,
+      "dayChangePct": 0.57,
+      "atr": 5.9,
+      "ema": 1377.02,
+      "bands": {
+        "bandPlus3": 1394.72,
+        "bandPlus2": 1388.82,
+        "bandPlus1": 1382.92,
+        "fairValue": 1377.02,
+        "bandMinus1": 1371.12,
+        "bandMinus2": 1365.22,
+        "bandMinus3": 1359.32
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 2.96,
+        "text": "Above +2 ATR (+2.96 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:DRREDDY",
+      "cleanSymbol": "DRREDDY",
+      "name": "Dr. Reddy Laboratories",
+      "sector": "Pharma",
+      "timeframe": "30m",
+      "spotPrice": 1185,
+      "dayChangePts": 0,
+      "dayChangePct": 0,
+      "atr": 6.41,
+      "ema": 1182.34,
+      "bands": {
+        "bandPlus3": 1201.57,
+        "bandPlus2": 1195.16,
+        "bandPlus1": 1188.75,
+        "fairValue": 1182.34,
+        "bandMinus1": 1175.93,
+        "bandMinus2": 1169.52,
+        "bandMinus3": 1163.11
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.41,
+        "text": "Near Fair Value (0.41 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:DIVISLAB",
+      "cleanSymbol": "DIVISLAB",
+      "name": "Divi’s Laboratories",
+      "sector": "Pharma",
+      "timeframe": "30m",
+      "spotPrice": 9375,
+      "dayChangePts": 2.5,
+      "dayChangePct": 0.03,
+      "atr": 40.31,
+      "ema": 9338.14,
+      "bands": {
+        "bandPlus3": 9459.07,
+        "bandPlus2": 9418.76,
+        "bandPlus1": 9378.45,
+        "fairValue": 9338.14,
+        "bandMinus1": 9297.83,
+        "bandMinus2": 9257.52,
+        "bandMinus3": 9217.21
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.91,
+        "text": "Near Fair Value (0.91 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 10.5,
+          "penetrationAtr": 0.23,
+          "entry": 9379.5,
+          "stopLoss": 9398.5,
+          "target1": 9335.34,
+          "target2": 9327.02,
+          "rrRatio": 2.32,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.19,
+            "text": "+1 to +2 ATR (+1.19 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 7,
+          "penetrationAtr": 0.16,
+          "entry": 9375,
+          "stopLoss": 9363.5,
+          "target1": 9415.31,
+          "target2": 9338.14,
+          "rrRatio": 3.51,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.91,
+            "text": "Near Fair Value (0.91 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 7,
+        "penetrationAtr": 0.16,
+        "entry": 9375,
+        "stopLoss": 9363.5,
+        "target1": 9415.31,
+        "target2": 9338.14,
+        "rrRatio": 3.51,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.91,
+          "text": "Near Fair Value (0.91 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:APOLLOHOSP",
+      "cleanSymbol": "APOLLOHOSP",
+      "name": "Apollo Hospitals",
+      "sector": "Healthcare",
+      "timeframe": "30m",
+      "spotPrice": 8944.5,
+      "dayChangePts": 97.5,
+      "dayChangePct": 1.1,
+      "atr": 33.86,
+      "ema": 8819.41,
+      "bands": {
+        "bandPlus3": 8920.99,
+        "bandPlus2": 8887.13,
+        "bandPlus1": 8853.27,
+        "fairValue": 8819.41,
+        "bandMinus1": 8785.55,
+        "bandMinus2": 8751.69,
+        "bandMinus3": 8717.83
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 3.69,
+        "text": "Above +2 ATR (+3.69 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:EICHERMOT",
+      "cleanSymbol": "EICHERMOT",
+      "name": "Eicher Motors",
+      "sector": "Automotive",
+      "timeframe": "30m",
+      "spotPrice": 7516,
+      "dayChangePts": -9,
+      "dayChangePct": -0.12,
+      "atr": 28.47,
+      "ema": 7517.8,
+      "bands": {
+        "bandPlus3": 7603.21,
+        "bandPlus2": 7574.74,
+        "bandPlus1": 7546.27,
+        "fairValue": 7517.8,
+        "bandMinus1": 7489.33,
+        "bandMinus2": 7460.86,
+        "bandMinus3": 7432.39
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": -0.06,
+        "text": "Near Fair Value (-0.06 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 19,
+          "penetrationAtr": 0.7,
+          "entry": 7525,
+          "stopLoss": 7568,
+          "target1": 7497.06,
+          "target2": 7517.97,
+          "rrRatio": 0.65,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.25,
+            "text": "Near Fair Value (0.25 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 19,
+        "penetrationAtr": 0.7,
+        "entry": 7525,
+        "stopLoss": 7568,
+        "target1": 7497.06,
+        "target2": 7517.97,
+        "rrRatio": 0.65,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": 0.25,
+          "text": "Near Fair Value (0.25 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:BPCL",
+      "cleanSymbol": "BPCL",
+      "name": "Bharat Petroleum Corp.",
+      "sector": "Energy",
+      "timeframe": "30m",
+      "spotPrice": 314,
+      "dayChangePts": 2,
+      "dayChangePct": 0.64,
+      "atr": 1.48,
+      "ema": 309.97,
+      "bands": {
+        "bandPlus3": 314.41,
+        "bandPlus2": 312.93,
+        "bandPlus1": 311.45,
+        "fairValue": 309.97,
+        "bandMinus1": 308.49,
+        "bandMinus2": 307.01,
+        "bandMinus3": 305.53
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 2.72,
+        "text": "Above +2 ATR (+2.72 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 0.4,
+          "penetrationAtr": 0.28,
+          "entry": 312,
+          "stopLoss": 313.45,
+          "target1": 310.54,
+          "target2": 309.58,
+          "rrRatio": 1.01,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.66,
+            "text": "+1 to +2 ATR (+1.66 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 2 ATR"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        },
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 15:15",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 0.15,
+          "penetrationAtr": 0.1,
+          "entry": 314,
+          "stopLoss": 311.95,
+          "target1": 315.48,
+          "target2": 309.97,
+          "rrRatio": 0.72,
+          "location": {
+            "label": "EXTREME_PREMIUM",
+            "zone": "OVERBOUGHT",
+            "atrOffset": 2.72,
+            "text": "Above +2 ATR (+2.72 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45",
+          "d3Date": "18 Sept 15:15"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 15:15",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 0.15,
+        "penetrationAtr": 0.1,
+        "entry": 314,
+        "stopLoss": 311.95,
+        "target1": 315.48,
+        "target2": 309.97,
+        "rrRatio": 0.72,
+        "location": {
+          "label": "EXTREME_PREMIUM",
+          "zone": "OVERBOUGHT",
+          "atrOffset": 2.72,
+          "text": "Above +2 ATR (+2.72 ATR)"
+        },
+        "reclaimedLevels": [],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45",
+        "d3Date": "18 Sept 15:15"
+      },
+      "totalSetupsFound": 2
+    },
+    {
+      "symbol": "NSE:NESTLEIND",
+      "cleanSymbol": "NESTLEIND",
+      "name": "Nestle India Ltd.",
+      "sector": "FMCG",
+      "timeframe": "30m",
+      "spotPrice": 1372.4,
+      "dayChangePts": 7.5,
+      "dayChangePct": 0.55,
+      "atr": 8.68,
+      "ema": 1371.94,
+      "bands": {
+        "bandPlus3": 1397.98,
+        "bandPlus2": 1389.3,
+        "bandPlus1": 1380.62,
+        "fairValue": 1371.94,
+        "bandMinus1": 1363.26,
+        "bandMinus2": 1354.58,
+        "bandMinus3": 1345.9
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": 0.05,
+        "text": "Near Fair Value (0.05 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:BRITANNIA",
+      "cleanSymbol": "BRITANNIA",
+      "name": "Britannia Industries",
+      "sector": "FMCG",
+      "timeframe": "30m",
+      "spotPrice": 4998,
+      "dayChangePts": -2,
+      "dayChangePct": -0.04,
+      "atr": 17.86,
+      "ema": 5003.88,
+      "bands": {
+        "bandPlus3": 5057.46,
+        "bandPlus2": 5039.6,
+        "bandPlus1": 5021.74,
+        "fairValue": 5003.88,
+        "bandMinus1": 4986.02,
+        "bandMinus2": 4968.16,
+        "bandMinus3": 4950.3
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": -0.33,
+        "text": "Near Fair Value (-0.33 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 8,
+          "penetrationAtr": 0.44,
+          "entry": 5000,
+          "stopLoss": 5022,
+          "target1": 4981.35,
+          "target2": 5004.44,
+          "rrRatio": 0.85,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.24,
+            "text": "Near Fair Value (-0.24 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 8,
+        "penetrationAtr": 0.44,
+        "entry": 5000,
+        "stopLoss": 5022,
+        "target1": 4981.35,
+        "target2": 5004.44,
+        "rrRatio": 0.85,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": -0.24,
+          "text": "Near Fair Value (-0.24 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:TATACONSUM",
+      "cleanSymbol": "TATACONSUM",
+      "name": "Tata Consumer Products",
+      "sector": "FMCG",
+      "timeframe": "30m",
+      "spotPrice": 996,
+      "dayChangePts": -5.6,
+      "dayChangePct": -0.56,
+      "atr": 4.81,
+      "ema": 1004.7,
+      "bands": {
+        "bandPlus3": 1019.13,
+        "bandPlus2": 1014.32,
+        "bandPlus1": 1009.51,
+        "fairValue": 1004.7,
+        "bandMinus1": 999.89,
+        "bandMinus2": 995.08,
+        "bandMinus3": 990.27
+      },
+      "currentLocation": {
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.81,
+        "text": "-1 to -2 ATR (-1.81 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 13:45",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 0.6,
+          "penetrationAtr": 0.12,
+          "entry": 1001.4,
+          "stopLoss": 1005.4,
+          "target1": 996.55,
+          "target2": 1006.22,
+          "rrRatio": 1.21,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.99,
+            "text": "Near Fair Value (-0.99 ATR)"
+          },
+          "reclaimedLevels": [],
+          "d1Date": "18 Sept 12:45",
+          "d2Date": "18 Sept 13:15",
+          "d3Date": "18 Sept 13:45"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 0.6,
+          "penetrationAtr": 0.12,
+          "entry": 1002.6,
+          "stopLoss": 1000.8,
+          "target1": 1007.35,
+          "target2": 1005.9,
+          "rrRatio": 2.64,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.69,
+            "text": "Near Fair Value (-0.69 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15"
+        },
+        {
+          "version": "V1",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 2.1,
+          "penetrationAtr": 0.44,
+          "entry": 1001.6,
+          "stopLoss": 1005.6,
+          "target1": 996.88,
+          "target2": 1005.53,
+          "rrRatio": 1.18,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.83,
+            "text": "Near Fair Value (-0.83 ATR)"
+          },
+          "reclaimedLevels": [
+            "Fair Value EMA"
+          ],
+          "d1Date": "18 Sept 14:15",
+          "d2Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V1",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 2.1,
+        "penetrationAtr": 0.44,
+        "entry": 1001.6,
+        "stopLoss": 1005.6,
+        "target1": 996.88,
+        "target2": 1005.53,
+        "rrRatio": 1.18,
+        "location": {
+          "label": "AT_FAIR_VALUE",
+          "zone": "FAIR_VALUE",
+          "atrOffset": -0.83,
+          "text": "Near Fair Value (-0.83 ATR)"
+        },
+        "reclaimedLevels": [
+          "Fair Value EMA"
+        ],
+        "d1Date": "18 Sept 14:15",
+        "d2Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 3
+    },
+    {
+      "symbol": "NSE:BEL",
+      "cleanSymbol": "BEL",
+      "name": "Bharat Electronics Ltd.",
+      "sector": "Defence",
+      "timeframe": "30m",
+      "spotPrice": 393.3,
+      "dayChangePts": -3.4,
+      "dayChangePct": -0.86,
+      "atr": 1.73,
+      "ema": 395.75,
+      "bands": {
+        "bandPlus3": 400.94,
+        "bandPlus2": 399.21,
+        "bandPlus1": 397.48,
+        "fairValue": 395.75,
+        "bandMinus1": 394.02,
+        "bandMinus2": 392.29,
+        "bandMinus3": 390.56
+      },
+      "currentLocation": {
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.42,
+        "text": "-1 to -2 ATR (-1.42 ATR)"
+      },
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
+    },
+    {
+      "symbol": "NSE:HAL",
+      "cleanSymbol": "HAL",
+      "name": "Hindustan Aeronautics",
+      "sector": "Defence",
+      "timeframe": "30m",
+      "spotPrice": 4800.3,
+      "dayChangePts": -59.8,
+      "dayChangePct": -1.23,
+      "atr": 27.34,
+      "ema": 4817.97,
+      "bands": {
+        "bandPlus3": 4899.99,
+        "bandPlus2": 4872.65,
+        "bandPlus1": 4845.31,
+        "fairValue": 4817.97,
+        "bandMinus1": 4790.63,
+        "bandMinus2": 4763.29,
+        "bandMinus3": 4735.95
+      },
+      "currentLocation": {
+        "label": "AT_FAIR_VALUE",
+        "zone": "FAIR_VALUE",
+        "atrOffset": -0.65,
+        "text": "Near Fair Value (-0.65 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 4.3,
+          "penetrationAtr": 0.16,
+          "entry": 4860.1,
+          "stopLoss": 4888.3,
+          "target1": 4834.39,
+          "target2": 4819.65,
+          "rrRatio": 0.91,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.57,
+            "text": "+1 to +2 ATR (+1.57 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 2 ATR"
+          ],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15",
+          "d3Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "SHORT",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 4.3,
+        "penetrationAtr": 0.16,
+        "entry": 4860.1,
+        "stopLoss": 4888.3,
+        "target1": 4834.39,
+        "target2": 4819.65,
+        "rrRatio": 0.91,
+        "location": {
+          "label": "VALUE_PREMIUM",
+          "zone": "PREMIUM_ZONE",
+          "atrOffset": 1.57,
+          "text": "+1 to +2 ATR (+1.57 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 2 ATR"
+        ],
+        "d1Date": "18 Sept 13:45",
+        "d2Date": "18 Sept 14:15",
+        "d3Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 1
+    },
+    {
+      "symbol": "NSE:TRENT",
+      "cleanSymbol": "TRENT",
+      "name": "Trent Ltd.",
+      "sector": "Retail",
+      "timeframe": "30m",
+      "spotPrice": 2824,
+      "dayChangePts": 14.5,
+      "dayChangePct": 0.52,
+      "atr": 11.78,
+      "ema": 2792.67,
+      "bands": {
+        "bandPlus3": 2828.01,
+        "bandPlus2": 2816.23,
+        "bandPlus1": 2804.45,
+        "fairValue": 2792.67,
+        "bandMinus1": 2780.89,
+        "bandMinus2": 2769.11,
+        "bandMinus3": 2757.33
+      },
+      "currentLocation": {
+        "label": "EXTREME_PREMIUM",
+        "zone": "OVERBOUGHT",
+        "atrOffset": 2.66,
+        "text": "Above +2 ATR (+2.66 ATR)"
+      },
+      "activeSetups": [
+        {
+          "version": "V2",
+          "direction": "SHORT",
+          "triggerDate": "18 Sept 14:15",
+          "isLatestBar": false,
+          "barsAgo": 2,
+          "penetrationPts": 1.2,
+          "penetrationAtr": 0.1,
+          "entry": 2793.1,
+          "stopLoss": 2800.4,
+          "target1": 2781.89,
+          "target2": 2787.8,
+          "rrRatio": 1.54,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": 0.47,
+            "text": "Near Fair Value (0.47 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 13:15",
+          "d2Date": "18 Sept 13:45",
+          "d3Date": "18 Sept 14:15"
+        },
+        {
+          "version": "V2",
+          "direction": "LONG",
+          "triggerDate": "18 Sept 14:45",
+          "isLatestBar": false,
+          "barsAgo": 1,
+          "penetrationPts": 4,
+          "penetrationAtr": 0.35,
+          "entry": 2809.5,
+          "stopLoss": 2791.2,
+          "target1": 2820.98,
+          "target2": 2789.69,
+          "rrRatio": 0.63,
+          "location": {
+            "label": "VALUE_PREMIUM",
+            "zone": "PREMIUM_ZONE",
+            "atrOffset": 1.73,
+            "text": "+1 to +2 ATR (+1.73 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA + 1 ATR"
+          ],
+          "d1Date": "18 Sept 13:45",
+          "d2Date": "18 Sept 14:15",
+          "d3Date": "18 Sept 14:45"
+        }
+      ],
+      "primarySetup": {
+        "version": "V2",
+        "direction": "LONG",
+        "triggerDate": "18 Sept 14:45",
+        "isLatestBar": false,
+        "barsAgo": 1,
+        "penetrationPts": 4,
+        "penetrationAtr": 0.35,
+        "entry": 2809.5,
+        "stopLoss": 2791.2,
+        "target1": 2820.98,
+        "target2": 2789.69,
+        "rrRatio": 0.63,
+        "location": {
+          "label": "VALUE_PREMIUM",
+          "zone": "PREMIUM_ZONE",
+          "atrOffset": 1.73,
+          "text": "+1 to +2 ATR (+1.73 ATR)"
+        },
+        "reclaimedLevels": [
+          "EMA + 1 ATR"
+        ],
+        "d1Date": "18 Sept 13:45",
+        "d2Date": "18 Sept 14:15",
+        "d3Date": "18 Sept 14:45"
+      },
+      "totalSetupsFound": 2
+    }
+  ]
+}

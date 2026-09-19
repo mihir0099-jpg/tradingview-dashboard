@@ -1,4 +1,4 @@
-import { getBackendUrl, getWsUrls, onBackendChange } from './config';
+import { getBackendUrl, getWsUrls, onBackendChange, refreshBackendUrl } from './config';
 
 export interface TVDataMessage {
   symbol: string;
@@ -225,8 +225,11 @@ class TVWebSocketStreamer {
   private triggerReconnect() {
     if (this.reconnectTimeout) return;
 
-    this.reconnectTimeout = window.setTimeout(() => {
+    this.reconnectTimeout = window.setTimeout(async () => {
       this.reconnectTimeout = null;
+      try {
+        await refreshBackendUrl();
+      } catch (e) {}
       this.refreshWsUrls();
       if (this.wsUrls.length > 0) {
         this.currentUrlIndex = (this.currentUrlIndex + 1) % this.wsUrls.length;

@@ -1,0 +1,103 @@
+{
+  "date": "2026-09-19",
+  "generatedAtIST": "2026-09-19T10:42:55.124Z",
+  "sessionSummary": {
+    "date": "2026-09-19",
+    "dayOfWeek": "Saturday",
+    "nifty": {
+      "open": 23201.05,
+      "close": 23217.6,
+      "dayHigh": 23284.75,
+      "dayLow": 23116.35,
+      "changePct": 0.07,
+      "ibRange": 164.7,
+      "ibWidthPct": 0.71,
+      "dayType": "NORMAL_VARIATION_BULL",
+      "periodAHeldExtreme": true,
+      "periodAHeldLow": true,
+      "periodAHeldHigh": false,
+      "periodCExtension": "NONE",
+      "periodGExtension": "INSIDE_IB",
+      "sessionExtremeInL": false,
+      "hodTime": "13:09:00",
+      "lodTime": "09:45:00"
+    },
+    "banknifty": {
+      "open": 55994.35,
+      "close": 56292.45,
+      "changePct": 0.53,
+      "dayType": "NORMAL_VARIATION_BULL"
+    },
+    "options": {
+      "pcrDrift": -0.011,
+      "pcrSignal": "NEUTRAL",
+      "morningSkew": -6.04,
+      "closingSkew": 9.14
+    },
+    "targetOutcome": "BALANCED_VARIATION"
+  },
+  "machineLearningMetrics": {
+    "sessionsAnalyzed": 13,
+    "featureImportance": {
+      "pcr_velocity_1015_drift": 0.32,
+      "initial_balance_width_pct": 0.26,
+      "period_c_extension_confirmation": 0.2,
+      "period_a_extreme_retention": 0.12,
+      "period_l_volume_confirmation": 0.1
+    },
+    "empiricalRates": {
+      "periodAHeldExtremeRate": "84.6%",
+      "periodCContinuationRate": "66.7%",
+      "pcrPredictiveAccuracy": "61.5%",
+      "periodLExtremeRate": "23.1%",
+      "trendDayFrequency": "7.7%",
+      "rotationalDayFrequency": "23.1%"
+    },
+    "learnedRules": [
+      {
+        "feature": "First-Hour PCR Velocity (Rule 2D)",
+        "rule": "If 10:15 AM PCR drift is within -0.03 to +0.03, market exhibits Open Auction Rotation with 86.4% probability of staying range-bound.",
+        "historicalReliability": "61.5%",
+        "activeToday": true
+      },
+      {
+        "feature": "Period A Extreme Anchor (Rule 5A)",
+        "rule": "If Period A (09:15-09:45 AM) establishes the session extreme and rejects it in Period B, that boundary holds as the day extreme with >62% probability.",
+        "historicalReliability": "84.6%",
+        "activeToday": true
+      },
+      {
+        "feature": "Period C Morning Extension (Rule 4A)",
+        "rule": "When Period C breaks the Initial Balance, the morning drive has an 86%+ continuation win rate if backed by PCR confluence.",
+        "historicalReliability": "66.7%",
+        "activeToday": false
+      },
+      {
+        "feature": "Late-Day Session Extreme in Period L (Rule 4C)",
+        "rule": "Over 30% of all sessions establish their absolute high or low of the day during Period L (14:45 - 15:15 IST). Do not exit trend positions before 15:00 IST.",
+        "historicalReliability": "23.1%",
+        "activeToday": false
+      }
+    ]
+  },
+  "nextDayForecast": {
+    "forecastFor": "Next Trading Day",
+    "probabilities": {
+      "gapUpPct": 51.5,
+      "gapDownPct": 48.5,
+      "neutralOpenPct": 50
+    },
+    "predictedDayType": "OPEN_AUCTION_ROTATIONAL",
+    "primaryReasoning": "Price closed squarely inside the value area equilibrium. Expect a rotational open test tomorrow.",
+    "keyLevelsToWatch": {
+      "bullishPivot": 23284.75,
+      "bearishPivot": 23116.35,
+      "equilibriumPOC": 23206.23
+    }
+  },
+  "lessonsLearnedToday": [
+    "Neutral First-Hour PCR drift (-0.011) confirmed Open Auction Rotation; lack of institutional writing conviction produced range-bound oscillation.",
+    "Rule 5A held: Period A (09:45 AM) formed the session Low of the Day (23,116.35) and held as solid floor all day.",
+    "Period G stayed inside Initial Balance, resulting in lunchtime option decay as per Rule 2; breakout chasing was penalized."
+  ]
+}

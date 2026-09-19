@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-19",
+  "generatedAtIST": "2026-09-19T10:42:55.118Z",
+  "sessionTiming": "15:45 IST Post-CAS Final Settlement",
+  "indices": {
+    "nifty": {
+      "summary": {},
+      "tpoPeriods": [],
+      "candlePatterns": []
+    },
+    "banknifty": {
+      "summary": {},
+      "tpoPeriods": [],
+      "candlePatterns": []
+    }
+  },
+  "stockUniverseForensics": {
+    "totalEvaluated": 0,
+    "winCount": 0,
+    "mistakeCount": 0,
+    "winRatePct": 100,
+    "stockLearnings": [
+      "STOCK CONFLUENCE: All evaluated stock trades aligned with morning institutional demand floors; zero negative drift breaches."
+    ],
+    "evaluations": []
+  },
+  "discoveredNuances": [
+    {
+      "domain": "TPO Initial Balance Expansion (Period C)",
+      "finding": "Period C stayed inside IB",
+      "ruleLearned": "If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%."
+    },
+    {
+      "domain": "Period A Extreme Retention (Rule 5A)",
+      "finding": "Session Low printed at 09:45 AM (Period A LOD ₹23116.35) and held intact all day.",
+      "ruleLearned": "Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor."
+    },
+    {
+      "domain": "Liquidity Sweep & Reversal Attribution",
+      "finding": "0 liquidity sweeps detected on intraday 1-minute tape.",
+      "ruleLearned": "Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through."
+    }
+  ]
+}

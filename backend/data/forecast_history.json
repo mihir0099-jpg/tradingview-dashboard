@@ -2198,5 +2198,115 @@
     "predicted_low": 23801.55,
     "predicted_close": 23808.26,
     "createdAt": 1789484199817
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789619069,
+    "predicted": 23887.01,
+    "predicted_open": 23879.03,
+    "predicted_high": 23886.28,
+    "predicted_low": 23872.59,
+    "predicted_close": 23880.31,
+    "createdAt": 1789617300789
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789620869,
+    "predicted": 23860.85,
+    "predicted_open": 23872.97,
+    "predicted_high": 23878.3,
+    "predicted_low": 23866.91,
+    "predicted_close": 23871.32,
+    "createdAt": 1789617300789
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789622669,
+    "predicted": 23861.86,
+    "predicted_open": 23860.76,
+    "predicted_high": 23867.79,
+    "predicted_low": 23855.06,
+    "predicted_close": 23861.84,
+    "createdAt": 1789617300789
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789624469,
+    "predicted": 23845.09,
+    "predicted_open": 23853.15,
+    "predicted_high": 23859.47,
+    "predicted_low": 23846.13,
+    "predicted_close": 23852.53,
+    "createdAt": 1789617300790
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789626269,
+    "predicted": 23853.28,
+    "predicted_open": 23841.28,
+    "predicted_high": 23848.65,
+    "predicted_low": 23836.82,
+    "predicted_close": 23844.01,
+    "createdAt": 1789617300790
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789628069,
+    "predicted": 23838,
+    "predicted_open": 23836.58,
+    "predicted_high": 23842.26,
+    "predicted_low": 23830.28,
+    "predicted_close": 23836.81,
+    "createdAt": 1789617300790
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789629869,
+    "predicted": 23825.54,
+    "predicted_open": 23829.96,
+    "predicted_high": 23836.59,
+    "predicted_low": 23823.91,
+    "predicted_close": 23831.3,
+    "createdAt": 1789617300790
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789631669,
+    "predicted": 23830.44,
+    "predicted_open": 23828.12,
+    "predicted_high": 23834.49,
+    "predicted_low": 23821.32,
+    "predicted_close": 23827.72,
+    "createdAt": 1789617300790
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789633469,
+    "predicted": 23837.81,
+    "predicted_open": 23826.18,
+    "predicted_high": 23832.41,
+    "predicted_low": 23820.71,
+    "predicted_close": 23826.14,
+    "createdAt": 1789617300790
+  },
+  {
+    "symbol": "NSE:NIFTY",
+    "timeframe": "30",
+    "targetTime": 1789635269,
+    "predicted": 23833.9,
+    "predicted_open": 23826.92,
+    "predicted_high": 23832.56,
+    "predicted_low": 23819.43,
+    "predicted_close": 23826.44,
+    "createdAt": 1789617300790
   }
 ]

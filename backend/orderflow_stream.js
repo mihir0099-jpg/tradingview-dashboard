@@ -1,10 +1,13 @@
 import WebSocket from 'ws';
 import { angelOneBridge } from './angelone_bridge.js';
+import { analyseCompletedCandle } from './footprint_ml_reader.js';
 
 // Supported Order Flow Instruments
 export const ORDERFLOW_SYMBOLS = [
   { symbol: 'NIFTYFUT', label: 'NIFTY FUT', token: '68407', exchange: 'NFO', tickSize: 1.0, lotSize: 25, groupSize: 1.0 },
   { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', token: '68390', exchange: 'NFO', tickSize: 1.0, lotSize: 15, groupSize: 1.0 },
+  { symbol: 'CRUDEOILFUT', label: 'CRUDE OIL FUT (MCX)', token: '565899', exchange: 'MCX', tickSize: 1.0, lotSize: 100, groupSize: 5.0, tradingsymbol: 'CRUDEOIL21SEP26FUT' },
+  { symbol: 'CRUDEOILM', label: 'CRUDE OIL MINI (MCX)', token: '565900', exchange: 'MCX', tickSize: 1.0, lotSize: 10, groupSize: 5.0, tradingsymbol: 'CRUDEOILM21SEP26FUT' },
   { symbol: 'NIFTY', label: 'NIFTY 50', token: '99926000', exchange: 'NSE', tickSize: 1.0, lotSize: 75, groupSize: 1.0 },
   { symbol: 'BANKNIFTY', label: 'BANK NIFTY', token: '99926009', exchange: 'NSE', tickSize: 1.0, lotSize: 30, groupSize: 1.0 },
   { symbol: 'RELIANCE', label: 'RELIANCE', token: '2885', exchange: 'NSE', tickSize: 0.5, lotSize: 250, groupSize: 0.5 },
@@ -19,15 +22,27 @@ export const ORDERFLOW_SYMBOLS = [
   { symbol: 'KOTAKBANK', label: 'KOTAK BANK', token: '1922', exchange: 'NSE', tickSize: 0.5, lotSize: 400, groupSize: 0.5 }
 ];
 
-// Session period letters matching Market Profile standard (A = 9:15-9:45, B = 9:45-10:15, etc.)
-function getPeriodLetter(date) {
+// Helper to map exchange name to Angel One SmartStream exchangeType
+function getExchangeType(exchange) {
+  switch (exchange) {
+    case 'MCX': return 5;
+    case 'NFO': return 2;
+    case 'BSE': return 3;
+    case 'BFO': return 4;
+    case 'CDS': return 13;
+    default: return 1;
+  }
+}
+
+// Session period letters matching Market Profile standard (A = 9:00/9:15, B = 9:30/9:45, etc.)
+function getPeriodLetter(date, exchange = 'NSE') {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const totalMins = hours * 60 + minutes;
-  const startMins = 9 * 60 + 15; // 9:15 AM
+  const startMins = exchange === 'MCX' ? 9 * 60 : 9 * 60 + 15; // 9:00 AM for MCX, 9:15 AM for NSE
   if (totalMins < startMins) return 'PRE';
   const periodIndex = Math.floor((totalMins - startMins) / 30);
-  const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'];
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('');
   return letters[periodIndex] || 'M';
 }
 
@@ -72,7 +87,24 @@ class OrderFlowStreamEngine {
                        (this.timeframeMinutes === 30 ? 'THIRTY_MINUTE' :
                        (this.timeframeMinutes === 60 ? 'ONE_HOUR' : 'FIVE_MINUTE')))));
 
-      const rawCandles = await angelOneBridge.getCandles(meta.exchange, meta.token, interval, `${dateStr} 09:15`, `${dateStr} 15:30`);
+      const isMcx = meta.exchange === 'MCX';
+      const startHour = isMcx ? '09:00' : '09:15';
+      const endHour = isMcx ? '23:30' : '15:30';
+
+      let rawCandles = await angelOneBridge.getCandles(meta.exchange, meta.token, interval, `${dateStr} ${startHour}`, `${dateStr} ${endHour}`);
+
+      // If today has no candles yet (e.g. before market opens), fetch previous trading day
+      if (!rawCandles || rawCandles.length === 0) {
+        for (let daysAgo = 1; daysAgo <= 4; daysAgo++) {
+          const past = new Date(today.getTime() - daysAgo * 24 * 60 * 60 * 1000);
+          const pastDateStr = past.toISOString().split('T')[0];
+          rawCandles = await angelOneBridge.getCandles(meta.exchange, meta.token, interval, `${pastDateStr} ${startHour}`, `${pastDateStr} ${endHour}`);
+          if (rawCandles && rawCandles.length > 0) {
+            console.log(`[OrderFlow] Seeded ${rawCandles.length} candles from previous session (${pastDateStr}) for ${this.activeSymbol}`);
+            break;
+          }
+        }
+      }
 
       if (rawCandles && rawCandles.length > 0) {
         this.buildHistoricalFootprint(rawCandles, meta);
@@ -113,7 +145,7 @@ class OrderFlowStreamEngine {
 
       const dateObj = new Date(candleBucket);
       const timeStr = dateObj.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
-      const period = getPeriodLetter(dateObj);
+      const period = getPeriodLetter(dateObj, meta.exchange);
 
       // Distribute volume into price levels
       const priceLevels = [];
@@ -354,14 +386,14 @@ class OrderFlowStreamEngine {
         mode: 2,
         tokenList: [
           {
-            exchangeType: meta.exchange === 'NFO' ? 2 : 1,
+            exchangeType: getExchangeType(meta.exchange),
             tokens: [meta.token]
           }
         ]
       }
     };
     this.ws.send(JSON.stringify(subMsg));
-    console.log(`[OrderFlow WS] Subscribed to ${this.activeSymbol} (Token: ${meta.token})`);
+    console.log(`[OrderFlow WS] Subscribed to ${this.activeSymbol} (Token: ${meta.token}, ExchType: ${getExchangeType(meta.exchange)})`);
   }
 
   async switchSymbol(symbolName, timeframe = 5) {
@@ -374,7 +406,7 @@ class OrderFlowStreamEngine {
         this.ws.send(JSON.stringify({
           correlationID: 'unsub_' + this.activeSymbol,
           action: 0,
-          params: { mode: 2, tokenList: [{ exchangeType: meta.exchange === 'NFO' ? 2 : 1, tokens: [this.activeToken] }] }
+          params: { mode: 2, tokenList: [{ exchangeType: getExchangeType(meta.exchange), tokens: [this.activeToken] }] }
         }));
       } catch (e) {}
     }
@@ -468,13 +500,21 @@ class OrderFlowStreamEngine {
           this.candles.push(completed);
         }
         if (this.candles.length > 100) this.candles.shift();
+
+        // ── FOOTPRINT ML: analyse every completed 5-min candle ──
+        try {
+          const meta = this.getActiveMeta();
+          analyseCompletedCandle(completed, meta);
+        } catch(mlErr) {
+          console.warn('[FootprintML] Analysis error:', mlErr.message);
+        }
       }
 
       const dateObj = new Date(bucketTime);
       this.currentCandle = {
         timestamp: bucketTime,
         timeStr: dateObj.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' }),
-        period: getPeriodLetter(dateObj),
+        period: getPeriodLetter(dateObj, meta.exchange),
         open: price,
         high: price,
         low: price,

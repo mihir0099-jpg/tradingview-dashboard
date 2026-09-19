@@ -45,8 +45,12 @@ function startTunnel() {
         try {
           const docsDir = path.join(__dirname, '../docs');
           const pubDir = path.join(__dirname, '../frontend/public');
+          const distDir = path.join(__dirname, '../frontend/dist');
+          const hfDir = path.join(__dirname, '../hf_static_bundle');
           if (fs.existsSync(docsDir)) fs.writeFileSync(path.join(docsDir, 'live_backend.json'), jsonPayload, 'utf8');
           if (fs.existsSync(pubDir)) fs.writeFileSync(path.join(pubDir, 'live_backend.json'), jsonPayload, 'utf8');
+          if (fs.existsSync(distDir)) fs.writeFileSync(path.join(distDir, 'live_backend.json'), jsonPayload, 'utf8');
+          if (fs.existsSync(hfDir)) fs.writeFileSync(path.join(hfDir, 'live_backend.json'), jsonPayload, 'utf8');
         } catch (e) {}
 
         console.log('====================================================');
@@ -78,5 +82,45 @@ function startTunnel() {
     reconnectTimer = setTimeout(startTunnel, 5000);
   });
 }
+
+// Active Tunnel Health Watchdog: Detects sleep resume or dropped quick-tunnels
+let healthFailCount = 0;
+setInterval(async () => {
+  if (!lastPublishedUrl) return;
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const res = await fetch(`${lastPublishedUrl}/health`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    if (res.ok) {
+      healthFailCount = 0;
+      return;
+    }
+  } catch (err) {
+    // Network or DNS or socket error (e.g. laptop resumed from sleep)
+  }
+
+  healthFailCount++;
+  console.log(`[Cloudflare Watchdog] Health check failed for ${lastPublishedUrl} (${healthFailCount}/2)`);
+
+  if (healthFailCount >= 2) {
+    console.log(`[Cloudflare Watchdog] Tunnel unreachable after 2 checks. Killing stale process and auto-reconnecting...`);
+    healthFailCount = 0;
+    if (child && child.pid) {
+      try {
+        if (process.platform === 'win32') {
+          exec(`taskkill /F /T /PID ${child.pid}`, () => startTunnel());
+        } else {
+          child.kill('SIGKILL');
+          startTunnel();
+        }
+      } catch (e) {
+        startTunnel();
+      }
+    } else {
+      startTunnel();
+    }
+  }
+}, 10000);
 
 startTunnel();

@@ -1,0 +1,176 @@
+{
+  "generated_at": "2026-09-19T09:40:59.442734",
+  "session_date": "2026-09-18",
+  "pipeline": "GEX-Enhanced-Tri-Model-v4.0",
+  "packages": {
+    "lightgbm": "4.7.0",
+    "xgboost": "3.4.1",
+    "catboost": "1.2.10",
+    "shap": "0.52.0"
+  },
+  "live_gex_features": {
+    "net_gex_sign": -1.0,
+    "gamma_flip_dist_pct": -0.0283,
+    "call_wall_dist_pct": 0.2296,
+    "put_wall_dist_pct": 0.1987,
+    "gex_regime": 1.0,
+    "abs_gex_norm": 0.0045,
+    "spot_vs_flip": -1.0,
+    "gex_momentum_m5": -1.0,
+    "minutes_below_flip": 1.0,
+    "gex_wall_compression": 0.7255,
+    "ib_width_pct": 0.3108,
+    "gap_pct": -0.0501,
+    "pcr_velocity_sign": 0.0,
+    "period_c_direction": 0.0,
+    "period_g_direction": 0.0,
+    "morning_skew": -0.4017
+  },
+  "models": {
+    "lightgbm": {
+      "bull_prob_pct": 45.5,
+      "bear_prob_pct": 54.5,
+      "verdict": "NEUTRAL",
+      "top_features": [
+        {
+          "feature": "net_gex_sign",
+          "importance_pct": 0.0
+        },
+        {
+          "feature": "gamma_flip_dist_pct",
+          "importance_pct": 0.0
+        },
+        {
+          "feature": "call_wall_dist_pct",
+          "importance_pct": 0.0
+        },
+        {
+          "feature": "put_wall_dist_pct",
+          "importance_pct": 0.0
+        },
+        {
+          "feature": "gex_regime",
+          "importance_pct": 0.0
+        },
+        {
+          "feature": "abs_gex_norm",
+          "importance_pct": 0.0
+        },
+        {
+          "feature": "spot_vs_flip",
+          "importance_pct": 0.0
+        },
+        {
+          "feature": "gex_momentum_m5",
+          "importance_pct": 0.0
+        }
+      ],
+      "train_ms": 1545.2
+    },
+    "xgboost": {
+      "bull_prob_pct": 22.2,
+      "bear_prob_pct": 77.8,
+      "verdict": "BUY_PE",
+      "train_ms": 313.9
+    },
+    "catboost": {
+      "bull_prob_pct": 2.4,
+      "bear_prob_pct": 97.6,
+      "verdict": "BUY_PE",
+      "top_features": [
+        {
+          "feature": "put_wall_dist_pct",
+          "importance_pct": 35.4
+        },
+        {
+          "feature": "gap_pct",
+          "importance_pct": 31.4
+        },
+        {
+          "feature": "gamma_flip_dist_pct",
+          "importance_pct": 13.7
+        },
+        {
+          "feature": "minutes_below_flip",
+          "importance_pct": 3.7
+        },
+        {
+          "feature": "spot_vs_flip",
+          "importance_pct": 3.3
+        },
+        {
+          "feature": "morning_skew",
+          "importance_pct": 2.7
+        },
+        {
+          "feature": "call_wall_dist_pct",
+          "importance_pct": 2.6
+        },
+        {
+          "feature": "pcr_velocity_sign",
+          "importance_pct": 2.2
+        }
+      ],
+      "train_ms": 483.6
+    },
+    "ensemble": {
+      "avg_bull_pct": 23.3,
+      "avg_bear_pct": 76.7,
+      "verdict": "BUY_PE",
+      "confidence": "MEDIUM",
+      "models_agreed": false
+    },
+    "shap": {
+      "status": "success",
+      "top_drivers": [
+        {
+          "feature": "net_gex_sign",
+          "shap": 0.0
+        },
+        {
+          "feature": "gamma_flip_dist_pct",
+          "shap": 0.0
+        },
+        {
+          "feature": "call_wall_dist_pct",
+          "shap": 0.0
+        },
+        {
+          "feature": "put_wall_dist_pct",
+          "shap": 0.0
+        },
+        {
+          "feature": "gex_regime",
+          "shap": 0.0
+        },
+        {
+          "feature": "abs_gex_norm",
+          "shap": 0.0
+        }
+      ]
+    }
+  },
+  "kalman": {
+    "status": "success",
+    "current_gex": -847.1,
+    "forecast_15min": -888.1,
+    "slope": -13.66,
+    "trend": "FALLING",
+    "zero_crossing": false
+  },
+  "online": {
+    "status": "success",
+    "algorithm": "Hoeffding Tree (Online)",
+    "sessions": 10,
+    "accuracy_pct": 66.7,
+    "prediction": "BULLISH",
+    "confidence_pct": 100.0
+  },
+  "stats": {
+    "sessions": 11,
+    "features": 16,
+    "bull": 5,
+    "bear": 6,
+    "runtime_ms": 3597.8
+  }
+}

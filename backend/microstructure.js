@@ -18,6 +18,8 @@
  *     - Dealer Gamma Hedging Pressure Gauge (₹ Cr per 1% move)
  */
 
+import { getLotSize } from './lot_size_service.js';
+
 export const FNO_STOCK_METADATA = {
   'NSE:RELIANCE': { name: 'Reliance Industries', ticker: 'RELIANCE.NS', strikeInterval: 20, lotSize: 250, defaultSpot: 1257.5, targetExtension: 9.2, sector: 'Energy' },
   'NSE:HDFCBANK': { name: 'HDFC Bank', ticker: 'HDFCBANK.NS', strikeInterval: 10, lotSize: 550, defaultSpot: 708.25, targetExtension: 4.5, sector: 'Banking' },
@@ -127,7 +129,7 @@ export function detectSymbolConfig(symbol = 'NSE:NIFTY', spotPrice = 0) {
       isIndex: true,
       sector: 'Banking Index',
       strikeInterval: 100,
-      lotSize: 30,
+      lotSize: getLotSize('BANKNIFTY', 30),
       defaultSpot: 56606.55,
       targetExtension: 150,
       slBuffer: 40
@@ -140,20 +142,33 @@ export function detectSymbolConfig(symbol = 'NSE:NIFTY', spotPrice = 0) {
       isIndex: true,
       sector: 'Financial Index',
       strikeInterval: 50,
-      lotSize: 65,
+      lotSize: getLotSize('FINNIFTY', 60),
       defaultSpot: 25400.0,
       targetExtension: 45,
       slBuffer: 20
     };
   }
-  if (sym.includes('NIFTY') && !sym.includes('BANK') && !sym.includes('FIN')) {
+  if (sym.includes('MIDCPNIFTY')) {
+    return {
+      symbol: 'NSE:MIDCPNIFTY',
+      name: 'NIFTY MID SELECT',
+      isIndex: true,
+      sector: 'Midcap Index',
+      strikeInterval: 25,
+      lotSize: getLotSize('MIDCPNIFTY', 120),
+      defaultSpot: 12500.0,
+      targetExtension: 30,
+      slBuffer: 15
+    };
+  }
+  if (sym.includes('NIFTY') && !sym.includes('BANK') && !sym.includes('FIN') && !sym.includes('MID')) {
     return {
       symbol: 'NSE:NIFTY',
       name: 'NIFTY 50',
       isIndex: true,
       sector: 'Benchmark Index',
       strikeInterval: 50,
-      lotSize: 75,
+      lotSize: getLotSize('NIFTY', 65),
       defaultSpot: 23398.1,
       targetExtension: 45,
       slBuffer: 15
@@ -168,7 +183,7 @@ export function detectSymbolConfig(symbol = 'NSE:NIFTY', spotPrice = 0) {
       isIndex: false,
       sector: meta.sector,
       strikeInterval: meta.strikeInterval,
-      lotSize: meta.lotSize,
+      lotSize: getLotSize(cleanSym, meta.lotSize),
       defaultSpot: meta.defaultSpot,
       targetExtension: meta.targetExtension,
       slBuffer: meta.strikeInterval * 0.4
@@ -190,7 +205,7 @@ export function detectSymbolConfig(symbol = 'NSE:NIFTY', spotPrice = 0) {
     isIndex: false,
     sector: 'F&O Stock',
     strikeInterval: interval,
-    lotSize: 500,
+    lotSize: getLotSize(cleanSym, 500),
     defaultSpot: S,
     targetExtension: interval * 0.5,
     slBuffer: interval * 0.3

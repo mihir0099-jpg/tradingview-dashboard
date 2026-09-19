@@ -9,4 +9,8 @@ __pycache__/
 *.pyc
 backend/data/*_config.json
 *config.json
+.env
+.env.*
+catboost_info/
+*.zip
 

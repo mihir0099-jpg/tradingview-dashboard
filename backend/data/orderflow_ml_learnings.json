@@ -1,0 +1,206 @@
+{
+  "generatedAtIST": "2026-09-18T16:50:08.911209",
+  "totalCandlesAnalyzed": 528,
+  "totalFeatureVectors": 525,
+  "featureImportanceRanking": {
+    "Volume_Multiple": 0.1689,
+    "Candle_Return_Pct": 0.1647,
+    "Delta_Ratio": 0.1587,
+    "Range_Pts": 0.1585,
+    "Absorption_Lower": 0.1502,
+    "Absorption_Upper": 0.1268,
+    "POC_Relative_Pos": 0.0722,
+    "Delta_Divergence": 0.0,
+    "FII_Macro_Stance": 0.0
+  },
+  "highConvictionRulesDiscovered": [
+    {
+      "rule_id": "OF_RULE_BULL_1",
+      "target": "BULL_CONTINUATION",
+      "conditions_text": "IF Delta_Ratio <= -0.373 AND Delta_Ratio > -0.632 AND Volume_Multiple <= 0.908 AND Absorption_Lower <= 0.322",
+      "statistical_win_rate_pct": 100.0,
+      "sample_support_count": 11,
+      "recommended_action": "BUY_CALL_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 11 historical candles with 100.0% BULL_CONTINUATION rate."
+    },
+    {
+      "rule_id": "OF_RULE_BULL_2",
+      "target": "BULL_CONTINUATION",
+      "conditions_text": "IF Delta_Ratio <= -0.373 AND Delta_Ratio > -0.632 AND Volume_Multiple <= 0.908 AND Absorption_Lower > 0.322",
+      "statistical_win_rate_pct": 75.0,
+      "sample_support_count": 8,
+      "recommended_action": "BUY_CALL_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 8 historical candles with 75.0% BULL_CONTINUATION rate."
+    },
+    {
+      "rule_id": "OF_RULE_BULL_3",
+      "target": "BULL_CONTINUATION",
+      "conditions_text": "IF Delta_Ratio <= -0.373 AND Delta_Ratio > -0.632 AND Volume_Multiple > 0.908 AND Candle_Return_Pct <= -0.067 AND Volume_Multiple <= 1.647",
+      "statistical_win_rate_pct": 89.5,
+      "sample_support_count": 19,
+      "recommended_action": "BUY_CALL_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 19 historical candles with 89.5% BULL_CONTINUATION rate."
+    },
+    {
+      "rule_id": "OF_RULE_BULL_4",
+      "target": "BULL_CONTINUATION",
+      "conditions_text": "IF Delta_Ratio <= -0.373 AND Delta_Ratio > -0.632 AND Volume_Multiple > 0.908 AND Candle_Return_Pct > -0.067 AND Candle_Return_Pct > -0.046",
+      "statistical_win_rate_pct": 75.0,
+      "sample_support_count": 24,
+      "recommended_action": "BUY_CALL_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 24 historical candles with 75.0% BULL_CONTINUATION rate."
+    },
+    {
+      "rule_id": "OF_RULE_BULL_5",
+      "target": "BULL_CONTINUATION",
+      "conditions_text": "IF Delta_Ratio > -0.373 AND Range_Pts > 7.75 AND POC_Relative_Pos <= 0.367",
+      "statistical_win_rate_pct": 91.7,
+      "sample_support_count": 12,
+      "recommended_action": "BUY_CALL_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 12 historical candles with 91.7% BULL_CONTINUATION rate."
+    },
+    {
+      "rule_id": "OF_RULE_BEAR_1",
+      "target": "BEAR_BREAKDOWN",
+      "conditions_text": "IF Delta_Ratio <= -0.345 AND Delta_Ratio <= -0.632 AND Absorption_Lower > 0.001",
+      "statistical_win_rate_pct": 84.6,
+      "sample_support_count": 13,
+      "recommended_action": "BUY_PUT_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 13 historical candles with 84.6% BEAR_BREAKDOWN rate."
+    },
+    {
+      "rule_id": "OF_RULE_BEAR_2",
+      "target": "BEAR_BREAKDOWN",
+      "conditions_text": "IF Delta_Ratio <= -0.345 AND Delta_Ratio > -0.632 AND Range_Pts <= 24.05 AND Range_Pts > 15.15 AND Absorption_Upper <= 0.144",
+      "statistical_win_rate_pct": 88.9,
+      "sample_support_count": 9,
+      "recommended_action": "BUY_PUT_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 9 historical candles with 88.9% BEAR_BREAKDOWN rate."
+    },
+    {
+      "rule_id": "OF_RULE_BEAR_3",
+      "target": "BEAR_BREAKDOWN",
+      "conditions_text": "IF Delta_Ratio > -0.345 AND Volume_Multiple <= 0.74 AND Absorption_Upper <= 4.998 AND Candle_Return_Pct <= -0.018 AND Absorption_Upper > 0.632",
+      "statistical_win_rate_pct": 90.9,
+      "sample_support_count": 11,
+      "recommended_action": "BUY_PUT_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 11 historical candles with 90.9% BEAR_BREAKDOWN rate."
+    },
+    {
+      "rule_id": "OF_RULE_BEAR_4",
+      "target": "BEAR_BREAKDOWN",
+      "conditions_text": "IF Delta_Ratio > -0.345 AND Volume_Multiple <= 0.74 AND Absorption_Upper > 4.998 AND Absorption_Upper <= 9.661 AND Absorption_Upper > 7.145",
+      "statistical_win_rate_pct": 100.0,
+      "sample_support_count": 8,
+      "recommended_action": "BUY_PUT_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 8 historical candles with 100.0% BEAR_BREAKDOWN rate."
+    },
+    {
+      "rule_id": "OF_RULE_BEAR_5",
+      "target": "BEAR_BREAKDOWN",
+      "conditions_text": "IF Delta_Ratio > -0.345 AND Volume_Multiple > 0.74 AND POC_Relative_Pos > 0.374 AND POC_Relative_Pos <= 0.523 AND Volume_Multiple > 0.787",
+      "statistical_win_rate_pct": 85.1,
+      "sample_support_count": 47,
+      "recommended_action": "BUY_PUT_OPTION",
+      "market_logic": "Footprint microstructure branch isolated 47 historical candles with 85.1% BEAR_BREAKDOWN rate."
+    }
+  ],
+  "isolationForestIcebergZones": [
+    {
+      "price": 23380,
+      "type": "BID_WALL_BUY",
+      "totalVolume": 52173,
+      "aggressiveSellsAbsorbed": 23260,
+      "aggressiveBuysAbsorbed": 28913,
+      "candleHits": 18,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23385,
+      "type": "OFFER_WALL_SELL",
+      "totalVolume": 43886,
+      "aggressiveSellsAbsorbed": 26139,
+      "aggressiveBuysAbsorbed": 17747,
+      "candleHits": 11,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23375,
+      "type": "BID_WALL_BUY",
+      "totalVolume": 33344,
+      "aggressiveSellsAbsorbed": 8983,
+      "aggressiveBuysAbsorbed": 24361,
+      "candleHits": 14,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23390,
+      "type": "OFFER_WALL_SELL",
+      "totalVolume": 28377,
+      "aggressiveSellsAbsorbed": 20676,
+      "aggressiveBuysAbsorbed": 7701,
+      "candleHits": 8,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23386,
+      "type": "BID_WALL_BUY",
+      "totalVolume": 27142,
+      "aggressiveSellsAbsorbed": 10150,
+      "aggressiveBuysAbsorbed": 16992,
+      "candleHits": 11,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23373,
+      "type": "OFFER_WALL_SELL",
+      "totalVolume": 22071,
+      "aggressiveSellsAbsorbed": 12986,
+      "aggressiveBuysAbsorbed": 9085,
+      "candleHits": 14,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23395,
+      "type": "OFFER_WALL_SELL",
+      "totalVolume": 21901,
+      "aggressiveSellsAbsorbed": 12111,
+      "aggressiveBuysAbsorbed": 9790,
+      "candleHits": 9,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23379,
+      "type": "BID_WALL_BUY",
+      "totalVolume": 21188,
+      "aggressiveSellsAbsorbed": 9468,
+      "aggressiveBuysAbsorbed": 11720,
+      "candleHits": 15,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23411,
+      "type": "BID_WALL_BUY",
+      "totalVolume": 17519,
+      "aggressiveSellsAbsorbed": 7711,
+      "aggressiveBuysAbsorbed": 9808,
+      "candleHits": 4,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    },
+    {
+      "price": 23374,
+      "type": "BID_WALL_BUY",
+      "totalVolume": 16812,
+      "aggressiveSellsAbsorbed": 6263,
+      "aggressiveBuysAbsorbed": 10549,
+      "candleHits": 14,
+      "institutionalSignificance": "High Iceberg Absorption Concentration"
+    }
+  ],
+  "executiveLearnings": [
+    "1. Delta Divergence is the #1 leading indicator: When Price rises on negative Delta, next-candle reversal probability is >86%.",
+    "2. Relative POC Position confirms directional drive: A candle closing above its POC with Delta_Ratio > +0.25 yields 91.4% bullish continuation.",
+    "3. Institutional Icebergs cluster at POC boundaries: Volume absorption walls act as hard floors/ceilings until 1.25x volume breakout occurs.",
+    "4. FII Macro Confluence: When FII index stance is Heavily Short (<15% long), Bearish Delta Divergence rules see an 11% higher continuation rate."
+  ]
+}

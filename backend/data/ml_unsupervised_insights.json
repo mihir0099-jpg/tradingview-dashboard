@@ -1,0 +1,860 @@
+{
+  "generated_at": "2026-09-19T10:43:02.973961",
+  "session_date": "2026-09-18",
+  "engine_version": "2.0-Unsupervised-ML",
+  "description": "Genuine machine learning models trained on raw market microstructure (Hidden Markov Models, Vector Autoregression Granger Causality, Isolation Forest, and Waveform Clustering).",
+  "hmm_regimes_nifty": {
+    "status": "success",
+    "current_eod_state": 1,
+    "current_regime_label": "Low Volatility Consolidation / Compression",
+    "next_state_probabilities": [
+      0.5077,
+      0.3779,
+      0.1144
+    ],
+    "transition_matrix": [
+      [
+        0.5531,
+        0.2997,
+        0.1472
+      ],
+      [
+        0.5077,
+        0.3779,
+        0.1144
+      ],
+      [
+        0.3343,
+        0.2235,
+        0.4422
+      ]
+    ],
+    "stationary_distribution": [
+      0.4965,
+      0.309,
+      0.1944
+    ],
+    "state_profiles": [
+      {
+        "state_id": 0,
+        "label": "Low Volatility Consolidation / Compression",
+        "regime_type": "EQUILIBRIUM",
+        "variance": 0.00013509752065903716,
+        "mean_hl_spread": 0.00025320164946752326,
+        "occupancy_pct": 48.94,
+        "bars_count": 184
+      },
+      {
+        "state_id": 1,
+        "label": "Low Volatility Consolidation / Compression",
+        "regime_type": "EQUILIBRIUM",
+        "variance": 3.0565126207644294e-05,
+        "mean_hl_spread": 0.0001920627553902938,
+        "occupancy_pct": 31.91,
+        "bars_count": 120
+      },
+      {
+        "state_id": 2,
+        "label": "Steady Drift / Directional Auction",
+        "regime_type": "TREND",
+        "variance": 0.00034890694057927984,
+        "mean_hl_spread": 0.0005020932681948902,
+        "occupancy_pct": 19.15,
+        "bars_count": 72
+      }
+    ],
+    "regime_shifts_count": 200,
+    "timeline_blocks": [
+      {
+        "state": 2,
+        "start_time": "15:04:00",
+        "duration_bars": 1,
+        "end_time": "15:04:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:05:00",
+        "duration_bars": 1,
+        "end_time": "15:05:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:06:00",
+        "duration_bars": 1,
+        "end_time": "15:06:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:07:00",
+        "duration_bars": 2,
+        "end_time": "15:08:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:09:00",
+        "duration_bars": 1,
+        "end_time": "15:09:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:10:00",
+        "duration_bars": 2,
+        "end_time": "15:11:00"
+      },
+      {
+        "state": 2,
+        "start_time": "15:12:00",
+        "duration_bars": 3,
+        "end_time": "15:14:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:15:00",
+        "duration_bars": 13,
+        "end_time": "15:27:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:28:00",
+        "duration_bars": 1,
+        "end_time": "15:28:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:29:00",
+        "duration_bars": 2,
+        "end_time": "15:30:00"
+      }
+    ]
+  },
+  "hmm_regimes_banknifty": {
+    "status": "success",
+    "current_eod_state": 0,
+    "current_regime_label": "Low Volatility Consolidation / Compression",
+    "next_state_probabilities": [
+      0.451,
+      0.467,
+      0.082
+    ],
+    "transition_matrix": [
+      [
+        0.451,
+        0.467,
+        0.082
+      ],
+      [
+        0.3593,
+        0.4875,
+        0.1532
+      ],
+      [
+        0.3201,
+        0.3455,
+        0.3344
+      ]
+    ],
+    "stationary_distribution": [
+      0.389,
+      0.4578,
+      0.1533
+    ],
+    "state_profiles": [
+      {
+        "state_id": 0,
+        "label": "Low Volatility Consolidation / Compression",
+        "regime_type": "EQUILIBRIUM",
+        "variance": 6.082571191803146e-05,
+        "mean_hl_spread": 0.0002828890409565419,
+        "occupancy_pct": 39.89,
+        "bars_count": 150
+      },
+      {
+        "state_id": 1,
+        "label": "Low Volatility Consolidation / Compression",
+        "regime_type": "EQUILIBRIUM",
+        "variance": 0.00022182343924574344,
+        "mean_hl_spread": 0.00039524801812134937,
+        "occupancy_pct": 45.48,
+        "bars_count": 171
+      },
+      {
+        "state_id": 2,
+        "label": "Steady Drift / Directional Auction",
+        "regime_type": "TREND",
+        "variance": 0.0005197140949037201,
+        "mean_hl_spread": 0.0008084728440326263,
+        "occupancy_pct": 14.63,
+        "bars_count": 55
+      }
+    ],
+    "regime_shifts_count": 201,
+    "timeline_blocks": [
+      {
+        "state": 1,
+        "start_time": "14:58:00",
+        "duration_bars": 2,
+        "end_time": "14:59:00"
+      },
+      {
+        "state": 2,
+        "start_time": "15:00:00",
+        "duration_bars": 2,
+        "end_time": "15:01:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:02:00",
+        "duration_bars": 1,
+        "end_time": "15:02:00"
+      },
+      {
+        "state": 2,
+        "start_time": "15:03:00",
+        "duration_bars": 1,
+        "end_time": "15:03:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:04:00",
+        "duration_bars": 2,
+        "end_time": "15:05:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:06:00",
+        "duration_bars": 1,
+        "end_time": "15:06:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:07:00",
+        "duration_bars": 3,
+        "end_time": "15:09:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:10:00",
+        "duration_bars": 1,
+        "end_time": "15:10:00"
+      },
+      {
+        "state": 2,
+        "start_time": "15:11:00",
+        "duration_bars": 4,
+        "end_time": "15:14:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:15:00",
+        "duration_bars": 16,
+        "end_time": "15:30:00"
+      }
+    ]
+  },
+  "cross_asset_lead_lag": {
+    "status": "success",
+    "sample_bars_tested": 2000,
+    "primary_leading_sector": "NIFTY METAL",
+    "lead_rankings": [
+      {
+        "sector": "NIFTY METAL",
+        "optimal_lag_minutes": 2,
+        "f_statistic": 10.689,
+        "p_value": 2e-05,
+        "is_significant_lead": true,
+        "correlation": 0.445,
+        "lead_strength": 10.689
+      },
+      {
+        "sector": "NIFTY IT",
+        "optimal_lag_minutes": 2,
+        "f_statistic": 7.916,
+        "p_value": 0.00038,
+        "is_significant_lead": true,
+        "correlation": 0.275,
+        "lead_strength": 7.913
+      },
+      {
+        "sector": "NIFTY INFRA",
+        "optimal_lag_minutes": 1,
+        "f_statistic": 6.881,
+        "p_value": 0.00879,
+        "is_significant_lead": true,
+        "correlation": 0.891,
+        "lead_strength": 6.82
+      },
+      {
+        "sector": "NIFTY PHARMA",
+        "optimal_lag_minutes": 5,
+        "f_statistic": 4.199,
+        "p_value": 0.00085,
+        "is_significant_lead": true,
+        "correlation": 0.496,
+        "lead_strength": 4.195
+      },
+      {
+        "sector": "NIFTY AUTO",
+        "optimal_lag_minutes": 1,
+        "f_statistic": 4.229,
+        "p_value": 0.03986,
+        "is_significant_lead": true,
+        "correlation": 0.741,
+        "lead_strength": 4.061
+      },
+      {
+        "sector": "NIFTY ENERGY",
+        "optimal_lag_minutes": 3,
+        "f_statistic": 3.233,
+        "p_value": 0.02151,
+        "is_significant_lead": true,
+        "correlation": 0.697,
+        "lead_strength": 3.164
+      },
+      {
+        "sector": "NIFTY REALTY",
+        "optimal_lag_minutes": 1,
+        "f_statistic": 3.088,
+        "p_value": 0.07906,
+        "is_significant_lead": false,
+        "correlation": 0.571,
+        "lead_strength": 2.844
+      },
+      {
+        "sector": "NIFTY FMCG",
+        "optimal_lag_minutes": 2,
+        "f_statistic": 2.728,
+        "p_value": 0.06561,
+        "is_significant_lead": false,
+        "correlation": 0.515,
+        "lead_strength": 2.549
+      },
+      {
+        "sector": "NIFTY PSU BANK",
+        "optimal_lag_minutes": 1,
+        "f_statistic": 1.432,
+        "p_value": 0.23154,
+        "is_significant_lead": false,
+        "correlation": 0.676,
+        "lead_strength": 1.101
+      },
+      {
+        "sector": "NIFTY BANK",
+        "optimal_lag_minutes": 5,
+        "f_statistic": 0.484,
+        "p_value": 0.78849,
+        "is_significant_lead": false,
+        "correlation": 0.871,
+        "lead_strength": 0.102
+      }
+    ]
+  },
+  "stealth_absorption_anomalies": {
+    "status": "success",
+    "total_anomalies_detected": 14,
+    "anomalies": [
+      {
+        "time": "09:15:00",
+        "bar_index": 0,
+        "price_level": 23335.65,
+        "anomaly_score": -0.2358,
+        "archetype": "OVERHEAD_SUPPLY_TRAP",
+        "description": "Severe rejection of highs; aggressive hidden supply cap detected.",
+        "hl_spread_pts": 34.8
+      },
+      {
+        "time": "09:16:00",
+        "bar_index": 1,
+        "price_level": 23344.5,
+        "anomaly_score": -0.1421,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 20.2
+      },
+      {
+        "time": "09:18:00",
+        "bar_index": 3,
+        "price_level": 23321.45,
+        "anomaly_score": -0.1742,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 28.45
+      },
+      {
+        "time": "09:20:00",
+        "bar_index": 5,
+        "price_level": 23311.35,
+        "anomaly_score": -0.0892,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 20.0
+      },
+      {
+        "time": "09:22:00",
+        "bar_index": 7,
+        "price_level": 23314.2,
+        "anomaly_score": -0.0313,
+        "archetype": "OVERHEAD_SUPPLY_TRAP",
+        "description": "Severe rejection of highs; aggressive hidden supply cap detected.",
+        "hl_spread_pts": 12.9
+      },
+      {
+        "time": "09:23:00",
+        "bar_index": 8,
+        "price_level": 23327.45,
+        "anomaly_score": -0.0268,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 16.25
+      },
+      {
+        "time": "09:27:00",
+        "bar_index": 12,
+        "price_level": 23297.65,
+        "anomaly_score": -0.0111,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 13.6
+      },
+      {
+        "time": "09:30:00",
+        "bar_index": 15,
+        "price_level": 23296.8,
+        "anomaly_score": -0.0009,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 14.0
+      },
+      {
+        "time": "09:36:00",
+        "bar_index": 21,
+        "price_level": 23315.5,
+        "anomaly_score": -0.1402,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 24.2
+      },
+      {
+        "time": "09:43:00",
+        "bar_index": 28,
+        "price_level": 23307.45,
+        "anomaly_score": -0.0033,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 14.0
+      },
+      {
+        "time": "09:57:00",
+        "bar_index": 42,
+        "price_level": 23329.45,
+        "anomaly_score": -0.042,
+        "archetype": "OVERHEAD_SUPPLY_TRAP",
+        "description": "Severe rejection of highs; aggressive hidden supply cap detected.",
+        "hl_spread_pts": 12.85
+      },
+      {
+        "time": "12:00:00",
+        "bar_index": 165,
+        "price_level": 23328.0,
+        "anomaly_score": -0.0235,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 15.6
+      },
+      {
+        "time": "15:00:00",
+        "bar_index": 345,
+        "price_level": 23368.05,
+        "anomaly_score": -0.0627,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 16.15
+      },
+      {
+        "time": "15:14:00",
+        "bar_index": 359,
+        "price_level": 23341.75,
+        "anomaly_score": -0.0763,
+        "archetype": "OVERHEAD_SUPPLY_TRAP",
+        "description": "Severe rejection of highs; aggressive hidden supply cap detected.",
+        "hl_spread_pts": 14.45
+      }
+    ]
+  },
+  "waveform_shape_matching": {
+    "status": "success",
+    "top_historical_twins": [
+      {
+        "date": "2026-03-04",
+        "distance": 4.9192,
+        "similarity_pct": 63.1,
+        "next_day_return_pct": 0.49,
+        "next_day_direction": "BULLISH"
+      },
+      {
+        "date": "2026-04-02",
+        "distance": 5.0062,
+        "similarity_pct": 62.5,
+        "next_day_return_pct": 0.79,
+        "next_day_direction": "BULLISH"
+      },
+      {
+        "date": "2026-01-12",
+        "distance": 5.2764,
+        "similarity_pct": 60.4,
+        "next_day_return_pct": -0.71,
+        "next_day_direction": "BEARISH"
+      },
+      {
+        "date": "2026-04-30",
+        "distance": 5.399,
+        "similarity_pct": 59.5,
+        "next_day_return_pct": 0.25,
+        "next_day_direction": "BULLISH"
+      },
+      {
+        "date": "2026-04-06",
+        "distance": 5.5117,
+        "similarity_pct": 58.7,
+        "next_day_return_pct": 1.28,
+        "next_day_direction": "BULLISH"
+      }
+    ],
+    "next_day_projection": {
+      "bullish_probability_pct": 80.0,
+      "bearish_probability_pct": 20.0,
+      "average_projected_return_pct": 0.42,
+      "mathematical_bias": "BULLISH_EXPANSION"
+    }
+  },
+  "sector_manifold_clusters": {
+    "status": "success",
+    "total_sectors_analyzed": 112,
+    "pca_variance_explained_pct": [
+      79.5,
+      20.4
+    ],
+    "cluster_summaries": {
+      "0": {
+        "cluster_name": "Momentum Accumulators (High Relative Strength)",
+        "members": [
+          "NIFTY CAPITAL MKT",
+          "NIFTY CONSR DURBL",
+          "NIFTY IND DEFENCE",
+          "NIFTY IND TOURISM",
+          "NIFTY INTERNET",
+          "NIFTY IT",
+          "NIFTY MEDIA",
+          "NIFTY MS IT TELCM"
+        ],
+        "count": 11
+      },
+      "1": {
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "members": [
+          "NIFTY 100",
+          "NIFTY 200",
+          "NIFTY 500",
+          "NIFTY 50",
+          "NIFTY ALPHALOWVOL",
+          "NIFTY AQL 30",
+          "NIFTY AQLV 30",
+          "NIFTY COMMODITIES"
+        ],
+        "count": 53
+      },
+      "2": {
+        "cluster_name": "Distribution & Liquidating (High Dispersion Pullback)",
+        "members": [
+          "NIFTY50 DIV POINT"
+        ],
+        "count": 1
+      },
+      "3": {
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "members": [
+          "NIFTY ALPHA 50",
+          "NIFTY AUTO",
+          "NIFTY BANK",
+          "NIFTY CHEMICALS",
+          "NIFTY CORP MAATR",
+          "NIFTY ENERGY",
+          "NIFTY EV",
+          "NIFTY FIN SERVICE"
+        ],
+        "count": 47
+      }
+    },
+    "sample_sectors": [
+      {
+        "sector": "NIFTY 100",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.025,
+        "pca_y": -0.714,
+        "ret_5d_pct": 0.67,
+        "volatility": 0.0089
+      },
+      {
+        "sector": "NIFTY 200",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.025,
+        "pca_y": -0.693,
+        "ret_5d_pct": 0.82,
+        "volatility": 0.0092
+      },
+      {
+        "sector": "NIFTY 500",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.033,
+        "pca_y": -0.733,
+        "ret_5d_pct": 0.65,
+        "volatility": 0.0093
+      },
+      {
+        "sector": "NIFTY 50",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.03,
+        "pca_y": -0.723,
+        "ret_5d_pct": 0.88,
+        "volatility": 0.0085
+      },
+      {
+        "sector": "NIFTY ALPHA 50",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.167,
+        "pca_y": 0.049,
+        "ret_5d_pct": 0.64,
+        "volatility": 0.013
+      },
+      {
+        "sector": "NIFTY ALPHALOWVOL",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.078,
+        "pca_y": -0.952,
+        "ret_5d_pct": 0.37,
+        "volatility": 0.0076
+      },
+      {
+        "sector": "NIFTY AQL 30",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.116,
+        "pca_y": -1.03,
+        "ret_5d_pct": 0.97,
+        "volatility": 0.0078
+      },
+      {
+        "sector": "NIFTY AQLV 30",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.117,
+        "pca_y": -1.035,
+        "ret_5d_pct": 0.99,
+        "volatility": 0.0077
+      },
+      {
+        "sector": "NIFTY AUTO",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.506,
+        "pca_y": 1.11,
+        "ret_5d_pct": -0.73,
+        "volatility": 0.0129
+      },
+      {
+        "sector": "NIFTY BANK",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.29,
+        "pca_y": 0.315,
+        "ret_5d_pct": -0.09,
+        "volatility": 0.0089
+      },
+      {
+        "sector": "NIFTY CAPITAL MKT",
+        "cluster_id": 0,
+        "cluster_name": "Momentum Accumulators (High Relative Strength)",
+        "pca_x": -0.597,
+        "pca_y": 1.779,
+        "ret_5d_pct": 3.41,
+        "volatility": 0.0142
+      },
+      {
+        "sector": "NIFTY CHEMICALS",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.262,
+        "pca_y": 0.388,
+        "ret_5d_pct": 1.54,
+        "volatility": 0.0107
+      },
+      {
+        "sector": "NIFTY COMMODITIES",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": -0.081,
+        "pca_y": -0.469,
+        "ret_5d_pct": -0.95,
+        "volatility": 0.0091
+      },
+      {
+        "sector": "NIFTY CONSR DURBL",
+        "cluster_id": 0,
+        "cluster_name": "Momentum Accumulators (High Relative Strength)",
+        "pca_x": -0.849,
+        "pca_y": 2.463,
+        "ret_5d_pct": -0.4,
+        "volatility": 0.0187
+      },
+      {
+        "sector": "NIFTY CONSUMPTION",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": -0.019,
+        "pca_y": -0.518,
+        "ret_5d_pct": 0.83,
+        "volatility": 0.0101
+      },
+      {
+        "sector": "NIFTY CORP MAATR",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.201,
+        "pca_y": 0.103,
+        "ret_5d_pct": 0.32,
+        "volatility": 0.0115
+      },
+      {
+        "sector": "NIFTY CPSE",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": -0.111,
+        "pca_y": -0.431,
+        "ret_5d_pct": -0.75,
+        "volatility": 0.0058
+      },
+      {
+        "sector": "NIFTY DIV OPPS 50",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.042,
+        "pca_y": -0.816,
+        "ret_5d_pct": 0.36,
+        "volatility": 0.0081
+      },
+      {
+        "sector": "NIFTY ENERGY",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.144,
+        "pca_y": -0.229,
+        "ret_5d_pct": -0.63,
+        "volatility": 0.009
+      },
+      {
+        "sector": "NIFTY EV",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.269,
+        "pca_y": 0.247,
+        "ret_5d_pct": -0.76,
+        "volatility": 0.0111
+      },
+      {
+        "sector": "NIFTY FIN SERVICE",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.286,
+        "pca_y": 0.39,
+        "ret_5d_pct": 0.66,
+        "volatility": 0.0102
+      },
+      {
+        "sector": "NIFTY FINSEREXBNK",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.261,
+        "pca_y": 0.461,
+        "ret_5d_pct": 1.79,
+        "volatility": 0.013
+      },
+      {
+        "sector": "NIFTY FINSRV25 50",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.238,
+        "pca_y": 0.228,
+        "ret_5d_pct": 0.59,
+        "volatility": 0.0105
+      },
+      {
+        "sector": "NIFTY FMCG",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": -0.047,
+        "pca_y": -0.548,
+        "ret_5d_pct": 0.55,
+        "volatility": 0.006
+      },
+      {
+        "sector": "NIFTY FPI 150",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": 0.029,
+        "pca_y": -0.707,
+        "ret_5d_pct": 0.86,
+        "volatility": 0.0092
+      },
+      {
+        "sector": "NIFTY GROWSECT 15",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": -0.032,
+        "pca_y": -0.453,
+        "ret_5d_pct": 1.32,
+        "volatility": 0.0094
+      },
+      {
+        "sector": "NIFTY HEALTHCARE",
+        "cluster_id": 1,
+        "cluster_name": "Compression Squeeze Candidates (Low Volatility Springs)",
+        "pca_x": -0.08,
+        "pca_y": -0.306,
+        "ret_5d_pct": 1.09,
+        "volatility": 0.0094
+      },
+      {
+        "sector": "NIFTY HIGHBETA 50",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.442,
+        "pca_y": 0.887,
+        "ret_5d_pct": -1.53,
+        "volatility": 0.0153
+      },
+      {
+        "sector": "NIFTY HOUSING",
+        "cluster_id": 3,
+        "cluster_name": "Mean-Reverting Range Traded (Equilibrium Oscillators)",
+        "pca_x": -0.166,
+        "pca_y": -0.213,
+        "ret_5d_pct": -1.9,
+        "volatility": 0.0105
+      },
+      {
+        "sector": "NIFTY IND DEFENCE",
+        "cluster_id": 0,
+        "cluster_name": "Momentum Accumulators (High Relative Strength)",
+        "pca_x": -1.081,
+        "pca_y": 3.032,
+        "ret_5d_pct": -2.62,
+        "volatility": 0.0163
+      }
+    ]
+  }
+}

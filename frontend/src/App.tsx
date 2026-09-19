@@ -31,8 +31,11 @@ import { DataLearningContainer } from './components/DataLearningContainer';
 import { MicrostructureContainer } from './components/MicrostructureContainer';
 import { StocksTrackerContainer } from './components/StocksTrackerContainer';
 import { StocksMovingContainer } from './components/StocksMovingContainer';
+import { AutonomousRuleMinerContainer } from './components/AutonomousRuleMinerContainer';
 import { ImbalanceMeterContainer } from './components/ImbalanceMeterContainer';
 import { OrderFlowContainer } from './components/OrderFlowContainer';
+import { GexContainer } from './components/GexContainer';
+import { ValueTraderContainer } from './components/ValueTraderContainer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -44,7 +47,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('orderflow');
+  const [activeTab, setActiveTab] = useState<'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
   const [biasData, setBiasData] = useState<any>(null);
   const [chartFeedSource, setChartFeedSource] = useState<'angelone' | 'tradingview'>('angelone');
 
@@ -331,6 +334,27 @@ function App() {
           🚀 Stocks Moving
         </button>
         <button
+          onClick={() => setActiveTab('autonomous_rule_miner')}
+          style={{
+            background: activeTab === 'autonomous_rule_miner' ? 'linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(109, 40, 217, 0.3) 100%)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'autonomous_rule_miner' ? '2px solid #a855f7' : '2px solid transparent',
+            color: activeTab === 'autonomous_rule_miner' ? '#c084fc' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🧠 Autonomous ML Rule Miner
+        </button>
+        <button
           onClick={() => setActiveTab('imbalance_meter')}
           style={{
             background: activeTab === 'imbalance_meter' ? 'rgba(0, 230, 118, 0.22)' : 'transparent',
@@ -350,6 +374,48 @@ function App() {
           }}
         >
           ⚖️ Imbalance Meter
+        </button>
+        <button
+          onClick={() => setActiveTab('gex')}
+          style={{
+            background: activeTab === 'gex' ? 'rgba(45, 212, 191, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'gex' ? '2px solid #2dd4bf' : '2px solid transparent',
+            color: activeTab === 'gex' ? '#2dd4bf' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          ⚡ GEX Exposure
+        </button>
+        <button
+          onClick={() => setActiveTab('value_trader')}
+          style={{
+            background: activeTab === 'value_trader' ? 'rgba(56, 189, 248, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'value_trader' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'value_trader' ? '#38bdf8' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          💎 The Value Trader
         </button>
         <button
           onClick={() => setActiveTab('orderflow')}
@@ -812,9 +878,29 @@ function App() {
             <StocksMovingContainer />
           </div>
         )}
+        {activeTab === 'autonomous_rule_miner' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <AutonomousRuleMinerContainer />
+          </div>
+        )}
         {activeTab === 'imbalance_meter' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
             <ImbalanceMeterContainer />
+          </div>
+        )}
+        {activeTab === 'gex' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <GexContainer />
+          </div>
+        )}
+        {activeTab === 'value_trader' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <ValueTraderContainer
+              onSwitchToChart={(sym) => {
+                setSymbol(sym);
+                setActiveTab('chart');
+              }}
+            />
           </div>
         )}
         {activeTab === 'orderflow' && (
