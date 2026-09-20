@@ -36,6 +36,7 @@ import { ImbalanceMeterContainer } from './components/ImbalanceMeterContainer';
 import { OrderFlowContainer } from './components/OrderFlowContainer';
 import { GexContainer } from './components/GexContainer';
 import { ValueTraderContainer } from './components/ValueTraderContainer';
+import { StockPcrScannerContainer } from './components/StockPcrScannerContainer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -47,7 +48,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
+  const [activeTab, setActiveTab] = useState<'stock_pcr' | 'gex_algo' | 'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
   const [biasData, setBiasData] = useState<any>(null);
   const [chartFeedSource, setChartFeedSource] = useState<'angelone' | 'tradingview'>('angelone');
 
@@ -479,6 +480,27 @@ function App() {
           }}
         >
           ⚡ PCR Velocity
+        </button>
+        <button
+          onClick={() => setActiveTab('stock_pcr')}
+          style={{
+            background: activeTab === 'stock_pcr' ? 'rgba(56, 189, 248, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'stock_pcr' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'stock_pcr' ? '#38bdf8' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🎯 Stock PCR
         </button>
         <button
           onClick={() => setActiveTab('day_range')}
@@ -952,6 +974,11 @@ function App() {
         {activeTab === 'pcr_velocity' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
             <PcrVelocityContainer />
+          </div>
+        )}
+        {activeTab === 'stock_pcr' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
+            <StockPcrScannerContainer />
           </div>
         )}
         {activeTab === 'day_range' && (

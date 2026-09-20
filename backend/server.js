@@ -24,6 +24,7 @@ import { executeDailyEODMachineLearning, getCachedEODInsights } from './daily_eo
 import { executeFullMarketEODMiner, getCachedFullMarketLearnings } from './daily_full_market_eod_miner.js';
 import { executeUnsupervisedML, getUnsupervisedMLInsights, executeUnifiedMLSuite, getUnifiedMLSuiteInsights, executeRuleMiner, getAutoLearnedDynamicRules } from './unsupervised_ml_runner.js';
 import { initLotSizeService } from './lot_size_service.js';
+import { stockPcrScannerEngine } from './stock_pcr_scanner_engine.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -3276,6 +3277,33 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
   } catch (err) {
     console.error('[PCR Velocity Route Error]:', err.message || err);
     res.status(500).json({ error: 'Failed to compute PCR velocity' });
+  }
+});
+
+// ====================================================================
+// 🎯 All F&O Stock PCR Scanner (Rule #2D First-Hour ±3% Velocity Filter)
+// ====================================================================
+app.get('/api/scanner/stock-pcr', (req, res) => {
+  try {
+    const filter = req.query.filter || 'ALL';
+    const sector = req.query.sector || 'ALL';
+    const search = req.query.search || '';
+    const results = stockPcrScannerEngine.getResults(filter, sector, search);
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+    res.json(results);
+  } catch (err) {
+    console.error('[Stock PCR Route Error]:', err.message || err);
+    res.status(500).json({ error: 'Failed to retrieve stock PCR results' });
+  }
+});
+
+app.post('/api/scanner/stock-pcr/scan', async (req, res) => {
+  try {
+    const results = await stockPcrScannerEngine.scanAllStocks(true);
+    res.json(results);
+  } catch (err) {
+    console.error('[Stock PCR Scan Error]:', err.message || err);
+    res.status(500).json({ error: 'Failed to execute stock PCR scan' });
   }
 });
 

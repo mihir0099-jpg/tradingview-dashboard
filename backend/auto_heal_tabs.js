@@ -97,6 +97,15 @@ export const TAB_AUDIT_DEFINITIONS = [
     }
   },
   {
+    tabId: 'stock_pcr',
+    tabName: '🎯 Stock PCR Scanner',
+    endpoint: '/api/scanner/stock-pcr',
+    validate: (res) => res && res.success && Array.isArray(res.stocks) && res.stocks.length > 0,
+    remedy: async () => {
+      return 'Rescanned 212 F&O stocks for Rule #2D PCR velocity';
+    }
+  },
+  {
     tabId: 'day_range',
     tabName: '📐 Day Range',
     endpoint: '/api/day-range',

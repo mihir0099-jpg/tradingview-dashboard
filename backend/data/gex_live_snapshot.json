@@ -20,8 +20,8 @@
       "skewDescription": "Low put skew indicates institutions actively writing puts without crash hedging. Strong support bedrock."
     },
     "momentum": {
-      "m5": -4.8,
-      "m15": -10.6,
+      "m5": -5.7,
+      "m15": -12.5,
       "day": -761.7
     },
     "gammaFlip": {
@@ -670,1294 +670,1266 @@
     "intradaySeries": [
       {
         "time": "09:15",
-        "netGex": -1910.3,
-        "spot": 23361,
+        "netGex": -1906.8,
+        "spot": 23335.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:17",
-        "netGex": -1908.1,
-        "spot": 23362.6,
+        "netGex": -1909.2,
+        "spot": 23335.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:19",
-        "netGex": -1908.7,
-        "spot": 23362.4,
+        "netGex": -1909,
+        "spot": 23335.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:21",
-        "netGex": -1905.6,
-        "spot": 23363.2,
+        "netGex": -1905.9,
+        "spot": 23336.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:23",
-        "netGex": -1905.8,
-        "spot": 23364.2,
+        "netGex": -1902.8,
+        "spot": 23334.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:25",
-        "netGex": -1909.8,
-        "spot": 23364,
+        "netGex": -1900.8,
+        "spot": 23333.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:27",
-        "netGex": -1907.1,
-        "spot": 23365.1,
+        "netGex": -1903.5,
+        "spot": 23333.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:29",
-        "netGex": -1908.5,
-        "spot": 23364.6,
+        "netGex": -1900.9,
+        "spot": 23335.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:31",
-        "netGex": -1909.1,
-        "spot": 23362.7,
+        "netGex": -1898.4,
+        "spot": 23335.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:33",
-        "netGex": -1908.7,
-        "spot": 23361,
+        "netGex": -1902.3,
+        "spot": 23336.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:35",
-        "netGex": -1914.8,
-        "spot": 23362.9,
+        "netGex": -1906.8,
+        "spot": 23335,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:37",
-        "netGex": -1911.4,
-        "spot": 23360.8,
+        "netGex": -1913.2,
+        "spot": 23334.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:39",
-        "netGex": -1915.5,
-        "spot": 23362.2,
+        "netGex": -1916.5,
+        "spot": 23333.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:41",
-        "netGex": -1911,
-        "spot": 23360.7,
+        "netGex": -1922.7,
+        "spot": 23334,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:43",
-        "netGex": -1910.3,
-        "spot": 23359.3,
+        "netGex": -1927.9,
+        "spot": 23332.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:45",
-        "netGex": -1908.3,
-        "spot": 23357.7,
+        "netGex": -1931,
+        "spot": 23334.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:47",
-        "netGex": -1911,
-        "spot": 23356.5,
+        "netGex": -1934.3,
+        "spot": 23333.5,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:49",
-        "netGex": -1917.1,
-        "spot": 23354.6,
+        "netGex": -1934.8,
+        "spot": 23333,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:51",
-        "netGex": -1922.2,
-        "spot": 23353.4,
+        "netGex": -1934.1,
+        "spot": 23334.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:53",
-        "netGex": -1922.5,
-        "spot": 23353.2,
+        "netGex": -1937.4,
+        "spot": 23335,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:55",
-        "netGex": -1922.1,
-        "spot": 23353.7,
+        "netGex": -1939.8,
+        "spot": 23332.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:57",
-        "netGex": -1916.7,
-        "spot": 23355.5,
+        "netGex": -1939.8,
+        "spot": 23331.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "09:59",
-        "netGex": -1912.7,
-        "spot": 23356.6,
+        "netGex": -1934.9,
+        "spot": 23332.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:01",
-        "netGex": -1909.2,
-        "spot": 23356.7,
+        "netGex": -1940.2,
+        "spot": 23332.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:03",
-        "netGex": -1904.6,
-        "spot": 23355.5,
+        "netGex": -1939.5,
+        "spot": 23332.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:05",
-        "netGex": -1905,
-        "spot": 23353.6,
+        "netGex": -1941.8,
+        "spot": 23331.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:07",
-        "netGex": -1910.6,
-        "spot": 23353.2,
+        "netGex": -1941.9,
+        "spot": 23329.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:09",
-        "netGex": -1909.1,
-        "spot": 23351.4,
+        "netGex": -1940.4,
+        "spot": 23330.2,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:11",
-        "netGex": -1905.2,
-        "spot": 23351.7,
+        "netGex": -1943.1,
+        "spot": 23330.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:13",
-        "netGex": -1903.3,
-        "spot": 23353.2,
+        "netGex": -1947.6,
+        "spot": 23329.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:15",
-        "netGex": -1909.2,
-        "spot": 23354.1,
+        "netGex": -1944.8,
+        "spot": 23328.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:17",
-        "netGex": -1904.4,
-        "spot": 23352.3,
+        "netGex": -1946.5,
+        "spot": 23329,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:19",
-        "netGex": -1905.4,
-        "spot": 23353.8,
+        "netGex": -1945.2,
+        "spot": 23328.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:21",
-        "netGex": -1911.2,
-        "spot": 23353.6,
+        "netGex": -1941.9,
+        "spot": 23330.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:23",
-        "netGex": -1914.8,
-        "spot": 23354.2,
+        "netGex": -1938.3,
+        "spot": 23331.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:25",
-        "netGex": -1913.9,
-        "spot": 23352.3,
+        "netGex": -1933.3,
+        "spot": 23329.8,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:27",
-        "netGex": -1916,
-        "spot": 23353.7,
+        "netGex": -1939.4,
+        "spot": 23331.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:29",
-        "netGex": -1912.2,
-        "spot": 23355.1,
+        "netGex": -1935.5,
+        "spot": 23331.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:31",
-        "netGex": -1914.4,
-        "spot": 23355,
+        "netGex": -1938.8,
+        "spot": 23331.5,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:33",
-        "netGex": -1914.6,
-        "spot": 23353,
+        "netGex": -1933.5,
+        "spot": 23329.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:35",
-        "netGex": -1914.3,
-        "spot": 23353.6,
+        "netGex": -1928.6,
+        "spot": 23330.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:37",
-        "netGex": -1915.9,
-        "spot": 23351.6,
+        "netGex": -1928.4,
+        "spot": 23329.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:39",
-        "netGex": -1911.6,
-        "spot": 23350,
+        "netGex": -1933.5,
+        "spot": 23329,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:41",
-        "netGex": -1916.5,
-        "spot": 23349.8,
+        "netGex": -1936.9,
+        "spot": 23327.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:43",
-        "netGex": -1914.4,
-        "spot": 23349,
+        "netGex": -1932.4,
+        "spot": 23326.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:45",
-        "netGex": -1917.3,
-        "spot": 23350.9,
+        "netGex": -1932.3,
+        "spot": 23327.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:47",
-        "netGex": -1922.3,
-        "spot": 23351.6,
+        "netGex": -1937.6,
+        "spot": 23329.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "10:49",
-        "netGex": -1918.8,
-        "spot": 23353.2,
+        "netGex": -1932.9,
+        "spot": 23328,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:51",
-        "netGex": -1915.1,
-        "spot": 23354.9,
+        "netGex": -1928.4,
+        "spot": 23328.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:53",
-        "netGex": -1920.5,
-        "spot": 23354.5,
+        "netGex": -1932.2,
+        "spot": 23326.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:55",
-        "netGex": -1915.8,
-        "spot": 23355,
+        "netGex": -1927.5,
+        "spot": 23326.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:57",
-        "netGex": -1916.8,
-        "spot": 23356.8,
+        "netGex": -1929.9,
+        "spot": 23325.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "10:59",
-        "netGex": -1918.2,
-        "spot": 23357.8,
+        "netGex": -1924.7,
+        "spot": 23324.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:01",
-        "netGex": -1919.4,
-        "spot": 23359.1,
+        "netGex": -1919.9,
+        "spot": 23324.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:03",
-        "netGex": -1918.7,
-        "spot": 23357.4,
+        "netGex": -1915.6,
+        "spot": 23326.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:05",
-        "netGex": -1918.7,
-        "spot": 23358.2,
+        "netGex": -1912.3,
+        "spot": 23326.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:07",
-        "netGex": -1918.6,
-        "spot": 23358.5,
+        "netGex": -1916,
+        "spot": 23327.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:09",
-        "netGex": -1919.6,
-        "spot": 23357.8,
+        "netGex": -1915,
+        "spot": 23328.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:11",
-        "netGex": -1916.5,
-        "spot": 23356.2,
+        "netGex": -1909.8,
+        "spot": 23327.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:13",
-        "netGex": -1920.5,
-        "spot": 23357.3,
+        "netGex": -1912,
+        "spot": 23328.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:15",
-        "netGex": -1917.7,
-        "spot": 23357.1,
+        "netGex": -1914.7,
+        "spot": 23329.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:17",
-        "netGex": -1913.2,
-        "spot": 23358.2,
+        "netGex": -1912.6,
+        "spot": 23328.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:19",
-        "netGex": -1911,
-        "spot": 23358.1,
+        "netGex": -1918.9,
+        "spot": 23329.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:21",
-        "netGex": -1908.4,
-        "spot": 23358.4,
+        "netGex": -1913.8,
+        "spot": 23328.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:23",
-        "netGex": -1907.5,
-        "spot": 23358.9,
+        "netGex": -1908.6,
+        "spot": 23330.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:25",
-        "netGex": -1904.9,
-        "spot": 23360.8,
+        "netGex": -1907.9,
+        "spot": 23329.5,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:27",
-        "netGex": -1905,
-        "spot": 23358.9,
+        "netGex": -1907.5,
+        "spot": 23329.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:29",
-        "netGex": -1899.6,
-        "spot": 23359.6,
+        "netGex": -1911.1,
+        "spot": 23328.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:31",
-        "netGex": -1902.2,
-        "spot": 23358,
+        "netGex": -1914.7,
+        "spot": 23328.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:33",
-        "netGex": -1907,
-        "spot": 23357.5,
+        "netGex": -1913.8,
+        "spot": 23328.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:35",
-        "netGex": -1912.2,
-        "spot": 23357.2,
+        "netGex": -1911,
+        "spot": 23327.5,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:37",
-        "netGex": -1910.9,
-        "spot": 23357.2,
+        "netGex": -1913.3,
+        "spot": 23328.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:39",
-        "netGex": -1910.7,
-        "spot": 23357.9,
+        "netGex": -1913.6,
+        "spot": 23329.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:41",
-        "netGex": -1909.6,
-        "spot": 23358.3,
+        "netGex": -1911.7,
+        "spot": 23327.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:43",
-        "netGex": -1905.2,
-        "spot": 23356.9,
+        "netGex": -1913.4,
+        "spot": 23328,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:45",
-        "netGex": -1901.8,
-        "spot": 23355.4,
+        "netGex": -1913.4,
+        "spot": 23328.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:47",
-        "netGex": -1897.8,
-        "spot": 23355.5,
+        "netGex": -1910.9,
+        "spot": 23330.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:49",
-        "netGex": -1893.5,
-        "spot": 23353.5,
+        "netGex": -1909.6,
+        "spot": 23329.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:51",
-        "netGex": -1898.9,
-        "spot": 23354.4,
+        "netGex": -1915.4,
+        "spot": 23329.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:53",
-        "netGex": -1899.4,
-        "spot": 23354.4,
+        "netGex": -1920.7,
+        "spot": 23327.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:55",
-        "netGex": -1904.4,
-        "spot": 23354.1,
+        "netGex": -1920.6,
+        "spot": 23326.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:57",
-        "netGex": -1910.1,
-        "spot": 23355.4,
+        "netGex": -1922.7,
+        "spot": 23326.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "11:59",
-        "netGex": -1907.7,
-        "spot": 23354.9,
+        "netGex": -1925.3,
+        "spot": 23328.2,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "12:01",
-        "netGex": -1910.6,
-        "spot": 23355.4,
+        "netGex": -1920.6,
+        "spot": 23326.5,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "12:03",
-        "netGex": -1916.7,
-        "spot": 23355.8,
+        "netGex": -1920.3,
+        "spot": 23326.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "12:05",
-        "netGex": -1917.6,
-        "spot": 23354.7,
+        "netGex": -1923.1,
+        "spot": 23324.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "12:07",
-        "netGex": -1912.7,
-        "spot": 23354.3,
+        "netGex": -1921.3,
+        "spot": 23325.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "12:09",
-        "netGex": -1909.7,
-        "spot": 23353.7,
+        "netGex": -1925.7,
+        "spot": 23323.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "12:11",
-        "netGex": -1913.3,
-        "spot": 23352.6,
+        "netGex": -1927.6,
+        "spot": 23324.6,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:13",
-        "netGex": -1910.8,
-        "spot": 23351.8,
+        "netGex": -1933.4,
+        "spot": 23324.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:15",
-        "netGex": -1908.9,
-        "spot": 23350,
+        "netGex": -1935.7,
+        "spot": 23325.4,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:17",
-        "netGex": -1906.2,
-        "spot": 23348,
+        "netGex": -1931.9,
+        "spot": 23325.8,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:19",
-        "netGex": -1906.5,
-        "spot": 23349.6,
+        "netGex": -1937.3,
+        "spot": 23327.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:21",
-        "netGex": -1903,
-        "spot": 23350.9,
+        "netGex": -1941.5,
+        "spot": 23327.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:23",
-        "netGex": -1907.8,
-        "spot": 23351,
+        "netGex": -1946.7,
+        "spot": 23329.1,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:25",
-        "netGex": -1913.8,
-        "spot": 23351.7,
+        "netGex": -1946.4,
+        "spot": 23329.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:27",
-        "netGex": -1916.9,
-        "spot": 23352.4,
+        "netGex": -1941.3,
+        "spot": 23328.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:29",
-        "netGex": -1920.4,
-        "spot": 23351,
+        "netGex": -1941.1,
+        "spot": 23327.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:31",
-        "netGex": -1924.4,
-        "spot": 23349.7,
+        "netGex": -1941.8,
+        "spot": 23327.4,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:33",
-        "netGex": -1928.5,
-        "spot": 23349.5,
+        "netGex": -1946,
+        "spot": 23328.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:35",
-        "netGex": -1934.4,
-        "spot": 23350.6,
+        "netGex": -1950.2,
+        "spot": 23327.6,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:37",
-        "netGex": -1935.2,
-        "spot": 23350.5,
+        "netGex": -1950.3,
+        "spot": 23326.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:39",
-        "netGex": -1941.1,
-        "spot": 23348.7,
+        "netGex": -1954.1,
+        "spot": 23326.6,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:41",
-        "netGex": -1940,
-        "spot": 23349.4,
+        "netGex": -1958.1,
+        "spot": 23324.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:43",
-        "netGex": -1946.1,
-        "spot": 23350.4,
+        "netGex": -1959.2,
+        "spot": 23323.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:45",
-        "netGex": -1943.9,
-        "spot": 23352,
+        "netGex": -1961.4,
+        "spot": 23321.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:47",
-        "netGex": -1942.8,
-        "spot": 23349.9,
+        "netGex": -1958.4,
+        "spot": 23323.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:49",
-        "netGex": -1940.5,
-        "spot": 23351.1,
+        "netGex": -1961.5,
+        "spot": 23321.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:51",
-        "netGex": -1944.4,
-        "spot": 23350.4,
+        "netGex": -1966.9,
+        "spot": 23320.6,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:53",
-        "netGex": -1940.6,
-        "spot": 23350.5,
+        "netGex": -1963.7,
+        "spot": 23320.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:55",
-        "netGex": -1935.1,
-        "spot": 23352,
+        "netGex": -1964.5,
+        "spot": 23321.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:57",
-        "netGex": -1934.5,
-        "spot": 23350.9,
+        "netGex": -1961.6,
+        "spot": 23322.6,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "12:59",
-        "netGex": -1937.2,
-        "spot": 23351.2,
+        "netGex": -1966,
+        "spot": 23323.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:01",
-        "netGex": -1935.6,
-        "spot": 23350.3,
+        "netGex": -1963,
+        "spot": 23324.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:03",
-        "netGex": -1936.2,
-        "spot": 23349.6,
+        "netGex": -1961.9,
+        "spot": 23325.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:05",
-        "netGex": -1934.7,
-        "spot": 23349.7,
+        "netGex": -1963,
+        "spot": 23326.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:07",
-        "netGex": -1930.2,
-        "spot": 23351.4,
+        "netGex": -1958,
+        "spot": 23324.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:09",
-        "netGex": -1928.4,
-        "spot": 23351.1,
+        "netGex": -1955.7,
+        "spot": 23325.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:11",
-        "netGex": -1927.4,
-        "spot": 23349.4,
+        "netGex": -1950.7,
+        "spot": 23324.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:13",
-        "netGex": -1926.9,
-        "spot": 23350.4,
+        "netGex": -1945.8,
+        "spot": 23323.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:15",
-        "netGex": -1922.3,
-        "spot": 23352.1,
+        "netGex": -1949.7,
+        "spot": 23325.4,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:17",
-        "netGex": -1924.2,
-        "spot": 23353.9,
+        "netGex": -1951.3,
+        "spot": 23324.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:19",
-        "netGex": -1920.7,
-        "spot": 23353.6,
+        "netGex": -1949.8,
+        "spot": 23322.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:21",
-        "netGex": -1915.5,
-        "spot": 23354.9,
+        "netGex": -1954.9,
+        "spot": 23322.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:23",
-        "netGex": -1921.7,
-        "spot": 23355.1,
+        "netGex": -1951.8,
+        "spot": 23321,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:25",
-        "netGex": -1927.1,
-        "spot": 23355.3,
+        "netGex": -1946.2,
+        "spot": 23321.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:27",
-        "netGex": -1933.2,
-        "spot": 23354.8,
+        "netGex": -1950.1,
+        "spot": 23319.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:29",
-        "netGex": -1934.5,
-        "spot": 23353.5,
+        "netGex": -1952.6,
+        "spot": 23319,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:31",
-        "netGex": -1936.5,
-        "spot": 23352.6,
+        "netGex": -1958.7,
+        "spot": 23320.6,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:33",
-        "netGex": -1934.9,
-        "spot": 23354,
+        "netGex": -1964.3,
+        "spot": 23321.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:35",
-        "netGex": -1935.2,
-        "spot": 23355.7,
+        "netGex": -1968.9,
+        "spot": 23322.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:37",
-        "netGex": -1937.4,
-        "spot": 23354.6,
+        "netGex": -1965.5,
+        "spot": 23321.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:39",
-        "netGex": -1942.1,
-        "spot": 23355,
+        "netGex": -1960.2,
+        "spot": 23321.9,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:41",
-        "netGex": -1947.6,
-        "spot": 23354.4,
+        "netGex": -1962.4,
+        "spot": 23323.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:43",
-        "netGex": -1950.9,
-        "spot": 23353.1,
+        "netGex": -1959.3,
+        "spot": 23324.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:45",
-        "netGex": -1950.6,
-        "spot": 23351.5,
+        "netGex": -1961.3,
+        "spot": 23326.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:47",
-        "netGex": -1950,
-        "spot": 23352.9,
+        "netGex": -1964.7,
+        "spot": 23325.8,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "13:49",
-        "netGex": -1954.9,
-        "spot": 23354,
+        "netGex": -1966.9,
+        "spot": 23325.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:51",
-        "netGex": -1953.3,
-        "spot": 23353.8,
+        "netGex": -1967,
+        "spot": 23324.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:53",
-        "netGex": -1955.1,
-        "spot": 23355.7,
+        "netGex": -1972.8,
+        "spot": 23322.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:55",
-        "netGex": -1951.5,
-        "spot": 23357.2,
+        "netGex": -1972.4,
+        "spot": 23322.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:57",
-        "netGex": -1956.5,
-        "spot": 23355.7,
+        "netGex": -1974.5,
+        "spot": 23321.5,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "13:59",
-        "netGex": -1954.2,
-        "spot": 23354.7,
+        "netGex": -1973.7,
+        "spot": 23322,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:01",
-        "netGex": -1957,
-        "spot": 23353.7,
+        "netGex": -1973.7,
+        "spot": 23321.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:03",
-        "netGex": -1959.2,
-        "spot": 23354.4,
+        "netGex": -1972.8,
+        "spot": 23322.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:05",
-        "netGex": -1960.8,
-        "spot": 23355.1,
+        "netGex": -1972.1,
+        "spot": 23324.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:07",
-        "netGex": -1958.6,
-        "spot": 23356.8,
+        "netGex": -1976.8,
+        "spot": 23325.1,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:09",
-        "netGex": -1964.8,
-        "spot": 23357.7,
+        "netGex": -1972.7,
+        "spot": 23325.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:11",
-        "netGex": -1963.5,
-        "spot": 23356.2,
+        "netGex": -1973,
+        "spot": 23325.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:13",
-        "netGex": -1962.9,
-        "spot": 23356.4,
+        "netGex": -1969.6,
+        "spot": 23323.7,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:15",
-        "netGex": -1968.9,
-        "spot": 23357.4,
+        "netGex": -1975.5,
+        "spot": 23323.8,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:17",
-        "netGex": -1966,
-        "spot": 23358.5,
+        "netGex": -1972.7,
+        "spot": 23324.3,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:19",
-        "netGex": -1969.7,
-        "spot": 23356.5,
+        "netGex": -1972.9,
+        "spot": 23325.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:21",
-        "netGex": -1967.6,
-        "spot": 23354.6,
+        "netGex": -1972.9,
+        "spot": 23325.6,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:23",
-        "netGex": -1969.1,
-        "spot": 23354,
+        "netGex": -1969.9,
+        "spot": 23326.4,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:25",
-        "netGex": -1973.6,
-        "spot": 23353.1,
+        "netGex": -1968.5,
+        "spot": 23325.5,
         "flipEst": 23353,
-        "belowFlip": false
+        "belowFlip": true
       },
       {
         "time": "14:27",
-        "netGex": -1975.7,
-        "spot": 23351.8,
+        "netGex": -1963.4,
+        "spot": 23325.2,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:29",
-        "netGex": -1970.4,
-        "spot": 23351,
+        "netGex": -1964,
+        "spot": 23325.8,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:31",
-        "netGex": -1970.1,
-        "spot": 23350,
+        "netGex": -1964.2,
+        "spot": 23327.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:33",
-        "netGex": -1970.6,
-        "spot": 23350.1,
+        "netGex": -1961.4,
+        "spot": 23326.8,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:35",
-        "netGex": -1973.2,
-        "spot": 23351.1,
+        "netGex": -1958,
+        "spot": 23326,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:37",
-        "netGex": -1978.9,
-        "spot": 23351.9,
+        "netGex": -1959.1,
+        "spot": 23325.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:39",
-        "netGex": -1982.7,
-        "spot": 23352.4,
+        "netGex": -1954.4,
+        "spot": 23324.4,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:41",
-        "netGex": -1977.8,
-        "spot": 23350.4,
+        "netGex": -1954.7,
+        "spot": 23325.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:43",
-        "netGex": -1977.4,
-        "spot": 23350.7,
+        "netGex": -1951.3,
+        "spot": 23323.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:45",
-        "netGex": -1979.3,
-        "spot": 23352.5,
+        "netGex": -1948.4,
+        "spot": 23324,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:47",
-        "netGex": -1977.6,
-        "spot": 23351.3,
+        "netGex": -1943.7,
+        "spot": 23322.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:49",
-        "netGex": -1974,
-        "spot": 23351.7,
+        "netGex": -1946.9,
+        "spot": 23321.5,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:51",
-        "netGex": -1972.8,
-        "spot": 23351.1,
+        "netGex": -1951.3,
+        "spot": 23320.2,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:53",
-        "netGex": -1971.6,
-        "spot": 23352.9,
+        "netGex": -1956.5,
+        "spot": 23321.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:55",
-        "netGex": -1966,
-        "spot": 23351.6,
+        "netGex": -1951.4,
+        "spot": 23322.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:57",
-        "netGex": -1967.9,
-        "spot": 23350.6,
+        "netGex": -1948.3,
+        "spot": 23324,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "14:59",
-        "netGex": -1967.1,
-        "spot": 23351,
+        "netGex": -1948.9,
+        "spot": 23324.6,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "15:01",
-        "netGex": -1972.5,
-        "spot": 23349.1,
+        "netGex": -1947,
+        "spot": 23323.7,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "15:03",
-        "netGex": -1968.4,
-        "spot": 23349,
+        "netGex": -1946.9,
+        "spot": 23321.8,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "15:05",
-        "netGex": -1972.2,
-        "spot": 23350.8,
+        "netGex": -1943,
+        "spot": 23320.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "15:07",
-        "netGex": -1967.4,
-        "spot": 23349.6,
+        "netGex": -1946.6,
+        "spot": 23321.3,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "15:09",
-        "netGex": -1972.4,
-        "spot": 23350.9,
+        "netGex": -1945.4,
+        "spot": 23320.4,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "15:11",
-        "netGex": -1978.6,
-        "spot": 23350.4,
+        "netGex": -1944.9,
+        "spot": 23319.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
         "time": "15:13",
-        "netGex": -1975.4,
-        "spot": 23349.6,
+        "netGex": -1940.3,
+        "spot": 23320.9,
         "flipEst": 23353,
         "belowFlip": true
       },
       {
-        "time": "13:19",
-        "netGex": -2720.21,
-        "spot": 23346.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:20",
-        "netGex": -2720.21,
-        "spot": 23346.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:21",
-        "netGex": -2720.21,
-        "spot": 23346.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:22",
-        "netGex": -2720.21,
-        "spot": 23346.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:23",
+        "time": "13:35",
         "netGex": -2720.21,
         "spot": 23346.4,
         "flipEst": 23353,
@@ -1965,10 +1937,10 @@
       }
     ],
     "timeStats": {
-      "minutesBelowFlip": 75,
-      "minutesAboveFlip": 110
+      "minutesBelowFlip": 181,
+      "minutesAboveFlip": 0
     },
-    "updatedAt": "13:23:05 IST"
+    "updatedAt": "13:35:45 IST"
   },
-  "updated_at": "2026-09-20T07:53:05.205Z"
+  "updated_at": "2026-09-20T08:05:45.929Z"
 }
