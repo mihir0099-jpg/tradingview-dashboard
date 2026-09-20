@@ -30,23 +30,16 @@
         "bankSpot": 56358.7
       },
       {
-        "date": "2026-09-18",
-        "day": "Fri",
-        "time": "4:02:31 pm",
+        "date": "2026-09-19",
+        "day": "Sat",
+        "time": "3:40:27 pm",
         "niftySpot": 23346.4,
         "bankSpot": 56358.7
       },
       {
-        "date": "2026-09-18",
-        "day": "Fri",
-        "time": "4:21:27 pm",
-        "niftySpot": 23346.4,
-        "bankSpot": 56358.7
-      },
-      {
-        "date": "2026-09-18",
-        "day": "Fri",
-        "time": "4:51:34 pm",
+        "date": "2026-09-19",
+        "day": "Sat",
+        "time": "4:50:26 pm",
         "niftySpot": 23346.4,
         "bankSpot": 56358.7
       }
@@ -3637,7 +3630,7 @@
     "safeDistanceNiftyPts": 180,
     "safeDistanceBankNiftyPts": 650
   },
-  "lastUpdated": "2026-09-18 4:51:34 pm",
+  "lastUpdated": "2026-09-19 4:50:26 pm",
   "onlineExpiriesCache": {
     "NIFTY": [
       "2026-09-22",
@@ -3649,6 +3642,6 @@
       "2026-09-29",
       "2026-10-27"
     ],
-    "lastFetched": "2026-09-18T11:21:35.635Z"
+    "lastFetched": "2026-09-19T11:20:27.752Z"
   }
 }

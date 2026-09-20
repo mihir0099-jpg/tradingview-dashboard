@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-19T10:57:49.331613",
+  "generated_at": "2026-09-20T13:03:17.195990",
   "session_date": "2026-09-18",
   "suite_version": "3.0-Production-Multi-Model",
   "packages_installed": {
@@ -15,15 +15,15 @@
       "input_sequence_bars": 30,
       "forecast_steps_ahead": 5,
       "predicted_cumulative_drift_pct": [
-        -1.329,
-        -1.186,
-        -0.791,
-        -0.836,
-        -1.057
+        0.201,
+        0.043,
+        1.311,
+        1.115,
+        0.082
       ],
-      "projected_direction": "BEARISH_EXPANSION",
-      "lstm_memory_energy": 1.063,
-      "final_training_loss": 3.8e-05,
+      "projected_direction": "BULLISH_EXPANSION",
+      "lstm_memory_energy": 1.177,
+      "final_training_loss": 5e-05,
       "inference_latency_ms": 2.4
     },
     "gradient_boosting": {
@@ -60,9 +60,9 @@
           "importance_pct": 13.5
         }
       ],
-      "training_time_ms": 1708.93,
-      "xgb_training_time_ms": 856.63,
-      "inference_latency_ms": 21.536
+      "training_time_ms": 2430.44,
+      "xgb_training_time_ms": 1707.03,
+      "inference_latency_ms": 16.618
     },
     "random_forest": {
       "status": "success",

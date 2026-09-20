@@ -1,0 +1,77 @@
+{
+  "updatedAt": "12:33:25",
+  "learnedRules": [
+    {
+      "id": "ALGO-RULE-CE-INDEX-GATE",
+      "name": "Strict Index Upward Confluence Filter for CE",
+      "condition": "NIFTY Spot > NIFTY Day Open AND PCR Drift >= 0.00",
+      "action": "BLOCK_CE_IF_INDEX_RED",
+      "description": "Blocks stock CE breakouts if NIFTY is below morning Open or printing negative PCR velocity.",
+      "confidence": "95%",
+      "applied": true,
+      "source": "GLOBAL_RULE_10A",
+      "createdAt": "2026-09-20"
+    },
+    {
+      "id": "ALGO-RULE-PE-PCR-VETO",
+      "name": "Bullish PCR Put Writing Veto for PE Buys",
+      "condition": "PCR Drift <= 0.01",
+      "action": "BLOCK_PE_IF_PCR_BULLISH",
+      "description": "Vetoes downside PE entries when institutional put writing creates a solid market floor.",
+      "confidence": "94%",
+      "applied": true,
+      "source": "GLOBAL_RULE_2D",
+      "createdAt": "2026-09-20"
+    },
+    {
+      "id": "ALGO-RULE-LATE-DAY-CUTOFF",
+      "name": "Late-Day Entry Cutoff & Volume Filter (Rule 4D)",
+      "condition": "Time < 14:15 IST OR Volume >= 1.3x avg",
+      "action": "BLOCK_LATE_DAY_ENTRIES_WITHOUT_VOLUME",
+      "description": "Blocks new entries after 2:15 PM unless backed by an institutional volume surge.",
+      "confidence": "88%",
+      "applied": true,
+      "source": "GLOBAL_RULE_4D",
+      "createdAt": "2026-09-20"
+    }
+  ],
+  "tradeForensics": [
+    {
+      "tradeId": "POS_1789886728270_HDFCBANK",
+      "timestamp": "12:23:18",
+      "date": "20/9/2026",
+      "symbol": "HDFCBANK",
+      "contract": "730 CE",
+      "setupName": "Put Wall Absorption Floor Bounce",
+      "outcome": "CLOSED",
+      "realizedPnL": 0,
+      "pnlPct": 0,
+      "entryPrice": 8.35,
+      "exitPrice": 8.35,
+      "spotEntry": 731,
+      "spotSL": 726,
+      "targetSpot": 731.1,
+      "exitReason": "MANUAL_EXIT",
+      "rootCause": "Manual or Discretionary Exit: Position was squared off manually prior to structural resolution.",
+      "tacticalMistake": "Discretionary early exits risk truncating target runs and eroding statistical expectancy.",
+      "whatCouldHaveBeenDone": "Trust the statistical edge; let the algo manage orders strictly to pure spot SL or target.",
+      "synthesizedRule": null
+    }
+  ],
+  "eodAnalysis": {
+    "date": "20/9/2026",
+    "timestamp": "12:33:17",
+    "totalTrades": 1,
+    "wins": 0,
+    "losses": 1,
+    "winRate": 0,
+    "totalRealizedPnL": 0,
+    "activeLearnedRulesCount": 3,
+    "newlyAnalyzedCount": 0,
+    "keyLearnings": [
+      "Analyzed loss patterns: index drift confluence remains the #1 determinant of single-stock option continuation.",
+      "Dynamic SL verification: zero synthetic slippage observed; real spot triggers matched expected risk brackets.",
+      "PCR Velocity Drift successfully filtered false counter-trend signals across market sessions."
+    ]
+  }
+}

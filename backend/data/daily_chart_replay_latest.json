@@ -1,7 +1,7 @@
 {
-  "timestamp": 1789794810116,
-  "dateStr": "2026-09-19",
-  "timeStr": "10:43:30 IST",
+  "timestamp": 1789887219992,
+  "dateStr": "2026-09-20",
+  "timeStr": "12:23:39 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
@@ -39,15 +39,42 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 15,
-    "volumeBreakoutCount": 40,
-    "distributionTrapCount": 20,
-    "swingLowFormations": 15,
-    "swingHighFormations": 20
+    "coilingDematCount": 9,
+    "volumeBreakoutCount": 50,
+    "distributionTrapCount": 29,
+    "swingLowFormations": 9,
+    "swingHighFormations": 29
   },
   "tomorrowHighConvictionWatchlist": [
     {
       "rank": 1,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "CROMPTON",
+      "name": "Crompton Greaves Consumer",
+      "sector": "Consumer Electricals",
+      "trade": {
+        "action": "BUY CROMPTON 225 CE / Spot",
+        "spotEntry": 227.12,
+        "spotSL": 220.55,
+        "spotRiskPts": 6.57,
+        "spotTarget1": 237.63,
+        "spotTarget2": 245.52,
+        "atmStrike": 225,
+        "lotSize": 2150,
+        "riskPerLotINR": 14126,
+        "target1GainPerLotINR": 22596,
+        "target2GainPerLotINR": 39560,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹220.55",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
+      },
+      "confidencePct": 71,
+      "catalystRationale": "Range compressed to 33% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹222.3). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
+      "rank": 2,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
       "symbol": "CANBK",
@@ -72,33 +99,6 @@
       },
       "confidencePct": 64,
       "catalystRationale": "Range compressed to 41.9% of ATR with 85% Demat delivery. Smart money hoarding at Demand Floor (₹121.81). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
-    },
-    {
-      "rank": 2,
-      "type": "LONG_DEMAT_COIL_EXPANSION",
-      "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "DALBHARAT",
-      "name": "Dalmia Bharat Ltd.",
-      "sector": "Cement & Building Materials",
-      "trade": {
-        "action": "BUY DALBHARAT 1700 CE / Spot",
-        "spotEntry": 1693.6,
-        "spotSL": 1660.85,
-        "spotRiskPts": 32.75,
-        "spotTarget1": 1746,
-        "spotTarget2": 1785.3,
-        "atmStrike": 1700,
-        "lotSize": 500,
-        "riskPerLotINR": 16375,
-        "target1GainPerLotINR": 26200,
-        "target2GainPerLotINR": 45850,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹1660.85",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
-        "winRatePct": 82.5
-      },
-      "confidencePct": 67,
-      "catalystRationale": "Range compressed to 42.9% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹1671.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 3,
@@ -158,18 +158,18 @@
   "topRankings": {
     "vaultCoils": [
       {
+        "symbol": "CROMPTON",
+        "price": 227.12,
+        "compPct": 33,
+        "delivPct": 90,
+        "floor": 222.3
+      },
+      {
         "symbol": "CANBK",
         "price": 123.78,
         "compPct": 41.9,
         "delivPct": 85,
         "floor": 121.81
-      },
-      {
-        "symbol": "DALBHARAT",
-        "price": 1693.6,
-        "compPct": 42.9,
-        "delivPct": 92,
-        "floor": 1671.8
       },
       {
         "symbol": "KALYANKJIL",
@@ -179,26 +179,21 @@
         "floor": 556.5
       },
       {
-        "symbol": "GLENMARK",
-        "price": 2416,
-        "compPct": 45.5,
-        "delivPct": 84,
-        "floor": 2222.5
-      },
-      {
         "symbol": "PNB",
         "price": 117.27,
         "compPct": 48.3,
         "delivPct": 83,
         "floor": 113.16
+      },
+      {
+        "symbol": "LICHSGFIN",
+        "price": 548.15,
+        "compPct": 52,
+        "delivPct": 81,
+        "floor": 485.45
       }
     ],
     "volumeDrives": [
-      {
-        "symbol": "POLICYBZR",
-        "price": 1765,
-        "volMult": 5.06
-      },
       {
         "symbol": "INDUSINDBK",
         "price": 966.3,
@@ -206,21 +201,27 @@
         "action": "BUY INDUSINDBK 960 CE / Spot"
       },
       {
-        "symbol": "SRF",
-        "price": 2536,
-        "volMult": 3.49,
-        "action": "BUY SRF 2550 CE / Spot"
-      },
-      {
-        "symbol": "COLPAL",
-        "price": 1860,
-        "volMult": 3.34
+        "symbol": "LODHA",
+        "price": 1144.7,
+        "volMult": 2.9,
+        "action": "BUY LODHA 1140 CE / Spot"
       },
       {
         "symbol": "FEDERALBNK",
         "price": 332.75,
-        "volMult": 2.96,
+        "volMult": 2.84,
         "action": "BUY FEDERALBNK 335 CE / Spot"
+      },
+      {
+        "symbol": "JUBLFOOD",
+        "price": 500,
+        "volMult": 2.67,
+        "action": "BUY JUBLFOOD 500 CE / Spot"
+      },
+      {
+        "symbol": "HINDALCO",
+        "price": 986.5,
+        "volMult": 2.67
       }
     ],
     "distributionTraps": [
@@ -243,16 +244,16 @@
         "distCeilPct": 2.54
       },
       {
+        "symbol": "BLUESTARCO",
+        "price": 1531.8,
+        "ceil": 1571.5,
+        "distCeilPct": 2.59
+      },
+      {
         "symbol": "KOTAKBANK",
         "price": 412.5,
         "ceil": 429.1,
         "distCeilPct": 4.02
-      },
-      {
-        "symbol": "MARICO",
-        "price": 803.9,
-        "ceil": 862.15,
-        "distCeilPct": 7.25
       }
     ],
     "sectorLeadership": [
@@ -262,19 +263,24 @@
         "totalStocks": 7
       },
       {
+        "sector": "Oil Refining & Marketing",
+        "coilingCount": 0,
+        "totalStocks": 3
+      },
+      {
         "sector": "FMCG",
         "coilingCount": 1,
         "totalStocks": 4
       },
       {
-        "sector": "Cement & Building Materials",
+        "sector": "Automobile",
         "coilingCount": 1,
-        "totalStocks": 2
+        "totalStocks": 7
       },
       {
-        "sector": "Insurance",
+        "sector": "Pharmaceuticals",
         "coilingCount": 0,
-        "totalStocks": 5
+        "totalStocks": 7
       },
       {
         "sector": "Banking & Financials",
@@ -282,19 +288,14 @@
         "totalStocks": 5
       },
       {
-        "sector": "Oil Refining & Marketing",
+        "sector": "Real Estate & Property",
         "coilingCount": 0,
-        "totalStocks": 3
-      },
-      {
-        "sector": "Air Conditioning & Cooling",
-        "coilingCount": 1,
-        "totalStocks": 2
-      },
-      {
-        "sector": "NBFC",
-        "coilingCount": 1,
         "totalStocks": 5
+      },
+      {
+        "sector": "Consumer Electricals",
+        "coilingCount": 1,
+        "totalStocks": 1
       }
     ]
   },
@@ -305,7 +306,7 @@
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "15 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (3 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "9 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (3 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

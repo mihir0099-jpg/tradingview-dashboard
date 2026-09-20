@@ -397,6 +397,27 @@ function App() {
           ⚡ GEX Exposure
         </button>
         <button
+          onClick={() => setActiveTab('gex_algo')}
+          style={{
+            background: activeTab === 'gex_algo' ? 'rgba(168, 85, 247, 0.25)' : 'transparent',
+            border: 'none',
+            borderBottom: activeTab === 'gex_algo' ? '2px solid #a855f7' : '2px solid transparent',
+            color: activeTab === 'gex_algo' ? '#c084fc' : 'var(--text-primary)',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '800',
+            cursor: 'pointer',
+            borderTopLeftRadius: '6px',
+            borderTopRightRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}
+        >
+          🤖 GEX Algo & AI Learner
+        </button>
+        <button
           onClick={() => setActiveTab('value_trader')}
           style={{
             background: activeTab === 'value_trader' ? 'rgba(56, 189, 248, 0.25)' : 'transparent',
@@ -890,7 +911,12 @@ function App() {
         )}
         {activeTab === 'gex' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
-            <GexContainer />
+            <GexContainer initialViewMode="hub" />
+          </div>
+        )}
+        {activeTab === 'gex_algo' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <GexContainer initialViewMode="algo" />
           </div>
         )}
         {activeTab === 'value_trader' && (

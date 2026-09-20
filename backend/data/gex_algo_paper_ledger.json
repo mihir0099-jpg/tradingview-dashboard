@@ -1,0 +1,306 @@
+{
+  "paperCapital": 500000,
+  "cashBalance": 475866,
+  "realizedPnL": 0,
+  "unrealizedPnL": 0,
+  "openPositions": [
+    {
+      "positionId": "POS_1789886727816_NIFTY",
+      "symbol": "NIFTY",
+      "setupId": "IGEX-100-03",
+      "setupName": "NIFTY Put Wall Absorption Floor Bounce",
+      "optionType": "CE",
+      "strike": 23350,
+      "lotSize": 65,
+      "quantity": 65,
+      "entryPrice": 114.24,
+      "currentLtp": 114.24,
+      "spotEntry": 23346.4,
+      "spotSL": 23316.4,
+      "targetSpot": 23391.4,
+      "dteDays": 3,
+      "iv": 0.13,
+      "lastSpot": 23346.4,
+      "cost": 7425.6,
+      "unrealizedPnL": 0,
+      "entryTimestamp": "12:15:27",
+      "entryDate": "20/9/2026"
+    },
+    {
+      "positionId": "POS_1789886728098_BANKNIFTY",
+      "symbol": "BANKNIFTY",
+      "setupId": "IGEX-100-03",
+      "setupName": "BANKNIFTY Put Wall Absorption Floor Bounce",
+      "optionType": "CE",
+      "strike": 56400,
+      "lotSize": 30,
+      "quantity": 30,
+      "entryPrice": 376.03,
+      "currentLtp": 376.03,
+      "spotEntry": 56358.7,
+      "spotSL": 56258.7,
+      "targetSpot": 56478.7,
+      "dteDays": 4,
+      "iv": 0.16,
+      "lastSpot": 56358.7,
+      "cost": 11280.9,
+      "unrealizedPnL": 0,
+      "entryTimestamp": "12:15:28",
+      "entryDate": "20/9/2026"
+    },
+    {
+      "positionId": "POS_1789889297546_HDFCBANK",
+      "symbol": "HDFCBANK",
+      "setupId": "SGEX-100-03",
+      "setupName": "Put Wall Absorption Floor Bounce",
+      "optionType": "CE",
+      "strike": 730,
+      "lotSize": 650,
+      "quantity": 650,
+      "entryPrice": 8.35,
+      "currentLtp": 8.35,
+      "spotEntry": 731,
+      "spotSL": 726,
+      "targetSpot": 731.1,
+      "dteDays": 5,
+      "iv": 0.22,
+      "lastSpot": 731,
+      "cost": 5427.5,
+      "unrealizedPnL": 0,
+      "entryTimestamp": "12:58:17",
+      "entryDate": "20/9/2026"
+    }
+  ],
+  "closedTrades": [
+    {
+      "positionId": "POS_1789886728270_HDFCBANK",
+      "symbol": "HDFCBANK",
+      "setupId": "SGEX-100-03",
+      "setupName": "Put Wall Absorption Floor Bounce",
+      "optionType": "CE",
+      "strike": 730,
+      "lotSize": 650,
+      "quantity": 650,
+      "entryPrice": 8.35,
+      "currentLtp": 8.35,
+      "spotEntry": 731,
+      "spotSL": 726,
+      "targetSpot": 731.1,
+      "dteDays": 5,
+      "iv": 0.22,
+      "lastSpot": 731,
+      "cost": 5427.5,
+      "unrealizedPnL": 0,
+      "entryTimestamp": "12:15:28",
+      "entryDate": "20/9/2026",
+      "exitPrice": 8.35,
+      "exitTimestamp": "12:23:18",
+      "exitReason": "MANUAL_EXIT",
+      "realizedPnL": 0,
+      "isWin": false
+    }
+  ],
+  "scanLogs": [
+    {
+      "id": "1789889297546_fy3y",
+      "timestamp": "12:58:17",
+      "symbol": "HDFCBANK",
+      "type": "TRIGGER",
+      "message": "🚀 SGEX-100-03: Put Wall Absorption Floor Bounce | BOUGHT HDFCBANK 730 CE @ ₹8.35 | Spot: ₹731 | Spot SL: ₹726 | Spot Tgt: ₹731.1 | Lot: 650"
+    },
+    {
+      "id": "1789889296922_wwnu",
+      "timestamp": "12:58:16",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23346.4 | PCR: 1.032 (Drift: +0)"
+    },
+    {
+      "id": "1789887805169_uuf2",
+      "timestamp": "12:33:25",
+      "symbol": "AI_LEARNER",
+      "type": "RULE_TOGGLE",
+      "message": "Activated Learned Rule: Strict Index Upward Confluence Filter for CE"
+    },
+    {
+      "id": "1789887801563_98n8",
+      "timestamp": "12:33:21",
+      "symbol": "AI_LEARNER",
+      "type": "RULE_TOGGLE",
+      "message": "Disabled Learned Rule: Strict Index Upward Confluence Filter for CE"
+    },
+    {
+      "id": "1789887797008_4mvt",
+      "timestamp": "12:33:17",
+      "symbol": "AI_LEARNER",
+      "type": "EOD_SUMMARY",
+      "message": "🎓 End-of-Day Learning Cycle Complete: 1 Trades Analyzed | 3 Active Rules Codified."
+    },
+    {
+      "id": "1789887199005_qjbb",
+      "timestamp": "12:23:19",
+      "symbol": "HDFCBANK",
+      "type": "WIN",
+      "message": "Closed HDFCBANK 730 CE | Exit: ₹8.35 | PnL: +₹0 (MANUAL_EXIT)"
+    },
+    {
+      "id": "1789887185892_m747",
+      "timestamp": "12:23:05",
+      "symbol": "AI_LEARNER",
+      "type": "EOD_SUMMARY",
+      "message": "🎓 End-of-Day Learning Cycle Complete: 0 Trades Analyzed | 3 Active Rules Codified."
+    },
+    {
+      "id": "1789886853612_slke",
+      "timestamp": "12:17:33",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23346.4 | PCR: 1.032 (Drift: +0)"
+    },
+    {
+      "id": "1789886756718_qduq",
+      "timestamp": "12:15:56",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23346.4 | PCR: 1.032 (Drift: +0)"
+    },
+    {
+      "id": "1789886728270_gkws",
+      "timestamp": "12:15:28",
+      "symbol": "HDFCBANK",
+      "type": "TRIGGER",
+      "message": "🚀 SGEX-100-03: Put Wall Absorption Floor Bounce | BOUGHT HDFCBANK 730 CE @ ₹8.35 | Spot: ₹731 | Spot SL: ₹726 | Spot Tgt: ₹731.1 | Lot: 650"
+    },
+    {
+      "id": "1789886728098_fcdp",
+      "timestamp": "12:15:28",
+      "symbol": "BANKNIFTY",
+      "type": "TRIGGER",
+      "message": "🚀 IGEX-100-03: BANKNIFTY Put Wall Absorption Floor Bounce | BOUGHT BANKNIFTY 56400 CE @ ₹376.03 | Spot: ₹56358.7 | Spot SL: ₹56258.7 | Spot Tgt: ₹56478.7 | Lot: 30"
+    },
+    {
+      "id": "1789886727817_d8se",
+      "timestamp": "12:15:27",
+      "symbol": "NIFTY",
+      "type": "TRIGGER",
+      "message": "🚀 IGEX-100-03: NIFTY Put Wall Absorption Floor Bounce | BOUGHT NIFTY 23350 CE @ ₹114.24 | Spot: ₹23346.4 | Spot SL: ₹23316.4 | Spot Tgt: ₹23391.4 | Lot: 65"
+    },
+    {
+      "id": "1789886727813_ldzg",
+      "timestamp": "12:15:27",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23346.4 | PCR: 1.032 (Drift: +0)"
+    },
+    {
+      "id": "1789886445187_pi7w",
+      "timestamp": "12:10:45",
+      "symbol": "SYSTEM",
+      "type": "RESET",
+      "message": "🔄 Paper Trading Portfolio Reset to ₹5,00,000."
+    }
+  ],
+  "stats": {
+    "totalTrades": 1,
+    "wins": 0,
+    "losses": 1,
+    "winRate": 0,
+    "maxDrawdown": 0
+  },
+  "lastScanTime": "12:58:16",
+  "marketSession": {
+    "istTime": "12:58:16",
+    "istDate": "2026-09-20",
+    "dayOfWeek": 0,
+    "isWeekend": true,
+    "isHoliday": false,
+    "isMarketHours": false,
+    "isEODExit": false,
+    "statusReason": "WEEKEND_OFF"
+  },
+  "indexContext": {
+    "niftySpot": 23346.4,
+    "niftyOpen": 23346.4,
+    "niftyBullish": true,
+    "pcrDrift": 0,
+    "firstHourBaselinePcr": 1.032,
+    "pcrDate": "2026-09-20",
+    "currentPcr": 1.032,
+    "pcrDriftPct": 0,
+    "pcrVelocityState": "NEUTRAL"
+  },
+  "learnedRules": [
+    {
+      "id": "ALGO-RULE-CE-INDEX-GATE",
+      "name": "Strict Index Upward Confluence Filter for CE",
+      "condition": "NIFTY Spot > NIFTY Day Open AND PCR Drift >= 0.00",
+      "action": "BLOCK_CE_IF_INDEX_RED",
+      "description": "Blocks stock CE breakouts if NIFTY is below morning Open or printing negative PCR velocity.",
+      "confidence": "95%",
+      "applied": true,
+      "source": "GLOBAL_RULE_10A",
+      "createdAt": "2026-09-20"
+    },
+    {
+      "id": "ALGO-RULE-PE-PCR-VETO",
+      "name": "Bullish PCR Put Writing Veto for PE Buys",
+      "condition": "PCR Drift <= 0.01",
+      "action": "BLOCK_PE_IF_PCR_BULLISH",
+      "description": "Vetoes downside PE entries when institutional put writing creates a solid market floor.",
+      "confidence": "94%",
+      "applied": true,
+      "source": "GLOBAL_RULE_2D",
+      "createdAt": "2026-09-20"
+    },
+    {
+      "id": "ALGO-RULE-LATE-DAY-CUTOFF",
+      "name": "Late-Day Entry Cutoff & Volume Filter (Rule 4D)",
+      "condition": "Time < 14:15 IST OR Volume >= 1.3x avg",
+      "action": "BLOCK_LATE_DAY_ENTRIES_WITHOUT_VOLUME",
+      "description": "Blocks new entries after 2:15 PM unless backed by an institutional volume surge.",
+      "confidence": "88%",
+      "applied": true,
+      "source": "GLOBAL_RULE_4D",
+      "createdAt": "2026-09-20"
+    }
+  ],
+  "tradeForensics": [
+    {
+      "tradeId": "POS_1789886728270_HDFCBANK",
+      "timestamp": "12:23:18",
+      "date": "20/9/2026",
+      "symbol": "HDFCBANK",
+      "contract": "730 CE",
+      "setupName": "Put Wall Absorption Floor Bounce",
+      "outcome": "CLOSED",
+      "realizedPnL": 0,
+      "pnlPct": 0,
+      "entryPrice": 8.35,
+      "exitPrice": 8.35,
+      "spotEntry": 731,
+      "spotSL": 726,
+      "targetSpot": 731.1,
+      "exitReason": "MANUAL_EXIT",
+      "rootCause": "Manual or Discretionary Exit: Position was squared off manually prior to structural resolution.",
+      "tacticalMistake": "Discretionary early exits risk truncating target runs and eroding statistical expectancy.",
+      "whatCouldHaveBeenDone": "Trust the statistical edge; let the algo manage orders strictly to pure spot SL or target.",
+      "synthesizedRule": null
+    }
+  ],
+  "eodAnalysis": {
+    "date": "20/9/2026",
+    "timestamp": "12:33:17",
+    "totalTrades": 1,
+    "wins": 0,
+    "losses": 1,
+    "winRate": 0,
+    "totalRealizedPnL": 0,
+    "activeLearnedRulesCount": 3,
+    "newlyAnalyzedCount": 0,
+    "keyLearnings": [
+      "Analyzed loss patterns: index drift confluence remains the #1 determinant of single-stock option continuation.",
+      "Dynamic SL verification: zero synthetic slippage observed; real spot triggers matched expected risk brackets.",
+      "PCR Velocity Drift successfully filtered false counter-trend signals across market sessions."
+    ]
+  }
+}

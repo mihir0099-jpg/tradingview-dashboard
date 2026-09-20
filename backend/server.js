@@ -6063,6 +6063,114 @@ app.get('/api/gex/data', async (req, res) => {
   }
 });
 
+app.get('/api/gex/stock-rules', async (req, res) => {
+  try {
+    const rulesPath = path.join(__dirname, 'data', 'stock_gex_100pct_setups.json');
+    if (fs.existsSync(rulesPath)) {
+      const data = JSON.parse(fs.readFileSync(rulesPath, 'utf8'));
+      res.json({ success: true, ...data });
+    } else {
+      res.status(404).json({ success: false, error: 'Stock GEX setups not found' });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ── Stock GEX Paper Trading Algo Bot Endpoints ──────────────────────────────
+app.get('/api/algo/gex/status', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    res.json({ success: true, ...stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/algo/gex/start', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    stockGexAlgo.start();
+    res.json({ success: true, message: 'Stock GEX Algo Engine started', ...stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/algo/gex/stop', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    stockGexAlgo.stop();
+    res.json({ success: true, message: 'Stock GEX Algo Engine stopped', ...stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/algo/gex/scan-now', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    await stockGexAlgo.runScanCycle(true);
+    res.json({ success: true, message: 'Scan cycle complete', ...stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
+app.post('/api/algo/gex/close-position', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    const { positionId } = req.body || {};
+    if (!positionId) {
+      return res.status(400).json({ success: false, error: 'positionId is required' });
+    }
+    const closed = stockGexAlgo.manualClosePosition(positionId);
+    res.json({ success: closed, message: closed ? 'Position squared off' : 'Position not found', ...stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/algo/gex/learn-now', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    const summary = stockGexAlgo.runEodLearning();
+    res.json({ success: true, message: 'AI trade forensic learning complete', summary, ...stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/algo/gex/toggle-rule', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    const { ruleId } = req.body || {};
+    if (!ruleId) return res.status(400).json({ success: false, error: 'ruleId is required' });
+    const success = stockGexAlgo.toggleLearnedRule(ruleId);
+    res.json({ success, ...stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/algo/gex/learnings', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    const status = stockGexAlgo.getStatus();
+    res.json({
+      success: true,
+      tradeForensics: status.tradeForensics || [],
+      learnedRules: status.learnedRules || [],
+      eodAnalysis: status.eodAnalysis || null
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+
+
 // ── Official NSE Lot Sizes API ───────────────────────────────────────────
 app.get('/api/lot-sizes', async (req, res) => {
   try {
