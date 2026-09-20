@@ -80,6 +80,39 @@
     "rule_id": "RULE_AUTOGEN_LSTM_20260918_01",
     "origin_model": "PyTorch LSTM Recurrent Memory Network",
     "date_discovered": "2026-09-18",
+    "conditions_text": "IF LSTM Cell Memory Energy > 0.93 AND 5-Bar Projected Path is BEARISH_EXPANSION",
+    "statistical_win_rate_pct": 87.2,
+    "sample_support_count": 30,
+    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
+    "market_logic": "LSTM neural cell state retains 1.035 memory momentum. Anticipate continuation towards -0.636% path.",
+    "status": "ACTIVE_LIVE_ENFORCEMENT"
+  },
+  {
+    "rule_id": "RULE_AUTOGEN_LSTM_20260918_01",
+    "origin_model": "PyTorch LSTM Recurrent Memory Network",
+    "date_discovered": "2026-09-18",
+    "conditions_text": "IF LSTM Cell Memory Energy > 1.06 AND 5-Bar Projected Path is BULLISH_EXPANSION",
+    "statistical_win_rate_pct": 87.2,
+    "sample_support_count": 30,
+    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
+    "market_logic": "LSTM neural cell state retains 1.176 memory momentum. Anticipate continuation towards 2.041% path.",
+    "status": "ACTIVE_LIVE_ENFORCEMENT"
+  },
+  {
+    "rule_id": "RULE_AUTOGEN_LSTM_20260918_01",
+    "origin_model": "PyTorch LSTM Recurrent Memory Network",
+    "date_discovered": "2026-09-18",
+    "conditions_text": "IF LSTM Cell Memory Energy > 1.0 AND 5-Bar Projected Path is BULLISH_EXPANSION",
+    "statistical_win_rate_pct": 87.2,
+    "sample_support_count": 30,
+    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
+    "market_logic": "LSTM neural cell state retains 1.109 memory momentum. Anticipate continuation towards 0.401% path.",
+    "status": "ACTIVE_LIVE_ENFORCEMENT"
+  },
+  {
+    "rule_id": "RULE_AUTOGEN_LSTM_20260918_01",
+    "origin_model": "PyTorch LSTM Recurrent Memory Network",
+    "date_discovered": "2026-09-18",
     "conditions_text": "IF LSTM Cell Memory Energy > 0.98 AND 5-Bar Projected Path is BEARISH_EXPANSION",
     "statistical_win_rate_pct": 87.2,
     "sample_support_count": 30,
@@ -514,39 +547,6 @@
     "sample_support_count": 30,
     "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
     "market_logic": "LSTM neural cell state retains 1.066 memory momentum. Anticipate continuation towards 1.12% path.",
-    "status": "ACTIVE_LIVE_ENFORCEMENT"
-  },
-  {
-    "rule_id": "RULE_AUTOGEN_LSTM_20260918_01",
-    "origin_model": "PyTorch LSTM Recurrent Memory Network",
-    "date_discovered": "2026-09-18",
-    "conditions_text": "IF LSTM Cell Memory Energy > 1.05 AND 5-Bar Projected Path is BEARISH_EXPANSION",
-    "statistical_win_rate_pct": 87.2,
-    "sample_support_count": 30,
-    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
-    "market_logic": "LSTM neural cell state retains 1.172 memory momentum. Anticipate continuation towards -2.663% path.",
-    "status": "ACTIVE_LIVE_ENFORCEMENT"
-  },
-  {
-    "rule_id": "RULE_AUTOGEN_LSTM_20260918_01",
-    "origin_model": "PyTorch LSTM Recurrent Memory Network",
-    "date_discovered": "2026-09-18",
-    "conditions_text": "IF LSTM Cell Memory Energy > 1.03 AND 5-Bar Projected Path is BEARISH_EXPANSION",
-    "statistical_win_rate_pct": 87.2,
-    "sample_support_count": 30,
-    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
-    "market_logic": "LSTM neural cell state retains 1.146 memory momentum. Anticipate continuation towards -0.257% path.",
-    "status": "ACTIVE_LIVE_ENFORCEMENT"
-  },
-  {
-    "rule_id": "RULE_AUTOGEN_LSTM_20260918_01",
-    "origin_model": "PyTorch LSTM Recurrent Memory Network",
-    "date_discovered": "2026-09-18",
-    "conditions_text": "IF LSTM Cell Memory Energy > 0.96 AND 5-Bar Projected Path is BEARISH_EXPANSION",
-    "statistical_win_rate_pct": 87.2,
-    "sample_support_count": 30,
-    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
-    "market_logic": "LSTM neural cell state retains 1.066 memory momentum. Anticipate continuation towards -1.405% path.",
     "status": "ACTIVE_LIVE_ENFORCEMENT"
   }
 ]
