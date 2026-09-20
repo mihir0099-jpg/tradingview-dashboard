@@ -407,6 +407,42 @@ export async function computeGexForSymbol(symbolKey = 'NIFTY') {
   const minutesBelowFlip = intradaySeries.filter(s => s.belowFlip).length;
   const minutesAboveFlip = intradaySeries.length - minutesBelowFlip;
 
+  // Calculate Volatility Skew (OTM Put IV vs OTM Call IV)
+  const otmPutStrike = +(atm - step * 2).toFixed(2);
+  const otmCallStrike = +(atm + step * 2).toFixed(2);
+  const otmPutObj = strikes.find(s => Math.abs(s.strike - otmPutStrike) < step * 0.5) || strikes[0];
+  const otmCallObj = strikes.find(s => Math.abs(s.strike - otmCallStrike) < step * 0.5) || strikes[strikes.length - 1];
+  const atmObj = strikes.find(s => s.isAtm) || strikes[Math.floor(strikes.length / 2)];
+
+  const putIv = +(otmPutObj?.iv || ivBase * 1.05).toFixed(3);
+  const callIv = +(otmCallObj?.iv || ivBase * 0.98).toFixed(3);
+  const atmIv = +(atmObj?.iv || ivBase).toFixed(3);
+  const skewSpread = +(putIv - callIv).toFixed(3);
+  const skewRatio = callIv > 0 ? +(putIv / callIv).toFixed(2) : 1.0;
+
+  let skewState = 'BALANCED';
+  let skewDescription = 'Put and Call volatilities in normal equilibrium.';
+  if (skewSpread < -0.008) {
+    skewState = 'CALL_INVERSION_SQUEEZE';
+    skewDescription = 'OTM Calls trading at premium IV over Puts. Aggressive institutional upside call buying (Gamma Squeeze signal).';
+  } else if (skewSpread > 0.035) {
+    skewState = 'PUT_PANIC_HEDGING';
+    skewDescription = 'OTM Puts bloated with extreme crash protection premium. Elevated downside hedging pressure.';
+  } else if (skewSpread >= 0 && skewSpread <= 0.02) {
+    skewState = 'COMPLACENT_SUPPORT';
+    skewDescription = 'Low put skew indicates institutions actively writing puts without crash hedging. Strong support bedrock.';
+  }
+
+  const volatilitySkew = {
+    putIv,
+    callIv,
+    atmIv,
+    skewSpread,
+    skewRatio,
+    skewState,
+    skewDescription
+  };
+
   return {
     symbol: sym,
     name: config.name,
@@ -418,6 +454,7 @@ export async function computeGexForSymbol(symbolKey = 'NIFTY') {
     absGex: absGexTotal,
     regime,
     unit: config.unit,
+    volatilitySkew,
     momentum: {
       m5: momentum5m,
       m15: momentum15m,

@@ -1,7 +1,7 @@
 {
-  "timestamp": 1789887219992,
+  "timestamp": 1789890641601,
   "dateStr": "2026-09-20",
-  "timeStr": "12:23:39 IST",
+  "timeStr": "13:20:41 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
@@ -181,9 +181,9 @@
       {
         "symbol": "PNB",
         "price": 117.27,
-        "compPct": 48.3,
-        "delivPct": 83,
-        "floor": 113.16
+        "compPct": 44.4,
+        "delivPct": 84,
+        "floor": 112.3
       },
       {
         "symbol": "LICHSGFIN",
@@ -213,15 +213,16 @@
         "action": "BUY FEDERALBNK 335 CE / Spot"
       },
       {
+        "symbol": "BIOCON",
+        "price": 385,
+        "volMult": 2.69,
+        "action": "BUY BIOCON 385 CE / Spot"
+      },
+      {
         "symbol": "JUBLFOOD",
         "price": 500,
         "volMult": 2.67,
         "action": "BUY JUBLFOOD 500 CE / Spot"
-      },
-      {
-        "symbol": "HINDALCO",
-        "price": 986.5,
-        "volMult": 2.67
       }
     ],
     "distributionTraps": [
@@ -244,16 +245,16 @@
         "distCeilPct": 2.54
       },
       {
-        "symbol": "BLUESTARCO",
-        "price": 1531.8,
-        "ceil": 1571.5,
-        "distCeilPct": 2.59
-      },
-      {
         "symbol": "KOTAKBANK",
         "price": 412.5,
         "ceil": 429.1,
         "distCeilPct": 4.02
+      },
+      {
+        "symbol": "BLUESTARCO",
+        "price": 1531.8,
+        "ceil": 1595,
+        "distCeilPct": 4.13
       }
     ],
     "sectorLeadership": [

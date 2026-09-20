@@ -42,6 +42,18 @@ export interface AlgoPosition {
   cost: number;
   unrealizedPnL: number;
   entryTimestamp: string;
+  confluence?: {
+    score: number;
+    stars: string;
+    isApproved: boolean;
+    orderFlowState: string;
+    skewState: string;
+    pcrState: string;
+    valueBandLocation: string;
+    imbalanceState: string;
+    reasons: string[];
+    summaryText: string;
+  };
 }
 
 export interface AlgoClosedTrade extends AlgoPosition {
@@ -158,6 +170,28 @@ export interface AlgoStatus {
   tradeForensics?: TradeForensic[];
   learnedRules?: LearnedRule[];
   eodAnalysis?: EodAnalysis | null;
+  confluenceRadar?: {
+    scoreThreshold: number;
+    niftyGexRegime: string;
+    orderFlowDivergence: string;
+    runningCvd: number;
+    pcrVelocity: {
+      drift: number;
+      driftPct?: number;
+      state: string;
+    };
+    volatilitySkew: {
+      state: string;
+      spread: number;
+      callIv: number;
+      putIv: number;
+    };
+    heavyweightImbalance: {
+      buyPressure: number;
+      sellPressure: number;
+      regime: string;
+    };
+  };
 }
 
 
@@ -833,71 +867,133 @@ function formatGexVal(val: number, unit = 'Cr'): string {
         </div>
       </div>
 
-      {/* First-Hour PCR Velocity & Index Confluence Bar */}
-      {algoStatus?.indexContext && (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          backgroundColor: '#0f172a',
-          border: '1px solid #1e293b',
-          borderRadius: '6px',
-          padding: '8px 12px',
-          marginBottom: '14px',
-          fontSize: '11px',
-          flexWrap: 'wrap',
-          gap: '8px'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ color: '#38bdf8', fontWeight: 800 }}>⚡ FIRST-HOUR PCR VELOCITY (RULE #2D):</span>
-              <span style={{ color: '#f8fafc', fontWeight: 700 }}>
-                PCR: <strong>{algoStatus.indexContext.currentPcr}</strong>
-              </span>
-              <span style={{
-                color: algoStatus.indexContext.pcrDrift >= 0 ? '#34d399' : '#f87171',
-                fontWeight: 800
-              }}>
-                (Drift: {algoStatus.indexContext.pcrDrift >= 0 ? '+' : ''}{algoStatus.indexContext.pcrDrift} / {algoStatus.indexContext.pcrDriftPct >= 0 ? '+' : ''}{algoStatus.indexContext.pcrDriftPct}%)
-              </span>
-            </div>
-
-            {/* PCR Velocity State Badge */}
+      {/* ─────────────────────────────────────────────────────────────
+          🧭 LIVE INSTITUTIONAL MULTI-ENGINE CONFLUENCE RADAR (0-100 MATRIX)
+      ───────────────────────────────────────────────────────────── */}
+      <div style={{
+        backgroundColor: '#0c121e',
+        border: '1px solid #1e2e4a',
+        borderRadius: '8px',
+        padding: '12px 14px',
+        marginBottom: '14px',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.25)'
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px', flexWrap: 'wrap', gap: '8px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '15px' }}>⚡</span>
+            <span style={{ color: '#38bdf8', fontWeight: 800, fontSize: '12px', letterSpacing: '0.5px' }}>
+              INSTITUTIONAL MULTI-ENGINE CONFLUENCE RADAR (5-STAR MATRIX)
+            </span>
             <span style={{
-              backgroundColor: algoStatus.indexContext.pcrVelocityState === 'BULLISH_PUT_WRITING'
-                ? 'rgba(16, 185, 129, 0.2)'
-                : (algoStatus.indexContext.pcrVelocityState === 'BEARISH_CALL_WRITING'
-                  ? 'rgba(239, 68, 68, 0.2)'
-                  : 'rgba(100, 116, 139, 0.2)'),
-              color: algoStatus.indexContext.pcrVelocityState === 'BULLISH_PUT_WRITING'
-                ? '#34d399'
-                : (algoStatus.indexContext.pcrVelocityState === 'BEARISH_CALL_WRITING'
-                  ? '#f87171'
-                  : '#94a3b8'),
-              padding: '2px 8px',
-              borderRadius: '4px',
-              fontWeight: 800,
-              fontSize: '10.5px',
-              border: `1px solid ${algoStatus.indexContext.pcrVelocityState === 'BULLISH_PUT_WRITING' ? 'rgba(16, 185, 129, 0.3)' : (algoStatus.indexContext.pcrVelocityState === 'BEARISH_CALL_WRITING' ? 'rgba(239, 68, 68, 0.3)' : 'rgba(100, 116, 139, 0.3)')}`
+              backgroundColor: 'rgba(56, 189, 248, 0.15)',
+              color: '#38bdf8',
+              fontSize: '10px',
+              padding: '2px 7px',
+              borderRadius: '12px',
+              fontWeight: 700,
+              border: '1px solid rgba(56, 189, 248, 0.3)'
             }}>
-              {algoStatus.indexContext.pcrVelocityState === 'BULLISH_PUT_WRITING' && '🟢 BULLISH PUT WRITING (> +0.03) · Favoring CE Breakouts'}
-              {algoStatus.indexContext.pcrVelocityState === 'BEARISH_CALL_WRITING' && '🔴 BEARISH CALL WRITING (< -0.03) · CE BLOCKED · Favoring PE Breaks'}
-              {algoStatus.indexContext.pcrVelocityState === 'NEUTRAL' && '⚪ NEUTRAL ROTATION (-0.03 to +0.03) · Range-Bound Day'}
+              GATE: ≥ {algoStatus?.confluenceRadar?.scoreThreshold || 75} PTS REQUIRED
             </span>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span style={{ color: '#94a3b8' }}>NIFTY Index:</span>
-            <strong style={{ color: '#f8fafc' }}>₹{algoStatus.indexContext.niftySpot.toLocaleString()}</strong>
-            <span style={{
-              color: algoStatus.indexContext.niftyBullish ? '#34d399' : '#f87171',
-              fontWeight: 700
-            }}>
-              ({algoStatus.indexContext.niftyBullish ? 'Above Open 🟢' : 'Below Open 🔴'})
-            </span>
+          <div style={{ fontSize: '10.5px', color: '#94a3b8' }}>
+            Order Flow (CVD) + Volatility Skew + Heavyweight Imbalance + Value Bands + GEX
           </div>
         </div>
-      )}
+
+        {/* 5-Engine Live Metric Cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '8px'
+        }}>
+          {/* Card 1: GEX Regime */}
+          <div style={{ backgroundColor: '#131b2c', padding: '8px 10px', borderRadius: '6px', border: '1px solid #1e2c45' }}>
+            <div style={{ fontSize: '9.5px', color: '#94a3b8', fontWeight: 700 }}>1. GEX VOL REGIME</div>
+            <div style={{ fontSize: '11.5px', fontWeight: 800, color: '#f8fafc', marginTop: '2px' }}>
+              {algoStatus?.confluenceRadar?.niftyGexRegime?.replace(/_/g, ' ') || 'NEUTRAL / MONITORING'}
+            </div>
+            <div style={{ fontSize: '9px', color: '#64748b', marginTop: '2px' }}>
+              NIFTY Spot: ₹{algoStatus?.indexContext?.niftySpot ? algoStatus.indexContext.niftySpot.toLocaleString() : '--'}
+            </div>
+          </div>
+
+          {/* Card 2: Order Flow CVD & Absorption */}
+          <div style={{ backgroundColor: '#131b2c', padding: '8px 10px', borderRadius: '6px', border: '1px solid #1e2c45' }}>
+            <div style={{ fontSize: '9.5px', color: '#94a3b8', fontWeight: 700 }}>2. ORDER FLOW (CVD)</div>
+            <div style={{
+              fontSize: '11.5px',
+              fontWeight: 800,
+              color: algoStatus?.confluenceRadar?.orderFlowDivergence?.includes('BULLISH') ? '#34d399'
+                : (algoStatus?.confluenceRadar?.orderFlowDivergence?.includes('BEARISH') ? '#f87171' : '#38bdf8'),
+              marginTop: '2px'
+            }}>
+              {algoStatus?.confluenceRadar?.orderFlowDivergence || 'NORMAL FLOW'}
+            </div>
+            <div style={{ fontSize: '9px', color: '#94a3b8', marginTop: '2px' }}>
+              Running CVD: <strong style={{ color: (algoStatus?.confluenceRadar?.runningCvd || 0) >= 0 ? '#34d399' : '#f87171' }}>
+                {(algoStatus?.confluenceRadar?.runningCvd || 0) >= 0 ? '+' : ''}{(algoStatus?.confluenceRadar?.runningCvd || 0).toLocaleString()}
+              </strong>
+            </div>
+          </div>
+
+          {/* Card 3: PCR Velocity */}
+          <div style={{ backgroundColor: '#131b2c', padding: '8px 10px', borderRadius: '6px', border: '1px solid #1e2c45' }}>
+            <div style={{ fontSize: '9.5px', color: '#94a3b8', fontWeight: 700 }}>3. PCR VELOCITY (RULE #2D)</div>
+            <div style={{
+              fontSize: '11.5px',
+              fontWeight: 800,
+              color: algoStatus?.indexContext?.pcrVelocityState === 'BULLISH_PUT_WRITING' ? '#34d399'
+                : (algoStatus?.indexContext?.pcrVelocityState === 'BEARISH_CALL_WRITING' ? '#f87171' : '#cbd5e1'),
+              marginTop: '2px'
+            }}>
+              {algoStatus?.indexContext?.pcrVelocityState === 'BULLISH_PUT_WRITING' && '🟢 BULLISH PUT WRITING'}
+              {algoStatus?.indexContext?.pcrVelocityState === 'BEARISH_CALL_WRITING' && '🔴 BEARISH CALL WRITING'}
+              {algoStatus?.indexContext?.pcrVelocityState === 'NEUTRAL' && '⚪ NEUTRAL ROTATION'}
+              {!algoStatus?.indexContext && 'MONITORING'}
+            </div>
+            <div style={{ fontSize: '9px', color: '#94a3b8', marginTop: '2px' }}>
+              PCR: {algoStatus?.indexContext?.currentPcr || '--'} (Drift: {algoStatus?.indexContext?.pcrDrift ? (algoStatus.indexContext.pcrDrift >= 0 ? '+' : '') + algoStatus.indexContext.pcrDrift : '0'})
+            </div>
+          </div>
+
+          {/* Card 4: Volatility Skew */}
+          <div style={{ backgroundColor: '#131b2c', padding: '8px 10px', borderRadius: '6px', border: '1px solid #1e2c45' }}>
+            <div style={{ fontSize: '9.5px', color: '#94a3b8', fontWeight: 700 }}>4. VOLATILITY SKEW</div>
+            <div style={{
+              fontSize: '11.5px',
+              fontWeight: 800,
+              color: algoStatus?.confluenceRadar?.volatilitySkew?.state === 'COMPLACENT_SUPPORT' ? '#34d399'
+                : (algoStatus?.confluenceRadar?.volatilitySkew?.state === 'CALL_INVERSION_SQUEEZE' ? '#38bdf8'
+                : (algoStatus?.confluenceRadar?.volatilitySkew?.state === 'PUT_PANIC_HEDGING' ? '#f87171' : '#cbd5e1')),
+              marginTop: '2px'
+            }}>
+              {algoStatus?.confluenceRadar?.volatilitySkew?.state?.replace(/_/g, ' ') || 'BALANCED'}
+            </div>
+            <div style={{ fontSize: '9px', color: '#94a3b8', marginTop: '2px' }}>
+              Spread: {algoStatus?.confluenceRadar?.volatilitySkew?.spread ? (algoStatus.confluenceRadar.volatilitySkew.spread >= 0 ? '+' : '') + algoStatus.confluenceRadar.volatilitySkew.spread.toFixed(1) + '% pts' : '--'}
+            </div>
+          </div>
+
+          {/* Card 5: Heavyweight Imbalance */}
+          <div style={{ backgroundColor: '#131b2c', padding: '8px 10px', borderRadius: '6px', border: '1px solid #1e2c45' }}>
+            <div style={{ fontSize: '9.5px', color: '#94a3b8', fontWeight: 700 }}>5. HEAVYWEIGHT IMBALANCE</div>
+            <div style={{
+              fontSize: '11.5px',
+              fontWeight: 800,
+              color: (algoStatus?.confluenceRadar?.heavyweightImbalance?.buyPressure || 50) > 55 ? '#34d399'
+                : ((algoStatus?.confluenceRadar?.heavyweightImbalance?.sellPressure || 50) > 55 ? '#f87171' : '#cbd5e1'),
+              marginTop: '2px'
+            }}>
+              {algoStatus?.confluenceRadar?.heavyweightImbalance?.buyPressure || 50}% Buy / {algoStatus?.confluenceRadar?.heavyweightImbalance?.sellPressure || 50}% Sell
+            </div>
+            <div style={{ fontSize: '9px', color: '#94a3b8', marginTop: '2px' }}>
+              Regime: {algoStatus?.confluenceRadar?.heavyweightImbalance?.regime || 'BALANCED'}
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* KPI Metrics Strip */}
       <div style={{
@@ -988,6 +1084,7 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                   <th style={{ padding: '8px 10px' }}>Symbol & Setup</th>
                   <th style={{ padding: '8px 10px' }}>Contract</th>
                   <th style={{ padding: '8px 10px' }}>Qty (Lots)</th>
+                  <th style={{ padding: '8px 10px' }}>Confluence</th>
                   <th style={{ padding: '8px 10px' }}>Option Entry</th>
                   <th style={{ padding: '8px 10px' }}>Live Option LTP</th>
                   <th style={{ padding: '8px 10px' }}>Real Spot Price</th>
@@ -1021,6 +1118,28 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                       </td>
                       <td style={{ padding: '9px 10px', color: '#cbd5e1' }}>
                         {pos.quantity} ({pos.quantity / pos.lotSize}L)
+                      </td>
+                      <td style={{ padding: '9px 10px' }}>
+                        {pos.confluence ? (
+                          <div>
+                            <span style={{
+                              backgroundColor: pos.confluence.score >= 85 ? 'rgba(16, 185, 129, 0.2)' : 'rgba(56, 189, 248, 0.2)',
+                              color: pos.confluence.score >= 85 ? '#34d399' : '#38bdf8',
+                              padding: '2px 6px',
+                              borderRadius: '4px',
+                              fontWeight: 800,
+                              fontSize: '11px',
+                              border: `1px solid ${pos.confluence.score >= 85 ? 'rgba(16, 185, 129, 0.4)' : 'rgba(56, 189, 248, 0.4)'}`
+                            }}>
+                              {pos.confluence.score}pts {pos.confluence.stars}
+                            </span>
+                            <div style={{ fontSize: '9.5px', color: '#94a3b8', marginTop: '3px' }}>
+                              {pos.confluence.skewState?.replace(/_/g, ' ')}
+                            </div>
+                          </div>
+                        ) : (
+                          <span style={{ color: '#64748b', fontSize: '10px' }}>Standard</span>
+                        )}
                       </td>
                       <td style={{ padding: '9px 10px', color: '#f8fafc', fontWeight: 700 }}>
                         ₹{pos.entryPrice}
