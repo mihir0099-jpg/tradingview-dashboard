@@ -1,0 +1,1695 @@
+{
+  "CHENNPETRO": {
+    "symbol": "CHENNPETRO",
+    "price": 1416.6,
+    "prevClose": 1572.9,
+    "dayChangePct": -9.94,
+    "timestamp": 1789893630619,
+    "success": true
+  },
+  "FINPIPE": {
+    "symbol": "FINPIPE",
+    "price": 154.63,
+    "prevClose": 153.45,
+    "dayChangePct": 0.77,
+    "timestamp": 1789893630710,
+    "success": true
+  },
+  "FINCABLES": {
+    "symbol": "FINCABLES",
+    "price": 1411.2,
+    "prevClose": 1424,
+    "dayChangePct": -0.9,
+    "timestamp": 1789893630710,
+    "success": true
+  },
+  "RELIANCE": {
+    "symbol": "RELIANCE",
+    "price": 1226.4,
+    "prevClose": 1257.5,
+    "dayChangePct": -2.47,
+    "timestamp": 1789893630732,
+    "success": true
+  },
+  "HDFCBANK": {
+    "symbol": "HDFCBANK",
+    "price": 731,
+    "prevClose": 708.25,
+    "dayChangePct": 3.21,
+    "timestamp": 1789893630666,
+    "success": true
+  },
+  "ICICIBANK": {
+    "symbol": "ICICIBANK",
+    "price": 1338.9,
+    "prevClose": 1379.3,
+    "dayChangePct": -2.93,
+    "timestamp": 1789893630667,
+    "success": true
+  },
+  "SBIN": {
+    "symbol": "SBIN",
+    "price": 996.2,
+    "prevClose": 995.7,
+    "dayChangePct": 0.05,
+    "timestamp": 1789893630720,
+    "success": true
+  },
+  "TCS": {
+    "symbol": "TCS",
+    "price": 2105,
+    "prevClose": 2200.8,
+    "dayChangePct": -4.35,
+    "timestamp": 1789893630660,
+    "success": true
+  },
+  "INFY": {
+    "symbol": "INFY",
+    "price": 1051.4,
+    "prevClose": 1037.7,
+    "dayChangePct": 1.32,
+    "timestamp": 1789893630720,
+    "success": true
+  },
+  "ITC": {
+    "symbol": "ITC",
+    "price": 262.3,
+    "prevClose": 259.85,
+    "dayChangePct": 0.94,
+    "timestamp": 1789893630726,
+    "success": true
+  },
+  "LT": {
+    "symbol": "LT",
+    "price": 3885,
+    "prevClose": 3930.7,
+    "dayChangePct": -1.16,
+    "timestamp": 1789893630714,
+    "success": true
+  },
+  "AXISBANK": {
+    "symbol": "AXISBANK",
+    "price": 1257,
+    "prevClose": 1246,
+    "dayChangePct": 0.88,
+    "timestamp": 1789893630660,
+    "success": true
+  },
+  "KOTAKBANK": {
+    "symbol": "KOTAKBANK",
+    "price": 412.5,
+    "prevClose": 419,
+    "dayChangePct": -1.55,
+    "timestamp": 1789893630642,
+    "success": true
+  },
+  "BHARTIARTL": {
+    "symbol": "BHARTIARTL",
+    "price": 1893.3,
+    "prevClose": 1831.1,
+    "dayChangePct": 3.4,
+    "timestamp": 1789893630696,
+    "success": true
+  },
+  "BAJFINANCE": {
+    "symbol": "BAJFINANCE",
+    "price": 1040.3,
+    "prevClose": 1034.5,
+    "dayChangePct": 0.56,
+    "timestamp": 1789893630661,
+    "success": true
+  },
+  "HINDUNILVR": {
+    "symbol": "HINDUNILVR",
+    "price": 1932,
+    "prevClose": 1927,
+    "dayChangePct": 0.26,
+    "timestamp": 1789893630667,
+    "success": true
+  },
+  "TATAMOTORS": {
+    "symbol": "TATAMOTORS",
+    "price": 303.8,
+    "prevClose": 301.1,
+    "dayChangePct": 0.9,
+    "timestamp": 1789893630720,
+    "success": true
+  },
+  "MARUTI": {
+    "symbol": "MARUTI",
+    "price": 12103,
+    "prevClose": 12400,
+    "dayChangePct": -2.4,
+    "timestamp": 1789893630678,
+    "success": true
+  },
+  "SUNPHARMA": {
+    "symbol": "SUNPHARMA",
+    "price": 1837.3,
+    "prevClose": 1840,
+    "dayChangePct": -0.15,
+    "timestamp": 1789893630756,
+    "success": true
+  },
+  "TITAN": {
+    "symbol": "TITAN",
+    "price": 4798.5,
+    "prevClose": 5009.5,
+    "dayChangePct": -4.21,
+    "timestamp": 1789893630678,
+    "success": true
+  },
+  "ADANIENT": {
+    "symbol": "ADANIENT",
+    "price": 3020,
+    "prevClose": 3060,
+    "dayChangePct": -1.31,
+    "timestamp": 1789893630683,
+    "success": true
+  },
+  "ADANIPORTS": {
+    "symbol": "ADANIPORTS",
+    "price": 1824,
+    "prevClose": 1764.6,
+    "dayChangePct": 3.37,
+    "timestamp": 1789893630696,
+    "success": true
+  },
+  "ULTRACEMCO": {
+    "symbol": "ULTRACEMCO",
+    "price": 11014,
+    "prevClose": 11000,
+    "dayChangePct": 0.13,
+    "timestamp": 1789893630726,
+    "success": true
+  },
+  "TATASTEEL": {
+    "symbol": "TATASTEEL",
+    "price": 185.54,
+    "prevClose": 183,
+    "dayChangePct": 1.39,
+    "timestamp": 1789893630795,
+    "success": true
+  },
+  "POWERGRID": {
+    "symbol": "POWERGRID",
+    "price": 270.3,
+    "prevClose": 269.1,
+    "dayChangePct": 0.45,
+    "timestamp": 1789893630672,
+    "success": true
+  },
+  "NTPC": {
+    "symbol": "NTPC",
+    "price": 323.65,
+    "prevClose": 333.4,
+    "dayChangePct": -2.92,
+    "timestamp": 1789893630938,
+    "success": true
+  },
+  "M&M": {
+    "symbol": "M&M",
+    "price": 3052,
+    "prevClose": 3107,
+    "dayChangePct": -1.77,
+    "timestamp": 1789893630950,
+    "success": true
+  },
+  "BAJAJFINSV": {
+    "symbol": "BAJAJFINSV",
+    "price": 1852.5,
+    "prevClose": 1913.5,
+    "dayChangePct": -3.19,
+    "timestamp": 1789893630938,
+    "success": true
+  },
+  "COALINDIA": {
+    "symbol": "COALINDIA",
+    "price": 409.9,
+    "prevClose": 426.4,
+    "dayChangePct": -3.87,
+    "timestamp": 1789893630862,
+    "success": true
+  },
+  "ONGC": {
+    "symbol": "ONGC",
+    "price": 232.8,
+    "prevClose": 232.5,
+    "dayChangePct": 0.13,
+    "timestamp": 1789893630992,
+    "success": true
+  },
+  "HCLTECH": {
+    "symbol": "HCLTECH",
+    "price": 1249.3,
+    "prevClose": 1206.1,
+    "dayChangePct": 3.58,
+    "timestamp": 1789893631042,
+    "success": true
+  },
+  "ASIANPAINT": {
+    "symbol": "ASIANPAINT",
+    "price": 2451.3,
+    "prevClose": 2472.5,
+    "dayChangePct": -0.86,
+    "timestamp": 1789893630956,
+    "success": true
+  },
+  "BPCL": {
+    "symbol": "BPCL",
+    "price": 314,
+    "prevClose": 304.5,
+    "dayChangePct": 3.12,
+    "timestamp": 1789893630979,
+    "success": true
+  },
+  "GRASIM": {
+    "symbol": "GRASIM",
+    "price": 3209.2,
+    "prevClose": 3281.9,
+    "dayChangePct": -2.22,
+    "timestamp": 1789893630956,
+    "success": true
+  },
+  "JSWSTEEL": {
+    "symbol": "JSWSTEEL",
+    "price": 1275.6,
+    "prevClose": 1265,
+    "dayChangePct": 0.84,
+    "timestamp": 1789893630951,
+    "success": true
+  },
+  "TECHM": {
+    "symbol": "TECHM",
+    "price": 1537.1,
+    "prevClose": 1541,
+    "dayChangePct": -0.25,
+    "timestamp": 1789893630932,
+    "success": true
+  },
+  "EICHERMOT": {
+    "symbol": "EICHERMOT",
+    "price": 7516,
+    "prevClose": 7530,
+    "dayChangePct": -0.19,
+    "timestamp": 1789893630938,
+    "success": true
+  },
+  "CIPLA": {
+    "symbol": "CIPLA",
+    "price": 1394.5,
+    "prevClose": 1366,
+    "dayChangePct": 2.09,
+    "timestamp": 1789893631048,
+    "success": true
+  },
+  "NESTLEIND": {
+    "symbol": "NESTLEIND",
+    "price": 1372.4,
+    "prevClose": 1383.3,
+    "dayChangePct": -0.79,
+    "timestamp": 1789893630943,
+    "success": true
+  },
+  "BRITANNIA": {
+    "symbol": "BRITANNIA",
+    "price": 4998,
+    "prevClose": 4962,
+    "dayChangePct": 0.73,
+    "timestamp": 1789893630944,
+    "success": true
+  },
+  "TATACONSUM": {
+    "symbol": "TATACONSUM",
+    "price": 996,
+    "prevClose": 991,
+    "dayChangePct": 0.5,
+    "timestamp": 1789893630950,
+    "success": true
+  },
+  "APOLLOHOSP": {
+    "symbol": "APOLLOHOSP",
+    "price": 8944.5,
+    "prevClose": 8836,
+    "dayChangePct": 1.23,
+    "timestamp": 1789893630944,
+    "success": true
+  },
+  "INDUSINDBK": {
+    "symbol": "INDUSINDBK",
+    "price": 966.3,
+    "prevClose": 978.2,
+    "dayChangePct": -1.22,
+    "timestamp": 1789893630939,
+    "success": true
+  },
+  "HEROMOTOCO": {
+    "symbol": "HEROMOTOCO",
+    "price": 5285.5,
+    "prevClose": 5221.5,
+    "dayChangePct": 1.23,
+    "timestamp": 1789893630950,
+    "success": true
+  },
+  "HINDALCO": {
+    "symbol": "HINDALCO",
+    "price": 986.5,
+    "prevClose": 981.5,
+    "dayChangePct": 0.51,
+    "timestamp": 1789893630950,
+    "success": true
+  },
+  "SHREECEM": {
+    "symbol": "SHREECEM",
+    "price": 22600,
+    "prevClose": 22570,
+    "dayChangePct": 0.13,
+    "timestamp": 1789893630937,
+    "success": true
+  },
+  "WIPRO": {
+    "symbol": "WIPRO",
+    "price": 166.83,
+    "prevClose": 167.4,
+    "dayChangePct": -0.34,
+    "timestamp": 1789893630944,
+    "success": true
+  },
+  "SBILIFE": {
+    "symbol": "SBILIFE",
+    "price": 1731,
+    "prevClose": 1684.7,
+    "dayChangePct": 2.75,
+    "timestamp": 1789893630932,
+    "success": true
+  },
+  "HDFCLIFE": {
+    "symbol": "HDFCLIFE",
+    "price": 550.95,
+    "prevClose": 530,
+    "dayChangePct": 3.95,
+    "timestamp": 1789893630921,
+    "success": true
+  },
+  "BEL": {
+    "symbol": "BEL",
+    "price": 393.3,
+    "prevClose": 404.35,
+    "dayChangePct": -2.73,
+    "timestamp": 1789893630944,
+    "success": true
+  },
+  "TRENT": {
+    "symbol": "TRENT",
+    "price": 2824,
+    "prevClose": 2802.4,
+    "dayChangePct": 0.77,
+    "timestamp": 1789893631190,
+    "success": true
+  },
+  "360ONE": {
+    "symbol": "360ONE",
+    "price": 1073.1,
+    "prevClose": 1091,
+    "dayChangePct": -1.64,
+    "timestamp": 1789893631179,
+    "success": true
+  },
+  "AARTIIND": {
+    "symbol": "AARTIIND",
+    "price": 491.15,
+    "prevClose": 492.7,
+    "dayChangePct": -0.31,
+    "timestamp": 1789893631212,
+    "success": true
+  },
+  "ABB": {
+    "symbol": "ABB",
+    "price": 7270.5,
+    "prevClose": 7274,
+    "dayChangePct": -0.05,
+    "timestamp": 1789893631196,
+    "success": true
+  },
+  "ABCAPITAL": {
+    "symbol": "ABCAPITAL",
+    "price": 410.05,
+    "prevClose": 395,
+    "dayChangePct": 3.81,
+    "timestamp": 1789893631179,
+    "success": true
+  },
+  "ADANIENSOL": {
+    "symbol": "ADANIENSOL",
+    "price": 1436.1,
+    "prevClose": 1373,
+    "dayChangePct": 4.6,
+    "timestamp": 1789893631292,
+    "success": true
+  },
+  "ADANIGREEN": {
+    "symbol": "ADANIGREEN",
+    "price": 1334.5,
+    "prevClose": 1281.3,
+    "dayChangePct": 4.15,
+    "timestamp": 1789893631178,
+    "success": true
+  },
+  "ADANIPOWER": {
+    "symbol": "ADANIPOWER",
+    "price": 206.6,
+    "prevClose": 209.97,
+    "dayChangePct": -1.6,
+    "timestamp": 1789893631178,
+    "success": true
+  },
+  "ALKEM": {
+    "symbol": "ALKEM",
+    "price": 5466.5,
+    "prevClose": 5087.5,
+    "dayChangePct": 7.45,
+    "timestamp": 1789893631178,
+    "success": true
+  },
+  "AMBER": {
+    "symbol": "AMBER",
+    "price": 7125,
+    "prevClose": 7245,
+    "dayChangePct": -1.66,
+    "timestamp": 1789893631178,
+    "success": true
+  },
+  "AMBUJACEM": {
+    "symbol": "AMBUJACEM",
+    "price": 388.3,
+    "prevClose": 391.85,
+    "dayChangePct": -0.91,
+    "timestamp": 1789893631196,
+    "success": true
+  },
+  "ANGELONE": {
+    "symbol": "ANGELONE",
+    "price": 299.1,
+    "prevClose": 305,
+    "dayChangePct": -1.93,
+    "timestamp": 1789893631179,
+    "success": true
+  },
+  "APLAPOLLO": {
+    "symbol": "APLAPOLLO",
+    "price": 2270.1,
+    "prevClose": 2153.5,
+    "dayChangePct": 5.41,
+    "timestamp": 1789893631184,
+    "success": true
+  },
+  "APOLLOTYRE": {
+    "symbol": "APOLLOTYRE",
+    "price": 409.3,
+    "prevClose": 417.65,
+    "dayChangePct": -2,
+    "timestamp": 1789893631190,
+    "success": true
+  },
+  "ASHOKLEY": {
+    "symbol": "ASHOKLEY",
+    "price": 163,
+    "prevClose": 163.75,
+    "dayChangePct": -0.46,
+    "timestamp": 1789893631196,
+    "success": true
+  },
+  "ASTRAL": {
+    "symbol": "ASTRAL",
+    "price": 1427.7,
+    "prevClose": 1411.4,
+    "dayChangePct": 1.15,
+    "timestamp": 1789893631183,
+    "success": true
+  },
+  "AUBANK": {
+    "symbol": "AUBANK",
+    "price": 1058.6,
+    "prevClose": 1058.9,
+    "dayChangePct": -0.03,
+    "timestamp": 1789893631183,
+    "success": true
+  },
+  "AUROPHARMA": {
+    "symbol": "AUROPHARMA",
+    "price": 1734,
+    "prevClose": 1679.8,
+    "dayChangePct": 3.23,
+    "timestamp": 1789893631292,
+    "success": true
+  },
+  "BAJAJ-AUTO": {
+    "symbol": "BAJAJ-AUTO",
+    "price": 11414,
+    "prevClose": 11678,
+    "dayChangePct": -2.26,
+    "timestamp": 1789893631189,
+    "success": true
+  },
+  "BAJAJHLDNG": {
+    "symbol": "BAJAJHLDNG",
+    "price": 11282,
+    "prevClose": 11134,
+    "dayChangePct": 1.33,
+    "timestamp": 1789893631303,
+    "success": true
+  },
+  "BALKRISIND": {
+    "symbol": "BALKRISIND",
+    "price": 2265.3,
+    "prevClose": 2164.6,
+    "dayChangePct": 4.65,
+    "timestamp": 1789893631292,
+    "success": true
+  },
+  "BANDHANBNK": {
+    "symbol": "BANDHANBNK",
+    "price": 175,
+    "prevClose": 176.52,
+    "dayChangePct": -0.86,
+    "timestamp": 1789893631179,
+    "success": true
+  },
+  "BANKBARODA": {
+    "symbol": "BANKBARODA",
+    "price": 234.94,
+    "prevClose": 238.13,
+    "dayChangePct": -1.34,
+    "timestamp": 1789893631224,
+    "success": true
+  },
+  "BANKINDIA": {
+    "symbol": "BANKINDIA",
+    "price": 140,
+    "prevClose": 140,
+    "dayChangePct": 0,
+    "timestamp": 1789893631196,
+    "success": true
+  },
+  "BDL": {
+    "symbol": "BDL",
+    "price": 1196.6,
+    "prevClose": 1190,
+    "dayChangePct": 0.55,
+    "timestamp": 1789893631179,
+    "success": true
+  },
+  "BHARATFORG": {
+    "symbol": "BHARATFORG",
+    "price": 1962.1,
+    "prevClose": 1944.9,
+    "dayChangePct": 0.88,
+    "timestamp": 1789893631559,
+    "success": true
+  },
+  "BHEL": {
+    "symbol": "BHEL",
+    "price": 439.9,
+    "prevClose": 431,
+    "dayChangePct": 2.06,
+    "timestamp": 1789893631450,
+    "success": true
+  },
+  "BIOCON": {
+    "symbol": "BIOCON",
+    "price": 385,
+    "prevClose": 390.65,
+    "dayChangePct": -1.45,
+    "timestamp": 1789893631450,
+    "success": true
+  },
+  "BLUESTARCO": {
+    "symbol": "BLUESTARCO",
+    "price": 1531.8,
+    "prevClose": 1558,
+    "dayChangePct": -1.68,
+    "timestamp": 1789893631642,
+    "success": true
+  },
+  "BOSCHLTD": {
+    "symbol": "BOSCHLTD",
+    "price": 47000,
+    "prevClose": 47070,
+    "dayChangePct": -0.15,
+    "timestamp": 1789893631450,
+    "success": true
+  },
+  "BSE": {
+    "symbol": "BSE",
+    "price": 3266.4,
+    "prevClose": 3384,
+    "dayChangePct": -3.48,
+    "timestamp": 1789893631450,
+    "success": true
+  },
+  "BSOFT": {
+    "symbol": "BSOFT",
+    "price": 280.4,
+    "prevClose": 281.65,
+    "dayChangePct": -0.44,
+    "timestamp": 1789893631450,
+    "success": true
+  },
+  "CAMS": {
+    "symbol": "CAMS",
+    "price": 708.05,
+    "prevClose": 711,
+    "dayChangePct": -0.41,
+    "timestamp": 1789893631441,
+    "success": true
+  },
+  "CANBK": {
+    "symbol": "CANBK",
+    "price": 123.78,
+    "prevClose": 124,
+    "dayChangePct": -0.18,
+    "timestamp": 1789893631456,
+    "success": true
+  },
+  "CANFINHOME": {
+    "symbol": "CANFINHOME",
+    "price": 778.5,
+    "prevClose": 784.8,
+    "dayChangePct": -0.8,
+    "timestamp": 1789893631559,
+    "success": true
+  },
+  "CDSL": {
+    "symbol": "CDSL",
+    "price": 1390,
+    "prevClose": 1360,
+    "dayChangePct": 2.21,
+    "timestamp": 1789893631442,
+    "success": true
+  },
+  "CGPOWER": {
+    "symbol": "CGPOWER",
+    "price": 892,
+    "prevClose": 909,
+    "dayChangePct": -1.87,
+    "timestamp": 1789893631560,
+    "success": true
+  },
+  "CHOLAFIN": {
+    "symbol": "CHOLAFIN",
+    "price": 1800,
+    "prevClose": 1845.9,
+    "dayChangePct": -2.49,
+    "timestamp": 1789893631457,
+    "success": true
+  },
+  "COCHINSHIP": {
+    "symbol": "COCHINSHIP",
+    "price": 1398,
+    "prevClose": 1381,
+    "dayChangePct": 1.23,
+    "timestamp": 1789893631441,
+    "success": true
+  },
+  "COFORGE": {
+    "symbol": "COFORGE",
+    "price": 1841,
+    "prevClose": 1846.5,
+    "dayChangePct": -0.3,
+    "timestamp": 1789893631444,
+    "success": true
+  },
+  "COLPAL": {
+    "symbol": "COLPAL",
+    "price": 1917.8,
+    "prevClose": 1797.4,
+    "dayChangePct": 6.7,
+    "timestamp": 1789893631504,
+    "success": true
+  },
+  "CONCOR": {
+    "symbol": "CONCOR",
+    "price": 504.55,
+    "prevClose": 499.25,
+    "dayChangePct": 1.06,
+    "timestamp": 1789893631456,
+    "success": true
+  },
+  "CROMPTON": {
+    "symbol": "CROMPTON",
+    "price": 227.12,
+    "prevClose": 231,
+    "dayChangePct": -1.68,
+    "timestamp": 1789893631444,
+    "success": true
+  },
+  "CUMMINSIND": {
+    "symbol": "CUMMINSIND",
+    "price": 5099.5,
+    "prevClose": 5070,
+    "dayChangePct": 0.58,
+    "timestamp": 1789893631456,
+    "success": true
+  },
+  "DABUR": {
+    "symbol": "DABUR",
+    "price": 395.25,
+    "prevClose": 376,
+    "dayChangePct": 5.12,
+    "timestamp": 1789893631592,
+    "success": true
+  },
+  "DALBHARAT": {
+    "symbol": "DALBHARAT",
+    "price": 1761.4,
+    "prevClose": 1746.6,
+    "dayChangePct": 0.85,
+    "timestamp": 1789893631444,
+    "success": true
+  },
+  "DEEPAKNTR": {
+    "symbol": "DEEPAKNTR",
+    "price": 1586.3,
+    "prevClose": 1587.8,
+    "dayChangePct": -0.09,
+    "timestamp": 1789893631450,
+    "success": true
+  },
+  "DELHIVERY": {
+    "symbol": "DELHIVERY",
+    "price": 428,
+    "prevClose": 439,
+    "dayChangePct": -2.51,
+    "timestamp": 1789893631442,
+    "success": true
+  },
+  "DIXON": {
+    "symbol": "DIXON",
+    "price": 13005,
+    "prevClose": 13425,
+    "dayChangePct": -3.13,
+    "timestamp": 1789893631442,
+    "success": true
+  },
+  "DLF": {
+    "symbol": "DLF",
+    "price": 644.35,
+    "prevClose": 644.5,
+    "dayChangePct": -0.02,
+    "timestamp": 1789893631554,
+    "success": true
+  },
+  "DMART": {
+    "symbol": "DMART",
+    "price": 3749.9,
+    "prevClose": 3688,
+    "dayChangePct": 1.68,
+    "timestamp": 1789893631778,
+    "success": true
+  },
+  "ESCORTS": {
+    "symbol": "ESCORTS",
+    "price": 2798.2,
+    "prevClose": 2899.7,
+    "dayChangePct": -3.5,
+    "timestamp": 1789893631909,
+    "success": true
+  },
+  "EXIDEIND": {
+    "symbol": "EXIDEIND",
+    "price": 435.85,
+    "prevClose": 412.65,
+    "dayChangePct": 5.62,
+    "timestamp": 1789893631898,
+    "success": true
+  },
+  "FEDERALBNK": {
+    "symbol": "FEDERALBNK",
+    "price": 332.75,
+    "prevClose": 344.5,
+    "dayChangePct": -3.41,
+    "timestamp": 1789893631909,
+    "success": true
+  },
+  "GAIL": {
+    "symbol": "GAIL",
+    "price": 173.9,
+    "prevClose": 173.62,
+    "dayChangePct": 0.16,
+    "timestamp": 1789893631802,
+    "success": true
+  },
+  "GLENMARK": {
+    "symbol": "GLENMARK",
+    "price": 2447.4,
+    "prevClose": 2419.2,
+    "dayChangePct": 1.17,
+    "timestamp": 1789893631902,
+    "success": true
+  },
+  "GMRINFRA": {
+    "symbol": "GMRINFRA",
+    "price": 99.3,
+    "prevClose": 97.98,
+    "dayChangePct": 1.35,
+    "timestamp": 1789893631771,
+    "success": true
+  },
+  "GODREJCP": {
+    "symbol": "GODREJCP",
+    "price": 880,
+    "prevClose": 865,
+    "dayChangePct": 1.73,
+    "timestamp": 1789893631802,
+    "success": true
+  },
+  "GODREJPROP": {
+    "symbol": "GODREJPROP",
+    "price": 1691.1,
+    "prevClose": 1748,
+    "dayChangePct": -3.26,
+    "timestamp": 1789893631779,
+    "success": true
+  },
+  "GUJGASLTD": {
+    "symbol": "GUJGASLTD",
+    "price": 540,
+    "prevClose": 540,
+    "dayChangePct": 0,
+    "success": false
+  },
+  "HAL": {
+    "symbol": "HAL",
+    "price": 4800.3,
+    "prevClose": 4905,
+    "dayChangePct": -2.13,
+    "timestamp": 1789893631778,
+    "success": true
+  },
+  "HAVELLS": {
+    "symbol": "HAVELLS",
+    "price": 1132.4,
+    "prevClose": 1111,
+    "dayChangePct": 1.93,
+    "timestamp": 1789893631791,
+    "success": true
+  },
+  "HDFCAMC": {
+    "symbol": "HDFCAMC",
+    "price": 2425,
+    "prevClose": 2403.9,
+    "dayChangePct": 0.88,
+    "timestamp": 1789893631779,
+    "success": true
+  },
+  "HINDCOPPER": {
+    "symbol": "HINDCOPPER",
+    "price": 497.4,
+    "prevClose": 514.5,
+    "dayChangePct": -3.32,
+    "timestamp": 1789893631791,
+    "success": true
+  },
+  "HINDPETRO": {
+    "symbol": "HINDPETRO",
+    "price": 359,
+    "prevClose": 352,
+    "dayChangePct": 1.99,
+    "timestamp": 1789893631899,
+    "success": true
+  },
+  "HINDZINC": {
+    "symbol": "HINDZINC",
+    "price": 596,
+    "prevClose": 576.45,
+    "dayChangePct": 3.39,
+    "timestamp": 1789893631896,
+    "success": true
+  },
+  "ICICIGI": {
+    "symbol": "ICICIGI",
+    "price": 1458.1,
+    "prevClose": 1459.8,
+    "dayChangePct": -0.12,
+    "timestamp": 1789893631771,
+    "success": true
+  },
+  "ICICIPRULI": {
+    "symbol": "ICICIPRULI",
+    "price": 492,
+    "prevClose": 471.5,
+    "dayChangePct": 4.35,
+    "timestamp": 1789893631778,
+    "success": true
+  },
+  "IDEA": {
+    "symbol": "IDEA",
+    "price": 13.92,
+    "prevClose": 14.97,
+    "dayChangePct": -7.01,
+    "timestamp": 1789893631779,
+    "success": true
+  },
+  "IDFCFIRSTB": {
+    "symbol": "IDFCFIRSTB",
+    "price": 85.92,
+    "prevClose": 86.21,
+    "dayChangePct": -0.34,
+    "timestamp": 1789893631779,
+    "success": true
+  },
+  "IEX": {
+    "symbol": "IEX",
+    "price": 115.46,
+    "prevClose": 113.88,
+    "dayChangePct": 1.39,
+    "timestamp": 1789893631779,
+    "success": true
+  },
+  "IGL": {
+    "symbol": "IGL",
+    "price": 148.56,
+    "prevClose": 151.98,
+    "dayChangePct": -2.25,
+    "timestamp": 1789893631801,
+    "success": true
+  },
+  "INDHOTEL": {
+    "symbol": "INDHOTEL",
+    "price": 732.75,
+    "prevClose": 718.5,
+    "dayChangePct": 1.98,
+    "timestamp": 1789893631801,
+    "success": true
+  },
+  "INDIANB": {
+    "symbol": "INDIANB",
+    "price": 839.8,
+    "prevClose": 853.5,
+    "dayChangePct": -1.61,
+    "timestamp": 1789893631790,
+    "success": true
+  },
+  "INDIGO": {
+    "symbol": "INDIGO",
+    "price": 4920,
+    "prevClose": 4973,
+    "dayChangePct": -1.07,
+    "timestamp": 1789893631896,
+    "success": true
+  },
+  "INDUSTOWER": {
+    "symbol": "INDUSTOWER",
+    "price": 375.9,
+    "prevClose": 388,
+    "dayChangePct": -3.12,
+    "timestamp": 1789893632042,
+    "success": true
+  },
+  "INOXWIND": {
+    "symbol": "INOXWIND",
+    "price": 76.8,
+    "prevClose": 76.5,
+    "dayChangePct": 0.39,
+    "timestamp": 1789893632148,
+    "success": true
+  },
+  "IOC": {
+    "symbol": "IOC",
+    "price": 137,
+    "prevClose": 135.11,
+    "dayChangePct": 1.4,
+    "timestamp": 1789893632061,
+    "success": true
+  },
+  "IREDA": {
+    "symbol": "IREDA",
+    "price": 114.32,
+    "prevClose": 111.71,
+    "dayChangePct": 2.34,
+    "timestamp": 1789893632033,
+    "success": true
+  },
+  "IRFC": {
+    "symbol": "IRFC",
+    "price": 81.5,
+    "prevClose": 81.09,
+    "dayChangePct": 0.51,
+    "timestamp": 1789893632042,
+    "success": true
+  },
+  "JINDALSTEL": {
+    "symbol": "JINDALSTEL",
+    "price": 1119.5,
+    "prevClose": 1120.5,
+    "dayChangePct": -0.09,
+    "timestamp": 1789893632094,
+    "success": true
+  },
+  "JIOFIN": {
+    "symbol": "JIOFIN",
+    "price": 229.89,
+    "prevClose": 229.9,
+    "dayChangePct": 0,
+    "timestamp": 1789893632148,
+    "success": true
+  },
+  "JSWENERGY": {
+    "symbol": "JSWENERGY",
+    "price": 526,
+    "prevClose": 526.45,
+    "dayChangePct": -0.09,
+    "timestamp": 1789893632056,
+    "success": true
+  },
+  "JUBLFOOD": {
+    "symbol": "JUBLFOOD",
+    "price": 500,
+    "prevClose": 470.25,
+    "dayChangePct": 6.33,
+    "timestamp": 1789893632042,
+    "success": true
+  },
+  "KALYANKJIL": {
+    "symbol": "KALYANKJIL",
+    "price": 581.85,
+    "prevClose": 601.15,
+    "dayChangePct": -3.21,
+    "timestamp": 1789893632042,
+    "success": true
+  },
+  "KPITTECH": {
+    "symbol": "KPITTECH",
+    "price": 532,
+    "prevClose": 553.75,
+    "dayChangePct": -3.93,
+    "timestamp": 1789893632044,
+    "success": true
+  },
+  "LALPATHLAB": {
+    "symbol": "LALPATHLAB",
+    "price": 1896.9,
+    "prevClose": 1909,
+    "dayChangePct": -0.63,
+    "timestamp": 1789893632044,
+    "success": true
+  },
+  "LAURUSLABS": {
+    "symbol": "LAURUSLABS",
+    "price": 1954,
+    "prevClose": 1969,
+    "dayChangePct": -0.76,
+    "timestamp": 1789893632044,
+    "success": true
+  },
+  "LICHSGFIN": {
+    "symbol": "LICHSGFIN",
+    "price": 548.15,
+    "prevClose": 562.9,
+    "dayChangePct": -2.62,
+    "timestamp": 1789893632056,
+    "success": true
+  },
+  "LICI": {
+    "symbol": "LICI",
+    "price": 407.7,
+    "prevClose": 404.1,
+    "dayChangePct": 0.89,
+    "timestamp": 1789893632044,
+    "success": true
+  },
+  "LODHA": {
+    "symbol": "LODHA",
+    "price": 1144.7,
+    "prevClose": 1116.9,
+    "dayChangePct": 2.49,
+    "timestamp": 1789893632041,
+    "success": true
+  },
+  "LTF": {
+    "symbol": "LTF",
+    "price": 312.8,
+    "prevClose": 309.1,
+    "dayChangePct": 1.2,
+    "timestamp": 1789893632056,
+    "success": true
+  },
+  "LTIM": {
+    "symbol": "LTIM",
+    "price": 5650,
+    "prevClose": 5650,
+    "dayChangePct": 0,
+    "success": false
+  },
+  "LTTS": {
+    "symbol": "LTTS",
+    "price": 3347.5,
+    "prevClose": 3337.4,
+    "dayChangePct": 0.3,
+    "timestamp": 1789893632180,
+    "success": true
+  },
+  "LUPIN": {
+    "symbol": "LUPIN",
+    "price": 2083,
+    "prevClose": 2095,
+    "dayChangePct": -0.57,
+    "timestamp": 1789893632056,
+    "success": true
+  },
+  "M&MFIN": {
+    "symbol": "M&MFIN",
+    "price": 353.3,
+    "prevClose": 356.15,
+    "dayChangePct": -0.8,
+    "timestamp": 1789893632181,
+    "success": true
+  },
+  "MANAPPURAM": {
+    "symbol": "MANAPPURAM",
+    "price": 319.15,
+    "prevClose": 329,
+    "dayChangePct": -2.99,
+    "timestamp": 1789893632050,
+    "success": true
+  },
+  "MANKIND": {
+    "symbol": "MANKIND",
+    "price": 2300.7,
+    "prevClose": 2280,
+    "dayChangePct": 0.91,
+    "timestamp": 1789893632041,
+    "success": true
+  },
+  "MARICO": {
+    "symbol": "MARICO",
+    "price": 803.9,
+    "prevClose": 802.1,
+    "dayChangePct": 0.22,
+    "timestamp": 1789893632061,
+    "success": true
+  },
+  "MAXHEALTH": {
+    "symbol": "MAXHEALTH",
+    "price": 1049.3,
+    "prevClose": 1037.7,
+    "dayChangePct": 1.12,
+    "timestamp": 1789893632033,
+    "success": true
+  },
+  "MAZDOCK": {
+    "symbol": "MAZDOCK",
+    "price": 2280,
+    "prevClose": 2339,
+    "dayChangePct": -2.52,
+    "timestamp": 1789893632328,
+    "success": true
+  },
+  "MCX": {
+    "symbol": "MCX",
+    "price": 3260,
+    "prevClose": 3276,
+    "dayChangePct": -0.49,
+    "timestamp": 1789893632322,
+    "success": true
+  },
+  "MFSL": {
+    "symbol": "MFSL",
+    "price": 1559,
+    "prevClose": 1477,
+    "dayChangePct": 5.55,
+    "timestamp": 1789893632325,
+    "success": true
+  },
+  "MOTHERSON": {
+    "symbol": "MOTHERSON",
+    "price": 162.57,
+    "prevClose": 164.45,
+    "dayChangePct": -1.14,
+    "timestamp": 1789893632444,
+    "success": true
+  },
+  "MOTILALOFS": {
+    "symbol": "MOTILALOFS",
+    "price": 1010,
+    "prevClose": 1026.5,
+    "dayChangePct": -1.61,
+    "timestamp": 1789893632316,
+    "success": true
+  },
+  "MPHASIS": {
+    "symbol": "MPHASIS",
+    "price": 2300.4,
+    "prevClose": 2295,
+    "dayChangePct": 0.24,
+    "timestamp": 1789893632327,
+    "success": true
+  },
+  "MRF": {
+    "symbol": "MRF",
+    "price": 125670,
+    "prevClose": 128290,
+    "dayChangePct": -2.04,
+    "timestamp": 1789893632342,
+    "success": true
+  },
+  "MUTHOOTFIN": {
+    "symbol": "MUTHOOTFIN",
+    "price": 2841.1,
+    "prevClose": 2722.3,
+    "dayChangePct": 4.36,
+    "timestamp": 1789893632316,
+    "success": true
+  },
+  "NAM-INDIA": {
+    "symbol": "NAM-INDIA",
+    "price": 1155,
+    "prevClose": 1189.6,
+    "dayChangePct": -2.91,
+    "timestamp": 1789893632316,
+    "success": true
+  },
+  "NATIONALUM": {
+    "symbol": "NATIONALUM",
+    "price": 350.5,
+    "prevClose": 361,
+    "dayChangePct": -2.91,
+    "timestamp": 1789893632335,
+    "success": true
+  },
+  "NAUKRI": {
+    "symbol": "NAUKRI",
+    "price": 1251.2,
+    "prevClose": 1261.5,
+    "dayChangePct": -0.82,
+    "timestamp": 1789893632316,
+    "success": true
+  },
+  "NBCC": {
+    "symbol": "NBCC",
+    "price": 82.4,
+    "prevClose": 82.9,
+    "dayChangePct": -0.6,
+    "timestamp": 1789893632419,
+    "success": true
+  },
+  "NHPC": {
+    "symbol": "NHPC",
+    "price": 76.95,
+    "prevClose": 76.38,
+    "dayChangePct": 0.75,
+    "timestamp": 1789893632249,
+    "success": true
+  },
+  "NMDC": {
+    "symbol": "NMDC",
+    "price": 79.15,
+    "prevClose": 82.4,
+    "dayChangePct": -3.94,
+    "timestamp": 1789893632342,
+    "success": true
+  },
+  "NUVAMA": {
+    "symbol": "NUVAMA",
+    "price": 1713.7,
+    "prevClose": 1737.2,
+    "dayChangePct": -1.35,
+    "timestamp": 1789893632408,
+    "success": true
+  },
+  "NYKAA": {
+    "symbol": "NYKAA",
+    "price": 332.15,
+    "prevClose": 344.5,
+    "dayChangePct": -3.58,
+    "timestamp": 1789893632300,
+    "success": true
+  },
+  "OBEROIRLTY": {
+    "symbol": "OBEROIRLTY",
+    "price": 1785,
+    "prevClose": 1741.1,
+    "dayChangePct": 2.52,
+    "timestamp": 1789893632316,
+    "success": true
+  },
+  "OFSS": {
+    "symbol": "OFSS",
+    "price": 11896,
+    "prevClose": 11763,
+    "dayChangePct": 1.13,
+    "timestamp": 1789893632324,
+    "success": true
+  },
+  "OIL": {
+    "symbol": "OIL",
+    "price": 475.7,
+    "prevClose": 489.8,
+    "dayChangePct": -2.88,
+    "timestamp": 1789893632324,
+    "success": true
+  },
+  "PAGEIND": {
+    "symbol": "PAGEIND",
+    "price": 36400,
+    "prevClose": 35365,
+    "dayChangePct": 2.93,
+    "timestamp": 1789893632322,
+    "success": true
+  },
+  "PATANJALI": {
+    "symbol": "PATANJALI",
+    "price": 367,
+    "prevClose": 341,
+    "dayChangePct": 7.62,
+    "timestamp": 1789893632381,
+    "success": true
+  },
+  "PAYTM": {
+    "symbol": "PAYTM",
+    "price": 1849.9,
+    "prevClose": 1807.5,
+    "dayChangePct": 2.35,
+    "timestamp": 1789893632310,
+    "success": true
+  },
+  "PERSISTENT": {
+    "symbol": "PERSISTENT",
+    "price": 5416,
+    "prevClose": 5516,
+    "dayChangePct": -1.81,
+    "timestamp": 1789893632401,
+    "success": true
+  },
+  "PETRONET": {
+    "symbol": "PETRONET",
+    "price": 292.6,
+    "prevClose": 287.2,
+    "dayChangePct": 1.88,
+    "timestamp": 1789893632323,
+    "success": true
+  },
+  "PFC": {
+    "symbol": "PFC",
+    "price": 342.55,
+    "prevClose": 353.45,
+    "dayChangePct": -3.08,
+    "timestamp": 1789893632431,
+    "success": true
+  },
+  "PGEL": {
+    "symbol": "PGEL",
+    "price": 529.15,
+    "prevClose": 545,
+    "dayChangePct": -2.91,
+    "timestamp": 1789893632578,
+    "success": true
+  },
+  "PHOENIXLTD": {
+    "symbol": "PHOENIXLTD",
+    "price": 1877.9,
+    "prevClose": 1890,
+    "dayChangePct": -0.64,
+    "timestamp": 1789893632584,
+    "success": true
+  },
+  "PIDILITIND": {
+    "symbol": "PIDILITIND",
+    "price": 1572.1,
+    "prevClose": 1566.9,
+    "dayChangePct": 0.33,
+    "timestamp": 1789893632602,
+    "success": true
+  },
+  "PIIND": {
+    "symbol": "PIIND",
+    "price": 2366.8,
+    "prevClose": 2259,
+    "dayChangePct": 4.77,
+    "timestamp": 1789893632584,
+    "success": true
+  },
+  "PNB": {
+    "symbol": "PNB",
+    "price": 117.27,
+    "prevClose": 116.75,
+    "dayChangePct": 0.45,
+    "timestamp": 1789893632602,
+    "success": true
+  },
+  "POLICYBZR": {
+    "symbol": "POLICYBZR",
+    "price": 1743,
+    "prevClose": 1797.3,
+    "dayChangePct": -3.02,
+    "timestamp": 1789893632676,
+    "success": true
+  },
+  "POLYCAB": {
+    "symbol": "POLYCAB",
+    "price": 8400,
+    "prevClose": 8241,
+    "dayChangePct": 1.93,
+    "timestamp": 1789893632596,
+    "success": true
+  },
+  "PREMIERENE": {
+    "symbol": "PREMIERENE",
+    "price": 902,
+    "prevClose": 974.2,
+    "dayChangePct": -7.41,
+    "timestamp": 1789893632578,
+    "success": true
+  },
+  "PRESTIGE": {
+    "symbol": "PRESTIGE",
+    "price": 1435.1,
+    "prevClose": 1498,
+    "dayChangePct": -4.2,
+    "timestamp": 1789893632603,
+    "success": true
+  },
+  "RADICO": {
+    "symbol": "RADICO",
+    "price": 4535.4,
+    "prevClose": 4368.1,
+    "dayChangePct": 3.83,
+    "timestamp": 1789893632699,
+    "success": true
+  },
+  "RBLBANK": {
+    "symbol": "RBLBANK",
+    "price": 415.9,
+    "prevClose": 412.55,
+    "dayChangePct": 0.81,
+    "timestamp": 1789893632688,
+    "success": true
+  },
+  "RECLTD": {
+    "symbol": "RECLTD",
+    "price": 312,
+    "prevClose": 312.7,
+    "dayChangePct": -0.22,
+    "timestamp": 1789893632596,
+    "success": true
+  },
+  "RVNL": {
+    "symbol": "RVNL",
+    "price": 214.29,
+    "prevClose": 204.9,
+    "dayChangePct": 4.58,
+    "timestamp": 1789893632584,
+    "success": true
+  },
+  "SAIL": {
+    "symbol": "SAIL",
+    "price": 177.33,
+    "prevClose": 179,
+    "dayChangePct": -0.93,
+    "timestamp": 1789893632706,
+    "success": true
+  },
+  "SBICARD": {
+    "symbol": "SBICARD",
+    "price": 651.15,
+    "prevClose": 655.2,
+    "dayChangePct": -0.62,
+    "timestamp": 1789893632578,
+    "success": true
+  },
+  "SHRIRAMFIN": {
+    "symbol": "SHRIRAMFIN",
+    "price": 1010,
+    "prevClose": 1028.6,
+    "dayChangePct": -1.81,
+    "timestamp": 1789893632608,
+    "success": true
+  },
+  "SIEMENS": {
+    "symbol": "SIEMENS",
+    "price": 3913.9,
+    "prevClose": 3957,
+    "dayChangePct": -1.09,
+    "timestamp": 1789893632603,
+    "success": true
+  },
+  "SONACOMS": {
+    "symbol": "SONACOMS",
+    "price": 808,
+    "prevClose": 788,
+    "dayChangePct": 2.54,
+    "timestamp": 1789893632578,
+    "success": true
+  },
+  "SRF": {
+    "symbol": "SRF",
+    "price": 2512,
+    "prevClose": 2482.4,
+    "dayChangePct": 1.19,
+    "timestamp": 1789893632596,
+    "success": true
+  },
+  "SUPREMEIND": {
+    "symbol": "SUPREMEIND",
+    "price": 3580.3,
+    "prevClose": 3364.4,
+    "dayChangePct": 6.42,
+    "timestamp": 1789893632596,
+    "success": true
+  },
+  "SUZLON": {
+    "symbol": "SUZLON",
+    "price": 43.14,
+    "prevClose": 44.12,
+    "dayChangePct": -2.22,
+    "timestamp": 1789893632584,
+    "success": true
+  },
+  "SWIGGY": {
+    "symbol": "SWIGGY",
+    "price": 273.05,
+    "prevClose": 278.2,
+    "dayChangePct": -1.85,
+    "timestamp": 1789893632578,
+    "success": true
+  },
+  "TATAELXSI": {
+    "symbol": "TATAELXSI",
+    "price": 3266.7,
+    "prevClose": 3383,
+    "dayChangePct": -3.44,
+    "timestamp": 1789893632596,
+    "success": true
+  },
+  "TATAPOWER": {
+    "symbol": "TATAPOWER",
+    "price": 374.8,
+    "prevClose": 364.65,
+    "dayChangePct": 2.78,
+    "timestamp": 1789893632603,
+    "success": true
+  },
+  "TORNTPHARM": {
+    "symbol": "TORNTPHARM",
+    "price": 4840,
+    "prevClose": 4965.5,
+    "dayChangePct": -2.53,
+    "timestamp": 1789893632596,
+    "success": true
+  },
+  "TORNTPOWER": {
+    "symbol": "TORNTPOWER",
+    "price": 1258.8,
+    "prevClose": 1297.6,
+    "dayChangePct": -2.99,
+    "timestamp": 1789893632851,
+    "success": true
+  },
+  "TVSMOTOR": {
+    "symbol": "TVSMOTOR",
+    "price": 4171.3,
+    "prevClose": 4125,
+    "dayChangePct": 1.12,
+    "timestamp": 1789893632852,
+    "success": true
+  },
+  "UNIONBANK": {
+    "symbol": "UNIONBANK",
+    "price": 176.56,
+    "prevClose": 178.1,
+    "dayChangePct": -0.86,
+    "timestamp": 1789893632841,
+    "success": true
+  },
+  "UNITDSPR": {
+    "symbol": "UNITDSPR",
+    "price": 1371,
+    "prevClose": 1395,
+    "dayChangePct": -1.72,
+    "timestamp": 1789893632846,
+    "success": true
+  },
+  "UNOMINDA": {
+    "symbol": "UNOMINDA",
+    "price": 1284,
+    "prevClose": 1201.6,
+    "dayChangePct": 6.86,
+    "timestamp": 1789893632944,
+    "success": true
+  },
+  "UPL": {
+    "symbol": "UPL",
+    "price": 580,
+    "prevClose": 572.95,
+    "dayChangePct": 1.23,
+    "timestamp": 1789893632847,
+    "success": true
+  },
+  "VBL": {
+    "symbol": "VBL",
+    "price": 421.95,
+    "prevClose": 416.5,
+    "dayChangePct": 1.31,
+    "timestamp": 1789893632840,
+    "success": true
+  },
+  "VEDL": {
+    "symbol": "VEDL",
+    "price": 267.6,
+    "prevClose": 263.7,
+    "dayChangePct": 1.48,
+    "timestamp": 1789893632846,
+    "success": true
+  },
+  "VOLTAS": {
+    "symbol": "VOLTAS",
+    "price": 1110.9,
+    "prevClose": 1165,
+    "dayChangePct": -4.64,
+    "timestamp": 1789893632950,
+    "success": true
+  },
+  "YESBANK": {
+    "symbol": "YESBANK",
+    "price": 22.72,
+    "prevClose": 23.48,
+    "dayChangePct": -3.24,
+    "timestamp": 1789893632937,
+    "success": true
+  },
+  "ZOMATO": {
+    "symbol": "ZOMATO",
+    "price": 260,
+    "prevClose": 260,
+    "dayChangePct": 0,
+    "success": false
+  },
+  "ZYDUSLIFE": {
+    "symbol": "ZYDUSLIFE",
+    "price": 1160,
+    "prevClose": 1119.1,
+    "dayChangePct": 3.65,
+    "timestamp": 1789893632847,
+    "success": true
+  }
+}

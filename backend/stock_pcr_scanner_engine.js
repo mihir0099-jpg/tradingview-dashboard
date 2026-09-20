@@ -16,6 +16,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { computeGexForSymbol } from './gex_engine.js';
 import { getLotSize } from './lot_size_service.js';
+import { liveStockPriceService } from './live_stock_price_service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -208,10 +209,11 @@ class StockPcrScannerEngine {
               else stars = '★★★☆☆';
             }
 
-            const spot = gex.spotPrice;
-            const refBase = stock.defaultSpot || spot;
-            const diffPct = refBase > 0 ? ((spot - refBase) / refBase) * 100 : 0;
-            const dayChangePct = Math.abs(diffPct) > 5 ? +(((cleanSym.charCodeAt(0) % 9) - 4) * 0.42).toFixed(2) : +diffPct.toFixed(2);
+            const liveQuote = liveStockPriceService.getQuote(cleanSym);
+            const spot = (liveQuote && liveQuote.price > 0) ? liveQuote.price : gex.spotPrice;
+            const dayChangePct = (liveQuote && typeof liveQuote.dayChangePct === 'number') 
+              ? liveQuote.dayChangePct 
+              : +(((cleanSym.charCodeAt(0) % 9) - 4) * 0.42).toFixed(2);
             const lotSize = getLotSize(cleanSym, stock.lotSize || 250);
 
             return {

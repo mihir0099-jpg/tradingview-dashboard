@@ -23,6 +23,7 @@ import { fileURLToPath } from 'url';
 import { fetchRealtimeMicrostructureFeed } from './microstructure.js';
 import { angelOneBridge } from './angelone_bridge.js';
 import { getLotSize, initLotSizeService } from './lot_size_service.js';
+import { liveStockPriceService } from './live_stock_price_service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -242,7 +243,12 @@ export async function computeGexForSymbol(symbolKey = 'NIFTY') {
       if (ltp && ltp > 100) spot = ltp;
     } else if (isStock || stockMeta) {
       const ltp = await angelOneBridge.resolveAndGetLtp(config.symbol).catch(() => null);
-      if (ltp && ltp > 0) spot = ltp;
+      if (ltp && ltp > 0) {
+        spot = ltp;
+      } else {
+        const liveQ = liveStockPriceService.getQuote(config.symbol);
+        if (liveQ && liveQ.price > 0) spot = liveQ.price;
+      }
     }
   } catch (e) {}
 
