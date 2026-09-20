@@ -1,0 +1,42 @@
+{
+  "setup1_funnel_squeeze": {
+    "total_trades": 554,
+    "win_rate_1to1_pct": 48.7,
+    "win_rate_1to2_pct": 39.0,
+    "sl_hit_rate_pct": 67.9,
+    "avg_5d_return_pct": 1.0,
+    "avg_risk_reward": 2.17
+  },
+  "setup2_ema20_launchpad_bull": {
+    "total_trades": 1257,
+    "win_rate_1to1_pct": 53.1,
+    "win_rate_1to2_pct": 25.4,
+    "sl_hit_rate_pct": 50.8,
+    "avg_5d_return_pct": 0.32,
+    "avg_risk_reward": 1.48
+  },
+  "setup3_ema20_deathcoil_bear": {
+    "total_trades": 1262,
+    "win_rate_1to1_pct": 50.5,
+    "win_rate_1to2_pct": 20.4,
+    "sl_hit_rate_pct": 50.6,
+    "avg_5d_return_pct": -0.19,
+    "avg_risk_reward": 1.34
+  },
+  "setup4_volume_dryup_expansion": {
+    "total_trades": 450,
+    "win_rate_1to1_pct": 48.2,
+    "win_rate_1to2_pct": 37.6,
+    "sl_hit_rate_pct": 69.3,
+    "avg_5d_return_pct": 0.89,
+    "avg_risk_reward": 2.11
+  },
+  "setup5_pressure_cooker_breakout": {
+    "total_trades": 314,
+    "win_rate_1to1_pct": 85.4,
+    "win_rate_1to2_pct": 61.8,
+    "sl_hit_rate_pct": 63.7,
+    "avg_5d_return_pct": 0.75,
+    "avg_risk_reward": 4.9
+  }
+}
