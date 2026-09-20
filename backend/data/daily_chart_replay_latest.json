@@ -1,7 +1,7 @@
 {
-  "timestamp": 1789890641601,
+  "timestamp": 1789891952660,
   "dateStr": "2026-09-20",
-  "timeStr": "13:20:41 IST",
+  "timeStr": "13:42:32 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
@@ -181,9 +181,9 @@
       {
         "symbol": "PNB",
         "price": 117.27,
-        "compPct": 44.4,
-        "delivPct": 84,
-        "floor": 112.3
+        "compPct": 48.3,
+        "delivPct": 83,
+        "floor": 113.16
       },
       {
         "symbol": "LICHSGFIN",
@@ -245,16 +245,16 @@
         "distCeilPct": 2.54
       },
       {
+        "symbol": "BLUESTARCO",
+        "price": 1531.8,
+        "ceil": 1571.5,
+        "distCeilPct": 2.59
+      },
+      {
         "symbol": "KOTAKBANK",
         "price": 412.5,
         "ceil": 429.1,
         "distCeilPct": 4.02
-      },
-      {
-        "symbol": "BLUESTARCO",
-        "price": 1531.8,
-        "ceil": 1595,
-        "distCeilPct": 4.13
       }
     ],
     "sectorLeadership": [

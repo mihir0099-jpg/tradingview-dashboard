@@ -102,6 +102,13 @@
   ],
   "scanLogs": [
     {
+      "id": "1789891933809_zimx",
+      "timestamp": "13:42:13",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23346.4 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
+    },
+    {
       "id": "1789889297546_fy3y",
       "timestamp": "12:58:17",
       "symbol": "HDFCBANK",
@@ -207,9 +214,9 @@
     "winRate": 0,
     "maxDrawdown": 0
   },
-  "lastScanTime": "12:58:16",
+  "lastScanTime": "13:42:13",
   "marketSession": {
-    "istTime": "12:58:16",
+    "istTime": "13:42:13",
     "istDate": "2026-09-20",
     "dayOfWeek": 0,
     "isWeekend": true,

@@ -1,5 +1,13 @@
 [
   {
+    "timestamp": 1789891934412,
+    "istTime": "20/9/2026, 1:42:14 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
     "timestamp": 1789891565177,
     "istTime": "20/9/2026, 1:36:05 pm",
     "component": "📊 Matrix Scanner (Daily)",

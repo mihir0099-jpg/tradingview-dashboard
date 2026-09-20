@@ -27,6 +27,7 @@ import { fetchRealtimeMicrostructureFeed } from './microstructure.js';
 import { angelOneBridge } from './angelone_bridge.js';
 import { orderFlowStreamEngine } from './orderflow_stream.js';
 import { imbalanceMeterEngine } from './imbalance_meter.js';
+import { stockPcrScannerEngine } from './stock_pcr_scanner_engine.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -891,28 +892,64 @@ class StockGexAlgoEngine {
     }
 
     // 3. PCR Velocity (Rule 2D) (Max 20 pts)
-    const { pcrVelocityState, pcrDrift } = this.state.indexContext || {};
-    let pcrState = pcrVelocityState || 'NEUTRAL';
+    let effectivePcrDrift = this.state.indexContext?.pcrDrift || 0;
+    let effectivePcrVelocityState = this.state.indexContext?.pcrVelocityState || 'NEUTRAL';
+    let isStockPcrUsed = false;
+    let stockPcrItem = null;
+
+    if (!stock.isIndex && sym !== 'NIFTY' && sym !== 'BANKNIFTY') {
+      try {
+        const stockPcrData = stockPcrScannerEngine.cache?.stocks;
+        if (Array.isArray(stockPcrData)) {
+          const found = stockPcrData.find(s => s.symbol === sym);
+          if (found) {
+            stockPcrItem = found;
+            effectivePcrDrift = found.effectiveDrift;
+            effectivePcrVelocityState = found.signal;
+            isStockPcrUsed = true;
+          }
+        }
+      } catch (e) {}
+    }
+
+    let pcrState = isStockPcrUsed 
+      ? `Stock PCR: ${stockPcrItem.writingCategory === 'PUT_WRITTEN' ? 'PUT WRITING' : (stockPcrItem.writingCategory === 'CALL_WRITTEN' ? 'CALL WRITING' : 'NEUTRAL')} (${stockPcrItem.effectiveDriftPct >= 0 ? '+' : ''}${stockPcrItem.effectiveDriftPct}%)`
+      : (effectivePcrVelocityState || 'NEUTRAL');
+
     if (isCE) {
-      if (pcrVelocityState === 'BULLISH_PUT_WRITING' || pcrDrift >= 0.03) {
+      if (effectivePcrVelocityState === 'BULLISH_PUT_WRITING' || effectivePcrDrift >= 0.03 || (stockPcrItem && stockPcrItem.effectiveDriftPct >= 3.0)) {
         pcrPts = 20;
-        reasons.push(`PCR Velocity: Bullish Put Writing (+${pcrDrift})`);
-      } else if (pcrDrift >= 0) {
+        reasons.push(isStockPcrUsed 
+          ? `${sym} Stock PCR: Bullish Put Writing (+${stockPcrItem.effectiveDriftPct}% drift)`
+          : `Index PCR Velocity: Bullish Put Writing (+${effectivePcrDrift})`
+        );
+      } else if (effectivePcrDrift >= 0) {
         pcrPts = 14;
-      } else if (pcrDrift < -0.03) {
+      } else if (effectivePcrVelocityState === 'BEARISH_CALL_WRITING' || effectivePcrDrift < -0.03 || (stockPcrItem && stockPcrItem.effectiveDriftPct <= -3.0)) {
         pcrPts = 0;
+        reasons.push(isStockPcrUsed 
+          ? `${sym} Stock PCR: Call Writing Resistance Drag (${stockPcrItem.effectiveDriftPct}%)`
+          : `Index PCR Call Writing Drag (${effectivePcrDrift})`
+        );
       } else {
         pcrPts = 8;
       }
     } else {
       // PE
-      if (pcrVelocityState === 'BEARISH_CALL_WRITING' || pcrDrift <= -0.03) {
+      if (effectivePcrVelocityState === 'BEARISH_CALL_WRITING' || effectivePcrDrift <= -0.03 || (stockPcrItem && stockPcrItem.effectiveDriftPct <= -3.0)) {
         pcrPts = 20;
-        reasons.push(`PCR Velocity: Bearish Call Writing (${pcrDrift})`);
-      } else if (pcrDrift <= 0) {
+        reasons.push(isStockPcrUsed 
+          ? `${sym} Stock PCR: Bearish Call Writing (${stockPcrItem.effectiveDriftPct}% drift)`
+          : `Index PCR Velocity: Bearish Call Writing (${effectivePcrDrift})`
+        );
+      } else if (effectivePcrDrift <= 0) {
         pcrPts = 14;
-      } else if (pcrDrift > 0.03) {
+      } else if (effectivePcrVelocityState === 'BULLISH_PUT_WRITING' || effectivePcrDrift > 0.03 || (stockPcrItem && stockPcrItem.effectiveDriftPct >= 3.0)) {
         pcrPts = 0;
+        reasons.push(isStockPcrUsed 
+          ? `${sym} Stock PCR: Put Writing Floor Drag (+${stockPcrItem.effectiveDriftPct}%)`
+          : `Index PCR Put Writing Drag (+${effectivePcrDrift})`
+        );
       } else {
         pcrPts = 8;
       }
@@ -1067,11 +1104,26 @@ class StockGexAlgoEngine {
     const blockCeIfRed = activeRules.some(r => r.applied && r.action === 'BLOCK_CE_IF_INDEX_RED');
     const blockPeIfBullish = activeRules.some(r => r.applied && r.action === 'BLOCK_PE_IF_PCR_BULLISH');
 
+    // ── Stock-Specific PCR Velocity Check (Rule #2D) ─────────────────────────
+    let stockPcrItem = null;
+    if (!stock.isIndex && sym !== 'NIFTY' && sym !== 'BANKNIFTY') {
+      try {
+        const stockPcrData = stockPcrScannerEngine.cache?.stocks;
+        if (Array.isArray(stockPcrData)) {
+          stockPcrItem = stockPcrData.find(s => s.symbol === sym);
+        }
+      } catch (e) {}
+    }
+
     // ─────────────────────────────────────────────────────────────────────────
     // RULE 1: SGEX-100-01 / IGEX: Expiry Week Call Wall Defense (PE Buy)
     // ─────────────────────────────────────────────────────────────────────────
     const callDistPct = Math.abs(spot - callWall) / callWall;
     if (dte <= 5 && callDistPct <= 0.005 && regime === 'LONG_GAMMA') {
+      if (stockPcrItem && (stockPcrItem.writingCategory === 'PUT_WRITTEN' || stockPcrItem.effectiveDriftPct >= 3.0)) {
+        this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} PE: Stock's Own PCR is Bullish Put Writing (+${stockPcrItem.effectiveDriftPct}% drift floor).`);
+        return null;
+      }
       if (blockPeIfBullish && (pcrVelocityState === 'BULLISH_PUT_WRITING' || pcrDrift > 0.02)) {
         this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} PE: Learned Rule Active (Bullish Put Writing Drag)`);
         return null;
@@ -1105,6 +1157,10 @@ class StockGexAlgoEngine {
     // ─────────────────────────────────────────────────────────────────────────
     const brokeBelowFlip = spot < flipLevel && quote.open >= flipLevel;
     if (brokeBelowFlip && !niftyBullish) {
+      if (stockPcrItem && (stockPcrItem.writingCategory === 'PUT_WRITTEN' || stockPcrItem.effectiveDriftPct >= 3.0)) {
+        this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} PE Breakdown: Stock's Own PCR has Strong Put Writing (+${stockPcrItem.effectiveDriftPct}% drift floor).`);
+        return null;
+      }
       if (blockPeIfBullish && (pcrVelocityState === 'BULLISH_PUT_WRITING' || pcrDrift > 0.02)) {
         this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} PE Breakdown: Learned Rule Active (Bullish Put Writing Drag)`);
         return null;
@@ -1136,6 +1192,10 @@ class StockGexAlgoEngine {
     // ─────────────────────────────────────────────────────────────────────────
     const putDistPct = Math.abs(spot - putWall) / putWall;
     if (putDistPct <= 0.004 && spot >= putWall) {
+      if (stockPcrItem && (stockPcrItem.writingCategory === 'CALL_WRITTEN' || stockPcrItem.effectiveDriftPct <= -3.0)) {
+        this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} CE Bounce: Stock's Own PCR is Bearish Call Writing (${stockPcrItem.effectiveDriftPct}% drift ceiling).`);
+        return null;
+      }
       if (blockCeIfRed && (!niftyBullish || pcrDrift < 0)) {
         this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} CE Bounce: Learned Rule Active (NIFTY Red / PCR Drift: ${pcrDrift})`);
         return null;
@@ -1168,6 +1228,10 @@ class StockGexAlgoEngine {
     // RULE 4: SGEX-100-04 / IGEX: Forced Gamma Squeeze Drive (CE Buy)
     // ─────────────────────────────────────────────────────────────────────────
     if (spot > callWall && niftyBullish) {
+      if (stockPcrItem && (stockPcrItem.writingCategory === 'CALL_WRITTEN' || stockPcrItem.effectiveDriftPct <= -3.0)) {
+        this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} CE Squeeze: Stock's Own PCR is Bearish Call Writing (${stockPcrItem.effectiveDriftPct}% drift ceiling).`);
+        return null;
+      }
       if (blockCeIfRed && (!niftyBullish || pcrDrift < 0)) {
         this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} CE Squeeze: Learned Rule Active (NIFTY Red / PCR Drift: ${pcrDrift})`);
         return null;
