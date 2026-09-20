@@ -72,7 +72,7 @@ export function StockPcrScannerContainer() {
   const [filterCategory, setFilterCategory] = useState<'ALL' | 'PUT_WRITTEN' | 'CALL_WRITTEN' | 'HIGH_VELOCITY' | 'NEUTRAL'>('ALL');
   const [selectedSector, setSelectedSector] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<'drift_desc' | 'drift_asc' | 'oi_desc' | 'change_desc'>('drift_desc');
+  const [sortBy, setSortBy] = useState<string>('magnitude_desc');
   const [hoveredRow, setHoveredRow] = useState<string | null>(null);
 
   const fetchData = async (isManualScan = false) => {
@@ -153,10 +153,22 @@ export function StockPcrScannerContainer() {
 
     // Sort
     list.sort((a, b) => {
+      if (sortBy === 'call_writing_desc' || (filterCategory === 'CALL_WRITTEN' && !['oi_desc', 'change_desc', 'change_asc'].includes(sortBy))) {
+        // Highest Call Writing = most negative drift first (-55% before -4.6%)
+        return a.effectiveDriftPct - b.effectiveDriftPct;
+      }
+      if (sortBy === 'put_writing_desc' || (filterCategory === 'PUT_WRITTEN' && !['oi_desc', 'change_desc', 'change_asc'].includes(sortBy))) {
+        // Highest Put Writing = most positive drift first (+95% before +3%)
+        return b.effectiveDriftPct - a.effectiveDriftPct;
+      }
+      if (sortBy === 'magnitude_desc') {
+        return Math.abs(b.effectiveDriftPct) - Math.abs(a.effectiveDriftPct);
+      }
       if (sortBy === 'drift_desc') return b.effectiveDriftPct - a.effectiveDriftPct;
       if (sortBy === 'drift_asc') return a.effectiveDriftPct - b.effectiveDriftPct;
       if (sortBy === 'oi_desc') return (b.totalCallOi + b.totalPutOi) - (a.totalCallOi + a.totalPutOi);
       if (sortBy === 'change_desc') return b.dayChangePct - a.dayChangePct;
+      if (sortBy === 'change_asc') return a.dayChangePct - b.dayChangePct;
       return 0;
     });
 
@@ -431,7 +443,7 @@ export function StockPcrScannerContainer() {
           </button>
 
           <button
-            onClick={() => setFilterCategory('PUT_WRITTEN')}
+            onClick={() => { setFilterCategory('PUT_WRITTEN'); setSortBy('put_writing_desc'); }}
             style={{
               backgroundColor: filterCategory === 'PUT_WRITTEN' ? '#059669' : '#1e293b',
               color: filterCategory === 'PUT_WRITTEN' ? '#ffffff' : '#34d399',
@@ -451,7 +463,7 @@ export function StockPcrScannerContainer() {
           </button>
 
           <button
-            onClick={() => setFilterCategory('CALL_WRITTEN')}
+            onClick={() => { setFilterCategory('CALL_WRITTEN'); setSortBy('call_writing_desc'); }}
             style={{
               backgroundColor: filterCategory === 'CALL_WRITTEN' ? '#dc2626' : '#1e293b',
               color: filterCategory === 'CALL_WRITTEN' ? '#ffffff' : '#f87171',
@@ -548,10 +560,12 @@ export function StockPcrScannerContainer() {
               cursor: 'pointer'
             }}
           >
-            <option value="drift_desc">Highest Bullish Drift %</option>
-            <option value="drift_asc">Highest Bearish Drift %</option>
-            <option value="oi_desc">Highest Total OI</option>
-            <option value="change_desc">Highest Spot % Change</option>
+            <option value="magnitude_desc">⚡ Highest % Drift Magnitude</option>
+            <option value="call_writing_desc">🔴 Highest Call Writing (Bearish -%)</option>
+            <option value="put_writing_desc">🟢 Highest Put Writing (Bullish +%)</option>
+            <option value="change_desc">📈 Highest Spot % Change (Gainers)</option>
+            <option value="change_asc">📉 Lowest Spot % Change (Losers)</option>
+            <option value="oi_desc">📊 Highest Total Open Interest</option>
           </select>
 
           {/* Search Input */}
@@ -593,10 +607,30 @@ export function StockPcrScannerContainer() {
           <thead>
             <tr style={{ backgroundColor: '#1e293b', color: '#cbd5e1', borderBottom: '2px solid #334155' }}>
               <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Symbol & Sector</th>
-              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Spot Price & Change</th>
+              <th 
+                onClick={() => setSortBy(sortBy === 'change_desc' ? 'change_asc' : 'change_desc')}
+                style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px', cursor: 'pointer', userSelect: 'none' }}
+                title="Click to sort by Spot Change %"
+              >
+                Spot Price & Change {sortBy === 'change_desc' ? '▼' : (sortBy === 'change_asc' ? '▲' : '↕')}
+              </th>
               <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>09:15 Baseline</th>
               <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>10:15 / Live PCR</th>
-              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>PCR Velocity Drift (Rule #2D)</th>
+              <th 
+                onClick={() => {
+                  if (filterCategory === 'CALL_WRITTEN') {
+                    setSortBy(sortBy === 'call_writing_desc' ? 'drift_desc' : 'call_writing_desc');
+                  } else if (filterCategory === 'PUT_WRITTEN') {
+                    setSortBy(sortBy === 'put_writing_desc' ? 'drift_asc' : 'put_writing_desc');
+                  } else {
+                    setSortBy(sortBy === 'magnitude_desc' ? 'drift_asc' : 'magnitude_desc');
+                  }
+                }}
+                style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px', cursor: 'pointer', userSelect: 'none', color: '#38bdf8' }}
+                title="Click to sort by Highest % Drift"
+              >
+                PCR Velocity Drift (Rule #2D) ↕
+              </th>
               <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Institutional Writing Verdict</th>
               <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Put / Call OI Ratio</th>
               <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Key Wall Strikes</th>
