@@ -3,7 +3,7 @@ import { getBackendUrl } from '../utils/config';
 import { 
   TrendingUp, TrendingDown, RefreshCw, Search, Shield, AlertTriangle, 
   CheckCircle, ArrowUpRight, ArrowDownRight, Layers, Filter, Info, Eye, 
-  Zap, BarChart2, Flame, Award, Crosshair
+  Zap, BarChart2, Flame, Award, Crosshair, Lock
 } from 'lucide-react';
 
 export interface StockPcrItem {
@@ -73,6 +73,7 @@ export function StockPcrScannerContainer() {
   const [selectedSector, setSelectedSector] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'drift_desc' | 'drift_asc' | 'oi_desc' | 'change_desc'>('drift_desc');
+  const [hoveredRow, setHoveredRow] = useState<string | null>(null);
 
   const fetchData = async (isManualScan = false) => {
     try {
@@ -105,7 +106,7 @@ export function StockPcrScannerContainer() {
 
   useEffect(() => {
     fetchData(false);
-    const interval = setInterval(() => fetchData(false), 20000); // 20s auto-refresh
+    const interval = setInterval(() => fetchData(false), 20000);
     return () => clearInterval(interval);
   }, []);
 
@@ -144,7 +145,7 @@ export function StockPcrScannerContainer() {
     if (searchQuery.trim()) {
       const q = searchQuery.trim().toLowerCase();
       list = list.filter(s => 
-        s.symbol.toLowerCase().includes(q) ||
+        s.symbol.toLowerCase().includes(q) || 
         s.name.toLowerCase().includes(q) ||
         s.sector.toLowerCase().includes(q)
       );
@@ -164,75 +165,85 @@ export function StockPcrScannerContainer() {
 
   return (
     <div style={{
-      backgroundColor: '#0c0e14',
-      color: '#e2e8f0',
+      backgroundColor: '#070a11',
+      color: '#f1f5f9',
       minHeight: '100vh',
-      padding: '16px 20px',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+      padding: '16px 22px',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
     }}>
       {/* ─────────────────────────────────────────────────────────────
-          HEADER SECTION
+          ULTRA-SHARP HEADER SECTION
       ───────────────────────────────────────────────────────────── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#111726',
+        backgroundColor: '#0f172a',
         borderRadius: '10px',
-        padding: '14px 18px',
+        padding: '14px 20px',
         border: '1px solid #1e293b',
-        marginBottom: '14px',
+        marginBottom: '16px',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
         flexWrap: 'wrap',
         gap: '12px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <div style={{
-            backgroundColor: 'rgba(56, 189, 248, 0.15)',
-            border: '1px solid rgba(56, 189, 248, 0.3)',
+            backgroundColor: 'rgba(56, 189, 248, 0.2)',
+            border: '1px solid rgba(56, 189, 248, 0.4)',
             borderRadius: '8px',
-            padding: '8px 10px',
-            color: '#38bdf8'
+            padding: '10px',
+            color: '#38bdf8',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
           }}>
-            <Crosshair size={22} />
+            <Crosshair size={24} />
           </div>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-              <h1 style={{ fontSize: '18px', fontWeight: 800, color: '#f8fafc', margin: 0 }}>
-                STOCK PCR SCANNER (RULE #2D)
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
+              <h1 style={{ fontSize: '19px', fontWeight: 900, color: '#ffffff', letterSpacing: '0.5px', margin: 0 }}>
+                STOCK PCR VELOCITY SCANNER
               </h1>
               <span style={{
-                backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                backgroundColor: 'rgba(16, 185, 129, 0.25)',
                 color: '#34d399',
                 fontSize: '11px',
-                padding: '2px 8px',
-                borderRadius: '12px',
-                fontWeight: 700,
-                border: '1px solid rgba(16, 185, 129, 0.3)'
+                padding: '3px 10px',
+                borderRadius: '14px',
+                fontWeight: 800,
+                border: '1px solid rgba(16, 185, 129, 0.4)',
+                letterSpacing: '0.3px'
               }}>
-                10:15 AM FIRST-HOUR VELOCITY (±3% FILTER)
+                RULE #2D FIRST-HOUR VELOCITY (±3% FILTER)
               </span>
               <span style={{
-                backgroundColor: data?.isPast1015 ? 'rgba(168, 85, 247, 0.2)' : 'rgba(234, 179, 8, 0.2)',
-                color: data?.isPast1015 ? '#c084fc' : '#facc15',
-                fontSize: '10.5px',
-                padding: '2px 8px',
-                borderRadius: '12px',
-                fontWeight: 700,
-                border: `1px solid ${data?.isPast1015 ? 'rgba(168, 85, 247, 0.3)' : 'rgba(234, 179, 8, 0.3)'}`
+                backgroundColor: data?.isPast1015 ? 'rgba(168, 85, 247, 0.25)' : 'rgba(234, 179, 8, 0.25)',
+                color: data?.isPast1015 ? '#c084fc' : '#fde047',
+                fontSize: '11px',
+                padding: '3px 10px',
+                borderRadius: '14px',
+                fontWeight: 800,
+                border: `1px solid ${data?.isPast1015 ? 'rgba(168, 85, 247, 0.4)' : 'rgba(234, 179, 8, 0.4)'}`,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px'
               }}>
-                {data?.isPast1015 ? '🔒 10:15 AM SNAPSHOT LOCKED' : '⏱️ ACCUMULATING LIVE DRIFT'}
+                <Lock size={12} />
+                {data?.isPast1015 ? '10:15 AM SNAPSHOT LOCKED' : 'ACCUMULATING LIVE DRIFT'}
               </span>
             </div>
-            <div style={{ fontSize: '11.5px', color: '#94a3b8', marginTop: '3px' }}>
-              Scans 100% of the 212 official NSE F&O universe. Identifies institutional put writing floors (&gt; +3%) vs call writing ceilings (&lt; -3%).
+            <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px', fontWeight: 500 }}>
+              Live scan of all 212 official NSE F&O universe. Identifies institutional put writing support floors (&gt; +3%) vs call writing resistance ceilings (&lt; -3%).
             </div>
           </div>
         </div>
 
         {/* Action Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <div style={{ fontSize: '11px', color: '#64748b' }}>
-            IST Time: <strong style={{ color: '#cbd5e1' }}>{data?.istTime || '--'}</strong>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 700, textTransform: 'uppercase' }}>Session Time (IST)</div>
+            <div style={{ fontSize: '13px', color: '#f8fafc', fontWeight: 800 }}>{data?.istTime || '--'}</div>
           </div>
 
           <button
@@ -241,122 +252,179 @@ export function StockPcrScannerContainer() {
             style={{
               backgroundColor: '#0284c7',
               color: '#ffffff',
-              border: 'none',
-              padding: '7px 14px',
-              borderRadius: '6px',
-              fontSize: '11.5px',
-              fontWeight: 700,
+              border: '1px solid #38bdf8',
+              padding: '8px 16px',
+              borderRadius: '7px',
+              fontSize: '12px',
+              fontWeight: 800,
               cursor: scanning ? 'not-allowed' : 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
-              boxShadow: '0 2px 8px rgba(2, 132, 199, 0.3)'
+              gap: '8px',
+              boxShadow: '0 2px 10px rgba(2, 132, 199, 0.4)',
+              transition: 'all 0.2s ease'
             }}
           >
             <RefreshCw size={14} className={scanning ? 'animate-spin' : ''} />
-            {scanning ? 'Scanning 212 Stocks...' : 'Scan Now (Live)'}
+            {scanning ? 'Scanning 212 Stocks...' : 'Scan Now (Live 212 F&O)'}
           </button>
         </div>
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          KPI SUMMARY METRICS BAR
+          HIGH-CONTRAST KPI SUMMARY STRIP
       ───────────────────────────────────────────────────────────── */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
-        gap: '10px',
-        marginBottom: '14px'
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gap: '12px',
+        marginBottom: '16px'
       }}>
-        <div style={{ backgroundColor: '#111726', padding: '10px 14px', borderRadius: '8px', border: '1px solid #1e293b' }}>
-          <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>F&O Stocks Scanned</div>
-          <div style={{ fontSize: '17px', fontWeight: 800, color: '#f8fafc', marginTop: '2px' }}>
-            {data?.totalScanned || 212} Stocks
+        {/* Card 1: Total Scanned */}
+        <div style={{
+          backgroundColor: '#0f172a',
+          padding: '12px 16px',
+          borderRadius: '8px',
+          border: '1px solid #1e293b',
+          borderTop: '3px solid #38bdf8'
+        }}>
+          <div style={{ fontSize: '10.5px', color: '#94a3b8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            F&O Universe
           </div>
-          <div style={{ fontSize: '9.5px', color: '#64748b', marginTop: '2px' }}>100% Official NSE Universe</div>
+          <div style={{ fontSize: '22px', fontWeight: 900, color: '#ffffff', marginTop: '4px' }}>
+            {data?.totalScanned || 212}
+            <span style={{ fontSize: '12px', color: '#64748b', marginLeft: '5px', fontWeight: 600 }}>Stocks</span>
+          </div>
+          <div style={{ fontSize: '10px', color: '#38bdf8', marginTop: '3px', fontWeight: 700 }}>
+            100% Official NSE F&O Universe
+          </div>
         </div>
 
-        <div style={{ backgroundColor: '#111726', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(16, 185, 129, 0.3)' }}>
-          <div style={{ fontSize: '10px', color: '#34d399', fontWeight: 700, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span>🟢 Aggressive Put Writing (&gt; +3%)</span>
+        {/* Card 2: Aggressive Put Writing */}
+        <div style={{
+          backgroundColor: '#0f172a',
+          padding: '12px 16px',
+          borderRadius: '8px',
+          border: '1px solid rgba(16, 185, 129, 0.3)',
+          borderTop: '3px solid #10b981'
+        }}>
+          <div style={{ fontSize: '10.5px', color: '#34d399', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            🟢 Aggressive Put Writing (&gt; +3%)
           </div>
-          <div style={{ fontSize: '17px', fontWeight: 800, color: '#34d399', marginTop: '2px' }}>
+          <div style={{ fontSize: '22px', fontWeight: 900, color: '#34d399', marginTop: '4px' }}>
             {data?.summary?.putWritingCount || 0}
-            <span style={{ fontSize: '11px', color: '#94a3b8', marginLeft: '6px' }}>
+            <span style={{ fontSize: '12px', color: '#a7f3d0', marginLeft: '6px', fontWeight: 700 }}>
               ({data?.summary?.putWritingPct || 0}%)
             </span>
           </div>
-          <div style={{ fontSize: '9.5px', color: '#34d399', marginTop: '2px' }}>Institutional Support Floor</div>
+          <div style={{ fontSize: '10.5px', color: '#10b981', marginTop: '3px', fontWeight: 700 }}>
+            Institutional Support Floor Building
+          </div>
         </div>
 
-        <div style={{ backgroundColor: '#111726', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(239, 68, 68, 0.3)' }}>
-          <div style={{ fontSize: '10px', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span>🔴 Aggressive Call Writing (&lt; -3%)</span>
+        {/* Card 3: Aggressive Call Writing */}
+        <div style={{
+          backgroundColor: '#0f172a',
+          padding: '12px 16px',
+          borderRadius: '8px',
+          border: '1px solid rgba(239, 68, 68, 0.3)',
+          borderTop: '3px solid #ef4444'
+        }}>
+          <div style={{ fontSize: '10.5px', color: '#f87171', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            🔴 Aggressive Call Writing (&lt; -3%)
           </div>
-          <div style={{ fontSize: '17px', fontWeight: 800, color: '#f87171', marginTop: '2px' }}>
+          <div style={{ fontSize: '22px', fontWeight: 900, color: '#f87171', marginTop: '4px' }}>
             {data?.summary?.callWritingCount || 0}
-            <span style={{ fontSize: '11px', color: '#94a3b8', marginLeft: '6px' }}>
+            <span style={{ fontSize: '12px', color: '#fecaca', marginLeft: '6px', fontWeight: 700 }}>
               ({data?.summary?.callWritingPct || 0}%)
             </span>
           </div>
-          <div style={{ fontSize: '9.5px', color: '#f87171', marginTop: '2px' }}>Institutional Overhead Ceiling</div>
+          <div style={{ fontSize: '10.5px', color: '#ef4444', marginTop: '3px', fontWeight: 700 }}>
+            Institutional Overhead Ceiling (CE Blocked)
+          </div>
         </div>
 
-        <div style={{ backgroundColor: '#111726', padding: '10px 14px', borderRadius: '8px', border: '1px solid #1e293b' }}>
-          <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>⚪ Neutral / Rotational</div>
-          <div style={{ fontSize: '17px', fontWeight: 800, color: '#cbd5e1', marginTop: '2px' }}>
+        {/* Card 4: Neutral */}
+        <div style={{
+          backgroundColor: '#0f172a',
+          padding: '12px 16px',
+          borderRadius: '8px',
+          border: '1px solid #1e293b',
+          borderTop: '3px solid #64748b'
+        }}>
+          <div style={{ fontSize: '10.5px', color: '#94a3b8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            ⚪ Neutral / Rotational
+          </div>
+          <div style={{ fontSize: '22px', fontWeight: 900, color: '#e2e8f0', marginTop: '4px' }}>
             {data?.summary?.neutralCount || 0}
-            <span style={{ fontSize: '11px', color: '#64748b', marginLeft: '6px' }}>
+            <span style={{ fontSize: '12px', color: '#64748b', marginLeft: '6px', fontWeight: 700 }}>
               ({data?.summary?.neutralPct || 0}%)
             </span>
           </div>
-          <div style={{ fontSize: '9.5px', color: '#64748b', marginTop: '2px' }}>Inside -3% to +3% Range</div>
+          <div style={{ fontSize: '10.5px', color: '#94a3b8', marginTop: '3px', fontWeight: 600 }}>
+            Inside -3% to +3% Range
+          </div>
         </div>
 
-        <div style={{ backgroundColor: '#111726', padding: '10px 14px', borderRadius: '8px', border: '1px solid #1e293b' }}>
-          <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Market Writing Bias</div>
+        {/* Card 5: Market Net Bias */}
+        <div style={{
+          backgroundColor: '#0f172a',
+          padding: '12px 16px',
+          borderRadius: '8px',
+          border: '1px solid #1e293b',
+          borderTop: `3px solid ${(data?.summary?.avgMarketDriftPct || 0) >= 0 ? '#10b981' : '#ef4444'}`
+        }}>
+          <div style={{ fontSize: '10.5px', color: '#94a3b8', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+            Market Net Drift
+          </div>
           <div style={{
-            fontSize: '17px',
-            fontWeight: 800,
+            fontSize: '22px',
+            fontWeight: 900,
             color: (data?.summary?.avgMarketDriftPct || 0) >= 0 ? '#34d399' : '#f87171',
-            marginTop: '2px'
+            marginTop: '4px'
           }}>
             {(data?.summary?.avgMarketDriftPct || 0) >= 0 ? '+' : ''}{data?.summary?.avgMarketDriftPct || 0}%
           </div>
-          <div style={{ fontSize: '9.5px', color: '#94a3b8', marginTop: '2px' }}>
-            {data?.summary?.marketBias === 'BULLISH_PUT_WRITING' ? '🟢 Net Put Writing (Bullish)' : (data?.summary?.marketBias === 'BEARISH_CALL_WRITING' ? '🔴 Net Call Writing (Bearish)' : '⚪ Balanced Flow')}
+          <div style={{
+            fontSize: '10.5px',
+            color: (data?.summary?.avgMarketDriftPct || 0) >= 0 ? '#34d399' : '#f87171',
+            marginTop: '3px',
+            fontWeight: 700
+          }}>
+            {data?.summary?.marketBias === 'BULLISH_PUT_WRITING' ? '🟢 Net Put Writing (Bullish Market)' : (data?.summary?.marketBias === 'BEARISH_CALL_WRITING' ? '🔴 Net Call Writing (Bearish Market)' : '⚪ Balanced Open Auction')}
           </div>
         </div>
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          FILTER CONTROLS & SEARCH BAR
+          FILTER CONTROLS & SEARCH TOOLBAR
       ───────────────────────────────────────────────────────────── */}
       <div style={{
-        backgroundColor: '#111726',
+        backgroundColor: '#0f172a',
         borderRadius: '8px',
-        padding: '10px 14px',
+        padding: '12px 16px',
         border: '1px solid #1e293b',
-        marginBottom: '14px',
+        marginBottom: '16px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
         flexWrap: 'wrap',
-        gap: '10px'
+        gap: '12px'
       }}>
         {/* Category Pills */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <button
             onClick={() => setFilterCategory('ALL')}
             style={{
               backgroundColor: filterCategory === 'ALL' ? '#0284c7' : '#1e293b',
               color: filterCategory === 'ALL' ? '#ffffff' : '#cbd5e1',
-              border: 'none',
-              padding: '5px 11px',
+              border: `1px solid ${filterCategory === 'ALL' ? '#38bdf8' : '#334155'}`,
+              padding: '6px 14px',
               borderRadius: '6px',
-              fontSize: '11px',
-              fontWeight: 700,
-              cursor: 'pointer'
+              fontSize: '12px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
             }}
           >
             All F&O ({data?.totalScanned || 212})
@@ -367,15 +435,16 @@ export function StockPcrScannerContainer() {
             style={{
               backgroundColor: filterCategory === 'PUT_WRITTEN' ? '#059669' : '#1e293b',
               color: filterCategory === 'PUT_WRITTEN' ? '#ffffff' : '#34d399',
-              border: 'none',
-              padding: '5px 11px',
+              border: `1px solid ${filterCategory === 'PUT_WRITTEN' ? '#34d399' : '#334155'}`,
+              padding: '6px 14px',
               borderRadius: '6px',
-              fontSize: '11px',
-              fontWeight: 700,
+              fontSize: '12px',
+              fontWeight: 800,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px'
+              gap: '6px',
+              transition: 'all 0.15s ease'
             }}
           >
             <span>🟢 Put Writing &gt; +3% ({data?.summary?.putWritingCount || 0})</span>
@@ -386,15 +455,16 @@ export function StockPcrScannerContainer() {
             style={{
               backgroundColor: filterCategory === 'CALL_WRITTEN' ? '#dc2626' : '#1e293b',
               color: filterCategory === 'CALL_WRITTEN' ? '#ffffff' : '#f87171',
-              border: 'none',
-              padding: '5px 11px',
+              border: `1px solid ${filterCategory === 'CALL_WRITTEN' ? '#f87171' : '#334155'}`,
+              padding: '6px 14px',
               borderRadius: '6px',
-              fontSize: '11px',
-              fontWeight: 700,
+              fontSize: '12px',
+              fontWeight: 800,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px'
+              gap: '6px',
+              transition: 'all 0.15s ease'
             }}
           >
             <span>🔴 Call Writing &lt; -3% ({data?.summary?.callWritingCount || 0})</span>
@@ -405,15 +475,16 @@ export function StockPcrScannerContainer() {
             style={{
               backgroundColor: filterCategory === 'HIGH_VELOCITY' ? '#7c3aed' : '#1e293b',
               color: filterCategory === 'HIGH_VELOCITY' ? '#ffffff' : '#c084fc',
-              border: 'none',
-              padding: '5px 11px',
+              border: `1px solid ${filterCategory === 'HIGH_VELOCITY' ? '#a855f7' : '#334155'}`,
+              padding: '6px 14px',
               borderRadius: '6px',
-              fontSize: '11px',
-              fontWeight: 700,
+              fontSize: '12px',
+              fontWeight: 800,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: '4px'
+              gap: '6px',
+              transition: 'all 0.15s ease'
             }}
           >
             <span>⚡ High Velocity (|Drift| ≥ 10%)</span>
@@ -424,12 +495,13 @@ export function StockPcrScannerContainer() {
             style={{
               backgroundColor: filterCategory === 'NEUTRAL' ? '#475569' : '#1e293b',
               color: filterCategory === 'NEUTRAL' ? '#ffffff' : '#94a3b8',
-              border: 'none',
-              padding: '5px 11px',
+              border: `1px solid ${filterCategory === 'NEUTRAL' ? '#94a3b8' : '#334155'}`,
+              padding: '6px 14px',
               borderRadius: '6px',
-              fontSize: '11px',
-              fontWeight: 700,
-              cursor: 'pointer'
+              fontSize: '12px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
             }}
           >
             ⚪ Neutral ({data?.summary?.neutralCount || 0})
@@ -437,23 +509,24 @@ export function StockPcrScannerContainer() {
         </div>
 
         {/* Dropdowns & Search */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
           {/* Sector Selector */}
           <select
             value={selectedSector}
             onChange={(e) => setSelectedSector(e.target.value)}
             style={{
-              backgroundColor: '#161e2e',
-              border: '1px solid #263248',
-              color: '#cbd5e1',
-              padding: '5px 10px',
+              backgroundColor: '#1e293b',
+              border: '1px solid #334155',
+              color: '#f8fafc',
+              padding: '7px 12px',
               borderRadius: '6px',
-              fontSize: '11px',
+              fontSize: '12px',
+              fontWeight: 700,
               outline: 'none',
               cursor: 'pointer'
             }}
           >
-            <option value="ALL">All Sectors</option>
+            <option value="ALL">All Sectors ({sectorList.length})</option>
             {sectorList.map(sec => (
               <option key={sec} value={sec}>{sec}</option>
             ))}
@@ -464,12 +537,13 @@ export function StockPcrScannerContainer() {
             value={sortBy}
             onChange={(e: any) => setSortBy(e.target.value)}
             style={{
-              backgroundColor: '#161e2e',
-              border: '1px solid #263248',
-              color: '#cbd5e1',
-              padding: '5px 10px',
+              backgroundColor: '#1e293b',
+              border: '1px solid #334155',
+              color: '#f8fafc',
+              padding: '7px 12px',
               borderRadius: '6px',
-              fontSize: '11px',
+              fontSize: '12px',
+              fontWeight: 700,
               outline: 'none',
               cursor: 'pointer'
             }}
@@ -482,21 +556,22 @@ export function StockPcrScannerContainer() {
 
           {/* Search Input */}
           <div style={{ position: 'relative' }}>
-            <Search size={13} style={{ position: 'absolute', left: '8px', top: '8px', color: '#64748b' }} />
+            <Search size={14} style={{ position: 'absolute', left: '10px', top: '10px', color: '#94a3b8' }} />
             <input
               type="text"
               placeholder="Search symbol / sector..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
-                backgroundColor: '#161e2e',
-                border: '1px solid #263248',
+                backgroundColor: '#1e293b',
+                border: '1px solid #334155',
                 borderRadius: '6px',
-                padding: '5px 10px 5px 26px',
-                color: '#f8fafc',
-                fontSize: '11px',
+                padding: '7px 12px 7px 30px',
+                color: '#ffffff',
+                fontSize: '12px',
+                fontWeight: 600,
                 outline: 'none',
-                width: '170px'
+                width: '190px'
               }}
             />
           </div>
@@ -504,166 +579,260 @@ export function StockPcrScannerContainer() {
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          MAIN SCANNER TABLE
+          ULTRA-SHARP DATA TABLE
       ───────────────────────────────────────────────────────────── */}
       <div style={{
-        backgroundColor: '#111726',
-        borderRadius: '8px',
+        backgroundColor: '#0f172a',
+        borderRadius: '10px',
         border: '1px solid #1e293b',
         overflowX: 'auto',
-        marginBottom: '16px'
+        marginBottom: '18px',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11.5px', textAlign: 'left' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12.5px', textAlign: 'left' }}>
           <thead>
-            <tr style={{ backgroundColor: '#161e2e', color: '#94a3b8', borderBottom: '1px solid #263248' }}>
-              <th style={{ padding: '9px 12px' }}>Symbol & Sector</th>
-              <th style={{ padding: '9px 12px' }}>Spot Price & Change</th>
-              <th style={{ padding: '9px 12px' }}>09:15 Baseline PCR</th>
-              <th style={{ padding: '9px 12px' }}>10:15 / Live PCR</th>
-              <th style={{ padding: '9px 12px' }}>PCR Velocity Drift (Rule #2D)</th>
-              <th style={{ padding: '9px 12px' }}>Institutional Writing Verdict</th>
-              <th style={{ padding: '9px 12px' }}>Put / Call OI Ratio</th>
-              <th style={{ padding: '9px 12px' }}>Key Wall Strikes</th>
-              <th style={{ padding: '9px 12px' }}>Strategic Action</th>
+            <tr style={{ backgroundColor: '#1e293b', color: '#cbd5e1', borderBottom: '2px solid #334155' }}>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Symbol & Sector</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Spot Price & Change</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>09:15 Baseline</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>10:15 / Live PCR</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>PCR Velocity Drift (Rule #2D)</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Institutional Writing Verdict</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Put / Call OI Ratio</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Key Wall Strikes</th>
+              <th style={{ padding: '12px 14px', fontWeight: 800, fontSize: '12px', letterSpacing: '0.4px' }}>Strategic Action</th>
             </tr>
           </thead>
           <tbody>
             {processedStocks.length === 0 ? (
               <tr>
-                <td colSpan={9} style={{ padding: '30px', textAlign: 'center', color: '#64748b' }}>
+                <td colSpan={9} style={{ padding: '40px', textAlign: 'center', color: '#94a3b8', fontSize: '13px' }}>
                   No stocks match the selected filter criteria.
                 </td>
               </tr>
             ) : (
-              processedStocks.map(stock => {
+              processedStocks.map((stock, idx) => {
                 const isBull = stock.writingCategory === 'PUT_WRITTEN';
                 const isBear = stock.writingCategory === 'CALL_WRITTEN';
                 const totalOi = stock.totalCallOi + stock.totalPutOi;
                 const putOiPct = totalOi > 0 ? (stock.totalPutOi / totalOi) * 100 : 50;
+                const isHovered = hoveredRow === stock.symbol;
+                const rowBg = isHovered 
+                  ? '#1e293b' 
+                  : (idx % 2 === 0 ? '#0b1120' : '#0f172a');
 
                 return (
                   <tr 
                     key={stock.symbol}
+                    onMouseEnter={() => setHoveredRow(stock.symbol)}
+                    onMouseLeave={() => setHoveredRow(null)}
                     style={{ 
-                      borderBottom: '1px solid #1a2333',
-                      backgroundColor: isBull ? 'rgba(16, 185, 129, 0.02)' : (isBear ? 'rgba(239, 68, 68, 0.02)' : 'transparent')
+                      backgroundColor: rowBg,
+                      borderBottom: '1px solid #1e293b',
+                      transition: 'background-color 0.15s ease'
                     }}
                   >
-                    {/* Symbol & Sector */}
-                    <td style={{ padding: '9px 12px' }}>
-                      <div style={{ fontWeight: 800, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <span>{stock.symbol}</span>
-                        <span style={{ fontSize: '9px', color: '#64748b' }}>({stock.lotSize}L)</span>
+                    {/* Column 1: Symbol & Sector */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ fontWeight: 900, color: '#ffffff', fontSize: '14.5px', letterSpacing: '0.3px' }}>
+                          {stock.symbol}
+                        </span>
+                        <span style={{
+                          backgroundColor: 'rgba(56, 189, 248, 0.18)',
+                          color: '#38bdf8',
+                          fontSize: '10px',
+                          fontWeight: 800,
+                          padding: '2px 6px',
+                          borderRadius: '4px',
+                          border: '1px solid rgba(56, 189, 248, 0.3)'
+                        }}>
+                          {stock.lotSize}L
+                        </span>
                       </div>
-                      <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '1px' }}>
+                      <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px', fontWeight: 600 }}>
                         {stock.sector}
                       </div>
                     </td>
 
-                    {/* Spot & Change */}
-                    <td style={{ padding: '9px 12px' }}>
-                      <div style={{ fontWeight: 700, color: '#f8fafc' }}>
+                    {/* Column 2: Spot Price & Change */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <div style={{ fontWeight: 800, color: '#ffffff', fontSize: '14px' }}>
                         ₹{stock.spotPrice.toLocaleString()}
                       </div>
                       <span style={{
+                        display: 'inline-block',
+                        marginTop: '3px',
+                        backgroundColor: stock.dayChangePct >= 0 ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
                         color: stock.dayChangePct >= 0 ? '#34d399' : '#f87171',
-                        fontSize: '10.5px',
-                        fontWeight: 700
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        padding: '2px 7px',
+                        borderRadius: '4px',
+                        border: `1px solid ${stock.dayChangePct >= 0 ? 'rgba(16, 185, 129, 0.35)' : 'rgba(239, 68, 68, 0.35)'}`
                       }}>
                         {stock.dayChangePct >= 0 ? '+' : ''}{stock.dayChangePct}%
                       </span>
                     </td>
 
-                    {/* 09:15 Baseline PCR */}
-                    <td style={{ padding: '9px 12px', color: '#94a3b8', fontWeight: 600 }}>
-                      {stock.basePcr.toFixed(3)}
-                    </td>
-
-                    {/* 10:15 / Live PCR */}
-                    <td style={{ padding: '9px 12px' }}>
-                      <strong style={{ color: '#f8fafc', fontSize: '12px' }}>
-                        {stock.isLocked1015 ? stock.locked1015Pcr.toFixed(3) : stock.currentPcr.toFixed(3)}
-                      </strong>
-                      <div style={{ fontSize: '9px', color: stock.isLocked1015 ? '#c084fc' : '#38bdf8' }}>
-                        {stock.isLocked1015 ? '10:15 AM Locked' : 'Live Realtime'}
+                    {/* Column 3: 09:15 Baseline PCR */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <div style={{ color: '#e2e8f0', fontWeight: 800, fontSize: '13.5px', fontFamily: 'monospace' }}>
+                        {stock.basePcr.toFixed(3)}
+                      </div>
+                      <div style={{ fontSize: '10px', color: '#64748b', fontWeight: 600 }}>
+                        09:15 Opening
                       </div>
                     </td>
 
-                    {/* PCR Drift % */}
-                    <td style={{ padding: '9px 12px' }}>
+                    {/* Column 4: 10:15 / Live PCR */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <div style={{
+                        color: stock.isLocked1015 ? '#c084fc' : '#38bdf8',
+                        fontWeight: 900,
+                        fontSize: '14.5px',
+                        fontFamily: 'monospace'
+                      }}>
+                        {stock.isLocked1015 ? stock.locked1015Pcr.toFixed(3) : stock.currentPcr.toFixed(3)}
+                      </div>
+                      <div style={{
+                        fontSize: '10px',
+                        color: stock.isLocked1015 ? '#c084fc' : '#38bdf8',
+                        fontWeight: 700,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '3px',
+                        marginTop: '1px'
+                      }}>
+                        {stock.isLocked1015 ? '🔒 10:15 Locked' : '⚡ Live Realtime'}
+                      </div>
+                    </td>
+
+                    {/* Column 5: PCR Velocity Drift (Rule #2D) */}
+                    <td style={{ padding: '12px 14px' }}>
                       <span style={{
-                        backgroundColor: isBull ? 'rgba(16, 185, 129, 0.2)' : (isBear ? 'rgba(239, 68, 68, 0.2)' : 'rgba(100, 116, 139, 0.2)'),
-                        color: isBull ? '#34d399' : (isBear ? '#f87171' : '#94a3b8'),
-                        padding: '3px 8px',
-                        borderRadius: '5px',
-                        fontWeight: 800,
-                        fontSize: '12px',
+                        backgroundColor: isBull ? 'rgba(16, 185, 129, 0.25)' : (isBear ? 'rgba(239, 68, 68, 0.25)' : 'rgba(100, 116, 139, 0.2)'),
+                        color: isBull ? '#34d399' : (isBear ? '#f87171' : '#cbd5e1'),
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        fontWeight: 900,
+                        fontSize: '13px',
                         display: 'inline-block',
-                        border: `1px solid ${isBull ? 'rgba(16, 185, 129, 0.35)' : (isBear ? 'rgba(239, 68, 68, 0.35)' : 'rgba(100, 116, 139, 0.35)')}`
+                        border: `1px solid ${isBull ? 'rgba(16, 185, 129, 0.5)' : (isBear ? 'rgba(239, 68, 68, 0.5)' : 'rgba(100, 116, 139, 0.4)')}`,
+                        boxShadow: isBull ? '0 2px 8px rgba(16, 185, 129, 0.15)' : (isBear ? '0 2px 8px rgba(239, 68, 68, 0.15)' : 'none')
                       }}>
                         {stock.effectiveDriftPct >= 0 ? '+' : ''}{stock.effectiveDriftPct}% ({stock.effectiveDrift >= 0 ? '+' : ''}{stock.effectiveDrift})
                       </span>
-                      <div style={{ fontSize: '9.5px', color: '#facc15', marginTop: '3px' }}>
+                      <div style={{ fontSize: '11px', color: '#fde047', marginTop: '4px', letterSpacing: '1px' }}>
                         {stock.stars}
                       </div>
                     </td>
 
-                    {/* Writing Verdict Badge */}
-                    <td style={{ padding: '9px 12px' }}>
+                    {/* Column 6: Institutional Writing Verdict */}
+                    <td style={{ padding: '12px 14px' }}>
                       {isBull && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                          <span style={{ color: '#34d399', fontWeight: 800, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <div>
+                          <span style={{
+                            backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                            color: '#34d399',
+                            padding: '3px 8px',
+                            borderRadius: '4px',
+                            fontWeight: 900,
+                            fontSize: '11.5px',
+                            border: '1px solid rgba(16, 185, 129, 0.4)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}>
                             🟢 AGGRESSIVE PUT WRITING
                           </span>
-                          <span style={{ fontSize: '9.5px', color: '#94a3b8' }}>
-                            Support floor established
-                          </span>
+                          <div style={{ fontSize: '10.5px', color: '#a7f3d0', marginTop: '3px', fontWeight: 600 }}>
+                            Support Floor Established
+                          </div>
                         </div>
                       )}
                       {isBear && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                          <span style={{ color: '#f87171', fontWeight: 800, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <div>
+                          <span style={{
+                            backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                            color: '#f87171',
+                            padding: '3px 8px',
+                            borderRadius: '4px',
+                            fontWeight: 900,
+                            fontSize: '11.5px',
+                            border: '1px solid rgba(239, 68, 68, 0.4)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '4px'
+                          }}>
                             🔴 AGGRESSIVE CALL WRITING
                           </span>
-                          <span style={{ fontSize: '9.5px', color: '#94a3b8' }}>
-                            Overhead resistance ceiling
-                          </span>
+                          <div style={{ fontSize: '10.5px', color: '#fecaca', marginTop: '3px', fontWeight: 600 }}>
+                            Overhead Resistance (CE Blocked)
+                          </div>
                         </div>
                       )}
                       {!isBull && !isBear && (
-                        <span style={{ color: '#94a3b8', fontWeight: 600 }}>
-                          ⚪ Neutral Rotation
-                        </span>
+                        <div>
+                          <span style={{
+                            backgroundColor: 'rgba(100, 116, 139, 0.2)',
+                            color: '#cbd5e1',
+                            padding: '3px 8px',
+                            borderRadius: '4px',
+                            fontWeight: 800,
+                            fontSize: '11.5px',
+                            border: '1px solid rgba(100, 116, 139, 0.3)'
+                          }}>
+                            ⚪ NEUTRAL ROTATION
+                          </span>
+                          <div style={{ fontSize: '10.5px', color: '#94a3b8', marginTop: '3px', fontWeight: 600 }}>
+                            Open Auction Consolidation
+                          </div>
+                        </div>
                       )}
                     </td>
 
-                    {/* Put / Call OI Ratio Bar */}
-                    <td style={{ padding: '9px 12px', minWidth: '130px' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9.5px', marginBottom: '3px' }}>
-                        <span style={{ color: '#34d399' }}>Put: {(stock.totalPutOi / 1000).toFixed(0)}k</span>
-                        <span style={{ color: '#f87171' }}>Call: {(stock.totalCallOi / 1000).toFixed(0)}k</span>
+                    {/* Column 7: Put / Call OI Ratio Bar */}
+                    <td style={{ padding: '12px 14px', minWidth: '150px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontWeight: 800, marginBottom: '4px' }}>
+                        <span style={{ color: '#34d399' }}>PE: {(stock.totalPutOi / 1000).toFixed(0)}k</span>
+                        <span style={{ color: '#f87171' }}>CE: {(stock.totalCallOi / 1000).toFixed(0)}k</span>
                       </div>
-                      <div style={{ width: '100%', height: '5px', backgroundColor: '#ef4444', borderRadius: '3px', overflow: 'hidden' }}>
+                      <div style={{
+                        width: '100%',
+                        height: '7px',
+                        backgroundColor: '#ef4444',
+                        borderRadius: '4px',
+                        overflow: 'hidden',
+                        border: '1px solid #334155'
+                      }}>
                         <div style={{ width: `${putOiPct}%`, height: '100%', backgroundColor: '#10b981' }} />
                       </div>
                     </td>
 
-                    {/* Key Wall Strikes */}
-                    <td style={{ padding: '9px 12px', fontSize: '10.5px' }}>
-                      <div style={{ color: '#34d399' }}>
-                        Put Wall: <strong>₹{stock.putWallStrike}</strong>
+                    {/* Column 8: Key Wall Strikes */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <div style={{ color: '#34d399', fontWeight: 800, fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <span>🛡️ Put Wall:</span>
+                        <span style={{ color: '#ffffff' }}>₹{stock.putWallStrike}</span>
                       </div>
-                      <div style={{ color: '#f87171', marginTop: '1px' }}>
-                        Call Wall: <strong>₹{stock.callWallStrike}</strong>
+                      <div style={{ color: '#f87171', fontWeight: 800, fontSize: '12px', display: 'flex', alignItems: 'center', gap: '4px', marginTop: '3px' }}>
+                        <span>🧱 Call Wall:</span>
+                        <span style={{ color: '#ffffff' }}>₹{stock.callWallStrike}</span>
                       </div>
                     </td>
 
-                    {/* Strategic Action */}
-                    <td style={{ padding: '9px 12px' }}>
-                      <div style={{ 
-                        color: isBull ? '#34d399' : (isBear ? '#f87171' : '#cbd5e1'), 
-                        fontWeight: 700,
-                        fontSize: '11px'
+                    {/* Column 9: Strategic Action */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <div style={{
+                        backgroundColor: isBull ? 'rgba(16, 185, 129, 0.15)' : (isBear ? 'rgba(239, 68, 68, 0.15)' : 'rgba(100, 116, 139, 0.15)'),
+                        color: isBull ? '#34d399' : (isBear ? '#f87171' : '#e2e8f0'),
+                        border: `1px solid ${isBull ? 'rgba(16, 185, 129, 0.35)' : (isBear ? 'rgba(239, 68, 68, 0.35)' : 'rgba(100, 116, 139, 0.3)')}`,
+                        padding: '6px 10px',
+                        borderRadius: '6px',
+                        fontWeight: 800,
+                        fontSize: '11.5px',
+                        lineHeight: '1.4'
                       }}>
                         {stock.action}
                       </div>
@@ -677,27 +846,28 @@ export function StockPcrScannerContainer() {
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          RULE #2D EDUCATIONAL BACKTEST & FORENSIC INSIGHT
+          RULE #2D EDUCATIONAL GUIDE
       ───────────────────────────────────────────────────────────── */}
       <div style={{
-        backgroundColor: '#0d131f',
-        border: '1px solid #1f2d47',
+        backgroundColor: '#0f172a',
+        border: '1px solid #1e293b',
+        borderLeft: '4px solid #38bdf8',
         borderRadius: '8px',
-        padding: '14px 18px',
-        boxShadow: '0 4px 16px rgba(0,0,0,0.3)'
+        padding: '16px 20px',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-          <Zap size={16} color="#38bdf8" />
-          <div style={{ fontSize: '13px', fontWeight: 800, color: '#f8fafc' }}>
-            WHY RULE #2D (FIRST-HOUR PCR VELOCITY) WORKS:
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+          <Zap size={18} color="#38bdf8" />
+          <div style={{ fontSize: '14px', fontWeight: 900, color: '#ffffff', letterSpacing: '0.4px' }}>
+            WHY RULE #2D (FIRST-HOUR PCR VELOCITY) WORKS SO ACCURATELY:
           </div>
         </div>
-        <div style={{ fontSize: '11.5px', color: '#94a3b8', lineHeight: '1.6' }}>
-          • <strong>Bullish PCR Drift (&gt; +3% / &gt; +0.03 at 10:15 AM):</strong> Smart money (institutional option writers) is aggressively taking the risk of selling OTM Puts. Since option writers face theoretically unlimited downside risk, aggressive put writing indicates absolute institutional conviction that the stock will not crack that floor. Expect a bullish continuation or gap acceptance.
+        <div style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.7' }}>
+          • <strong style={{ color: '#34d399' }}>Bullish PCR Drift (&gt; +3% / &gt; +0.03 at 10:15 AM):</strong> Smart money (institutional option writers) is aggressively selling OTM Puts. Option writers face theoretically unlimited risk on downside cracks, so heavy Put writing indicates absolute institutional conviction that the stock will not crack that floor. Expect a bullish continuation or gap acceptance.
           <br />
-          • <strong>Bearish PCR Drift (&lt; -3% / &lt; -0.03 at 10:15 AM):</strong> Smart money is aggressively shorting OTM Calls. This creates an impenetrable ceiling that absorbs buying liquidity. <em>Trading Rule: Never buy Call Options (CE) on a stock printing a negative PCR drift—CE trades are strictly blocked.</em>
+          • <strong style={{ color: '#f87171' }}>Bearish PCR Drift (&lt; -3% / &lt; -0.03 at 10:15 AM):</strong> Smart money is aggressively shorting OTM Calls to build a solid ceiling. <em>Trading Rule: Never buy Call Options (CE) on a stock printing negative PCR drift—CE trades are strictly blocked.</em>
           <br />
-          • <strong>Neutral PCR Drift (-3% to +3%):</strong> Institutional option writers have no strong directional bias. Expect rotational, choppy open auctions.
+          • <strong style={{ color: '#94a3b8' }}>Neutral PCR Drift (-3% to +3%):</strong> Institutional option writers have no strong directional bias. Expect rotational, choppy open auctions.
         </div>
       </div>
     </div>
