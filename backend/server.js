@@ -6500,6 +6500,26 @@ function start247KeepAliveEngine(port) {
 }
 
 const PORT = process.env.PORT || 3002;
+server.on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.warn(`[Port Conflict] Port ${PORT} is in use by another process. Auto-clearing zombie process...`);
+    try {
+      const { execSync } = require('child_process');
+      if (process.platform === 'win32') {
+        execSync(`powershell -NoProfile -Command "Get-NetTCPConnection -LocalPort ${PORT} -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }"`);
+      } else {
+        execSync(`fuser -k ${PORT}/tcp || true`);
+      }
+    } catch (e) {}
+    setTimeout(() => {
+      console.log(`[Port Conflict] Re-binding port ${PORT}...`);
+      try { server.listen(PORT, '0.0.0.0'); } catch (e) {}
+    }, 1500);
+  } else {
+    console.error('[Server Error]', err);
+  }
+});
+
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend server listening on 0.0.0.0:${PORT}`);
   initLotSizeService();
