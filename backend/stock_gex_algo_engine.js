@@ -28,6 +28,8 @@ import { angelOneBridge } from './angelone_bridge.js';
 import { orderFlowStreamEngine } from './orderflow_stream.js';
 import { imbalanceMeterEngine } from './imbalance_meter.js';
 import { stockPcrScannerEngine } from './stock_pcr_scanner_engine.js';
+import { getInstitutionalMLV2Insights } from './institutional_ml_v2_service.js';
+import { liveStockPriceService } from './live_stock_price_service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,7 +37,27 @@ const __dirname = path.dirname(__filename);
 const LEDGER_PATH = path.join(__dirname, 'data', 'gex_algo_paper_ledger.json');
 const LEARNED_RULES_PATH = path.join(__dirname, 'data', 'gex_algo_learned_rules.json');
 const VALUE_TRADER_CACHE_PATH = path.join(__dirname, 'data', 'value_trader_cache.json');
+const UNIVERSE_PATH = path.join(__dirname, 'data', 'all_fno_universe.json');
 const INITIAL_CAPITAL = 500000; // ₹5,00,000 initial virtual capital
+const MAX_TOTAL_POSITIONS = 6; // Max combined open positions
+const MAX_GEX_WATCHLIST_POSITIONS = 3; // Dedicated slots for GEX Wall/Breakout trades
+const MAX_STOCK_PCR_POSITIONS = 3; // Dedicated slots for Rule #2D Stock PCR Velocity trades
+
+// Map of all 212 official F&O stocks with strike intervals & lot sizes
+const FNO_UNIVERSE_MAP = new Map();
+try {
+  if (fs.existsSync(UNIVERSE_PATH)) {
+    const rawUniverse = JSON.parse(fs.readFileSync(UNIVERSE_PATH, 'utf8'));
+    if (Array.isArray(rawUniverse)) {
+      rawUniverse.forEach(item => {
+        if (item.cleanSymbol) FNO_UNIVERSE_MAP.set(item.cleanSymbol.toUpperCase(), item);
+        if (item.symbol) FNO_UNIVERSE_MAP.set(item.symbol.toUpperCase().replace('NSE:', ''), item);
+      });
+    }
+  }
+} catch (e) {
+  console.error('[StockGexAlgo] Failed to load all_fno_universe.json:', e.message);
+}
 
 // Indian NSE Official Trading Holidays (2025 – 2027)
 const NSE_HOLIDAYS = [
@@ -149,6 +171,49 @@ function calculateBlackScholesOptionPrice(S, K, T, sigma, optionType = 'CE', r =
   }
 }
 
+// ── Black-Scholes Greeks Engine (Dynamic Delta, Gamma, Theta, Vega) ──────────
+function calculateBlackScholesDelta(S, K, T, sigma, optionType = 'CE', r = 0.065) {
+  if (S <= 0 || K <= 0 || T <= 0.0001 || sigma <= 0.01) {
+    if (optionType === 'CE') {
+      return S >= K ? 1.0 : 0.0;
+    } else {
+      return S <= K ? -1.0 : 0.0;
+    }
+  }
+  const d1 = (Math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * Math.sqrt(T));
+  return optionType === 'CE' ? normalCdf(d1) : (normalCdf(d1) - 1.0);
+}
+
+function calculateOptionGreeks(S, K, T, sigma, optionType = 'CE', r = 0.065) {
+  if (S <= 0 || K <= 0 || T <= 0.0001 || sigma <= 0.01) {
+    const rawDelta = optionType === 'CE' ? (S >= K ? 1.0 : 0.0) : (S <= K ? -1.0 : 0.0);
+    return { delta: rawDelta, absDelta: Math.abs(rawDelta), gamma: 0, theta: 0, vega: 0 };
+  }
+  const sqrtT = Math.sqrt(T);
+  const d1 = (Math.log(S / K) + (r + 0.5 * sigma * sigma) * T) / (sigma * sqrtT);
+  const d2 = d1 - sigma * sqrtT;
+
+  const nd1 = normalCdf(d1);
+  const npdf_d1 = normalPdf(d1);
+  const delta = optionType === 'CE' ? nd1 : (nd1 - 1.0);
+  const absDelta = Math.abs(delta);
+  const gamma = npdf_d1 / (S * sigma * sqrtT);
+  const vega = (S * sqrtT * npdf_d1) / 100.0; // ₹ change per 1% IV change
+
+  // Theta (1 day calendar decay)
+  const term1 = -(S * npdf_d1 * sigma) / (2.0 * sqrtT);
+  let thetaYear = 0;
+  if (optionType === 'CE') {
+    thetaYear = term1 - r * K * Math.exp(-r * T) * normalCdf(d2);
+  } else {
+    thetaYear = term1 + r * K * Math.exp(-r * T) * normalCdf(-d2);
+  }
+  const theta = thetaYear / 365.0;
+
+  return { delta, absDelta, gamma, theta, vega };
+}
+
+
 // ── Live Quote Fetcher via Yahoo Finance Chart V8 API ────────────────────────
 function fetchYahooQuoteSingle(ticker) {
   return new Promise((resolve) => {
@@ -229,6 +294,8 @@ class StockGexAlgoEngine {
     this.timer = null;
     this.isScanning = false;
 
+    this.symbolCooldowns = new Map(); // Tracks last closed timestamp per symbol to prevent churning
+
     this.state = {
       paperCapital: INITIAL_CAPITAL,
       cashBalance: INITIAL_CAPITAL,
@@ -273,6 +340,14 @@ class StockGexAlgoEngine {
     this.runScheduledCycle();
   }
 
+  getOpenPcrPositionsCount() {
+    return (this.state.openPositions || []).filter(p => p.setupId?.startsWith('SPCR')).length;
+  }
+
+  getOpenGexPositionsCount() {
+    return (this.state.openPositions || []).filter(p => !p.setupId?.startsWith('SPCR')).length;
+  }
+
   loadLedger() {
     try {
       if (fs.existsSync(LEDGER_PATH)) {
@@ -294,6 +369,22 @@ class StockGexAlgoEngine {
         this.state.learnedRules = parsed.learnedRules || [];
         this.state.tradeForensics = parsed.tradeForensics || [];
         this.state.eodAnalysis = parsed.eodAnalysis || null;
+
+        // Ensure Stock PCR Alpha rule is registered
+        if (!this.state.learnedRules.some(r => r.id === 'ALGO-RULE-STOCK-PCR-ALPHA')) {
+          this.state.learnedRules.push({
+            id: 'ALGO-RULE-STOCK-PCR-ALPHA',
+            name: 'Autonomous Stock PCR Velocity Engine (Rule 2D)',
+            condition: 'Stock PCR Drift >= +3.0% (Bullish CE) OR <= -3.0% (Bearish PE)',
+            action: 'EXECUTE_STOCK_PCR_ALPHA',
+            description: 'Enables active trade entry on individual F&O stocks showing institutional Put/Call writing conviction.',
+            confidence: '96%',
+            applied: true,
+            source: 'GLOBAL_RULE_2D',
+            createdAt: '2026-09-21'
+          });
+          this.saveLearnedRules();
+        }
       } else {
         this.seedInitialLearnedRules();
       }
@@ -326,6 +417,17 @@ class StockGexAlgoEngine {
 
   seedInitialLearnedRules() {
     this.state.learnedRules = [
+      {
+        id: 'ALGO-RULE-STOCK-PCR-ALPHA',
+        name: 'Autonomous Stock PCR Velocity Engine (Rule 2D)',
+        condition: 'Stock PCR Drift >= +3.0% (Bullish CE) OR <= -3.0% (Bearish PE)',
+        action: 'EXECUTE_STOCK_PCR_ALPHA',
+        description: 'Enables active trade entry on individual F&O stocks showing institutional Put/Call writing conviction.',
+        confidence: '96%',
+        applied: true,
+        source: 'GLOBAL_RULE_2D',
+        createdAt: '2026-09-21'
+      },
       {
         id: 'ALGO-RULE-CE-INDEX-GATE',
         name: 'Strict Index Upward Confluence Filter for CE',
@@ -471,6 +573,18 @@ class StockGexAlgoEngine {
 
     // Check if Market is Closed (Weekends, Holidays, Before 9:15 AM, After 3:15 PM)
     if (!session.isMarketHours) {
+      // Clean up any stale carryover intraday positions from previous days
+      const todayStr = new Date().toLocaleDateString('en-IN');
+      const stalePositions = this.state.openPositions.filter(p => p.entryDate && p.entryDate !== todayStr);
+      if (stalePositions.length > 0) {
+        this.addLog('SYSTEM', 'PRE_MARKET', `🧹 Auto-cleared ${stalePositions.length} previous-day intraday position(s) before today's 09:15 AM market open.`);
+        for (const pos of stalePositions) {
+          this.closePosition(pos, pos.currentLtp, 'PREV_DAY_INTRADAY_EXPIRED');
+        }
+        this.state.openPositions = this.state.openPositions.filter(p => !p.entryDate || p.entryDate === todayStr);
+        this.saveLedger();
+      }
+
       // If 3:15 PM or later and positions remain open, execute mandatory square-off!
       if (session.isEODExit && this.state.openPositions.length > 0) {
         this.addLog('SYSTEM', 'EOD', `⏰ 3:15 PM IST reached. Executing mandatory intraday auto square-off.`);
@@ -505,37 +619,70 @@ class StockGexAlgoEngine {
         pos.optionType
       )).toFixed(2);
 
-      pos.currentLtp = Math.max(0.5, currentOptionPrice);
+      // Dynamically calculate live Greeks as spot moves
+      const liveGreeks = calculateOptionGreeks(currentSpot, pos.strike, T, iv, pos.optionType);
+      pos.currentDelta = +liveGreeks.absDelta.toFixed(3);
+      pos.currentGreeks = {
+        delta: +liveGreeks.delta.toFixed(3),
+        absDelta: +liveGreeks.absDelta.toFixed(3),
+        gamma: +liveGreeks.gamma.toFixed(4),
+        theta: +liveGreeks.theta.toFixed(2),
+        vega: +liveGreeks.vega.toFixed(2)
+      };
+
+      // Check for live online exchange quote from broker/TradingView feed
+      let liveOnlinePrice = null;
+      try {
+        if (global.liveOptionLtpCache) {
+          const optSym1 = `NSE:${pos.symbol}${pos.strike}${pos.optionType}`;
+          const optSym2 = `${pos.symbol}${pos.strike}${pos.optionType}`;
+          liveOnlinePrice = global.liveOptionLtpCache[optSym1] || global.liveOptionLtpCache[optSym2] || null;
+        }
+      } catch (e) {}
+
+      pos.currentLtp = Math.max(0.15, liveOnlinePrice && liveOnlinePrice > 0 ? liveOnlinePrice : currentOptionPrice);
       const positionPnL = +((pos.currentLtp - pos.entryPrice) * pos.quantity).toFixed(2);
       pos.unrealizedPnL = positionPnL;
       unPnL += positionPnL;
 
-      // PURE LIVE DATA EXIT TRIGGERS (Evaluated against real spot price):
+      // PURE LIVE DATA EXIT TRIGGERS (Option Premium Exits + Spot Structural Safety):
       let shouldClose = false;
       let exitReason = '';
       let exitPrice = pos.currentLtp;
 
-      if (pos.optionType === 'CE') {
-        // CALL OPTION: Exit if real Spot price falls below real Spot Stop Loss
-        if (currentSpot <= pos.spotSL) {
-          shouldClose = true;
-          exitReason = `SPOT_SL_HIT (Spot ₹${currentSpot} ≤ SL ₹${pos.spotSL})`;
-        }
-        // CALL OPTION: Exit if real Spot price reaches real Spot Target
-        else if (currentSpot >= pos.targetSpot) {
-          shouldClose = true;
-          exitReason = `SPOT_TARGET_HIT (Spot ₹${currentSpot} ≥ TGT ₹${pos.targetSpot})`;
-        }
-      } else if (pos.optionType === 'PE') {
-        // PUT OPTION: Exit if real Spot price rises above real Spot Stop Loss
-        if (currentSpot >= pos.spotSL) {
-          shouldClose = true;
-          exitReason = `SPOT_SL_HIT (Spot ₹${currentSpot} ≥ SL ₹${pos.spotSL})`;
-        }
-        // PUT OPTION: Exit if real Spot price falls below real Spot Target
-        else if (currentSpot <= pos.targetSpot) {
-          shouldClose = true;
-          exitReason = `SPOT_TARGET_HIT (Spot ₹${currentSpot} ≤ TGT ₹${pos.targetSpot})`;
+      // 1. PRIMARY: Check Option Premium Exits (Options run dynamically with theta, delta & IV)
+      if (pos.optionTarget && pos.currentLtp >= pos.optionTarget) {
+        shouldClose = true;
+        exitReason = `OPTION_TARGET_HIT (Option LTP ₹${pos.currentLtp} ≥ TGT ₹${pos.optionTarget})`;
+      } else if (pos.optionSL && pos.currentLtp <= pos.optionSL) {
+        shouldClose = true;
+        exitReason = `OPTION_SL_HIT (Option LTP ₹${pos.currentLtp} ≤ SL ₹${pos.optionSL})`;
+      }
+
+      // 2. SECONDARY: Underlying Spot Structural Circuit Breakers
+      if (!shouldClose) {
+        if (pos.optionType === 'CE') {
+          // CALL OPTION: Exit if real Spot price falls below real Spot Stop Loss
+          if (currentSpot <= pos.spotSL) {
+            shouldClose = true;
+            exitReason = `SPOT_SL_HIT (Spot ₹${currentSpot} ≤ SL ₹${pos.spotSL})`;
+          }
+          // CALL OPTION: Exit if real Spot price reaches real Spot Target
+          else if (currentSpot >= pos.targetSpot) {
+            shouldClose = true;
+            exitReason = `SPOT_TARGET_HIT (Spot ₹${currentSpot} ≥ TGT ₹${pos.targetSpot})`;
+          }
+        } else if (pos.optionType === 'PE') {
+          // PUT OPTION: Exit if real Spot price rises above real Spot Stop Loss
+          if (currentSpot >= pos.spotSL) {
+            shouldClose = true;
+            exitReason = `SPOT_SL_HIT (Spot ₹${currentSpot} ≥ SL ₹${pos.spotSL})`;
+          }
+          // PUT OPTION: Exit if real Spot price falls below real Spot Target
+          else if (currentSpot <= pos.targetSpot) {
+            shouldClose = true;
+            exitReason = `SPOT_TARGET_HIT (Spot ₹${currentSpot} ≤ TGT ₹${pos.targetSpot})`;
+          }
         }
       }
 
@@ -567,6 +714,9 @@ class StockGexAlgoEngine {
   }
 
   closePosition(pos, exitPrice, reason) {
+    if (this.symbolCooldowns) {
+      this.symbolCooldowns.set(pos.symbol, Date.now());
+    }
     const finalPnL = +((exitPrice - pos.entryPrice) * pos.quantity).toFixed(2);
     this.state.realizedPnL = +(this.state.realizedPnL + finalPnL).toFixed(2);
     this.state.cashBalance = +(this.state.cashBalance + (exitPrice * pos.quantity)).toFixed(2);
@@ -680,9 +830,15 @@ class StockGexAlgoEngine {
         }
       }
     } else if (isTargetHit) {
-      rootCause = `Structural Dealer Accelerator: Price respected ${trade.setupName}. Positive gamma dealer hedging provided continuous momentum directly into target.`;
-      tacticalMistake = 'None — entry, execution, and exit were textbook according to GEX playbook.';
-      whatCouldHaveBeenDone = 'Profit optimization: Could scale out 70% at Target 1 and trail 30% with breakeven stop to catch secondary gamma vacuum expansion.';
+      if (trade.setupId?.startsWith('SPCR')) {
+        rootCause = `Rule #2D Stock PCR Momentum: Institutional writing conviction in ${trade.symbol} drove spot price directly into target expansion.`;
+        tacticalMistake = 'None — Rule #2D First-Hour Stock PCR velocity thesis validated with full target capture.';
+        whatCouldHaveBeenDone = 'Profit optimization: Trail 30% runner to capture secondary gamma expansion.';
+      } else {
+        rootCause = `Structural Dealer Accelerator: Price respected ${trade.setupName}. Positive gamma dealer hedging provided continuous momentum directly into target.`;
+        tacticalMistake = 'None — entry, execution, and exit were textbook according to GEX playbook.';
+        whatCouldHaveBeenDone = 'Profit optimization: Could scale out 70% at Target 1 and trail 30% with breakeven stop to catch secondary gamma vacuum expansion.';
+      }
       synthesizedRule = {
         id: 'ALGO-RULE-PROFIT-RUNNER',
         name: 'Target 1 Partial Profit & Gamma Vacuum Runner',
@@ -829,7 +985,17 @@ class StockGexAlgoEngine {
     const putDist = gexProfile.walls ? Math.abs(quote.price - gexProfile.walls.putWall) / gexProfile.walls.putWall : 1;
     const regime = gexProfile.regime || 'FLIP_ZONE';
 
-    if (candidate.setupId.includes('03')) {
+    if (candidate.setupId === 'SPCR-100-01') {
+      // Stock PCR Put-Writing Drive (CE Buy)
+      gexPts += 15;
+      if (regime === 'LONG_GAMMA') { gexPts += 10; reasons.push('Long Gamma Mean-Reverting Floor'); }
+      else { gexPts += 8; reasons.push('PCR Institutional Put Writing Support Floor'); }
+    } else if (candidate.setupId === 'SPCR-100-02') {
+      // Stock PCR Call-Writing Breakdown (PE Buy)
+      gexPts += 15;
+      if (regime === 'SHORT_GAMMA') { gexPts += 10; reasons.push('Short Gamma Downside Cascade'); }
+      else { gexPts += 8; reasons.push('PCR Institutional Call Writing Resistance Ceiling'); }
+    } else if (candidate.setupId.includes('03')) {
       // Put Wall Absorption Bounce
       if (putDist <= 0.005) gexPts += 15;
       else if (putDist <= 0.01) gexPts += 10;
@@ -1062,6 +1228,49 @@ class StockGexAlgoEngine {
   }
 
   gateCandidateWithConfluence(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock) {
+    const sym = stock.symbol;
+    const spot = quote.price;
+    const step = stock.strikeStep || 10;
+
+    // ── HARD MATHEMATICAL SANITY & RISK/REWARD VALIDATION ───────────────────
+    const minTargetDistance = stock.isIndex
+      ? (sym === 'NIFTY' ? 30 : 90)
+      : Math.max(step * 0.9, spot * 0.009); // min 18 pts on RELIANCE (step 20), min 9 on HDFCBANK (step 10)
+
+    if (candidate.optionType === 'CE') {
+      const targetGain = candidate.targetSpot - candidate.spotEntry;
+      const riskPts = candidate.spotEntry - candidate.spotSL;
+      if (targetGain < minTargetDistance) {
+        this.addLog(sym, 'FILTER', `🛡️ Invalid Target Gate: ${sym} CE Target (+${targetGain.toFixed(1)} pts) < min required (+${minTargetDistance.toFixed(1)} pts). Rejected.`);
+        return null;
+      }
+      if (riskPts <= 0) {
+        this.addLog(sym, 'FILTER', `🛡️ Invalid SL Gate: ${sym} CE SL (₹${candidate.spotSL}) >= Entry (₹${candidate.spotEntry}). Rejected.`);
+        return null;
+      }
+      const rr = targetGain / riskPts;
+      if (rr < 1.1) {
+        this.addLog(sym, 'FILTER', `🛡️ Sub-optimal R:R: ${sym} CE R:R ${rr.toFixed(2)}:1 < 1.1:1 minimum. Rejected.`);
+        return null;
+      }
+    } else if (candidate.optionType === 'PE') {
+      const targetGain = candidate.spotEntry - candidate.targetSpot;
+      const riskPts = candidate.spotSL - candidate.spotEntry;
+      if (targetGain < minTargetDistance) {
+        this.addLog(sym, 'FILTER', `🛡️ Invalid Target Gate: ${sym} PE Target (+${targetGain.toFixed(1)} pts) < min required (+${minTargetDistance.toFixed(1)} pts). Rejected.`);
+        return null;
+      }
+      if (riskPts <= 0) {
+        this.addLog(sym, 'FILTER', `🛡️ Invalid SL Gate: ${sym} PE SL (₹${candidate.spotSL}) <= Entry (₹${candidate.spotEntry}). Rejected.`);
+        return null;
+      }
+      const rr = targetGain / riskPts;
+      if (rr < 1.1) {
+        this.addLog(sym, 'FILTER', `🛡️ Sub-optimal R:R: ${sym} PE R:R ${rr.toFixed(2)}:1 < 1.1:1 minimum. Rejected.`);
+        return null;
+      }
+    }
+
     const confluence = this.calculateConfluenceScore(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock);
     candidate.confluence = confluence;
 
@@ -1095,7 +1304,16 @@ class StockGexAlgoEngine {
     const dte = gexProfile.dte || 5;
 
     if (this.state.openPositions.some(p => p.symbol === sym)) return null;
-    if (this.state.openPositions.length >= 3) return null;
+    if (this.state.openPositions.length >= MAX_TOTAL_POSITIONS) return null;
+
+    const canTakeGexTrade = this.getOpenGexPositionsCount() < MAX_GEX_WATCHLIST_POSITIONS;
+    const canTakePcrTrade = this.getOpenPcrPositionsCount() < MAX_STOCK_PCR_POSITIONS;
+
+    // Symbol Cooldown: Prevent churning/rapid re-entries on same symbol within 10 minutes
+    const lastCloseTime = this.symbolCooldowns?.get(sym);
+    if (lastCloseTime && (Date.now() - lastCloseTime) < 10 * 60 * 1000) {
+      return null;
+    }
 
     const { niftyBullish, pcrVelocityState, pcrDrift } = this.state.indexContext;
 
@@ -1115,9 +1333,10 @@ class StockGexAlgoEngine {
       } catch (e) {}
     }
 
-    // ─────────────────────────────────────────────────────────────────────────
-    // RULE 1: SGEX-100-01 / IGEX: Expiry Week Call Wall Defense (PE Buy)
-    // ─────────────────────────────────────────────────────────────────────────
+    if (canTakeGexTrade) {
+      // ─────────────────────────────────────────────────────────────────────────
+      // RULE 1: SGEX-100-01 / IGEX: Expiry Week Call Wall Defense (PE Buy)
+      // ─────────────────────────────────────────────────────────────────────────
     const callDistPct = Math.abs(spot - callWall) / callWall;
     if (dte <= 5 && callDistPct <= 0.005 && regime === 'LONG_GAMMA') {
       if (stockPcrItem && (stockPcrItem.writingCategory === 'PUT_WRITTEN' || stockPcrItem.effectiveDriftPct >= 3.0)) {
@@ -1133,11 +1352,11 @@ class StockGexAlgoEngine {
         return null;
       }
       const targetSpot = stock.isIndex
-        ? (sym === 'NIFTY' ? spot - 75 : spot - 150)
-        : flipLevel;
+        ? (sym === 'NIFTY' ? spot - 75 : spot - 160)
+        : +(Math.min(spot - Math.max(step * 1.5, spot * 0.015), putWall && putWall < spot - step * 0.8 ? putWall : spot - step * 2.0)).toFixed(2);
       const spotSL = stock.isIndex
-        ? (sym === 'NIFTY' ? spot + 30 : spot + 100)
-        : callWall + step * 0.5;
+        ? (sym === 'NIFTY' ? spot + 28 : spot + 75)
+        : +(Math.max(spot + Math.max(step * 0.6, 5), callWall && callWall > spot ? callWall + step * 0.3 : spot + step * 0.8)).toFixed(2);
 
       const candidate = {
         setupId: stock.isIndex ? 'IGEX-100-01' : 'SGEX-100-01',
@@ -1167,11 +1386,11 @@ class StockGexAlgoEngine {
       }
       if (pcrVelocityState === 'BEARISH_CALL_WRITING' || pcrDrift < -0.01) {
         const targetSpot = stock.isIndex
-          ? (sym === 'NIFTY' ? spot - 75 : spot - 150)
-          : putWall - step;
+          ? (sym === 'NIFTY' ? spot - 85 : spot - 180)
+          : +(Math.min(spot - Math.max(step * 1.6, spot * 0.016), putWall && putWall < spot - step * 0.8 ? putWall - step * 0.5 : spot - step * 2.5)).toFixed(2);
         const spotSL = stock.isIndex
-          ? (sym === 'NIFTY' ? spot + 30 : spot + 100)
-          : flipLevel + step * 0.3;
+          ? (sym === 'NIFTY' ? spot + 30 : spot + 80)
+          : +(Math.max(spot + Math.max(step * 0.6, 5), flipLevel && flipLevel > spot ? flipLevel + step * 0.3 : spot + step * 0.8)).toFixed(2);
 
         const candidate = {
           setupId: stock.isIndex ? 'IGEX-100-02' : 'SGEX-100-02',
@@ -1205,11 +1424,11 @@ class StockGexAlgoEngine {
         return null;
       }
       const targetSpot = stock.isIndex
-        ? (sym === 'NIFTY' ? spot + 45 : spot + 120)
-        : flipLevel;
+        ? (sym === 'NIFTY' ? spot + 45 : spot + 150)
+        : +(Math.max(spot + Math.max(step * 1.5, spot * 0.015), callWall && callWall > spot + step * 0.8 ? callWall : spot + step * 2.0)).toFixed(2);
       const spotSL = stock.isIndex
-        ? (sym === 'NIFTY' ? spot - 30 : spot - 100)
-        : putWall - step * 0.4;
+        ? (sym === 'NIFTY' ? spot - 25 : spot - 70)
+        : +(Math.min(spot - Math.max(step * 0.6, 5), putWall && putWall < spot ? putWall - step * 0.3 : spot - step * 0.8)).toFixed(2);
 
       const candidate = {
         setupId: stock.isIndex ? 'IGEX-100-03' : 'SGEX-100-03',
@@ -1238,11 +1457,11 @@ class StockGexAlgoEngine {
       }
       if (pcrVelocityState === 'BULLISH_PUT_WRITING' || pcrDrift > 0.02) {
         const targetSpot = stock.isIndex
-          ? (sym === 'NIFTY' ? spot + 45 : spot + 150)
-          : callWall + step * 2.5;
+          ? (sym === 'NIFTY' ? spot + 50 : spot + 180)
+          : +(Math.max(spot + Math.max(step * 2.0, spot * 0.02), callWall + step * 2.0)).toFixed(2);
         const spotSL = stock.isIndex
-          ? (sym === 'NIFTY' ? spot - 30 : spot - 100)
-          : callWall - step * 0.3;
+          ? (sym === 'NIFTY' ? spot - 25 : spot - 75)
+          : +(Math.min(spot - Math.max(step * 0.6, 5), callWall - step * 0.3)).toFixed(2);
 
         const candidate = {
           setupId: stock.isIndex ? 'IGEX-100-04' : 'SGEX-100-04',
@@ -1255,6 +1474,69 @@ class StockGexAlgoEngine {
           thesis: 'Trapped short calls + Bullish PCR velocity drive into gamma vacuum.'
         };
         return this.gateCandidateWithConfluence(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock);
+      }
+    }
+  }
+
+  if (canTakePcrTrade) {
+      // ─────────────────────────────────────────────────────────────────────────
+      // RULE 5: SPCR-100-01: Stock PCR Put-Writing Bullish Drive (Rule #2D CE Buy)
+      // ─────────────────────────────────────────────────────────────────────────
+      if (stockPcrItem && (stockPcrItem.writingCategory === 'PUT_WRITTEN' || stockPcrItem.effectiveDriftPct >= 3.0)) {
+        const isIndexSafe = niftyBullish || pcrDrift >= -0.03;
+        if (!isIndexSafe && blockCeIfRed) {
+          this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} Stock PCR CE: Index Red Confluence Gate Active (NIFTY Drift: ${pcrDrift}).`);
+        } else {
+          const floorRef = putWall && putWall < spot ? putWall : (spot - step * 2);
+          const hasFloorSupport = spot >= floorRef * 0.992;
+          if (hasFloorSupport) {
+            const targetSpot = +(Math.max(spot + Math.max(step * 1.5, spot * 0.015), callWall && callWall > spot + step * 0.8 ? callWall : spot + step * 2.0)).toFixed(2);
+            const spotSL = +(Math.min(spot - Math.max(step * 0.6, 5), putWall && putWall < spot ? putWall - step * 0.3 : spot - step * 0.8)).toFixed(2);
+
+            const candidate = {
+              setupId: 'SPCR-100-01',
+              name: `${sym} Stock PCR Put-Writing Drive (Rule 2D)`,
+              optionType: 'CE',
+              strike: atmStrike,
+              spotEntry: spot,
+              spotSL,
+              targetSpot,
+              thesis: `Rule #2D Stock PCR Velocity: Aggressive Put Writing (+${stockPcrItem.effectiveDriftPct}% drift) creating institutional floor support.`
+            };
+            const approved = this.gateCandidateWithConfluence(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock);
+            if (approved) return approved;
+          }
+        }
+      }
+
+      // ─────────────────────────────────────────────────────────────────────────
+      // RULE 6: SPCR-100-02: Stock PCR Call-Writing Breakdown (Rule #2D PE Buy)
+      // ─────────────────────────────────────────────────────────────────────────
+      if (stockPcrItem && (stockPcrItem.writingCategory === 'CALL_WRITTEN' || stockPcrItem.effectiveDriftPct <= -3.0)) {
+        const isIndexSafeForShort = !niftyBullish || pcrDrift <= 0.03;
+        if (!isIndexSafeForShort && blockPeIfBullish) {
+          this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} Stock PCR PE: Index Bullish Put Writing Veto (NIFTY Drift: +${pcrDrift}).`);
+        } else {
+          const ceilingRef = callWall && callWall > spot ? callWall : (spot + step * 2);
+          const hasCeilingResistance = spot <= ceilingRef * 1.008;
+          if (hasCeilingResistance) {
+            const targetSpot = +(Math.min(spot - Math.max(step * 1.5, spot * 0.015), putWall && putWall < spot - step * 0.8 ? putWall : spot - step * 2.0)).toFixed(2);
+            const spotSL = +(Math.max(spot + Math.max(step * 0.6, 5), callWall && callWall > spot ? callWall + step * 0.3 : spot + step * 0.8)).toFixed(2);
+
+            const candidate = {
+              setupId: 'SPCR-100-02',
+              name: `${sym} Stock PCR Call-Writing Breakdown (Rule 2D)`,
+              optionType: 'PE',
+              strike: atmStrike,
+              spotEntry: spot,
+              spotSL,
+              targetSpot,
+              thesis: `Rule #2D Stock PCR Velocity: Aggressive Call Writing (${stockPcrItem.effectiveDriftPct}% drift) placing institutional ceiling resistance.`
+            };
+            const approved = this.gateCandidateWithConfluence(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock);
+            if (approved) return approved;
+          }
+        }
       }
     }
 
@@ -1306,19 +1588,90 @@ class StockGexAlgoEngine {
       // 1. Update Open Positions & Check Real Spot SL / Targets
       this.updateOpenPositions(quoteMap);
 
-      // 2. Scan for New Trade Triggers with Confluence Gating
-      for (const stock of ALGO_WATCHLIST) {
-        const quote = quoteMap[stock.symbol];
-        if (!quote || quote.price <= 0) continue;
+      // 2. Scan Stock PCR Velocity Leaders Across All 212 F&O Stocks (Rule #2D Alpha)
+      const openPcrCount = this.getOpenPcrPositionsCount();
+      if (this.state.openPositions.length < MAX_TOTAL_POSITIONS && openPcrCount < MAX_STOCK_PCR_POSITIONS) {
+        try {
+          const pcrStocks = stockPcrScannerEngine.cache?.stocks || [];
+          const topPutLeaders = pcrStocks
+            .filter(s => s.writingCategory === 'PUT_WRITTEN' && s.effectiveDriftPct >= 3.0)
+            .sort((a, b) => b.effectiveDriftPct - a.effectiveDriftPct)
+            .slice(0, 10);
+          const topCallLeaders = pcrStocks
+            .filter(s => s.writingCategory === 'CALL_WRITTEN' && s.effectiveDriftPct <= -3.0)
+            .sort((a, b) => a.effectiveDriftPct - b.effectiveDriftPct)
+            .slice(0, 10);
 
-        const gexProfile = await computeGexForSymbol(stock.symbol).catch(() => null);
-        if (!gexProfile) continue;
+          const pcrCandidates = [...topPutLeaders, ...topCallLeaders];
 
-        const vtStock = valueTraderStocksMap[stock.symbol] || null;
-        const signal = await this.evaluateStockSignal(stock, quote, gexProfile, orderflowState, imbalanceData, vtStock);
-        if (signal) {
-          this.executePaperOrder(stock, quote, signal, gexProfile);
-          if (this.state.openPositions.length >= 3) break;
+          for (const pcrItem of pcrCandidates) {
+            if (this.state.openPositions.length >= MAX_TOTAL_POSITIONS) break;
+            if (this.getOpenPcrPositionsCount() >= MAX_STOCK_PCR_POSITIONS) break;
+            if (this.state.openPositions.some(p => p.symbol === pcrItem.symbol)) continue;
+
+            const fnoMeta = FNO_UNIVERSE_MAP.get(pcrItem.symbol.toUpperCase());
+            const strikeStep = fnoMeta?.strikeInterval || (pcrItem.spotPrice > 2000 ? 50 : (pcrItem.spotPrice > 800 ? 20 : (pcrItem.spotPrice > 300 ? 10 : 2.5)));
+            const stockDef = {
+              symbol: pcrItem.symbol,
+              ticker: fnoMeta?.ticker || `${pcrItem.symbol}.NS`,
+              strikeStep,
+              sector: pcrItem.sector || fnoMeta?.sector || 'F&O Stock',
+              isIndex: false
+            };
+
+            let quote = quoteMap[pcrItem.symbol];
+            if (!quote || quote.price <= 0) {
+              const livePrice = liveStockPriceService.getQuote(pcrItem.symbol);
+              const price = (livePrice && livePrice.price > 0) ? livePrice.price : pcrItem.spotPrice;
+              if (price > 0) {
+                quote = {
+                  symbol: pcrItem.symbol,
+                  price,
+                  open: price,
+                  dayHigh: price,
+                  dayLow: price,
+                  volume: 100000,
+                  changePct: pcrItem.dayChangePct || 0
+                };
+              }
+            }
+
+            if (!quote || quote.price <= 0) continue;
+
+            const gexProfile = await computeGexForSymbol(pcrItem.symbol).catch(() => null);
+            if (!gexProfile) continue;
+
+            const vtStock = valueTraderStocksMap[pcrItem.symbol] || null;
+            const signal = await this.evaluateStockSignal(stockDef, quote, gexProfile, orderflowState, imbalanceData, vtStock);
+            if (signal) {
+              this.executePaperOrder(stockDef, quote, signal, gexProfile);
+              if (this.state.openPositions.length >= MAX_TOTAL_POSITIONS) break;
+            }
+          }
+        } catch (pcrScanErr) {
+          console.error('[StockGexAlgo] Stock PCR scanner expansion error:', pcrScanErr.message);
+        }
+      }
+
+      // 3. Scan Watchlist GEX Triggers with Confluence Gating
+      const openGexCount = this.getOpenGexPositionsCount();
+      if (this.state.openPositions.length < MAX_TOTAL_POSITIONS && openGexCount < MAX_GEX_WATCHLIST_POSITIONS) {
+        for (const stock of ALGO_WATCHLIST) {
+          if (this.state.openPositions.length >= MAX_TOTAL_POSITIONS) break;
+          if (this.getOpenGexPositionsCount() >= MAX_GEX_WATCHLIST_POSITIONS) break;
+
+          const quote = quoteMap[stock.symbol];
+          if (!quote || quote.price <= 0) continue;
+
+          const gexProfile = await computeGexForSymbol(stock.symbol).catch(() => null);
+          if (!gexProfile) continue;
+
+          const vtStock = valueTraderStocksMap[stock.symbol] || null;
+          const signal = await this.evaluateStockSignal(stock, quote, gexProfile, orderflowState, imbalanceData, vtStock);
+          if (signal) {
+            this.executePaperOrder(stock, quote, signal, gexProfile);
+            if (this.state.openPositions.length >= MAX_TOTAL_POSITIONS) break;
+          }
         }
       }
     } catch (err) {
@@ -1336,7 +1689,17 @@ class StockGexAlgoEngine {
     const T = Math.max(0.002, dteDays / 365.0);
     const iv = stock.symbol === 'NIFTY' ? 0.13 : (stock.symbol === 'BANKNIFTY' ? 0.16 : 0.22);
 
-    const optionLtp = +(calculateBlackScholesOptionPrice(
+    // ── Real Live Online Quote & Greeks Evaluation ───────────────────────────
+    let liveOnlineLtp = null;
+    try {
+      if (global.liveOptionLtpCache) {
+        const optSym1 = `NSE:${stock.symbol}${signal.strike}${signal.optionType}`;
+        const optSym2 = `${stock.symbol}${signal.strike}${signal.optionType}`;
+        liveOnlineLtp = global.liveOptionLtpCache[optSym1] || global.liveOptionLtpCache[optSym2] || null;
+      }
+    } catch (e) {}
+
+    const bsTheoreticalEntry = +(calculateBlackScholesOptionPrice(
       quote.price,
       signal.strike,
       T,
@@ -1344,12 +1707,103 @@ class StockGexAlgoEngine {
       signal.optionType
     )).toFixed(2);
 
+    // If online exchange quote is present, use it; otherwise use exact live Black-Scholes price
+    const optionLtp = +(liveOnlineLtp && liveOnlineLtp > 0 ? liveOnlineLtp : bsTheoreticalEntry).toFixed(2);
+
     const positionCost = +(optionLtp * lotSize).toFixed(2);
 
     if (this.state.cashBalance < positionCost) {
       this.addLog(stock.symbol, 'MARGIN', `Skipped ${stock.symbol}: insufficient cash (Req: ₹${positionCost.toLocaleString()})`);
       return;
     }
+
+    // ── Engine 1 & 2 Institutional ML Protective Filter ─────────────────────
+    try {
+      const mlInsights = getInstitutionalMLV2Insights();
+      const trapPredictor = mlInsights?.engines?.engine_1_trap_predictor;
+      const vpinToxicity = mlInsights?.engines?.engine_2_vpin_toxicity;
+
+      // Filter 1: Trap Sincerity Score (Calibrated XGBoost)
+      if (trapPredictor && trapPredictor.sincerity_score < 38.0) {
+        this.addLog(
+          stock.symbol,
+          'ML_FILTER',
+          `🛡️ BLOCKED ${stock.symbol}: ML Breakout Sincerity is only ${trapPredictor.sincerity_score}% (High Institutional Trap Risk, Rule 4E active).`
+        );
+        return;
+      }
+
+      // Filter 2: VPIN Flow Conflict
+      if (vpinToxicity && vpinToxicity.flow_regime === 'TOXIC_INFORMED_SURGE') {
+        const isBullishPosition = signal.optionType === 'CE';
+        const isSmartSelling = vpinToxicity.dominant_side && vpinToxicity.dominant_side.includes('SELLING');
+        const isSmartBuying = vpinToxicity.dominant_side && vpinToxicity.dominant_side.includes('BUYING');
+        if ((isBullishPosition && isSmartSelling) || (!isBullishPosition && isSmartBuying)) {
+          this.addLog(
+            stock.symbol,
+            'ML_FILTER',
+            `⚠️ BLOCKED ${stock.symbol}: Engine 2 VPIN Toxic Flow opposes position (${vpinToxicity.dominant_side}).`
+          );
+          return;
+        }
+      }
+    } catch (e) {}
+
+    // ── Pure Dynamic Black-Scholes Greeks Engine (Zero Static 0.50 Proxy) ───
+    const spotRisk = Math.abs(quote.price - signal.spotSL);
+    const spotGain = Math.abs(signal.targetSpot - quote.price);
+
+    // Calculate real-time dynamic Greeks at current spot entry (Exact N(d1) / N(-d1))
+    const greeks = calculateOptionGreeks(quote.price, signal.strike, T, iv, signal.optionType);
+    const liveDelta = Math.max(0.15, Math.min(0.95, greeks.absDelta));
+    const liveGamma = greeks.gamma;
+
+    // Full non-linear Black-Scholes evaluation directly at targetSpot & spotSL
+    const bsTgtPrice = +(calculateBlackScholesOptionPrice(
+      signal.targetSpot,
+      signal.strike,
+      T,
+      iv,
+      signal.optionType
+    )).toFixed(2);
+
+    const bsSlPrice = +(calculateBlackScholesOptionPrice(
+      signal.spotSL,
+      signal.strike,
+      T,
+      iv,
+      signal.optionType
+    )).toFixed(2);
+
+    // Dynamic Delta & Gamma expansion (Second-order Taylor expansion: ΔS * Δ + 0.5 * Γ * ΔS^2)
+    const dynamicDeltaGain = spotGain * liveDelta;
+    const dynamicGammaGain = 0.5 * liveGamma * Math.pow(spotGain, 2);
+    const dynamicTargetGain = dynamicDeltaGain + Math.min(dynamicGammaGain, dynamicDeltaGain * 0.5);
+
+    // Dynamic Option Target: evaluates full non-linear Black-Scholes curve + dynamic delta/gamma expansion
+    const optionTarget = +(Math.max(
+      bsTgtPrice,
+      optionLtp + dynamicTargetGain,
+      optionLtp * 1.30
+    )).toFixed(2);
+
+    // Dynamic Option Stop Loss: evaluates exact option value at Spot SL + dynamic delta risk
+    const dynamicDeltaRisk = spotRisk * liveDelta;
+    const rawDeltaSl = +(optionLtp - dynamicDeltaRisk).toFixed(2);
+
+    let dynamicOptionSL = 0;
+    if (bsSlPrice > 0.15 && bsSlPrice < optionLtp) {
+      // Non-linear Black-Scholes option price when underlying spot hits Spot SL
+      dynamicOptionSL = bsSlPrice;
+    } else if (rawDeltaSl > 0.15) {
+      // Live dynamic Delta-adjusted Stop Loss
+      dynamicOptionSL = rawDeltaSl;
+    } else {
+      // Maximum loss cap (max 50% option drawdown protection)
+      dynamicOptionSL = +(optionLtp * 0.50).toFixed(2);
+    }
+
+    const optionSL = +(Math.max(0.15, dynamicOptionSL)).toFixed(2);
 
     const newPosition = {
       positionId: `POS_${Date.now()}_${stock.symbol}`,
@@ -1365,6 +1819,17 @@ class StockGexAlgoEngine {
       spotEntry: quote.price,
       spotSL: signal.spotSL,       // Real Spot SL coordinate
       targetSpot: signal.targetSpot, // Real Spot Target coordinate
+      optionSL,                    // Dynamic Option Premium Stop Loss
+      optionTarget,                // Dynamic Option Premium Target
+      entryDelta: +liveDelta.toFixed(3),
+      currentDelta: +liveDelta.toFixed(3),
+      greeks: {
+        delta: +greeks.delta.toFixed(3),
+        absDelta: +liveDelta.toFixed(3),
+        gamma: +greeks.gamma.toFixed(4),
+        theta: +greeks.theta.toFixed(2),
+        vega: +greeks.vega.toFixed(2)
+      },
       dteDays,
       iv,
       lastSpot: quote.price,
@@ -1382,7 +1847,7 @@ class StockGexAlgoEngine {
     this.addLog(
       stock.symbol,
       'TRIGGER',
-      `🚀 ${signal.setupId}: ${signal.name}${confScoreText} | BOUGHT ${stock.symbol} ${signal.strike} ${signal.optionType} @ ₹${optionLtp} | Spot: ₹${quote.price} | Spot SL: ₹${signal.spotSL} | Spot Tgt: ₹${signal.targetSpot} | Lot: ${lotSize}`
+      `🚀 ${signal.setupId}: ${signal.name}${confScoreText} | BOUGHT ${stock.symbol} ${signal.strike} ${signal.optionType} @ ₹${optionLtp} (Opt SL: ₹${optionSL} | Opt Tgt: ₹${optionTarget} | Δ: ${liveDelta.toFixed(2)}) | Spot: ₹${quote.price} (SL: ₹${signal.spotSL} | Tgt: ₹${signal.targetSpot}) | Lot: ${lotSize}`
     );
   }
 
@@ -1445,8 +1910,21 @@ class StockGexAlgoEngine {
           sellPressure: imbalanceData?.nifty?.sellPressure || 24.1,
           regime: imbalanceData?.marketRegime || 'STRONG_BULLISH_AGGRESSION'
         }
+      },
+      stockPcrAlpha: {
+        enabled: true,
+        universeCount: FNO_UNIVERSE_MAP.size || 212,
+        putWritingLeadersCount: (stockPcrScannerEngine.cache?.stocks || []).filter(s => s.writingCategory === 'PUT_WRITTEN').length,
+        callWritingLeadersCount: (stockPcrScannerEngine.cache?.stocks || []).filter(s => s.writingCategory === 'CALL_WRITTEN').length,
+        topPutLeader: (stockPcrScannerEngine.cache?.stocks || []).filter(s => s.writingCategory === 'PUT_WRITTEN')[0] || null,
+        topCallLeader: (stockPcrScannerEngine.cache?.stocks || []).filter(s => s.writingCategory === 'CALL_WRITTEN')[0] || null
       }
     };
   }
 }
 export const stockGexAlgo = new StockGexAlgoEngine();
+export {
+  calculateBlackScholesOptionPrice,
+  calculateBlackScholesDelta,
+  calculateOptionGreeks
+};

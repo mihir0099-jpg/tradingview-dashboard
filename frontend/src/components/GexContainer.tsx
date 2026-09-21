@@ -36,6 +36,17 @@ export interface AlgoPosition {
   spotEntry: number;
   spotSL: number;
   targetSpot: number;
+  optionSL?: number;
+  optionTarget?: number;
+  entryDelta?: number;
+  currentDelta?: number;
+  greeks?: {
+    delta: number;
+    absDelta: number;
+    gamma: number;
+    theta: number;
+    vega: number;
+  };
   dteDays?: number;
   iv?: number;
   lastSpot?: number;
@@ -191,6 +202,14 @@ export interface AlgoStatus {
       sellPressure: number;
       regime: string;
     };
+  };
+  stockPcrAlpha?: {
+    enabled: boolean;
+    universeCount: number;
+    putWritingLeadersCount: number;
+    callWritingLeadersCount: number;
+    topPutLeader?: any;
+    topCallLeader?: any;
   };
 }
 
@@ -992,6 +1011,22 @@ function formatGexVal(val: number, unit = 'Cr'): string {
               Regime: {algoStatus?.confluenceRadar?.heavyweightImbalance?.regime || 'BALANCED'}
             </div>
           </div>
+
+          {/* Card 6: Stock PCR Alpha Engine */}
+          <div style={{ backgroundColor: '#131b2c', padding: '8px 10px', borderRadius: '6px', border: '1px solid rgba(168, 85, 247, 0.4)' }}>
+            <div style={{ fontSize: '9.5px', color: '#c084fc', fontWeight: 800 }}>6. STOCK PCR ALPHA (212 F&O)</div>
+            <div style={{
+              fontSize: '11.5px',
+              fontWeight: 800,
+              color: '#34d399',
+              marginTop: '2px'
+            }}>
+              ⚡ ACTIVE · RULE #2D DRIFT
+            </div>
+            <div style={{ fontSize: '9px', color: '#94a3b8', marginTop: '2px' }}>
+              Put Writing: <strong style={{ color: '#34d399' }}>{algoStatus?.stockPcrAlpha?.putWritingLeadersCount || 0} stocks</strong> · Call Writing: <strong style={{ color: '#f87171' }}>{algoStatus?.stockPcrAlpha?.callWritingLeadersCount || 0} stocks</strong>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1052,8 +1087,9 @@ function formatGexVal(val: number, unit = 'Cr'): string {
 
         <div style={{ backgroundColor: '#111827', padding: '10px 12px', borderRadius: '6px', border: '1px solid #1f2937' }}>
           <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Active Positions</div>
-          <div style={{ fontSize: '15px', fontWeight: 800, color: '#a855f7', marginTop: '2px' }}>
-            {algoStatus?.openPositions?.length || 0} / 3
+          <div style={{ fontSize: '15px', fontWeight: 800, color: '#a855f7', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>{algoStatus?.openPositions?.length || 0} / 6</span>
+            <span style={{ fontSize: '9px', padding: '1px 5px', borderRadius: '4px', backgroundColor: '#3b0764', color: '#d8b4fe', fontWeight: 600 }}>3 GEX + 3 PCR Alpha</span>
           </div>
         </div>
       </div>
@@ -1088,8 +1124,8 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                   <th style={{ padding: '8px 10px' }}>Option Entry</th>
                   <th style={{ padding: '8px 10px' }}>Live Option LTP</th>
                   <th style={{ padding: '8px 10px' }}>Real Spot Price</th>
-                  <th style={{ padding: '8px 10px' }}>Pure Spot SL</th>
-                  <th style={{ padding: '8px 10px' }}>Pure Spot Target</th>
+                  <th style={{ padding: '8px 10px' }}>Stop Loss (Spot & Opt)</th>
+                  <th style={{ padding: '8px 10px' }}>Target (Spot & Opt)</th>
                   <th style={{ padding: '8px 10px' }}>Live P&L</th>
                   <th style={{ padding: '8px 10px', textAlign: 'center' }}>Action</th>
                 </tr>
@@ -1101,7 +1137,14 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                   return (
                     <tr key={pos.positionId} style={{ borderBottom: '1px solid #1a2333' }}>
                       <td style={{ padding: '9px 10px' }}>
-                        <div style={{ fontWeight: 800, color: '#f8fafc' }}>{pos.symbol}</div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+                          <span style={{ fontWeight: 800, color: '#f8fafc' }}>{pos.symbol}</span>
+                          {(pos.setupName?.includes('Stock PCR') || pos.setupId?.startsWith('SPCR')) && (
+                            <span style={{ fontSize: '9px', background: 'rgba(168, 85, 247, 0.25)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.4)', padding: '1px 5px', borderRadius: '3px', fontWeight: 800 }}>
+                              ⚡ PCR RULE 2D
+                            </span>
+                          )}
+                        </div>
                         <div style={{ fontSize: '10px', color: '#2dd4bf', marginTop: '1px' }}>{pos.setupName}</div>
                       </td>
                       <td style={{ padding: '9px 10px' }}>
@@ -1143,18 +1186,38 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                       </td>
                       <td style={{ padding: '9px 10px', color: '#f8fafc', fontWeight: 700 }}>
                         ₹{pos.entryPrice}
+                        {pos.entryDelta != null && (
+                          <div style={{ fontSize: '10px', color: '#c084fc', fontWeight: 700, marginTop: '2px' }}>
+                            Δ {pos.entryDelta}
+                          </div>
+                        )}
                       </td>
                       <td style={{ padding: '9px 10px', color: '#38bdf8', fontWeight: 800 }}>
                         ₹{pos.currentLtp}
+                        {pos.currentDelta != null && (
+                          <div style={{ fontSize: '10px', color: '#38bdf8', fontWeight: 700, marginTop: '2px' }}>
+                            Live Δ {pos.currentDelta}
+                          </div>
+                        )}
                       </td>
                       <td style={{ padding: '9px 10px', color: '#f8fafc', fontWeight: 700 }}>
                         ₹{pos.lastSpot || pos.spotEntry}
                       </td>
-                      <td style={{ padding: '9px 10px', color: '#f87171', fontWeight: 700 }}>
-                        ₹{pos.spotSL}
+                      <td style={{ padding: '9px 10px' }}>
+                        <div style={{ color: '#f87171', fontWeight: 700 }}>Spot: ₹{pos.spotSL}</div>
+                        {pos.optionSL != null && (
+                          <div style={{ color: '#fb923c', fontSize: '10.5px', fontWeight: 800, marginTop: '2px' }}>
+                            Opt SL: ₹{pos.optionSL}
+                          </div>
+                        )}
                       </td>
-                      <td style={{ padding: '9px 10px', color: '#4ade80', fontWeight: 700 }}>
-                        ₹{pos.targetSpot}
+                      <td style={{ padding: '9px 10px' }}>
+                        <div style={{ color: '#4ade80', fontWeight: 700 }}>Spot: ₹{pos.targetSpot}</div>
+                        {pos.optionTarget != null && (
+                          <div style={{ color: '#a3e635', fontSize: '10.5px', fontWeight: 800, marginTop: '2px' }}>
+                            Opt Tgt: ₹{pos.optionTarget}
+                          </div>
+                        )}
                       </td>
                       <td style={{ padding: '9px 10px' }}>
                         <span style={{
@@ -1181,6 +1244,145 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                         >
                           Square Off
                         </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+          📜 TODAY'S COMPLETED TRADES EXECUTION LEDGER (WINS, TARGETS & SL HITS)
+      ───────────────────────────────────────────────────────────── */}
+      <div style={{ marginBottom: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px' }}>
+          <div style={{ fontSize: '12px', fontWeight: 800, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>📜 Today's Closed Trades Ledger ({algoStatus?.closedTrades?.length || 0}) — Wins, Targets &amp; Stop Loss History</span>
+          </div>
+
+          {/* Quick Summary Badges */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '10.5px', background: 'rgba(16, 185, 129, 0.2)', color: '#34d399', border: '1px solid rgba(16, 185, 129, 0.4)', padding: '2px 8px', borderRadius: '4px', fontWeight: 800 }}>
+              🎯 Targets Hit: {algoStatus?.closedTrades?.filter(t => t.isWin || t.exitReason?.includes('TARGET')).length || 0}
+            </span>
+            <span style={{ fontSize: '10.5px', background: 'rgba(239, 68, 68, 0.2)', color: '#f87171', border: '1px solid rgba(239, 68, 68, 0.4)', padding: '2px 8px', borderRadius: '4px', fontWeight: 800 }}>
+              🛑 SL Hit: {algoStatus?.closedTrades?.filter(t => !t.isWin && t.exitReason?.includes('SL')).length || 0}
+            </span>
+            <span style={{ fontSize: '10.5px', background: 'rgba(56, 189, 248, 0.2)', color: '#38bdf8', border: '1px solid rgba(56, 189, 248, 0.4)', padding: '2px 8px', borderRadius: '4px', fontWeight: 800 }}>
+              Realized P&amp;L: ₹{(algoStatus?.realizedPnL || 0).toLocaleString()}
+            </span>
+          </div>
+        </div>
+
+        {(!algoStatus?.closedTrades || algoStatus.closedTrades.length === 0) ? (
+          <div style={{
+            backgroundColor: '#111726',
+            border: '1px dashed #263248',
+            borderRadius: '8px',
+            padding: '18px',
+            textAlign: 'center',
+            color: '#64748b',
+            fontSize: '11.5px'
+          }}>
+            No closed trades recorded yet today. When a target or stop loss is reached, trades appear here with complete entry/exit forensics.
+          </div>
+        ) : (
+          <div style={{ overflowX: 'auto', backgroundColor: '#111726', borderRadius: '8px', border: '1px solid #1e293b' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '11.5px', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ backgroundColor: '#161e2e', color: '#94a3b8', borderBottom: '1px solid #263248' }}>
+                  <th style={{ padding: '8px 10px' }}>Symbol &amp; Setup</th>
+                  <th style={{ padding: '8px 10px' }}>Contract</th>
+                  <th style={{ padding: '8px 10px' }}>Qty (Lots)</th>
+                  <th style={{ padding: '8px 10px' }}>Execution Outcome</th>
+                  <th style={{ padding: '8px 10px' }}>Option Entry → Exit</th>
+                  <th style={{ padding: '8px 10px' }}>Spot Reference</th>
+                  <th style={{ padding: '8px 10px' }}>Timing (In → Out)</th>
+                  <th style={{ padding: '8px 10px', textAlign: 'right' }}>Realized P&amp;L</th>
+                </tr>
+              </thead>
+              <tbody>
+                {algoStatus.closedTrades.map((t, idx) => {
+                  const isTarget = t.exitReason?.includes('TARGET');
+                  const isSL = t.exitReason?.includes('SL');
+                  const isWin = t.isWin || t.realizedPnL > 0;
+                  const retPct = t.entryPrice > 0 ? (((t.exitPrice - t.entryPrice) / t.entryPrice) * 100).toFixed(1) : '0';
+
+                  return (
+                    <tr key={t.positionId || idx} style={{ borderBottom: '1px solid #1a2333', background: idx % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.015)' }}>
+                      <td style={{ padding: '9px 10px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+                          <span style={{ fontWeight: 800, color: '#f8fafc' }}>{t.symbol}</span>
+                          {(t.setupName?.includes('Stock PCR') || t.setupId?.startsWith('SPCR')) && (
+                            <span style={{ fontSize: '9px', background: 'rgba(168, 85, 247, 0.25)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.4)', padding: '1px 5px', borderRadius: '3px', fontWeight: 800 }}>
+                              ⚡ PCR RULE 2D
+                            </span>
+                          )}
+                        </div>
+                        <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '1px' }}>{t.setupName}</div>
+                      </td>
+                      <td style={{ padding: '9px 10px' }}>
+                        <span style={{
+                          backgroundColor: t.optionType === 'CE' ? 'rgba(74, 222, 128, 0.15)' : 'rgba(248, 113, 113, 0.15)',
+                          color: t.optionType === 'CE' ? '#4ade80' : '#f87171',
+                          padding: '2px 7px',
+                          borderRadius: '4px',
+                          fontWeight: 800,
+                          fontSize: '11px'
+                        }}>
+                          {t.strike} {t.optionType}
+                        </span>
+                      </td>
+                      <td style={{ padding: '9px 10px', color: '#cbd5e1' }}>
+                        {t.quantity} ({t.quantity / (t.lotSize || 1)}L)
+                      </td>
+                      <td style={{ padding: '9px 10px' }}>
+                        <span style={{
+                          backgroundColor: isTarget ? 'rgba(16, 185, 129, 0.2)' : isSL ? 'rgba(239, 68, 68, 0.2)' : 'rgba(100, 116, 139, 0.2)',
+                          color: isTarget ? '#34d399' : isSL ? '#f87171' : '#94a3b8',
+                          border: `1px solid ${isTarget ? 'rgba(16, 185, 129, 0.4)' : isSL ? 'rgba(239, 68, 68, 0.4)' : 'rgba(100, 116, 139, 0.4)'}`,
+                          padding: '2px 8px',
+                          borderRadius: '4px',
+                          fontWeight: 800,
+                          fontSize: '10.5px',
+                          display: 'inline-block'
+                        }}>
+                          {isTarget ? '🎯 TARGET HIT' : isSL ? '🛑 STOP LOSS HIT' : t.exitReason?.split(' ')[0] || 'CLOSED'}
+                        </span>
+                        <div style={{ fontSize: '9.5px', color: '#64748b', marginTop: '2px', maxWidth: '240px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={t.exitReason}>
+                          {t.exitReason}
+                        </div>
+                      </td>
+                      <td style={{ padding: '9px 10px', fontFamily: 'monospace' }}>
+                        <span style={{ color: '#cbd5e1' }}>₹{t.entryPrice}</span>
+                        <span style={{ color: '#64748b', margin: '0 4px' }}>→</span>
+                        <span style={{ color: isWin ? '#34d399' : '#f87171', fontWeight: 700 }}>₹{t.exitPrice}</span>
+                        <span style={{ fontSize: '9.5px', color: isWin ? '#34d399' : '#f87171', marginLeft: '4px' }}>
+                          ({+retPct >= 0 ? '+' : ''}{retPct}%)
+                        </span>
+                      </td>
+                      <td style={{ padding: '9px 10px', fontSize: '10.5px' }}>
+                        <div>Spot: <strong style={{ color: '#f8fafc' }}>₹{t.lastSpot || t.spotEntry}</strong></div>
+                        <div style={{ fontSize: '9.5px', color: '#64748b' }}>
+                          SL: ₹{t.spotSL} | Tgt: ₹{t.targetSpot}
+                        </div>
+                      </td>
+                      <td style={{ padding: '9px 10px', fontSize: '10.5px', color: '#94a3b8', whiteSpace: 'nowrap' }}>
+                        <div>In: {t.entryTimestamp}</div>
+                        <div>Out: {t.exitTimestamp}</div>
+                      </td>
+                      <td style={{ padding: '9px 10px', textAlign: 'right' }}>
+                        <span style={{
+                          color: isWin ? '#34d399' : '#f87171',
+                          fontWeight: 800,
+                          fontSize: '12px',
+                          fontFamily: 'monospace'
+                        }}>
+                          {t.realizedPnL >= 0 ? '+' : ''}₹{t.realizedPnL.toLocaleString()}
+                        </span>
                       </td>
                     </tr>
                   );
