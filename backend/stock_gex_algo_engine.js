@@ -30,6 +30,7 @@ import { imbalanceMeterEngine } from './imbalance_meter.js';
 import { stockPcrScannerEngine } from './stock_pcr_scanner_engine.js';
 import { getInstitutionalMLV2Insights } from './institutional_ml_v2_service.js';
 import { liveStockPriceService } from './live_stock_price_service.js';
+import { isNseHoliday, getHolidayDetails, getLiveMarketSession, initHolidayService } from './holiday_service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -103,43 +104,7 @@ export function getISTDate() {
 }
 
 export function getMarketSessionInfo() {
-  const ist = getISTDate();
-  const dayOfWeek = ist.getDay(); // 0 = Sun, 6 = Sat
-  const yyyy = ist.getFullYear();
-  const mm = String(ist.getMonth() + 1).padStart(2, '0');
-  const dd = String(ist.getDate()).padStart(2, '0');
-  const dateStr = `${yyyy}-${mm}-${dd}`;
-
-  const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
-  const isHoliday = NSE_HOLIDAYS.includes(dateStr);
-
-  const hours = ist.getHours();
-  const minutes = ist.getMinutes();
-  const timeMinutes = hours * 60 + minutes;
-
-  const marketOpenMinutes = 9 * 60 + 15; // 09:15 AM IST
-  const marketCloseMinutes = 15 * 60 + 15; // 03:15 PM IST Intraday exit
-  const eodSquareOffMinutes = 15 * 60 + 15; // 03:15 PM IST
-
-  const isMarketHours = !isWeekend && !isHoliday && (timeMinutes >= marketOpenMinutes && timeMinutes < marketCloseMinutes);
-  const isEODExit = !isWeekend && !isHoliday && (timeMinutes >= eodSquareOffMinutes);
-
-  let statusReason = 'OPEN';
-  if (isWeekend) statusReason = 'WEEKEND_OFF';
-  else if (isHoliday) statusReason = 'HOLIDAY_OFF';
-  else if (timeMinutes < marketOpenMinutes) statusReason = 'PRE_MARKET';
-  else if (timeMinutes >= marketCloseMinutes) statusReason = 'POST_MARKET';
-
-  return {
-    istTime: ist.toLocaleTimeString('en-IN', { hour12: false }),
-    istDate: dateStr,
-    dayOfWeek,
-    isWeekend,
-    isHoliday,
-    isMarketHours,
-    isEODExit,
-    statusReason
-  };
+  return getLiveMarketSession();
 }
 
 // ── Black-Scholes Option Pricing Engine ──────────────────────────────────────
@@ -1588,6 +1553,19 @@ class StockGexAlgoEngine {
       // 1. Update Open Positions & Check Real Spot SL / Targets
       this.updateOpenPositions(quoteMap);
 
+      const session = getMarketSessionInfo();
+      this.state.marketSession = session;
+
+      // HARD GATE: Do NOT evaluate or take new trades if market is closed, on holiday, in pre/post market, or past 3:00 PM entry cutoff!
+      if (!session.isMarketHours || !session.isNewEntryAllowed) {
+        this.addLog(
+          'SCAN',
+          'MARKET_GATE',
+          `⏸️ New trade scans paused: Market is ${session.statusReason} (${session.statusMessage} | ${session.istDate} ${session.istTime} IST). Trading window for new entries: 09:15 AM - 03:00 PM IST.`
+        );
+        return;
+      }
+
       // 2. Scan Stock PCR Velocity Leaders Across All 212 F&O Stocks (Rule #2D Alpha)
       const openPcrCount = this.getOpenPcrPositionsCount();
       if (this.state.openPositions.length < MAX_TOTAL_POSITIONS && openPcrCount < MAX_STOCK_PCR_POSITIONS) {
@@ -1683,6 +1661,12 @@ class StockGexAlgoEngine {
   }
 
   executePaperOrder(stock, quote, signal, gexProfile) {
+    const session = getMarketSessionInfo();
+    if (!session.isMarketHours || !session.isNewEntryAllowed) {
+      this.addLog(stock.symbol, 'MARKET_GATE', `⛔ ORDER REJECTED: Market is CLOSED or past entry cutoff (${session.statusReason} at ${session.istTime} IST). Intraday new trades permitted strictly 09:15 AM - 03:00 PM IST on active trading days.`);
+      return;
+    }
+
     const defaultLot = stock.symbol === 'NIFTY' ? 65 : (stock.symbol === 'BANKNIFTY' ? 30 : 250);
     const lotSize = getLotSize(stock.symbol, defaultLot);
     const dteDays = gexProfile.dte || (stock.isIndex ? 3 : 5);

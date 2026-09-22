@@ -1,12 +1,12 @@
 {
   "timeframe": "1d",
-  "updatedAt": "14:14:16 IST",
+  "updatedAt": "08:21:24 IST",
   "totalScanned": 47,
   "kpis": {
-    "totalActiveSetups": 43,
-    "v1Longs": 15,
-    "v1Shorts": 17,
-    "v2Longs": 6,
+    "totalActiveSetups": 42,
+    "v1Longs": 16,
+    "v1Shorts": 16,
+    "v2Longs": 5,
     "v2Shorts": 5,
     "extremeDiscount": 5,
     "extremePremium": 1,
@@ -19,75 +19,29 @@
       "name": "NIFTY 50 Index",
       "sector": "Broad Market",
       "timeframe": "1d",
-      "spotPrice": 23346.4,
-      "dayChangePts": 75.8,
-      "dayChangePct": 0.33,
-      "atr": 193.63,
-      "ema": 23715.55,
+      "spotPrice": 23414.3,
+      "dayChangePts": 67.9,
+      "dayChangePct": 0.29,
+      "atr": 191.54,
+      "ema": 23689.35,
       "bands": {
-        "bandPlus3": 24296.44,
-        "bandPlus2": 24102.81,
-        "bandPlus1": 23909.18,
-        "fairValue": 23715.55,
-        "bandMinus1": 23521.92,
-        "bandMinus2": 23328.29,
-        "bandMinus3": 23134.66
+        "bandPlus3": 24263.97,
+        "bandPlus2": 24072.43,
+        "bandPlus1": 23880.89,
+        "fairValue": 23689.35,
+        "bandMinus1": 23497.81,
+        "bandMinus2": 23306.27,
+        "bandMinus3": 23114.73
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.91,
-        "text": "-1 to -2 ATR (-1.91 ATR)"
+        "atrOffset": -1.44,
+        "text": "-1 to -2 ATR (-1.44 ATR)"
       },
-      "activeSetups": [
-        {
-          "version": "V1",
-          "direction": "SHORT",
-          "triggerDate": "2026-09-15",
-          "isLatestBar": false,
-          "barsAgo": 3,
-          "penetrationPts": 144.75,
-          "penetrationAtr": 0.78,
-          "entry": 23118.6,
-          "stopLoss": 23592.85,
-          "target1": 22918.33,
-          "target2": 23851.56,
-          "rrRatio": 0.42,
-          "location": {
-            "label": "EXTREME_DISCOUNT",
-            "zone": "DEEP_VALUE",
-            "atrOffset": -3.66,
-            "text": "Below -2 ATR (-3.66 ATR)"
-          },
-          "reclaimedLevels": [],
-          "d1Date": "2026-09-11",
-          "d2Date": "2026-09-15"
-        }
-      ],
-      "primarySetup": {
-        "version": "V1",
-        "direction": "SHORT",
-        "triggerDate": "2026-09-15",
-        "isLatestBar": false,
-        "barsAgo": 3,
-        "penetrationPts": 144.75,
-        "penetrationAtr": 0.78,
-        "entry": 23118.6,
-        "stopLoss": 23592.85,
-        "target1": 22918.33,
-        "target2": 23851.56,
-        "rrRatio": 0.42,
-        "location": {
-          "label": "EXTREME_DISCOUNT",
-          "zone": "DEEP_VALUE",
-          "atrOffset": -3.66,
-          "text": "Below -2 ATR (-3.66 ATR)"
-        },
-        "reclaimedLevels": [],
-        "d1Date": "2026-09-11",
-        "d2Date": "2026-09-15"
-      },
-      "totalSetupsFound": 1
+      "activeSetups": [],
+      "primarySetup": null,
+      "totalSetupsFound": 0
     },
     {
       "symbol": "NSE:BANKNIFTY",
@@ -95,64 +49,39 @@
       "name": "NIFTY Bank Index",
       "sector": "Banking",
       "timeframe": "1d",
-      "spotPrice": 56358.7,
-      "dayChangePts": 302.95,
-      "dayChangePct": 0.54,
-      "atr": 588.85,
-      "ema": 56865.52,
+      "spotPrice": 56470.65,
+      "dayChangePts": 111.95,
+      "dayChangePct": 0.2,
+      "atr": 579.6,
+      "ema": 56831.17,
       "bands": {
-        "bandPlus3": 58632.07,
-        "bandPlus2": 58043.22,
-        "bandPlus1": 57454.37,
-        "fairValue": 56865.52,
-        "bandMinus1": 56276.67,
-        "bandMinus2": 55687.82,
-        "bandMinus3": 55098.97
+        "bandPlus3": 58569.97,
+        "bandPlus2": 57990.37,
+        "bandPlus1": 57410.77,
+        "fairValue": 56831.17,
+        "bandMinus1": 56251.57,
+        "bandMinus2": 55671.97,
+        "bandMinus3": 55092.37
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.86,
-        "text": "Near Fair Value (-0.86 ATR)"
+        "atrOffset": -0.62,
+        "text": "Near Fair Value (-0.62 ATR)"
       },
       "activeSetups": [
         {
           "version": "V1",
           "direction": "SHORT",
-          "triggerDate": "2026-09-15",
-          "isLatestBar": false,
-          "barsAgo": 3,
-          "penetrationPts": 350.5,
-          "penetrationAtr": 0.61,
-          "entry": 55794.75,
-          "stopLoss": 56996.35,
-          "target1": 55194.06,
-          "target2": 57062.47,
-          "rrRatio": 0.5,
-          "location": {
-            "label": "EXTREME_DISCOUNT",
-            "zone": "DEEP_VALUE",
-            "atrOffset": -2.11,
-            "text": "Below -2 ATR (-2.11 ATR)"
-          },
-          "reclaimedLevels": [
-            "EMA - 1 ATR"
-          ],
-          "d1Date": "2026-09-11",
-          "d2Date": "2026-09-15"
-        },
-        {
-          "version": "V1",
-          "direction": "SHORT",
           "triggerDate": "2026-09-17",
           "isLatestBar": false,
-          "barsAgo": 1,
+          "barsAgo": 2,
           "penetrationPts": 201.75,
           "penetrationAtr": 0.34,
           "entry": 56055.75,
           "stopLoss": 56570.45,
-          "target1": 55459.54,
-          "target2": 56913.79,
+          "target1": 55459.76,
+          "target2": 56913.77,
           "rrRatio": 1.16,
           "location": {
             "label": "VALUE_DISCOUNT",
@@ -172,13 +101,13 @@
         "direction": "SHORT",
         "triggerDate": "2026-09-17",
         "isLatestBar": false,
-        "barsAgo": 1,
+        "barsAgo": 2,
         "penetrationPts": 201.75,
         "penetrationAtr": 0.34,
         "entry": 56055.75,
         "stopLoss": 56570.45,
-        "target1": 55459.54,
-        "target2": 56913.79,
+        "target1": 55459.76,
+        "target2": 56913.77,
         "rrRatio": 1.16,
         "location": {
           "label": "VALUE_DISCOUNT",
@@ -192,7 +121,7 @@
         "d1Date": "2026-09-16",
         "d2Date": "2026-09-17"
       },
-      "totalSetupsFound": 2
+      "totalSetupsFound": 1
     },
     {
       "symbol": "NSE:RELIANCE",
@@ -233,16 +162,16 @@
       "spotPrice": 731,
       "dayChangePts": 18,
       "dayChangePct": 2.52,
-      "atr": 12.85,
+      "atr": 12.84,
       "ema": 716.63,
       "bands": {
-        "bandPlus3": 755.18,
-        "bandPlus2": 742.33,
-        "bandPlus1": 729.48,
+        "bandPlus3": 755.15,
+        "bandPlus2": 742.31,
+        "bandPlus1": 729.47,
         "fairValue": 716.63,
-        "bandMinus1": 703.78,
-        "bandMinus2": 690.93,
-        "bandMinus3": 678.08
+        "bandMinus1": 703.79,
+        "bandMinus2": 690.95,
+        "bandMinus3": 678.11
       },
       "currentLocation": {
         "label": "VALUE_PREMIUM",
@@ -261,7 +190,7 @@
           "penetrationAtr": 0.33,
           "entry": 721.5,
           "stopLoss": 710.85,
-          "target1": 734.15,
+          "target1": 734.14,
           "target2": 715.47,
           "rrRatio": 1.19,
           "location": {
@@ -287,7 +216,7 @@
         "penetrationAtr": 0.33,
         "entry": 721.5,
         "stopLoss": 710.85,
-        "target1": 734.15,
+        "target1": 734.14,
         "target2": 715.47,
         "rrRatio": 1.19,
         "location": {
@@ -366,7 +295,7 @@
           "penetrationAtr": 0.11,
           "entry": 1358.8,
           "stopLoss": 1348,
-          "target1": 1380.09,
+          "target1": 1380.08,
           "target2": 1402.37,
           "rrRatio": 1.97,
           "location": {
@@ -390,7 +319,7 @@
         "penetrationAtr": 0.11,
         "entry": 1358.8,
         "stopLoss": 1348,
-        "target1": 1380.09,
+        "target1": 1380.08,
         "target2": 1402.37,
         "rrRatio": 1.97,
         "location": {
@@ -572,8 +501,8 @@
           "penetrationAtr": 0.16,
           "entry": 2190,
           "stopLoss": 2162.5,
-          "target1": 2252.21,
-          "target2": 2263.1,
+          "target1": 2252.2,
+          "target2": 2263.11,
           "rrRatio": 2.26,
           "location": {
             "label": "VALUE_DISCOUNT",
@@ -596,8 +525,8 @@
         "penetrationAtr": 0.16,
         "entry": 2190,
         "stopLoss": 2162.5,
-        "target1": 2252.21,
-        "target2": 2263.1,
+        "target1": 2252.2,
+        "target2": 2263.11,
         "rrRatio": 2.26,
         "location": {
           "label": "VALUE_DISCOUNT",
@@ -620,16 +549,16 @@
       "spotPrice": 1051.4,
       "dayChangePts": -7.2,
       "dayChangePct": -0.68,
-      "atr": 28.16,
+      "atr": 28.15,
       "ema": 1087.51,
       "bands": {
-        "bandPlus3": 1171.99,
-        "bandPlus2": 1143.83,
-        "bandPlus1": 1115.67,
+        "bandPlus3": 1171.96,
+        "bandPlus2": 1143.81,
+        "bandPlus1": 1115.66,
         "fairValue": 1087.51,
-        "bandMinus1": 1059.35,
-        "bandMinus2": 1031.19,
-        "bandMinus3": 1003.03
+        "bandMinus1": 1059.36,
+        "bandMinus2": 1031.21,
+        "bandMinus3": 1003.06
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
@@ -648,24 +577,24 @@
       "sector": "NBFC",
       "timeframe": "1d",
       "spotPrice": 1040.3,
-      "dayChangePts": 34.1,
-      "dayChangePct": 3.39,
-      "atr": 21.57,
-      "ema": 1050.74,
+      "dayChangePts": 25.3,
+      "dayChangePct": 2.49,
+      "atr": 21.18,
+      "ema": 1047.83,
       "bands": {
-        "bandPlus3": 1115.45,
-        "bandPlus2": 1093.88,
-        "bandPlus1": 1072.31,
-        "fairValue": 1050.74,
-        "bandMinus1": 1029.17,
-        "bandMinus2": 1007.6,
-        "bandMinus3": 986.03
+        "bandPlus3": 1111.37,
+        "bandPlus2": 1090.19,
+        "bandPlus1": 1069.01,
+        "fairValue": 1047.83,
+        "bandMinus1": 1026.65,
+        "bandMinus2": 1005.47,
+        "bandMinus3": 984.29
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.48,
-        "text": "Near Fair Value (-0.48 ATR)"
+        "atrOffset": -0.36,
+        "text": "Near Fair Value (-0.36 ATR)"
       },
       "activeSetups": [
         {
@@ -673,12 +602,12 @@
           "direction": "SHORT",
           "triggerDate": "2026-09-15",
           "isLatestBar": false,
-          "barsAgo": 2,
+          "barsAgo": 3,
           "penetrationPts": 4.1,
           "penetrationAtr": 0.2,
           "entry": 1009.2,
           "stopLoss": 1038.6,
-          "target1": 987.86,
+          "target1": 987.87,
           "target2": 1056.08,
           "rrRatio": 0.73,
           "location": {
@@ -699,12 +628,12 @@
         "direction": "SHORT",
         "triggerDate": "2026-09-15",
         "isLatestBar": false,
-        "barsAgo": 2,
+        "barsAgo": 3,
         "penetrationPts": 4.1,
         "penetrationAtr": 0.2,
         "entry": 1009.2,
         "stopLoss": 1038.6,
-        "target1": 987.86,
+        "target1": 987.87,
         "target2": 1056.08,
         "rrRatio": 0.73,
         "location": {
@@ -730,16 +659,16 @@
       "spotPrice": 1257,
       "dayChangePts": 17,
       "dayChangePct": 1.37,
-      "atr": 22.36,
+      "atr": 22.35,
       "ema": 1249.2,
       "bands": {
-        "bandPlus3": 1316.28,
-        "bandPlus2": 1293.92,
-        "bandPlus1": 1271.56,
+        "bandPlus3": 1316.25,
+        "bandPlus2": 1293.9,
+        "bandPlus1": 1271.55,
         "fairValue": 1249.2,
-        "bandMinus1": 1226.84,
-        "bandMinus2": 1204.48,
-        "bandMinus3": 1182.12
+        "bandMinus1": 1226.85,
+        "bandMinus2": 1204.5,
+        "bandMinus3": 1182.15
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -784,7 +713,7 @@
           "penetrationAtr": 0.23,
           "entry": 1240,
           "stopLoss": 1257.6,
-          "target1": 1217.37,
+          "target1": 1217.38,
           "target2": 1248.46,
           "rrRatio": 1.29,
           "location": {
@@ -810,7 +739,7 @@
         "penetrationAtr": 0.23,
         "entry": 1240,
         "stopLoss": 1257.6,
-        "target1": 1217.37,
+        "target1": 1217.38,
         "target2": 1248.46,
         "rrRatio": 1.29,
         "location": {
@@ -1022,16 +951,16 @@
       "spotPrice": 3885,
       "dayChangePts": 48.8,
       "dayChangePct": 1.27,
-      "atr": 60.25,
+      "atr": 60.24,
       "ema": 3943.99,
       "bands": {
-        "bandPlus3": 4124.74,
-        "bandPlus2": 4064.49,
-        "bandPlus1": 4004.24,
+        "bandPlus3": 4124.71,
+        "bandPlus2": 4064.47,
+        "bandPlus1": 4004.23,
         "fairValue": 3943.99,
-        "bandMinus1": 3883.74,
-        "bandMinus2": 3823.49,
-        "bandMinus3": 3763.24
+        "bandMinus1": 3883.75,
+        "bandMinus2": 3823.51,
+        "bandMinus3": 3763.27
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -1050,8 +979,8 @@
           "penetrationAtr": 0.5,
           "entry": 3850.7,
           "stopLoss": 3959,
-          "target1": 3791.29,
-          "target2": 3974.95,
+          "target1": 3791.3,
+          "target2": 3974.96,
           "rrRatio": 0.55,
           "location": {
             "label": "EXTREME_DISCOUNT",
@@ -1076,8 +1005,8 @@
         "penetrationAtr": 0.5,
         "entry": 3850.7,
         "stopLoss": 3959,
-        "target1": 3791.29,
-        "target2": 3974.95,
+        "target1": 3791.3,
+        "target2": 3974.96,
         "rrRatio": 0.55,
         "location": {
           "label": "EXTREME_DISCOUNT",
@@ -1235,16 +1164,16 @@
       "spotPrice": 1837.3,
       "dayChangePts": -30,
       "dayChangePct": -1.61,
-      "atr": 30.55,
+      "atr": 30.56,
       "ema": 1882.52,
       "bands": {
-        "bandPlus3": 1974.17,
-        "bandPlus2": 1943.62,
-        "bandPlus1": 1913.07,
+        "bandPlus3": 1974.2,
+        "bandPlus2": 1943.64,
+        "bandPlus1": 1913.08,
         "fairValue": 1882.52,
-        "bandMinus1": 1851.97,
-        "bandMinus2": 1821.42,
-        "bandMinus3": 1790.87
+        "bandMinus1": 1851.96,
+        "bandMinus2": 1821.4,
+        "bandMinus3": 1790.84
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
@@ -1263,7 +1192,7 @@
           "penetrationAtr": 0.54,
           "entry": 1835,
           "stopLoss": 1856.8,
-          "target1": 1804,
+          "target1": 1803.99,
           "target2": 1892.03,
           "rrRatio": 1.42,
           "location": {
@@ -1286,7 +1215,7 @@
           "penetrationAtr": 0.39,
           "entry": 1853.5,
           "stopLoss": 1828,
-          "target1": 1884.09,
+          "target1": 1884.1,
           "target2": 1888.68,
           "rrRatio": 1.2,
           "location": {
@@ -1310,7 +1239,7 @@
           "penetrationAtr": 0.33,
           "entry": 1837.3,
           "stopLoss": 1877.2,
-          "target1": 1806.75,
+          "target1": 1806.74,
           "target2": 1882.52,
           "rrRatio": 0.77,
           "location": {
@@ -1336,7 +1265,7 @@
         "penetrationAtr": 0.33,
         "entry": 1837.3,
         "stopLoss": 1877.2,
-        "target1": 1806.75,
+        "target1": 1806.74,
         "target2": 1882.52,
         "rrRatio": 0.77,
         "location": {
@@ -1362,16 +1291,16 @@
       "spotPrice": 12103,
       "dayChangePts": -235,
       "dayChangePct": -1.9,
-      "atr": 237.19,
+      "atr": 237.22,
       "ema": 12802.17,
       "bands": {
-        "bandPlus3": 13513.74,
-        "bandPlus2": 13276.55,
-        "bandPlus1": 13039.36,
+        "bandPlus3": 13513.83,
+        "bandPlus2": 13276.61,
+        "bandPlus1": 13039.39,
         "fairValue": 12802.17,
-        "bandMinus1": 12564.98,
-        "bandMinus2": 12327.79,
-        "bandMinus3": 12090.6
+        "bandMinus1": 12564.95,
+        "bandMinus2": 12327.73,
+        "bandMinus3": 12090.51
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
@@ -1390,7 +1319,7 @@
           "penetrationAtr": 0.31,
           "entry": 12231,
           "stopLoss": 12470,
-          "target1": 12001.2,
+          "target1": 12001.17,
           "target2": 12991.05,
           "rrRatio": 0.96,
           "location": {
@@ -1413,7 +1342,7 @@
           "penetrationAtr": 0.14,
           "entry": 12338,
           "stopLoss": 12127,
-          "target1": 12569.3,
+          "target1": 12569.33,
           "target2": 12868.76,
           "rrRatio": 1.1,
           "location": {
@@ -1436,7 +1365,7 @@
           "penetrationAtr": 0.21,
           "entry": 12103,
           "stopLoss": 12458,
-          "target1": 11865.81,
+          "target1": 11865.78,
           "target2": 12802.17,
           "rrRatio": 0.67,
           "location": {
@@ -1460,7 +1389,7 @@
         "penetrationAtr": 0.21,
         "entry": 12103,
         "stopLoss": 12458,
-        "target1": 11865.81,
+        "target1": 11865.78,
         "target2": 12802.17,
         "rrRatio": 0.67,
         "location": {
@@ -1484,16 +1413,16 @@
       "spotPrice": 4798.5,
       "dayChangePts": -42.5,
       "dayChangePct": -0.88,
-      "atr": 79.45,
+      "atr": 79.46,
       "ema": 4966.72,
       "bands": {
-        "bandPlus3": 5205.07,
-        "bandPlus2": 5125.62,
-        "bandPlus1": 5046.17,
+        "bandPlus3": 5205.1,
+        "bandPlus2": 5125.64,
+        "bandPlus1": 5046.18,
         "fairValue": 4966.72,
-        "bandMinus1": 4887.27,
-        "bandMinus2": 4807.82,
-        "bandMinus3": 4728.37
+        "bandMinus1": 4887.26,
+        "bandMinus2": 4807.8,
+        "bandMinus3": 4728.34
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
@@ -1663,24 +1592,24 @@
       "sector": "Metals",
       "timeframe": "1d",
       "spotPrice": 986.5,
-      "dayChangePts": 13.8,
-      "dayChangePct": 1.42,
-      "atr": 22.69,
-      "ema": 1004.21,
+      "dayChangePts": 6,
+      "dayChangePct": 0.61,
+      "atr": 22.11,
+      "ema": 1002.19,
       "bands": {
-        "bandPlus3": 1072.28,
-        "bandPlus2": 1049.59,
-        "bandPlus1": 1026.9,
-        "fairValue": 1004.21,
-        "bandMinus1": 981.52,
-        "bandMinus2": 958.83,
-        "bandMinus3": 936.14
+        "bandPlus3": 1068.52,
+        "bandPlus2": 1046.41,
+        "bandPlus1": 1024.3,
+        "fairValue": 1002.19,
+        "bandMinus1": 980.08,
+        "bandMinus2": 957.97,
+        "bandMinus3": 935.86
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.78,
-        "text": "Near Fair Value (-0.78 ATR)"
+        "atrOffset": -0.71,
+        "text": "Near Fair Value (-0.71 ATR)"
       },
       "activeSetups": [
         {
@@ -1688,12 +1617,12 @@
           "direction": "LONG",
           "triggerDate": "2026-09-16",
           "isLatestBar": false,
-          "barsAgo": 1,
+          "barsAgo": 2,
           "penetrationPts": 2.3,
           "penetrationAtr": 0.1,
           "entry": 972.7,
           "stopLoss": 956.4,
-          "target1": 995.2,
+          "target1": 995.19,
           "target2": 1005.89,
           "rrRatio": 1.38,
           "location": {
@@ -1714,12 +1643,12 @@
         "direction": "LONG",
         "triggerDate": "2026-09-16",
         "isLatestBar": false,
-        "barsAgo": 1,
+        "barsAgo": 2,
         "penetrationPts": 2.3,
         "penetrationAtr": 0.1,
         "entry": 972.7,
         "stopLoss": 956.4,
-        "target1": 995.2,
+        "target1": 995.19,
         "target2": 1005.89,
         "rrRatio": 1.38,
         "location": {
@@ -1743,24 +1672,24 @@
       "sector": "Metals",
       "timeframe": "1d",
       "spotPrice": 1275.6,
-      "dayChangePts": 26.7,
-      "dayChangePct": 2.14,
-      "atr": 25.23,
-      "ema": 1286.55,
+      "dayChangePts": 22.2,
+      "dayChangePct": 1.77,
+      "atr": 24.68,
+      "ema": 1283.83,
       "bands": {
-        "bandPlus3": 1362.24,
-        "bandPlus2": 1337.01,
-        "bandPlus1": 1311.78,
-        "fairValue": 1286.55,
-        "bandMinus1": 1261.32,
-        "bandMinus2": 1236.09,
-        "bandMinus3": 1210.86
+        "bandPlus3": 1357.87,
+        "bandPlus2": 1333.19,
+        "bandPlus1": 1308.51,
+        "fairValue": 1283.83,
+        "bandMinus1": 1259.15,
+        "bandMinus2": 1234.47,
+        "bandMinus3": 1209.79
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.43,
-        "text": "Near Fair Value (-0.43 ATR)"
+        "atrOffset": -0.33,
+        "text": "Near Fair Value (-0.33 ATR)"
       },
       "activeSetups": [
         {
@@ -1768,19 +1697,19 @@
           "direction": "SHORT",
           "triggerDate": "2026-09-15",
           "isLatestBar": false,
-          "barsAgo": 2,
+          "barsAgo": 3,
           "penetrationPts": 2.7,
           "penetrationAtr": 0.11,
           "entry": 1229.2,
           "stopLoss": 1267.7,
-          "target1": 1204.11,
+          "target1": 1204.13,
           "target2": 1291.28,
           "rrRatio": 0.65,
           "location": {
             "label": "EXTREME_DISCOUNT",
             "zone": "DEEP_VALUE",
-            "atrOffset": -2.47,
-            "text": "Below -2 ATR (-2.47 ATR)"
+            "atrOffset": -2.48,
+            "text": "Below -2 ATR (-2.48 ATR)"
           },
           "reclaimedLevels": [
             "EMA - 1 ATR"
@@ -1794,19 +1723,19 @@
         "direction": "SHORT",
         "triggerDate": "2026-09-15",
         "isLatestBar": false,
-        "barsAgo": 2,
+        "barsAgo": 3,
         "penetrationPts": 2.7,
         "penetrationAtr": 0.11,
         "entry": 1229.2,
         "stopLoss": 1267.7,
-        "target1": 1204.11,
+        "target1": 1204.13,
         "target2": 1291.28,
         "rrRatio": 0.65,
         "location": {
           "label": "EXTREME_DISCOUNT",
           "zone": "DEEP_VALUE",
-          "atrOffset": -2.47,
-          "text": "Below -2 ATR (-2.47 ATR)"
+          "atrOffset": -2.48,
+          "text": "Below -2 ATR (-2.48 ATR)"
         },
         "reclaimedLevels": [
           "EMA - 1 ATR"
@@ -1825,16 +1754,16 @@
       "spotPrice": 3020,
       "dayChangePts": 96.8,
       "dayChangePct": 3.31,
-      "atr": 78.24,
+      "atr": 78.25,
       "ema": 2996.05,
       "bands": {
-        "bandPlus3": 3230.77,
-        "bandPlus2": 3152.53,
-        "bandPlus1": 3074.29,
+        "bandPlus3": 3230.8,
+        "bandPlus2": 3152.55,
+        "bandPlus1": 3074.3,
         "fairValue": 2996.05,
-        "bandMinus1": 2917.81,
-        "bandMinus2": 2839.57,
-        "bandMinus3": 2761.33
+        "bandMinus1": 2917.8,
+        "bandMinus2": 2839.55,
+        "bandMinus3": 2761.3
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -1853,7 +1782,7 @@
           "penetrationAtr": 0.31,
           "entry": 2928.6,
           "stopLoss": 3083.7,
-          "target1": 2848.29,
+          "target1": 2848.28,
           "target2": 3008.16,
           "rrRatio": 0.52,
           "location": {
@@ -1879,7 +1808,7 @@
         "penetrationAtr": 0.31,
         "entry": 2928.6,
         "stopLoss": 3083.7,
-        "target1": 2848.29,
+        "target1": 2848.28,
         "target2": 3008.16,
         "rrRatio": 0.52,
         "location": {
@@ -1959,7 +1888,7 @@
           "penetrationAtr": 0.18,
           "entry": 1723.8,
           "stopLoss": 1707,
-          "target1": 1760.98,
+          "target1": 1760.97,
           "target2": 1717.52,
           "rrRatio": 2.21,
           "location": {
@@ -1985,7 +1914,7 @@
         "penetrationAtr": 0.18,
         "entry": 1723.8,
         "stopLoss": 1707,
-        "target1": 1760.98,
+        "target1": 1760.97,
         "target2": 1717.52,
         "rrRatio": 2.21,
         "location": {
@@ -2009,24 +1938,24 @@
       "sector": "Power",
       "timeframe": "1d",
       "spotPrice": 270.3,
-      "dayChangePts": 7.5,
-      "dayChangePct": 2.85,
-      "atr": 4.78,
-      "ema": 268.02,
+      "dayChangePts": 6.55,
+      "dayChangePct": 2.48,
+      "atr": 4.67,
+      "ema": 267.7,
       "bands": {
-        "bandPlus3": 282.36,
-        "bandPlus2": 277.58,
-        "bandPlus1": 272.8,
-        "fairValue": 268.02,
-        "bandMinus1": 263.24,
-        "bandMinus2": 258.46,
-        "bandMinus3": 253.68
+        "bandPlus3": 281.71,
+        "bandPlus2": 277.04,
+        "bandPlus1": 272.37,
+        "fairValue": 267.7,
+        "bandMinus1": 263.03,
+        "bandMinus2": 258.36,
+        "bandMinus3": 253.69
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": 0.48,
-        "text": "Near Fair Value (0.48 ATR)"
+        "atrOffset": 0.56,
+        "text": "Near Fair Value (0.56 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -2421,16 +2350,16 @@
       "spotPrice": 3052,
       "dayChangePts": -24.5,
       "dayChangePct": -0.8,
-      "atr": 65.14,
+      "atr": 65.11,
       "ema": 3181.45,
       "bands": {
-        "bandPlus3": 3376.87,
-        "bandPlus2": 3311.73,
-        "bandPlus1": 3246.59,
+        "bandPlus3": 3376.78,
+        "bandPlus2": 3311.67,
+        "bandPlus1": 3246.56,
         "fairValue": 3181.45,
-        "bandMinus1": 3116.31,
-        "bandMinus2": 3051.17,
-        "bandMinus3": 2986.03
+        "bandMinus1": 3116.34,
+        "bandMinus2": 3051.23,
+        "bandMinus3": 2986.12
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
@@ -2449,7 +2378,7 @@
           "penetrationAtr": 0.2,
           "entry": 3029.5,
           "stopLoss": 3119.6,
-          "target1": 2964.7,
+          "target1": 2964.73,
           "target2": 3217.8,
           "rrRatio": 0.72,
           "location": {
@@ -2472,7 +2401,7 @@
           "penetrationAtr": 0.34,
           "entry": 3052,
           "stopLoss": 3127.8,
-          "target1": 2986.86,
+          "target1": 2986.89,
           "target2": 3181.45,
           "rrRatio": 0.86,
           "location": {
@@ -2497,7 +2426,7 @@
         "penetrationAtr": 0.34,
         "entry": 3052,
         "stopLoss": 3127.8,
-        "target1": 2986.86,
+        "target1": 2986.89,
         "target2": 3181.45,
         "rrRatio": 0.86,
         "location": {
@@ -2520,24 +2449,24 @@
       "sector": "Automotive",
       "timeframe": "1d",
       "spotPrice": 11414,
-      "dayChangePts": -179,
-      "dayChangePct": -1.54,
-      "atr": 210.77,
-      "ema": 11693.79,
+      "dayChangePts": -86,
+      "dayChangePct": -0.75,
+      "atr": 205.75,
+      "ema": 11676.28,
       "bands": {
-        "bandPlus3": 12326.1,
-        "bandPlus2": 12115.33,
-        "bandPlus1": 11904.56,
-        "fairValue": 11693.79,
-        "bandMinus1": 11483.02,
-        "bandMinus2": 11272.25,
-        "bandMinus3": 11061.48
+        "bandPlus3": 12293.53,
+        "bandPlus2": 12087.78,
+        "bandPlus1": 11882.03,
+        "fairValue": 11676.28,
+        "bandMinus1": 11470.53,
+        "bandMinus2": 11264.78,
+        "bandMinus3": 11059.03
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.33,
-        "text": "-1 to -2 ATR (-1.33 ATR)"
+        "atrOffset": -1.27,
+        "text": "-1 to -2 ATR (-1.27 ATR)"
       },
       "activeSetups": [
         {
@@ -2545,12 +2474,12 @@
           "direction": "SHORT",
           "triggerDate": "2026-09-15",
           "isLatestBar": false,
-          "barsAgo": 2,
+          "barsAgo": 3,
           "penetrationPts": 31,
           "penetrationAtr": 0.15,
           "entry": 11424,
           "stopLoss": 11709,
-          "target1": 11212.29,
+          "target1": 11212.35,
           "target2": 11732.57,
           "rrRatio": 0.74,
           "location": {
@@ -2570,12 +2499,12 @@
           "direction": "LONG",
           "triggerDate": "2026-09-16",
           "isLatestBar": false,
-          "barsAgo": 1,
+          "barsAgo": 2,
           "penetrationPts": 37,
           "penetrationAtr": 0.17,
           "entry": 11593,
           "stopLoss": 11379,
-          "target1": 11804.96,
+          "target1": 11804.91,
           "target2": 11720.43,
           "rrRatio": 0.99,
           "location": {
@@ -2596,12 +2525,12 @@
         "direction": "LONG",
         "triggerDate": "2026-09-16",
         "isLatestBar": false,
-        "barsAgo": 1,
+        "barsAgo": 2,
         "penetrationPts": 37,
         "penetrationAtr": 0.17,
         "entry": 11593,
         "stopLoss": 11379,
-        "target1": 11804.96,
+        "target1": 11804.91,
         "target2": 11720.43,
         "rrRatio": 0.99,
         "location": {
@@ -2627,16 +2556,16 @@
       "spotPrice": 5285.5,
       "dayChangePts": -39.5,
       "dayChangePct": -0.74,
-      "atr": 116.27,
+      "atr": 116.23,
       "ema": 5356.66,
       "bands": {
-        "bandPlus3": 5705.47,
-        "bandPlus2": 5589.2,
-        "bandPlus1": 5472.93,
+        "bandPlus3": 5705.35,
+        "bandPlus2": 5589.12,
+        "bandPlus1": 5472.89,
         "fairValue": 5356.66,
-        "bandMinus1": 5240.39,
-        "bandMinus2": 5124.12,
-        "bandMinus3": 5007.85
+        "bandMinus1": 5240.43,
+        "bandMinus2": 5124.2,
+        "bandMinus3": 5007.97
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -2655,7 +2584,7 @@
           "penetrationAtr": 0.92,
           "entry": 5166,
           "stopLoss": 5327.5,
-          "target1": 5048.66,
+          "target1": 5048.71,
           "target2": 5379.67,
           "rrRatio": 0.73,
           "location": {
@@ -2680,7 +2609,7 @@
           "penetrationAtr": 0.48,
           "entry": 5235,
           "stopLoss": 5166,
-          "target1": 5353.85,
+          "target1": 5353.8,
           "target2": 5367.09,
           "rrRatio": 1.72,
           "location": {
@@ -2704,7 +2633,7 @@
           "penetrationAtr": 0.18,
           "entry": 5285.5,
           "stopLoss": 5362.5,
-          "target1": 5169.23,
+          "target1": 5169.27,
           "target2": 5356.66,
           "rrRatio": 1.51,
           "location": {
@@ -2730,7 +2659,7 @@
         "penetrationAtr": 0.18,
         "entry": 5285.5,
         "stopLoss": 5362.5,
-        "target1": 5169.23,
+        "target1": 5169.27,
         "target2": 5356.66,
         "rrRatio": 1.51,
         "location": {
@@ -2756,16 +2685,16 @@
       "spotPrice": 2451.3,
       "dayChangePts": -2.7,
       "dayChangePct": -0.11,
-      "atr": 46.69,
+      "atr": 46.7,
       "ema": 2527.67,
       "bands": {
-        "bandPlus3": 2667.74,
-        "bandPlus2": 2621.05,
-        "bandPlus1": 2574.36,
+        "bandPlus3": 2667.77,
+        "bandPlus2": 2621.07,
+        "bandPlus1": 2574.37,
         "fairValue": 2527.67,
-        "bandMinus1": 2480.98,
-        "bandMinus2": 2434.29,
-        "bandMinus3": 2387.6
+        "bandMinus1": 2480.97,
+        "bandMinus2": 2434.27,
+        "bandMinus3": 2387.57
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
@@ -2784,9 +2713,9 @@
           "penetrationAtr": 0.11,
           "entry": 2416.6,
           "stopLoss": 2397.4,
-          "target1": 2464.31,
+          "target1": 2464.32,
           "target2": 2542.65,
-          "rrRatio": 2.48,
+          "rrRatio": 2.49,
           "location": {
             "label": "EXTREME_DISCOUNT",
             "zone": "DEEP_VALUE",
@@ -2807,7 +2736,7 @@
           "penetrationAtr": 0.42,
           "entry": 2451.3,
           "stopLoss": 2474,
-          "target1": 2404.61,
+          "target1": 2404.6,
           "target2": 2527.67,
           "rrRatio": 2.06,
           "location": {
@@ -2831,7 +2760,7 @@
         "penetrationAtr": 0.42,
         "entry": 2451.3,
         "stopLoss": 2474,
-        "target1": 2404.61,
+        "target1": 2404.6,
         "target2": 2527.67,
         "rrRatio": 2.06,
         "location": {
@@ -2855,16 +2784,16 @@
       "spotPrice": 11014,
       "dayChangePts": 250,
       "dayChangePct": 2.32,
-      "atr": 198.32,
+      "atr": 198.37,
       "ema": 11176.51,
       "bands": {
-        "bandPlus3": 11771.47,
-        "bandPlus2": 11573.15,
-        "bandPlus1": 11374.83,
+        "bandPlus3": 11771.62,
+        "bandPlus2": 11573.25,
+        "bandPlus1": 11374.88,
         "fairValue": 11176.51,
-        "bandMinus1": 10978.19,
-        "bandMinus2": 10779.87,
-        "bandMinus3": 10581.55
+        "bandMinus1": 10978.14,
+        "bandMinus2": 10779.77,
+        "bandMinus3": 10581.4
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -2883,7 +2812,7 @@
           "penetrationAtr": 0.24,
           "entry": 10697,
           "stopLoss": 11045,
-          "target1": 10503.19,
+          "target1": 10503.14,
           "target2": 11283.48,
           "rrRatio": 0.56,
           "location": {
@@ -2906,8 +2835,8 @@
           "penetrationAtr": 0.3,
           "entry": 10700,
           "stopLoss": 10639,
-          "target1": 10896.06,
-          "target2": 11232.75,
+          "target1": 10896.11,
+          "target2": 11232.74,
           "rrRatio": 3.21,
           "location": {
             "label": "EXTREME_DISCOUNT",
@@ -2930,8 +2859,8 @@
         "penetrationAtr": 0.3,
         "entry": 10700,
         "stopLoss": 10639,
-        "target1": 10896.06,
-        "target2": 11232.75,
+        "target1": 10896.11,
+        "target2": 11232.74,
         "rrRatio": 3.21,
         "location": {
           "label": "EXTREME_DISCOUNT",
@@ -2952,24 +2881,24 @@
       "sector": "Materials",
       "timeframe": "1d",
       "spotPrice": 3209.2,
-      "dayChangePts": 22.2,
-      "dayChangePct": 0.7,
-      "atr": 61.27,
-      "ema": 3263.63,
+      "dayChangePts": 36.1,
+      "dayChangePct": 1.14,
+      "atr": 60.58,
+      "ema": 3256.03,
       "bands": {
-        "bandPlus3": 3447.44,
-        "bandPlus2": 3386.17,
-        "bandPlus1": 3324.9,
-        "fairValue": 3263.63,
-        "bandMinus1": 3202.36,
-        "bandMinus2": 3141.09,
-        "bandMinus3": 3079.82
+        "bandPlus3": 3437.77,
+        "bandPlus2": 3377.19,
+        "bandPlus1": 3316.61,
+        "fairValue": 3256.03,
+        "bandMinus1": 3195.45,
+        "bandMinus2": 3134.87,
+        "bandMinus3": 3074.29
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.89,
-        "text": "Near Fair Value (-0.89 ATR)"
+        "atrOffset": -0.77,
+        "text": "Near Fair Value (-0.77 ATR)"
       },
       "activeSetups": [
         {
@@ -2977,13 +2906,13 @@
           "direction": "LONG",
           "triggerDate": "2026-09-16",
           "isLatestBar": false,
-          "barsAgo": 1,
+          "barsAgo": 2,
           "penetrationPts": 11.9,
           "penetrationAtr": 0.19,
           "entry": 3187,
           "stopLoss": 3159.1,
-          "target1": 3249.6,
-          "target2": 3268.82,
+          "target1": 3249.59,
+          "target2": 3268.81,
           "rrRatio": 2.24,
           "location": {
             "label": "VALUE_DISCOUNT",
@@ -3001,13 +2930,13 @@
         "direction": "LONG",
         "triggerDate": "2026-09-16",
         "isLatestBar": false,
-        "barsAgo": 1,
+        "barsAgo": 2,
         "penetrationPts": 11.9,
         "penetrationAtr": 0.19,
         "entry": 3187,
         "stopLoss": 3159.1,
-        "target1": 3249.6,
-        "target2": 3268.82,
+        "target1": 3249.59,
+        "target2": 3268.81,
         "rrRatio": 2.24,
         "location": {
           "label": "VALUE_DISCOUNT",
@@ -3058,7 +2987,7 @@
           "penetrationAtr": 0.32,
           "entry": 956.5,
           "stopLoss": 984.5,
-          "target1": 936.43,
+          "target1": 936.44,
           "target2": 995.77,
           "rrRatio": 0.72,
           "location": {
@@ -3135,24 +3064,24 @@
       "sector": "Pharma",
       "timeframe": "1d",
       "spotPrice": 1394.5,
-      "dayChangePts": 36.5,
-      "dayChangePct": 2.69,
-      "atr": 22.73,
-      "ema": 1394.6,
+      "dayChangePts": 18.2,
+      "dayChangePct": 1.32,
+      "atr": 22.59,
+      "ema": 1393.14,
       "bands": {
-        "bandPlus3": 1462.79,
-        "bandPlus2": 1440.06,
-        "bandPlus1": 1417.33,
-        "fairValue": 1394.6,
-        "bandMinus1": 1371.87,
-        "bandMinus2": 1349.14,
-        "bandMinus3": 1326.41
+        "bandPlus3": 1460.91,
+        "bandPlus2": 1438.32,
+        "bandPlus1": 1415.73,
+        "fairValue": 1393.14,
+        "bandMinus1": 1370.55,
+        "bandMinus2": 1347.96,
+        "bandMinus3": 1325.37
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": 0,
-        "text": "Near Fair Value (0 ATR)"
+        "atrOffset": 0.06,
+        "text": "Near Fair Value (0.06 ATR)"
       },
       "activeSetups": [
         {
@@ -3160,7 +3089,7 @@
           "direction": "LONG",
           "triggerDate": "2026-09-16",
           "isLatestBar": false,
-          "barsAgo": 1,
+          "barsAgo": 2,
           "penetrationPts": 3.4,
           "penetrationAtr": 0.15,
           "entry": 1358,
@@ -3186,7 +3115,7 @@
         "direction": "LONG",
         "triggerDate": "2026-09-16",
         "isLatestBar": false,
-        "barsAgo": 1,
+        "barsAgo": 2,
         "penetrationPts": 3.4,
         "penetrationAtr": 0.15,
         "entry": 1358,
@@ -3215,24 +3144,24 @@
       "sector": "Pharma",
       "timeframe": "1d",
       "spotPrice": 1185,
-      "dayChangePts": 45,
-      "dayChangePct": 3.95,
-      "atr": 23.55,
-      "ema": 1164.63,
+      "dayChangePts": 10,
+      "dayChangePct": 0.85,
+      "atr": 23.18,
+      "ema": 1165.61,
       "bands": {
-        "bandPlus3": 1235.28,
-        "bandPlus2": 1211.73,
-        "bandPlus1": 1188.18,
-        "fairValue": 1164.63,
-        "bandMinus1": 1141.08,
-        "bandMinus2": 1117.53,
-        "bandMinus3": 1093.98
+        "bandPlus3": 1235.15,
+        "bandPlus2": 1211.97,
+        "bandPlus1": 1188.79,
+        "fairValue": 1165.61,
+        "bandMinus1": 1142.43,
+        "bandMinus2": 1119.25,
+        "bandMinus3": 1096.07
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": 0.86,
-        "text": "Near Fair Value (0.86 ATR)"
+        "atrOffset": 0.84,
+        "text": "Near Fair Value (0.84 ATR)"
       },
       "activeSetups": [
         {
@@ -3240,7 +3169,7 @@
           "direction": "SHORT",
           "triggerDate": "2026-09-15",
           "isLatestBar": false,
-          "barsAgo": 2,
+          "barsAgo": 3,
           "penetrationPts": 3,
           "penetrationAtr": 0.14,
           "entry": 1145,
@@ -3263,51 +3192,57 @@
         {
           "version": "V2",
           "direction": "LONG",
-          "triggerDate": "2026-09-18",
-          "isLatestBar": true,
-          "barsAgo": 0,
+          "triggerDate": "2026-09-17",
+          "isLatestBar": false,
+          "barsAgo": 1,
           "penetrationPts": 7.1,
           "penetrationAtr": 0.33,
-          "entry": 1185,
+          "entry": 1175,
           "stopLoss": 1133.9,
-          "target1": 1208.55,
-          "target2": 1164.63,
-          "rrRatio": 0.46,
+          "target1": 1197.71,
+          "target2": 1163.76,
+          "rrRatio": 0.55,
           "location": {
             "label": "AT_FAIR_VALUE",
             "zone": "FAIR_VALUE",
-            "atrOffset": 0.86,
-            "text": "Near Fair Value (0.86 ATR)"
+            "atrOffset": 0.49,
+            "text": "Near Fair Value (0.49 ATR)"
           },
-          "reclaimedLevels": [],
+          "reclaimedLevels": [
+            "EMA - 1 ATR",
+            "Fair Value EMA"
+          ],
           "d1Date": "2026-09-15",
           "d2Date": "2026-09-16",
-          "d3Date": "2026-09-18"
+          "d3Date": "2026-09-17"
         }
       ],
       "primarySetup": {
         "version": "V2",
         "direction": "LONG",
-        "triggerDate": "2026-09-18",
-        "isLatestBar": true,
-        "barsAgo": 0,
+        "triggerDate": "2026-09-17",
+        "isLatestBar": false,
+        "barsAgo": 1,
         "penetrationPts": 7.1,
         "penetrationAtr": 0.33,
-        "entry": 1185,
+        "entry": 1175,
         "stopLoss": 1133.9,
-        "target1": 1208.55,
-        "target2": 1164.63,
-        "rrRatio": 0.46,
+        "target1": 1197.71,
+        "target2": 1163.76,
+        "rrRatio": 0.55,
         "location": {
           "label": "AT_FAIR_VALUE",
           "zone": "FAIR_VALUE",
-          "atrOffset": 0.86,
-          "text": "Near Fair Value (0.86 ATR)"
+          "atrOffset": 0.49,
+          "text": "Near Fair Value (0.49 ATR)"
         },
-        "reclaimedLevels": [],
+        "reclaimedLevels": [
+          "EMA - 1 ATR",
+          "Fair Value EMA"
+        ],
         "d1Date": "2026-09-15",
         "d2Date": "2026-09-16",
-        "d3Date": "2026-09-18"
+        "d3Date": "2026-09-17"
       },
       "totalSetupsFound": 2
     },
@@ -3320,16 +3255,16 @@
       "spotPrice": 9375,
       "dayChangePts": 52,
       "dayChangePct": 0.56,
-      "atr": 190.43,
+      "atr": 190.4,
       "ema": 9099.4,
       "bands": {
-        "bandPlus3": 9670.69,
-        "bandPlus2": 9480.26,
-        "bandPlus1": 9289.83,
+        "bandPlus3": 9670.6,
+        "bandPlus2": 9480.2,
+        "bandPlus1": 9289.8,
         "fairValue": 9099.4,
-        "bandMinus1": 8908.97,
-        "bandMinus2": 8718.54,
-        "bandMinus3": 8528.11
+        "bandMinus1": 8909,
+        "bandMinus2": 8718.6,
+        "bandMinus3": 8528.2
       },
       "currentLocation": {
         "label": "VALUE_PREMIUM",
@@ -3348,8 +3283,8 @@
           "penetrationAtr": 0.41,
           "entry": 9198,
           "stopLoss": 9397.5,
-          "target1": 9010.39,
-          "target2": 9039.01,
+          "target1": 9010.43,
+          "target2": 9039,
           "rrRatio": 0.94,
           "location": {
             "label": "AT_FAIR_VALUE",
@@ -3373,7 +3308,7 @@
           "penetrationAtr": 1.04,
           "entry": 9323,
           "stopLoss": 8923,
-          "target1": 9516.85,
+          "target1": 9516.82,
           "target2": 9073.15,
           "rrRatio": 0.48,
           "location": {
@@ -3400,7 +3335,7 @@
         "penetrationAtr": 1.04,
         "entry": 9323,
         "stopLoss": 8923,
-        "target1": 9516.85,
+        "target1": 9516.82,
         "target2": 9073.15,
         "rrRatio": 0.48,
         "location": {
@@ -3427,16 +3362,16 @@
       "spotPrice": 8944.5,
       "dayChangePts": 176,
       "dayChangePct": 2.01,
-      "atr": 145.24,
+      "atr": 145.2,
       "ema": 8804.76,
       "bands": {
-        "bandPlus3": 9240.48,
-        "bandPlus2": 9095.24,
-        "bandPlus1": 8950,
+        "bandPlus3": 9240.36,
+        "bandPlus2": 9095.16,
+        "bandPlus1": 8949.96,
         "fairValue": 8804.76,
-        "bandMinus1": 8659.52,
-        "bandMinus2": 8514.28,
-        "bandMinus3": 8369.04
+        "bandMinus1": 8659.56,
+        "bandMinus2": 8514.36,
+        "bandMinus3": 8369.16
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -3455,7 +3390,7 @@
           "penetrationAtr": 0.81,
           "entry": 8714,
           "stopLoss": 8950.5,
-          "target1": 8567.47,
+          "target1": 8567.52,
           "target2": 8802.89,
           "rrRatio": 0.62,
           "location": {
@@ -3481,7 +3416,7 @@
           "penetrationAtr": 0.28,
           "entry": 8768.5,
           "stopLoss": 8672.5,
-          "target1": 8912.21,
+          "target1": 8912.16,
           "target2": 8791.45,
           "rrRatio": 1.5,
           "location": {
@@ -3506,7 +3441,7 @@
         "penetrationAtr": 0.28,
         "entry": 8768.5,
         "stopLoss": 8672.5,
-        "target1": 8912.21,
+        "target1": 8912.16,
         "target2": 8791.45,
         "rrRatio": 1.5,
         "location": {
@@ -3531,16 +3466,16 @@
       "spotPrice": 7516,
       "dayChangePts": 22.5,
       "dayChangePct": 0.3,
-      "atr": 129.96,
+      "atr": 129.98,
       "ema": 7699.21,
       "bands": {
-        "bandPlus3": 8089.09,
-        "bandPlus2": 7959.13,
-        "bandPlus1": 7829.17,
+        "bandPlus3": 8089.15,
+        "bandPlus2": 7959.17,
+        "bandPlus1": 7829.19,
         "fairValue": 7699.21,
-        "bandMinus1": 7569.25,
-        "bandMinus2": 7439.29,
-        "bandMinus3": 7309.33
+        "bandMinus1": 7569.23,
+        "bandMinus2": 7439.25,
+        "bandMinus3": 7309.27
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
@@ -3559,7 +3494,7 @@
           "penetrationAtr": 0.3,
           "entry": 7452.5,
           "stopLoss": 7570.5,
-          "target1": 7316.38,
+          "target1": 7316.36,
           "target2": 7760.57,
           "rrRatio": 1.15,
           "location": {
@@ -3582,7 +3517,7 @@
           "penetrationAtr": 0.25,
           "entry": 7500,
           "stopLoss": 7406,
-          "target1": 7635.28,
+          "target1": 7635.3,
           "target2": 7737.91,
           "rrRatio": 1.44,
           "location": {
@@ -3607,9 +3542,9 @@
           "penetrationAtr": 0.21,
           "entry": 7493.5,
           "stopLoss": 7552.5,
-          "target1": 7361.64,
+          "target1": 7361.62,
           "target2": 7716.66,
-          "rrRatio": 2.23,
+          "rrRatio": 2.24,
           "location": {
             "label": "VALUE_DISCOUNT",
             "zone": "VALUE_ZONE",
@@ -3631,9 +3566,9 @@
         "penetrationAtr": 0.21,
         "entry": 7493.5,
         "stopLoss": 7552.5,
-        "target1": 7361.64,
+        "target1": 7361.62,
         "target2": 7716.66,
-        "rrRatio": 2.23,
+        "rrRatio": 2.24,
         "location": {
           "label": "VALUE_DISCOUNT",
           "zone": "VALUE_ZONE",
@@ -3683,7 +3618,7 @@
           "penetrationAtr": 0.52,
           "entry": 298.65,
           "stopLoss": 308.15,
-          "target1": 291.51,
+          "target1": 291.52,
           "target2": 310.83,
           "rrRatio": 0.75,
           "location": {
@@ -3709,7 +3644,7 @@
         "penetrationAtr": 0.52,
         "entry": 298.65,
         "stopLoss": 308.15,
-        "target1": 291.51,
+        "target1": 291.52,
         "target2": 310.83,
         "rrRatio": 0.75,
         "location": {
@@ -3733,24 +3668,24 @@
       "sector": "FMCG",
       "timeframe": "1d",
       "spotPrice": 1372.4,
-      "dayChangePts": -12.1,
-      "dayChangePct": -0.87,
-      "atr": 30.64,
-      "ema": 1416.75,
+      "dayChangePts": 1.8,
+      "dayChangePct": 0.13,
+      "atr": 30.3,
+      "ema": 1412.75,
       "bands": {
-        "bandPlus3": 1508.67,
-        "bandPlus2": 1478.03,
-        "bandPlus1": 1447.39,
-        "fairValue": 1416.75,
-        "bandMinus1": 1386.11,
-        "bandMinus2": 1355.47,
-        "bandMinus3": 1324.83
+        "bandPlus3": 1503.65,
+        "bandPlus2": 1473.35,
+        "bandPlus1": 1443.05,
+        "fairValue": 1412.75,
+        "bandMinus1": 1382.45,
+        "bandMinus2": 1352.15,
+        "bandMinus3": 1321.85
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.45,
-        "text": "-1 to -2 ATR (-1.45 ATR)"
+        "atrOffset": -1.33,
+        "text": "-1 to -2 ATR (-1.33 ATR)"
       },
       "activeSetups": [
         {
@@ -3758,12 +3693,12 @@
           "direction": "SHORT",
           "triggerDate": "2026-09-15",
           "isLatestBar": false,
-          "barsAgo": 2,
+          "barsAgo": 3,
           "penetrationPts": 11.7,
           "penetrationAtr": 0.41,
           "entry": 1362,
           "stopLoss": 1395,
-          "target1": 1332.97,
+          "target1": 1332.96,
           "target2": 1424.45,
           "rrRatio": 0.88,
           "location": {
@@ -3781,12 +3716,12 @@
           "direction": "LONG",
           "triggerDate": "2026-09-16",
           "isLatestBar": false,
-          "barsAgo": 1,
+          "barsAgo": 2,
           "penetrationPts": 21.3,
           "penetrationAtr": 0.74,
           "entry": 1384.5,
           "stopLoss": 1362,
-          "target1": 1413.81,
+          "target1": 1413.82,
           "target2": 1420.98,
           "rrRatio": 1.3,
           "location": {
@@ -3799,33 +3734,59 @@
           "d1Date": "2026-09-14",
           "d2Date": "2026-09-15",
           "d3Date": "2026-09-16"
+        },
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "2026-09-18",
+          "isLatestBar": true,
+          "barsAgo": 0,
+          "penetrationPts": 37.3,
+          "penetrationAtr": 1.29,
+          "entry": 1372.4,
+          "stopLoss": 1332.8,
+          "target1": 1402.7,
+          "target2": 1412.75,
+          "rrRatio": 0.77,
+          "location": {
+            "label": "VALUE_DISCOUNT",
+            "zone": "VALUE_ZONE",
+            "atrOffset": -1.33,
+            "text": "-1 to -2 ATR (-1.33 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 2 ATR"
+          ],
+          "d1Date": "2026-09-17",
+          "d2Date": "2026-09-18"
         }
       ],
       "primarySetup": {
-        "version": "V2",
+        "version": "V1",
         "direction": "LONG",
-        "triggerDate": "2026-09-16",
-        "isLatestBar": false,
-        "barsAgo": 1,
-        "penetrationPts": 21.3,
-        "penetrationAtr": 0.74,
-        "entry": 1384.5,
-        "stopLoss": 1362,
-        "target1": 1413.81,
-        "target2": 1420.98,
-        "rrRatio": 1.3,
+        "triggerDate": "2026-09-18",
+        "isLatestBar": true,
+        "barsAgo": 0,
+        "penetrationPts": 37.3,
+        "penetrationAtr": 1.29,
+        "entry": 1372.4,
+        "stopLoss": 1332.8,
+        "target1": 1402.7,
+        "target2": 1412.75,
+        "rrRatio": 0.77,
         "location": {
           "label": "VALUE_DISCOUNT",
           "zone": "VALUE_ZONE",
-          "atrOffset": -1.24,
-          "text": "-1 to -2 ATR (-1.24 ATR)"
+          "atrOffset": -1.33,
+          "text": "-1 to -2 ATR (-1.33 ATR)"
         },
-        "reclaimedLevels": [],
-        "d1Date": "2026-09-14",
-        "d2Date": "2026-09-15",
-        "d3Date": "2026-09-16"
+        "reclaimedLevels": [
+          "EMA - 2 ATR"
+        ],
+        "d1Date": "2026-09-17",
+        "d2Date": "2026-09-18"
       },
-      "totalSetupsFound": 2
+      "totalSetupsFound": 3
     },
     {
       "symbol": "NSE:BRITANNIA",
@@ -3836,16 +3797,16 @@
       "spotPrice": 4998,
       "dayChangePts": 16,
       "dayChangePct": 0.32,
-      "atr": 91.71,
+      "atr": 91.7,
       "ema": 5130.96,
       "bands": {
-        "bandPlus3": 5406.09,
-        "bandPlus2": 5314.38,
-        "bandPlus1": 5222.67,
+        "bandPlus3": 5406.06,
+        "bandPlus2": 5314.36,
+        "bandPlus1": 5222.66,
         "fairValue": 5130.96,
-        "bandMinus1": 5039.25,
-        "bandMinus2": 4947.54,
-        "bandMinus3": 4855.83
+        "bandMinus1": 5039.26,
+        "bandMinus2": 4947.56,
+        "bandMinus3": 4855.86
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
@@ -3864,7 +3825,7 @@
           "penetrationAtr": 0.63,
           "entry": 4947.5,
           "stopLoss": 5022.5,
-          "target1": 4852.78,
+          "target1": 4852.79,
           "target2": 5174.2,
           "rrRatio": 1.26,
           "location": {
@@ -3887,7 +3848,7 @@
           "penetrationAtr": 0.15,
           "entry": 4999.5,
           "stopLoss": 4933,
-          "target1": 5094.64,
+          "target1": 5094.63,
           "target2": 5159.01,
           "rrRatio": 1.43,
           "location": {
@@ -3912,7 +3873,7 @@
           "penetrationAtr": 0.15,
           "entry": 4998,
           "stopLoss": 4968,
-          "target1": 5089.71,
+          "target1": 5089.7,
           "target2": 5130.96,
           "rrRatio": 3.06,
           "location": {
@@ -3936,7 +3897,7 @@
         "penetrationAtr": 0.15,
         "entry": 4998,
         "stopLoss": 4968,
-        "target1": 5089.71,
+        "target1": 5089.7,
         "target2": 5130.96,
         "rrRatio": 3.06,
         "location": {
@@ -3988,7 +3949,7 @@
           "penetrationAtr": 1.02,
           "entry": 986.1,
           "stopLoss": 1009.3,
-          "target1": 967.93,
+          "target1": 967.92,
           "target2": 1026.12,
           "rrRatio": 0.78,
           "location": {
@@ -4194,16 +4155,16 @@
       "spotPrice": 4800.3,
       "dayChangePts": 12.3,
       "dayChangePct": 0.26,
-      "atr": 107.44,
+      "atr": 107.45,
       "ema": 4841.45,
       "bands": {
-        "bandPlus3": 5163.77,
-        "bandPlus2": 5056.33,
-        "bandPlus1": 4948.89,
+        "bandPlus3": 5163.8,
+        "bandPlus2": 5056.35,
+        "bandPlus1": 4948.9,
         "fairValue": 4841.45,
-        "bandMinus1": 4734.01,
-        "bandMinus2": 4626.57,
-        "bandMinus3": 4519.13
+        "bandMinus1": 4734,
+        "bandMinus2": 4626.55,
+        "bandMinus3": 4519.1
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -4222,7 +4183,7 @@
           "penetrationAtr": 0.35,
           "entry": 4695,
           "stopLoss": 4940,
-          "target1": 4587.26,
+          "target1": 4587.25,
           "target2": 4865.62,
           "rrRatio": 0.44,
           "location": {
@@ -4300,16 +4261,16 @@
       "spotPrice": 2824,
       "dayChangePts": 35,
       "dayChangePct": 1.25,
-      "atr": 59.34,
+      "atr": 59.35,
       "ema": 2843.07,
       "bands": {
-        "bandPlus3": 3021.09,
-        "bandPlus2": 2961.75,
-        "bandPlus1": 2902.41,
+        "bandPlus3": 3021.12,
+        "bandPlus2": 2961.77,
+        "bandPlus1": 2902.42,
         "fairValue": 2843.07,
-        "bandMinus1": 2783.73,
-        "bandMinus2": 2724.39,
-        "bandMinus3": 2665.05
+        "bandMinus1": 2783.72,
+        "bandMinus2": 2724.37,
+        "bandMinus3": 2665.02
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -4328,14 +4289,14 @@
           "penetrationAtr": 0.26,
           "entry": 2730,
           "stopLoss": 2817.6,
-          "target1": 2670.39,
+          "target1": 2670.38,
           "target2": 2857.87,
           "rrRatio": 0.68,
           "location": {
             "label": "EXTREME_DISCOUNT",
             "zone": "DEEP_VALUE",
-            "atrOffset": -2.15,
-            "text": "Below -2 ATR (-2.15 ATR)"
+            "atrOffset": -2.14,
+            "text": "Below -2 ATR (-2.14 ATR)"
           },
           "reclaimedLevels": [
             "EMA - 1 ATR"
@@ -4354,7 +4315,7 @@
           "entry": 2769.7,
           "stopLoss": 2723.9,
           "target1": 2830.06,
-          "target2": 2850.21,
+          "target2": 2850.2,
           "rrRatio": 1.32,
           "location": {
             "label": "VALUE_DISCOUNT",
@@ -4380,7 +4341,7 @@
         "entry": 2769.7,
         "stopLoss": 2723.9,
         "target1": 2830.06,
-        "target2": 2850.21,
+        "target2": 2850.2,
         "rrRatio": 1.32,
         "location": {
           "label": "VALUE_DISCOUNT",

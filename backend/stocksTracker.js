@@ -16,6 +16,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { FNO_STOCK_METADATA, fetchRealtimeMicrostructureFeed } from './microstructure.js';
+import { recordDailyBlockDeals, updateForwardTrackingMetrics, seedInitialLedgerIfEmpty, loadBlockLedger } from './blockDealLedgerEngine.js';
+
+seedInitialLedgerIfEmpty();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -956,6 +959,10 @@ export async function computeStocksTrackerOverview(selectedSymbol = 'NSE:NIFTY',
       };
     });
 
+  // Automatically record block deals into persistent ledger and update forward day tracking
+  recordDailyBlockDeals(blockDeals, liveSpotMap);
+  const blockLedger = updateForwardTrackingMetrics(liveSpotMap);
+
   return {
     selectedSymbol,
     selectedSignature,
@@ -972,6 +979,7 @@ export async function computeStocksTrackerOverview(selectedSymbol = 'NSE:NIFTY',
       timeWindows
     },
     blockDeals: blockDeals.slice(0, 30),
+    blockLedger,
     darkPoolSignatures,
     liquidityPools,
     stealthDelivery,
@@ -1171,6 +1179,9 @@ export function startAutonomousEODStocksTrackerScheduler() {
 
   const checkAndRun = async () => {
     try {
+      // 1. All-Day Continuous Block Ledger & Forward Tracking Tick
+      updateForwardTrackingMetrics();
+
       const now = new Date();
       const istOffset = 5.5 * 60 * 60 * 1000;
       const istDate = new Date(now.getTime() + istOffset);

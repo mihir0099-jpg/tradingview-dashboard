@@ -1,19 +1,19 @@
 {
-  "timestamp": 1789893674477,
-  "dateStr": "2026-09-20",
-  "timeStr": "14:11:14 IST",
+  "timestamp": 1790046120258,
+  "dateStr": "2026-09-22",
+  "timeStr": "08:32:00 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23346.4,
+      "spot": 23414.3,
       "open": 23270.9,
-      "dayHigh": 23346.4,
-      "dayLow": 23346.4,
+      "dayHigh": 23455.55,
+      "dayLow": 23414.3,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
       "openType": "OPEN_DRIVE_BULLISH",
-      "dayType": "ROTATIONAL_BALANCED_DAY",
+      "dayType": "TREND_EXPANSION_DAY",
       "periodCExtension": "BULLISH_IB_EXTENSION",
       "periodGStatus": "CLOSED_OUTSIDE_IB_VALID",
       "periodLBehavior": "LATE_DAY_DRIVE_SUSTAINED",
@@ -22,14 +22,14 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 56358.7,
+      "spot": 56470.65,
       "open": 56420,
-      "dayHigh": 56358.7,
-      "dayLow": 56358.7,
+      "dayHigh": 56581.2,
+      "dayLow": 56470.65,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
-      "openType": "OPEN_AUCTION",
+      "openType": "OPEN_TEST_DRIVE",
       "dayType": "DOUBLE_DISTRIBUTION_DAY",
       "periodFExtension": "PERIOD_F_BULLISH_DRIVE",
       "periodGStatus": "SPIKE_ACCEPTANCE_FILTER_PASSED",
@@ -39,234 +39,211 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 9,
-    "volumeBreakoutCount": 50,
-    "distributionTrapCount": 29,
-    "swingLowFormations": 9,
-    "swingHighFormations": 29
+    "coilingDematCount": 15,
+    "volumeBreakoutCount": 5,
+    "distributionTrapCount": 8,
+    "swingLowFormations": 15,
+    "swingHighFormations": 8
   },
   "tomorrowHighConvictionWatchlist": [
     {
-      "rank": 1,
+      "rank": 3,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "CROMPTON",
-      "name": "Crompton Greaves Consumer",
-      "sector": "Consumer Electricals",
+      "symbol": "UNIONBANK",
+      "name": "Union Bank of India",
+      "sector": "Public Sector Banking",
       "trade": {
-        "action": "BUY CROMPTON 225 CE / Spot",
-        "spotEntry": 227.12,
-        "spotSL": 220.55,
-        "spotRiskPts": 6.57,
-        "spotTarget1": 237.63,
-        "spotTarget2": 245.52,
-        "atmStrike": 225,
-        "lotSize": 2150,
-        "riskPerLotINR": 14126,
-        "target1GainPerLotINR": 22596,
-        "target2GainPerLotINR": 39560,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹220.55",
+        "action": "BUY UNIONBANK 177.5 CE / Spot",
+        "spotEntry": 178.09,
+        "spotSL": 173.86,
+        "spotRiskPts": 4.23,
+        "spotTarget1": 184.86,
+        "spotTarget2": 189.93,
+        "atmStrike": 177.5,
+        "lotSize": 4425,
+        "riskPerLotINR": 18718,
+        "target1GainPerLotINR": 29957,
+        "target2GainPerLotINR": 52392,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹173.86",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 71,
-      "catalystRationale": "Range compressed to 33% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹222.3). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 60,
+      "catalystRationale": "Range compressed to 42.2% of ATR with 85% Demat delivery. Smart money hoarding at Demand Floor (₹174.74). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 2,
-      "type": "LONG_DEMAT_COIL_EXPANSION",
-      "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "CANBK",
-      "name": "Canara Bank",
-      "sector": "Public Sector Banking",
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "INDHOTEL",
+      "name": "The Indian Hotels Co.",
+      "sector": "Hotels & Hospitality",
       "trade": {
-        "action": "BUY CANBK 125 CE / Spot",
-        "spotEntry": 123.78,
-        "spotSL": 120.93,
-        "spotRiskPts": 2.85,
-        "spotTarget1": 128.34,
-        "spotTarget2": 131.76,
-        "atmStrike": 125,
-        "lotSize": 6750,
-        "riskPerLotINR": 19238,
-        "target1GainPerLotINR": 30780,
-        "target2GainPerLotINR": 53865,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹120.93",
+        "action": "BUY INDHOTEL 750 PE / Short Spot",
+        "spotEntry": 745,
+        "spotSL": 758.5,
+        "spotRiskPts": 13.5,
+        "spotTarget1": 723.4,
+        "spotTarget2": 707.2,
+        "atmStrike": 750,
+        "lotSize": 1000,
+        "riskPerLotINR": 13500,
+        "target1GainPerLotINR": 21600,
+        "target2GainPerLotINR": 37800,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹758.5",
         "rewardRiskRatio": 1.6,
-        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
-        "winRatePct": 82.5
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
       },
-      "confidencePct": 64,
-      "catalystRationale": "Range compressed to 41.9% of ATR with 85% Demat delivery. Smart money hoarding at Demand Floor (₹121.81). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 69,
+      "catalystRationale": "Tested 20-day Resistance (₹755) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     },
     {
       "rank": 3,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "LAURUSLABS",
-      "name": "Laurus Labs Ltd.",
+      "symbol": "AUROPHARMA",
+      "name": "Aurobindo Pharma Ltd.",
       "sector": "Pharmaceuticals",
       "trade": {
-        "action": "BUY LAURUSLABS 1960 PE / Short Spot",
-        "spotEntry": 1954,
-        "spotSL": 1991.94,
-        "spotRiskPts": 37.94,
-        "spotTarget1": 1893.3,
-        "spotTarget2": 1847.77,
-        "atmStrike": 1960,
-        "lotSize": 850,
-        "riskPerLotINR": 32249,
-        "target1GainPerLotINR": 51595,
-        "target2GainPerLotINR": 90296,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹1991.94",
+        "action": "BUY AUROPHARMA 1720 PE / Short Spot",
+        "spotEntry": 1713.4,
+        "spotSL": 1746.27,
+        "spotRiskPts": 32.87,
+        "spotTarget1": 1660.81,
+        "spotTarget2": 1621.36,
+        "atmStrike": 1720,
+        "lotSize": 550,
+        "riskPerLotINR": 18079,
+        "target1GainPerLotINR": 28925,
+        "target2GainPerLotINR": 50622,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹1746.27",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
       },
-      "confidencePct": 62,
-      "catalystRationale": "Tested 20-day Resistance (₹1982) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
-    },
-    {
-      "rank": 4,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "IDFCFIRSTB",
-      "name": "IDFC First Bank Ltd.",
-      "sector": "Private Banking",
-      "trade": {
-        "action": "BUY IDFCFIRSTB 85 PE / Short Spot",
-        "spotEntry": 85.92,
-        "spotSL": 88.98,
-        "spotRiskPts": 3.06,
-        "spotTarget1": 81.02,
-        "spotTarget2": 77.35,
-        "atmStrike": 85,
-        "lotSize": 9275,
-        "riskPerLotINR": 28382,
-        "target1GainPerLotINR": 45448,
-        "target2GainPerLotINR": 79487,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹88.98",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
-      },
-      "confidencePct": 65,
-      "catalystRationale": "Tested 20-day Resistance (₹88.1) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 59,
+      "catalystRationale": "Tested 20-day Resistance (₹1738.9) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
         "symbol": "CROMPTON",
-        "price": 227.12,
-        "compPct": 33,
-        "delivPct": 90,
+        "price": 225.05,
+        "compPct": 28.4,
+        "delivPct": 92,
         "floor": 222.3
       },
       {
-        "symbol": "CANBK",
-        "price": 123.78,
-        "compPct": 41.9,
+        "symbol": "SBICARD",
+        "price": 637,
+        "compPct": 38.4,
+        "delivPct": 79,
+        "floor": 610
+      },
+      {
+        "symbol": "UNIONBANK",
+        "price": 178.09,
+        "compPct": 42.2,
         "delivPct": 85,
-        "floor": 121.81
+        "floor": 174.74
       },
       {
-        "symbol": "KALYANKJIL",
-        "price": 581.85,
-        "compPct": 44.2,
-        "delivPct": 76,
-        "floor": 556.5
+        "symbol": "FINCABLES",
+        "price": 1399.7,
+        "compPct": 42.2,
+        "delivPct": 77,
+        "floor": 1010.45
       },
       {
-        "symbol": "PNB",
-        "price": 117.27,
-        "compPct": 48.3,
-        "delivPct": 83,
-        "floor": 113.16
-      },
-      {
-        "symbol": "LICHSGFIN",
-        "price": 548.15,
-        "compPct": 52,
-        "delivPct": 81,
-        "floor": 485.45
+        "symbol": "GODREJPROP",
+        "price": 1696.9,
+        "compPct": 42.3,
+        "delivPct": 77,
+        "floor": 1647.6
       }
     ],
     "volumeDrives": [
       {
-        "symbol": "INDUSINDBK",
-        "price": 966.3,
-        "volMult": 3.93,
-        "action": "BUY INDUSINDBK 960 CE / Spot"
+        "symbol": "PATANJALI",
+        "price": 396.2,
+        "volMult": 5.46,
+        "action": "BUY PATANJALI 395 CE / Spot"
       },
       {
-        "symbol": "LODHA",
-        "price": 1144.7,
-        "volMult": 2.9,
-        "action": "BUY LODHA 1140 CE / Spot"
+        "symbol": "MANKIND",
+        "price": 2437.8,
+        "volMult": 3.49,
+        "action": "BUY MANKIND 2440 CE / Spot"
       },
       {
-        "symbol": "FEDERALBNK",
-        "price": 332.75,
-        "volMult": 2.84,
-        "action": "BUY FEDERALBNK 335 CE / Spot"
+        "symbol": "OFSS",
+        "price": 10911,
+        "volMult": 2.6,
+        "action": "BUY OFSS 10900 PE / Short Spot"
       },
       {
-        "symbol": "BIOCON",
-        "price": 385,
-        "volMult": 2.69,
-        "action": "BUY BIOCON 385 CE / Spot"
+        "symbol": "GMRINFRA",
+        "price": 98.7,
+        "volMult": 2.1,
+        "action": "BUY GMRINFRA 100 PE / Short Spot"
       },
       {
-        "symbol": "JUBLFOOD",
-        "price": 500,
-        "volMult": 2.67,
-        "action": "BUY JUBLFOOD 500 CE / Spot"
+        "symbol": "BANDHANBNK",
+        "price": 179,
+        "volMult": 1.89
       }
     ],
     "distributionTraps": [
       {
-        "symbol": "LAURUSLABS",
-        "price": 1954,
-        "ceil": 1982,
-        "distCeilPct": 1.43
+        "symbol": "INDHOTEL",
+        "price": 745,
+        "ceil": 755,
+        "distCeilPct": 1.34
       },
       {
-        "symbol": "IDFCFIRSTB",
-        "price": 85.92,
-        "ceil": 88.1,
-        "distCeilPct": 2.54
+        "symbol": "AUROPHARMA",
+        "price": 1713.4,
+        "ceil": 1738.9,
+        "distCeilPct": 1.49
       },
       {
-        "symbol": "HDFCLIFE",
-        "price": 550.95,
-        "ceil": 564.95,
-        "distCeilPct": 2.54
+        "symbol": "UPL",
+        "price": 559.9,
+        "ceil": 591,
+        "distCeilPct": 5.55
       },
       {
-        "symbol": "BLUESTARCO",
-        "price": 1531.8,
-        "ceil": 1571.5,
-        "distCeilPct": 2.59
+        "symbol": "GMRINFRA",
+        "price": 98.7,
+        "ceil": 107.62,
+        "distCeilPct": 9.04
       },
       {
-        "symbol": "KOTAKBANK",
-        "price": 412.5,
-        "ceil": 429.1,
-        "distCeilPct": 4.02
+        "symbol": "BAJAJ-AUTO",
+        "price": 11414,
+        "ceil": 12470,
+        "distCeilPct": 9.25
       }
     ],
     "sectorLeadership": [
       {
         "sector": "Public Sector Banking",
-        "coilingCount": 3,
+        "coilingCount": 4,
         "totalStocks": 7
       },
       {
-        "sector": "Oil Refining & Marketing",
-        "coilingCount": 0,
-        "totalStocks": 3
+        "sector": "Information Technology",
+        "coilingCount": 4,
+        "totalStocks": 12
+      },
+      {
+        "sector": "Automobile",
+        "coilingCount": 2,
+        "totalStocks": 7
       },
       {
         "sector": "FMCG",
@@ -274,40 +251,35 @@
         "totalStocks": 4
       },
       {
-        "sector": "Automobile",
-        "coilingCount": 1,
-        "totalStocks": 7
-      },
-      {
-        "sector": "Pharmaceuticals",
-        "coilingCount": 0,
-        "totalStocks": 7
-      },
-      {
         "sector": "Banking & Financials",
-        "coilingCount": 0,
+        "coilingCount": 1,
         "totalStocks": 5
       },
       {
-        "sector": "Real Estate & Property",
-        "coilingCount": 0,
-        "totalStocks": 5
+        "sector": "City Gas Distribution",
+        "coilingCount": 1,
+        "totalStocks": 2
       },
       {
-        "sector": "Consumer Electricals",
+        "sector": "Automotive Software & Tech",
         "coilingCount": 1,
         "totalStocks": 1
+      },
+      {
+        "sector": "Power Utilities",
+        "coilingCount": 1,
+        "totalStocks": 5
       }
     ]
   },
   "forensicTakeaways": [
     {
       "title": "Macro Index Auction Character",
-      "finding": "Nifty printed a ROTATIONAL_BALANCED_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
+      "finding": "Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "9 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (3 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "15 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

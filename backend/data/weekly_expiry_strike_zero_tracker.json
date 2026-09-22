@@ -11,37 +11,79 @@
       {
         "date": "2026-09-16",
         "day": "Wed",
-        "time": "3:40:00 pm",
+        "time": "3:40:20 pm",
+        "niftySpot": 23217.6,
+        "bankSpot": 56292.45
+      },
+      {
+        "date": "2026-09-16",
+        "day": "Wed",
+        "time": "9:27:35 pm",
+        "niftySpot": 23217.6,
+        "bankSpot": 56292.45
+      },
+      {
+        "date": "2026-09-16",
+        "day": "Wed",
+        "time": "9:47:58 pm",
         "niftySpot": 23217.6,
         "bankSpot": 56292.45
       },
       {
         "date": "2026-09-17",
         "day": "Thu",
-        "time": "3:40:28 pm",
+        "time": "3:40:24 pm",
         "niftySpot": 23270.6,
         "bankSpot": 56055.75
       },
       {
         "date": "2026-09-18",
         "day": "Fri",
-        "time": "3:40:19 pm",
+        "time": "3:40:09 pm",
         "niftySpot": 23346.4,
         "bankSpot": 56358.7
       },
       {
         "date": "2026-09-19",
         "day": "Sat",
-        "time": "3:40:27 pm",
+        "time": "3:40:14 pm",
         "niftySpot": 23346.4,
         "bankSpot": 56358.7
       },
       {
-        "date": "2026-09-19",
-        "day": "Sat",
-        "time": "4:50:26 pm",
+        "date": "2026-09-20",
+        "day": "Sun",
+        "time": "3:40:13 pm",
         "niftySpot": 23346.4,
         "bankSpot": 56358.7
+      },
+      {
+        "date": "2026-09-21",
+        "day": "Mon",
+        "time": "3:40:15 pm",
+        "niftySpot": 23429,
+        "bankSpot": 56494.9
+      },
+      {
+        "date": "2026-09-21",
+        "day": "Mon",
+        "time": "5:51:46 pm",
+        "niftySpot": 23414.3,
+        "bankSpot": 56470.65
+      },
+      {
+        "date": "2026-09-21",
+        "day": "Mon",
+        "time": "5:54:27 pm",
+        "niftySpot": 23414.3,
+        "bankSpot": 56470.65
+      },
+      {
+        "date": "2026-09-21",
+        "day": "Mon",
+        "time": "6:11:15 pm",
+        "niftySpot": 23414.3,
+        "bankSpot": 56470.65
       }
     ],
     "niftyStrikes": [
@@ -221,11 +263,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -817.5999999999985,
         "initialLtp": 34.83,
-        "currentLtp": 1.87,
-        "decayPct": 94.6,
+        "currentLtp": 0.35,
+        "decayPct": 99,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 1.87
+        "lowestLtp": 0.35
       },
       {
         "strike": 22500,
@@ -235,11 +277,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -717.5999999999985,
         "initialLtp": 35.87,
-        "currentLtp": 5.51,
-        "decayPct": 84.6,
+        "currentLtp": 3.07,
+        "decayPct": 91.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 5.51
+        "lowestLtp": 2.55
       },
       {
         "strike": 22600,
@@ -249,11 +291,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -617.5999999999985,
         "initialLtp": 79.4,
-        "currentLtp": 20.14,
-        "decayPct": 74.6,
+        "currentLtp": 14.74,
+        "decayPct": 81.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 20.14
+        "lowestLtp": 13.58
       },
       {
         "strike": 22700,
@@ -263,11 +305,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -517.5999999999985,
         "initialLtp": 122.94,
-        "currentLtp": 43.47,
-        "decayPct": 64.6,
+        "currentLtp": 35.12,
+        "decayPct": 71.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 43.47
+        "lowestLtp": 33.32
       },
       {
         "strike": 22800,
@@ -277,11 +319,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -417.59999999999854,
         "initialLtp": 166.47,
-        "currentLtp": 75.51,
-        "decayPct": 54.6,
+        "currentLtp": 64.21,
+        "decayPct": 61.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 75.51
+        "lowestLtp": 61.76
       },
       {
         "strike": 22900,
@@ -291,11 +333,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -317.59999999999854,
         "initialLtp": 210,
-        "currentLtp": 116.26,
-        "decayPct": 44.6,
+        "currentLtp": 102,
+        "decayPct": 51.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 116.26
+        "lowestLtp": 98.91
       },
       {
         "strike": 23000,
@@ -305,11 +347,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -217.59999999999854,
         "initialLtp": 253.54,
-        "currentLtp": 165.71,
-        "decayPct": 34.6,
+        "currentLtp": 148.5,
+        "decayPct": 41.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 165.71
+        "lowestLtp": 144.77
       },
       {
         "strike": 23100,
@@ -319,11 +361,11 @@
         "initialSpot": 23217.6,
         "distFromAtm": -117.59999999999854,
         "initialLtp": 297.07,
-        "currentLtp": 223.87,
-        "decayPct": 24.6,
+        "currentLtp": 203.7,
+        "decayPct": 31.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 223.87
+        "lowestLtp": 199.33
       },
       {
         "strike": 23200,
@@ -361,10 +403,10 @@
         "initialSpot": 23217.6,
         "distFromAtm": 182.40000000000146,
         "initialLtp": 268.86,
-        "currentLtp": 254.45,
-        "decayPct": 5.4,
+        "currentLtp": 483.95,
+        "decayPct": -80,
         "expiredToZero": null,
-        "breached": false,
+        "breached": true,
         "lowestLtp": 219.82
       },
       {
@@ -375,8 +417,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 282.40000000000146,
         "initialLtp": 225.33,
-        "currentLtp": 190.72,
-        "decayPct": 15.4,
+        "currentLtp": 206.02,
+        "decayPct": 8.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 161.7
@@ -389,8 +431,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 382.40000000000146,
         "initialLtp": 181.79,
-        "currentLtp": 135.69,
-        "decayPct": 25.4,
+        "currentLtp": 148.03,
+        "decayPct": 18.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 112.27
@@ -403,8 +445,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 482.40000000000146,
         "initialLtp": 138.26,
-        "currentLtp": 89.37,
-        "decayPct": 35.4,
+        "currentLtp": 98.76,
+        "decayPct": 28.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 71.56
@@ -417,8 +459,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 582.4000000000015,
         "initialLtp": 94.73,
-        "currentLtp": 51.76,
-        "decayPct": 45.4,
+        "currentLtp": 58.19,
+        "decayPct": 38.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 39.56
@@ -431,8 +473,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 682.4000000000015,
         "initialLtp": 51.19,
-        "currentLtp": 22.85,
-        "decayPct": 55.4,
+        "currentLtp": 26.33,
+        "decayPct": 48.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 16.26
@@ -445,8 +487,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 782.4000000000015,
         "initialLtp": 34.83,
-        "currentLtp": 12.07,
-        "decayPct": 65.3,
+        "currentLtp": 14.43,
+        "decayPct": 58.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 7.58
@@ -459,8 +501,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 882.4000000000015,
         "initialLtp": 34.83,
-        "currentLtp": 8.58,
-        "decayPct": 75.4,
+        "currentLtp": 10.95,
+        "decayPct": 68.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 4.1
@@ -473,8 +515,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 982.4000000000015,
         "initialLtp": 34.83,
-        "currentLtp": 5.1,
-        "decayPct": 85.4,
+        "currentLtp": 7.46,
+        "decayPct": 78.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 0.61
@@ -487,8 +529,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 1082.4000000000015,
         "initialLtp": 34.83,
-        "currentLtp": 1.62,
-        "decayPct": 95.3,
+        "currentLtp": 3.98,
+        "decayPct": 88.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 0.35
@@ -501,8 +543,8 @@
         "initialSpot": 23217.6,
         "distFromAtm": 1182.4000000000015,
         "initialLtp": 34.83,
-        "currentLtp": 0.35,
-        "decayPct": 99,
+        "currentLtp": 0.5,
+        "decayPct": 98.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 0.35
@@ -769,11 +811,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -4792.449999999997,
         "initialLtp": 84.44,
-        "currentLtp": 2.39,
-        "decayPct": 97.2,
+        "currentLtp": 0.84,
+        "decayPct": 99,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 2.39
+        "lowestLtp": 0.84
       },
       {
         "strike": 52000,
@@ -783,11 +825,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -4292.449999999997,
         "initialLtp": 84.44,
-        "currentLtp": 10.83,
-        "decayPct": 87.2,
+        "currentLtp": 8.94,
+        "decayPct": 89.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 10.83
+        "lowestLtp": 8.53
       },
       {
         "strike": 52500,
@@ -797,11 +839,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -3792.449999999997,
         "initialLtp": 84.44,
-        "currentLtp": 19.27,
-        "decayPct": 77.2,
+        "currentLtp": 17.38,
+        "decayPct": 79.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 19.27
+        "lowestLtp": 16.97
       },
       {
         "strike": 53000,
@@ -811,11 +853,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -3292.449999999997,
         "initialLtp": 149.36,
-        "currentLtp": 49.03,
-        "decayPct": 67.2,
+        "currentLtp": 45.68,
+        "decayPct": 69.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 49.03
+        "lowestLtp": 44.96
       },
       {
         "strike": 53500,
@@ -825,11 +867,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -2792.449999999997,
         "initialLtp": 254.91,
-        "currentLtp": 109.17,
-        "decayPct": 57.2,
+        "currentLtp": 103.46,
+        "decayPct": 59.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 109.17
+        "lowestLtp": 102.22
       },
       {
         "strike": 54000,
@@ -839,11 +881,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -2292.449999999997,
         "initialLtp": 360.46,
-        "currentLtp": 190.42,
-        "decayPct": 47.2,
+        "currentLtp": 182.35,
+        "decayPct": 49.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 190.42
+        "lowestLtp": 180.6
       },
       {
         "strike": 54500,
@@ -853,11 +895,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -1792.449999999997,
         "initialLtp": 466.01,
-        "currentLtp": 292.78,
-        "decayPct": 37.2,
+        "currentLtp": 282.34,
+        "decayPct": 39.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 292.78
+        "lowestLtp": 280.08
       },
       {
         "strike": 55000,
@@ -867,11 +909,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -1292.449999999997,
         "initialLtp": 571.55,
-        "currentLtp": 416.24,
-        "decayPct": 27.2,
+        "currentLtp": 403.44,
+        "decayPct": 29.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 416.24
+        "lowestLtp": 400.67
       },
       {
         "strike": 55500,
@@ -881,11 +923,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -792.4499999999971,
         "initialLtp": 677.1,
-        "currentLtp": 560.81,
-        "decayPct": 17.2,
+        "currentLtp": 545.65,
+        "decayPct": 19.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 560.81
+        "lowestLtp": 542.37
       },
       {
         "strike": 56000,
@@ -895,11 +937,11 @@
         "initialSpot": 56292.45,
         "distFromAtm": -292.4499999999971,
         "initialLtp": 782.65,
-        "currentLtp": 726.5,
-        "decayPct": 7.2,
+        "currentLtp": 708.98,
+        "decayPct": 9.4,
         "expiredToZero": null,
         "breached": false,
-        "lowestLtp": 726.5
+        "lowestLtp": 705.18
       },
       {
         "strike": 56500,
@@ -923,8 +965,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 707.5500000000029,
         "initialLtp": 695.03,
-        "currentLtp": 605.89,
-        "decayPct": 12.8,
+        "currentLtp": 621.45,
+        "decayPct": 10.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 563.77
@@ -937,8 +979,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 1207.550000000003,
         "initialLtp": 589.48,
-        "currentLtp": 454.93,
-        "decayPct": 22.8,
+        "currentLtp": 468.12,
+        "decayPct": 20.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 419.21
@@ -951,8 +993,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 1707.550000000003,
         "initialLtp": 483.93,
-        "currentLtp": 325.08,
-        "decayPct": 32.8,
+        "currentLtp": 335.91,
+        "decayPct": 30.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 295.75
@@ -965,8 +1007,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 2207.550000000003,
         "initialLtp": 378.38,
-        "currentLtp": 216.33,
-        "decayPct": 42.8,
+        "currentLtp": 224.81,
+        "decayPct": 40.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 193.41
@@ -979,8 +1021,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 2707.550000000003,
         "initialLtp": 272.83,
-        "currentLtp": 128.7,
-        "decayPct": 52.8,
+        "currentLtp": 134.81,
+        "decayPct": 50.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 112.17
@@ -993,8 +1035,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 3207.550000000003,
         "initialLtp": 167.28,
-        "currentLtp": 62.18,
-        "decayPct": 62.8,
+        "currentLtp": 65.93,
+        "decayPct": 60.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 52.05
@@ -1007,8 +1049,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 3707.550000000003,
         "initialLtp": 84.44,
-        "currentLtp": 22.95,
-        "decayPct": 72.8,
+        "currentLtp": 24.84,
+        "decayPct": 70.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 17.83
@@ -1021,8 +1063,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 4207.550000000003,
         "initialLtp": 84.44,
-        "currentLtp": 14.5,
-        "decayPct": 82.8,
+        "currentLtp": 16.39,
+        "decayPct": 80.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 9.39
@@ -1035,8 +1077,8 @@
         "initialSpot": 56292.45,
         "distFromAtm": 4707.550000000003,
         "initialLtp": 84.44,
-        "currentLtp": 6.06,
-        "decayPct": 92.8,
+        "currentLtp": 7.95,
+        "decayPct": 90.6,
         "expiredToZero": null,
         "breached": false,
         "lowestLtp": 0.94
@@ -2453,7 +2495,14 @@
         {
           "date": "2026-09-15",
           "day": "Tue",
-          "time": "3:40:26 pm",
+          "time": "3:40:29 pm",
+          "niftySpot": 23118.6,
+          "bankSpot": 55794.75
+        },
+        {
+          "date": "2026-09-15",
+          "day": "Tue",
+          "time": "6:13:06 pm",
           "niftySpot": 23118.6,
           "bankSpot": 55794.75
         }
@@ -3630,7 +3679,7 @@
     "safeDistanceNiftyPts": 180,
     "safeDistanceBankNiftyPts": 650
   },
-  "lastUpdated": "2026-09-19 4:50:26 pm",
+  "lastUpdated": "2026-09-21 6:11:15 pm",
   "onlineExpiriesCache": {
     "NIFTY": [
       "2026-09-22",
@@ -3642,6 +3691,6 @@
       "2026-09-29",
       "2026-10-27"
     ],
-    "lastFetched": "2026-09-19T11:20:27.752Z"
+    "lastFetched": "2026-09-21T12:41:16.315Z"
   }
 }

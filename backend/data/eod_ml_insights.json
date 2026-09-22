@@ -1,9 +1,9 @@
 {
-  "date": "2026-09-20",
-  "generatedAtIST": "2026-09-20T14:10:39.495Z",
+  "date": "2026-09-22",
+  "generatedAtIST": "2026-09-22T08:31:25.278Z",
   "sessionSummary": {
-    "date": "2026-09-20",
-    "dayOfWeek": "Sunday",
+    "date": "2026-09-22",
+    "dayOfWeek": "Tuesday",
     "nifty": {
       "open": 23201.05,
       "close": 23217.6,
@@ -37,7 +37,7 @@
     "targetOutcome": "BALANCED_VARIATION"
   },
   "machineLearningMetrics": {
-    "sessionsAnalyzed": 13,
+    "sessionsAnalyzed": 14,
     "featureImportance": {
       "pcr_velocity_1015_drift": 0.32,
       "initial_balance_width_pct": 0.26,
@@ -46,24 +46,24 @@
       "period_l_volume_confirmation": 0.1
     },
     "empiricalRates": {
-      "periodAHeldExtremeRate": "84.6%",
+      "periodAHeldExtremeRate": "78.6%",
       "periodCContinuationRate": "66.7%",
-      "pcrPredictiveAccuracy": "61.5%",
-      "periodLExtremeRate": "23.1%",
-      "trendDayFrequency": "7.7%",
-      "rotationalDayFrequency": "23.1%"
+      "pcrPredictiveAccuracy": "57.1%",
+      "periodLExtremeRate": "21.4%",
+      "trendDayFrequency": "7.1%",
+      "rotationalDayFrequency": "28.6%"
     },
     "learnedRules": [
       {
         "feature": "First-Hour PCR Velocity (Rule 2D)",
         "rule": "If 10:15 AM PCR drift is within -0.03 to +0.03, market exhibits Open Auction Rotation with 86.4% probability of staying range-bound.",
-        "historicalReliability": "61.5%",
+        "historicalReliability": "57.1%",
         "activeToday": true
       },
       {
         "feature": "Period A Extreme Anchor (Rule 5A)",
         "rule": "If Period A (09:15-09:45 AM) establishes the session extreme and rejects it in Period B, that boundary holds as the day extreme with >62% probability.",
-        "historicalReliability": "84.6%",
+        "historicalReliability": "78.6%",
         "activeToday": true
       },
       {
@@ -75,7 +75,7 @@
       {
         "feature": "Late-Day Session Extreme in Period L (Rule 4C)",
         "rule": "Over 30% of all sessions establish their absolute high or low of the day during Period L (14:45 - 15:15 IST). Do not exit trend positions before 15:00 IST.",
-        "historicalReliability": "23.1%",
+        "historicalReliability": "21.4%",
         "activeToday": false
       }
     ]

@@ -1,0 +1,137 @@
+{
+  "updated_at": "2026-09-20",
+  "horizon": "Active Weekly Monitoring + Multi-Year Compounding (2026-2027)",
+  "special_featured_stock": {
+    "symbol": "TIMEX",
+    "name": "Timex Group India Limited",
+    "last_closing_price": 714.20,
+    "recent_high_ath": 729.55,
+    "theme": "Luxury Licensing Pivot, Operating Leverage, Premiumization",
+    "key_fundamentals": {
+      "sales_growth_yoy": "48%",
+      "pbt_growth_yoy": "151%",
+      "q1_net_profit_growth": "70.55%",
+      "roce": "82.8%",
+      "catalyst": "Global luxury brand licensing (Guess, Gc, Versace, Ferragamo, Nautica), low float supply scarcity"
+    },
+    "technical_structure": "Fresh All-Time High breakout from a VCP base (600 support held on volume dry-up, broke out on massive volume)",
+    "tracking_levels": {
+      "support_1_pullback_entry": 640.0,
+      "support_2_deep_base": 605.0,
+      "breakout_pivot": 730.0,
+      "initial_runway_target": 820.0,
+      "macro_target_2027": 1050.0
+    },
+    "action_rule": "Do not chase green climax spikes; buy pullbacks to the 20 EMA (635-645 zone) with SL below 595"
+  },
+  "structural_2027_leaders": [
+    {
+      "symbol": "MCX",
+      "price": 3260.0,
+      "ud_vol_ratio": 1.58,
+      "theme": "Commodity Derivatives Monopoly + In-House Software Margin Explosion",
+      "catalyst": "Software vendor exit saves 60-80 Cr/qtr; EBITDA margin expands to 65%+; option turnover compounding at >60%",
+      "support_zone": 3100.0,
+      "resistance_pivot": 3480.0,
+      "target_2027": 4500.0
+    },
+    {
+      "symbol": "KALYANKJIL",
+      "price": 581.85,
+      "ud_vol_ratio": 2.40,
+      "theme": "Jewelry Retail Market Share Grab + Asset-Light FOCO Model",
+      "catalyst": "Duty cut fuels formalization shift; 80+ stores/yr expansion; ROCE expansion from 12% to 22%+",
+      "support_zone": 550.0,
+      "resistance_pivot": 650.0,
+      "target_2027": 900.0
+    },
+    {
+      "symbol": "FINCABLES",
+      "price": 1411.20,
+      "ud_vol_ratio": 4.75,
+      "theme": "Telecom Optical Fiber, 5G, Data Centers & Real Estate Capex",
+      "catalyst": "Highest institutional accumulation metric (4.75x U/D vol); surging demand for optical fiber & industrial cables",
+      "support_zone": 1340.0,
+      "resistance_pivot": 1500.0,
+      "target_2027": 2100.0
+    },
+    {
+      "symbol": "PAYTM",
+      "price": 1849.90,
+      "ud_vol_ratio": 1.94,
+      "theme": "Regulatory Overhang Cleared + Operating Leverage Turnaround",
+      "catalyst": "Soundbox monetization, operating cost rationalization, EBITDA positive inflection",
+      "support_zone": 1750.0,
+      "resistance_pivot": 1855.0,
+      "target_2027": 2600.0
+    },
+    {
+      "symbol": "SIEMENS",
+      "price": 3913.90,
+      "ud_vol_ratio": 1.97,
+      "theme": "Energy Business Demerger + Smart Grid & Industrial Automation",
+      "catalyst": "Demerger of energy business unlocking pure-play institutional valuation multiples",
+      "support_zone": 3750.0,
+      "resistance_pivot": 4150.0,
+      "target_2027": 5500.0
+    },
+    {
+      "symbol": "RADICO",
+      "price": 4535.40,
+      "ud_vol_ratio": 1.47,
+      "theme": "Liquor Premiumization + Luxury Craft Spirits",
+      "catalyst": "Prestige & Above brands (Rampur, Jaisalmer) growing 30%+ with luxury gross margins >50%",
+      "support_zone": 4350.0,
+      "resistance_pivot": 4750.0,
+      "target_2027": 6200.0
+    },
+    {
+      "symbol": "BHEL",
+      "price": 439.90,
+      "ud_vol_ratio": 1.23,
+      "theme": "Thermal Power Supercycle + Defense Turbines + Vande Bharat",
+      "catalyst": "Multi-GW thermal orders from NTPC, turnaround in balance sheet & capacity utilization",
+      "support_zone": 410.0,
+      "resistance_pivot": 445.0,
+      "target_2027": 650.0
+    },
+    {
+      "symbol": "AUROPHARMA",
+      "price": 1734.00,
+      "ud_vol_ratio": 1.18,
+      "theme": "Fresh All-Time High Breakout + Biosimilars & Injectable Demerger",
+      "catalyst": "Eugia demerger, steady US generic pricing, European market expansion",
+      "support_zone": 1640.0,
+      "resistance_pivot": 1750.0,
+      "target_2027": 2400.0
+    },
+    {
+      "symbol": "HAL",
+      "price": 4800.30,
+      "ud_vol_ratio": 1.43,
+      "theme": "Indigenous Aerospace Monopoly + Defense Exports",
+      "catalyst": "1.2 Lakh Cr order backlog, Tejas Mk1A delivery ramp, sovereign defense capex",
+      "support_zone": 4500.0,
+      "resistance_pivot": 5150.0,
+      "target_2027": 7000.0
+    },
+    {
+      "symbol": "CGPOWER",
+      "price": 892.00,
+      "ud_vol_ratio": 1.13,
+      "theme": "High-ROCE Industrial Motors + OSAT Semiconductor Plant",
+      "catalyst": "Semiconductor packaging facility commissioning by 2026-2027, ROCE >35%",
+      "support_zone": 830.0,
+      "resistance_pivot": 980.0,
+      "target_2027": 1350.0
+    }
+  ],
+  "weekly_pressure_cooker_triggers": [
+    { "symbol": "BHARTIARTL", "spot": 1893.3, "trigger": 1895.5, "sl": 1827.6, "t1": 1960.0 },
+    { "symbol": "PAYTM", "spot": 1849.9, "trigger": 1855.5, "sl": 1752.7, "t1": 1950.0 },
+    { "symbol": "ABCAPITAL", "spot": 410.05, "trigger": 410.35, "sl": 381.4, "t1": 440.0 },
+    { "symbol": "JUBLFOOD", "spot": 500.0, "trigger": 502.7, "sl": 467.35, "t1": 535.0 },
+    { "symbol": "VBL", "spot": 421.95, "trigger": 420.9, "sl": 411.0, "t1": 435.0 },
+    { "symbol": "BHEL", "spot": 439.9, "trigger": 442.65, "sl": 410.8, "t1": 470.0 }
+  ]
+}

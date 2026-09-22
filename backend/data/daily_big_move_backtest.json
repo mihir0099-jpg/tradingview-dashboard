@@ -1,0 +1,34 @@
+{
+  "total_candles": 104073,
+  "big_bull_count": 2710,
+  "big_bear_count": 2146,
+  "bull_nr7_pct": 18.3,
+  "bull_nr4_pct": 29.5,
+  "bull_atr_squeeze_pct": 9.7,
+  "bull_vol_dryup_pct": 27.2,
+  "bull_ema_pinch_pct": 3.6,
+  "bull_spring_pct": 9.2,
+  "bear_nr7_pct": 10.4,
+  "bear_nr4_pct": 20.2,
+  "bear_atr_squeeze_pct": 5.5,
+  "bear_vol_dryup_pct": 23.1,
+  "bear_ema_pinch_pct": 2.9,
+  "bear_upthrust_pct": 6.6,
+  "double_inside_bar": {
+    "total": 895,
+    "win_rate": 53.3,
+    "avg_return": 0.52
+  },
+  "volume_dryup_breakout": {
+    "total": 895,
+    "win_rate": 55.4,
+    "avg_return": 0.9,
+    "avg_max_gain": 4.31
+  },
+  "liquidity_sweep_reversal": {
+    "total": 15786,
+    "win_rate": 51.1,
+    "avg_return": 0.09,
+    "avg_max_gain": 2.91
+  }
+}

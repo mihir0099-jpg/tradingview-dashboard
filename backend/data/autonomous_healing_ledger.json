@@ -1,267 +1,219 @@
 [
   {
-    "timestamp": 1789893656070,
-    "istTime": "20/9/2026, 2:10:56 pm",
+    "timestamp": 1790046102400,
+    "istTime": "22/9/2026, 8:31:42 am",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1790046101773,
+    "istTime": "22/9/2026, 8:31:41 am",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789892718029,
-    "istTime": "20/9/2026, 1:55:18 pm",
+    "timestamp": 1789994477349,
+    "istTime": "21/9/2026, 6:11:17 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789994476705,
+    "istTime": "21/9/2026, 6:11:16 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789891934412,
-    "istTime": "20/9/2026, 1:42:14 pm",
+    "timestamp": 1789994475674,
+    "istTime": "21/9/2026, 6:11:15 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789994475063,
+    "istTime": "21/9/2026, 6:11:15 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789891565177,
-    "istTime": "20/9/2026, 1:36:05 pm",
+    "timestamp": 1789994471857,
+    "istTime": "21/9/2026, 6:11:11 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789994471454,
+    "istTime": "21/9/2026, 6:11:11 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789994471138,
+    "istTime": "21/9/2026, 6:11:11 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789890623073,
-    "istTime": "20/9/2026, 1:20:23 pm",
+    "timestamp": 1789994470840,
+    "istTime": "21/9/2026, 6:11:10 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789887201386,
-    "istTime": "20/9/2026, 12:23:21 pm",
+    "timestamp": 1789993469042,
+    "istTime": "21/9/2026, 5:54:29 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789993468418,
+    "istTime": "21/9/2026, 5:54:28 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789886871111,
-    "istTime": "20/9/2026, 12:17:51 pm",
+    "timestamp": 1789993464773,
+    "istTime": "21/9/2026, 5:54:24 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789993464160,
+    "istTime": "21/9/2026, 5:54:24 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789886744172,
-    "istTime": "20/9/2026, 12:15:44 pm",
+    "timestamp": 1789993307987,
+    "istTime": "21/9/2026, 5:51:47 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789993307359,
+    "istTime": "21/9/2026, 5:51:47 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789886436229,
-    "istTime": "20/9/2026, 12:10:36 pm",
+    "timestamp": 1789993304091,
+    "istTime": "21/9/2026, 5:51:44 pm",
+    "component": "📊 Matrix Scanner (5m)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored 5-minute intraday scanner levels",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1789993303464,
+    "istTime": "21/9/2026, 5:51:43 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789885995749,
-    "istTime": "20/9/2026, 12:03:15 pm",
+    "timestamp": 1789986613540,
+    "istTime": "21/9/2026, 4:00:13 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789885925471,
-    "istTime": "20/9/2026, 12:02:05 pm",
+    "timestamp": 1789986612874,
+    "istTime": "21/9/2026, 4:00:12 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789826181371,
-    "istTime": "19/9/2026, 7:26:21 pm",
+    "timestamp": 1789986602827,
+    "istTime": "21/9/2026, 4:00:02 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
   },
   {
-    "timestamp": 1789816827108,
-    "istTime": "19/9/2026, 4:50:27 pm",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
+    "timestamp": 1789982660312,
+    "istTime": "21/9/2026, 2:54:20 pm",
+    "component": "DayRangeEngine",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Re-seeded index memory cache from baseline values",
+    "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789816822927,
-    "istTime": "19/9/2026, 4:50:22 pm",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
+    "timestamp": 1789982660308,
+    "istTime": "21/9/2026, 2:54:20 pm",
+    "component": "DayRangeEngine",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Re-seeded index memory cache from baseline values",
+    "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789813833350,
-    "istTime": "19/9/2026, 4:00:33 pm",
-    "component": "⛓️ Options Chain",
-    "error": "Request timeout (>6000ms)",
-    "remedyAction": "Refreshed live option chain strikes and Greeks",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
+    "timestamp": 1789982653842,
+    "istTime": "21/9/2026, 2:54:13 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789813829318,
-    "istTime": "19/9/2026, 4:00:29 pm",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
+    "timestamp": 1789982653831,
+    "istTime": "21/9/2026, 2:54:13 pm",
+    "component": "FrontendRoot",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Reloaded static index.html into RAM cache",
+    "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789813829128,
-    "istTime": "19/9/2026, 4:00:29 pm",
-    "component": "⛓️ Options Chain",
-    "error": "Request timeout (>6000ms)",
-    "remedyAction": "Refreshed live option chain strikes and Greeks",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
+    "timestamp": 1789982645381,
+    "istTime": "21/9/2026, 2:54:05 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
   },
   {
-    "timestamp": 1789813820651,
-    "istTime": "19/9/2026, 4:00:20 pm",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789813816333,
-    "istTime": "19/9/2026, 4:00:16 pm",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789794791931,
-    "istTime": "19/9/2026, 10:43:11 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789794282114,
-    "istTime": "19/9/2026, 10:34:42 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789793589530,
-    "istTime": "19/9/2026, 10:23:09 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789791974441,
-    "istTime": "19/9/2026, 9:56:14 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789791695569,
-    "istTime": "19/9/2026, 9:51:35 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789790916558,
-    "istTime": "19/9/2026, 9:38:36 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789789698084,
-    "istTime": "19/9/2026, 9:18:18 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789789375563,
-    "istTime": "19/9/2026, 9:12:55 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789788653841,
-    "istTime": "19/9/2026, 9:00:53 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789788065662,
-    "istTime": "19/9/2026, 8:51:05 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789788032040,
-    "istTime": "19/9/2026, 8:50:32 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789787337329,
-    "istTime": "19/9/2026, 8:38:57 am",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789730495106,
-    "istTime": "18/9/2026, 4:51:35 pm",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1789730489624,
-    "istTime": "18/9/2026, 4:51:29 pm",
-    "component": "📊 Matrix Scanner (Daily)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
+    "timestamp": 1789982645375,
+    "istTime": "21/9/2026, 2:54:05 pm",
+    "component": "HealthCheck",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
+    "status": "AUTO_RESOLVED"
   },
   {
     "timestamp": 1789728688484,
@@ -611,110 +563,6 @@
     "timestamp": 1789614552748,
     "istTime": "17/9/2026, 8:39:12 am",
     "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789614552149,
-    "istTime": "17/9/2026, 8:39:11 am",
-    "component": "PatternForecaster",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Restored healthy forecast cache in memory",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789596073149,
-    "istTime": "17/9/2026, 3:31:13 am",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789596072058,
-    "istTime": "17/9/2026, 3:31:12 am",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551725596,
-    "istTime": "16/9/2026, 3:12:05 pm",
-    "component": "FrontendRoot",
-    "error": "fetch failed",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551725589,
-    "istTime": "16/9/2026, 3:12:05 pm",
-    "component": "FrontendRoot",
-    "error": "fetch failed",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551725555,
-    "istTime": "16/9/2026, 3:12:05 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551725549,
-    "istTime": "16/9/2026, 3:12:05 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551366642,
-    "istTime": "16/9/2026, 3:06:06 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551362083,
-    "istTime": "16/9/2026, 3:06:02 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551356723,
-    "istTime": "16/9/2026, 3:05:56 pm",
-    "component": "HealthCheck",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551124074,
-    "istTime": "16/9/2026, 3:02:04 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551124066,
-    "istTime": "16/9/2026, 3:02:04 pm",
-    "component": "FrontendRoot",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Reloaded static index.html into RAM cache",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789551116119,
-    "istTime": "16/9/2026, 3:01:56 pm",
-    "component": "HealthCheck",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"

@@ -13,4 +13,5 @@ backend/data/*_config.json
 .env.*
 catboost_info/
 *.zip
+*.backup.json
 

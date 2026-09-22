@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-18T10:17:14.555Z",
-  "total_sessions_scanned": 33,
+  "last_updated": "2026-09-21T10:17:13.062Z",
+  "total_sessions_scanned": 34,
   "active_triggers": 27,
   "wins": 18,
   "mistakes_learned": 9,
@@ -23,6 +23,19 @@
     }
   ],
   "recent_sessions": [
+    {
+      "date": "2026_09_18",
+      "niftyClose": 23346.4,
+      "changePct": 0.33,
+      "ce": 92.15,
+      "pe": 88.8,
+      "skew": 1.9,
+      "signal": "NEUTRAL",
+      "predicted": "RANGE_BOUND",
+      "actual": "BULLISH",
+      "outcome": "NEUTRAL_PASS",
+      "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
+    },
     {
       "date": "2026_09_17",
       "niftyClose": 23270.6,
@@ -139,19 +152,6 @@
       "actual": "BEARISH",
       "outcome": "NEUTRAL_PASS",
       "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
-    },
-    {
-      "date": "2026_08_28",
-      "niftyClose": 24175.65,
-      "changePct": 0.35,
-      "ce": 97.5,
-      "pe": 70.75,
-      "skew": 15.9,
-      "signal": "CALL_WRITING_RESISTANCE",
-      "predicted": "BEARISH",
-      "actual": "BULLISH",
-      "outcome": "MISTAKE_CORRECTED",
-      "lesson": "FAILURE MISTAKE: Short-Covering Squeeze. Call writers got trapped as buyers broke past morning resistance with volume. Adaptation rule: Exit short calls immediately if Period C candle closes above IB High."
     }
   ]
 }

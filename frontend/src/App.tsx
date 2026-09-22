@@ -37,6 +37,7 @@ import { OrderFlowContainer } from './components/OrderFlowContainer';
 import { GexContainer } from './components/GexContainer';
 import { ValueTraderContainer } from './components/ValueTraderContainer';
 import { StockPcrScannerContainer } from './components/StockPcrScannerContainer';
+import { InstitutionalMLSuiteV2Card } from './components/InstitutionalMLSuiteV2Card';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'stock_pcr' | 'gex_algo' | 'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
+  const [activeTab, setActiveTab] = useState<'institutional_ml_v2' | 'stock_pcr' | 'gex_algo' | 'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
   const [biasData, setBiasData] = useState<any>(null);
   const [chartFeedSource, setChartFeedSource] = useState<'angelone' | 'tradingview'>('angelone');
 
@@ -208,6 +209,27 @@ function App() {
 
       {/* Navigation Tabs */}
       <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', paddingBottom: '2px', flexWrap: 'wrap' }}>
+        <button
+          onClick={() => setActiveTab('institutional_ml_v2')}
+          style={{
+            background: activeTab === 'institutional_ml_v2' ? 'linear-gradient(135deg, rgba(56, 189, 248, 0.3) 0%, rgba(139, 92, 246, 0.3) 100%)' : 'rgba(56, 189, 248, 0.08)',
+            border: activeTab === 'institutional_ml_v2' ? '1px solid #38bdf8' : '1px solid rgba(56, 189, 248, 0.25)',
+            borderBottom: activeTab === 'institutional_ml_v2' ? '2px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'institutional_ml_v2' ? '#38bdf8' : '#e2e8f0',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '900',
+            cursor: 'pointer',
+            borderRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            boxShadow: activeTab === 'institutional_ml_v2' ? '0 0 14px rgba(56, 189, 248, 0.4)' : 'none'
+          }}
+        >
+          🧠 Institutional AI V2 (6 Engines)
+        </button>
         <button
           onClick={() => setActiveTab('historical')}
           style={{
@@ -891,6 +913,11 @@ function App() {
       {/* Main Workspace */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', minHeight: '0' }}>
         <ErrorBoundary key={activeTab} fallbackTitle={`Error Loading Tab (${activeTab})`}>
+        {activeTab === 'institutional_ml_v2' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <InstitutionalMLSuiteV2Card />
+          </div>
+        )}
         {activeTab === 'historical' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0 }}>
             <HistoricalMatchingCasesContainer />

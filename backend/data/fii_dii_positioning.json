@@ -1,14 +1,14 @@
 {
   "asOfDate": "18-09-2026",
-  "fetchedAt": "2026-09-19T15:40:38.874Z",
+  "fetchedAt": "2026-09-21T13:03:34.441Z",
   "cashMarket": {
-    "fiiNetCrores": 599.54,
-    "fiiBuyCrores": 38461.63,
-    "fiiSellCrores": 37862.09,
-    "diiNetCrores": 1019.69,
-    "diiBuyCrores": 17310.04,
-    "diiSellCrores": 16290.35,
-    "cashDate": "18-Sep-2026"
+    "fiiNetCrores": -576.2,
+    "fiiBuyCrores": 10637.17,
+    "fiiSellCrores": 11213.37,
+    "diiNetCrores": 2797.27,
+    "diiBuyCrores": 14098.64,
+    "diiSellCrores": 11301.37,
+    "cashDate": "21-Sep-2026"
   },
   "fnoDerivatives": {
     "fii": {
@@ -40,6 +40,6 @@
   "verdict": {
     "bias": "EXTREME_BEARISH_TRAP_RISK",
     "message": "FIIs hold a massive 2,88,428 net short contracts in Index Futures (12.6% Long). Extreme short concentration means any sharp intraday dip will see aggressive short covering rallies, while resistance near POC will be defended.",
-    "cashFlowDirection": "NET_INFLOW"
+    "cashFlowDirection": "NET_OUTFLOW"
   }
 }

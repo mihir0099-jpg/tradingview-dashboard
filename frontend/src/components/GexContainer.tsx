@@ -149,11 +149,24 @@ export interface AlgoStatus {
     istTime: string;
     istDate: string;
     dayOfWeek: number;
+    dayName?: string;
     isWeekend: boolean;
     isHoliday: boolean;
     isMarketHours: boolean;
+    isNewEntryAllowed?: boolean;
     isEODExit: boolean;
     statusReason: string;
+    statusMessage?: string;
+    holidayDetails?: {
+      date: string;
+      description: string;
+      weekday?: string;
+    } | null;
+    nextHoliday?: {
+      date: string;
+      description: string;
+      weekday?: string;
+    } | null;
   };
   paperCapital: number;
   cashBalance: number;
@@ -851,8 +864,8 @@ function formatGexVal(val: number, unit = 'Cr'): string {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: algoStatus?.marketSession?.isMarketHours ? 'rgba(16, 185, 129, 0.08)' : 'rgba(234, 179, 8, 0.08)',
-        border: `1px solid ${algoStatus?.marketSession?.isMarketHours ? 'rgba(16, 185, 129, 0.25)' : 'rgba(234, 179, 8, 0.25)'}`,
+        backgroundColor: algoStatus?.marketSession?.isMarketHours ? 'rgba(16, 185, 129, 0.08)' : (algoStatus?.marketSession?.isHoliday ? 'rgba(239, 68, 68, 0.12)' : 'rgba(234, 179, 8, 0.08)'),
+        border: `1px solid ${algoStatus?.marketSession?.isMarketHours ? 'rgba(16, 185, 129, 0.25)' : (algoStatus?.marketSession?.isHoliday ? 'rgba(239, 68, 68, 0.3)' : 'rgba(234, 179, 8, 0.25)')}`,
         borderRadius: '6px',
         padding: '8px 12px',
         marginBottom: '10px',
@@ -860,29 +873,47 @@ function formatGexVal(val: number, unit = 'Cr'): string {
         flexWrap: 'wrap',
         gap: '8px'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
           <span style={{ fontSize: '13px' }}>⏰</span>
           <span style={{ color: '#f8fafc', fontWeight: 800 }}>
             IST Market Schedule:
           </span>
           <span style={{
-            backgroundColor: algoStatus?.marketSession?.isMarketHours ? 'rgba(16, 185, 129, 0.2)' : 'rgba(234, 179, 8, 0.2)',
-            color: algoStatus?.marketSession?.isMarketHours ? '#34d399' : '#facc15',
+            backgroundColor: algoStatus?.marketSession?.isMarketHours
+              ? 'rgba(16, 185, 129, 0.2)'
+              : (algoStatus?.marketSession?.isHoliday ? 'rgba(239, 68, 68, 0.25)' : 'rgba(234, 179, 8, 0.2)'),
+            color: algoStatus?.marketSession?.isMarketHours
+              ? '#34d399'
+              : (algoStatus?.marketSession?.isHoliday ? '#f87171' : '#facc15'),
             padding: '2px 7px',
             borderRadius: '4px',
             fontWeight: 800,
             fontSize: '10.5px'
           }}>
             {algoStatus?.marketSession?.isMarketHours
-              ? '🟢 MARKET ACTIVE (09:15 – 15:15 IST)'
+              ? '🟢 MARKET ACTIVE (09:15 – 15:00 IST Entry Window)'
+              : algoStatus?.marketSession?.isHoliday
+              ? `⛔ NSE HOLIDAY: ${algoStatus.marketSession.holidayDetails?.description || 'CLOSED'}`
+              : algoStatus?.marketSession?.statusReason === 'PRE_MARKET'
+              ? '🟡 PRE-MARKET (Opens 09:15 AM IST)'
+              : algoStatus?.marketSession?.statusReason === 'POST_MARKET'
+              ? '🔴 POST-MARKET (Closed 03:15 PM IST)'
+              : algoStatus?.marketSession?.statusReason === 'EOD_CLOSING'
+              ? '🟠 EOD CLOSING (03:00 - 03:15 PM IST: Managing Exits)'
               : `⏸️ MARKET OFFLINE (${algoStatus?.marketSession?.statusReason || 'CLOSED'})`}
           </span>
           <span style={{ color: '#94a3b8' }}>
             Current IST: <strong style={{ color: '#f8fafc' }}>{algoStatus?.marketSession?.istTime || '--'}</strong> ({algoStatus?.marketSession?.istDate || '--'})
           </span>
+          {algoStatus?.marketSession?.nextHoliday && (
+            <span style={{ color: '#cbd5e1', backgroundColor: 'rgba(255,255,255,0.05)', padding: '2px 6px', borderRadius: '4px', fontSize: '10px' }}>
+              🏖️ Next Holiday: <strong style={{ color: '#f59e0b' }}>{algoStatus.marketSession.nextHoliday.description}</strong> ({algoStatus.marketSession.nextHoliday.date})
+            </span>
+          )}
         </div>
-        <div style={{ color: '#94a3b8', fontSize: '10.5px' }}>
-          ⚡ Auto-starts at 09:15 AM · Mandatory intraday square-off at 03:15 PM · Sleeps on weekends & NSE holidays
+        <div style={{ color: '#94a3b8', fontSize: '10.5px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <span style={{ color: '#38bdf8', fontSize: '10px', backgroundColor: 'rgba(56, 189, 248, 0.12)', padding: '2px 6px', borderRadius: '3px', fontWeight: 600 }}>🌐 Online NSE Holiday Master Active</span>
+          <span>⚡ 09:15 AM – 03:00 PM (Entries) · 03:15 PM Square-off</span>
         </div>
       </div>
 

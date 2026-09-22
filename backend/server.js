@@ -27,6 +27,7 @@ import { executeUnsupervisedML, getUnsupervisedMLInsights, executeUnifiedMLSuite
 import { initLotSizeService } from './lot_size_service.js';
 import { stockPcrScannerEngine } from './stock_pcr_scanner_engine.js';
 import { getInstitutionalMLV2Insights, executeInstitutionalMLV2, startInstitutionalMLScheduler } from './institutional_ml_v2_service.js';
+import { initHolidayService } from './holiday_service.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -6286,6 +6287,26 @@ app.get('/api/lot-sizes/:symbol', async (req, res) => {
   }
 });
 
+// ── Official NSE Trading Holidays API (Dynamic Live Online Master) ─────────
+app.get('/api/holidays', async (req, res) => {
+  try {
+    const { getAllHolidays, getLiveMarketSession, fetchOnlineNseHolidays } = await import('./holiday_service.js');
+    if (req.query.refresh === 'true') {
+      await fetchOnlineNseHolidays();
+    }
+    const holidays = getAllHolidays();
+    const marketSession = getLiveMarketSession();
+    res.json({
+      success: true,
+      totalCount: holidays.length,
+      marketSession,
+      holidays
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // ── 💎 The Value Trader (ATR & EMA Value Band Rejection Engine) ────────────
 app.get('/api/value-trader/overview', async (req, res) => {
   try {
@@ -6523,6 +6544,7 @@ server.on('error', (err) => {
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend server listening on 0.0.0.0:${PORT}`);
   initLotSizeService();
+  initHolidayService();
   startPostMarketScheduler();
   startIntradayCheckpointScheduler();
   start247KeepAliveEngine(PORT);
