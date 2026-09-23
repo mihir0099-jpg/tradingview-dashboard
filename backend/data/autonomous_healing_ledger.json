@@ -1,19 +1,43 @@
 [
   {
-    "timestamp": 1790050177626,
-    "istTime": "22/9/2026, 9:39:37 am",
-    "component": "📊 Matrix Scanner (5m)",
-    "error": "Zero data / empty payload returned",
-    "remedyAction": "Restored 5-minute intraday scanner levels",
-    "status": "HEAL_APPLIED_RETRY_QUEUED"
-  },
-  {
-    "timestamp": 1790050177007,
-    "istTime": "22/9/2026, 9:39:37 am",
+    "timestamp": 1790161828283,
+    "istTime": "23/9/2026, 4:40:28 pm",
     "component": "📊 Matrix Scanner (Daily)",
     "error": "Zero data / empty payload returned",
     "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
     "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1790161827315,
+    "istTime": "23/9/2026, 4:40:27 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1790159408833,
+    "istTime": "23/9/2026, 4:00:08 pm",
+    "component": "📊 Matrix Scanner (Daily)",
+    "error": "Zero data / empty payload returned",
+    "remedyAction": "Restored Matrix Scanner levels from scanner_results_backup.json",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1790135942192,
+    "istTime": "23/9/2026, 9:29:02 am",
+    "component": "PatternForecaster",
+    "error": "The operation was aborted due to timeout",
+    "remedyAction": "Restored healthy forecast cache in memory",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1790135816113,
+    "istTime": "23/9/2026, 9:26:56 am",
+    "component": "MemoryShield",
+    "error": "High RSS Memory (444 MB)",
+    "remedyAction": "Flushed non-critical volatile caches",
+    "status": "AUTO_RESOLVED"
   },
   {
     "timestamp": 1790049441939,
@@ -393,22 +417,6 @@
   },
   {
     "timestamp": 1789614553470,
-    "istTime": "17/9/2026, 8:39:13 am",
-    "component": "PatternForecaster",
-    "error": "fetch failed",
-    "remedyAction": "Restored healthy forecast cache in memory",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789614553408,
-    "istTime": "17/9/2026, 8:39:13 am",
-    "component": "PatternForecaster",
-    "error": "fetch failed",
-    "remedyAction": "Restored healthy forecast cache in memory",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1789614553328,
     "istTime": "17/9/2026, 8:39:13 am",
     "component": "PatternForecaster",
     "error": "fetch failed",

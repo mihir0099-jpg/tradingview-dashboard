@@ -1,38 +1,38 @@
 {
   "date": "2026-09-23",
-  "generatedAtIST": "2026-09-23T08:25:05.331Z",
+  "generatedAtIST": "2026-09-23T16:40:25.175Z",
   "sessionSummary": {
     "date": "2026-09-23",
     "dayOfWeek": "Wednesday",
     "nifty": {
-      "open": 23201.05,
-      "close": 23217.6,
-      "dayHigh": 23284.75,
-      "dayLow": 23116.35,
-      "changePct": 0.07,
-      "ibRange": 164.7,
-      "ibWidthPct": 0.71,
+      "open": 23352.15,
+      "close": 23446.8,
+      "dayHigh": 23466.9,
+      "dayLow": 23349.7,
+      "changePct": 0.41,
+      "ibRange": 64.2,
+      "ibWidthPct": 0.27,
       "dayType": "NORMAL_VARIATION_BULL",
-      "periodAHeldExtreme": true,
-      "periodAHeldLow": true,
+      "periodAHeldExtreme": false,
+      "periodAHeldLow": false,
       "periodAHeldHigh": false,
       "periodCExtension": "NONE",
-      "periodGExtension": "INSIDE_IB",
+      "periodGExtension": "BULLISH_CLOSE",
       "sessionExtremeInL": false,
-      "hodTime": "13:09:00",
-      "lodTime": "09:45:00"
+      "hodTime": "12:20:00",
+      "lodTime": "09:54:00"
     },
     "banknifty": {
-      "open": 55994.35,
-      "close": 56292.45,
-      "changePct": 0.53,
+      "open": 56228.45,
+      "close": 56548.9,
+      "changePct": 0.57,
       "dayType": "NORMAL_VARIATION_BULL"
     },
     "options": {
-      "pcrDrift": -0.011,
-      "pcrSignal": "NEUTRAL",
-      "morningSkew": -6.04,
-      "closingSkew": 9.14
+      "pcrDrift": 0.41,
+      "pcrSignal": "BULLISH",
+      "morningSkew": 6.401573082805334,
+      "closingSkew": 6.811005863779887
     },
     "targetOutcome": "BALANCED_VARIATION"
   },
@@ -46,7 +46,7 @@
       "period_l_volume_confirmation": 0.1
     },
     "empiricalRates": {
-      "periodAHeldExtremeRate": "80.0%",
+      "periodAHeldExtremeRate": "73.3%",
       "periodCContinuationRate": "71.4%",
       "pcrPredictiveAccuracy": "60.0%",
       "periodLExtremeRate": "20.0%",
@@ -58,13 +58,13 @@
         "feature": "First-Hour PCR Velocity (Rule 2D)",
         "rule": "If 10:15 AM PCR drift is within -0.03 to +0.03, market exhibits Open Auction Rotation with 86.4% probability of staying range-bound.",
         "historicalReliability": "60.0%",
-        "activeToday": true
+        "activeToday": false
       },
       {
         "feature": "Period A Extreme Anchor (Rule 5A)",
         "rule": "If Period A (09:15-09:45 AM) establishes the session extreme and rejects it in Period B, that boundary holds as the day extreme with >62% probability.",
-        "historicalReliability": "80.0%",
-        "activeToday": true
+        "historicalReliability": "73.3%",
+        "activeToday": false
       },
       {
         "feature": "Period C Morning Extension (Rule 4A)",
@@ -83,21 +83,17 @@
   "nextDayForecast": {
     "forecastFor": "Next Trading Day",
     "probabilities": {
-      "gapUpPct": 51.5,
-      "gapDownPct": 48.5,
+      "gapUpPct": 68.4,
+      "gapDownPct": 31.6,
       "neutralOpenPct": 50
     },
-    "predictedDayType": "OPEN_AUCTION_ROTATIONAL",
-    "primaryReasoning": "Price closed squarely inside the value area equilibrium. Expect a rotational open test tomorrow.",
+    "predictedDayType": "TREND_CONTINUATION_BULL",
+    "primaryReasoning": "Strong institutional close in the upper 33% of the daily range indicates aggressive overnight inventory holding.",
     "keyLevelsToWatch": {
-      "bullishPivot": 23284.75,
-      "bearishPivot": 23116.35,
-      "equilibriumPOC": 23206.23
+      "bullishPivot": 23466.9,
+      "bearishPivot": 23349.7,
+      "equilibriumPOC": 23421.13
     }
   },
-  "lessonsLearnedToday": [
-    "Neutral First-Hour PCR drift (-0.011) confirmed Open Auction Rotation; lack of institutional writing conviction produced range-bound oscillation.",
-    "Rule 5A held: Period A (09:45 AM) formed the session Low of the Day (23,116.35) and held as solid floor all day.",
-    "Period G stayed inside Initial Balance, resulting in lunchtime option decay as per Rule 2; breakout chasing was penalized."
-  ]
+  "lessonsLearnedToday": []
 }

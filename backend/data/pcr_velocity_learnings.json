@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-09-22T10:17:21.323Z",
-  "total_sessions_scanned": 34,
-  "active_triggers": 27,
+  "last_updated": "2026-09-23T10:17:06.977Z",
+  "total_sessions_scanned": 35,
+  "active_triggers": 28,
   "wins": 18,
-  "mistakes_learned": 9,
-  "live_accuracy_pct": "66.7%",
+  "mistakes_learned": 10,
+  "live_accuracy_pct": "64.3%",
   "auto_learned_adaptations": [
     {
       "rule_id": "ADAPT_01_PERIOD_C_FILTER",
@@ -23,6 +23,19 @@
     }
   ],
   "recent_sessions": [
+    {
+      "date": "2026_09_22",
+      "niftyClose": 23329,
+      "changePct": -0.43,
+      "ce": 0.05,
+      "pe": 20.9,
+      "skew": -99.5,
+      "signal": "PUT_WRITING_SUPPORT",
+      "predicted": "BULLISH",
+      "actual": "BEARISH",
+      "outcome": "MISTAKE_CORRECTED",
+      "lesson": "FAILURE MISTAKE: Long Liquidation. Put writers failed to defend morning support. Adaptation rule: Invalidate put writing support if spot breaks below IB Low in Period C."
+    },
     {
       "date": "2026_09_18",
       "niftyClose": 23346.4,
@@ -134,19 +147,6 @@
       "ce": 130.35,
       "pe": 114.7,
       "skew": 6.4,
-      "signal": "NEUTRAL",
-      "predicted": "RANGE_BOUND",
-      "actual": "BEARISH",
-      "outcome": "NEUTRAL_PASS",
-      "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
-    },
-    {
-      "date": "2026_08_31",
-      "niftyClose": 24080.4,
-      "changePct": -0.39,
-      "ce": 60.8,
-      "pe": 61.6,
-      "skew": -0.7,
       "signal": "NEUTRAL",
       "predicted": "RANGE_BOUND",
       "actual": "BEARISH",

@@ -5,9 +5,9 @@
     "exchange": "NSE",
     "lotSize": 65,
     "description": "The deepest options book in India. Gamma flip, call and put walls, and intraday ΔGEX for the weekly expiry.",
-    "spotPrice": 23354.05,
-    "netGex": -417.04,
-    "absGex": 275060.94,
+    "spotPrice": 23424.45,
+    "netGex": 8212.69,
+    "absGex": 273936.23,
     "regime": "FLIP ZONE",
     "unit": "₹ Cr",
     "volatilitySkew": {
@@ -20,649 +20,649 @@
       "skewDescription": "OTM Puts bloated with extreme crash protection premium. Elevated downside hedging pressure."
     },
     "momentum": {
-      "m5": -5.8,
-      "m15": -12.8,
-      "day": -116.8
+      "m5": 2.9,
+      "m15": 6.4,
+      "day": 2299.6
     },
     "gammaFlip": {
       "mid": 23353,
       "band": "23350 – 23400",
-      "isSpotInside": true,
+      "isSpotInside": false,
       "spreadPts": 50
     },
     "walls": {
-      "callWall": 23400,
+      "callWall": 23500,
       "putWall": 23300,
-      "callDistPts": 46,
-      "putDistPts": 54
+      "callDistPts": 75.5,
+      "putDistPts": 124.5
     },
     "expiryDate": "2026-09-22",
     "dte": 3,
     "strikes": [
       {
-        "strike": 21950,
+        "strike": 22000,
         "callGex": 0,
         "putGex": 0,
         "netGex": 0,
         "absGex": 0,
-        "callOi": 4653,
-        "putOi": 15511,
-        "iv": 13.2,
-        "isAtm": false
-      },
-      {
-        "strike": 22000,
-        "callGex": 0.01,
-        "putGex": 0.01,
-        "netGex": 0,
-        "absGex": 0.01,
-        "callOi": 40194,
-        "putOi": 52315,
-        "iv": 13.2,
+        "callOi": 39653,
+        "putOi": 50511,
+        "iv": 13.3,
         "isAtm": false
       },
       {
         "strike": 22050,
         "callGex": 0,
-        "putGex": 0.01,
-        "netGex": -0.01,
-        "absGex": 0.01,
-        "callOi": 5798,
-        "putOi": 19328,
+        "putGex": 0,
+        "netGex": 0,
+        "absGex": 0,
+        "callOi": 5194,
+        "putOi": 17315,
         "iv": 13.2,
         "isAtm": false
       },
       {
         "strike": 22100,
-        "callGex": 0.04,
-        "putGex": 0.05,
-        "netGex": -0.01,
-        "absGex": 0.09,
-        "callOi": 41473,
-        "putOi": 56576,
+        "callGex": 0.01,
+        "putGex": 0.02,
+        "netGex": 0,
+        "absGex": 0.03,
+        "callOi": 40798,
+        "putOi": 54328,
         "iv": 13.2,
         "isAtm": false
       },
       {
         "strike": 22150,
-        "callGex": 0.01,
-        "putGex": 0.05,
-        "netGex": -0.03,
-        "absGex": 0.06,
-        "callOi": 7225,
-        "putOi": 24084,
-        "iv": 13.1,
+        "callGex": 0,
+        "putGex": 0.01,
+        "netGex": -0.01,
+        "absGex": 0.02,
+        "callOi": 6473,
+        "putOi": 21576,
+        "iv": 13.2,
         "isAtm": false
       },
       {
         "strike": 22200,
-        "callGex": 0.2,
-        "putGex": 0.29,
-        "netGex": -0.09,
-        "absGex": 0.48,
-        "callOi": 43065,
-        "putOi": 61885,
+        "callGex": 0.07,
+        "putGex": 0.09,
+        "netGex": -0.03,
+        "absGex": 0.16,
+        "callOi": 42225,
+        "putOi": 59084,
         "iv": 13.1,
         "isAtm": false
       },
       {
         "strike": 22250,
-        "callGex": 0.09,
-        "putGex": 0.3,
-        "netGex": -0.21,
-        "absGex": 0.39,
-        "callOi": 9003,
-        "putOi": 30011,
+        "callGex": 0.03,
+        "putGex": 0.1,
+        "netGex": -0.07,
+        "absGex": 0.12,
+        "callOi": 8065,
+        "putOi": 26885,
         "iv": 13.1,
         "isAtm": false
       },
       {
         "strike": 22300,
-        "callGex": 0.93,
-        "putGex": 1.42,
-        "netGex": -0.48,
-        "absGex": 2.35,
-        "callOi": 45050,
-        "putOi": 68501,
+        "callGex": 0.34,
+        "putGex": 0.5,
+        "netGex": -0.16,
+        "absGex": 0.84,
+        "callOi": 44003,
+        "putOi": 65011,
         "iv": 13.1,
         "isAtm": false
       },
       {
         "strike": 22350,
-        "callGex": 0.47,
-        "putGex": 1.56,
-        "netGex": -1.09,
-        "absGex": 2.03,
-        "callOi": 11219,
-        "putOi": 37396,
-        "iv": 13,
+        "callGex": 0.16,
+        "putGex": 0.54,
+        "netGex": -0.38,
+        "absGex": 0.7,
+        "callOi": 10050,
+        "putOi": 33501,
+        "iv": 13.1,
         "isAtm": false
       },
       {
         "strike": 22400,
-        "callGex": 3.88,
-        "putGex": 6.27,
-        "netGex": -2.39,
-        "absGex": 10.15,
-        "callOi": 47523,
-        "putOi": 76744,
+        "callGex": 1.52,
+        "putGex": 2.38,
+        "netGex": -0.86,
+        "absGex": 3.91,
+        "callOi": 46219,
+        "putOi": 72396,
         "iv": 13,
         "isAtm": false
       },
       {
         "strike": 22450,
-        "callGex": 2.16,
-        "putGex": 7.21,
-        "netGex": -5.05,
-        "absGex": 9.38,
-        "callOi": 13980,
-        "putOi": 46598,
+        "callGex": 0.81,
+        "putGex": 2.71,
+        "netGex": -1.9,
+        "absGex": 3.53,
+        "callOi": 12523,
+        "putOi": 41744,
         "iv": 13,
         "isAtm": false
       },
       {
         "strike": 22500,
-        "callGex": 14.38,
-        "putGex": 24.73,
-        "netGex": -10.35,
-        "absGex": 39.12,
-        "callOi": 50605,
-        "putOi": 87017,
-        "iv": 12.9,
+        "callGex": 6.09,
+        "putGex": 10.15,
+        "netGex": -4.06,
+        "absGex": 16.25,
+        "callOi": 48980,
+        "putOi": 81598,
+        "iv": 13,
         "isAtm": false
       },
       {
         "strike": 22550,
-        "callGex": 8.8,
-        "putGex": 29.33,
-        "netGex": -20.53,
-        "absGex": 38.13,
-        "callOi": 17420,
-        "putOi": 58065,
-        "iv": 12.9,
+        "callGex": 3.6,
+        "putGex": 11.99,
+        "netGex": -8.4,
+        "absGex": 15.59,
+        "callOi": 15605,
+        "putOi": 52017,
+        "iv": 13,
         "isAtm": false
       },
       {
         "strike": 22600,
-        "callGex": 47.33,
-        "putGex": 86.77,
-        "netGex": -39.44,
-        "absGex": 134.1,
-        "callOi": 54445,
-        "putOi": 99817,
+        "callGex": 21.69,
+        "putGex": 38.52,
+        "netGex": -16.82,
+        "absGex": 60.21,
+        "callOi": 52420,
+        "putOi": 93065,
         "iv": 12.9,
         "isAtm": false
       },
       {
         "strike": 22650,
-        "callGex": 31.42,
-        "putGex": 104.75,
-        "netGex": -73.33,
-        "absGex": 136.17,
-        "callOi": 21706,
-        "putOi": 72354,
+        "callGex": 13.99,
+        "putGex": 46.62,
+        "netGex": -32.64,
+        "absGex": 60.61,
+        "callOi": 19445,
+        "putOi": 64817,
         "iv": 12.9,
         "isAtm": false
       },
       {
         "strike": 22700,
-        "callGex": 138.2,
-        "putGex": 270.12,
-        "netGex": -131.92,
-        "absGex": 408.32,
-        "callOi": 59230,
-        "putOi": 115767,
-        "iv": 12.8,
+        "callGex": 68.63,
+        "putGex": 129.94,
+        "netGex": -61.3,
+        "absGex": 198.57,
+        "callOi": 56706,
+        "putOi": 107354,
+        "iv": 12.9,
         "isAtm": false
       },
       {
         "strike": 22750,
-        "callGex": 98.41,
-        "putGex": 328.02,
-        "netGex": -229.62,
-        "absGex": 426.43,
-        "callOi": 27047,
-        "putOi": 90158,
-        "iv": 12.8,
+        "callGex": 47.77,
+        "putGex": 159.22,
+        "netGex": -111.46,
+        "absGex": 206.99,
+        "callOi": 24230,
+        "putOi": 80767,
+        "iv": 12.9,
         "isAtm": false
       },
       {
         "strike": 22800,
-        "callGex": 357.77,
-        "putGex": 744.4,
-        "netGex": -386.63,
-        "absGex": 1102.18,
-        "callOi": 65192,
-        "putOi": 135642,
+        "callGex": 192.81,
+        "putGex": 388.93,
+        "netGex": -196.12,
+        "absGex": 581.74,
+        "callOi": 62047,
+        "putOi": 125158,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 22850,
-        "callGex": 269.83,
-        "putGex": 899.44,
-        "netGex": -629.61,
-        "absGex": 1169.27,
-        "callOi": 33703,
-        "putOi": 112344,
+        "callGex": 143.1,
+        "putGex": 477.01,
+        "netGex": -333.91,
+        "absGex": 620.11,
+        "callOi": 30192,
+        "putOi": 100642,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 22900,
-        "callGex": 820.18,
-        "putGex": 1811.61,
-        "netGex": -991.43,
-        "absGex": 2631.79,
-        "callOi": 72622,
-        "putOi": 160407,
-        "iv": 12.7,
+        "callGex": 480.47,
+        "putGex": 1030.45,
+        "netGex": -549.97,
+        "absGex": 1510.92,
+        "callOi": 68703,
+        "putOi": 147344,
+        "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 22950,
-        "callGex": 646.85,
-        "putGex": 2156.14,
-        "netGex": -1509.29,
-        "absGex": 2802.99,
-        "callOi": 41997,
-        "putOi": 139989,
+        "callGex": 375.5,
+        "putGex": 1251.68,
+        "netGex": -876.17,
+        "absGex": 1627.18,
+        "callOi": 37622,
+        "putOi": 125407,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 23000,
-        "callGex": 1662.43,
-        "putGex": 3883.33,
-        "netGex": -2220.91,
-        "absGex": 5545.76,
-        "callOi": 81880,
-        "putOi": 191267,
+        "callGex": 1060.63,
+        "putGex": 2410.47,
+        "netGex": -1349.84,
+        "absGex": 3471.11,
+        "callOi": 76997,
+        "putOi": 174989,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 23050,
-        "callGex": 1353.5,
-        "putGex": 4511.67,
-        "netGex": -3158.17,
-        "absGex": 5865.17,
-        "callOi": 52331,
-        "putOi": 174437,
+        "callGex": 861.71,
+        "putGex": 2872.37,
+        "netGex": -2010.66,
+        "absGex": 3734.09,
+        "callOi": 46880,
+        "putOi": 156267,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 23100,
-        "callGex": 2973.85,
-        "putGex": 7313.05,
-        "netGex": -4339.2,
-        "absGex": 10286.9,
-        "callOi": 93416,
-        "putOi": 229721,
-        "iv": 12.6,
+        "callGex": 2070.61,
+        "putGex": 4965.74,
+        "netGex": -2895.13,
+        "absGex": 7036.35,
+        "callOi": 87331,
+        "putOi": 209437,
+        "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 23150,
-        "callGex": 2468.21,
-        "putGex": 8227.32,
-        "netGex": -5759.11,
-        "absGex": 10695.53,
-        "callOi": 65209,
-        "putOi": 217362,
+        "callGex": 1726.66,
+        "putGex": 5755.58,
+        "netGex": -4028.91,
+        "absGex": 7482.24,
+        "callOi": 58416,
+        "putOi": 194721,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23200,
-        "callGex": 4685.15,
-        "putGex": 15544.74,
-        "netGex": -10859.59,
-        "absGex": 20229.9,
-        "callOi": 107791,
-        "putOi": 357637,
+        "callGex": 3568.05,
+        "putGex": 11834.1,
+        "netGex": -8266.05,
+        "absGex": 15402.15,
+        "callOi": 100209,
+        "putOi": 332362,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23250,
-        "callGex": 3916.14,
-        "putGex": 18355.31,
-        "netGex": -14439.17,
-        "absGex": 22271.44,
-        "callOi": 81255,
-        "putOi": 380850,
+        "callGex": 3016.23,
+        "putGex": 14612.15,
+        "netGex": -11595.93,
+        "absGex": 17628.38,
+        "callOi": 72791,
+        "putOi": 352637,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23300,
-        "callGex": 6485.3,
-        "putGex": 27980.76,
-        "netGex": -21495.46,
-        "absGex": 34466.07,
-        "callOi": 125703,
-        "putOi": 542344,
-        "iv": 12.5,
+        "callGex": 5414.86,
+        "putGex": 23794.08,
+        "netGex": -18379.22,
+        "absGex": 29208.93,
+        "callOi": 116255,
+        "putOi": 510850,
+        "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23350,
-        "callGex": 16791.62,
-        "putGex": 17991.02,
-        "netGex": -1199.4,
-        "absGex": 34782.63,
-        "callOi": 315000,
-        "putOi": 337500,
-        "iv": 12.5,
-        "isAtm": true
-      },
-      {
-        "strike": 23400,
-        "callGex": 27145.67,
-        "putGex": 6341.7,
-        "netGex": 20803.97,
-        "absGex": 33487.37,
-        "callOi": 512188,
-        "putOi": 119656,
+        "callGex": 4585.9,
+        "putGex": 15286.36,
+        "netGex": -10700.46,
+        "absGex": 19872.25,
+        "callOi": 90703,
+        "putOi": 302344,
         "iv": 12.5,
         "isAtm": false
       },
       {
+        "strike": 23400,
+        "callGex": 28878.54,
+        "putGex": 19738.08,
+        "netGex": 9140.45,
+        "absGex": 48616.62,
+        "callOi": 545000,
+        "putOi": 372500,
+        "iv": 12.5,
+        "isAtm": true
+      },
+      {
         "strike": 23450,
-        "callGex": 12855.04,
-        "putGex": 3856.52,
-        "netGex": 8998.53,
-        "absGex": 16711.56,
-        "callOi": 252793,
-        "putOi": 75838,
+        "callGex": 15102.77,
+        "putGex": 4530.81,
+        "netGex": 10571.96,
+        "absGex": 19633.58,
+        "callOi": 282188,
+        "putOi": 84656,
         "iv": 12.5,
         "isAtm": false
       },
       {
         "strike": 23500,
-        "callGex": 17738.72,
-        "putGex": 4850.41,
-        "netGex": 12888.32,
-        "absGex": 22589.13,
-        "callOi": 376461,
-        "putOi": 102938,
+        "callGex": 20987.19,
+        "putGex": 5775.12,
+        "netGex": 15212.07,
+        "absGex": 26762.31,
+        "callOi": 402793,
+        "putOi": 110838,
         "iv": 12.5,
         "isAtm": false
       },
       {
         "strike": 23550,
-        "callGex": 8557.91,
-        "putGex": 2567.36,
-        "netGex": 5990.55,
-        "absGex": 11125.27,
-        "callOi": 202871,
-        "putOi": 60861,
-        "iv": 12.6,
+        "callGex": 11093.96,
+        "putGex": 3328.17,
+        "netGex": 7765.78,
+        "absGex": 14422.13,
+        "callOi": 226461,
+        "putOi": 67938,
+        "iv": 12.5,
         "isAtm": false
       },
       {
         "strike": 23600,
-        "callGex": 10649.56,
-        "putGex": 3267.89,
-        "netGex": 7381.68,
-        "absGex": 13917.45,
-        "callOi": 291739,
-        "putOi": 89522,
-        "iv": 12.6,
+        "callGex": 13923.24,
+        "putGex": 4265.96,
+        "netGex": 9657.27,
+        "absGex": 18189.2,
+        "callOi": 312871,
+        "putOi": 95861,
+        "iv": 12.5,
         "isAtm": false
       },
       {
         "strike": 23650,
-        "callGex": 4973.21,
-        "putGex": 1491.95,
-        "netGex": 3481.26,
-        "absGex": 6465.16,
-        "callOi": 162808,
-        "putOi": 48842,
+        "callGex": 7101.62,
+        "putGex": 2130.5,
+        "netGex": 4971.13,
+        "absGex": 9232.12,
+        "callOi": 181739,
+        "putOi": 54522,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23700,
-        "callGex": 4472.21,
-        "putGex": 1947.53,
-        "netGex": 2524.68,
-        "absGex": 6419.74,
-        "callOi": 180849,
-        "putOi": 78755,
+        "callGex": 6563.42,
+        "putGex": 2781.94,
+        "netGex": 3781.48,
+        "absGex": 9345.37,
+        "callOi": 197808,
+        "putOi": 83842,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23750,
-        "callGex": 2531.57,
-        "putGex": 759.47,
-        "netGex": 1772.1,
-        "absGex": 3291.04,
-        "callOi": 130657,
-        "putOi": 39197,
+        "callGex": 3975.54,
+        "putGex": 1192.67,
+        "netGex": 2782.87,
+        "absGex": 5168.21,
+        "callOi": 145849,
+        "putOi": 43755,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23800,
-        "callGex": 2234.99,
-        "putGex": 1030.63,
-        "netGex": 1204.36,
-        "absGex": 3265.62,
-        "callOi": 152047,
-        "putOi": 70114,
+        "callGex": 3590.22,
+        "putGex": 1608.04,
+        "netGex": 1982.18,
+        "absGex": 5198.27,
+        "callOi": 165657,
+        "putOi": 74197,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23850,
-        "callGex": 1132.64,
-        "putGex": 339.79,
-        "netGex": 792.85,
-        "absGex": 1472.43,
-        "callOi": 104854,
-        "putOi": 31456,
+        "callGex": 1952.93,
+        "putGex": 585.88,
+        "netGex": 1367.05,
+        "absGex": 2538.8,
+        "callOi": 117047,
+        "putOi": 35114,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23900,
-        "callGex": 991.8,
-        "putGex": 486.01,
-        "netGex": 505.79,
-        "absGex": 1477.8,
-        "callOi": 128932,
-        "putOi": 63180,
+        "callGex": 1740.16,
+        "putGex": 826.89,
+        "netGex": 913.27,
+        "absGex": 2567.05,
+        "callOi": 139854,
+        "putOi": 66456,
         "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 23950,
-        "callGex": 446.87,
-        "putGex": 134.06,
-        "netGex": 312.81,
-        "absGex": 580.93,
-        "callOi": 84148,
-        "putOi": 25244,
-        "iv": 12.7,
+        "callGex": 844.63,
+        "putGex": 253.39,
+        "netGex": 591.24,
+        "absGex": 1098.03,
+        "callOi": 93932,
+        "putOi": 28180,
+        "iv": 12.6,
         "isAtm": false
       },
       {
         "strike": 24000,
-        "callGex": 392.47,
-        "putGex": 204.85,
-        "netGex": 187.62,
-        "absGex": 597.32,
-        "callOi": 110382,
-        "putOi": 57615,
+        "callGex": 750.6,
+        "putGex": 379.52,
+        "netGex": 371.08,
+        "absGex": 1130.12,
+        "callOi": 119148,
+        "putOi": 60244,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24050,
-        "callGex": 155.97,
-        "putGex": 46.79,
-        "netGex": 109.18,
-        "absGex": 202.76,
-        "callOi": 67530,
-        "putOi": 20259,
+        "callGex": 322.67,
+        "putGex": 96.8,
+        "netGex": 225.86,
+        "absGex": 419.47,
+        "callOi": 75382,
+        "putOi": 22615,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24100,
-        "callGex": 139.06,
-        "putGex": 77.39,
-        "netGex": 61.66,
-        "absGex": 216.45,
-        "callOi": 95496,
-        "putOi": 53149,
+        "callGex": 289.31,
+        "putGex": 155.93,
+        "netGex": 133.39,
+        "absGex": 445.24,
+        "callOi": 102530,
+        "putOi": 55259,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24150,
-        "callGex": 48.31,
-        "putGex": 14.49,
-        "netGex": 33.82,
-        "absGex": 62.8,
-        "callOi": 54194,
-        "putOi": 16258,
+        "callGex": 109.22,
+        "putGex": 32.77,
+        "netGex": 76.46,
+        "absGex": 141.99,
+        "callOi": 60496,
+        "putOi": 18149,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24200,
-        "callGex": 44.28,
-        "putGex": 26.27,
-        "netGex": 18.01,
-        "absGex": 70.56,
-        "callOi": 83549,
-        "putOi": 49565,
+        "callGex": 100.04,
+        "putGex": 57.49,
+        "netGex": 42.55,
+        "absGex": 157.54,
+        "callOi": 89194,
+        "putOi": 51258,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24250,
-        "callGex": 13.32,
-        "putGex": 4,
-        "netGex": 9.32,
-        "absGex": 17.31,
-        "callOi": 43492,
-        "putOi": 13048,
+        "callGex": 32.86,
+        "putGex": 9.86,
+        "netGex": 23,
+        "absGex": 42.72,
+        "callOi": 48549,
+        "putOi": 14565,
         "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24300,
-        "callGex": 12.72,
-        "putGex": 8.03,
-        "netGex": 4.69,
-        "absGex": 20.75,
-        "callOi": 73961,
-        "putOi": 46688,
-        "iv": 12.8,
+        "callGex": 31.15,
+        "putGex": 19.07,
+        "netGex": 12.08,
+        "absGex": 50.22,
+        "callOi": 78492,
+        "putOi": 48048,
+        "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24350,
-        "callGex": 3.28,
-        "putGex": 0.98,
-        "netGex": 2.29,
-        "absGex": 4.26,
-        "callOi": 34903,
-        "putOi": 10471,
-        "iv": 12.8,
+        "callGex": 8.81,
+        "putGex": 2.64,
+        "netGex": 6.17,
+        "absGex": 11.46,
+        "callOi": 38961,
+        "putOi": 11688,
+        "iv": 12.7,
         "isAtm": false
       },
       {
         "strike": 24400,
-        "callGex": 3.31,
-        "putGex": 2.21,
-        "netGex": 1.09,
-        "absGex": 5.52,
-        "callOi": 66267,
-        "putOi": 44380,
+        "callGex": 8.76,
+        "putGex": 5.7,
+        "netGex": 3.06,
+        "absGex": 14.46,
+        "callOi": 69903,
+        "putOi": 45471,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 24450,
-        "callGex": 0.72,
-        "putGex": 0.22,
-        "netGex": 0.51,
-        "absGex": 0.94,
-        "callOi": 28010,
-        "putOi": 8403,
+        "callGex": 2.11,
+        "putGex": 0.63,
+        "netGex": 1.48,
+        "absGex": 2.75,
+        "callOi": 31267,
+        "putOi": 9380,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 24500,
-        "callGex": 0.78,
-        "putGex": 0.55,
-        "netGex": 0.23,
-        "absGex": 1.33,
-        "callOi": 60093,
-        "putOi": 42528,
+        "callGex": 2.23,
+        "putGex": 1.54,
+        "netGex": 0.7,
+        "absGex": 3.77,
+        "callOi": 63010,
+        "putOi": 43403,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 24550,
-        "callGex": 0.14,
-        "putGex": 0.04,
-        "netGex": 0.1,
-        "absGex": 0.19,
-        "callOi": 22479,
-        "putOi": 6744,
+        "callGex": 0.45,
+        "putGex": 0.14,
+        "netGex": 0.32,
+        "absGex": 0.59,
+        "callOi": 25093,
+        "putOi": 7528,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 24600,
-        "callGex": 0.17,
-        "putGex": 0.12,
-        "netGex": 0.04,
-        "absGex": 0.29,
-        "callOi": 55137,
-        "putOi": 41041,
+        "callGex": 0.52,
+        "putGex": 0.38,
+        "netGex": 0.14,
+        "absGex": 0.89,
+        "callOi": 57479,
+        "putOi": 41744,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 24650,
-        "callGex": 0.03,
-        "putGex": 0.01,
-        "netGex": 0.02,
-        "absGex": 0.03,
-        "callOi": 18040,
-        "putOi": 5412,
+        "callGex": 0.09,
+        "putGex": 0.03,
+        "netGex": 0.06,
+        "absGex": 0.11,
+        "callOi": 20137,
+        "putOi": 6041,
         "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 24700,
-        "callGex": 0.03,
-        "putGex": 0.03,
-        "netGex": 0.01,
-        "absGex": 0.06,
-        "callOi": 51161,
-        "putOi": 39848,
-        "iv": 12.9,
+        "callGex": 0.11,
+        "putGex": 0.08,
+        "netGex": 0.03,
+        "absGex": 0.19,
+        "callOi": 53040,
+        "putOi": 40412,
+        "iv": 12.8,
         "isAtm": false
       },
       {
         "strike": 24750,
-        "callGex": 0,
+        "callGex": 0.02,
         "putGex": 0,
+        "netGex": 0.01,
+        "absGex": 0.02,
+        "callOi": 16161,
+        "putOi": 4848,
+        "iv": 12.9,
+        "isAtm": false
+      },
+      {
+        "strike": 24800,
+        "callGex": 0.02,
+        "putGex": 0.02,
         "netGex": 0,
-        "absGex": 0.01,
-        "callOi": 14477,
-        "putOi": 4343,
+        "absGex": 0.04,
+        "callOi": 49477,
+        "putOi": 39343,
         "iv": 12.9,
         "isAtm": false
       }
@@ -670,2488 +670,2243 @@
     "intradaySeries": [
       {
         "time": "09:15",
-        "netGex": 4176.9,
-        "spot": 23465.9,
-        "flipEst": 23453.4,
+        "netGex": -3455.9,
+        "spot": 23372.7,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:17",
-        "netGex": 4178.3,
-        "spot": 23466.8,
-        "flipEst": 23453.4,
+        "netGex": -3459.9,
+        "spot": 23373.3,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:19",
-        "netGex": 4181.3,
-        "spot": 23465.1,
-        "flipEst": 23453.4,
+        "netGex": -3464,
+        "spot": 23373.1,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:21",
-        "netGex": 4178.1,
-        "spot": 23463,
-        "flipEst": 23453.4,
+        "netGex": -3463.7,
+        "spot": 23374.5,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:23",
-        "netGex": 4175,
-        "spot": 23462.1,
-        "flipEst": 23453.4,
+        "netGex": -3463.5,
+        "spot": 23373.5,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:25",
-        "netGex": 4172.2,
-        "spot": 23463.7,
-        "flipEst": 23453.4,
+        "netGex": -3468.5,
+        "spot": 23374.2,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:27",
-        "netGex": 4167.1,
-        "spot": 23462.7,
-        "flipEst": 23453.4,
+        "netGex": -3466.5,
+        "spot": 23372.6,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:29",
-        "netGex": 4161.6,
-        "spot": 23464.2,
-        "flipEst": 23453.4,
+        "netGex": -3467.2,
+        "spot": 23371,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:31",
-        "netGex": 4162.8,
-        "spot": 23462.5,
-        "flipEst": 23453.4,
+        "netGex": -3466.1,
+        "spot": 23370,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:33",
-        "netGex": 4163,
-        "spot": 23463.8,
-        "flipEst": 23453.4,
+        "netGex": -3470.4,
+        "spot": 23370.7,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:35",
-        "netGex": 4165.2,
-        "spot": 23462.2,
-        "flipEst": 23453.4,
+        "netGex": -3473.5,
+        "spot": 23369.6,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:37",
-        "netGex": 4167.7,
-        "spot": 23460.1,
-        "flipEst": 23453.4,
+        "netGex": -3468.1,
+        "spot": 23370.8,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:39",
-        "netGex": 4167.3,
-        "spot": 23461.5,
-        "flipEst": 23453.4,
+        "netGex": -3472,
+        "spot": 23369,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:41",
-        "netGex": 4166.2,
-        "spot": 23461.8,
-        "flipEst": 23453.4,
+        "netGex": -3470.4,
+        "spot": 23370.2,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:43",
-        "netGex": 4170.1,
-        "spot": 23462.1,
-        "flipEst": 23453.4,
+        "netGex": -3466.2,
+        "spot": 23372.1,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:45",
-        "netGex": 4174.1,
-        "spot": 23460.7,
-        "flipEst": 23453.4,
+        "netGex": -3461.9,
+        "spot": 23372.1,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:47",
-        "netGex": 4170,
-        "spot": 23458.9,
-        "flipEst": 23453.4,
+        "netGex": -3458.4,
+        "spot": 23372.6,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:49",
-        "netGex": 4169.6,
-        "spot": 23459.2,
-        "flipEst": 23453.4,
+        "netGex": -3459.7,
+        "spot": 23370.7,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:51",
-        "netGex": 4166.1,
-        "spot": 23458.1,
-        "flipEst": 23453.4,
+        "netGex": -3460.6,
+        "spot": 23371.2,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:53",
-        "netGex": 4165.3,
-        "spot": 23457.4,
-        "flipEst": 23453.4,
+        "netGex": -3466.5,
+        "spot": 23372.6,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:55",
-        "netGex": 4165,
-        "spot": 23457.9,
-        "flipEst": 23453.4,
+        "netGex": -3463.8,
+        "spot": 23372.8,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:57",
-        "netGex": 4165.3,
-        "spot": 23457.2,
-        "flipEst": 23453.4,
+        "netGex": -3459.3,
+        "spot": 23372.3,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "09:59",
-        "netGex": 4162,
-        "spot": 23456.7,
-        "flipEst": 23453.4,
+        "netGex": -3454.9,
+        "spot": 23373.8,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "10:01",
-        "netGex": 4164.7,
-        "spot": 23458.4,
-        "flipEst": 23453.4,
+        "netGex": -3458.3,
+        "spot": 23372.8,
+        "flipEst": 23353,
         "belowFlip": false
       },
       {
         "time": "10:03",
-        "netGex": 4166.2,
-        "spot": 23459.5,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:05",
-        "netGex": 4166.9,
-        "spot": 23460.8,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:07",
-        "netGex": 4163.4,
-        "spot": 23462.1,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:09",
-        "netGex": 4168.2,
-        "spot": 23463.1,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:11",
-        "netGex": 4162.9,
-        "spot": 23462.8,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:13",
-        "netGex": 4160.3,
-        "spot": 23460.8,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:15",
-        "netGex": 4156.1,
-        "spot": 23459.9,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:17",
-        "netGex": 4161.4,
-        "spot": 23459,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:19",
-        "netGex": 4165.9,
-        "spot": 23459.9,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:21",
-        "netGex": 4162.1,
-        "spot": 23460.7,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:23",
-        "netGex": 4158.4,
-        "spot": 23462.6,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:25",
-        "netGex": 4156.8,
-        "spot": 23461,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:27",
-        "netGex": 4157.2,
-        "spot": 23461,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:29",
-        "netGex": 4150.9,
-        "spot": 23459.6,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:31",
-        "netGex": 4150.7,
-        "spot": 23458.9,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:33",
-        "netGex": 4147.9,
-        "spot": 23460.1,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:35",
-        "netGex": 4151.5,
-        "spot": 23458.5,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:37",
-        "netGex": 4155.1,
-        "spot": 23457.2,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:39",
-        "netGex": 4153.7,
-        "spot": 23455.4,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:41",
-        "netGex": 4152.4,
-        "spot": 23454.8,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:43",
-        "netGex": 4149.8,
-        "spot": 23454.7,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:45",
-        "netGex": 4145.2,
-        "spot": 23453.3,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:47",
-        "netGex": 4146.7,
-        "spot": 23451.9,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:49",
-        "netGex": 4148.7,
-        "spot": 23452,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:51",
-        "netGex": 4146.4,
-        "spot": 23452.2,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:53",
-        "netGex": 4143.9,
-        "spot": 23452.1,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:55",
-        "netGex": 4138.3,
-        "spot": 23452.8,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:57",
-        "netGex": 4133.9,
-        "spot": 23454.4,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:59",
-        "netGex": 4128.6,
-        "spot": 23454.8,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:08",
-        "netGex": 5959.98,
-        "spot": 23459.05,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:09",
-        "netGex": 7616.98,
-        "spot": 23464.75,
-        "flipEst": 23453.3,
-        "belowFlip": false
-      },
-      {
-        "time": "10:10",
-        "netGex": 8282.87,
-        "spot": 23467.05,
-        "flipEst": 23453.3,
-        "belowFlip": false
-      },
-      {
-        "time": "10:11",
-        "netGex": 8196.11,
-        "spot": 23466.75,
-        "flipEst": 23453.3,
-        "belowFlip": false
-      },
-      {
-        "time": "10:12",
-        "netGex": 7225.38,
-        "spot": 23463.4,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:13",
-        "netGex": 7036.64,
-        "spot": 23462.75,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:14",
-        "netGex": 7094.73,
-        "spot": 23462.95,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:15",
-        "netGex": 7747.4,
-        "spot": 23465.2,
-        "flipEst": 23453.3,
-        "belowFlip": false
-      },
-      {
-        "time": "10:16",
-        "netGex": 5361.86,
-        "spot": 23457,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:17",
-        "netGex": 4865.06,
-        "spot": 23455.3,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:18",
-        "netGex": 5522.44,
-        "spot": 23457.55,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:19",
-        "netGex": 6658.79,
-        "spot": 23461.45,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:20",
-        "netGex": 5785.03,
-        "spot": 23458.45,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:21",
-        "netGex": 4382.21,
-        "spot": 23453.65,
-        "flipEst": 23453.4,
-        "belowFlip": false
-      },
-      {
-        "time": "10:22",
-        "netGex": 1385.25,
-        "spot": 23443.45,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:23",
-        "netGex": 633.26,
-        "spot": 23440.9,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:24",
-        "netGex": 1503.12,
-        "spot": 23443.85,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:25",
-        "netGex": 1650.43,
-        "spot": 23444.35,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:26",
-        "netGex": -60.54,
-        "spot": 23438.55,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:27",
-        "netGex": -1775.55,
-        "spot": 23432.75,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:28",
-        "netGex": -518.52,
-        "spot": 23437,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:29",
-        "netGex": 249.55,
-        "spot": 23439.6,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:30",
-        "netGex": -178.7,
-        "spot": 23438.15,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:31",
-        "netGex": -3804.32,
-        "spot": 23425.9,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:32",
-        "netGex": -3508.01,
-        "spot": 23426.9,
-        "flipEst": 23453.4,
-        "belowFlip": true
-      },
-      {
-        "time": "10:33",
-        "netGex": 6412.61,
-        "spot": 23418.35,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:34",
-        "netGex": 5405.07,
-        "spot": 23414.95,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:35",
-        "netGex": 7299.18,
-        "spot": 23421.35,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:36",
-        "netGex": 3814.4,
-        "spot": 23409.6,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:37",
-        "netGex": 4097.29,
-        "spot": 23410.55,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:38",
-        "netGex": 4632.79,
-        "spot": 23412.35,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:39",
-        "netGex": 2412.46,
-        "spot": 23404.9,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:40",
-        "netGex": 2173.47,
-        "spot": 23404.1,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:41",
-        "netGex": 2352.72,
-        "spot": 23404.7,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:42",
-        "netGex": -2357.6,
-        "spot": 23389,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:43",
-        "netGex": -3245.05,
-        "spot": 23386.05,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:44",
-        "netGex": -2282.4,
-        "spot": 23389.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:45",
-        "netGex": -5396.09,
-        "spot": 23378.9,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:46",
-        "netGex": -5546.47,
-        "spot": 23378.4,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:47",
-        "netGex": -4463.57,
-        "spot": 23382,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:48",
-        "netGex": -4072.45,
-        "spot": 23383.3,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:49",
-        "netGex": -5561.5,
-        "spot": 23378.35,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:50",
-        "netGex": -6313.19,
-        "spot": 23375.85,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:51",
-        "netGex": 4042.9,
-        "spot": 23368.9,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:52",
-        "netGex": 4790.86,
-        "spot": 23371.4,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:53",
-        "netGex": 2934.07,
-        "spot": 23365.2,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:54",
-        "netGex": 3173.99,
-        "spot": 23366,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:55",
-        "netGex": -6433.42,
-        "spot": 23375.45,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:56",
-        "netGex": -5531.43,
-        "spot": 23378.45,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:57",
-        "netGex": -5726.9,
-        "spot": 23377.8,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:58",
-        "netGex": -3831.75,
-        "spot": 23384.1,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "10:59",
-        "netGex": -4087.49,
-        "spot": 23383.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:00",
-        "netGex": -2312.48,
-        "spot": 23389.15,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:01",
-        "netGex": -4147.66,
-        "spot": 23383.05,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:02",
-        "netGex": -6192.94,
-        "spot": 23376.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:03",
-        "netGex": 5791.31,
-        "spot": 23374.75,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:04",
-        "netGex": -6538.62,
-        "spot": 23375.1,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:05",
-        "netGex": -6403.36,
-        "spot": 23375.55,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:06",
-        "netGex": 4850.65,
+        "netGex": -3464.2,
         "spot": 23371.6,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:07",
-        "netGex": -6373.31,
-        "spot": 23375.65,
+        "time": "10:05",
+        "netGex": -3461.6,
+        "spot": 23372.3,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:08",
-        "netGex": 5686.89,
-        "spot": 23374.4,
+        "time": "10:07",
+        "netGex": -3467.2,
+        "spot": 23373.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:09",
-        "netGex": -6388.33,
-        "spot": 23375.6,
+        "time": "10:09",
+        "netGex": -3472.5,
+        "spot": 23372.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:10",
-        "netGex": -5741.94,
-        "spot": 23377.75,
+        "time": "10:11",
+        "netGex": -3472.4,
+        "spot": 23371.7,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:11",
-        "netGex": -4027.32,
-        "spot": 23383.45,
+        "time": "10:13",
+        "netGex": -3478.4,
+        "spot": 23371.5,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:12",
-        "netGex": -4252.97,
-        "spot": 23382.7,
+        "time": "10:15",
+        "netGex": -3483.1,
+        "spot": 23372.2,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:13",
-        "netGex": -3560.96,
-        "spot": 23385,
+        "time": "10:17",
+        "netGex": -3488,
+        "spot": 23372.7,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:14",
-        "netGex": -1996.68,
-        "spot": 23390.2,
+        "time": "10:19",
+        "netGex": -3483.3,
+        "spot": 23372.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:15",
-        "netGex": -1335.18,
-        "spot": 23392.4,
+        "time": "10:21",
+        "netGex": -3478,
+        "spot": 23371,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:16",
-        "netGex": -1966.61,
-        "spot": 23390.3,
+        "time": "10:23",
+        "netGex": -3477.3,
+        "spot": 23370.7,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:17",
-        "netGex": -658.95,
-        "spot": 23394.65,
+        "time": "10:25",
+        "netGex": -3472.8,
+        "spot": 23372.2,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:18",
-        "netGex": -824.21,
-        "spot": 23394.1,
+        "time": "10:27",
+        "netGex": -3468.8,
+        "spot": 23373.4,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:19",
-        "netGex": -1981.64,
-        "spot": 23390.25,
+        "time": "10:29",
+        "netGex": -3467.3,
+        "spot": 23374.2,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:20",
-        "netGex": -3245.05,
-        "spot": 23386.05,
+        "time": "10:31",
+        "netGex": -3473.5,
+        "spot": 23375.3,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:21",
-        "netGex": -2342.56,
-        "spot": 23389.05,
+        "time": "10:33",
+        "netGex": -3476.6,
+        "spot": 23374.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:22",
-        "netGex": -673.97,
-        "spot": 23394.6,
+        "time": "09:15",
+        "netGex": -4944.91,
+        "spot": 23380.4,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:23",
-        "netGex": 106.96,
-        "spot": 23397.2,
+        "time": "09:16",
+        "netGex": 3968.04,
+        "spot": 23368.65,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:24",
-        "netGex": -58.19,
-        "spot": 23396.65,
+        "time": "09:17",
+        "netGex": -5125.39,
+        "spot": 23379.8,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:25",
-        "netGex": 647.22,
-        "spot": 23399,
+        "time": "09:18",
+        "netGex": 677.22,
+        "spot": 23399.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:26",
-        "netGex": 917.21,
-        "spot": 23399.9,
+        "time": "09:19",
+        "netGex": -523.75,
+        "spot": 23395.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:27",
-        "netGex": -764.11,
-        "spot": 23394.3,
+        "time": "09:20",
+        "netGex": 3978.2,
+        "spot": 23410.15,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:28",
-        "netGex": -688.99,
-        "spot": 23394.55,
+        "time": "09:21",
+        "netGex": 3859.08,
+        "spot": 23409.75,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:29",
-        "netGex": -688.99,
-        "spot": 23394.55,
+        "time": "09:22",
+        "netGex": 4290.74,
+        "spot": 23411.2,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:30",
-        "netGex": -959.45,
-        "spot": 23393.65,
+        "time": "09:23",
+        "netGex": 1844.7,
+        "spot": 23403,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:31",
-        "netGex": -3560.96,
-        "spot": 23385,
+        "time": "09:24",
+        "netGex": -538.77,
+        "spot": 23395.05,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:32",
-        "netGex": -4734.33,
-        "spot": 23381.1,
+        "time": "09:25",
+        "netGex": -3275.14,
+        "spot": 23385.95,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:33",
-        "netGex": -4177.75,
-        "spot": 23382.95,
+        "time": "09:26",
+        "netGex": -3967.14,
+        "spot": 23383.65,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:34",
-        "netGex": -4493.65,
-        "spot": 23381.9,
+        "time": "09:27",
+        "netGex": -5937.39,
+        "spot": 23377.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:35",
-        "netGex": 5433.19,
-        "spot": 23373.55,
+        "time": "09:28",
+        "netGex": -5877.25,
+        "spot": 23377.3,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:36",
-        "netGex": -5817.11,
-        "spot": 23377.5,
+        "time": "09:29",
+        "netGex": 5522.75,
+        "spot": 23373.85,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:37",
-        "netGex": -5020.11,
-        "spot": 23380.15,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:38",
-        "netGex": -5486.32,
-        "spot": 23378.6,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:39",
-        "netGex": -5411.13,
-        "spot": 23378.85,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:40",
-        "netGex": 4446.93,
-        "spot": 23370.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:41",
-        "netGex": 5791.31,
-        "spot": 23374.75,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "11:42",
+        "time": "09:30",
         "netGex": 5104.67,
         "spot": 23372.45,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:43",
-        "netGex": 3698.49,
-        "spot": 23367.75,
+        "time": "09:31",
+        "netGex": 5254.03,
+        "spot": 23372.95,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:44",
-        "netGex": 3788.35,
-        "spot": 23368.05,
+        "time": "09:32",
+        "netGex": 2994.06,
+        "spot": 23365.4,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:45",
-        "netGex": 5134.54,
-        "spot": 23372.55,
+        "time": "09:33",
+        "netGex": 3338.88,
+        "spot": 23366.55,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:46",
-        "netGex": 3638.57,
-        "spot": 23367.55,
+        "time": "09:34",
+        "netGex": 4207.54,
+        "spot": 23369.45,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:47",
-        "netGex": 1477.86,
-        "spot": 23360.35,
+        "time": "09:35",
+        "netGex": -6538.62,
+        "spot": 23375.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:48",
-        "netGex": 2919.08,
-        "spot": 23365.15,
+        "time": "09:36",
+        "netGex": 4880.54,
+        "spot": 23371.7,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:49",
-        "netGex": 2033.65,
-        "spot": 23362.2,
+        "time": "09:37",
+        "netGex": 4940.32,
+        "spot": 23371.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:50",
-        "netGex": 2363.93,
-        "spot": 23363.3,
+        "time": "09:38",
+        "netGex": -6343.25,
+        "spot": 23375.75,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:51",
-        "netGex": 1943.54,
-        "spot": 23361.9,
+        "time": "09:39",
+        "netGex": -6328.22,
+        "spot": 23375.8,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:52",
-        "netGex": 350.29,
-        "spot": 23356.6,
+        "time": "09:40",
+        "netGex": -6538.62,
+        "spot": 23375.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:53",
-        "netGex": 2168.78,
-        "spot": 23362.65,
+        "time": "09:41",
+        "netGex": -5877.25,
+        "spot": 23377.3,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:54",
-        "netGex": 726.28,
-        "spot": 23357.85,
+        "time": "09:42",
+        "netGex": -5636.69,
+        "spot": 23378.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:55",
-        "netGex": -2163.22,
-        "spot": 23348.25,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "11:56",
-        "netGex": -2419.14,
-        "spot": 23347.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "11:57",
-        "netGex": -642.79,
-        "spot": 23353.3,
+        "time": "09:43",
+        "netGex": -5245.71,
+        "spot": 23379.4,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:58",
-        "netGex": -477.24,
-        "spot": 23353.85,
+        "time": "09:44",
+        "netGex": -4689.2,
+        "spot": 23381.25,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "11:59",
-        "netGex": 1267.48,
-        "spot": 23359.65,
+        "time": "09:45",
+        "netGex": -4147.66,
+        "spot": 23383.05,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:00",
-        "netGex": 1192.33,
-        "spot": 23359.4,
+        "time": "09:46",
+        "netGex": -4568.87,
+        "spot": 23381.65,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:01",
-        "netGex": 79.51,
-        "spot": 23355.7,
+        "time": "09:47",
+        "netGex": -4283.05,
+        "spot": 23382.6,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:02",
-        "netGex": 485.66,
-        "spot": 23357.05,
+        "time": "09:48",
+        "netGex": -3049.49,
+        "spot": 23386.7,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:03",
-        "netGex": -70.94,
-        "spot": 23355.2,
+        "time": "09:49",
+        "netGex": 4446.93,
+        "spot": 23370.25,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:04",
-        "netGex": 1267.48,
-        "spot": 23359.65,
+        "time": "09:50",
+        "netGex": 3443.79,
+        "spot": 23366.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:05",
-        "netGex": 1057.04,
-        "spot": 23358.95,
+        "time": "09:51",
+        "netGex": 1928.53,
+        "spot": 23361.85,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:06",
-        "netGex": 2138.75,
-        "spot": 23362.55,
+        "time": "09:52",
+        "netGex": 2453.98,
+        "spot": 23363.6,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:07",
-        "netGex": 696.2,
-        "spot": 23357.75,
+        "time": "09:53",
+        "netGex": 3248.95,
+        "spot": 23366.25,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:08",
+        "time": "09:54",
         "netGex": 500.7,
         "spot": 23357.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:09",
-        "netGex": 2829.08,
-        "spot": 23364.85,
+        "time": "09:55",
+        "netGex": -401.99,
+        "spot": 23354.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:10",
-        "netGex": 2769.08,
-        "spot": 23364.65,
+        "time": "09:56",
+        "netGex": 1297.53,
+        "spot": 23359.75,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:11",
-        "netGex": 1943.54,
-        "spot": 23361.9,
+        "time": "09:57",
+        "netGex": 4820.75,
+        "spot": 23371.5,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:12",
-        "netGex": 1222.39,
-        "spot": 23359.5,
+        "time": "09:58",
+        "netGex": 4117.74,
+        "spot": 23369.15,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:13",
-        "netGex": 1733.27,
-        "spot": 23361.2,
+        "time": "09:59",
+        "netGex": 5448.12,
+        "spot": 23373.6,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "12:14",
-        "netGex": 94.56,
-        "spot": 23355.75,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:15",
-        "netGex": -311.7,
-        "spot": 23354.4,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:16",
-        "netGex": -1455.69,
-        "spot": 23350.6,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:17",
-        "netGex": 275.08,
-        "spot": 23356.35,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:18",
-        "netGex": 1132.2,
-        "spot": 23359.2,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:19",
-        "netGex": 1793.35,
-        "spot": 23361.4,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:20",
-        "netGex": 3144.01,
-        "spot": 23365.9,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:21",
-        "netGex": 2423.97,
-        "spot": 23363.5,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:22",
-        "netGex": 2423.97,
-        "spot": 23363.5,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:23",
-        "netGex": 2033.65,
-        "spot": 23362.2,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:24",
-        "netGex": 2168.78,
-        "spot": 23362.65,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:25",
-        "netGex": 1402.73,
-        "spot": 23360.1,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:26",
-        "netGex": 2078.69,
-        "spot": 23362.35,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:27",
-        "netGex": 3323.89,
-        "spot": 23366.5,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:28",
-        "netGex": 1011.95,
-        "spot": 23358.8,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:29",
-        "netGex": 1988.6,
-        "spot": 23362.05,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:30",
-        "netGex": -146.17,
-        "spot": 23354.95,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:31",
-        "netGex": -522.39,
-        "spot": 23353.7,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:32",
-        "netGex": 455.58,
-        "spot": 23356.95,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:33",
-        "netGex": 1748.29,
-        "spot": 23361.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:34",
-        "netGex": 1357.65,
-        "spot": 23359.95,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:35",
-        "netGex": 2514.01,
-        "spot": 23363.8,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:36",
-        "netGex": 1372.68,
-        "spot": 23360,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:37",
-        "netGex": 846.57,
-        "spot": 23358.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:38",
-        "netGex": 1207.36,
-        "spot": 23359.45,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:39",
-        "netGex": 1011.95,
-        "spot": 23358.8,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:40",
-        "netGex": 1342.62,
-        "spot": 23359.9,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:41",
-        "netGex": 1568.01,
-        "spot": 23360.65,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:42",
-        "netGex": 1147.23,
-        "spot": 23359.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:43",
-        "netGex": 1537.96,
-        "spot": 23360.55,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "12:44",
-        "netGex": -1049.21,
-        "spot": 23351.95,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:45",
-        "netGex": -2659.99,
-        "spot": 23346.6,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:46",
-        "netGex": -3638.39,
-        "spot": 23343.35,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:47",
-        "netGex": -3277.16,
-        "spot": 23344.55,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:48",
-        "netGex": -2283.65,
-        "spot": 23347.85,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:49",
-        "netGex": -989,
-        "spot": 23352.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:50",
-        "netGex": -4766.86,
-        "spot": 23339.6,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:51",
-        "netGex": -5533.75,
-        "spot": 23337.05,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:52",
-        "netGex": -6104.82,
-        "spot": 23335.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:53",
-        "netGex": -4210.23,
-        "spot": 23341.45,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:54",
-        "netGex": -5608.91,
-        "spot": 23336.8,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:55",
-        "netGex": -7305.88,
-        "spot": 23331.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:56",
-        "netGex": -8265.29,
-        "spot": 23327.95,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:57",
-        "netGex": -4917.26,
-        "spot": 23339.1,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:58",
-        "netGex": -6525.39,
-        "spot": 23333.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "12:59",
-        "netGex": -6525.39,
-        "spot": 23333.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:00",
-        "netGex": -7815.74,
-        "spot": 23329.45,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:01",
-        "netGex": 2087.14,
-        "spot": 23321,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:02",
-        "netGex": -6450.3,
-        "spot": 23334,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:03",
-        "netGex": 2725.91,
-        "spot": 23323.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:04",
-        "netGex": 2785.31,
-        "spot": 23323.35,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:05",
-        "netGex": -8998.8,
-        "spot": 23325.5,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:06",
-        "netGex": -8025.57,
-        "spot": 23328.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:07",
-        "netGex": -6044.72,
-        "spot": 23335.35,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:08",
-        "netGex": -5263.13,
-        "spot": 23337.95,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:09",
-        "netGex": -4721.73,
-        "spot": 23339.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:10",
-        "netGex": -4180.14,
-        "spot": 23341.55,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:11",
-        "netGex": -4330.6,
-        "spot": 23341.05,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:12",
-        "netGex": -5187.95,
-        "spot": 23338.2,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:13",
-        "netGex": -5037.58,
-        "spot": 23338.7,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:14",
-        "netGex": -5443.55,
-        "spot": 23337.35,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:15",
-        "netGex": -5097.73,
-        "spot": 23338.5,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:16",
-        "netGex": -5007.5,
-        "spot": 23338.8,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:17",
-        "netGex": -5939.54,
-        "spot": 23335.7,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:18",
-        "netGex": -6390.23,
-        "spot": 23334.2,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:19",
-        "netGex": -6029.7,
-        "spot": 23335.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:20",
-        "netGex": -6300.11,
-        "spot": 23334.5,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:21",
-        "netGex": -7395.88,
-        "spot": 23330.85,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:22",
-        "netGex": -8235.33,
-        "spot": 23328.05,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:23",
-        "netGex": -8085.51,
-        "spot": 23328.55,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:24",
-        "netGex": -8280.27,
-        "spot": 23327.9,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:25",
-        "netGex": -6825.67,
-        "spot": 23332.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:26",
-        "netGex": -6720.58,
-        "spot": 23333.1,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:27",
-        "netGex": -7485.87,
-        "spot": 23330.55,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:28",
-        "netGex": -5518.72,
-        "spot": 23337.1,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:29",
-        "netGex": -5398.45,
-        "spot": 23337.5,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:30",
-        "netGex": -4811.98,
-        "spot": 23339.45,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:31",
-        "netGex": -4150.04,
-        "spot": 23341.65,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:32",
-        "netGex": -4119.95,
-        "spot": 23341.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:33",
-        "netGex": -4330.6,
-        "spot": 23341.05,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:34",
-        "netGex": -3006.22,
-        "spot": 23345.45,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:35",
-        "netGex": -3517.98,
-        "spot": 23343.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:36",
-        "netGex": -2810.53,
-        "spot": 23346.1,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:37",
-        "netGex": -3096.53,
-        "spot": 23345.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:38",
-        "netGex": -3066.43,
-        "spot": 23345.25,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:39",
-        "netGex": -3216.95,
-        "spot": 23344.75,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:40",
-        "netGex": -2720.21,
-        "spot": 23346.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:41",
-        "netGex": -2659.99,
-        "spot": 23346.6,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:42",
-        "netGex": -2720.21,
-        "spot": 23346.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:43",
-        "netGex": -1546.03,
-        "spot": 23350.3,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:44",
-        "netGex": -3111.59,
-        "spot": 23345.1,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:45",
-        "netGex": -6480.34,
-        "spot": 23333.9,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:46",
-        "netGex": -6975.77,
-        "spot": 23332.25,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:47",
-        "netGex": -7560.86,
-        "spot": 23330.3,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:48",
-        "netGex": -6405.25,
-        "spot": 23334.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:49",
-        "netGex": 2785.31,
-        "spot": 23323.35,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:50",
-        "netGex": -8085.51,
-        "spot": 23328.55,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:51",
-        "netGex": 3008.02,
-        "spot": 23324.1,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:52",
-        "netGex": 1864.23,
-        "spot": 23320.25,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:53",
-        "netGex": -9133.42,
-        "spot": 23325.05,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:54",
-        "netGex": -3668.98,
-        "spot": 23301.65,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:55",
-        "netGex": -1051.08,
-        "spot": 23310.45,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:56",
-        "netGex": -1661.14,
-        "spot": 23308.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:57",
-        "netGex": -2732.23,
-        "spot": 23304.8,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:58",
-        "netGex": -2672.74,
-        "spot": 23305,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "13:59",
-        "netGex": -1363.55,
-        "spot": 23309.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:00",
-        "netGex": -3297.32,
-        "spot": 23302.9,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:01",
-        "netGex": -5965.64,
-        "spot": 23293.9,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:02",
-        "netGex": -3089.15,
-        "spot": 23303.6,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:03",
-        "netGex": -3906.78,
-        "spot": 23300.85,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:04",
-        "netGex": -4010.81,
-        "spot": 23300.5,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:05",
-        "netGex": -1318.92,
-        "spot": 23309.55,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:06",
-        "netGex": -4396.49,
-        "spot": 23299.2,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:07",
-        "netGex": -2405,
-        "spot": 23305.9,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:08",
-        "netGex": -4633.53,
-        "spot": 23298.4,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:09",
-        "netGex": -2836.34,
-        "spot": 23304.45,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:10",
-        "netGex": 109.47,
-        "spot": 23314.35,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:11",
-        "netGex": 347.49,
-        "spot": 23315.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:12",
-        "netGex": -8504.91,
-        "spot": 23327.15,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:13",
-        "netGex": -5233.06,
-        "spot": 23338.05,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:14",
-        "netGex": -6345.17,
-        "spot": 23334.35,
-        "flipEst": 23353,
-        "belowFlip": true
-      },
-      {
-        "time": "14:15",
-        "netGex": 557.2,
-        "spot": 23398.7,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:16",
-        "netGex": 1537.96,
-        "spot": 23360.55,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:17",
-        "netGex": -5486.32,
-        "spot": 23378.6,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:18",
-        "netGex": -3290.18,
-        "spot": 23385.9,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:19",
-        "netGex": -3861.84,
-        "spot": 23384,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:20",
-        "netGex": -3500.79,
-        "spot": 23385.2,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:21",
-        "netGex": 16.88,
-        "spot": 23396.9,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:22",
-        "netGex": -433.62,
-        "spot": 23395.4,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:23",
-        "netGex": 512.19,
-        "spot": 23398.55,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:24",
-        "netGex": -2974.28,
-        "spot": 23386.95,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:25",
-        "netGex": -4568.87,
-        "spot": 23381.65,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:26",
-        "netGex": -2026.76,
-        "spot": 23390.1,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:27",
-        "netGex": -2267.36,
-        "spot": 23389.3,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:28",
-        "netGex": -3365.4,
-        "spot": 23385.65,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:29",
-        "netGex": -1545.63,
-        "spot": 23391.7,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:30",
-        "netGex": -2462.88,
-        "spot": 23388.65,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:31",
-        "netGex": -1620.79,
-        "spot": 23391.45,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:32",
-        "netGex": -1726.03,
-        "spot": 23391.1,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:33",
-        "netGex": -1530.59,
-        "spot": 23391.75,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:34",
-        "netGex": -3365.4,
-        "spot": 23385.65,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:35",
-        "netGex": -2808.82,
-        "spot": 23387.5,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:36",
-        "netGex": -1650.86,
-        "spot": 23391.35,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:37",
-        "netGex": -2282.4,
-        "spot": 23389.25,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:38",
-        "netGex": -2808.82,
-        "spot": 23387.5,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:39",
-        "netGex": -3560.96,
-        "spot": 23385,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:40",
-        "netGex": -3305.22,
-        "spot": 23385.85,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:41",
-        "netGex": -5050.19,
-        "spot": 23380.05,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:42",
-        "netGex": -6147.85,
-        "spot": 23376.4,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:43",
-        "netGex": 3953.07,
-        "spot": 23368.6,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:44",
-        "netGex": 4656.31,
-        "spot": 23370.95,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:45",
-        "netGex": 3997.99,
-        "spot": 23368.75,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:46",
-        "netGex": -5606.61,
-        "spot": 23378.2,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:47",
-        "netGex": -5681.8,
-        "spot": 23377.95,
-        "flipEst": 23353,
-        "belowFlip": false
-      },
-      {
-        "time": "14:48",
+        "time": "10:00",
         "netGex": -5741.94,
         "spot": 23377.75,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:49",
-        "netGex": -6478.51,
-        "spot": 23375.3,
+        "time": "10:01",
+        "netGex": -5080.27,
+        "spot": 23379.95,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:50",
-        "netGex": 4431.97,
-        "spot": 23370.2,
+        "time": "10:02",
+        "netGex": -5576.54,
+        "spot": 23378.3,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:51",
-        "netGex": -4568.87,
-        "spot": 23381.65,
+        "time": "10:03",
+        "netGex": 5403.34,
+        "spot": 23373.45,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:52",
-        "netGex": 5149.48,
-        "spot": 23372.6,
+        "time": "10:04",
+        "netGex": -5907.32,
+        "spot": 23377.2,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:53",
-        "netGex": -5726.9,
-        "spot": 23377.8,
+        "time": "10:05",
+        "netGex": -5832.15,
+        "spot": 23377.45,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:54",
-        "netGex": -6508.56,
-        "spot": 23375.2,
+        "time": "10:06",
+        "netGex": -5215.63,
+        "spot": 23379.5,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:55",
-        "netGex": 5671.97,
-        "spot": 23374.35,
+        "time": "10:07",
+        "netGex": 5761.48,
+        "spot": 23374.65,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:56",
-        "netGex": -6057.65,
-        "spot": 23376.7,
+        "time": "10:08",
+        "netGex": 5298.82,
+        "spot": 23373.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:57",
-        "netGex": 4087.81,
-        "spot": 23369.05,
+        "time": "10:09",
+        "netGex": 4671.26,
+        "spot": 23371,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:58",
-        "netGex": 2138.75,
-        "spot": 23362.55,
+        "time": "10:10",
+        "netGex": 3443.79,
+        "spot": 23366.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "14:59",
-        "netGex": 726.28,
-        "spot": 23357.85,
+        "time": "10:11",
+        "netGex": 2874.08,
+        "spot": 23365,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:00",
-        "netGex": 1117.17,
-        "spot": 23359.15,
+        "time": "10:12",
+        "netGex": 1853.43,
+        "spot": 23361.6,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:01",
-        "netGex": -356.84,
-        "spot": 23354.25,
+        "time": "10:13",
+        "netGex": 1943.54,
+        "spot": 23361.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:02",
-        "netGex": 1372.68,
-        "spot": 23360,
+        "time": "10:14",
+        "netGex": 3458.77,
+        "spot": 23366.95,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:03",
-        "netGex": -70.94,
-        "spot": 23355.2,
+        "time": "10:15",
+        "netGex": 3893.18,
+        "spot": 23368.4,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:04",
-        "netGex": 1432.78,
-        "spot": 23360.2,
+        "time": "10:16",
+        "netGex": -5937.39,
+        "spot": 23377.1,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:05",
-        "netGex": 1372.68,
-        "spot": 23360,
+        "time": "10:17",
+        "netGex": -4990.03,
+        "spot": 23380.25,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:06",
-        "netGex": -733.1,
-        "spot": 23353,
+        "time": "10:18",
+        "netGex": -2688.49,
+        "spot": 23387.9,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:07",
-        "netGex": 229.95,
-        "spot": 23356.2,
+        "time": "10:19",
+        "netGex": -2237.29,
+        "spot": 23389.4,
         "flipEst": 23353,
         "belowFlip": false
       },
       {
-        "time": "15:08",
-        "netGex": -417.04,
-        "spot": 23354.05,
+        "time": "10:20",
+        "netGex": 31.9,
+        "spot": 23396.95,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:21",
+        "netGex": -223.36,
+        "spot": 23396.1,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:22",
+        "netGex": -658.95,
+        "spot": 23394.65,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:23",
+        "netGex": -1500.53,
+        "spot": 23391.85,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:24",
+        "netGex": -704.02,
+        "spot": 23394.5,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:25",
+        "netGex": -1260.02,
+        "spot": 23392.65,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:26",
+        "netGex": -2327.52,
+        "spot": 23389.1,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:27",
+        "netGex": -1124.76,
+        "spot": 23393.1,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:28",
+        "netGex": 317.1,
+        "spot": 23397.9,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:29",
+        "netGex": 752.23,
+        "spot": 23399.35,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:30",
+        "netGex": 917.21,
+        "spot": 23399.9,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:31",
+        "netGex": 1321.3,
+        "spot": 23401.25,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:32",
+        "netGex": 1171.69,
+        "spot": 23400.75,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:33",
+        "netGex": 1156.73,
+        "spot": 23400.7,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:34",
+        "netGex": 1934.38,
+        "spot": 23403.3,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:35",
+        "netGex": 662.22,
+        "spot": 23399.05,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:36",
+        "netGex": 1381.14,
+        "spot": 23401.45,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:37",
+        "netGex": 2158.53,
+        "spot": 23404.05,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:38",
+        "netGex": 3561.15,
+        "spot": 23408.75,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:39",
+        "netGex": 4127.05,
+        "spot": 23410.65,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:40",
+        "netGex": 3039.33,
+        "spot": 23407,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:41",
+        "netGex": 4379.99,
+        "spot": 23411.5,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:42",
+        "netGex": 2949.82,
+        "spot": 23406.7,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:43",
+        "netGex": 3084.08,
+        "spot": 23407.15,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:44",
+        "netGex": 3650.55,
+        "spot": 23409.05,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:45",
+        "netGex": 4766.56,
+        "spot": 23412.8,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:46",
+        "netGex": 6383.01,
+        "spot": 23418.25,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:47",
+        "netGex": 6012.89,
+        "spot": 23417,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:48",
+        "netGex": 6767.52,
+        "spot": 23419.55,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:49",
+        "netGex": 6368.22,
+        "spot": 23418.2,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:50",
+        "netGex": 5790.63,
+        "spot": 23416.25,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:51",
+        "netGex": 6175.79,
+        "spot": 23417.55,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:52",
+        "netGex": 5152.75,
+        "spot": 23414.1,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:53",
+        "netGex": 5301.19,
+        "spot": 23414.6,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:54",
+        "netGex": 6856.19,
+        "spot": 23419.85,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:55",
+        "netGex": 6072.14,
+        "spot": 23417.2,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:56",
+        "netGex": 7077.76,
+        "spot": 23420.6,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:57",
+        "netGex": 7240.15,
+        "spot": 23421.15,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:58",
+        "netGex": 6323.82,
+        "spot": 23418.05,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "10:59",
+        "netGex": 5642.38,
+        "spot": 23415.75,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:00",
+        "netGex": 5553.41,
+        "spot": 23415.45,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:01",
+        "netGex": 5894.37,
+        "spot": 23416.6,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:02",
+        "netGex": 6175.79,
+        "spot": 23417.55,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:03",
+        "netGex": 6397.81,
+        "spot": 23418.3,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:04",
+        "netGex": 6397.81,
+        "spot": 23418.3,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:05",
+        "netGex": 6057.33,
+        "spot": 23417.15,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:06",
+        "netGex": 8183.26,
+        "spot": 23424.35,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:07",
+        "netGex": -2693.36,
+        "spot": 23429.65,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:08",
+        "netGex": -2871.07,
+        "spot": 23429.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:09",
+        "netGex": -3759.87,
+        "spot": 23426.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:10",
+        "netGex": -3493.2,
+        "spot": 23426.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:11",
+        "netGex": -2189.97,
+        "spot": 23431.35,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:12",
+        "netGex": -2737.79,
+        "spot": 23429.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:13",
+        "netGex": -1228.17,
+        "spot": 23434.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:14",
+        "netGex": -769.79,
+        "spot": 23436.15,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:15",
+        "netGex": -1376.08,
+        "spot": 23434.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:16",
+        "netGex": -3182.11,
+        "spot": 23428,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:17",
+        "netGex": -3019.18,
+        "spot": 23428.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:18",
+        "netGex": 7756.28,
+        "spot": 23422.9,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:19",
+        "netGex": 8330.35,
+        "spot": 23424.85,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "11:20",
+        "netGex": -3552.45,
+        "spot": 23426.75,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:21",
+        "netGex": -2574.9,
+        "spot": 23430.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:22",
+        "netGex": -3256.17,
+        "spot": 23427.75,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:23",
+        "netGex": -3093.24,
+        "spot": 23428.3,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:24",
+        "netGex": -3063.61,
+        "spot": 23428.4,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:25",
+        "netGex": -3285.8,
+        "spot": 23427.65,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:26",
+        "netGex": -2737.79,
+        "spot": 23429.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:27",
+        "netGex": -1361.29,
+        "spot": 23434.15,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:28",
+        "netGex": -2545.29,
+        "spot": 23430.15,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:29",
+        "netGex": -3774.69,
+        "spot": 23426,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:30",
+        "netGex": -2885.88,
+        "spot": 23429,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:31",
+        "netGex": -947.2,
+        "spot": 23435.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:32",
+        "netGex": -902.84,
+        "spot": 23435.7,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:33",
+        "netGex": 589,
+        "spot": 23440.75,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:34",
+        "netGex": 1620.97,
+        "spot": 23444.25,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:35",
+        "netGex": 13.3,
+        "spot": 23438.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:36",
+        "netGex": -784.57,
+        "spot": 23436.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:37",
+        "netGex": 205.26,
+        "spot": 23439.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:38",
+        "netGex": -296.88,
+        "spot": 23437.75,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:39",
+        "netGex": -267.34,
+        "spot": 23437.85,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:40",
+        "netGex": -415.08,
+        "spot": 23437.35,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:41",
+        "netGex": -429.86,
+        "spot": 23437.3,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:42",
+        "netGex": -355.98,
+        "spot": 23437.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:43",
+        "netGex": -562.86,
+        "spot": 23436.85,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:44",
+        "netGex": -533.3,
+        "spot": 23436.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:45",
+        "netGex": 662.77,
+        "spot": 23441,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:46",
+        "netGex": 190.49,
+        "spot": 23439.4,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:47",
+        "netGex": 1090.47,
+        "spot": 23442.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:48",
+        "netGex": 146.2,
+        "spot": 23439.25,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:49",
+        "netGex": 411.91,
+        "spot": 23440.15,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:50",
+        "netGex": -932.41,
+        "spot": 23435.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:51",
+        "netGex": -2797.03,
+        "spot": 23429.3,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:52",
+        "netGex": -3508.01,
+        "spot": 23426.9,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:53",
+        "netGex": -2041.94,
+        "spot": 23431.85,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:54",
+        "netGex": -3019.18,
+        "spot": 23428.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:55",
+        "netGex": -3004.37,
+        "spot": 23428.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:56",
+        "netGex": -3522.82,
+        "spot": 23426.85,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:57",
+        "netGex": -3300.61,
+        "spot": 23427.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:58",
+        "netGex": -3730.24,
+        "spot": 23426.15,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "11:59",
+        "netGex": -3033.99,
+        "spot": 23428.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:00",
+        "netGex": -2204.77,
+        "spot": 23431.3,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:01",
+        "netGex": -1834.74,
+        "spot": 23432.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:02",
+        "netGex": 101.9,
+        "spot": 23439.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:03",
+        "netGex": 1871.3,
+        "spot": 23445.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:04",
+        "netGex": 2209.8,
+        "spot": 23446.25,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:05",
+        "netGex": 2900.78,
+        "spot": 23448.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:06",
+        "netGex": 3179.81,
+        "spot": 23449.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:07",
+        "netGex": 3752.11,
+        "spot": 23451.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:08",
+        "netGex": 2974.22,
+        "spot": 23448.85,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:09",
+        "netGex": 2077.37,
+        "spot": 23445.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:10",
+        "netGex": 3664.11,
+        "spot": 23451.2,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:11",
+        "netGex": 3957.37,
+        "spot": 23452.2,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:12",
+        "netGex": 5171.99,
+        "spot": 23456.35,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:13",
+        "netGex": 6600.61,
+        "spot": 23461.25,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:14",
+        "netGex": 6105.69,
+        "spot": 23459.55,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:15",
+        "netGex": 5901.67,
+        "spot": 23458.85,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:16",
+        "netGex": 5551.62,
+        "spot": 23457.65,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:17",
+        "netGex": 6105.69,
+        "spot": 23459.55,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:18",
+        "netGex": 5025.87,
+        "spot": 23455.85,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:19",
+        "netGex": 6382.36,
+        "spot": 23460.5,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:20",
+        "netGex": 7370.48,
+        "spot": 23463.9,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:21",
+        "netGex": 6775.1,
+        "spot": 23461.85,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:22",
+        "netGex": 6149.39,
+        "spot": 23459.7,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:23",
+        "netGex": 5478.65,
+        "spot": 23457.4,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:24",
+        "netGex": 4674.92,
+        "spot": 23454.65,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:25",
+        "netGex": 5055.1,
+        "spot": 23455.95,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:26",
+        "netGex": 3165.13,
+        "spot": 23449.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:27",
+        "netGex": 3297.25,
+        "spot": 23449.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:28",
+        "netGex": 4484.68,
+        "spot": 23454,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "12:29",
+        "netGex": 4177.17,
+        "spot": 23452.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:30",
+        "netGex": 3444.03,
+        "spot": 23450.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:31",
+        "netGex": 2253.94,
+        "spot": 23446.4,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:32",
+        "netGex": 2150.95,
+        "spot": 23446.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:33",
+        "netGex": 2636.27,
+        "spot": 23447.7,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:34",
+        "netGex": 3517.4,
+        "spot": 23450.7,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:35",
+        "netGex": 3488.05,
+        "spot": 23450.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:36",
+        "netGex": 3840.09,
+        "spot": 23451.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:37",
+        "netGex": 3898.73,
+        "spot": 23452,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:38",
+        "netGex": 3047.66,
+        "spot": 23449.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:39",
+        "netGex": 3458.7,
+        "spot": 23450.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:40",
+        "netGex": 3502.73,
+        "spot": 23450.65,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:41",
+        "netGex": 3942.71,
+        "spot": 23452.15,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:42",
+        "netGex": 3708.11,
+        "spot": 23451.35,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:43",
+        "netGex": 3913.39,
+        "spot": 23452.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:44",
+        "netGex": 3326.6,
+        "spot": 23450.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:45",
+        "netGex": 3473.38,
+        "spot": 23450.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:46",
+        "netGex": 3091.71,
+        "spot": 23449.25,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:47",
+        "netGex": 2003.79,
+        "spot": 23445.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:48",
+        "netGex": 1458.93,
+        "spot": 23443.7,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:49",
+        "netGex": 1974.35,
+        "spot": 23445.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:50",
+        "netGex": 2621.57,
+        "spot": 23447.65,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:51",
+        "netGex": 3444.03,
+        "spot": 23450.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:52",
+        "netGex": 3003.6,
+        "spot": 23448.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:53",
+        "netGex": 3267.89,
+        "spot": 23449.85,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:54",
+        "netGex": 2253.94,
+        "spot": 23446.4,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:55",
+        "netGex": 2224.51,
+        "spot": 23446.3,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:56",
+        "netGex": 1488.39,
+        "spot": 23443.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:57",
+        "netGex": 2959.53,
+        "spot": 23448.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:58",
+        "netGex": 2930.16,
+        "spot": 23448.7,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "12:59",
+        "netGex": 3884.07,
+        "spot": 23451.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:00",
+        "netGex": 3781.44,
+        "spot": 23451.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:01",
+        "netGex": 4484.68,
+        "spot": 23454,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "13:02",
+        "netGex": 4030.65,
+        "spot": 23452.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:03",
+        "netGex": 4894.3,
+        "spot": 23455.4,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "13:04",
+        "netGex": 5142.77,
+        "spot": 23456.25,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "13:05",
+        "netGex": 5186.6,
+        "spot": 23456.4,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "13:06",
+        "netGex": 3488.05,
+        "spot": 23450.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:07",
+        "netGex": 3766.78,
+        "spot": 23451.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:08",
+        "netGex": 5420.26,
+        "spot": 23457.2,
+        "flipEst": 23453.4,
+        "belowFlip": false
+      },
+      {
+        "time": "13:09",
+        "netGex": 4133.22,
+        "spot": 23452.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:10",
+        "netGex": 3267.89,
+        "spot": 23449.85,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:11",
+        "netGex": 2165.66,
+        "spot": 23446.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:12",
+        "netGex": 2430.43,
+        "spot": 23447,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:13",
+        "netGex": 1753.51,
+        "spot": 23444.7,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:14",
+        "netGex": 1974.35,
+        "spot": 23445.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:15",
+        "netGex": 2165.66,
+        "spot": 23446.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:16",
+        "netGex": 3047.66,
+        "spot": 23449.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:17",
+        "netGex": 3121.08,
+        "spot": 23449.35,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:18",
+        "netGex": 2871.39,
+        "spot": 23448.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:19",
+        "netGex": 2518.66,
+        "spot": 23447.3,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:20",
+        "netGex": 2533.36,
+        "spot": 23447.35,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:21",
+        "netGex": 2562.77,
+        "spot": 23447.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:22",
+        "netGex": 3370.64,
+        "spot": 23450.2,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:23",
+        "netGex": 3121.08,
+        "spot": 23449.35,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:24",
+        "netGex": 3722.78,
+        "spot": 23451.4,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:25",
+        "netGex": 3326.6,
+        "spot": 23450.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:26",
+        "netGex": 3884.07,
+        "spot": 23451.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:27",
+        "netGex": 4221.12,
+        "spot": 23453.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:28",
+        "netGex": 2327.48,
+        "spot": 23446.65,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:29",
+        "netGex": 2562.77,
+        "spot": 23447.45,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:30",
+        "netGex": -444.64,
+        "spot": 23437.25,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:31",
+        "netGex": -710.66,
+        "spot": 23436.35,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:32",
+        "netGex": -2234.38,
+        "spot": 23431.2,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:33",
+        "netGex": -2412.03,
+        "spot": 23430.6,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:34",
+        "netGex": -3715.42,
+        "spot": 23426.2,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:35",
+        "netGex": -4041.39,
+        "spot": 23425.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:36",
+        "netGex": 6353.42,
+        "spot": 23418.15,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "13:37",
+        "netGex": 7726.81,
+        "spot": 23422.8,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "13:38",
+        "netGex": -4026.57,
+        "spot": 23425.15,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:39",
+        "netGex": 8124.41,
+        "spot": 23424.15,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "13:40",
+        "netGex": 8359.76,
+        "spot": 23424.95,
+        "flipEst": 23353,
+        "belowFlip": false
+      },
+      {
+        "time": "13:41",
+        "netGex": -4011.75,
+        "spot": 23425.2,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:42",
+        "netGex": -3033.99,
+        "spot": 23428.5,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:43",
+        "netGex": -3019.18,
+        "spot": 23428.55,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:44",
+        "netGex": -3093.24,
+        "spot": 23428.3,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:45",
+        "netGex": -2308.4,
+        "spot": 23430.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:46",
+        "netGex": -2293.59,
+        "spot": 23431,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:47",
+        "netGex": -2648.94,
+        "spot": 23429.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:48",
+        "netGex": -3152.49,
+        "spot": 23428.1,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:49",
+        "netGex": -2604.52,
+        "spot": 23429.95,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:50",
+        "netGex": -2367.62,
+        "spot": 23430.75,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:51",
+        "netGex": -2648.94,
+        "spot": 23429.8,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:52",
+        "netGex": -3759.87,
+        "spot": 23426.05,
+        "flipEst": 23453.4,
+        "belowFlip": true
+      },
+      {
+        "time": "13:53",
+        "netGex": 8212.69,
+        "spot": 23424.45,
         "flipEst": 23353,
         "belowFlip": false
       }
     ],
     "timeStats": {
-      "minutesBelowFlip": 111,
-      "minutesAboveFlip": 243
+      "minutesBelowFlip": 140,
+      "minutesAboveFlip": 179
     },
-    "updatedAt": "15:08:20 IST"
+    "updatedAt": "13:53:18 IST"
   },
-  "updated_at": "2026-09-22T09:38:20.905Z"
+  "updated_at": "2026-09-23T08:23:18.836Z"
 }

@@ -1,19 +1,19 @@
 {
-  "timestamp": 1790132140331,
+  "timestamp": 1790161825070,
   "dateStr": "2026-09-23",
-  "timeStr": "08:25:40 IST",
+  "timeStr": "16:40:25 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23329,
+      "spot": 23446.8,
       "open": 23270.9,
-      "dayHigh": 23395.85,
-      "dayLow": 23329,
+      "dayHigh": 23459.25,
+      "dayLow": 23409.05,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
       "openType": "OPEN_DRIVE_BULLISH",
-      "dayType": "ROTATIONAL_BALANCED_DAY",
+      "dayType": "TREND_EXPANSION_DAY",
       "periodCExtension": "BULLISH_IB_EXTENSION",
       "periodGStatus": "CLOSED_OUTSIDE_IB_VALID",
       "periodLBehavior": "LATE_DAY_DRIVE_SUSTAINED",
@@ -22,14 +22,14 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 56215.55,
+      "spot": 56548.9,
       "open": 56420,
-      "dayHigh": 56356.25,
-      "dayLow": 56215.55,
+      "dayHigh": 56614.2,
+      "dayLow": 56469.85,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
-      "openType": "OPEN_AUCTION",
+      "openType": "OPEN_TEST_DRIVE",
       "dayType": "DOUBLE_DISTRIBUTION_DAY",
       "periodFExtension": "PERIOD_F_BULLISH_DRIVE",
       "periodGStatus": "SPIKE_ACCEPTANCE_FILTER_PASSED",
@@ -39,199 +39,175 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 18,
+    "coilingDematCount": 20,
     "volumeBreakoutCount": 8,
-    "distributionTrapCount": 11,
-    "swingLowFormations": 18,
-    "swingHighFormations": 11
+    "distributionTrapCount": 3,
+    "swingLowFormations": 20,
+    "swingHighFormations": 3
   },
   "tomorrowHighConvictionWatchlist": [
     {
-      "rank": 2,
-      "type": "LONG_DEMAT_COIL_EXPANSION",
-      "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "NATIONALUM",
-      "name": "National Aluminium Co.",
-      "sector": "Aluminium Mining",
+      "rank": 1,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "MANKIND",
+      "name": "Mankind Pharma Ltd.",
+      "sector": "Pharma & Consumer Healthcare",
       "trade": {
-        "action": "BUY NATIONALUM 350 CE / Spot",
-        "spotEntry": 352.2,
-        "spotSL": 345.63,
-        "spotRiskPts": 6.57,
-        "spotTarget1": 362.71,
-        "spotTarget2": 370.6,
-        "atmStrike": 350,
-        "lotSize": 1875,
-        "riskPerLotINR": 12319,
-        "target1GainPerLotINR": 19706,
-        "target2GainPerLotINR": 34500,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹345.63",
+        "action": "BUY MANKIND 2460 PE / Short Spot",
+        "spotEntry": 2462,
+        "spotSL": 2503.32,
+        "spotRiskPts": 41.32,
+        "spotTarget1": 2395.89,
+        "spotTarget2": 2346.3,
+        "atmStrike": 2460,
+        "lotSize": 250,
+        "riskPerLotINR": 10330,
+        "target1GainPerLotINR": 16528,
+        "target2GainPerLotINR": 28925,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹2503.32",
         "rewardRiskRatio": 1.6,
-        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
-        "winRatePct": 82.5
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
       },
-      "confidencePct": 74,
-      "catalystRationale": "Range compressed to 41.3% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹348.1). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 61,
+      "catalystRationale": "Tested 20-day Resistance (₹2493) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     },
     {
       "rank": 2,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "LAURUSLABS",
-      "name": "Laurus Labs Ltd.",
-      "sector": "Pharmaceuticals",
+      "symbol": "UPL",
+      "name": "UPL Limited",
+      "sector": "Agrochemicals & Crop Protection",
       "trade": {
-        "action": "BUY LAURUSLABS 2000 PE / Short Spot",
-        "spotEntry": 2006.5,
-        "spotSL": 2042.67,
-        "spotRiskPts": 36.17,
-        "spotTarget1": 1948.63,
-        "spotTarget2": 1905.22,
-        "atmStrike": 2000,
-        "lotSize": 850,
-        "riskPerLotINR": 30745,
-        "target1GainPerLotINR": 49189,
-        "target2GainPerLotINR": 86088,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹2042.67",
+        "action": "BUY UPL 550 PE / Short Spot",
+        "spotEntry": 551.75,
+        "spotSL": 563.95,
+        "spotRiskPts": 12.2,
+        "spotTarget1": 532.23,
+        "spotTarget2": 517.59,
+        "atmStrike": 550,
+        "lotSize": 1355,
+        "riskPerLotINR": 16531,
+        "target1GainPerLotINR": 26450,
+        "target2GainPerLotINR": 46287,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹563.95",
         "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
+        "expectedMove": "-4.0% to -7.5% Waterfall Drop",
+        "winRatePct": 84.5
       },
-      "confidencePct": 58,
-      "catalystRationale": "Tested 20-day Resistance (₹2032.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
-    },
-    {
-      "rank": 3,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "HDFCBANK",
-      "name": "HDFC Bank Ltd.",
-      "sector": "Banking & Financials",
-      "trade": {
-        "action": "BUY HDFCBANK 740 PE / Short Spot",
-        "spotEntry": 738.6,
-        "spotSL": 752.8,
-        "spotRiskPts": 14.2,
-        "spotTarget1": 715.88,
-        "spotTarget2": 698.84,
-        "atmStrike": 740,
-        "lotSize": 650,
-        "riskPerLotINR": 9230,
-        "target1GainPerLotINR": 14768,
-        "target2GainPerLotINR": 25844,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹752.8",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
-      },
-      "confidencePct": 68,
-      "catalystRationale": "Tested 20-day Resistance (₹749.3) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 67,
+      "catalystRationale": "Tested 20-day Resistance (₹591) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
-        "symbol": "MARICO",
-        "price": 830,
-        "compPct": 38,
-        "delivPct": 87,
-        "floor": 791.25
-      },
-      {
-        "symbol": "NATIONALUM",
-        "price": 352.2,
-        "compPct": 41.3,
-        "delivPct": 92,
-        "floor": 348.1
-      },
-      {
         "symbol": "BSOFT",
-        "price": 281.15,
-        "compPct": 41.9,
-        "delivPct": 77,
+        "price": 281.45,
+        "compPct": 32.1,
+        "delivPct": 91,
         "floor": 274.2
       },
       {
-        "symbol": "MANAPPURAM",
-        "price": 319.3,
-        "compPct": 42.4,
-        "delivPct": 85,
-        "floor": 310
+        "symbol": "CDSL",
+        "price": 1355.4,
+        "compPct": 33.6,
+        "delivPct": 90,
+        "floor": 1284
       },
       {
-        "symbol": "PAYTM",
-        "price": 1814.4,
-        "compPct": 42.9,
-        "delivPct": 77,
-        "floor": 1546.3
+        "symbol": "SBICARD",
+        "price": 635.25,
+        "compPct": 33.6,
+        "delivPct": 82,
+        "floor": 610
+      },
+      {
+        "symbol": "GODREJPROP",
+        "price": 1711.3,
+        "compPct": 33.9,
+        "delivPct": 90,
+        "floor": 1647.6
+      },
+      {
+        "symbol": "MARICO",
+        "price": 829.3,
+        "compPct": 34.2,
+        "delivPct": 81,
+        "floor": 791.25
       }
     ],
     "volumeDrives": [
       {
-        "symbol": "PATANJALI",
-        "price": 404,
-        "volMult": 3.43
-      },
-      {
-        "symbol": "TATAELXSI",
-        "price": 3220,
-        "volMult": 2.67
-      },
-      {
         "symbol": "BANDHANBNK",
-        "price": 184.7,
-        "volMult": 2.59,
-        "action": "BUY BANDHANBNK 185 CE / Spot"
+        "price": 191.21,
+        "volMult": 4.03,
+        "action": "BUY BANDHANBNK 190 CE / Spot"
       },
       {
-        "symbol": "LTIM",
-        "price": 4158.3,
-        "volMult": 2.49,
-        "action": "BUY LTIM 4150 CE / Spot"
+        "symbol": "360ONE",
+        "price": 1114.3,
+        "volMult": 3.63,
+        "action": "BUY 360ONE 1120 CE / Spot"
       },
       {
-        "symbol": "PIIND",
-        "price": 2410,
-        "volMult": 2.49,
-        "action": "BUY PIIND 2420 CE / Spot"
+        "symbol": "IDFCFIRSTB",
+        "price": 87.95,
+        "volMult": 3.52
+      },
+      {
+        "symbol": "SUZLON",
+        "price": 42.2,
+        "volMult": 1.97
+      },
+      {
+        "symbol": "MOTILALOFS",
+        "price": 1045.8,
+        "volMult": 1.69,
+        "action": "BUY MOTILALOFS 1040 CE / Spot"
       }
     ],
     "distributionTraps": [
       {
-        "symbol": "LAURUSLABS",
-        "price": 2006.5,
-        "ceil": 2032.8,
-        "distCeilPct": 1.31
+        "symbol": "MANKIND",
+        "price": 2462,
+        "ceil": 2493,
+        "distCeilPct": 1.26
       },
       {
-        "symbol": "HDFCBANK",
-        "price": 738.6,
-        "ceil": 749.3,
-        "distCeilPct": 1.45
+        "symbol": "UPL",
+        "price": 551.75,
+        "ceil": 591,
+        "distCeilPct": 7.11
       },
       {
-        "symbol": "HDFCLIFE",
-        "price": 559.2,
-        "ceil": 567.4,
-        "distCeilPct": 1.47
-      },
-      {
-        "symbol": "APOLLOHOSP",
-        "price": 8835.5,
-        "ceil": 9024,
-        "distCeilPct": 2.13
-      },
-      {
-        "symbol": "PNB",
-        "price": 117,
-        "ceil": 119.5,
-        "distCeilPct": 2.14
+        "symbol": "ESCORTS",
+        "price": 2794.8,
+        "ceil": 3158.5,
+        "distCeilPct": 13.01
       }
     ],
     "sectorLeadership": [
       {
-        "sector": "Information Technology",
+        "sector": "Automobile",
         "coilingCount": 4,
+        "totalStocks": 7
+      },
+      {
+        "sector": "FMCG",
+        "coilingCount": 3,
+        "totalStocks": 4
+      },
+      {
+        "sector": "Auto Tyres",
+        "coilingCount": 2,
+        "totalStocks": 3
+      },
+      {
+        "sector": "Information Technology",
+        "coilingCount": 2,
         "totalStocks": 12
       },
       {
@@ -240,32 +216,17 @@
         "totalStocks": 5
       },
       {
-        "sector": "Public Sector Banking",
-        "coilingCount": 2,
-        "totalStocks": 7
-      },
-      {
-        "sector": "Banking & Financials",
-        "coilingCount": 2,
-        "totalStocks": 5
-      },
-      {
-        "sector": "Automobile",
-        "coilingCount": 2,
-        "totalStocks": 7
-      },
-      {
-        "sector": "Aluminium Mining",
+        "sector": "Electrical Consumer Goods",
         "coilingCount": 1,
         "totalStocks": 1
       },
       {
-        "sector": "Mining & Minerals",
+        "sector": "Telecom",
         "coilingCount": 1,
         "totalStocks": 1
       },
       {
-        "sector": "Distilleries & Spirits",
+        "sector": "Defense Shipbuilding & Marine",
         "coilingCount": 1,
         "totalStocks": 1
       }
@@ -274,11 +235,11 @@
   "forensicTakeaways": [
     {
       "title": "Macro Index Auction Character",
-      "finding": "Nifty printed a ROTATIONAL_BALANCED_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
+      "finding": "Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "18 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "20 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Automobile (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",
