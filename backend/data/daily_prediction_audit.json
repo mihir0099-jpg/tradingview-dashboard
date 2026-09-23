@@ -1,5 +1,19 @@
 [
   {
+    "date": "2026-09-22",
+    "timeframe": "DAILY",
+    "actual_range": 203.05,
+    "predicted_range": 113,
+    "range_error_pts": 90.1,
+    "range_accuracy_pct": 55.63,
+    "ib_range": 63.2,
+    "is_wide_ib": false,
+    "day_type": "TREND_DAY_BEARISH",
+    "mistake_diagnosed": "Range deviated by 90.1 pts. Check VIX shifts and day-of-week multipliers.",
+    "remedy_applied": "Retain standard 1.788x expansion multiplier.",
+    "logged_at": "2026-09-22T10:17:22.810Z"
+  },
+  {
     "date": "2026-09-21",
     "timeframe": "DAILY",
     "actual_range": 149.5,

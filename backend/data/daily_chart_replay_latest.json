@@ -1,19 +1,19 @@
 {
-  "timestamp": 1790046120258,
-  "dateStr": "2026-09-22",
-  "timeStr": "08:32:00 IST",
+  "timestamp": 1790132140331,
+  "dateStr": "2026-09-23",
+  "timeStr": "08:25:40 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23414.3,
+      "spot": 23329,
       "open": 23270.9,
-      "dayHigh": 23455.55,
-      "dayLow": 23414.3,
+      "dayHigh": 23395.85,
+      "dayLow": 23329,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
       "openType": "OPEN_DRIVE_BULLISH",
-      "dayType": "TREND_EXPANSION_DAY",
+      "dayType": "ROTATIONAL_BALANCED_DAY",
       "periodCExtension": "BULLISH_IB_EXTENSION",
       "periodGStatus": "CLOSED_OUTSIDE_IB_VALID",
       "periodLBehavior": "LATE_DAY_DRIVE_SUSTAINED",
@@ -22,14 +22,14 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 56470.65,
+      "spot": 56215.55,
       "open": 56420,
-      "dayHigh": 56581.2,
-      "dayLow": 56470.65,
+      "dayHigh": 56356.25,
+      "dayLow": 56215.55,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
-      "openType": "OPEN_TEST_DRIVE",
+      "openType": "OPEN_AUCTION",
       "dayType": "DOUBLE_DISTRIBUTION_DAY",
       "periodFExtension": "PERIOD_F_BULLISH_DRIVE",
       "periodGStatus": "SPIKE_ACCEPTANCE_FILTER_PASSED",
@@ -39,206 +39,215 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 15,
-    "volumeBreakoutCount": 5,
-    "distributionTrapCount": 8,
-    "swingLowFormations": 15,
-    "swingHighFormations": 8
+    "coilingDematCount": 18,
+    "volumeBreakoutCount": 8,
+    "distributionTrapCount": 11,
+    "swingLowFormations": 18,
+    "swingHighFormations": 11
   },
   "tomorrowHighConvictionWatchlist": [
     {
-      "rank": 3,
+      "rank": 2,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "UNIONBANK",
-      "name": "Union Bank of India",
-      "sector": "Public Sector Banking",
+      "symbol": "NATIONALUM",
+      "name": "National Aluminium Co.",
+      "sector": "Aluminium Mining",
       "trade": {
-        "action": "BUY UNIONBANK 177.5 CE / Spot",
-        "spotEntry": 178.09,
-        "spotSL": 173.86,
-        "spotRiskPts": 4.23,
-        "spotTarget1": 184.86,
-        "spotTarget2": 189.93,
-        "atmStrike": 177.5,
-        "lotSize": 4425,
-        "riskPerLotINR": 18718,
-        "target1GainPerLotINR": 29957,
-        "target2GainPerLotINR": 52392,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹173.86",
+        "action": "BUY NATIONALUM 350 CE / Spot",
+        "spotEntry": 352.2,
+        "spotSL": 345.63,
+        "spotRiskPts": 6.57,
+        "spotTarget1": 362.71,
+        "spotTarget2": 370.6,
+        "atmStrike": 350,
+        "lotSize": 1875,
+        "riskPerLotINR": 12319,
+        "target1GainPerLotINR": 19706,
+        "target2GainPerLotINR": 34500,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹345.63",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 60,
-      "catalystRationale": "Range compressed to 42.2% of ATR with 85% Demat delivery. Smart money hoarding at Demand Floor (₹174.74). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 74,
+      "catalystRationale": "Range compressed to 41.3% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹348.1). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 2,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "INDHOTEL",
-      "name": "The Indian Hotels Co.",
-      "sector": "Hotels & Hospitality",
+      "symbol": "LAURUSLABS",
+      "name": "Laurus Labs Ltd.",
+      "sector": "Pharmaceuticals",
       "trade": {
-        "action": "BUY INDHOTEL 750 PE / Short Spot",
-        "spotEntry": 745,
-        "spotSL": 758.5,
-        "spotRiskPts": 13.5,
-        "spotTarget1": 723.4,
-        "spotTarget2": 707.2,
-        "atmStrike": 750,
-        "lotSize": 1000,
-        "riskPerLotINR": 13500,
-        "target1GainPerLotINR": 21600,
-        "target2GainPerLotINR": 37800,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹758.5",
+        "action": "BUY LAURUSLABS 2000 PE / Short Spot",
+        "spotEntry": 2006.5,
+        "spotSL": 2042.67,
+        "spotRiskPts": 36.17,
+        "spotTarget1": 1948.63,
+        "spotTarget2": 1905.22,
+        "atmStrike": 2000,
+        "lotSize": 850,
+        "riskPerLotINR": 30745,
+        "target1GainPerLotINR": 49189,
+        "target2GainPerLotINR": 86088,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹2042.67",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
       },
-      "confidencePct": 69,
-      "catalystRationale": "Tested 20-day Resistance (₹755) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 58,
+      "catalystRationale": "Tested 20-day Resistance (₹2032.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     },
     {
       "rank": 3,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "AUROPHARMA",
-      "name": "Aurobindo Pharma Ltd.",
-      "sector": "Pharmaceuticals",
+      "symbol": "HDFCBANK",
+      "name": "HDFC Bank Ltd.",
+      "sector": "Banking & Financials",
       "trade": {
-        "action": "BUY AUROPHARMA 1720 PE / Short Spot",
-        "spotEntry": 1713.4,
-        "spotSL": 1746.27,
-        "spotRiskPts": 32.87,
-        "spotTarget1": 1660.81,
-        "spotTarget2": 1621.36,
-        "atmStrike": 1720,
-        "lotSize": 550,
-        "riskPerLotINR": 18079,
-        "target1GainPerLotINR": 28925,
-        "target2GainPerLotINR": 50622,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹1746.27",
+        "action": "BUY HDFCBANK 740 PE / Short Spot",
+        "spotEntry": 738.6,
+        "spotSL": 752.8,
+        "spotRiskPts": 14.2,
+        "spotTarget1": 715.88,
+        "spotTarget2": 698.84,
+        "atmStrike": 740,
+        "lotSize": 650,
+        "riskPerLotINR": 9230,
+        "target1GainPerLotINR": 14768,
+        "target2GainPerLotINR": 25844,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹752.8",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
       },
-      "confidencePct": 59,
-      "catalystRationale": "Tested 20-day Resistance (₹1738.9) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 68,
+      "catalystRationale": "Tested 20-day Resistance (₹749.3) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
-        "symbol": "CROMPTON",
-        "price": 225.05,
-        "compPct": 28.4,
+        "symbol": "MARICO",
+        "price": 830,
+        "compPct": 38,
+        "delivPct": 87,
+        "floor": 791.25
+      },
+      {
+        "symbol": "NATIONALUM",
+        "price": 352.2,
+        "compPct": 41.3,
         "delivPct": 92,
-        "floor": 222.3
+        "floor": 348.1
       },
       {
-        "symbol": "SBICARD",
-        "price": 637,
-        "compPct": 38.4,
-        "delivPct": 79,
-        "floor": 610
+        "symbol": "BSOFT",
+        "price": 281.15,
+        "compPct": 41.9,
+        "delivPct": 77,
+        "floor": 274.2
       },
       {
-        "symbol": "UNIONBANK",
-        "price": 178.09,
-        "compPct": 42.2,
+        "symbol": "MANAPPURAM",
+        "price": 319.3,
+        "compPct": 42.4,
         "delivPct": 85,
-        "floor": 174.74
+        "floor": 310
       },
       {
-        "symbol": "FINCABLES",
-        "price": 1399.7,
-        "compPct": 42.2,
+        "symbol": "PAYTM",
+        "price": 1814.4,
+        "compPct": 42.9,
         "delivPct": 77,
-        "floor": 1010.45
-      },
-      {
-        "symbol": "GODREJPROP",
-        "price": 1696.9,
-        "compPct": 42.3,
-        "delivPct": 77,
-        "floor": 1647.6
+        "floor": 1546.3
       }
     ],
     "volumeDrives": [
       {
         "symbol": "PATANJALI",
-        "price": 396.2,
-        "volMult": 5.46,
-        "action": "BUY PATANJALI 395 CE / Spot"
+        "price": 404,
+        "volMult": 3.43
       },
       {
-        "symbol": "MANKIND",
-        "price": 2437.8,
-        "volMult": 3.49,
-        "action": "BUY MANKIND 2440 CE / Spot"
-      },
-      {
-        "symbol": "OFSS",
-        "price": 10911,
-        "volMult": 2.6,
-        "action": "BUY OFSS 10900 PE / Short Spot"
-      },
-      {
-        "symbol": "GMRINFRA",
-        "price": 98.7,
-        "volMult": 2.1,
-        "action": "BUY GMRINFRA 100 PE / Short Spot"
+        "symbol": "TATAELXSI",
+        "price": 3220,
+        "volMult": 2.67
       },
       {
         "symbol": "BANDHANBNK",
-        "price": 179,
-        "volMult": 1.89
+        "price": 184.7,
+        "volMult": 2.59,
+        "action": "BUY BANDHANBNK 185 CE / Spot"
+      },
+      {
+        "symbol": "LTIM",
+        "price": 4158.3,
+        "volMult": 2.49,
+        "action": "BUY LTIM 4150 CE / Spot"
+      },
+      {
+        "symbol": "PIIND",
+        "price": 2410,
+        "volMult": 2.49,
+        "action": "BUY PIIND 2420 CE / Spot"
       }
     ],
     "distributionTraps": [
       {
-        "symbol": "INDHOTEL",
-        "price": 745,
-        "ceil": 755,
-        "distCeilPct": 1.34
+        "symbol": "LAURUSLABS",
+        "price": 2006.5,
+        "ceil": 2032.8,
+        "distCeilPct": 1.31
       },
       {
-        "symbol": "AUROPHARMA",
-        "price": 1713.4,
-        "ceil": 1738.9,
-        "distCeilPct": 1.49
+        "symbol": "HDFCBANK",
+        "price": 738.6,
+        "ceil": 749.3,
+        "distCeilPct": 1.45
       },
       {
-        "symbol": "UPL",
-        "price": 559.9,
-        "ceil": 591,
-        "distCeilPct": 5.55
+        "symbol": "HDFCLIFE",
+        "price": 559.2,
+        "ceil": 567.4,
+        "distCeilPct": 1.47
       },
       {
-        "symbol": "GMRINFRA",
-        "price": 98.7,
-        "ceil": 107.62,
-        "distCeilPct": 9.04
+        "symbol": "APOLLOHOSP",
+        "price": 8835.5,
+        "ceil": 9024,
+        "distCeilPct": 2.13
       },
       {
-        "symbol": "BAJAJ-AUTO",
-        "price": 11414,
-        "ceil": 12470,
-        "distCeilPct": 9.25
+        "symbol": "PNB",
+        "price": 117,
+        "ceil": 119.5,
+        "distCeilPct": 2.14
       }
     ],
     "sectorLeadership": [
       {
-        "sector": "Public Sector Banking",
-        "coilingCount": 4,
-        "totalStocks": 7
-      },
-      {
         "sector": "Information Technology",
         "coilingCount": 4,
         "totalStocks": 12
+      },
+      {
+        "sector": "Private Banking",
+        "coilingCount": 1,
+        "totalStocks": 5
+      },
+      {
+        "sector": "Public Sector Banking",
+        "coilingCount": 2,
+        "totalStocks": 7
+      },
+      {
+        "sector": "Banking & Financials",
+        "coilingCount": 2,
+        "totalStocks": 5
       },
       {
         "sector": "Automobile",
@@ -246,40 +255,30 @@
         "totalStocks": 7
       },
       {
-        "sector": "FMCG",
-        "coilingCount": 1,
-        "totalStocks": 4
-      },
-      {
-        "sector": "Banking & Financials",
-        "coilingCount": 1,
-        "totalStocks": 5
-      },
-      {
-        "sector": "City Gas Distribution",
-        "coilingCount": 1,
-        "totalStocks": 2
-      },
-      {
-        "sector": "Automotive Software & Tech",
+        "sector": "Aluminium Mining",
         "coilingCount": 1,
         "totalStocks": 1
       },
       {
-        "sector": "Power Utilities",
+        "sector": "Mining & Minerals",
         "coilingCount": 1,
-        "totalStocks": 5
+        "totalStocks": 1
+      },
+      {
+        "sector": "Distilleries & Spirits",
+        "coilingCount": 1,
+        "totalStocks": 1
       }
     ]
   },
   "forensicTakeaways": [
     {
       "title": "Macro Index Auction Character",
-      "finding": "Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
+      "finding": "Nifty printed a ROTATIONAL_BALANCED_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C."
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "15 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "18 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

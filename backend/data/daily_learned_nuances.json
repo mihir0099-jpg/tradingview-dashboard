@@ -1,21 +1,21 @@
 [
   {
-    "date": "2026-09-22",
-    "timestamp": 1790046110277,
-    "istTime": "2026-09-22 08:31:50 IST",
+    "date": "2026-09-23",
+    "timestamp": 1790132130336,
+    "istTime": "2026-09-23 08:25:30 IST",
     "macroProfile": {
-      "niftySpot": 23414.3,
+      "niftySpot": 23329,
       "niftyOpen": 23270.9,
-      "niftyChangePct": "0.62%",
-      "bankniftySpot": 56470.65,
+      "niftyChangePct": "0.25%",
+      "bankniftySpot": 56215.55,
       "dayType": "ROTATIONAL_BALANCED_AUCTION",
       "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 28
+      "activeFnoOpportunities": 37
     },
     "autonomousLearnings": [
       {
         "domain": "Institutional Demat Absorption",
-        "observation": "15 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (BANKBARODA, INFY, WIPRO, PERSISTENT).",
+        "observation": "18 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (NATIONALUM, NMDC, BANKBARODA, ICICIBANK).",
         "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
       },
       {
@@ -25,7 +25,38 @@
       },
       {
         "domain": "Late-Day Volume Filter (Period L)",
-        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in OFSS, BAJAJ-AUTO, INDHOTEL printed exhaustion tails.",
+        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in CONCOR, HDFCBANK, HDFCLIFE printed exhaustion tails.",
+        "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
+      }
+    ]
+  },
+  {
+    "date": "2026-09-22",
+    "timestamp": 1790077000667,
+    "istTime": "2026-09-22 17:06:40 IST",
+    "macroProfile": {
+      "niftySpot": 23329,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "0.25%",
+      "bankniftySpot": 56215.55,
+      "dayType": "ROTATIONAL_BALANCED_AUCTION",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 37
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "18 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (NATIONALUM, NMDC, BANKBARODA, ICICIBANK).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      },
+      {
+        "domain": "Late-Day Volume Filter (Period L)",
+        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in CONCOR, HDFCBANK, HDFCLIFE printed exhaustion tails.",
         "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
       }
     ]

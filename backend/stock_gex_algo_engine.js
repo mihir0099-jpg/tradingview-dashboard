@@ -60,14 +60,7 @@ try {
   console.error('[StockGexAlgo] Failed to load all_fno_universe.json:', e.message);
 }
 
-// Indian NSE Official Trading Holidays (2025 – 2027)
-const NSE_HOLIDAYS = [
-  '2025-01-26', '2025-02-26', '2025-03-14', '2025-03-31', '2025-04-10', '2025-04-14',
-  '2025-04-18', '2025-05-01', '2025-08-15', '2025-08-27', '2025-10-02', '2025-10-21',
-  '2025-10-22', '2025-11-05', '2025-12-25',
-  '2026-01-26', '2026-03-03', '2026-03-20', '2026-04-02', '2026-04-03', '2026-04-14',
-  '2026-05-01', '2026-08-15', '2026-08-27', '2026-10-02', '2026-10-20', '2026-11-10', '2026-12-25'
-];
+// Holiday management is handled by holiday_service.js (dynamic online NSE holiday engine)
 
 // Top High-Liquidity Flagship F&O Universe (Indices + Stocks)
 const ALGO_WATCHLIST = [
@@ -302,7 +295,7 @@ class StockGexAlgoEngine {
     // Check every 30 seconds for 9:15 AM start or 3:15 PM auto square-off
     if (this.timer) clearInterval(this.timer);
     this.timer = setInterval(() => this.runScheduledCycle(), 30000);
-    this.runScheduledCycle();
+    setTimeout(() => this.runScheduledCycle(), 5000); // Delay first run by 5s to let all services initialize
   }
 
   getOpenPcrPositionsCount() {
@@ -434,7 +427,12 @@ class StockGexAlgoEngine {
   start() {
     this.isRunning = true;
     this.addLog('SYSTEM', 'INFO', '🟢 Stock GEX Algo Engine Activated (Schedule: 9:15 AM – 3:15 PM IST).');
-    this.runScanCycle(true);
+    const session = getMarketSessionInfo();
+    if (session.isMarketHours && session.isNewEntryAllowed) {
+      this.runScanCycle(true);
+    } else {
+      this.addLog('SYSTEM', 'INFO', `⏸️ Market is ${session.statusReason} — Engine armed. Auto-scan will begin at 09:15 AM IST on the next trading day.`);
+    }
   }
 
   stop() {
@@ -471,7 +469,7 @@ class StockGexAlgoEngine {
       message
     };
     this.state.scanLogs.unshift(entry);
-    if (this.state.scanLogs.length > 80) {
+    if (this.state.scanLogs.length > 200) {
       this.state.scanLogs.pop();
     }
   }
@@ -544,7 +542,18 @@ class StockGexAlgoEngine {
       if (stalePositions.length > 0) {
         this.addLog('SYSTEM', 'PRE_MARKET', `🧹 Auto-cleared ${stalePositions.length} previous-day intraday position(s) before today's 09:15 AM market open.`);
         for (const pos of stalePositions) {
-          this.closePosition(pos, pos.currentLtp, 'PREV_DAY_INTRADAY_EXPIRED');
+          // Re-price at current BS value (not frozen yesterday LTP)
+          let freshExitPrice = pos.currentLtp;
+          try {
+            const spot = pos.lastSpot || pos.spotEntry;
+            if (spot && spot > 0) {
+              const T = Math.max(0.0014, ((pos.dteDays || 1) - 1) / 365.0);
+              const iv = pos.iv || 0.22;
+              const bsPrice = calculateBlackScholesOptionPrice(spot, pos.strike, T, iv, pos.optionType);
+              freshExitPrice = Math.max(0.05, +(bsPrice).toFixed(2));
+            }
+          } catch (e) {}
+          this.closePosition(pos, freshExitPrice, 'PREV_DAY_INTRADAY_EXPIRED');
         }
         this.state.openPositions = this.state.openPositions.filter(p => !p.entryDate || p.entryDate === todayStr);
         this.saveLedger();
@@ -570,8 +579,14 @@ class StockGexAlgoEngine {
 
     for (const pos of this.state.openPositions) {
       const quote = quoteMap[pos.symbol];
-      const currentSpot = quote ? quote.price : pos.lastSpot;
+      // Fallback: also check global live spot cache for PCR-based stocks not in GEX quoteMap
+      let liveSpot = quote ? quote.price : null;
+      if (!liveSpot && global.liveSpotCache) {
+        liveSpot = global.liveSpotCache[pos.symbol] || global.liveSpotCache[`NSE:${pos.symbol}`] || null;
+      }
+      const currentSpot = liveSpot || pos.lastSpot || pos.spotEntry;
       pos.lastSpot = currentSpot;
+
 
       // Real Option Premium priced at current spot
       const T = Math.max(0.002, (pos.dteDays || 5) / 365.0);
@@ -615,13 +630,53 @@ class StockGexAlgoEngine {
       let exitReason = '';
       let exitPrice = pos.currentLtp;
 
+      // STAGNANT POSITION TIMEOUT: Exit if held >= 90 minutes with less than 15% premium movement
+      // (prevents holding non-moving trades all day into 3:15 PM EOD square-off just to suffer theta decay)
+      try {
+        if (pos.entryTimestamp && pos.entryDate) {
+          const now = new Date();
+          const utcNow = now.getTime() + (now.getTimezoneOffset() * 60000);
+          const istNow = new Date(utcNow + (3600000 * 5.5));
+          const [entryH, entryM] = pos.entryTimestamp.split(':').map(Number);
+          const entryMinutes = entryH * 60 + entryM;
+          const nowMinutes = istNow.getHours() * 60 + istNow.getMinutes();
+          const heldMinutes = nowMinutes - entryMinutes;
+
+          if (heldMinutes >= 90) {
+            const premiumMovePct = pos.entryPrice > 0 ? Math.abs((pos.currentLtp - pos.entryPrice) / pos.entryPrice) * 100 : 0;
+            if (premiumMovePct < 15) {
+              shouldClose = true;
+              exitReason = `STAGNANT_EXIT (Held ${heldMinutes}m with only ${premiumMovePct.toFixed(1)}% move — theta preservation exit)`;
+            }
+          }
+        }
+      } catch (e) {}
+
       // 1. PRIMARY: Check Option Premium Exits (Options run dynamically with theta, delta & IV)
-      if (pos.optionTarget && pos.currentLtp >= pos.optionTarget) {
+      if (!shouldClose && pos.optionTarget && pos.currentLtp >= pos.optionTarget) {
         shouldClose = true;
         exitReason = `OPTION_TARGET_HIT (Option LTP ₹${pos.currentLtp} ≥ TGT ₹${pos.optionTarget})`;
-      } else if (pos.optionSL && pos.currentLtp <= pos.optionSL) {
+      } else if (!shouldClose && pos.optionSL && pos.currentLtp <= pos.optionSL) {
         shouldClose = true;
         exitReason = `OPTION_SL_HIT (Option LTP ₹${pos.currentLtp} ≤ SL ₹${pos.optionSL})`;
+      }
+
+      // 1b. RAPID DECAY GUARD: If option loses >= 35% within 30-60 min, cut loss early to prevent total capital wipeout
+      if (!shouldClose) {
+        try {
+          if (pos.entryTimestamp && pos.entryPrice > 0) {
+            const now = new Date();
+            const utcNow = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const istNow = new Date(utcNow + (3600000 * 5.5));
+            const [entryH, entryM] = pos.entryTimestamp.split(':').map(Number);
+            const heldMinutes = (istNow.getHours() * 60 + istNow.getMinutes()) - (entryH * 60 + entryM);
+            const decayPct = ((pos.entryPrice - pos.currentLtp) / pos.entryPrice) * 100;
+            if (heldMinutes >= 30 && heldMinutes <= 60 && decayPct >= 35) {
+              shouldClose = true;
+              exitReason = `RAPID_DECAY_EXIT (Option lost ${decayPct.toFixed(1)}% in ${heldMinutes}m — institutional rejection circuit breaker)`;
+            }
+          }
+        } catch (e) {}
       }
 
       // 2. SECONDARY: Underlying Spot Structural Circuit Breakers
@@ -671,7 +726,31 @@ class StockGexAlgoEngine {
   squareOffAllPositions(reason = 'MANUAL_SQUARE_OFF_ALL') {
     const list = [...this.state.openPositions];
     for (const pos of list) {
-      this.closePosition(pos, pos.currentLtp, reason);
+      // Re-price fresh at EOD using current spot + Black-Scholes so exit price
+      // is NOT frozen at entry-time currentLtp (fixes flat-trade bug)
+      let freshExitPrice = pos.currentLtp;
+      try {
+        const spot = pos.lastSpot || pos.spotEntry;
+        if (spot && spot > 0) {
+          const T = Math.max(0.0014, (pos.dteDays || 1) / 365.0); // min 0.5 days
+          const iv = pos.iv || 0.22;
+          const bsPrice = calculateBlackScholesOptionPrice(spot, pos.strike, T, iv, pos.optionType);
+          // Also check live online cache if available
+          let liveOnlinePrice = null;
+          try {
+            if (global.liveOptionLtpCache) {
+              const optSym1 = `NSE:${pos.symbol}${pos.strike}${pos.optionType}`;
+              const optSym2 = `${pos.symbol}${pos.strike}${pos.optionType}`;
+              liveOnlinePrice = global.liveOptionLtpCache[optSym1] || global.liveOptionLtpCache[optSym2] || null;
+            }
+          } catch (e) {}
+          freshExitPrice = Math.max(0.05, liveOnlinePrice && liveOnlinePrice > 0 ? liveOnlinePrice : +(bsPrice).toFixed(2));
+          pos.currentLtp = freshExitPrice; // update so unrealizedPnL display is also correct
+        }
+      } catch (e) {
+        // fallback to last known currentLtp
+      }
+      this.closePosition(pos, freshExitPrice, reason);
     }
     this.state.openPositions = [];
     this.state.unrealizedPnL = 0;
@@ -697,6 +776,12 @@ class StockGexAlgoEngine {
       (this.state.stats.wins / this.state.stats.totalTrades) * 100
     ).toFixed(1);
 
+    // Track max drawdown from initial capital
+    const currentDrawdownPct = +((500000 - this.state.paperCapital) / 500000 * 100).toFixed(2);
+    if (currentDrawdownPct > (this.state.stats.maxDrawdown || 0)) {
+      this.state.stats.maxDrawdown = currentDrawdownPct;
+    }
+
     const closedRecord = {
       ...pos,
       exitPrice,
@@ -710,7 +795,7 @@ class StockGexAlgoEngine {
     this.analyzeClosedTrade(closedRecord);
     this.addLog(
       pos.symbol,
-      finalPnL >= 0 ? 'WIN' : 'LOSS',
+      finalPnL > 0 ? 'WIN' : (finalPnL === 0 ? 'FLAT' : 'LOSS'),
       `Closed ${pos.symbol} ${pos.strike} ${pos.optionType} | Exit: ₹${exitPrice} | PnL: ${finalPnL >= 0 ? '+' : ''}₹${finalPnL.toLocaleString()} (${reason})`
     );
   }
@@ -1176,7 +1261,7 @@ class StockGexAlgoEngine {
     return {
       score: totalScore,
       stars,
-      isApproved: totalScore >= 75,
+      isApproved: totalScore >= 82,
       gexPts,
       ofPts,
       pcrPts,
@@ -1243,7 +1328,7 @@ class StockGexAlgoEngine {
       this.addLog(
         stock.symbol,
         'CONFLUENCE_VETO',
-        `🛡️ Gated ${candidate.setupId} on ${stock.symbol}: Confluence Score ${confluence.score}/100 (< 75 required). [OF: ${confluence.orderFlowState} | Skew: ${confluence.skewState} | VT: ${confluence.valueBandLocation}]`
+        `🛡️ Gated ${candidate.setupId} on ${stock.symbol}: Confluence Score ${confluence.score}/100 (< 82 required for high win rate). [OF: ${confluence.orderFlowState} | Skew: ${confluence.skewState} | VT: ${confluence.valueBandLocation}]`
       );
       return null;
     }
@@ -1251,7 +1336,7 @@ class StockGexAlgoEngine {
     this.addLog(
       stock.symbol,
       'CONFLUENCE_PASS',
-      `✨ 5-Star Setup Confirmed for ${stock.symbol}: Score ${confluence.score}/100 ${confluence.stars} | ${confluence.reasons.slice(0, 2).join(' + ')}`
+      `✨ High-Conviction Setup Confirmed for ${stock.symbol}: Score ${confluence.score}/100 ${confluence.stars} | ${confluence.reasons.slice(0, 2).join(' + ')}`
     );
     return candidate;
   }
@@ -1274,9 +1359,12 @@ class StockGexAlgoEngine {
     const canTakeGexTrade = this.getOpenGexPositionsCount() < MAX_GEX_WATCHLIST_POSITIONS;
     const canTakePcrTrade = this.getOpenPcrPositionsCount() < MAX_STOCK_PCR_POSITIONS;
 
-    // Symbol Cooldown: Prevent churning/rapid re-entries on same symbol within 10 minutes
+    // Symbol Cooldown: Prevent churning/rapid re-entries on same symbol (25m for index, 15m for stocks)
     const lastCloseTime = this.symbolCooldowns?.get(sym);
-    if (lastCloseTime && (Date.now() - lastCloseTime) < 10 * 60 * 1000) {
+    const cooldownMs = (stock.isIndex || sym === 'BANKNIFTY' || sym === 'NIFTY')
+      ? 25 * 60 * 1000   // 25 min cooldown for indices to avoid churn
+      : 15 * 60 * 1000;  // 15 min cooldown for individual stocks
+    if (lastCloseTime && (Date.now() - lastCloseTime) < cooldownMs) {
       return null;
     }
 
@@ -1440,10 +1528,10 @@ class StockGexAlgoEngine {
         };
         return this.gateCandidateWithConfluence(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock);
       }
-    }
-  }
+    } // end if (spot > callWall && niftyBullish)
+    } // end if (canTakeGexTrade)
 
-  if (canTakePcrTrade) {
+    if (canTakePcrTrade) {
       // ─────────────────────────────────────────────────────────────────────────
       // RULE 5: SPCR-100-01: Stock PCR Put-Writing Bullish Drive (Rule #2D CE Buy)
       // ─────────────────────────────────────────────────────────────────────────
@@ -1454,7 +1542,11 @@ class StockGexAlgoEngine {
         } else {
           const floorRef = putWall && putWall < spot ? putWall : (spot - step * 2);
           const hasFloorSupport = spot >= floorRef * 0.992;
-          if (hasFloorSupport) {
+          // MOMENTUM FILTER: Stock must show at least +0.25% up move from day open before PCR CE entry
+          const spotMomentumPct = quote.open > 0 ? ((spot - quote.open) / quote.open) * 100 : 0;
+          const hasUpMomentum = spotMomentumPct >= 0.25;
+
+          if (hasFloorSupport && hasUpMomentum) {
             const targetSpot = +(Math.max(spot + Math.max(step * 1.5, spot * 0.015), callWall && callWall > spot + step * 0.8 ? callWall : spot + step * 2.0)).toFixed(2);
             const spotSL = +(Math.min(spot - Math.max(step * 0.6, 5), putWall && putWall < spot ? putWall - step * 0.3 : spot - step * 0.8)).toFixed(2);
 
@@ -1466,10 +1558,12 @@ class StockGexAlgoEngine {
               spotEntry: spot,
               spotSL,
               targetSpot,
-              thesis: `Rule #2D Stock PCR Velocity: Aggressive Put Writing (+${stockPcrItem.effectiveDriftPct}% drift) creating institutional floor support.`
+              thesis: `Rule #2D Stock PCR Velocity: Aggressive Put Writing (+${stockPcrItem.effectiveDriftPct}% drift) + Spot Momentum (+${spotMomentumPct.toFixed(2)}%).`
             };
             const approved = this.gateCandidateWithConfluence(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock);
             if (approved) return approved;
+          } else if (!hasUpMomentum) {
+            this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} SPCR CE: Spot momentum (${spotMomentumPct >= 0 ? '+' : ''}${spotMomentumPct.toFixed(2)}%) < +0.25% required for high-probability entry.`);
           }
         }
       }
@@ -1484,7 +1578,11 @@ class StockGexAlgoEngine {
         } else {
           const ceilingRef = callWall && callWall > spot ? callWall : (spot + step * 2);
           const hasCeilingResistance = spot <= ceilingRef * 1.008;
-          if (hasCeilingResistance) {
+          // MOMENTUM FILTER: Stock must show at least -0.25% down move from day open before PCR PE entry
+          const spotMomentumPct = quote.open > 0 ? ((spot - quote.open) / quote.open) * 100 : 0;
+          const hasDownMomentum = spotMomentumPct <= -0.25;
+
+          if (hasCeilingResistance && hasDownMomentum) {
             const targetSpot = +(Math.min(spot - Math.max(step * 1.5, spot * 0.015), putWall && putWall < spot - step * 0.8 ? putWall : spot - step * 2.0)).toFixed(2);
             const spotSL = +(Math.max(spot + Math.max(step * 0.6, 5), callWall && callWall > spot ? callWall + step * 0.3 : spot + step * 0.8)).toFixed(2);
 
@@ -1496,10 +1594,12 @@ class StockGexAlgoEngine {
               spotEntry: spot,
               spotSL,
               targetSpot,
-              thesis: `Rule #2D Stock PCR Velocity: Aggressive Call Writing (${stockPcrItem.effectiveDriftPct}% drift) placing institutional ceiling resistance.`
+              thesis: `Rule #2D Stock PCR Velocity: Aggressive Call Writing (${stockPcrItem.effectiveDriftPct}% drift) + Downside Momentum (${spotMomentumPct.toFixed(2)}%).`
             };
             const approved = this.gateCandidateWithConfluence(stock, quote, gexProfile, candidate, orderflowState, imbalanceData, valueTraderStock);
             if (approved) return approved;
+          } else if (!hasDownMomentum) {
+            this.addLog(sym, 'FILTER', `🛡️ Blocked ${sym} SPCR PE: Spot momentum (${spotMomentumPct >= 0 ? '+' : ''}${spotMomentumPct.toFixed(2)}%) > -0.25% required for breakdown entry.`);
           }
         }
       }
@@ -1877,7 +1977,7 @@ class StockGexAlgoEngine {
       learnedRules: this.state.learnedRules || [],
       eodAnalysis: this.state.eodAnalysis || null,
       confluenceRadar: {
-        scoreThreshold: 75,
+        scoreThreshold: 82,
         niftyGexRegime: this.state.indexContext?.niftySpot >= (this.state.indexContext?.niftyOpen || 23350) ? 'LONG_GAMMA' : 'SHORT_GAMMA',
         orderFlowDivergence: orderflowState?.divergence || 'NONE',
         runningCvd: orderflowState?.runningCvd || 0,

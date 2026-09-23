@@ -943,7 +943,7 @@ function formatGexVal(val: number, unit = 'Cr'): string {
               fontWeight: 700,
               border: '1px solid rgba(56, 189, 248, 0.3)'
             }}>
-              GATE: ≥ {algoStatus?.confluenceRadar?.scoreThreshold || 75} PTS REQUIRED
+              GATE: ≥ {algoStatus?.confluenceRadar?.scoreThreshold || 82} PTS REQUIRED
             </span>
           </div>
 

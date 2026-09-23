@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "timestamp": "2026-09-22T08:32:17.483061",
-  "ist_time": "08:32:17",
-  "execution_latency_ms": 149.75,
+  "timestamp": "2026-09-23T08:24:04.191863",
+  "ist_time": "08:24:04",
+  "execution_latency_ms": 185.63,
   "status": "ALL_SYSTEMS_ACTIVE",
   "engines": {
     "engine_1_trap_predictor": {
@@ -257,6 +257,21 @@
           "historical_leader": false
         },
         {
+          "symbol": "KOTAKBANK",
+          "date": "2026-09-20",
+          "days_elapsed": 1,
+          "block_anchor_price": 1000,
+          "current_spot": 1000,
+          "turnover_cr": 50,
+          "ml_absorption_bounce_prob": 82.0,
+          "ml_predicted_target_pct": 6.4,
+          "predicted_target_price": 1064.0,
+          "predicted_max_drawdown_pct": 1.8,
+          "optimal_entry_dip_price": 992.0,
+          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
+          "historical_leader": false
+        },
+        {
           "symbol": "ITC",
           "date": "2026-09-20",
           "days_elapsed": 1,
@@ -318,21 +333,6 @@
         },
         {
           "symbol": "LT",
-          "date": "2026-09-20",
-          "days_elapsed": 1,
-          "block_anchor_price": 1000,
-          "current_spot": 1000,
-          "turnover_cr": 50,
-          "ml_absorption_bounce_prob": 82.0,
-          "ml_predicted_target_pct": 6.4,
-          "predicted_target_price": 1064.0,
-          "predicted_max_drawdown_pct": 1.8,
-          "optimal_entry_dip_price": 992.0,
-          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
-          "historical_leader": false
-        },
-        {
-          "symbol": "KOTAKBANK",
           "date": "2026-09-20",
           "days_elapsed": 1,
           "block_anchor_price": 1000,

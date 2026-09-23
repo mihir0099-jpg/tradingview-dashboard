@@ -261,17 +261,18 @@ export function getLiveMarketSession() {
   const timeMinutes = hours * 60 + minutes;
 
   const marketOpenMinutes = 9 * 60 + 15;   // 09:15 AM IST
-  const entryCloseMinutes = 15 * 60;       // 03:00 PM IST (Cutoff for taking NEW entries to avoid EOD churn)
+  const entryStartMinutes = 9 * 60 + 25;   // 09:25 AM IST (First 10 min opening auction stabilization)
+  const entryCloseMinutes = 14 * 60 + 45;  // 02:45 PM IST (Avoid late-day theta chop per Rule 3)
   const marketCloseMinutes = 15 * 60 + 15; // 03:15 PM IST (Intraday cutoff)
   const eodSquareOffMinutes = 15 * 60 + 15;// 03:15 PM IST
 
   const isTradingDay = !isWeekend && !isHoliday;
   const isMarketHours = isTradingDay && (timeMinutes >= marketOpenMinutes && timeMinutes < marketCloseMinutes);
-  const isNewEntryAllowed = isTradingDay && (timeMinutes >= marketOpenMinutes && timeMinutes < entryCloseMinutes);
+  const isNewEntryAllowed = isTradingDay && (timeMinutes >= entryStartMinutes && timeMinutes < entryCloseMinutes);
   const isEODExit = isTradingDay && (timeMinutes >= eodSquareOffMinutes);
 
   let statusReason = 'OPEN';
-  let statusMessage = 'Market is OPEN for Trading (09:15 AM – 03:00 PM IST for new entries).';
+  let statusMessage = 'Market is OPEN for Trading (09:25 AM – 02:45 PM IST for new entries).';
 
   if (isWeekend) {
     statusReason = 'WEEKEND_OFF';
@@ -283,12 +284,16 @@ export function getLiveMarketSession() {
     statusReason = 'PRE_MARKET';
     const remainingMins = marketOpenMinutes - timeMinutes;
     statusMessage = `Market is in PRE-MARKET. Opens at 09:15 AM IST (in ${remainingMins} min).`;
+  } else if (timeMinutes < entryStartMinutes) {
+    statusReason = 'OPENING_AUCTION';
+    const remainingMins = entryStartMinutes - timeMinutes;
+    statusMessage = `Market OPEN (09:15 AM). Opening auction settling — new entries unlock in ${remainingMins} min at 09:25 AM.`;
   } else if (timeMinutes >= marketCloseMinutes) {
     statusReason = 'POST_MARKET';
     statusMessage = 'Market is CLOSED (Post-Market after 03:15 PM IST).';
   } else if (timeMinutes >= entryCloseMinutes) {
     statusReason = 'EOD_CLOSING';
-    statusMessage = 'Market in EOD CLOSING (03:00 – 03:15 PM IST: Managing exits only, no new entries).';
+    statusMessage = 'Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries).';
   }
 
   return {

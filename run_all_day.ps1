@@ -65,7 +65,7 @@ while ($true) {
         $port3002Listening = Get-NetTCPConnection -LocalPort 3002 -State Listen -ErrorAction SilentlyContinue
         if (-not $port3002Listening) {
             Write-Host "[Watchdog] Port 3002 not listening. Launching backend server..." -ForegroundColor Yellow
-            Start-Process -FilePath "node" -ArgumentList "server.js --project=tradingview-dashboard" -WorkingDirectory "$tvDir\backend" -WindowStyle Hidden -ErrorAction SilentlyContinue
+            Start-Process -FilePath "C:\Program Files\nodejs\node.exe" -ArgumentList "backend/server.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
         }
     }
 
@@ -75,7 +75,7 @@ while ($true) {
         $port3001Listening = Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue
         if (-not $port3001Listening) {
             Write-Host "[Watchdog] Port 3001 not listening. Launching backend server..." -ForegroundColor Yellow
-            Start-Process -FilePath "node" -ArgumentList "server.js" -WorkingDirectory "$mpDir\backend" -WindowStyle Hidden -ErrorAction SilentlyContinue
+            Start-Process -FilePath "C:\Program Files\nodejs\node.exe" -ArgumentList "server.js" -WorkingDirectory "$mpDir\backend" -WindowStyle Hidden -ErrorAction SilentlyContinue
         }
     }
 
@@ -103,7 +103,7 @@ while ($true) {
         $cfConsecutiveFails++
         if ($cfConsecutiveFails -ge 2 -or -not $cfUrl) {
             Write-Host "[Watchdog] Port 3002 Cloudflare tunnel unreachable. Starting start_cloudflare_tunnel.js..." -ForegroundColor Yellow
-            Start-Process -FilePath "node" -ArgumentList "start_cloudflare_tunnel.js" -WorkingDirectory "$tvDir\backend" -WindowStyle Hidden -ErrorAction SilentlyContinue
+            Start-Process -FilePath "C:\Program Files\nodejs\node.exe" -ArgumentList "backend/start_cloudflare_tunnel.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
             $cfConsecutiveFails = 0
         }
     } else {
@@ -115,7 +115,7 @@ while ($true) {
         $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
         $todayKey = $istNow.ToString("yyyy-MM-dd")
         if ($istNow.Hour -eq 15 -and $istNow.Minute -ge 40 -and $global:lastDecayTrackerRun -ne $todayKey) {
-            Write-Host "[Watchdog 15:40 IST] 🎯 Auto-triggering 40-Strike Weekly Expiry Decay & Zero-Settlement Learner for $todayKey..." -ForegroundColor Yellow
+            Write-Host "[Watchdog 15:40 IST] [TARGET] Auto-triggering 40-Strike Weekly Expiry Decay & Zero-Settlement Learner for $todayKey..." -ForegroundColor Yellow
             $resp = Invoke-RestMethod -Uri "http://localhost:3002/api/options/trigger-decay-tracker" -Method Post -TimeoutSec 10 -ErrorAction SilentlyContinue
             if ($resp) {
                 $global:lastDecayTrackerRun = $todayKey
@@ -143,7 +143,7 @@ while ($true) {
         $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
         $todayKey = $istNow.ToString("yyyy-MM-dd")
         if ($istNow.Hour -ge 16 -and $global:lastTabHealthAuditRun -ne $todayKey) {
-            Write-Host "[Watchdog 16:00 IST] 🛡️ Running Autonomous Evening Tab Health Audit & Self-Healing for $todayKey..." -ForegroundColor Cyan
+            Write-Host "[Watchdog 16:00 IST] [SHIELD] Running Autonomous Evening Tab Health Audit & Self-Healing for $todayKey..." -ForegroundColor Cyan
             Start-Process -FilePath "node" -ArgumentList "backend\auto_heal_tabs.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
             $global:lastTabHealthAuditRun = $todayKey
             Write-Host "[Watchdog 16:00 IST] Tab Health Auditor launched in background!" -ForegroundColor Green
@@ -155,7 +155,7 @@ while ($true) {
         $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
         $todayKey = $istNow.ToString("yyyy-MM-dd")
         if (($istNow.Hour -gt 16 -or ($istNow.Hour -eq 16 -and $istNow.Minute -ge 15)) -and $global:lastMarketBrainRun -ne $todayKey) {
-            Write-Host "[Watchdog 16:15 IST] 🧠 Running Autonomous Daily Market Brain Self-Evolution for $todayKey..." -ForegroundColor Magenta
+            Write-Host "[Watchdog 16:15 IST] [BRAIN] Running Autonomous Daily Market Brain Self-Evolution for $todayKey..." -ForegroundColor Magenta
             Start-Process -FilePath "node" -ArgumentList "backend\autonomous_market_brain.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
             $global:lastMarketBrainRun = $todayKey
             Write-Host "[Watchdog 16:15 IST] Daily Market Brain Evolution completed & codified!" -ForegroundColor Green
@@ -167,7 +167,7 @@ while ($true) {
         $istNow = [System.DateTime]::UtcNow.AddHours(5.5)
         $todayKey = $istNow.ToString("yyyy-MM-dd")
         if (($istNow.Hour -gt 16 -or ($istNow.Hour -eq 16 -and $istNow.Minute -ge 20)) -and $global:lastChartReplayRun -ne $todayKey) {
-            Write-Host "[Watchdog 16:20 IST] 📈 Running Autonomous 212 F&O Chart Replay & Mining for $todayKey..." -ForegroundColor Yellow
+            Write-Host "[Watchdog 16:20 IST] [CHART] Running Autonomous 212 F&O Chart Replay & Mining for $todayKey..." -ForegroundColor Yellow
             Start-Process -FilePath "node" -ArgumentList "backend\daily_full_chart_miner.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
             $global:lastChartReplayRun = $todayKey
             Write-Host "[Watchdog 16:20 IST] 212 F&O Chart Replay finished! High-conviction setups ready for tomorrow." -ForegroundColor Green

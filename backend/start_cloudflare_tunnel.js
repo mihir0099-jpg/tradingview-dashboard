@@ -37,6 +37,7 @@ function startTunnel() {
       const url = match[0];
       if (lastPublishedUrl !== url) {
         lastPublishedUrl = url;
+        urlPublishedAt = Date.now();
         fs.writeFileSync(urlFile, url, 'utf8');
         fs.writeFileSync(activeFile, url, 'utf8');
 
@@ -85,11 +86,34 @@ function startTunnel() {
 
 // Active Tunnel Health Watchdog: Detects sleep resume or dropped quick-tunnels
 let healthFailCount = 0;
+let urlPublishedAt = 0;
+
 setInterval(async () => {
   if (!lastPublishedUrl) return;
+
+  // Grace period: allow 45s for initial Cloudflare DNS propagation
+  if (Date.now() - urlPublishedAt < 45000) {
+    return;
+  }
+
+  // Check if local backend is alive first
+  let localAlive = false;
+  try {
+    const localCtrl = new AbortController();
+    const localTimer = setTimeout(() => localCtrl.abort(), 2500);
+    const localRes = await fetch('http://127.0.0.1:3002/health', { signal: localCtrl.signal });
+    clearTimeout(localTimer);
+    if (localRes.ok) localAlive = true;
+  } catch (e) {}
+
+  if (!localAlive) {
+    // If local backend is down or restarting, do NOT kill cloudflared tunnel
+    return;
+  }
+
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
     const res = await fetch(`${lastPublishedUrl}/health`, { signal: controller.signal });
     clearTimeout(timeoutId);
     if (res.ok) {
@@ -101,11 +125,12 @@ setInterval(async () => {
   }
 
   healthFailCount++;
-  console.log(`[Cloudflare Watchdog] Health check failed for ${lastPublishedUrl} (${healthFailCount}/2)`);
+  console.log(`[Cloudflare Watchdog] Health check failed for ${lastPublishedUrl} (${healthFailCount}/4)`);
 
-  if (healthFailCount >= 2) {
-    console.log(`[Cloudflare Watchdog] Tunnel unreachable after 2 checks. Killing stale process and auto-reconnecting...`);
+  if (healthFailCount >= 4) {
+    console.log(`[Cloudflare Watchdog] Tunnel unreachable after 4 checks. Killing stale process and auto-reconnecting...`);
     healthFailCount = 0;
+    urlPublishedAt = Date.now();
     if (child && child.pid) {
       try {
         if (process.platform === 'win32') {
@@ -121,6 +146,6 @@ setInterval(async () => {
       startTunnel();
     }
   }
-}, 10000);
+}, 15000);
 
 startTunnel();
