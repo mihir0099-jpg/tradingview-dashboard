@@ -11,7 +11,13 @@ function Log-Message {
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $logLine = "[$timestamp] $message"
     Write-Output $logLine
-    Add-Content -Path $logFile -Value $logLine -ErrorAction SilentlyContinue
+    try {
+        if ((Test-Path $logFile) -and ((Get-Item $logFile).Length -gt 500KB)) {
+            $tail = Get-Content $logFile -Tail 200
+            Set-Content -Path $logFile -Value $tail -Force
+        }
+        Add-Content -Path $logFile -Value $logLine -ErrorAction SilentlyContinue
+    } catch {}
 }
 
 Log-Message "🚀 Keep-alive TV watchdog started."
