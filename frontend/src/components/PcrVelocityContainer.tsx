@@ -181,6 +181,7 @@ interface PcrVelocityResponse {
   isPastPeriodC: boolean;
   nifty: IndexVelocityData;
   banknifty: IndexVelocityData;
+  sensex?: IndexVelocityData;
   backtestStats: BacktestStats;
   autoLearnedDatabase?: AutoLearnedDB | null;
 }
@@ -193,7 +194,7 @@ export function PcrVelocityContainer() {
   const [loading, setLoading] = useState(true);
   const [isSavingSnapshot, setIsSavingSnapshot] = useState(false);
   const [snapshotMsg, setSnapshotMsg] = useState<string | null>(null);
-  const [activeAsset, setActiveAsset] = useState<'both' | 'nifty' | 'banknifty'>('both');
+  const [activeAsset, setActiveAsset] = useState<'both' | 'nifty' | 'banknifty' | 'sensex'>('both');
 
 
   const handleSaveSnapshot = async () => {
@@ -543,7 +544,7 @@ export function PcrVelocityContainer() {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{ display: 'flex', background: 'rgba(0, 0, 0, 0.3)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-            {(['both', 'nifty', 'banknifty'] as const).map(tab => (
+            {(['both', 'nifty', 'banknifty', 'sensex'] as const).map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveAsset(tab)}
@@ -559,7 +560,7 @@ export function PcrVelocityContainer() {
                   textTransform: 'capitalize'
                 }}
               >
-                {tab === 'both' ? 'Both Indices' : (tab === 'nifty' ? 'NIFTY' : 'BANKNIFTY')}
+                {tab === 'both' ? 'All Indices' : (tab === 'nifty' ? 'NIFTY' : (tab === 'banknifty' ? 'BANKNIFTY' : 'SENSEX'))}
               </button>
             ))}
           </div>
@@ -586,9 +587,10 @@ export function PcrVelocityContainer() {
 
       {/* Live Index Cards */}
       {data && (
-        <div style={{ display: 'grid', gridTemplateColumns: activeAsset === 'both' ? 'repeat(auto-fit, minmax(460px, 1fr))' : '1fr', gap: '18px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: activeAsset === 'both' ? 'repeat(auto-fit, minmax(380px, 1fr))' : '1fr', gap: '18px' }}>
           {(activeAsset === 'both' || activeAsset === 'nifty') && renderAssetCard('NIFTY 50', data.nifty)}
           {(activeAsset === 'both' || activeAsset === 'banknifty') && renderAssetCard('BANK NIFTY', data.banknifty)}
+          {(activeAsset === 'both' || activeAsset === 'sensex') && data.sensex && renderAssetCard('SENSEX', data.sensex)}
         </div>
       )}
 

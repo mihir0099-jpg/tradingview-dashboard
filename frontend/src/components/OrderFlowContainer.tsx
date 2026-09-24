@@ -99,6 +99,7 @@ const AVAILABLE_INSTRUMENTS = [
   { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', type: 'FUTURES', defaultTick: 10.0, tickOptions: [2.0, 5.0, 10.0, 20.0, 50.0] },
   { symbol: 'CRUDEOILFUT', label: 'CRUDE OIL FUT', type: 'COMMODITY', defaultTick: 5.0, tickOptions: [1.0, 2.0, 5.0, 10.0, 20.0] },
   { symbol: 'CRUDEOILM', label: 'CRUDE OIL MINI', type: 'COMMODITY', defaultTick: 5.0, tickOptions: [1.0, 2.0, 5.0, 10.0, 20.0] },
+  { symbol: 'SENSEX', label: 'SENSEX', type: 'INDEX', defaultTick: 10.0, tickOptions: [5.0, 10.0, 20.0, 50.0, 100.0] },
   { symbol: 'NIFTY', label: 'NIFTY 50', type: 'INDEX', defaultTick: 2.5, tickOptions: [1.0, 2.5, 5.0, 10.0, 20.0] },
   { symbol: 'BANKNIFTY', label: 'BANK NIFTY', type: 'INDEX', defaultTick: 10.0, tickOptions: [2.0, 5.0, 10.0, 20.0, 50.0] },
   { symbol: 'RELIANCE', label: 'RELIANCE', type: 'STOCK', defaultTick: 1.0, tickOptions: [0.5, 1.0, 2.0, 5.0] },
@@ -3194,7 +3195,7 @@ export const OrderFlowContainer: React.FC = () => {
           padding: '4px 10px'
         }}>
           <div style={{ display: 'flex', gap: '3px', overflowX: 'auto' }}>
-            {AVAILABLE_INSTRUMENTS.slice(0, 10).map((inst) => {
+            {AVAILABLE_INSTRUMENTS.slice(0, 13).map((inst) => {
               const isActive = selectedSymbol === inst.symbol;
               return (
                 <button
@@ -3226,6 +3227,11 @@ export const OrderFlowContainer: React.FC = () => {
                   {inst.type === 'COMMODITY' && (
                     <span style={{ fontSize: '8px', padding: '1px 3px', backgroundColor: '#f59e0b33', color: '#f59e0b', borderRadius: '2px', fontWeight: '800' }}>
                       MCX
+                    </span>
+                  )}
+                  {inst.symbol === 'SENSEX' && (
+                    <span style={{ fontSize: '8px', padding: '1px 3px', backgroundColor: '#e11d4833', color: '#fb7185', borderRadius: '2px', fontWeight: '800' }}>
+                      BSE
                     </span>
                   )}
                   {isActive && <div style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#38bdf8' }} />}

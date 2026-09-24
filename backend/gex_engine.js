@@ -238,6 +238,13 @@ export async function computeGexForSymbol(symbolKey = 'NIFTY') {
     } else if (sym === 'BANKNIFTY') {
       const feed = await fetchRealtimeMicrostructureFeed('NSE:BANKNIFTY').catch(() => null);
       if (feed?.spot && feed.spot > 1000) spot = feed.spot;
+    } else if (sym === 'SENSEX') {
+      const ltp = await angelOneBridge.resolveAndGetLtp('SENSEX').catch(() => null);
+      if (ltp && ltp > 1000) {
+        spot = ltp;
+      } else if (global.lastPriceValue?.SENSEX && global.lastPriceValue.SENSEX > 1000) {
+        spot = global.lastPriceValue.SENSEX;
+      }
     } else if (sym === 'CRUDEOIL') {
       const ltp = await angelOneBridge.resolveAndGetLtp('CRUDEOIL').catch(() => null);
       if (ltp && ltp > 100) spot = ltp;

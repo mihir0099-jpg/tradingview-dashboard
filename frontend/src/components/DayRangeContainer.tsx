@@ -116,13 +116,14 @@ interface DayRangeApiResponse {
   istTimeStr: string;
   nifty: AssetRangeData;
   banknifty: AssetRangeData;
+  sensex?: AssetRangeData;
 }
 
 export function DayRangeContainer() {
   const [data, setData] = useState<DayRangeApiResponse | null>(null);
   const [forecasts, setForecasts] = useState<any[]>([]);
   const [casData, setCasData] = useState<any[]>([]);
-  const [selectedAsset, setSelectedAsset] = useState<'nifty' | 'banknifty'>('nifty');
+  const [selectedAsset, setSelectedAsset] = useState<'nifty' | 'banknifty' | 'sensex'>('nifty');
   const [selectedHorizon, setSelectedHorizon] = useState<'daily' | 'weekly' | 'monthly' | 'yearly'>('daily');
   const [loading, setLoading] = useState<boolean>(true);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
@@ -173,7 +174,7 @@ export function DayRangeContainer() {
     );
   }
 
-  const asset = selectedAsset === 'nifty' ? data?.nifty : data?.banknifty;
+  const asset = selectedAsset === 'nifty' ? data?.nifty : (selectedAsset === 'banknifty' ? data?.banknifty : data?.sensex);
   if (!asset) return null;
 
   const isUp = asset.changePts >= 0;
@@ -268,6 +269,22 @@ export function DayRangeContainer() {
               }}
             >
               BANKNIFTY
+            </button>
+            <button
+              onClick={() => setSelectedAsset('sensex')}
+              style={{
+                background: selectedAsset === 'sensex' ? '#3b82f6' : 'transparent',
+                color: selectedAsset === 'sensex' ? '#ffffff' : 'var(--text-secondary)',
+                border: 'none',
+                padding: '5px 14px',
+                borderRadius: '7px',
+                fontSize: '12px',
+                fontWeight: 700,
+                cursor: 'pointer',
+                transition: 'all 0.15s ease'
+              }}
+            >
+              SENSEX
             </button>
           </div>
 
@@ -410,7 +427,8 @@ export function DayRangeContainer() {
             const oppositeLevel = isSpotBullish ? asset.m15Low : asset.m15High;
             const spotRiskPts = Math.abs(triggerLevel - oppositeLevel);
             const optionRiskPts = Math.round(spotRiskPts * 0.5);
-            const t1Pts = Math.min(Math.round(Math.abs(asset.earlyMoveDetector.target1Price - triggerLevel)), selectedAsset === 'nifty' ? 38 : 95);
+            const defaultT1Cap = selectedAsset === 'nifty' ? 38 : (selectedAsset === 'banknifty' ? 95 : 160);
+            const t1Pts = Math.min(Math.round(Math.abs(asset.earlyMoveDetector.target1Price - triggerLevel)), defaultT1Cap);
             const t2Pts = Math.round(Math.abs(asset.earlyMoveDetector.target2Price - triggerLevel));
             const isTriggered = isSpotBullish ? asset.spot >= triggerLevel : asset.spot <= triggerLevel;
 
@@ -968,7 +986,7 @@ export function DayRangeContainer() {
           {(() => {
             const todayCas = casData && casData.length > 0 ? casData[0] : null;
             if (!todayCas) return null;
-            const assetCas = selectedAsset === 'nifty' ? todayCas?.nifty : todayCas?.banknifty;
+            const assetCas = selectedAsset === 'nifty' ? todayCas?.nifty : (selectedAsset === 'banknifty' ? todayCas?.banknifty : (todayCas as any)?.sensex);
             if (!assetCas) return null;
 
             const ltpContinuous = assetCas.continuousCloseAt327 ?? assetCas.ltpAt315 ?? 0;

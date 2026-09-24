@@ -8,6 +8,7 @@ export const ORDERFLOW_SYMBOLS = [
   { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', token: '68390', exchange: 'NFO', tickSize: 1.0, lotSize: 15, groupSize: 1.0 },
   { symbol: 'CRUDEOILFUT', label: 'CRUDE OIL FUT (MCX)', token: '565899', exchange: 'MCX', tickSize: 1.0, lotSize: 100, groupSize: 5.0, tradingsymbol: 'CRUDEOIL21SEP26FUT' },
   { symbol: 'CRUDEOILM', label: 'CRUDE OIL MINI (MCX)', token: '565900', exchange: 'MCX', tickSize: 1.0, lotSize: 10, groupSize: 5.0, tradingsymbol: 'CRUDEOILM21SEP26FUT' },
+  { symbol: 'SENSEX', label: 'SENSEX', token: '99919000', exchange: 'BSE', tickSize: 5.0, lotSize: 10, groupSize: 10.0 },
   { symbol: 'NIFTY', label: 'NIFTY 50', token: '99926000', exchange: 'NSE', tickSize: 1.0, lotSize: 75, groupSize: 1.0 },
   { symbol: 'BANKNIFTY', label: 'BANK NIFTY', token: '99926009', exchange: 'NSE', tickSize: 1.0, lotSize: 30, groupSize: 1.0 },
   { symbol: 'RELIANCE', label: 'RELIANCE', token: '2885', exchange: 'NSE', tickSize: 0.5, lotSize: 250, groupSize: 0.5 },
@@ -249,7 +250,9 @@ class OrderFlowStreamEngine {
     const realLtp = await angelOneBridge.resolveAndGetLtp(cleanSym).catch(() => null);
     const isNifty = meta.symbol.includes('NIFTY') && !meta.symbol.includes('BANK');
     const isBankNifty = meta.symbol.includes('BANK');
-    const basePrice = realLtp || this.lastLtp || (isNifty ? 23200 : (isBankNifty ? 55800 : 1250));
+    const isSensex = meta.symbol.includes('SENSEX');
+    const defaultBase = isNifty ? 23400 : (isBankNifty ? 56500 : (isSensex ? 74800 : 1250));
+    const basePrice = (realLtp && realLtp > 0) ? realLtp : defaultBase;
     const step = meta.groupSize || 1.0;
     let price = basePrice;
     let cvd = 0;
@@ -263,9 +266,9 @@ class OrderFlowStreamEngine {
     for (let i = 0; i < count; i++) {
       const candleTime = new Date(start.getTime() + i * this.timeframeMinutes * 60 * 1000);
       const timeStr = candleTime.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit' });
-      const period = getPeriodLetter(candleTime);
+      const period = getPeriodLetter(candleTime, meta.exchange);
 
-      const change = (Math.random() - 0.48) * (isNifty ? 25 : (isBankNifty ? 90 : 4));
+      const change = (Math.random() - 0.48) * (isNifty ? 25 : (isBankNifty ? 90 : (isSensex ? 120 : 4)));
       const open = price;
       const close = parseFloat((open + change).toFixed(2));
       const high = parseFloat((Math.max(open, close) + Math.random() * (step * 2)).toFixed(2));
@@ -415,6 +418,7 @@ class OrderFlowStreamEngine {
     this.activeToken = found.token;
     this.timeframeMinutes = timeframe;
     this.currentCandle = null;
+    this.lastLtp = null;
     this.recentTicks = [];
 
     await this.seedHistoricalCandles();

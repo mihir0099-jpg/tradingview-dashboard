@@ -127,6 +127,56 @@ export async function send1015PredictionAlert(niftyData, bankniftyData, forecast
   return await sendTelegramMessage(msg);
 }
 
+export async function send1015PcrVelocityAlert(pcrData = null) {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });
+
+  const nifty = pcrData?.nifty || {};
+  const banknifty = pcrData?.banknifty || {};
+  const sensex = pcrData?.sensex || {};
+
+  const formatVerdict = (drift) => {
+    if (drift >= 0.03) return '🟢 <b>BULLISH PUT WRITING (Support)</b>';
+    if (drift <= -0.03) return '🔴 <b>BEARISH CALL WRITING (Resistance)</b>';
+    return '⚪ <b>NEUTRAL (Rotational Auction)</b>';
+  };
+
+  const nDrift = nifty.drift || 0;
+  const bnDrift = banknifty.drift || 0;
+  const sxDrift = sensex.drift || 0;
+
+  const msg = `⚡ <b>10:15 AM FIRST-HOUR PCR VELOCITY ALERT</b>
+📅 <b>${dateStr}</b> | <i>Rule #2D Institutional Drift Snapshot</i>
+━━━━━━━━━━━━━━━━━━━━━
+<b>🔹 NIFTY 50 (Spot: ${nifty.spot?.toLocaleString('en-IN') || '-'})</b>
+• <b>9:15 Baseline PCR:</b> ${nifty.baselinePcr || '0.94'}
+• <b>10:15 Live PCR:</b> <b>${nifty.currentPcr || '-'}</b>
+• <b>Velocity Drift:</b> <b>${nDrift > 0 ? '+' : ''}${nDrift}</b> (${(nifty.velocityPct > 0 ? '+' : '')}${nifty.velocityPct || 0}%)
+• <b>Verdict:</b> ${formatVerdict(nDrift)}
+
+━━━━━━━━━━━━━━━━━━━━━
+<b>🔹 BANKNIFTY (Spot: ${banknifty.spot?.toLocaleString('en-IN') || '-'})</b>
+• <b>9:15 Baseline PCR:</b> ${banknifty.baselinePcr || '0.98'}
+• <b>10:15 Live PCR:</b> <b>${banknifty.currentPcr || '-'}</b>
+• <b>Velocity Drift:</b> <b>${bnDrift > 0 ? '+' : ''}${bnDrift}</b> (${(banknifty.velocityPct > 0 ? '+' : '')}${banknifty.velocityPct || 0}%)
+• <b>Verdict:</b> ${formatVerdict(bnDrift)}
+
+━━━━━━━━━━━━━━━━━━━━━
+<b>🔹 SENSEX (Spot: ${sensex.spot?.toLocaleString('en-IN') || '-'})</b>
+• <b>9:15 Baseline PCR:</b> ${sensex.baselinePcr || '0.95'}
+• <b>10:15 Live PCR:</b> <b>${sensex.currentPcr || '-'}</b>
+• <b>Velocity Drift:</b> <b>${sxDrift > 0 ? '+' : ''}${sxDrift}</b> (${(sensex.velocityPct > 0 ? '+' : '')}${sensex.velocityPct || 0}%)
+• <b>Verdict:</b> ${formatVerdict(sxDrift)}
+
+━━━━━━━━━━━━━━━━━━━━━
+💡 <b>RULE #2D ACTIONABLE PLAYBOOK:</b>
+• <b>Drift &gt; +0.03 (+3%):</b> Institutional Put Writing. Favor ATM CE on dips.
+• <b>Drift &lt; -0.03 (-3%):</b> Institutional Call Writing. Favor ATM PE on rallies.
+• <b>Between -0.03 &amp; +0.03:</b> Low writing conviction. Expect range-bound rotation.`;
+
+  return await sendTelegramMessage(msg);
+}
+
 export async function send345PostMarketAuditAlert(customData = null) {
   const now = new Date();
   const dateStr = now.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', timeZone: 'Asia/Kolkata' });

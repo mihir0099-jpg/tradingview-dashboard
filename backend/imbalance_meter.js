@@ -10,18 +10,18 @@ const JOURNAL_FILE = path.join(__dirname, 'data', 'imbalance_mistake_journal.jso
 
 // Heavyweight constituents with index weighting
 export const CONSTITUENTS = [
-  { symbol: 'RELIANCE', token: '2885', exchange: 'NSE', niftyWeight: 10.5, bankniftyWeight: 0 },
-  { symbol: 'HDFCBANK', token: '1333', exchange: 'NSE', niftyWeight: 12.8, bankniftyWeight: 29.0 },
-  { symbol: 'ICICIBANK', token: '4963', exchange: 'NSE', niftyWeight: 7.8, bankniftyWeight: 23.0 },
-  { symbol: 'INFY', token: '1594', exchange: 'NSE', niftyWeight: 5.8, bankniftyWeight: 0 },
-  { symbol: 'TCS', token: '11536', exchange: 'NSE', niftyWeight: 3.8, bankniftyWeight: 0 },
-  { symbol: 'SBIN', token: '3045', exchange: 'NSE', niftyWeight: 3.2, bankniftyWeight: 10.0 },
-  { symbol: 'AXISBANK', token: '5900', exchange: 'NSE', niftyWeight: 3.1, bankniftyWeight: 10.0 },
-  { symbol: 'BHARTIARTL', token: '10604', exchange: 'NSE', niftyWeight: 4.5, bankniftyWeight: 0 },
-  { symbol: 'LT', token: '11483', exchange: 'NSE', niftyWeight: 3.6, bankniftyWeight: 0 },
-  { symbol: 'KOTAKBANK', token: '1922', exchange: 'NSE', niftyWeight: 2.7, bankniftyWeight: 9.0 },
-  { symbol: 'PNB', token: '10666', exchange: 'NSE', niftyWeight: 0.8, bankniftyWeight: 4.0 },
-  { symbol: 'HDFCLIFE', token: '467', exchange: 'NSE', niftyWeight: 1.1, bankniftyWeight: 0 }
+  { symbol: 'RELIANCE', token: '2885', exchange: 'NSE', niftyWeight: 10.5, bankniftyWeight: 0, sensexWeight: 11.8 },
+  { symbol: 'HDFCBANK', token: '1333', exchange: 'NSE', niftyWeight: 12.8, bankniftyWeight: 29.0, sensexWeight: 14.5 },
+  { symbol: 'ICICIBANK', token: '4963', exchange: 'NSE', niftyWeight: 7.8, bankniftyWeight: 23.0, sensexWeight: 9.2 },
+  { symbol: 'INFY', token: '1594', exchange: 'NSE', niftyWeight: 5.8, bankniftyWeight: 0, sensexWeight: 7.5 },
+  { symbol: 'TCS', token: '11536', exchange: 'NSE', niftyWeight: 3.8, bankniftyWeight: 0, sensexWeight: 5.2 },
+  { symbol: 'SBIN', token: '3045', exchange: 'NSE', niftyWeight: 3.2, bankniftyWeight: 10.0, sensexWeight: 3.5 },
+  { symbol: 'AXISBANK', token: '5900', exchange: 'NSE', niftyWeight: 3.1, bankniftyWeight: 10.0, sensexWeight: 3.2 },
+  { symbol: 'BHARTIARTL', token: '10604', exchange: 'NSE', niftyWeight: 4.5, bankniftyWeight: 0, sensexWeight: 4.8 },
+  { symbol: 'LT', token: '11483', exchange: 'NSE', niftyWeight: 3.6, bankniftyWeight: 0, sensexWeight: 4.5 },
+  { symbol: 'KOTAKBANK', token: '1922', exchange: 'NSE', niftyWeight: 2.7, bankniftyWeight: 9.0, sensexWeight: 3.1 },
+  { symbol: 'PNB', token: '10666', exchange: 'NSE', niftyWeight: 0.8, bankniftyWeight: 4.0, sensexWeight: 0 },
+  { symbol: 'HDFCLIFE', token: '467', exchange: 'NSE', niftyWeight: 1.1, bankniftyWeight: 0, sensexWeight: 0 }
 ];
 
 class ImbalanceMeterEngine {
@@ -132,6 +132,8 @@ class ImbalanceMeterEngine {
       let weightedNiftyBuyPct = 0;
       let totalBankniftyWeight = 0;
       let weightedBankniftyBuyPct = 0;
+      let totalSensexWeight = 0;
+      let weightedSensexBuyPct = 0;
 
       const processedConstituents = CONSTITUENTS.map(meta => {
         const item = fetchedMap.get(meta.token);
@@ -218,6 +220,10 @@ class ImbalanceMeterEngine {
           totalBankniftyWeight += meta.bankniftyWeight;
           weightedBankniftyBuyPct += meta.bankniftyWeight * top5BuyPct;
         }
+        if (meta.sensexWeight > 0) {
+          totalSensexWeight += meta.sensexWeight;
+          weightedSensexBuyPct += meta.sensexWeight * top5BuyPct;
+        }
 
         return {
           symbol: meta.symbol,
@@ -251,6 +257,9 @@ class ImbalanceMeterEngine {
       const bankniftyBuyPressure = totalBankniftyWeight > 0 ? parseFloat((weightedBankniftyBuyPct / totalBankniftyWeight).toFixed(1)) : 50;
       const bankniftySellPressure = parseFloat((100 - bankniftyBuyPressure).toFixed(1));
 
+      const sensexBuyPressure = totalSensexWeight > 0 ? parseFloat((weightedSensexBuyPct / totalSensexWeight).toFixed(1)) : 50;
+      const sensexSellPressure = parseFloat((100 - sensexBuyPressure).toFixed(1));
+
       let marketRegime = 'BALANCED_CHOP';
       if (niftyBuyPressure >= 62 && bankniftyBuyPressure >= 60) marketRegime = 'STRONG_BULLISH_AGGRESSION';
       else if (niftyBuyPressure >= 55) marketRegime = 'MILD_BULLISH_BIAS';
@@ -273,6 +282,11 @@ class ImbalanceMeterEngine {
           buyPressure: bankniftyBuyPressure,
           sellPressure: bankniftySellPressure,
           bias: bankniftyBuyPressure >= 55 ? 'BULLISH' : (bankniftyBuyPressure <= 45 ? 'BEARISH' : 'NEUTRAL')
+        },
+        sensex: {
+          buyPressure: sensexBuyPressure,
+          sellPressure: sensexSellPressure,
+          bias: sensexBuyPressure >= 55 ? 'BULLISH' : (sensexBuyPressure <= 45 ? 'BEARISH' : 'NEUTRAL')
         },
         constituents: processedConstituents,
         journalSummary: {

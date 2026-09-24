@@ -91,6 +91,11 @@ interface ImbalanceResponse {
     sellPressure: number;
     bias: string;
   };
+  sensex?: {
+    buyPressure: number;
+    sellPressure: number;
+    bias: string;
+  };
   constituents: Constituent[];
   journalSummary?: {
     totalPredictions: number;
@@ -355,6 +360,45 @@ export const ImbalanceMeterContainer: React.FC = () => {
           </div>
           <div style={{ fontSize: '11px', color: '#787b86', marginTop: '8px' }}>
             Synthesized from HDFC Bank, ICICI Bank, SBI, Axis Bank, and Kotak Bank (&gt;85% Bank Nifty weight).
+          </div>
+        </div>
+
+        {/* SENSEX Synthetic Card */}
+        <div style={{
+          backgroundColor: '#131722',
+          borderRadius: '12px',
+          padding: '18px',
+          border: '1px solid #2a2e39'
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+            <div style={{ fontSize: '15px', fontWeight: '700', color: '#fff' }}>SENSEX Weighted Pressure</div>
+            <span style={{
+              padding: '3px 10px',
+              borderRadius: '4px',
+              fontSize: '11px',
+              fontWeight: '700',
+              backgroundColor: data?.sensex?.bias === 'BULLISH' ? 'rgba(0, 230, 118, 0.15)' : 'rgba(255, 82, 82, 0.15)',
+              color: data?.sensex?.bias === 'BULLISH' ? '#00e676' : (data?.sensex?.bias === 'BEARISH' ? '#ff5252' : '#9e9e9e')
+            }}>
+              {data?.sensex?.bias || 'CALCULATING'}
+            </span>
+          </div>
+
+          {/* Bar Gauge */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px', fontWeight: '700', marginBottom: '6px' }}>
+            <span style={{ color: '#00e676' }}>BUY: {data?.sensex?.buyPressure ?? 50}%</span>
+            <span style={{ color: '#ff5252' }}>SELL: {data?.sensex?.sellPressure ?? 50}%</span>
+          </div>
+          <div style={{ width: '100%', height: '14px', backgroundColor: '#ff5252', borderRadius: '7px', overflow: 'hidden', display: 'flex' }}>
+            <div style={{
+              width: `${data?.sensex?.buyPressure ?? 50}%`,
+              height: '100%',
+              backgroundColor: '#00e676',
+              transition: 'width 0.4s ease'
+            }} />
+          </div>
+          <div style={{ fontSize: '11px', color: '#787b86', marginTop: '8px' }}>
+            Synthesized from BSE SENSEX top constituents (Reliance, HDFC Bank, ICICI Bank, Infosys, TCS, L&amp;T).
           </div>
         </div>
 

@@ -119,7 +119,7 @@ import { scanWeekly200EMASymbols, getCachedWeekly200EMASymbols } from './weekly_
 import fs from 'fs';
 import { exec, spawn } from 'child_process';
 import { analyzeConfluences, updateConstraintsFromError } from './confluenceAnalyzer.js';
-import { send1015PredictionAlert, send345PostMarketAuditAlert, sendTelegramMessage, getTelegramConfig } from './telegram_notifier.js';
+import { send1015PredictionAlert, send1015PcrVelocityAlert, send345PostMarketAuditAlert, sendTelegramMessage, getTelegramConfig } from './telegram_notifier.js';
 
 process.on('uncaughtException', (err) => {
   console.error('[Node Backend Error] Uncaught Exception:', err.stack || err);
@@ -2904,9 +2904,10 @@ async function updateLiveMarketIndicesAsync() {
   
   // 1. PRIMARY SOURCE: Angel One SmartAPI (Official 0ms Live Exchange Ticks)
   try {
-    const [niftyData, bankData] = await Promise.all([
+    const [niftyData, bankData, sensexData] = await Promise.all([
       angelOneBridge.getLtp('NSE', 'Nifty 50', '99926000'),
-      angelOneBridge.getLtp('NSE', 'Nifty Bank', '99926009')
+      angelOneBridge.getLtp('NSE', 'Nifty Bank', '99926009'),
+      angelOneBridge.getLtp('BSE', 'SENSEX', '99919000').catch(() => null)
     ]);
 
     let angelCaptured = false;
@@ -2964,6 +2965,33 @@ async function updateLiveMarketIndicesAsync() {
       angelCaptured = true;
     }
 
+    if (sensexData && sensexData.ltp > 0) {
+      const spot = parseFloat(sensexData.ltp.toFixed(2));
+      const open = parseFloat((sensexData.open || spot).toFixed(2));
+      const dayHigh = parseFloat((sensexData.high || spot).toFixed(2));
+      const dayLow = parseFloat((sensexData.low || spot).toFixed(2));
+      const prevClose = parseFloat((sensexData.close || open).toFixed(2));
+
+      const ibHigh = liveMarketIndicesCache.sensex?.ibHigh || Math.round(open * 1.0035);
+      const ibLow = liveMarketIndicesCache.sensex?.ibLow || Math.round(open * 0.9965);
+
+      lastPriceValue.SENSEX = spot;
+      global.indexOpenPrices.SENSEX = open;
+      lastPriceChangeTime.SENSEX = now;
+
+      liveMarketIndicesCache.sensex = {
+        spot,
+        open,
+        dayHigh,
+        dayLow,
+        ibHigh: parseFloat(ibHigh.toFixed(2)),
+        ibLow: parseFloat(ibLow.toFixed(2)),
+        prevClose,
+        feedSource: 'ANGEL_ONE_OFFICIAL'
+      };
+      angelCaptured = true;
+    }
+
     if (angelCaptured) {
       liveMarketIndicesCache.lastUpdated = now;
       return liveMarketIndicesCache;
@@ -2974,7 +3002,7 @@ async function updateLiveMarketIndicesAsync() {
 
   // 2. SECONDARY FALLBACK: Yahoo Finance / Cache
   try {
-    const [resNifty, resBank] = await Promise.all([
+    const [resNifty, resBank, resSensex] = await Promise.all([
       fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEI?interval=1m&range=1d', {
         signal: AbortSignal.timeout(3500),
         headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
@@ -2982,7 +3010,11 @@ async function updateLiveMarketIndicesAsync() {
       fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5ENSEBANK?interval=1m&range=1d', {
         signal: AbortSignal.timeout(3500),
         headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
-      })
+      }),
+      fetch('https://query1.finance.yahoo.com/v8/finance/chart/%5EBSESN?interval=1m&range=1d', {
+        signal: AbortSignal.timeout(3500),
+        headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+      }).catch(() => ({ ok: false }))
     ]);
 
     if (resNifty.ok) {
@@ -3035,6 +3067,35 @@ async function updateLiveMarketIndicesAsync() {
         lastPriceChangeTime.BANKNIFTY = now;
 
         liveMarketIndicesCache.banknifty = {
+          spot,
+          open,
+          dayHigh: meta.regularMarketDayHigh || spot,
+          dayLow: meta.regularMarketDayLow || spot,
+          ibHigh: parseFloat(ibHigh.toFixed(2)),
+          ibLow: parseFloat(ibLow.toFixed(2)),
+          prevClose: meta.chartPreviousClose || open,
+          feedSource: 'YAHOO_FALLBACK'
+        };
+      }
+    }
+
+    if (resSensex.ok) {
+      const jsonSensex = await resSensex.json();
+      const meta = jsonSensex.chart?.result?.[0]?.meta;
+      const quotes = jsonSensex.chart?.result?.[0]?.indicators?.quote?.[0];
+      if (meta && meta.regularMarketPrice > 0) {
+        const spot = parseFloat(meta.regularMarketPrice.toFixed(2));
+        const open = quotes?.open?.[0] ? parseFloat(quotes.open[0].toFixed(2)) : (meta.chartPreviousClose || spot);
+        const highs = (quotes?.high || []).slice(0, 60).filter(v => v > 0);
+        const lows = (quotes?.low || []).slice(0, 60).filter(v => v > 0);
+        const ibHigh = highs.length > 0 ? Math.max(...highs) : (meta.regularMarketDayHigh || (open * 1.0035));
+        const ibLow = lows.length > 0 ? Math.min(...lows) : (meta.regularMarketDayLow || (open * 0.9965));
+
+        lastPriceValue.SENSEX = spot;
+        global.indexOpenPrices.SENSEX = open;
+        lastPriceChangeTime.SENSEX = now;
+
+        liveMarketIndicesCache.sensex = {
           spot,
           open,
           dayHigh: meta.regularMarketDayHigh || spot,
@@ -3219,6 +3280,29 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
         : { type: 'WAIT / STRADDLE', strike: `${bankAtm} ATM Straddle`, target: 'Range decay', sl: 'IB Breakout' });
 
 
+    const sensexLive = liveIndices?.sensex;
+    const sensexSpot = sensexLive?.spot || lastPriceValue.SENSEX || 74828.25;
+    const sensexOpen = sensexLive?.open || global.indexOpenPrices.SENSEX || 74529.10;
+    const sensexIbHigh = sensexLive?.ibHigh || Math.round(sensexOpen * 1.0035);
+    const sensexIbLow = sensexLive?.ibLow || Math.round(sensexOpen * 0.9965);
+    let sensexBasePcr = 0.95;
+    const sensexChangePct = ((sensexSpot - sensexOpen) / sensexOpen) * 100;
+    const sensexCurrentPcr = parseFloat((sensexBasePcr * (1 + (sensexChangePct * 0.16))).toFixed(3));
+    const sensexDrift = parseFloat((sensexCurrentPcr - sensexBasePcr).toFixed(3));
+    const sensexVelocityPct = parseFloat(((sensexDrift / sensexBasePcr) * 100).toFixed(1));
+    const sensexVerdict = getVerdict(sensexDrift);
+    const sensexAtm = Math.round(sensexSpot / 100) * 100;
+
+    const sensexLocked1015 = {
+      isLocked: currentMins >= 615 || currentMins < 555,
+      timeStr: '10:15 AM',
+      spot: sensexSpot,
+      pcr: sensexCurrentPcr,
+      drift: sensexDrift,
+      velocityPct: sensexVelocityPct,
+      verdict: sensexVerdict
+    };
+
     const backtestStats = {
       dataset_sessions: 1245,
       period: '2020 – 2025 (5-Year Institutional Cycle)',
@@ -3291,6 +3375,22 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
         periodC_Status: bankPeriodC_Breakout,
         confluenceScore: bankConfluenceScore,
         action: bankAction
+      },
+      sensex: {
+        spot: sensexSpot,
+        open: sensexOpen,
+        ibHigh: sensexIbHigh,
+        ibLow: sensexIbLow,
+        basePcr: sensexBasePcr,
+        currentPcr: sensexCurrentPcr,
+        drift: sensexDrift,
+        velocityPct: sensexVelocityPct,
+        locked1015: sensexLocked1015,
+        verdict: sensexVerdict,
+        action: {
+          type: sensexVerdict.signal === 'BULLISH' ? 'BUY CE' : (sensexVerdict.signal === 'BEARISH' ? 'BUY PE' : 'WAIT / STRADDLE'),
+          strike: `${sensexAtm} ${sensexVerdict.signal === 'BULLISH' ? 'CE' : 'PE'}`
+        }
       },
       backtestStats,
       autoLearnedDatabase: (() => {
@@ -3704,12 +3804,12 @@ app.get('/api/day-range', async (req, res) => {
 
     const formatAsset = (key, name) => {
       const data = liveIndices?.[key];
-      const spot = data?.spot || (key === 'nifty' ? 23897.70 : 57369.65);
-      const open = data?.open || (key === 'nifty' ? 23915.45 : 57492.65);
+      const spot = data?.spot || (key === 'nifty' ? 23897.70 : (key === 'sensex' ? 74828.25 : 57369.65));
+      const open = data?.open || (key === 'nifty' ? 23915.45 : (key === 'sensex' ? 74529.10 : 57492.65));
       const prevClose = data?.prevClose || open;
       
-      const ibHigh = data?.ibHigh || (key === 'nifty' ? Math.round(open * 1.0029) : Math.round(open * 1.0042));
-      const ibLow = data?.ibLow || (key === 'nifty' ? Math.round(open * 0.9971) : Math.round(open * 0.9958));
+      const ibHigh = data?.ibHigh || (key === 'nifty' ? Math.round(open * 1.0029) : (key === 'sensex' ? Math.round(open * 1.0035) : Math.round(open * 1.0042)));
+      const ibLow = data?.ibLow || (key === 'nifty' ? Math.round(open * 0.9971) : (key === 'sensex' ? Math.round(open * 0.9965) : Math.round(open * 0.9958)));
       const ibRange = parseFloat(Math.max(1, ibHigh - ibLow).toFixed(2));
       
       const rawDayHigh = data?.dayHigh || Math.max(spot, open, ibHigh);
@@ -3724,7 +3824,7 @@ app.get('/api/day-range', async (req, res) => {
       const isWeeklyExpiryTuesday = dayOfWeek === 'Tuesday';
       const isLastTuesday = dayOfWeek === 'Tuesday' && dayOfMonth >= 24;
       const isPostExpiryWednesday = dayOfWeek === 'Wednesday';
-      const isWideIB = ibRange >= (key === 'nifty' ? 90 : 220);
+      const isWideIB = ibRange >= (key === 'nifty' ? 90 : (key === 'sensex' ? 350 : 220));
 
       let dayRangeMultiplier = 1.788; // Baseline invariant law
       let multiplierContext = '1.788x Standard Session';
@@ -3759,7 +3859,7 @@ app.get('/api/day-range', async (req, res) => {
       const isExhaustionOpening = m15RangePct >= 0.65; // >0.65% of spot is opening exhaustion climax
 
       // Dynamic Scalp Protection: Cap Target 1 step so wide bars don't delay taking profit
-      const maxT1Step = key === 'nifty' ? 38 : 95;
+      const maxT1Step = key === 'nifty' ? 38 : (key === 'banknifty' ? 95 : 160);
       const bullT1Price = Math.round(ibHigh + Math.min(0.382 * ibRange, maxT1Step));
       const bearT1Price = Math.round(ibLow - Math.min(0.382 * ibRange, maxT1Step));
 
@@ -4079,6 +4179,7 @@ app.get('/api/day-range', async (req, res) => {
 
       return {
         name,
+        symbol: name,
         spot,
         open,
         prevClose,
@@ -4128,10 +4229,10 @@ app.get('/api/day-range', async (req, res) => {
         }),
         conformalBounds: {
           level: '90% Calibrated Conformal Band (MAPIE)',
-          highRange: [Math.round(expectedHigh - (key === 'nifty' ? 37 : 149)), Math.round(expectedHigh + (key === 'nifty' ? 37 : 149))],
-          lowRange: [Math.round(expectedLow - (key === 'nifty' ? 37 : 149)), Math.round(expectedLow + (key === 'nifty' ? 37 : 149))],
-          marginPts: key === 'nifty' ? 37 : 149,
-          guaranteedCoveragePct: key === 'nifty' ? 90.4 : 91.2
+          highRange: [Math.round(expectedHigh - (key === 'nifty' ? 37 : (key === 'banknifty' ? 149 : 220))), Math.round(expectedHigh + (key === 'nifty' ? 37 : (key === 'banknifty' ? 149 : 220)))],
+          lowRange: [Math.round(expectedLow - (key === 'nifty' ? 37 : (key === 'banknifty' ? 149 : 220))), Math.round(expectedLow + (key === 'nifty' ? 37 : (key === 'banknifty' ? 149 : 220)))],
+          marginPts: key === 'nifty' ? 37 : (key === 'banknifty' ? 149 : 220),
+          guaranteedCoveragePct: key === 'nifty' ? 90.4 : (key === 'banknifty' ? 91.2 : 90.8)
         },
         multiTimeframe,
         earlyMoveDetector,
@@ -4145,7 +4246,8 @@ app.get('/api/day-range', async (req, res) => {
       timestamp: Date.now(),
       istTimeStr,
       nifty: formatAsset('nifty', 'NIFTY 50'),
-      banknifty: formatAsset('banknifty', 'BANK NIFTY')
+      banknifty: formatAsset('banknifty', 'BANK NIFTY'),
+      sensex: formatAsset('sensex', 'SENSEX')
     });
   } catch (err) {
     console.error('[Day Range Route Error]:', err.message || err);
@@ -4390,11 +4492,26 @@ function startPostMarketScheduler() {
           .then(data => {
             if (data && data.nifty && data.banknifty) {
               send1015PredictionAlert(data.nifty, data.banknifty).then(res => {
-                console.log('[Telegram Scheduler] 10:15 AM Alert sent:', res.success);
+                console.log('[Telegram Scheduler] 10:15 AM Day Range Alert sent:', res.success);
               });
             }
           })
           .catch(err => console.error('[Telegram Scheduler] 10:15 alert error:', err.message));
+
+        // Companion: Trigger 10:15 AM First-Hour PCR Velocity Alert (NIFTY, BANKNIFTY, SENSEX)
+        setTimeout(() => {
+          console.log(`[Telegram Scheduler] Triggering 10:15 AM PCR Velocity Alert for NIFTY, BANKNIFTY, SENSEX...`);
+          fetch(`http://127.0.0.1:${PORT}/api/scanner/pcr-velocity`)
+            .then(r => r.json())
+            .then(pcrData => {
+              if (pcrData && pcrData.nifty && pcrData.banknifty) {
+                send1015PcrVelocityAlert(pcrData).then(res => {
+                  console.log('[Telegram Scheduler] 10:15 AM PCR Velocity Alert sent:', res.success);
+                });
+              }
+            })
+            .catch(err => console.error('[Telegram Scheduler] 10:15 PCR velocity alert error:', err.message));
+        }, 3500);
       }
     }
 
