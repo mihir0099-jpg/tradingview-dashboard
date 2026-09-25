@@ -11,11 +11,73 @@ const logFile = path.join(__dirname, 'data/cloudflare.log');
 const urlFile = path.join(__dirname, 'data/cloudflare_url.txt');
 const activeFile = path.join(__dirname, 'data/active_tunnel_url.txt');
 
+const pidFile = path.join(__dirname, 'data/cloudflare_tunnel.pid');
+const syncScript = path.join(__dirname, 'sync_hf_tunnel.py');
+
 fs.mkdirSync(path.join(__dirname, 'data'), { recursive: true });
+
+// ── 0. Strict Singleton Lock ──────────────────────────────────────────────────
+try {
+  if (fs.existsSync(pidFile)) {
+    const existingPid = parseInt(fs.readFileSync(pidFile, 'utf8').trim());
+    if (existingPid && existingPid !== process.pid) {
+      try {
+        process.kill(existingPid, 0); // Check if process actually exists
+        console.log(`[Cloudflare Tunnel] Another instance is already running (PID: ${existingPid}). Exiting.`);
+        process.exit(0);
+      } catch (err) {
+        // Stale PID from past reboot, safe to continue
+      }
+    }
+  }
+  fs.writeFileSync(pidFile, String(process.pid), 'utf8');
+} catch (e) {}
+
+process.on('exit', () => {
+  try { if (fs.existsSync(pidFile)) fs.unlinkSync(pidFile); } catch (e) {}
+});
+process.on('SIGINT', () => process.exit(0));
+process.on('SIGTERM', () => process.exit(0));
+
+// ── 1. Clean up orphan cloudflared instances for this project ─────────────────
+try {
+  if (process.platform === 'win32') {
+    exec(`wmic process where "name='cloudflared.exe' and ExecutablePath like '%tradingview-dashboard%'" call terminate`, () => {});
+  }
+} catch (e) {}
 
 let child = null;
 let reconnectTimer = null;
 let lastPublishedUrl = null;
+
+function syncUrlToAllTargets(url) {
+  // 1. Save locally for instantaneous zero-latency discovery
+  fs.writeFileSync(urlFile, url, 'utf8');
+  fs.writeFileSync(activeFile, url, 'utf8');
+
+  const jsonPayload = JSON.stringify({ backendUrl: url, updatedAt: Date.now() }, null, 2);
+  const targetDirs = [
+    path.join(__dirname, '..'),
+    path.join(__dirname, '../docs'),
+    path.join(__dirname, '../frontend/public'),
+    path.join(__dirname, '../frontend/dist'),
+    path.join(__dirname, '../hf_static_bundle')
+  ];
+
+  targetDirs.forEach(dir => {
+    try {
+      if (fs.existsSync(dir)) {
+        fs.writeFileSync(path.join(dir, 'live_backend.json'), jsonPayload, 'utf8');
+      }
+    } catch (e) {}
+  });
+
+  // 2. Publish to Hugging Face Space (mihir0099/tradingview-dashboard)
+  exec(`python "${syncScript}" mihir0099/tradingview-dashboard "${url}"`, (err, stdout) => {
+    if (err) console.error('[HF Auto-Sync Error (tradingview-dashboard)]:', err.message);
+    else if (stdout) console.log(stdout.trim());
+  });
+}
 
 function startTunnel() {
   if (reconnectTimer) clearTimeout(reconnectTimer);
@@ -38,39 +100,12 @@ function startTunnel() {
       if (lastPublishedUrl !== url) {
         lastPublishedUrl = url;
         urlPublishedAt = Date.now();
-        fs.writeFileSync(urlFile, url, 'utf8');
-        fs.writeFileSync(activeFile, url, 'utf8');
-
-        // Write live_backend.json locally for instant frontend auto-discovery
-        const jsonPayload = JSON.stringify({ backendUrl: url, updatedAt: Date.now() }, null, 2);
-        try {
-          const docsDir = path.join(__dirname, '../docs');
-          const pubDir = path.join(__dirname, '../frontend/public');
-          const distDir = path.join(__dirname, '../frontend/dist');
-          const hfDir = path.join(__dirname, '../hf_static_bundle');
-          if (fs.existsSync(docsDir)) fs.writeFileSync(path.join(docsDir, 'live_backend.json'), jsonPayload, 'utf8');
-          if (fs.existsSync(pubDir)) fs.writeFileSync(path.join(pubDir, 'live_backend.json'), jsonPayload, 'utf8');
-          if (fs.existsSync(distDir)) fs.writeFileSync(path.join(distDir, 'live_backend.json'), jsonPayload, 'utf8');
-          if (fs.existsSync(hfDir)) fs.writeFileSync(path.join(hfDir, 'live_backend.json'), jsonPayload, 'utf8');
-        } catch (e) {}
 
         console.log('====================================================');
         console.log('[Cloudflare Tunnel] ACTIVE PUBLIC URL: ' + url);
         console.log('====================================================');
 
-        // Automatically sync to Hugging Face space live_backend.json in background!
-        const syncScript = path.join(__dirname, 'sync_hf_tunnel.py');
-        exec(`python "${syncScript}" mihir0099/tradingview-dashboard "${url}"`, (err, stdout, stderr) => {
-          if (err) console.error('[HF Auto-Sync Error]:', err.message);
-          else console.log(stdout.trim());
-        });
-
-        // Notify Telegram Bot with the new tunnel URL
-        try {
-          import('./telegram_notifier.js').then(({ sendTelegramMessage }) => {
-            sendTelegramMessage(`🌐 <b>CLOUDFLARE TUNNEL ACTIVE / RENEWED</b>\n━━━━━━━━━━━━━━━━━━━━━\n🔗 <b>Live URL:</b>\n<code>${url}</code>\n\n✅ <i>Auto-synced to Hugging Face space live_backend.json</i>`).catch(() => {});
-          }).catch(() => {});
-        } catch (te) {}
+        syncUrlToAllTargets(url);
       }
     }
   }
@@ -84,7 +119,7 @@ function startTunnel() {
   });
 }
 
-// Active Tunnel Health Watchdog: Detects sleep resume or dropped quick-tunnels
+// ── 2. Active Tunnel Health & Hugging Face Auto-Sync Watchdog ─────────────────
 let healthFailCount = 0;
 let urlPublishedAt = 0;
 
@@ -107,45 +142,63 @@ setInterval(async () => {
   } catch (e) {}
 
   if (!localAlive) {
-    // If local backend is down or restarting, do NOT kill cloudflared tunnel
-    return;
+    return; // Don't kill tunnel if local node server is just restarting
   }
 
+  // 1. Verify Public Tunnel Health
+  let tunnelHealthy = false;
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 6000);
     const res = await fetch(`${lastPublishedUrl}/health`, { signal: controller.signal });
     clearTimeout(timeoutId);
     if (res.ok) {
+      tunnelHealthy = true;
       healthFailCount = 0;
-      return;
     }
-  } catch (err) {
-    // Network or DNS or socket error (e.g. laptop resumed from sleep)
-  }
+  } catch (err) {}
 
-  healthFailCount++;
-  console.log(`[Cloudflare Watchdog] Health check failed for ${lastPublishedUrl} (${healthFailCount}/4)`);
+  if (!tunnelHealthy) {
+    healthFailCount++;
+    console.log(`[Cloudflare Watchdog] Health check failed for ${lastPublishedUrl} (${healthFailCount}/4)`);
 
-  if (healthFailCount >= 4) {
-    console.log(`[Cloudflare Watchdog] Tunnel unreachable after 4 checks. Killing stale process and auto-reconnecting...`);
-    healthFailCount = 0;
-    urlPublishedAt = Date.now();
-    if (child && child.pid) {
-      try {
-        if (process.platform === 'win32') {
-          exec(`taskkill /F /T /PID ${child.pid}`, () => startTunnel());
-        } else {
-          child.kill('SIGKILL');
+    if (healthFailCount >= 4) {
+      console.log(`[Cloudflare Watchdog] Tunnel unreachable after 4 checks. Re-spawning tunnel...`);
+      healthFailCount = 0;
+      urlPublishedAt = Date.now();
+      if (child && child.pid) {
+        try {
+          if (process.platform === 'win32') {
+            exec(`taskkill /F /T /PID ${child.pid}`, () => startTunnel());
+          } else {
+            child.kill('SIGKILL');
+            startTunnel();
+          }
+        } catch (e) {
           startTunnel();
         }
-      } catch (e) {
+      } else {
         startTunnel();
       }
-    } else {
-      startTunnel();
+      return;
     }
   }
-}, 15000);
+
+  // 2. Continuous Hugging Face Live Sync Verification
+  // Verifies that Hugging Face Space has the exact live tunnel URL and hasn't drifted
+  try {
+    const hfCtrl = new AbortController();
+    const hfTimer = setTimeout(() => hfCtrl.abort(), 4000);
+    const hfRes = await fetch('https://mihir0099-tradingview-dashboard.static.hf.space/live_backend.json', { signal: hfCtrl.signal });
+    clearTimeout(hfTimer);
+    if (hfRes.ok) {
+      const hfData = await hfRes.json();
+      if (hfData.backendUrl !== lastPublishedUrl) {
+        console.log(`[Cloudflare Watchdog] HF Space out of sync! HF has: ${hfData.backendUrl}, Live is: ${lastPublishedUrl}. Auto-resyncing...`);
+        syncUrlToAllTargets(lastPublishedUrl);
+      }
+    }
+  } catch (e) {}
+}, 20000);
 
 startTunnel();
