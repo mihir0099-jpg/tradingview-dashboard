@@ -3,38 +3,38 @@ import React, { useState, useEffect } from 'react';
 import { Zap, RefreshCw, TrendingUp, TrendingDown, Target, BarChart2, Award, Brain, Download, FolderArchive } from 'lucide-react';
 
 interface IndexVelocityData {
-  spot: number;
-  open: number;
-  ibHigh: number;
-  ibLow: number;
-  basePcr: number;
-  currentPcr: number;
-  drift: number;
-  velocityPct: number;
+  spot?: number;
+  open?: number;
+  ibHigh?: number;
+  ibLow?: number;
+  basePcr?: number;
+  currentPcr?: number;
+  drift?: number;
+  velocityPct?: number;
   locked1015?: {
-    isLocked: boolean;
-    timeStr: string;
-    spot: number;
-    pcr: number;
-    drift: number;
-    velocityPct: number;
+    isLocked?: boolean;
+    timeStr?: string;
+    spot?: number;
+    pcr?: number;
+    drift?: number;
+    velocityPct?: number;
     verdict?: {
-      signal: 'BULLISH' | 'BEARISH' | 'NEUTRAL';
-      label: string;
+      signal?: 'BULLISH' | 'BEARISH' | 'NEUTRAL';
+      label?: string;
     };
   };
-  verdict: {
-    signal: 'BULLISH' | 'BEARISH' | 'NEUTRAL';
-    label: string;
-    class: string;
+  verdict?: {
+    signal?: 'BULLISH' | 'BEARISH' | 'NEUTRAL';
+    label?: string;
+    class?: string;
   };
-  periodC_Status: string;
-  confluenceScore: number;
-  action: {
-    type: string;
-    strike: string;
-    target: string;
-    sl: string;
+  periodC_Status?: string;
+  confluenceScore?: number;
+  action?: {
+    type?: string;
+    strike?: string;
+    target?: string;
+    sl?: string;
   };
 }
 
@@ -282,10 +282,14 @@ export function PcrVelocityContainer() {
   }
 
   const renderAssetCard = (name: string, asset: IndexVelocityData) => {
-    const isBull = asset.verdict.signal === 'BULLISH';
-    const isBear = asset.verdict.signal === 'BEARISH';
+    if (!asset) return null;
+    const signal = asset.verdict?.signal || 'NEUTRAL';
+    const isBull = signal === 'BULLISH';
+    const isBear = signal === 'BEARISH';
     const badgeColor = isBull ? '#10b981' : (isBear ? '#ef4444' : '#eab308');
     const badgeBg = isBull ? 'rgba(16, 185, 129, 0.12)' : (isBear ? 'rgba(239, 68, 68, 0.12)' : 'rgba(234, 179, 8, 0.12)');
+    const periodCStatus = asset.periodC_Status || 'INSIDE_IB_RANGE';
+    const confluenceScore = asset.confluenceScore ?? 0;
 
     return (
       <div
@@ -322,26 +326,26 @@ export function PcrVelocityContainer() {
               >
                 {isBull && <TrendingUp size={13} />}
                 {isBear && <TrendingDown size={13} />}
-                {asset.verdict.signal}
+                {signal}
               </span>
             </div>
             <p style={{ margin: '4px 0 0 0', fontSize: '13px', color: badgeColor, fontWeight: '600' }}>
-              {asset.verdict.label}
+              {asset.verdict?.label || 'Neutral Rotation'}
             </p>
           </div>
 
-          {/* 🔒 10:15 AM RULE 2D LOCKED IN BADGE (Requested Middle Header Area) */}
+          {/* 🔒 10:15 AM RULE 2D LOCKED IN BADGE */}
           {asset.locked1015 && (
             <div
               style={{
                 background: 'rgba(15, 23, 42, 0.85)',
-                border: `1px solid ${asset.locked1015.drift <= -0.03 ? '#ef4444' : (asset.locked1015.drift >= 0.03 ? '#10b981' : '#eab308')}45`,
+                border: `1px solid ${(asset.locked1015.drift ?? 0) <= -0.03 ? '#ef4444' : ((asset.locked1015.drift ?? 0) >= 0.03 ? '#10b981' : '#eab308')}45`,
                 borderRadius: '10px',
                 padding: '7px 14px',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
-                boxShadow: `0 4px 16px ${asset.locked1015.drift <= -0.03 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)'}`
+                boxShadow: `0 4px 16px ${(asset.locked1015.drift ?? 0) <= -0.03 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)'}`
               }}
             >
               <div>
@@ -349,30 +353,30 @@ export function PcrVelocityContainer() {
                   <span>🔒</span> 10:15 AM LOCKED IN (RULE 2D)
                 </div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginTop: '2px' }}>
-                  <span style={{ fontSize: '15px', fontWeight: '900', color: asset.locked1015.drift <= -0.03 ? '#ef4444' : (asset.locked1015.drift >= 0.03 ? '#10b981' : '#eab308') }}>
-                    Δ {asset.locked1015.drift > 0 ? `+${asset.locked1015.drift.toFixed(3)}` : asset.locked1015.drift.toFixed(3)}
+                  <span style={{ fontSize: '15px', fontWeight: '900', color: (asset.locked1015.drift ?? 0) <= -0.03 ? '#ef4444' : ((asset.locked1015.drift ?? 0) >= 0.03 ? '#10b981' : '#eab308') }}>
+                    Δ {(asset.locked1015.drift ?? 0) > 0 ? `+${(asset.locked1015.drift ?? 0).toFixed(3)}` : (asset.locked1015.drift ?? 0).toFixed(3)}
                   </span>
                   <span
                     style={{
                       fontSize: '12px',
                       fontWeight: '800',
-                      color: asset.locked1015.drift <= -0.03 ? '#ef4444' : (asset.locked1015.drift >= 0.03 ? '#10b981' : '#eab308'),
-                      background: asset.locked1015.drift <= -0.03 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
+                      color: (asset.locked1015.drift ?? 0) <= -0.03 ? '#ef4444' : ((asset.locked1015.drift ?? 0) >= 0.03 ? '#10b981' : '#eab308'),
+                      background: (asset.locked1015.drift ?? 0) <= -0.03 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(16, 185, 129, 0.15)',
                       padding: '1px 6px',
                       borderRadius: '4px'
                     }}
                   >
-                    {asset.locked1015.velocityPct > 0 ? `+${asset.locked1015.velocityPct}%` : `${asset.locked1015.velocityPct}%`}
+                    {asset.locked1015.velocityPct != null ? (asset.locked1015.velocityPct > 0 ? `+${asset.locked1015.velocityPct}%` : `${asset.locked1015.velocityPct}%`) : '--'}
                   </span>
                   <span style={{ fontSize: '11px', color: '#64748b' }}>
-                    PCR: {asset.locked1015.pcr.toFixed(2)}
+                    PCR: {asset.locked1015.pcr != null ? asset.locked1015.pcr.toFixed(2) : '--'}
                   </span>
                 </div>
               </div>
               <div style={{ borderLeft: '1px solid rgba(255, 255, 255, 0.12)', paddingLeft: '10px' }}>
                 <div style={{ fontSize: '9.5px', color: '#64748b', textTransform: 'uppercase', fontWeight: '700' }}>10:15 Spot</div>
                 <div style={{ fontSize: '12.5px', fontWeight: '800', color: '#e2e8f0', fontFamily: 'monospace' }}>
-                  ₹{asset.locked1015.spot.toLocaleString('en-IN')}
+                  {asset.locked1015.spot != null ? `₹${asset.locked1015.spot.toLocaleString('en-IN')}` : '--'}
                 </div>
               </div>
             </div>
@@ -381,9 +385,9 @@ export function PcrVelocityContainer() {
           <div style={{ textAlign: 'right' }}>
             <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>Spot / Open</div>
             <div style={{ fontSize: '18px', fontWeight: '800', color: '#fff' }}>
-              ₹{asset.spot.toLocaleString('en-IN')}
+              {asset.spot != null ? `₹${asset.spot.toLocaleString('en-IN')}` : '--'}
               <span style={{ fontSize: '12px', color: 'var(--text-secondary)', marginLeft: '6px', fontWeight: '400' }}>
-                (₹{asset.open.toLocaleString('en-IN')})
+                ({asset.open != null ? `₹${asset.open.toLocaleString('en-IN')}` : '--'})
               </span>
             </div>
           </div>
@@ -403,20 +407,24 @@ export function PcrVelocityContainer() {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '10px' }}>
               <div style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', padding: '12px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
                 <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>09:15 Base PCR</div>
-                <div style={{ fontSize: '17px', fontWeight: '700', color: '#94a3b8', marginTop: '4px' }}>{asset.basePcr.toFixed(2)}</div>
+                <div style={{ fontSize: '17px', fontWeight: '700', color: '#94a3b8', marginTop: '4px' }}>
+                  {asset.basePcr != null ? asset.basePcr.toFixed(2) : '--'}
+                </div>
               </div>
               <div style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', padding: '12px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
                 <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase' }}>
                   {currentTimeLabel} PCR
                 </div>
-                <div style={{ fontSize: '17px', fontWeight: '700', color: '#fff', marginTop: '4px' }}>{asset.currentPcr.toFixed(2)}</div>
+                <div style={{ fontSize: '17px', fontWeight: '700', color: '#fff', marginTop: '4px' }}>
+                  {asset.currentPcr != null ? asset.currentPcr.toFixed(2) : '--'}
+                </div>
               </div>
               <div style={{ background: badgeBg, borderRadius: '8px', padding: '12px', border: `1px solid ${badgeColor}30` }}>
                 <div style={{ fontSize: '11px', color: badgeColor, textTransform: 'uppercase', fontWeight: '700' }}>
                   {currentTimeLabel} Drift (Δ)
                 </div>
                 <div style={{ fontSize: '17px', fontWeight: '800', color: badgeColor, marginTop: '4px' }}>
-                  {asset.drift > 0 ? `+${asset.drift.toFixed(3)}` : asset.drift.toFixed(3)}
+                  {asset.drift != null ? (asset.drift > 0 ? `+${asset.drift.toFixed(3)}` : asset.drift.toFixed(3)) : '--'}
                 </div>
               </div>
               <div style={{ background: badgeBg, borderRadius: '8px', padding: '12px', border: `1px solid ${badgeColor}30` }}>
@@ -424,7 +432,7 @@ export function PcrVelocityContainer() {
                   {currentTimeLabel} Velocity %
                 </div>
                 <div style={{ fontSize: '17px', fontWeight: '800', color: badgeColor, marginTop: '4px' }}>
-                  {asset.velocityPct > 0 ? `+${asset.velocityPct}%` : `${asset.velocityPct}%`}
+                  {asset.velocityPct != null ? (asset.velocityPct > 0 ? `+${asset.velocityPct}%` : `${asset.velocityPct}%`) : '--'}
                 </div>
               </div>
             </div>
@@ -438,13 +446,13 @@ export function PcrVelocityContainer() {
               <Target size={14} /> Period C (10:15–10:45 AM) Initial Balance Filter (Rule 4)
             </span>
             <span style={{ fontSize: '11px', color: 'var(--text-secondary)' }}>
-              IB: ₹{asset.ibLow.toLocaleString('en-IN')} – ₹{asset.ibHigh.toLocaleString('en-IN')}
+              IB: {asset.ibLow != null ? `₹${asset.ibLow.toLocaleString('en-IN')}` : '--'} – {asset.ibHigh != null ? `₹${asset.ibHigh.toLocaleString('en-IN')}` : '--'}
             </span>
           </div>
           <div style={{ fontSize: '13px', color: '#e2e8f0', fontWeight: '500' }}>
             Status:{' '}
-            <strong style={{ color: asset.periodC_Status.includes('BULLISH') ? '#10b981' : (asset.periodC_Status.includes('BEARISH') ? '#ef4444' : '#eab308') }}>
-              {asset.periodC_Status.replace(/_/g, ' ')}
+            <strong style={{ color: periodCStatus.includes('BULLISH') ? '#10b981' : (periodCStatus.includes('BEARISH') ? '#ef4444' : '#eab308') }}>
+              {periodCStatus.replace(/_/g, ' ')}
             </strong>
           </div>
         </div>
@@ -459,17 +467,17 @@ export function PcrVelocityContainer() {
                 88.5% Win Rate Engine
               </span>
             </div>
-            <strong style={{ fontSize: '16px', color: asset.confluenceScore >= 70 ? '#10b981' : (asset.confluenceScore >= 35 ? '#3b82f6' : '#94a3b8') }}>
-              {asset.confluenceScore} / 100
+            <strong style={{ fontSize: '16px', color: confluenceScore >= 70 ? '#10b981' : (confluenceScore >= 35 ? '#3b82f6' : '#94a3b8') }}>
+              {confluenceScore} / 100
             </strong>
           </div>
 
           <div style={{ height: '8px', background: 'rgba(255, 255, 255, 0.08)', borderRadius: '4px', overflow: 'hidden', marginBottom: '10px' }}>
             <div
               style={{
-                width: `${asset.confluenceScore}%`,
+                width: `${Math.min(100, Math.max(0, confluenceScore))}%`,
                 height: '100%',
-                background: asset.confluenceScore >= 70 ? 'linear-gradient(90deg, #3b82f6, #10b981)' : 'linear-gradient(90deg, #3b82f6, #eab308)',
+                background: confluenceScore >= 70 ? 'linear-gradient(90deg, #3b82f6, #10b981)' : 'linear-gradient(90deg, #3b82f6, #eab308)',
                 transition: 'width 0.3s ease'
               }}
             />
@@ -490,19 +498,19 @@ export function PcrVelocityContainer() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '8px', fontSize: '12px' }}>
             <div>
               <span style={{ color: 'var(--text-secondary)' }}>Signal: </span>
-              <strong style={{ color: '#fff' }}>{asset.action.type}</strong>
+              <strong style={{ color: '#fff' }}>{asset.action?.type || 'WAIT / STRADDLE'}</strong>
             </div>
             <div>
               <span style={{ color: 'var(--text-secondary)' }}>Contract: </span>
-              <strong style={{ color: '#60a5fa' }}>{asset.action.strike}</strong>
+              <strong style={{ color: '#60a5fa' }}>{asset.action?.strike || '--'}</strong>
             </div>
             <div>
               <span style={{ color: 'var(--text-secondary)' }}>Target: </span>
-              <strong style={{ color: '#10b981' }}>{asset.action.target}</strong>
+              <strong style={{ color: '#10b981' }}>{asset.action?.target || '--'}</strong>
             </div>
             <div>
               <span style={{ color: 'var(--text-secondary)' }}>Stop Loss: </span>
-              <strong style={{ color: '#ef4444' }}>{asset.action.sl}</strong>
+              <strong style={{ color: '#ef4444' }}>{asset.action?.sl || '--'}</strong>
             </div>
           </div>
         </div>

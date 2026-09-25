@@ -79,43 +79,77 @@ function syncUrlToAllTargets(url) {
   });
 }
 
-function startTunnel() {
-  if (reconnectTimer) clearTimeout(reconnectTimer);
-  console.log('[Cloudflare Tunnel] Starting Cloudflare Quick Tunnel on port 3002...');
-
-  child = spawn(exePath, ['tunnel', '--url', 'http://localhost:3002'], {
-    stdio: ['ignore', 'pipe', 'pipe']
-  });
-
-  const logStream = fs.createWriteStream(logFile, { flags: 'a' });
-
-  function handleData(data) {
-    const text = data.toString();
-    logStream.write(text);
-    
-    // Look for https://*.trycloudflare.com, ignoring internal api.trycloudflare.com
-    const match = text.match(/https:\/\/(?!api\.)[a-zA-Z0-9-]+\.trycloudflare\.com/);
-    if (match && !match[0].includes('api.trycloudflare.com')) {
-      const url = match[0];
-      if (lastPublishedUrl !== url) {
-        lastPublishedUrl = url;
-        urlPublishedAt = Date.now();
-
-        console.log('====================================================');
-        console.log('[Cloudflare Tunnel] ACTIVE PUBLIC URL: ' + url);
-        console.log('====================================================');
-
-        syncUrlToAllTargets(url);
-      }
+function killAllCloudflared(callback) {
+  try {
+    if (process.platform === 'win32') {
+      exec(`taskkill /F /IM cloudflared.exe`, () => {
+        if (callback) callback();
+      });
+    } else {
+      if (child) child.kill('SIGKILL');
+      if (callback) callback();
     }
+  } catch (e) {
+    if (callback) callback();
   }
+}
 
-  child.stdout.on('data', handleData);
-  child.stderr.on('data', handleData);
+let isSpawning = false;
 
-  child.on('close', (code) => {
-    console.log('[Cloudflare Tunnel] Process closed with code ' + code + '. Reconnecting in 5s...');
-    reconnectTimer = setTimeout(startTunnel, 5000);
+function startTunnel() {
+  if (isSpawning) return;
+  isSpawning = true;
+  if (reconnectTimer) clearTimeout(reconnectTimer);
+
+  console.log('[Cloudflare Tunnel] Cleaning old tunnel processes and starting Cloudflare Quick Tunnel on port 3002...');
+  
+  killAllCloudflared(() => {
+    setTimeout(() => {
+      try {
+        child = spawn(exePath, ['tunnel', '--url', 'http://localhost:3002'], {
+          stdio: ['ignore', 'pipe', 'pipe']
+        });
+
+        isSpawning = false;
+        const logStream = fs.createWriteStream(logFile, { flags: 'a' });
+
+        function handleData(data) {
+          const text = data.toString();
+          logStream.write(text);
+          
+          const match = text.match(/https:\/\/(?!api\.)[a-zA-Z0-9-]+\.trycloudflare\.com/);
+          if (match && !match[0].includes('api.trycloudflare.com')) {
+            const url = match[0];
+            if (lastPublishedUrl !== url) {
+              lastPublishedUrl = url;
+              urlPublishedAt = Date.now();
+              healthFailCount = 0;
+
+              console.log('====================================================');
+              console.log('[Cloudflare Tunnel] ACTIVE PUBLIC URL: ' + url);
+              console.log('====================================================');
+
+              syncUrlToAllTargets(url);
+            }
+          }
+        }
+
+        child.stdout.on('data', handleData);
+        child.stderr.on('data', handleData);
+
+        child.on('close', (code) => {
+          console.log('[Cloudflare Tunnel] Process closed with code ' + code + '. Reconnecting in 3s...');
+          if (!isSpawning) {
+            if (reconnectTimer) clearTimeout(reconnectTimer);
+            reconnectTimer = setTimeout(startTunnel, 3000);
+          }
+        });
+      } catch (err) {
+        isSpawning = false;
+        console.error('[Cloudflare Tunnel] Spawn error:', err.message);
+        reconnectTimer = setTimeout(startTunnel, 5000);
+      }
+    }, 1000);
   });
 }
 
@@ -124,10 +158,10 @@ let healthFailCount = 0;
 let urlPublishedAt = 0;
 
 setInterval(async () => {
-  if (!lastPublishedUrl) return;
+  if (!lastPublishedUrl || isSpawning) return;
 
-  // Grace period: allow 45s for initial Cloudflare DNS propagation
-  if (Date.now() - urlPublishedAt < 45000) {
+  // Grace period: allow 30s for initial Cloudflare DNS propagation
+  if (Date.now() - urlPublishedAt < 30000) {
     return;
   }
 
@@ -152,34 +186,23 @@ setInterval(async () => {
     const timeoutId = setTimeout(() => controller.abort(), 6000);
     const res = await fetch(`${lastPublishedUrl}/health`, { signal: controller.signal });
     clearTimeout(timeoutId);
-    if (res.ok) {
+    if (res.ok && res.status === 200) {
       tunnelHealthy = true;
       healthFailCount = 0;
+    } else {
+      console.log(`[Cloudflare Watchdog] Tunnel check returned status: ${res.status}`);
     }
   } catch (err) {}
 
   if (!tunnelHealthy) {
     healthFailCount++;
-    console.log(`[Cloudflare Watchdog] Health check failed for ${lastPublishedUrl} (${healthFailCount}/4)`);
+    console.log(`[Cloudflare Watchdog] Health check failed for ${lastPublishedUrl} (${healthFailCount}/3)`);
 
-    if (healthFailCount >= 4) {
-      console.log(`[Cloudflare Watchdog] Tunnel unreachable after 4 checks. Re-spawning tunnel...`);
+    if (healthFailCount >= 3) {
+      console.log(`[Cloudflare Watchdog] Tunnel unreachable after 3 checks. Re-spawning fresh tunnel...`);
       healthFailCount = 0;
       urlPublishedAt = Date.now();
-      if (child && child.pid) {
-        try {
-          if (process.platform === 'win32') {
-            exec(`taskkill /F /T /PID ${child.pid}`, () => startTunnel());
-          } else {
-            child.kill('SIGKILL');
-            startTunnel();
-          }
-        } catch (e) {
-          startTunnel();
-        }
-      } else {
-        startTunnel();
-      }
+      startTunnel();
       return;
     }
   }

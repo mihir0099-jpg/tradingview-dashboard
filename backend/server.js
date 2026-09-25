@@ -3292,6 +3292,24 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
     const sensexVelocityPct = parseFloat(((sensexDrift / sensexBasePcr) * 100).toFixed(1));
     const sensexVerdict = getVerdict(sensexDrift);
     const sensexAtm = Math.round(sensexSpot / 100) * 100;
+    const sensexPeriodC_Breakout = sensexSpot > sensexIbHigh ? 'BULLISH_BREAKOUT_ABOVE_IB' : (sensexSpot < sensexIbLow ? 'BEARISH_BREAKDOWN_BELOW_IB' : 'INSIDE_IB_RANGE');
+    const sensexSig1 = Math.abs(sensexDrift) >= 0.03;
+    const sensexSig2 = sensexPeriodC_Breakout !== 'INSIDE_IB_RANGE';
+    const sensexSig3 = Math.abs(sensexChangePct) >= 0.20;
+
+    let sensexConfluenceScore = 0;
+    if (sensexSig1) sensexConfluenceScore += 35;
+    if (sensexSig2) sensexConfluenceScore += 35;
+    if (sensexSig3) sensexConfluenceScore += 30;
+
+    const sensexC_BullPts = Math.max(250, Math.round(sensexSpot * 0.0040));
+    const sensexC_BearPts = Math.max(300, Math.round(sensexSpot * 0.0052));
+
+    const sensexAction = sensexVerdict.signal === 'BULLISH'
+      ? { type: 'BUY CE', strike: `${sensexAtm} CE`, target: `+${sensexC_BullPts} pts (Period C Bull Target)`, sl: `-150.0 pts (Period A Extreme)` }
+      : (sensexVerdict.signal === 'BEARISH'
+        ? { type: 'BUY PE', strike: `${sensexAtm} PE`, target: `-${sensexC_BearPts} pts (Period C Bear Target)`, sl: `+150.0 pts (Period A Extreme)` }
+        : { type: 'WAIT / STRADDLE', strike: `${sensexAtm} ATM Straddle`, target: 'Range decay', sl: 'IB Breakout' });
 
     const sensexLocked1015 = {
       isLocked: currentMins >= 615 || currentMins < 555,
@@ -3387,10 +3405,9 @@ app.get('/api/scanner/pcr-velocity', async (req, res) => {
         velocityPct: sensexVelocityPct,
         locked1015: sensexLocked1015,
         verdict: sensexVerdict,
-        action: {
-          type: sensexVerdict.signal === 'BULLISH' ? 'BUY CE' : (sensexVerdict.signal === 'BEARISH' ? 'BUY PE' : 'WAIT / STRADDLE'),
-          strike: `${sensexAtm} ${sensexVerdict.signal === 'BULLISH' ? 'CE' : 'PE'}`
-        }
+        periodC_Status: sensexPeriodC_Breakout,
+        confluenceScore: sensexConfluenceScore,
+        action: sensexAction
       },
       backtestStats,
       autoLearnedDatabase: (() => {
@@ -5793,8 +5810,12 @@ app.get('/api/system/tab-health', async (req, res) => {
   try {
     const reportPath = path.join(__dirname, 'data', 'tab_health_report.json');
     if (fs.existsSync(reportPath)) {
-      const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
-      return res.json(data);
+      try {
+        const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+        return res.json(data);
+      } catch (parseErr) {
+        console.warn('[Tab Health] Existing report JSON invalid, generating fresh audit...');
+      }
     }
     const freshReport = await runTabHealthAudit();
     res.json(freshReport);
