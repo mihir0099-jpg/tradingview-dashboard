@@ -6221,6 +6221,15 @@ app.get('/api/orderflow/iceberg-floors', async (req, res) => {
   }
 });
 
+app.get('/api/orderflow/order-blocks', async (req, res) => {
+  try {
+    const { getLiveOrderBlocks } = await import('./footprint_ml_reader.js');
+    res.json({ success: true, orderBlocks: getLiveOrderBlocks() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // --- FII / DII Institutional F&O Derivatives & Cash Positioning ---
 app.get('/api/orderflow/fii-positioning', async (req, res) => {
   try {

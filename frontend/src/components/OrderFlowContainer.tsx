@@ -71,6 +71,31 @@ export interface CvdSwingSignal {
   candleIdx: number;
 }
 
+export interface ObPressureZone {
+  id: string;
+  type: 'DEMAND' | 'SUPPLY';
+  candleIdx: number;
+  high: number;
+  low: number;
+  timeStr: string;
+  breachedAtIdx: number | null;
+  isBreached: boolean;
+}
+
+export interface ObPressureSignal {
+  type: 'DEMAND_OB_SWEEP' | 'SUPPLY_OB_SWEEP';
+  obZone: string;
+  obLow: number;
+  obHigh: number;
+  wickPct: number;
+  delta: number;
+  entryPrice: number;
+  stopLoss: number;
+  target1: number;
+  target2: number;
+  candleIdx: number;
+}
+
 interface OrderFlowState {
   success: boolean;
   connected: boolean;
@@ -137,6 +162,7 @@ export const OrderFlowContainer: React.FC = () => {
   const [showSteppedPoc, setShowSteppedPoc] = useState(true);
   const [showCotBadges, setShowCotBadges] = useState(true); // COT on candle top & bottom
   const [showClimaxZones, setShowClimaxZones] = useState(true); // VCB, VCS, SC, BC Climax Zones
+  const [showObPressure, setShowObPressure] = useState(true); // Order Block (OB) Pressure + OFA Sweep
   const [isVsaGuideOpen, setIsVsaGuideOpen] = useState(false); // VSA Educational Guide Modal
   const [showCrCaps, setShowCrCaps] = useState(true);
   const [showProfile, setShowProfile] = useState(true);
@@ -557,6 +583,156 @@ export const OrderFlowContainer: React.FC = () => {
     }
     return null;
   }, [state?.candles, cvdSignalsMap]);
+
+  // =========================================================================
+  // ORDER BLOCK (OB) PRESSURE + VALTOS OFA SWEEP ENGINE
+  // Identifies Demand/Supply Order Blocks from displacement candles
+  // and flags high-conviction liquidity sweep rejections + imbalances.
+  // =========================================================================
+  const { obZones, obSignalsMap } = React.useMemo(() => {
+    const zones: ObPressureZone[] = [];
+    const signalsMap = new Map<number, ObPressureSignal>();
+    const candles = state?.candles || [];
+    if (candles.length < 3) return { obZones: zones, obSignalsMap: signalsMap };
+
+    const isNifty = selectedSymbol.includes('NIFTY') && !selectedSymbol.includes('BANK');
+    const isBankNifty = selectedSymbol.includes('BANK');
+    const slBuffer = isBankNifty ? 12 : (isNifty ? 3 : step);
+
+    // 1. Detect Order Blocks
+    for (let i = 2; i < candles.length; i++) {
+      const c = candles[i];
+      const p1 = candles[i - 1];
+      const p2 = candles[i - 2];
+      const body = Math.abs(c.close - c.open);
+      const prevBodies = candles.slice(Math.max(0, i - 10), i).map(x => Math.abs(x.close - x.open));
+      const avgBody = prevBodies.length > 0 ? (prevBodies.reduce((a, b) => a + b, 0) / prevBodies.length) : (step * 2);
+
+      // Bullish Displacement -> Demand OB
+      if (c.close > c.open && body >= 1.2 * avgBody && c.close > Math.max(p1.high, p2.high)) {
+        const obSource = p1.close < p1.open ? p1 : c;
+        zones.push({
+          id: `DEMAND-${obSource.timestamp || i}`,
+          type: 'DEMAND',
+          candleIdx: i - 1,
+          high: obSource.high,
+          low: obSource.low,
+          timeStr: obSource.timeStr,
+          breachedAtIdx: null,
+          isBreached: false
+        });
+      }
+
+      // Bearish Displacement -> Supply OB
+      if (c.close < c.open && body >= 1.2 * avgBody && c.close < Math.min(p1.low, p2.low)) {
+        const obSource = p1.close > p1.open ? p1 : c;
+        zones.push({
+          id: `SUPPLY-${obSource.timestamp || i}`,
+          type: 'SUPPLY',
+          candleIdx: i - 1,
+          high: obSource.high,
+          low: obSource.low,
+          timeStr: obSource.timeStr,
+          breachedAtIdx: null,
+          isBreached: false
+        });
+      }
+    }
+
+    // 2. Mark breached / invalidated OBs
+    zones.forEach(z => {
+      let bIdx: number | null = null;
+      for (let k = z.candleIdx + 1; k < candles.length; k++) {
+        const ck = candles[k];
+        if (z.type === 'DEMAND' && ck.close < z.low) {
+          bIdx = k;
+          break;
+        } else if (z.type === 'SUPPLY' && ck.close > z.high) {
+          bIdx = k;
+          break;
+        }
+      }
+      z.breachedAtIdx = bIdx;
+      z.isBreached = bIdx !== null;
+    });
+
+    // 3. Scan for OB Pressure Sweeps on each candle
+    for (let i = 2; i < candles.length; i++) {
+      const c = candles[i];
+      const p1 = candles[i - 1];
+      const range = Math.max(step, c.high - c.low);
+      const lowerWick = Math.min(c.open, c.close) - c.low;
+      const upperWick = c.high - Math.max(c.open, c.close);
+      const lowerWickPct = (lowerWick / range) * 100;
+      const upperWickPct = (upperWick / range) * 100;
+
+      // Demand OB Sweep
+      const activeDemand = zones.filter(z => 
+        z.type === 'DEMAND' && 
+        z.candleIdx < i && 
+        (z.breachedAtIdx === null || i <= z.breachedAtIdx)
+      );
+      for (const ob of activeDemand) {
+        if (c.low <= ob.high && c.close > ob.low && lowerWickPct >= 28.0) {
+          const swept = c.low < p1.low;
+          const hasImbalance = c.delta > 0 || (c.imbalanceLevels && c.imbalanceLevels.some(imb => imb.type.includes('BUY')));
+          if (swept && hasImbalance) {
+            const entryPrice = c.close;
+            const stopLoss = Math.min(c.low, ob.low) - slBuffer;
+            const risk = +(entryPrice - stopLoss).toFixed(2);
+            signalsMap.set(i, {
+              type: 'DEMAND_OB_SWEEP',
+              obZone: `${ob.low} - ${ob.high}`,
+              obLow: ob.low,
+              obHigh: ob.high,
+              wickPct: +(lowerWickPct).toFixed(1),
+              delta: c.delta,
+              entryPrice,
+              stopLoss,
+              target1: +(entryPrice + (risk * 2.0)).toFixed(2),
+              target2: +(entryPrice + (risk * 3.5)).toFixed(2),
+              candleIdx: i
+            });
+            break;
+          }
+        }
+      }
+
+      // Supply OB Sweep
+      const activeSupply = zones.filter(z => 
+        z.type === 'SUPPLY' && 
+        z.candleIdx < i && 
+        (z.breachedAtIdx === null || i <= z.breachedAtIdx)
+      );
+      for (const ob of activeSupply) {
+        if (c.high >= ob.low && c.close < ob.high && upperWickPct >= 28.0) {
+          const swept = c.high > p1.high;
+          const hasImbalance = c.delta < 0 || (c.imbalanceLevels && c.imbalanceLevels.some(imb => imb.type.includes('SELL')));
+          if (swept && hasImbalance) {
+            const entryPrice = c.close;
+            const stopLoss = Math.max(c.high, ob.high) + slBuffer;
+            const risk = +(stopLoss - entryPrice).toFixed(2);
+            signalsMap.set(i, {
+              type: 'SUPPLY_OB_SWEEP',
+              obZone: `${ob.low} - ${ob.high}`,
+              obLow: ob.low,
+              obHigh: ob.high,
+              wickPct: +(upperWickPct).toFixed(1),
+              delta: c.delta,
+              entryPrice,
+              stopLoss,
+              target1: +(entryPrice - (risk * 2.0)).toFixed(2),
+              target2: +(entryPrice - (risk * 3.5)).toFixed(2),
+              candleIdx: i
+            });
+            break;
+          }
+        }
+      }
+    }
+
+    return { obZones: zones, obSignalsMap: signalsMap };
+  }, [state?.candles, step, selectedSymbol]);
 
   // Build the global continuous price scale with headroom & footroom padding using current step
   const paddingSteps = 20;
@@ -1258,6 +1434,25 @@ export const OrderFlowContainer: React.FC = () => {
               <span>🎯 Climax (VSA)</span>
             </button>
             <button
+              onClick={() => setShowObPressure(!showObPressure)}
+              style={{
+                backgroundColor: showObPressure ? '#064e3b' : 'transparent',
+                color: showObPressure ? '#6ee7b7' : '#64748b',
+                border: showObPressure ? '1px solid #10b981' : '1px solid transparent',
+                borderRadius: '3px',
+                padding: '3px 7px',
+                fontSize: '10px',
+                fontWeight: '800',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '3px'
+              }}
+              title="Toggle Institutional Order Block (OB) Pressure & Liquidity Sweep Detection"
+            >
+              <span>🛡️ OB Pressure</span>
+            </button>
+            <button
               onClick={() => setIsVsaGuideOpen(true)}
               style={{
                 backgroundColor: '#1e1b4b',
@@ -1890,6 +2085,7 @@ export const OrderFlowContainer: React.FC = () => {
                 const candleMap = getAggregatedCandleMap(candle);
                 const prevCandle = cIdx > 0 ? state.candles[cIdx - 1] : null;
                 const cvdSignal = cvdSignalsMap.get(cIdx);
+                const obSignal = showObPressure ? obSignalsMap.get(cIdx) : null;
 
                 const bodyTop = Math.max(candle.open, candle.close);
                 const bodyBtm = Math.min(candle.open, candle.close);
@@ -2358,6 +2554,29 @@ export const OrderFlowContainer: React.FC = () => {
                                     <span style={{ fontSize: '10.5px', opacity: 0.9 }}>({candle.delta})</span>
                                   </div>
                                 )}
+
+                                {/* 6. Order Block (OB) Supply Pressure Sweep Badge */}
+                                {showObPressure && obSignal && obSignal.type === 'SUPPLY_OB_SWEEP' && (
+                                  <div 
+                                    title={`🛡️ SUPPLY OB PRESSURE SWEEP (BUY PE)\n• Supply OB: ${obSignal.obZone}\n• Upper Wick: ${obSignal.wickPct}%\n• Delta: ${obSignal.delta}\n• Action: BUY PUT @ ${obSignal.entryPrice}\n• SL: ${obSignal.stopLoss}\n• T1 (1:2): ${obSignal.target1}\n• T2 (1:3.5): ${obSignal.target2}`}
+                                    style={{
+                                      backgroundColor: '#450a0a',
+                                      border: '2px solid #ef4444',
+                                      color: '#fca5a5',
+                                      fontSize: '12px',
+                                      fontWeight: '900',
+                                      padding: '4px 10px',
+                                      borderRadius: '4px',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '5px',
+                                      boxShadow: '0 0 14px rgba(239, 68, 68, 0.75)',
+                                      cursor: 'pointer'
+                                    }}
+                                  >
+                                    <span>🛡️ SUPPLY OB SWEEP (BUY PE)</span>
+                                  </div>
+                                )}
                               </div>
                             )}
 
@@ -2506,6 +2725,29 @@ export const OrderFlowContainer: React.FC = () => {
                                   }}>
                                     <span>▲ BULL DIV (Limit Buy)</span>
                                     <span style={{ fontSize: '10.5px', opacity: 0.9 }}>(+{candle.delta})</span>
+                                  </div>
+                                )}
+
+                                {/* 6. Order Block (OB) Demand Pressure Sweep Badge */}
+                                {showObPressure && obSignal && obSignal.type === 'DEMAND_OB_SWEEP' && (
+                                  <div 
+                                    title={`🛡️ DEMAND OB PRESSURE SWEEP (BUY CE)\n• Demand OB: ${obSignal.obZone}\n• Lower Wick: ${obSignal.wickPct}%\n• Delta: ${obSignal.delta > 0 ? '+' : ''}${obSignal.delta}\n• Action: BUY CALL @ ${obSignal.entryPrice}\n• SL: ${obSignal.stopLoss}\n• T1 (1:2): ${obSignal.target1}\n• T2 (1:3.5): ${obSignal.target2}`}
+                                    style={{
+                                      backgroundColor: '#022c22',
+                                      border: '2px solid #10b981',
+                                      color: '#86efac',
+                                      fontSize: '12px',
+                                      fontWeight: '900',
+                                      padding: '4px 10px',
+                                      borderRadius: '4px',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '5px',
+                                      boxShadow: '0 0 14px rgba(16, 185, 129, 0.75)',
+                                      cursor: 'pointer'
+                                    }}
+                                  >
+                                    <span>🛡️ DEMAND OB SWEEP (BUY CE)</span>
                                   </div>
                                 )}
                               </div>

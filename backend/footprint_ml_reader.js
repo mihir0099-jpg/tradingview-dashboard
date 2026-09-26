@@ -29,6 +29,7 @@ const SIGNALS_FILE = path.join(__dirname, 'data', 'footprint_ml_live_signals.jso
 let liveSignals = [];          // [{...signal}, ...]
 let icebergFloors = {};        // { price: { totalAbsorbedBid, totalAbsorbedAsk, hits, lastSeen } }
 let rollingCandles = [];       // last 30 completed candles for context
+let liveOrderBlocks = [];      // [{ id, type, high, low, timeStr, mitigated, invalidated }]
 let sessionVwap = null;        // running VWAP
 let sessionVwapVol = 0;
 let sessionVwapSum = 0;
@@ -248,6 +249,121 @@ export function analyseCompletedCandle(candle, symbolMeta) {
     }
   }
 
+  // ── 7. ORDER BLOCK (OB) PRESSURE + VALTOS OFA SWEEP ────────
+  const range = candle.high - candle.low;
+  const upperWick = candle.high - Math.max(candle.open, candle.close);
+  const lowerWick = Math.min(candle.open, candle.close) - candle.low;
+  const body = Math.abs(candle.close - candle.open);
+  const upperWickPct = range > 0 ? (upperWick / range) * 100 : 0;
+  const lowerWickPct = range > 0 ? (lowerWick / range) * 100 : 0;
+
+  if (rollingCandles.length >= 3) {
+    const prevBar = rollingCandles[rollingCandles.length - 2];
+    const prev2Bar = rollingCandles[rollingCandles.length - 3];
+    const avgBody = rollingCandles.slice(-10).reduce((s, c) => s + Math.abs(c.close - c.open), 0) / Math.min(10, rollingCandles.length);
+
+    // Identify Bullish Displacement -> Demand OB
+    if (candle.close > candle.open && body >= 1.2 * avgBody && candle.close > Math.max(prevBar.high, prev2Bar.high)) {
+      const obSource = prevBar.close < prevBar.open ? prevBar : candle;
+      liveOrderBlocks.push({
+        id: `DEMAND_${Date.now()}`,
+        type: 'DEMAND',
+        high: obSource.high,
+        low: obSource.low,
+        timeStr: obSource.timeStr,
+        mitigated: false,
+        invalidated: false
+      });
+    }
+
+    // Identify Bearish Displacement -> Supply OB
+    if (candle.close < candle.open && body >= 1.2 * avgBody && candle.close < Math.min(prevBar.low, prev2Bar.low)) {
+      const obSource = prevBar.close > prevBar.open ? prevBar : candle;
+      liveOrderBlocks.push({
+        id: `SUPPLY_${Date.now()}`,
+        type: 'SUPPLY',
+        high: obSource.high,
+        low: obSource.low,
+        timeStr: obSource.timeStr,
+        mitigated: false,
+        invalidated: false
+      });
+    }
+
+    // Invalidate broken OBs
+    for (const ob of liveOrderBlocks) {
+      if (ob.invalidated) continue;
+      if (ob.type === 'DEMAND' && candle.close < ob.low) ob.invalidated = true;
+      if (ob.type === 'SUPPLY' && candle.close > ob.high) ob.invalidated = true;
+    }
+    if (liveOrderBlocks.length > 20) liveOrderBlocks = liveOrderBlocks.slice(-20);
+
+    // Buffers and targets
+    const isNifty = symbol.includes('NIFTY') && !symbol.includes('BANK');
+    const isBankNifty = symbol.includes('BANK');
+    const slBuffer = isBankNifty ? 12 : (isNifty ? 3 : 0.5);
+
+    // Check Case A: Demand OB Defense
+    const activeDemandOBs = liveOrderBlocks.filter(ob => ob.type === 'DEMAND' && !ob.mitigated && !ob.invalidated);
+    for (const ob of activeDemandOBs) {
+      if (candle.low <= ob.high && candle.close > ob.low && lowerWickPct >= 30.0) {
+        const hasImbalance = (maxStackBuy >= 1) || netDelta > 0;
+        if (hasImbalance) {
+          ob.mitigated = true;
+          const entryPrice = candle.close;
+          const stopLoss = Math.min(candle.low, ob.low) - slBuffer;
+          const riskPts = +(entryPrice - stopLoss).toFixed(2);
+          const target1 = +(entryPrice + (riskPts * 2.0)).toFixed(2);
+          const target2 = +(entryPrice + (riskPts * 3.5)).toFixed(2);
+
+          signals.push(buildSignal('OB_PRESSURE_OFA_SWEEP_LONG', symbol, candle, {
+            obZone: `${ob.low} - ${ob.high}`,
+            rejectionWickPct: +lowerWickPct.toFixed(1),
+            netDelta,
+            riskPts,
+            stopLoss,
+            target1,
+            target2,
+            message: `🛡️ [ORDER BLOCK PRESSURE] ${symbol}: Demand OB [${ob.low} – ${ob.high}] swept & defended! Lower wick: ${lowerWickPct.toFixed(1)}% | Delta: ${netDelta > 0 ? '+' : ''}${netDelta} | Valtos OFA Imbalance confirmed. Signal: BUY CALL @ ${entryPrice} | SL: ${stopLoss} | T1 (1:2): ${target1} | T2 (1:3.5): ${target2}`,
+            action: 'BUY_CALL',
+            confidence: 94
+          }));
+          break;
+        }
+      }
+    }
+
+    // Check Case B: Supply OB Defense
+    const activeSupplyOBs = liveOrderBlocks.filter(ob => ob.type === 'SUPPLY' && !ob.mitigated && !ob.invalidated);
+    for (const ob of activeSupplyOBs) {
+      if (candle.high >= ob.low && candle.close < ob.high && upperWickPct >= 30.0) {
+        const hasImbalance = (maxStackSell >= 1) || netDelta < 0;
+        if (hasImbalance) {
+          ob.mitigated = true;
+          const entryPrice = candle.close;
+          const stopLoss = Math.max(candle.high, ob.high) + slBuffer;
+          const riskPts = +(stopLoss - entryPrice).toFixed(2);
+          const target1 = +(entryPrice - (riskPts * 2.0)).toFixed(2);
+          const target2 = +(entryPrice - (riskPts * 3.5)).toFixed(2);
+
+          signals.push(buildSignal('OB_PRESSURE_OFA_SWEEP_SHORT', symbol, candle, {
+            obZone: `${ob.low} - ${ob.high}`,
+            rejectionWickPct: +upperWickPct.toFixed(1),
+            netDelta,
+            riskPts,
+            stopLoss,
+            target1,
+            target2,
+            message: `🛡️ [ORDER BLOCK PRESSURE] ${symbol}: Supply OB [${ob.low} – ${ob.high}] swept & defended! Upper wick: ${upperWickPct.toFixed(1)}% | Delta: ${netDelta} | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ ${entryPrice} | SL: ${stopLoss} | T1 (1:2): ${target1} | T2 (1:3.5): ${target2}`,
+            action: 'BUY_PUT',
+            confidence: 94
+          }));
+          break;
+        }
+      }
+    }
+  }
+
   // ── Save & broadcast ─────────────────────────────────────
   prevClose = candle.close;
   prevDelta = netDelta;
@@ -330,10 +446,15 @@ export function getFootprintSummary() {
   };
 }
 
+export function getLiveOrderBlocks() {
+  return liveOrderBlocks.filter(ob => !ob.invalidated);
+}
+
 export function resetSession() {
   liveSignals = [];
   icebergFloors = {};
   rollingCandles = [];
+  liveOrderBlocks = [];
   sessionVwap = null;
   sessionVwapVol = 0;
   sessionVwapSum = 0;
