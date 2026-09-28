@@ -1,17 +1,17 @@
 {
-  "updatedAt": "2026-09-28T09:29:00.751Z",
+  "updatedAt": "2026-09-28T09:30:00.760Z",
   "summary": {
     "totalSignals": 200,
     "byType": {
-      "POC_MIGRATION": 66,
-      "STACKED_BUY_IMBALANCE": 14,
+      "POC_MIGRATION": 65,
+      "STACKED_BUY_IMBALANCE": 15,
+      "BULLISH_DELTA_DIVERGENCE": 19,
+      "BUYING_ABSORBED": 13,
       "STACKED_SELL_IMBALANCE": 25,
-      "BULLISH_DELTA_DIVERGENCE": 18,
-      "BUYING_ABSORBED": 12,
       "SELLING_ABSORBED": 11,
       "OB_PRESSURE_OFA_SWEEP_LONG": 9,
-      "OB_PRESSURE_OFA_SWEEP_SHORT": 9,
-      "BEARISH_DELTA_DIVERGENCE": 20,
+      "OB_PRESSURE_OFA_SWEEP_SHORT": 8,
+      "BEARISH_DELTA_DIVERGENCE": 19,
       "VWAP_REJECTION_LONG": 8,
       "VWAP_REJECTION_SHORT": 8
     },
@@ -169,10 +169,100 @@
         "firstSeen": "12:25 pm"
       }
     ],
-    "sessionVwap": 22885.35,
-    "lastSignalTime": "02:57 pm"
+    "sessionVwap": 22885.18,
+    "lastSignalTime": "02:59 pm"
   },
   "recentSignals": [
+    {
+      "id": "1790587800759-c82c",
+      "type": "POC_MIGRATION",
+      "symbol": "NIFTYFUT",
+      "timeStr": "02:59 pm",
+      "period": "L",
+      "candleClose": 22821.5,
+      "candleOpen": 22822,
+      "candleHigh": 22825.8,
+      "candleLow": 22814.4,
+      "candleVolume": 12740,
+      "candleDelta": 6110,
+      "candlePoc": 22822,
+      "timestamp": 1790587800759,
+      "data": {
+        "prevPoc": 22830,
+        "newPoc": 22822,
+        "pocMoved": -8,
+        "message": "📍 POC MIGRATED ↓ 8 pts (22830 → 22822). BEARISH value migration.",
+        "action": "BUY_PUT",
+        "confidence": 72
+      }
+    },
+    {
+      "id": "1790587800759-269a",
+      "type": "STACKED_BUY_IMBALANCE",
+      "symbol": "NIFTYFUT",
+      "timeStr": "02:59 pm",
+      "period": "L",
+      "candleClose": 22821.5,
+      "candleOpen": 22822,
+      "candleHigh": 22825.8,
+      "candleLow": 22814.4,
+      "candleVolume": 12740,
+      "candleDelta": 6110,
+      "candlePoc": 22822,
+      "timestamp": 1790587800759,
+      "data": {
+        "stackCount": 3,
+        "message": "🟢 STACKED BUY IMBALANCE: 3 consecutive bid-overwhelm levels. Aggressive institutional buying. Trend continuation LONG.",
+        "action": "BUY_CALL",
+        "confidence": 85
+      }
+    },
+    {
+      "id": "1790587800759-vnqe",
+      "type": "BULLISH_DELTA_DIVERGENCE",
+      "symbol": "NIFTYFUT",
+      "timeStr": "02:59 pm",
+      "period": "L",
+      "candleClose": 22821.5,
+      "candleOpen": 22822,
+      "candleHigh": 22825.8,
+      "candleLow": 22814.4,
+      "candleVolume": 12740,
+      "candleDelta": 6110,
+      "candlePoc": 22822,
+      "timestamp": 1790587800759,
+      "data": {
+        "priceMove": -0.5,
+        "netDelta": 6110,
+        "message": "⚡ BULLISH DELTA DIV: Price ↓ 0.5 pts but Delta=+6110. Buyers absorbing selloff. Expect bounce.",
+        "action": "BUY_CALL",
+        "confidence": 83
+      }
+    },
+    {
+      "id": "1790587800756-pao3",
+      "type": "BUYING_ABSORBED",
+      "symbol": "NIFTYFUT",
+      "timeStr": "02:59 pm",
+      "period": "L",
+      "candleClose": 22821.5,
+      "candleOpen": 22822,
+      "candleHigh": 22825.8,
+      "candleLow": 22814.4,
+      "candleVolume": 12740,
+      "candleDelta": 6110,
+      "candlePoc": 22822,
+      "timestamp": 1790587800756,
+      "data": {
+        "totalBid": 3341,
+        "totalAsk": 9483,
+        "netDelta": 6110,
+        "absorptionStrength": "2.84x",
+        "message": "🔴 BUYING ABSORBED at 22821.5. 9483 buy contracts lifted but price closed RED. Smart money selling.",
+        "action": "BUY_PUT",
+        "confidence": 91
+      }
+    },
     {
       "id": "1790587680855-5j2m",
       "type": "POC_MIGRATION",
@@ -1225,94 +1315,6 @@
         "message": "🟢 STACKED BUY IMBALANCE: 5 consecutive bid-overwhelm levels. Aggressive institutional buying. Trend continuation LONG.",
         "action": "BUY_CALL",
         "confidence": 95
-      }
-    },
-    {
-      "id": "1790585580461-44hi",
-      "type": "POC_MIGRATION",
-      "symbol": "NIFTYFUT",
-      "timeStr": "02:22 pm",
-      "period": "K",
-      "candleClose": 22831,
-      "candleOpen": 22837.5,
-      "candleHigh": 22841,
-      "candleLow": 22831,
-      "candleVolume": 11635,
-      "candleDelta": -5785,
-      "candlePoc": 22833,
-      "timestamp": 1790585580461,
-      "data": {
-        "prevPoc": 22839,
-        "newPoc": 22833,
-        "pocMoved": -6,
-        "message": "📍 POC MIGRATED ↓ 6 pts (22839 → 22833). BEARISH value migration.",
-        "action": "BUY_PUT",
-        "confidence": 72
-      }
-    },
-    {
-      "id": "1790585580461-1lct",
-      "type": "STACKED_SELL_IMBALANCE",
-      "symbol": "NIFTYFUT",
-      "timeStr": "02:22 pm",
-      "period": "K",
-      "candleClose": 22831,
-      "candleOpen": 22837.5,
-      "candleHigh": 22841,
-      "candleLow": 22831,
-      "candleVolume": 11635,
-      "candleDelta": -5785,
-      "candlePoc": 22833,
-      "timestamp": 1790585580461,
-      "data": {
-        "stackCount": 3,
-        "message": "🔴 STACKED SELL IMBALANCE: 3 consecutive ask-overwhelm levels. Aggressive institutional selling. Trend continuation SHORT.",
-        "action": "BUY_PUT",
-        "confidence": 85
-      }
-    },
-    {
-      "id": "1790585520551-5uww",
-      "type": "POC_MIGRATION",
-      "symbol": "NIFTYFUT",
-      "timeStr": "02:21 pm",
-      "period": "K",
-      "candleClose": 22837.5,
-      "candleOpen": 22832.5,
-      "candleHigh": 22841,
-      "candleLow": 22825.2,
-      "candleVolume": 11830,
-      "candleDelta": 3640,
-      "candlePoc": 22839,
-      "timestamp": 1790585520551,
-      "data": {
-        "prevPoc": 22835,
-        "newPoc": 22839,
-        "pocMoved": 4,
-        "message": "📍 POC MIGRATED ↑ 4 pts (22835 → 22839). BULLISH value migration.",
-        "action": "BUY_CALL",
-        "confidence": 72
-      }
-    },
-    {
-      "id": "1790585520551-n9se",
-      "type": "STACKED_SELL_IMBALANCE",
-      "symbol": "NIFTYFUT",
-      "timeStr": "02:21 pm",
-      "period": "K",
-      "candleClose": 22837.5,
-      "candleOpen": 22832.5,
-      "candleHigh": 22841,
-      "candleLow": 22825.2,
-      "candleVolume": 11830,
-      "candleDelta": 3640,
-      "candlePoc": 22839,
-      "timestamp": 1790585520551,
-      "data": {
-        "stackCount": 4,
-        "message": "🔴 STACKED SELL IMBALANCE: 4 consecutive ask-overwhelm levels. Aggressive institutional selling. Trend continuation SHORT.",
-        "action": "BUY_PUT",
-        "confidence": 90
       }
     }
   ]

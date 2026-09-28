@@ -2,7 +2,7 @@
   "paperCapital": 496490.1,
   "cashBalance": 468046.2,
   "realizedPnL": -3509.9,
-  "unrealizedPnL": -2230.5,
+  "unrealizedPnL": -2065.2,
   "openPositions": [
     {
       "positionId": "POS_1790577797655_KOTAKBANK",
@@ -14,14 +14,14 @@
       "lotSize": 2000,
       "quantity": 2000,
       "entryPrice": 3.96,
-      "currentLtp": 2.81,
+      "currentLtp": 2.85,
       "spotEntry": 399.95,
       "spotSL": 411.95,
       "targetSpot": 359.95,
       "optionSL": 0.61,
       "optionTarget": 39.69,
       "entryDelta": 0.483,
-      "currentDelta": 0.382,
+      "currentDelta": 0.386,
       "greeks": {
         "delta": -0.483,
         "absDelta": 0.483,
@@ -31,9 +31,9 @@
       },
       "dteDays": 5,
       "iv": 0.22,
-      "lastSpot": 402.6,
+      "lastSpot": 402.5,
       "cost": 7920,
-      "unrealizedPnL": -2300,
+      "unrealizedPnL": -2220,
       "confluence": {
         "score": 92,
         "stars": "⭐⭐⭐⭐⭐",
@@ -59,9 +59,9 @@
       "entryTimestamp": "12:13:17",
       "entryDate": "28/9/2026",
       "currentGreeks": {
-        "delta": -0.382,
-        "absDelta": 0.382,
-        "gamma": 0.0368,
+        "delta": -0.386,
+        "absDelta": 0.386,
+        "gamma": 0.0369,
         "theta": -0.37,
         "vega": 0.18
       }
@@ -76,14 +76,14 @@
       "lotSize": 1500,
       "quantity": 1500,
       "entryPrice": 2.44,
-      "currentLtp": 2.78,
+      "currentLtp": 2.82,
       "spotEntry": 321.6,
       "spotSL": 326.6,
       "targetSpot": 311.6,
       "optionSL": 0.95,
       "optionTarget": 8.79,
       "entryDelta": 0.405,
-      "currentDelta": 0.443,
+      "currentDelta": 0.447,
       "greeks": {
         "delta": -0.405,
         "absDelta": 0.405,
@@ -93,9 +93,9 @@
       },
       "dteDays": 5,
       "iv": 0.22,
-      "lastSpot": 320.8,
+      "lastSpot": 320.7,
       "cost": 3660,
-      "unrealizedPnL": 510,
+      "unrealizedPnL": 570,
       "confluence": {
         "score": 92,
         "stars": "⭐⭐⭐⭐⭐",
@@ -121,9 +121,9 @@
       "entryTimestamp": "13:43:10",
       "entryDate": "28/9/2026",
       "currentGreeks": {
-        "delta": -0.443,
-        "absDelta": 0.443,
-        "gamma": 0.0478,
+        "delta": -0.447,
+        "absDelta": 0.447,
+        "gamma": 0.0479,
         "theta": -0.3,
         "vega": 0.15
       }
@@ -138,14 +138,14 @@
       "lotSize": 50,
       "quantity": 50,
       "entryPrice": 105.42,
-      "currentLtp": 101.02,
+      "currentLtp": 101.46,
       "spotEntry": 12027,
       "spotSL": 12230,
       "targetSpot": 11800,
       "optionSL": 39.37,
       "optionTarget": 239.65,
       "entryDelta": 0.446,
-      "currentDelta": 0.434,
+      "currentDelta": 0.435,
       "greeks": {
         "delta": -0.446,
         "absDelta": 0.446,
@@ -155,9 +155,9 @@
       },
       "dteDays": 5,
       "iv": 0.22,
-      "lastSpot": 12037,
+      "lastSpot": 12036,
       "cost": 5271,
-      "unrealizedPnL": -220,
+      "unrealizedPnL": -198,
       "confluence": {
         "score": 92,
         "stars": "⭐⭐⭐⭐⭐",
@@ -183,11 +183,11 @@
       "entryTimestamp": "14:16:10",
       "entryDate": "28/9/2026",
       "currentGreeks": {
-        "delta": -0.434,
-        "absDelta": 0.434,
+        "delta": -0.435,
+        "absDelta": 0.435,
         "gamma": 0.0013,
         "theta": -11.25,
-        "vega": 5.54
+        "vega": 5.55
       }
     },
     {
@@ -200,7 +200,7 @@
       "lotSize": 30,
       "quantity": 30,
       "entryPrice": 386.43,
-      "currentLtp": 379.08,
+      "currentLtp": 379.19,
       "spotEntry": 54505.1,
       "spotSL": 54435.1,
       "targetSpot": 54655.1,
@@ -217,9 +217,9 @@
       },
       "dteDays": 4,
       "iv": 0.16,
-      "lastSpot": 54490.95,
+      "lastSpot": 54491.15,
       "cost": 11592.9,
-      "unrealizedPnL": -220.5,
+      "unrealizedPnL": -217.2,
       "confluence": {
         "score": 89,
         "stars": "⭐⭐⭐⭐",
@@ -5285,6 +5285,20 @@
   ],
   "scanLogs": [
     {
+      "id": "1790587810920_qymx",
+      "timestamp": "15:00:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:00:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790587810919_uu61",
+      "timestamp": "15:00:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22796.4 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
       "id": "1790587780780_r9xc",
       "timestamp": "14:59:40",
       "symbol": "SCAN",
@@ -6669,20 +6683,6 @@
       "symbol": "BAJFINANCE",
       "type": "FILTER",
       "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790585920025_vubc",
-      "timestamp": "14:28:40",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790585919599_l7vr",
-      "timestamp": "14:28:39",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22800 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
     }
   ],
   "stats": {
@@ -6692,9 +6692,9 @@
     "winRate": 34.5,
     "maxDrawdown": 2.87
   },
-  "lastScanTime": "14:59:39",
+  "lastScanTime": "15:00:09",
   "marketSession": {
-    "istTime": "14:59:40",
+    "istTime": "15:00:10",
     "istDate": "2026-09-28",
     "dayOfWeek": 1,
     "dayName": "Monday",
@@ -6717,8 +6717,8 @@
     }
   },
   "indexContext": {
-    "niftySpot": 22799.55,
-    "niftyOpen": 22799.55,
+    "niftySpot": 22796.4,
+    "niftyOpen": 22796.4,
     "niftyBullish": true,
     "pcrDrift": 0,
     "firstHourBaselinePcr": 1.032,
