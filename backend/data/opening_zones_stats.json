@@ -42,11 +42,11 @@
     },
     "z6_s2_r2": {
       "name": "Open Between S2 and R2 (Value Area Midpoint)",
-      "recommendation": "Rotational Balanced Day (48.2% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
-      "count": 218,
-      "greenPct": 48.2,
-      "avgRange": 232.6,
-      "avgMove": 4.2
+      "recommendation": "Rotational Balanced Day (48.4% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
+      "count": 219,
+      "greenPct": 48.4,
+      "avgRange": 232.2,
+      "avgMove": 4.7
     },
     "z7_s3_s2": {
       "name": "Open Between S3 and S2",
@@ -82,11 +82,11 @@
     },
     "z11_below_s6": {
       "name": "Open Below S6 (Extreme Gap Down)",
-      "recommendation": "Strong Bullish Continuation bias (66.7% green close rate). Bounces off support wicks heavily favor Calls (CE).",
-      "count": 27,
-      "greenPct": 66.7,
-      "avgRange": 271.7,
-      "avgMove": 32.3
+      "recommendation": "Strong Bullish Continuation bias (64.3% green close rate). Bounces off support wicks heavily favor Calls (CE).",
+      "count": 28,
+      "greenPct": 64.3,
+      "avgRange": 270.4,
+      "avgMove": 25.5
     }
   },
   "BANKNIFTY": {
@@ -132,11 +132,11 @@
     },
     "z6_s2_r2": {
       "name": "Open Between S2 and R2 (Value Area Midpoint)",
-      "recommendation": "Rotational Balanced Day (52.3% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
-      "count": 246,
-      "greenPct": 52.3,
-      "avgRange": 608.2,
-      "avgMove": 39.1
+      "recommendation": "Rotational Balanced Day (52.5% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
+      "count": 247,
+      "greenPct": 52.5,
+      "avgRange": 607.3,
+      "avgMove": 39.8
     },
     "z7_s3_s2": {
       "name": "Open Between S3 and S2",
@@ -172,11 +172,11 @@
     },
     "z11_below_s6": {
       "name": "Open Below S6 (Extreme Gap Down)",
-      "recommendation": "Strong Bullish Continuation bias (62.5% green close rate). Bounces off support wicks heavily favor Calls (CE).",
-      "count": 16,
-      "greenPct": 62.5,
-      "avgRange": 868.1,
-      "avgMove": 176.5
+      "recommendation": "Strong Bullish Continuation bias (58.8% green close rate). Bounces off support wicks heavily favor Calls (CE).",
+      "count": 17,
+      "greenPct": 58.8,
+      "avgRange": 851,
+      "avgMove": 150.1
     }
   }
 }

@@ -1,0 +1,225 @@
+{
+  "timestamp": "2026-09-26T15:43:30.124Z",
+  "totalDays": 501,
+  "totalStocks": 208,
+  "totalBars": 104073,
+  "scorecard": {
+    "totalTrades": 2254,
+    "wins": 819,
+    "losses": 1435,
+    "winRate": 36.3,
+    "profitFactor": 1.11
+  },
+  "topPerformers": [
+    {
+      "symbol": "POLICYBZR",
+      "total": 7,
+      "wins": 6,
+      "winRate": 85.7,
+      "avgRoi": 4.96
+    },
+    {
+      "symbol": "SWIGGY",
+      "total": 7,
+      "wins": 5,
+      "winRate": 71.4,
+      "avgRoi": 10.57
+    },
+    {
+      "symbol": "M&MFIN",
+      "total": 10,
+      "wins": 7,
+      "winRate": 70,
+      "avgRoi": 4.03
+    },
+    {
+      "symbol": "AUBANK",
+      "total": 16,
+      "wins": 11,
+      "winRate": 68.8,
+      "avgRoi": 4.14
+    },
+    {
+      "symbol": "ADANIGREEN",
+      "total": 9,
+      "wins": 6,
+      "winRate": 66.7,
+      "avgRoi": 1.06
+    },
+    {
+      "symbol": "HCLTECH",
+      "total": 12,
+      "wins": 8,
+      "winRate": 66.7,
+      "avgRoi": 2.41
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "total": 14,
+      "wins": 9,
+      "winRate": 64.3,
+      "avgRoi": 5.23
+    },
+    {
+      "symbol": "ASTRAL",
+      "total": 8,
+      "wins": 5,
+      "winRate": 62.5,
+      "avgRoi": 3.8
+    },
+    {
+      "symbol": "NTPC",
+      "total": 8,
+      "wins": 5,
+      "winRate": 62.5,
+      "avgRoi": 0.75
+    },
+    {
+      "symbol": "POWERGRID",
+      "total": 13,
+      "wins": 8,
+      "winRate": 61.5,
+      "avgRoi": 0.8
+    },
+    {
+      "symbol": "IDFCFIRSTB",
+      "total": 10,
+      "wins": 6,
+      "winRate": 60,
+      "avgRoi": 1.08
+    },
+    {
+      "symbol": "IGL",
+      "total": 10,
+      "wins": 6,
+      "winRate": 60,
+      "avgRoi": 1.55
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "total": 12,
+      "wins": 7,
+      "winRate": 58.3,
+      "avgRoi": 2.39
+    },
+    {
+      "symbol": "DEEPAKNTR",
+      "total": 12,
+      "wins": 7,
+      "winRate": 58.3,
+      "avgRoi": 2.61
+    },
+    {
+      "symbol": "DIXON",
+      "total": 12,
+      "wins": 7,
+      "winRate": 58.3,
+      "avgRoi": 10.33
+    },
+    {
+      "symbol": "ESCORTS",
+      "total": 12,
+      "wins": 7,
+      "winRate": 58.3,
+      "avgRoi": 2.44
+    },
+    {
+      "symbol": "BHARATFORG",
+      "total": 7,
+      "wins": 4,
+      "winRate": 57.1,
+      "avgRoi": 0.86
+    },
+    {
+      "symbol": "BSOFT",
+      "total": 14,
+      "wins": 8,
+      "winRate": 57.1,
+      "avgRoi": 2.5
+    },
+    {
+      "symbol": "EXIDEIND",
+      "total": 14,
+      "wins": 8,
+      "winRate": 57.1,
+      "avgRoi": 3.6
+    },
+    {
+      "symbol": "PATANJALI",
+      "total": 7,
+      "wins": 4,
+      "winRate": 57.1,
+      "avgRoi": 2.53
+    },
+    {
+      "symbol": "SONACOMS",
+      "total": 7,
+      "wins": 4,
+      "winRate": 57.1,
+      "avgRoi": 5.67
+    },
+    {
+      "symbol": "TORNTPOWER",
+      "total": 7,
+      "wins": 4,
+      "winRate": 57.1,
+      "avgRoi": 2.23
+    },
+    {
+      "symbol": "MARUTI",
+      "total": 9,
+      "wins": 5,
+      "winRate": 55.6,
+      "avgRoi": 0.88
+    },
+    {
+      "symbol": "PAYTM",
+      "total": 9,
+      "wins": 5,
+      "winRate": 55.6,
+      "avgRoi": 4.36
+    },
+    {
+      "symbol": "COALINDIA",
+      "total": 13,
+      "wins": 7,
+      "winRate": 53.8,
+      "avgRoi": -0.15
+    },
+    {
+      "symbol": "LUPIN",
+      "total": 13,
+      "wins": 7,
+      "winRate": 53.8,
+      "avgRoi": 0.98
+    },
+    {
+      "symbol": "UPL",
+      "total": 13,
+      "wins": 7,
+      "winRate": 53.8,
+      "avgRoi": 3.48
+    },
+    {
+      "symbol": "MOTHERSON",
+      "total": 15,
+      "wins": 8,
+      "winRate": 53.3,
+      "avgRoi": 4.16
+    },
+    {
+      "symbol": "AMBER",
+      "total": 12,
+      "wins": 6,
+      "winRate": 50,
+      "avgRoi": 1.86
+    },
+    {
+      "symbol": "BAJAJFINSV",
+      "total": 10,
+      "wins": 5,
+      "winRate": 50,
+      "avgRoi": 1.4
+    }
+  ]
+}

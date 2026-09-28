@@ -1197,13 +1197,15 @@ export function startAutonomousEODStocksTrackerScheduler() {
         lastAutoRunIST = `${todayStr} ${String(istHours).padStart(2, '0')}:${String(istMinutes).padStart(2, '0')}:00 IST`;
         console.log(`[StocksTracker Auto-Learner] ✅ Auto-run complete! Evaluated ${report.totalEvaluated} setups, Win Rate: ${report.winRatePct}%, Absorbed ${report.mistakes} mistakes.`);
 
-        // Optional Telegram notification
+        // Telegram notification for EOD Auto-Learner silenced per user request
+        /*
         try {
           const { sendTelegramMessage } = await import('./telegram_notifier.js');
           if (sendTelegramMessage) {
             sendTelegramMessage(`🐋 <b>STOCKS TRACKER 3:45 PM EOD AUTO-LEARNER COMPLETE</b>\n\n📅 Date: ${todayStr}\n🎯 Evaluated: ${report.totalEvaluated} Setups\n🏆 Win Rate: ${report.winRatePct}%\n❌ Mistakes Absorbed: ${report.mistakes}\n\n🧠 <b>Learned Rules:</b>\n${report.learnedLessons.join('\n')}`);
           }
         } catch (e) {}
+        */
       }
     } catch (err) {
       console.error('[StocksTracker Auto-Learner] Scheduler check error:', err);

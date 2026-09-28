@@ -168,6 +168,8 @@ export const OrderFlowContainer: React.FC = () => {
   const [showProfile, setShowProfile] = useState(true);
   const [fiiData, setFiiData] = useState<any>(null);
   const [showFiiPanel, setShowFiiPanel] = useState(false);
+  const [tpoStatus, setTpoStatus] = useState<{ tpo: any; gStatus: any; timeStr: string } | null>(null);
+
 
   // Dropdown UI states
   const [isTfDropdownOpen, setIsTfDropdownOpen] = useState(false);
@@ -265,6 +267,23 @@ export const OrderFlowContainer: React.FC = () => {
       clearInterval(fiiInterval);
     };
   }, [backendUrl]);
+
+  // TPO Period + G-Period Status polling
+  useEffect(() => {
+    const fetchTpo = async () => {
+      try {
+        const backendUrl = getBackendUrl();
+        const res = await fetch(`${backendUrl}/api/confluence/tpo-status?_t=${Date.now()}`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.ok) setTpoStatus(data);
+        }
+      } catch (_) {}
+    };
+    fetchTpo();
+    const iv = setInterval(fetchTpo, 10000); // refresh every 10s
+    return () => clearInterval(iv);
+  }, []);
 
   const handleSymbolChange = async (newSym: string) => {
     setSelectedSymbol(newSym);
@@ -1081,9 +1100,85 @@ export const OrderFlowContainer: React.FC = () => {
         userSelect: isPanning || isDraggingScale ? 'none' : 'auto'
       }}
     >
+      {/* TPO Period + G-Period Banner */}
+      {tpoStatus && tpoStatus.tpo && tpoStatus.tpo.period && (() => {
+        const period = tpoStatus.tpo.period;
+        const isG = period === 'G';
+        const gStatus = tpoStatus.gStatus;
+        const isGActive = gStatus?.isActive;
+        const periodColors: Record<string, string> = {
+          'A': '#94a3b8', 'B': '#94a3b8',
+          'C': '#10b981', 'D': '#34d399',
+          'E': '#22d3ee', 'F': '#f59e0b',
+          'G': isGActive ? '#a855f7' : '#8b5cf6',
+          'H': '#60a5fa', 'I': '#60a5fa',
+          'J': '#60a5fa', 'K': '#f59e0b',
+          'L': '#ef4444', 'M': '#ef4444'
+        };
+        const col = periodColors[period] || '#94a3b8';
+        const winRate = {
+          'C': '86-92%', 'E': '86%', 'F': '86%', 'G': '88%', 'L': '84%'
+        }[period] || '';
+        return (
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 14px',
+            background: isGActive ? 'linear-gradient(90deg, rgba(168,85,247,0.15) 0%, rgba(124,58,237,0.1) 100%)' : `rgba(${col === '#10b981' ? '16,185,129' : col === '#ef4444' ? '239,68,68' : '56,189,248'},0.08)`,
+            border: `1px solid ${col}35`,
+            borderRadius: '8px', marginBottom: '10px', flexWrap: 'wrap'
+          }}>
+            <span style={{ fontSize: '11px', fontWeight: 900, color: col, letterSpacing: '1px' }}>
+              TPO PERIOD {period}
+            </span>
+            <span style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700 }}>
+              {tpoStatus.tpo.label}
+            </span>
+            {winRate && (
+              <span style={{ fontSize: '10.5px', background: `${col}20`, border: `1px solid ${col}40`, color: col, padding: '2px 8px', borderRadius: '4px', fontWeight: 800 }}>
+                Win Rate: {winRate}
+              </span>
+            )}
+            {isGActive && (
+              <span style={{
+                fontSize: '11px', fontWeight: 900, color: '#ffffff',
+                background: 'linear-gradient(90deg, #7c3aed, #a855f7)',
+                padding: '3px 12px', borderRadius: '12px',
+                boxShadow: '0 0 12px rgba(168,85,247,0.6)',
+                animation: 'pulse 1.5s infinite'
+              }}>
+                ⚡ G-PERIOD ACTIVE — {gStatus.minutesLeft}m LEFT — LUNCHTIME BREAKOUT WINDOW
+              </span>
+            )}
+            {period === 'C' && (
+              <span style={{
+                fontSize: '11px', fontWeight: 900, color: '#ffffff',
+                background: 'linear-gradient(90deg, #059669, #10b981)',
+                padding: '3px 12px', borderRadius: '12px',
+                boxShadow: '0 0 12px rgba(16,185,129,0.5)'
+              }}>
+                🔥 PERIOD C — HIGHEST WIN-RATE BREAKOUT WINDOW
+              </span>
+            )}
+            {period === 'L' && (
+              <span style={{
+                fontSize: '11px', fontWeight: 900, color: '#ffffff',
+                background: 'linear-gradient(90deg, #dc2626, #ef4444)',
+                padding: '3px 12px', borderRadius: '12px',
+                boxShadow: '0 0 12px rgba(239,68,68,0.5)'
+              }}>
+                🎯 PERIOD L — LATE-DAY BREAKOUT (CHECK VOLUME 1.2x)
+              </span>
+            )}
+            <span style={{ marginLeft: 'auto', fontSize: '10.5px', color: '#475569', fontWeight: 700 }}>
+              {tpoStatus.timeStr} IST | {tpoStatus.tpo.minutesLeft}m left in period
+            </span>
+          </div>
+        );
+      })()}
+
       {/* ========================================================================= */}
       {/* 1. TOP TOOLBAR: Controls, Timeframe, Layout, Tick Size                    */}
       {/* ========================================================================= */}
+
       <div style={{
         display: 'flex',
         flexWrap: 'wrap',

@@ -33,6 +33,15 @@ if ($otherInstances) {
     exit
 }
 
+# If Master run_all_day.ps1 watchdog is active, let it take precedence
+$masterWatchdog = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe'" | Where-Object {
+    $_.CommandLine -like "*run_all_day.ps1*"
+}
+if ($masterWatchdog) {
+    Log-Message "Master run_all_day watchdog is active. keep_alive_tv yielding to master."
+    exit 0
+}
+
 # Clean up rogue duplicate ngrok instances (managed by run_all_day watchdog)
 # Stop-Process -Name ngrok -Force -ErrorAction SilentlyContinue
 

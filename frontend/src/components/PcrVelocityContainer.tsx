@@ -393,8 +393,64 @@ export function PcrVelocityContainer() {
           </div>
         </div>
 
+        {/* PCR Velocity Speedometer Gauge */}
+        {(() => {
+          const drift = asset.drift || 0;
+          const velocityPct = asset.velocityPct || 0;
+          // Gauge: -10% to +10% maps to 0° to 180° arc
+          const pct = Math.min(Math.max((drift * 100 + 10) / 20, 0), 1); // normalize to 0-1
+          const angle = pct * 180 - 90; // -90 to +90 degrees
+          const needleX = 60 + 45 * Math.cos((angle - 90) * Math.PI / 180);
+          const needleY = 60 + 45 * Math.sin((angle - 90) * Math.PI / 180);
+          const absDrift = Math.abs(drift * 100);
+          const isSignificant = absDrift >= 3;
+          const gaugeColor = drift > 0.03 ? '#10b981' : drift < -0.03 ? '#ef4444' : '#eab308';
+          return (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '12px', flexWrap: 'wrap' }}>
+              <svg width="120" height="70" viewBox="0 0 120 70">
+                {/* Background arc */}
+                <path d="M 15,60 A 45,45 0 0,1 105,60" stroke="#1e293b" strokeWidth="10" fill="none" strokeLinecap="round" />
+                {/* Colored arc up to needle */}
+                <path
+                  d={`M 15,60 A 45,45 0 0,1 ${needleX.toFixed(1)},${needleY.toFixed(1)}`}
+                  stroke={gaugeColor}
+                  strokeWidth="10"
+                  fill="none"
+                  strokeLinecap="round"
+                  style={{ filter: `drop-shadow(0 0 4px ${gaugeColor})` }}
+                />
+                {/* Needle */}
+                <line x1="60" y1="60" x2={needleX.toFixed(1)} y2={needleY.toFixed(1)} stroke="white" strokeWidth="2" strokeLinecap="round" />
+                <circle cx="60" cy="60" r="4" fill={gaugeColor} />
+                {/* Labels */}
+                <text x="8" y="68" fontSize="7" fill="#ef4444" fontWeight="bold">-10%</text>
+                <text x="52" y="12" fontSize="7" fill="#94a3b8">0</text>
+                <text x="100" y="68" fontSize="7" fill="#10b981" fontWeight="bold">+10%</text>
+              </svg>
+              <div>
+                <div style={{ fontSize: '22px', fontWeight: 900, color: gaugeColor, fontFamily: 'monospace' }}>
+                  {drift >= 0 ? '+' : ''}{(drift * 100).toFixed(2)}%
+                </div>
+                <div style={{ fontSize: '10.5px', color: '#94a3b8', fontWeight: 700 }}>PCR VELOCITY DRIFT</div>
+                {isSignificant && (
+                  <div style={{
+                    fontSize: '10px', fontWeight: 900,
+                    color: '#ffffff',
+                    background: drift > 0 ? 'linear-gradient(90deg, #059669, #10b981)' : 'linear-gradient(90deg, #dc2626, #ef4444)',
+                    padding: '2px 10px', borderRadius: '10px', marginTop: '4px',
+                    boxShadow: `0 0 10px ${gaugeColor}80`
+                  }}>
+                    {drift > 0 ? '🟢 BULLISH DRIFT' : '🔴 BEARISH DRIFT'} &gt;3% — TREND DAY SIGNAL
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })()}
+
         {/* PCR Drift Metrics Row (With exact time label) */}
         {(() => {
+
           const currentTimeLabel = (() => {
             if (!data?.istTimeStr) return 'Live';
             const [hh, mm] = data.istTimeStr.split(':').map(Number);
@@ -523,7 +579,49 @@ export function PcrVelocityContainer() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '16px', maxWidth: '1400px', margin: '0 auto', width: '100%' }}>
+      {/* TREND DAY CONFIRMED Banner */}
+      {data && (() => {
+        const nDrift = data.nifty?.drift || 0;
+        const bnDrift = data.banknifty?.drift || 0;
+        const nSig = data.nifty?.verdict?.signal;
+        const bnSig = data.banknifty?.verdict?.signal;
+        const isTrendDay = Math.abs(nDrift) >= 0.03 || Math.abs(bnDrift) >= 0.03;
+        if (!isTrendDay) return null;
+        const isBull = nSig === 'BULLISH' || bnSig === 'BULLISH';
+        const isBear = nSig === 'BEARISH' || bnSig === 'BEARISH';
+        return (
+          <div style={{
+            padding: '14px 20px', marginBottom: '16px', borderRadius: '12px',
+            background: isBull
+              ? 'linear-gradient(90deg, rgba(16,185,129,0.25) 0%, rgba(5,150,105,0.15) 100%)'
+              : 'linear-gradient(90deg, rgba(239,68,68,0.25) 0%, rgba(220,38,38,0.15) 100%)',
+            border: `2px solid ${isBull ? '#10b981' : '#ef4444'}`,
+            boxShadow: `0 0 24px ${isBull ? 'rgba(16,185,129,0.3)' : 'rgba(239,68,68,0.3)'}`,
+            display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap'
+          }}>
+            <span style={{ fontSize: '28px' }}>{isBull ? '🚀' : '🔻'}</span>
+            <div>
+              <div style={{ fontSize: '18px', fontWeight: 900, color: isBull ? '#10b981' : '#ef4444', letterSpacing: '1px' }}>
+                ✅ TREND DAY CONFIRMED — {isBull ? 'BULLISH INSTITUTIONAL CONVICTION' : 'BEARISH INSTITUTIONAL CONVICTION'}
+              </div>
+              <div style={{ fontSize: '12px', color: '#cbd5e1', fontWeight: 700 }}>
+                PCR Velocity Rule 2D triggered: Nifty drift {(nDrift * 100).toFixed(2)}% | BankNifty drift {(bnDrift * 100).toFixed(2)}%
+              </div>
+              <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '2px' }}>
+                Action: Buy {isBull ? 'ATM CE on pullbacks' : 'ATM PE on bounces'} | Stay directional all day | Ignore range-bound strategies
+              </div>
+            </div>
+            <div style={{ marginLeft: 'auto', textAlign: 'center' }}>
+              <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: 700 }}>HISTORICAL WIN RATE</div>
+              <div style={{ fontSize: '22px', fontWeight: 900, color: '#fde047' }}>100%</div>
+              <div style={{ fontSize: '9px', color: '#64748b' }}>When PCR drift &gt; 3%</div>
+            </div>
+          </div>
+        );
+      })()}
+
       {/* Top Banner */}
+
       <div
         className="glass-panel"
         style={{

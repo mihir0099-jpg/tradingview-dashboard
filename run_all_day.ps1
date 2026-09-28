@@ -11,18 +11,59 @@ Write-Host "  - Local Port 3002: TradingView 20-Tab Engine           " -Foregrou
 Write-Host "  - Auto-Sync: Hugging Face live_backend.json Auto-Push  " -ForegroundColor White
 Write-Host "=========================================================" -ForegroundColor Cyan
 
+$baseDir = "C:\Users\mihir\.gemini\antigravity\scratch\tradingview-dashboard"
+$logFile = "$baseDir\run_all_day.log"
+
+function Log-Message {
+    param([string]$message)
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $logLine = "[$timestamp] $message"
+    Write-Output $logLine
+    try {
+        if ((Test-Path $logFile) -and ((Get-Item $logFile).Length -gt 500KB)) {
+            $tail = Get-Content $logFile -Tail 200
+            Set-Content -Path $logFile -Value $tail -Force
+        }
+        Add-Content -Path $logFile -Value $logLine -ErrorAction SilentlyContinue
+    } catch {}
+}
+
+Log-Message "Master 24/7 run_all_day watchdog starting (PID: $PID)..."
+
+# 0. Singleton Guard: Prevent duplicate instances of run_all_day.ps1
+$myPid = $PID
+$otherInstances = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe'" | Where-Object {
+    $_.CommandLine -like "*run_all_day.ps1*" -and $_.CommandLine -notlike "*-Command*" -and $_.CommandLine -notlike "*Get-CimInstance*" -and $_.ProcessId -ne $myPid
+}
+if ($otherInstances) {
+    $otherPids = ($otherInstances | Select-Object -ExpandProperty ProcessId) -join ", "
+    Log-Message "Another instance of run_all_day.ps1 is already running (PID: $otherPids). Exiting duplicate."
+    exit 0
+}
+
 # 1. Prevent Windows from Sleeping while this script runs
 $code = @'
-[DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-public static extern uint SetThreadExecutionState(uint esFlags);
+using System;
+using System.Runtime.InteropServices;
+public class MasterSleepUtil {
+    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    public static extern uint SetThreadExecutionState(uint esFlags);
+
+    public const uint ES_CONTINUOUS = 0x80000000;
+    public const uint ES_SYSTEM_REQUIRED = 0x00000001;
+    public const uint ES_AWAYMODE_REQUIRED = 0x00000040;
+
+    public static uint PreventSleep() {
+        return SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED);
+    }
+}
 '@
 try {
-    $steType = Add-Type -MemberDefinition $code -Name "SleepUtil" -Namespace "Win32" -PassThru -ErrorAction SilentlyContinue
-    # ES_CONTINUOUS (0x80000000) | ES_SYSTEM_REQUIRED (0x00000001) | ES_AWAYMODE_REQUIRED (0x00000040)
-    [Win32.SleepUtil]::SetThreadExecutionState(0x80000000 -bor 0x00000001 -bor 0x00000040)
-    Write-Host "[Power Management] Laptop Sleep BLOCKED successfully." -ForegroundColor Green
+    Add-Type -TypeDefinition $code -ErrorAction SilentlyContinue
+    $r = [MasterSleepUtil]::PreventSleep()
+    Log-Message "[Power Management] Laptop Sleep BLOCKED successfully ($r)."
 } catch {
-    Write-Host "[Power Management] Sleep blocker active." -ForegroundColor Yellow
+    Log-Message "[Power Management] Sleep blocker active."
 }
 
 $tvDir = "C:\Users\mihir\.gemini\antigravity\scratch\tradingview-dashboard"
@@ -57,7 +98,7 @@ $serveoConsecutiveFails = 0
 
 while ($true) {
     # Refresh sleep prevention token
-    try { [Win32.SleepUtil]::SetThreadExecutionState(0x80000000 -bor 0x00000001 -bor 0x00000040) } catch {}
+    try { [void][MasterSleepUtil]::PreventSleep() } catch {}
 
     # Check Port 3002 (TradingView Dashboard)
     $tvOk = Test-HttpOk "http://localhost:3002/health" 3000
@@ -70,12 +111,24 @@ while ($true) {
     }
 
     # Check Port 3001 (Market Profile)
-    $mpOk = Test-HttpOk "http://localhost:3001/api/live-indices" 3000
+    $mpOk = Test-HttpOk "http://localhost:3001/health" 3000
     if (-not $mpOk) {
         $port3001Listening = Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue
         if (-not $port3001Listening) {
-            Write-Host "[Watchdog] Port 3001 not listening. Launching backend server..." -ForegroundColor Yellow
-            Start-Process -FilePath "C:\Program Files\nodejs\node.exe" -ArgumentList "server.js" -WorkingDirectory "$mpDir\backend" -WindowStyle Hidden -ErrorAction SilentlyContinue
+            Write-Host "[Watchdog] Port 3001 not listening. Launching MP keep_alive.ps1..." -ForegroundColor Yellow
+            Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$mpDir\keep_alive.ps1`"" -WorkingDirectory $mpDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+        }
+    }
+
+    # Check Port 5000 (NSE GEX Dashboard)
+    $port5000Listening = Get-NetTCPConnection -LocalPort 5000 -State Listen -ErrorAction SilentlyContinue
+    if (-not $port5000Listening) {
+        $gexDir = "C:\Users\mihir\.gemini\antigravity\scratch\nse-gex-dashboard"
+        $pythonExe = "$gexDir\venv\Scripts\python.exe"
+        if (Test-Path "$gexDir\app.py") {
+            if (-not (Test-Path $pythonExe)) { $pythonExe = "python.exe" }
+            Write-Host "[Watchdog] Port 5000 not listening. Launching NSE GEX app.py..." -ForegroundColor Yellow
+            Start-Process -FilePath $pythonExe -ArgumentList "-u app.py" -WorkingDirectory $gexDir -WindowStyle Hidden -ErrorAction SilentlyContinue
         }
     }
 
@@ -87,7 +140,10 @@ while ($true) {
             Write-Host "[Watchdog] Serveo tunnel disconnected (3 failures). Reconnecting..." -ForegroundColor Yellow
             Stop-Process -Name ssh -Force -ErrorAction SilentlyContinue
             Start-Sleep -Seconds 2
-            Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File backend/run_tunnels.ps1" -WorkingDirectory $mpDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+            $kpProc = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe'" | Where-Object { $_.CommandLine -like "*keep_alive.ps1*" }
+            if (-not $kpProc) {
+                Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$mpDir\keep_alive.ps1`"" -WorkingDirectory $mpDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+            }
             $serveoConsecutiveFails = 0
         }
     } else {
@@ -108,6 +164,24 @@ while ($true) {
         }
     } else {
         $cfConsecutiveFails = 0
+    }
+
+    # Check Dedicated Ngrok Static Tunnel (Port 3002) & Hugging Face Auto-Sync
+    $ngrokProc = Get-Process -Name ngrok -ErrorAction SilentlyContinue
+    if (-not $ngrokProc) {
+        $ngrokExe = "C:\Users\mihir\AppData\Local\Programs\Python\Python313\Scripts\ngrok.exe"
+        if (Test-Path $ngrokExe) {
+            Write-Host "[Watchdog] Ngrok static tunnel offline. Launching ngrok..." -ForegroundColor Yellow
+            Start-Process -FilePath $ngrokExe -ArgumentList "http 3002 --url=skimmer-savage-dipped.ngrok-free.dev" -WindowStyle Hidden -ErrorAction SilentlyContinue
+            Start-Sleep -Seconds 3
+        }
+    }
+    # Verify tunnel before syncing to Hugging Face: prefer Ngrok only if 200 OK, otherwise use healthy Cloudflare URL
+    $ngrokHealthy = Test-HttpOk "https://skimmer-savage-dipped.ngrok-free.dev/health" 2500
+    if ($ngrokHealthy) {
+        Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard https://skimmer-savage-dipped.ngrok-free.dev" -WindowStyle Hidden -ErrorAction SilentlyContinue
+    } elseif ($cfOk -and $cfUrl) {
+        Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard $cfUrl" -WindowStyle Hidden -ErrorAction SilentlyContinue
     }
 
     # Autonomous 3:40 PM IST 40-Strike Weekly Expiry Decay & Zero-Settlement Trigger

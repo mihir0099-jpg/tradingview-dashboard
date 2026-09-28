@@ -28,6 +28,7 @@ import { initLotSizeService } from './lot_size_service.js';
 import { stockPcrScannerEngine } from './stock_pcr_scanner_engine.js';
 import { getInstitutionalMLV2Insights, executeInstitutionalMLV2, startInstitutionalMLScheduler } from './institutional_ml_v2_service.js';
 import { initHolidayService } from './holiday_service.js';
+import { computeConfluenceScore, getConfluenceScoreInsights, getCurrentTPOPeriod, getGPeriodStatus } from './confluence_score_engine.js';
 
 const liveOptionCandlesCache = {};
 const liveOptionLtpCache = {};
@@ -6227,6 +6228,48 @@ app.get('/api/orderflow/order-blocks', async (req, res) => {
     res.json({ success: true, orderBlocks: getLiveOrderBlocks() });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ============================================================
+// CONFLUENCE SCORE ML ENGINE
+// ============================================================
+
+// GET /api/confluence/tpo-status — Current TPO period + G-period countdown
+app.get('/api/confluence/tpo-status', (req, res) => {
+  try {
+    const tpo = getCurrentTPOPeriod();
+    const gStatus = getGPeriodStatus();
+    const now = new Date();
+    const istOffset = 5.5 * 60 * 60 * 1000;
+    const ist = new Date(now.getTime() + istOffset);
+    const h = ist.getUTCHours();
+    const m = ist.getUTCMinutes();
+    const timeStr = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    res.json({ ok: true, tpo, gStatus, timeStr });
+  } catch (e) {
+    res.json({ ok: false, error: e.message });
+  }
+});
+
+// POST /api/confluence/score — Compute ML confluence score for a proposed trade
+app.post('/api/confluence/score', (req, res) => {
+  try {
+    const inputs = req.body || {};
+    const result = computeConfluenceScore(inputs);
+    res.json({ ok: true, result });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+// GET /api/confluence/score — Get last computed confluence score
+app.get('/api/confluence/score', (req, res) => {
+  try {
+    const result = getConfluenceScoreInsights();
+    res.json({ ok: true, result });
+  } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
   }
 });
 

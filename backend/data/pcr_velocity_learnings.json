@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-09-23T10:17:06.977Z",
-  "total_sessions_scanned": 35,
-  "active_triggers": 28,
-  "wins": 18,
+  "last_updated": "2026-09-25T10:17:03.290Z",
+  "total_sessions_scanned": 37,
+  "active_triggers": 29,
+  "wins": 19,
   "mistakes_learned": 10,
-  "live_accuracy_pct": "64.3%",
+  "live_accuracy_pct": "65.5%",
   "auto_learned_adaptations": [
     {
       "rule_id": "ADAPT_01_PERIOD_C_FILTER",
@@ -23,6 +23,32 @@
     }
   ],
   "recent_sessions": [
+    {
+      "date": "2026_09_24",
+      "niftyClose": 23063.1,
+      "changePct": -1.64,
+      "ce": 154.6,
+      "pe": 107.2,
+      "skew": 18.1,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BEARISH",
+      "outcome": "WIN",
+      "lesson": "Institutional Call writers successfully capped resistance (Skew 18.1%). Price fell -1.64%. Rule reinforced: CE bloat = sell CE / buy PE."
+    },
+    {
+      "date": "2026_09_23",
+      "niftyClose": 23446.8,
+      "changePct": 0.5,
+      "ce": 108.95,
+      "pe": 99,
+      "skew": 4.8,
+      "signal": "NEUTRAL",
+      "predicted": "RANGE_BOUND",
+      "actual": "BULLISH",
+      "outcome": "NEUTRAL_PASS",
+      "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
+    },
     {
       "date": "2026_09_22",
       "niftyClose": 23329,
@@ -126,32 +152,6 @@
       "actual": "BEARISH",
       "outcome": "MISTAKE_CORRECTED",
       "lesson": "FAILURE MISTAKE: Long Liquidation. Put writers failed to defend morning support. Adaptation rule: Invalidate put writing support if spot breaks below IB Low in Period C."
-    },
-    {
-      "date": "2026_09_03",
-      "niftyClose": 23873.45,
-      "changePct": -0.17,
-      "ce": 128.85,
-      "pe": 89.65,
-      "skew": 17.9,
-      "signal": "CALL_WRITING_RESISTANCE",
-      "predicted": "BEARISH",
-      "actual": "BEARISH",
-      "outcome": "WIN",
-      "lesson": "Institutional Call writers successfully capped resistance (Skew 17.9%). Price fell -0.17%. Rule reinforced: CE bloat = sell CE / buy PE."
-    },
-    {
-      "date": "2026_09_02",
-      "niftyClose": 23914.45,
-      "changePct": -0.59,
-      "ce": 130.35,
-      "pe": 114.7,
-      "skew": 6.4,
-      "signal": "NEUTRAL",
-      "predicted": "RANGE_BOUND",
-      "actual": "BEARISH",
-      "outcome": "NEUTRAL_PASS",
-      "lesson": "Equilibrium rotation — straddles decayed smoothly inside value area."
     }
   ]
 }

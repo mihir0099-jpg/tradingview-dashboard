@@ -1,5 +1,33 @@
 [
   {
+    "date": "2026-09-25",
+    "timeframe": "DAILY",
+    "actual_range": 141.45,
+    "predicted_range": 158,
+    "range_error_pts": 16.6,
+    "range_accuracy_pct": 88.26,
+    "ib_range": 88.45,
+    "is_wide_ib": false,
+    "day_type": "NEUTRAL_DAY (Double Extension - Reversal Trap)",
+    "mistake_diagnosed": "High prediction accuracy maintained (≥85%).",
+    "remedy_applied": "Retain standard 1.788x expansion multiplier.",
+    "logged_at": "2026-09-25T10:17:04.298Z"
+  },
+  {
+    "date": "2026-09-24",
+    "timeframe": "DAILY",
+    "actual_range": 234.4,
+    "predicted_range": 128,
+    "range_error_pts": 106.4,
+    "range_accuracy_pct": 54.61,
+    "ib_range": 71.7,
+    "is_wide_ib": false,
+    "day_type": "TREND_DAY_BEARISH",
+    "mistake_diagnosed": "Range deviated by 106.4 pts. Check VIX shifts and day-of-week multipliers.",
+    "remedy_applied": "Retain standard 1.788x expansion multiplier.",
+    "logged_at": "2026-09-24T10:17:17.090Z"
+  },
+  {
     "date": "2026-09-23",
     "timeframe": "DAILY",
     "actual_range": 117.2,

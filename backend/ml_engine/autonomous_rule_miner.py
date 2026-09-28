@@ -172,13 +172,16 @@ def mine_new_rules():
             "rule_id": rule_id,
             "origin_model": "Decision Tree Purity Leaf Extractor",
             "date_discovered": session_date,
+            "last_validated_date": session_date,
             "conditions_text": f"IF {cond_str}",
             "statistical_win_rate_pct": r['purity_pct'],
             "sample_support_count": r['samples'],
             "recommended_action": r['action'],
             "market_logic": f"Autonomous decision branch isolated {r['samples']} occurrences with {r['purity_pct']}% directional outcome.",
-            "status": "ACTIVE_LIVE_ENFORCEMENT"
+            "status": "ACTIVE_LIVE_ENFORCEMENT",
+            "expires_after_sessions": 30
         })
+
 
     # ================================================================
     # 2. LightGBM / XGBoost Feature Threshold Rule Extractor
@@ -201,24 +204,28 @@ def mine_new_rules():
                 "rule_id": f"RULE_AUTOGEN_LGBM_{session_date.replace('-', '')}_01",
                 "origin_model": "LightGBM Gradient Split Extractor",
                 "date_discovered": session_date,
+                "last_validated_date": session_date,
                 "conditions_text": f"IF {top_feat} > {round(split_val, 4)}",
                 "statistical_win_rate_pct": round(win_rate_high, 1),
                 "sample_support_count": int(np.sum(sub_mask)),
                 "recommended_action": "BUY_CALL_OPTION",
                 "market_logic": f"LightGBM identified {top_feat} as #1 predictive gradient split with {round(win_rate_high, 1)}% success.",
-                "status": "ACTIVE_LIVE_ENFORCEMENT"
+                "status": "ACTIVE_LIVE_ENFORCEMENT",
+                "expires_after_sessions": 30
             })
         elif win_rate_low > 75:
             new_dynamic_rules.append({
                 "rule_id": f"RULE_AUTOGEN_LGBM_{session_date.replace('-', '')}_02",
                 "origin_model": "LightGBM Gradient Split Extractor",
                 "date_discovered": session_date,
+                "last_validated_date": session_date,
                 "conditions_text": f"IF {top_feat} <= {round(split_val, 4)}",
                 "statistical_win_rate_pct": round(win_rate_low, 1),
                 "sample_support_count": int(np.sum(~sub_mask)),
                 "recommended_action": "BUY_PUT_OPTION",
                 "market_logic": f"LightGBM gradient booster identified {top_feat} floor rejection with {round(win_rate_low, 1)}% short win rate.",
-                "status": "ACTIVE_LIVE_ENFORCEMENT"
+                "status": "ACTIVE_LIVE_ENFORCEMENT",
+                "expires_after_sessions": 30
             })
 
     # ================================================================
@@ -238,12 +245,14 @@ def mine_new_rules():
             "rule_id": f"RULE_AUTOGEN_IFOREST_{session_date.replace('-', '')}_01",
             "origin_model": "Isolation Forest Stealth Iceberg Hunter",
             "date_discovered": session_date,
+            "last_validated_date": session_date,
             "conditions_text": f"IF Spot tests Institutional Iceberg Floor at ₹{median_floor} (± 15 pts) with Volume Absorption",
             "statistical_win_rate_pct": 91.4,
             "sample_support_count": len(anomaly_df),
             "recommended_action": "BUY_CALL_ON_RETEST_SUPPORT",
             "market_logic": f"Smart money absorbed supply across {len(anomaly_df)} outlier bars near ₹{median_floor}. Floor acts as dynamic bid wall.",
-            "status": "ACTIVE_LIVE_ENFORCEMENT"
+            "status": "ACTIVE_LIVE_ENFORCEMENT",
+            "expires_after_sessions": 30
         })
 
     # ================================================================
@@ -260,19 +269,26 @@ def mine_new_rules():
                     energy = lstm_info.get('lstm_memory_energy', 0.8)
                     direction = lstm_info.get('projected_direction', 'BULLISH_EXPANSION')
                     drift_5 = lstm_info.get('predicted_cumulative_drift_pct', [0, 0, 0, 0, 0])[-1]
+                    condition_text = f"IF LSTM Cell Memory Energy > {round(energy * 0.9, 2)} AND 5-Bar Projected Path is {direction}"
+                    # Use condition hash suffix for uniqueness (prevents all LSTM rules sharing same rule_id)
+                    cond_hash = condition_text[-8:].replace(' ', '').replace('>', '').replace('.', '').upper()[:8]
+                    lstm_rule_id = f"RULE_AUTOGEN_LSTM_{session_date.replace('-', '')}_{cond_hash}"
                     new_dynamic_rules.append({
-                        "rule_id": f"RULE_AUTOGEN_LSTM_{session_date.replace('-', '')}_01",
+                        "rule_id": lstm_rule_id,
                         "origin_model": "PyTorch LSTM Recurrent Memory Network",
                         "date_discovered": session_date,
-                        "conditions_text": f"IF LSTM Cell Memory Energy > {round(energy * 0.9, 2)} AND 5-Bar Projected Path is {direction}",
+                        "last_validated_date": session_date,
+                        "conditions_text": condition_text,
                         "statistical_win_rate_pct": 87.2,
                         "sample_support_count": 30,
                         "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
                         "market_logic": f"LSTM neural cell state retains {energy} memory momentum. Anticipate continuation towards {drift_5}% path.",
-                        "status": "ACTIVE_LIVE_ENFORCEMENT"
+                        "status": "ACTIVE_LIVE_ENFORCEMENT",
+                        "expires_after_sessions": 90
                     })
         except Exception:
             pass
+
 
     # Save to dynamic rules JSON file
     existing_rules = []

@@ -1,20 +1,20 @@
 {
-  "timestamp": 1790161825070,
-  "dateStr": "2026-09-23",
-  "timeStr": "16:40:25 IST",
+  "timestamp": 1790506224719,
+  "dateStr": "2026-09-27",
+  "timeStr": "16:20:24 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23446.8,
+      "spot": 23140.5,
       "open": 23270.9,
-      "dayHigh": 23459.25,
-      "dayLow": 23409.05,
+      "dayHigh": 23140.5,
+      "dayLow": 23140.5,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
-      "openType": "OPEN_DRIVE_BULLISH",
+      "openType": "OPEN_AUCTION_IN_RANGE",
       "dayType": "TREND_EXPANSION_DAY",
-      "periodCExtension": "BULLISH_IB_EXTENSION",
+      "periodCExtension": "ROTATIONAL_AUCTION",
       "periodGStatus": "CLOSED_OUTSIDE_IB_VALID",
       "periodLBehavior": "LATE_DAY_DRIVE_SUSTAINED",
       "extremeTimingSummary": "Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)",
@@ -22,14 +22,14 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 56548.9,
+      "spot": 55580.4,
       "open": 56420,
-      "dayHigh": 56614.2,
-      "dayLow": 56469.85,
+      "dayHigh": 55580.4,
+      "dayLow": 55580.4,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
-      "openType": "OPEN_TEST_DRIVE",
+      "openType": "OPEN_AUCTION",
       "dayType": "DOUBLE_DISTRIBUTION_DAY",
       "periodFExtension": "PERIOD_F_BULLISH_DRIVE",
       "periodGStatus": "SPIKE_ACCEPTANCE_FILTER_PASSED",
@@ -39,160 +39,197 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 20,
-    "volumeBreakoutCount": 8,
+    "coilingDematCount": 41,
+    "volumeBreakoutCount": 9,
     "distributionTrapCount": 3,
-    "swingLowFormations": 20,
+    "swingLowFormations": 41,
     "swingHighFormations": 3
   },
   "tomorrowHighConvictionWatchlist": [
     {
-      "rank": 1,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "MANKIND",
-      "name": "Mankind Pharma Ltd.",
-      "sector": "Pharma & Consumer Healthcare",
+      "rank": 4,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "BANKINDIA",
+      "name": "Bank of India",
+      "sector": "Public Sector Banking",
       "trade": {
-        "action": "BUY MANKIND 2460 PE / Short Spot",
-        "spotEntry": 2462,
-        "spotSL": 2503.32,
-        "spotRiskPts": 41.32,
-        "spotTarget1": 2395.89,
-        "spotTarget2": 2346.3,
-        "atmStrike": 2460,
-        "lotSize": 250,
-        "riskPerLotINR": 10330,
-        "target1GainPerLotINR": 16528,
-        "target2GainPerLotINR": 28925,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹2503.32",
+        "action": "BUY BANKINDIA 137.5 CE / Spot",
+        "spotEntry": 137.94,
+        "spotSL": 135.97,
+        "spotRiskPts": 1.97,
+        "spotTarget1": 141.09,
+        "spotTarget2": 143.46,
+        "atmStrike": 137.5,
+        "lotSize": 5200,
+        "riskPerLotINR": 10244,
+        "target1GainPerLotINR": 16380,
+        "target2GainPerLotINR": 28704,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹135.97",
         "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
       },
-      "confidencePct": 61,
-      "catalystRationale": "Tested 20-day Resistance (₹2493) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 76,
+      "catalystRationale": "Range compressed to 43.9% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹136.85). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 2,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "UPL",
-      "name": "UPL Limited",
-      "sector": "Agrochemicals & Crop Protection",
+      "symbol": "TATASTEEL",
+      "name": "Tata Steel Ltd.",
+      "sector": "Metals & Mining",
       "trade": {
-        "action": "BUY UPL 550 PE / Short Spot",
-        "spotEntry": 551.75,
-        "spotSL": 563.95,
-        "spotRiskPts": 12.2,
-        "spotTarget1": 532.23,
-        "spotTarget2": 517.59,
-        "atmStrike": 550,
-        "lotSize": 1355,
-        "riskPerLotINR": 16531,
-        "target1GainPerLotINR": 26450,
-        "target2GainPerLotINR": 46287,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹563.95",
+        "action": "BUY TATASTEEL 187.5 PE / Short Spot",
+        "spotEntry": 187.97,
+        "spotSL": 192.68,
+        "spotRiskPts": 4.71,
+        "spotTarget1": 180.43,
+        "spotTarget2": 174.78,
+        "atmStrike": 187.5,
+        "lotSize": 2750,
+        "riskPerLotINR": 12953,
+        "target1GainPerLotINR": 20735,
+        "target2GainPerLotINR": 36272,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹192.68",
         "rewardRiskRatio": 1.6,
-        "expectedMove": "-4.0% to -7.5% Waterfall Drop",
-        "winRatePct": 84.5
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
       },
-      "confidencePct": 67,
-      "catalystRationale": "Tested 20-day Resistance (₹591) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 46,
+      "catalystRationale": "Tested 20-day Resistance (₹191.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    },
+    {
+      "rank": 3,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "PNB",
+      "name": "Punjab National Bank",
+      "sector": "Public Sector Banking",
+      "trade": {
+        "action": "BUY PNB 117.5 PE / Short Spot",
+        "spotEntry": 116.6,
+        "spotSL": 120.28,
+        "spotRiskPts": 3.68,
+        "spotTarget1": 110.71,
+        "spotTarget2": 106.3,
+        "atmStrike": 117.5,
+        "lotSize": 8000,
+        "riskPerLotINR": 29440,
+        "target1GainPerLotINR": 47120,
+        "target2GainPerLotINR": 82400,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹120.28",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
+      },
+      "confidencePct": 45,
+      "catalystRationale": "Tested 20-day Resistance (₹119.4) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
-        "symbol": "BSOFT",
-        "price": 281.45,
-        "compPct": 32.1,
-        "delivPct": 91,
-        "floor": 274.2
+        "symbol": "VEDL",
+        "price": 266.35,
+        "compPct": 39.1,
+        "delivPct": 86,
+        "floor": 252.5
       },
       {
-        "symbol": "CDSL",
-        "price": 1355.4,
-        "compPct": 33.6,
-        "delivPct": 90,
-        "floor": 1284
+        "symbol": "MUTHOOTFIN",
+        "price": 2835,
+        "compPct": 40.5,
+        "delivPct": 86,
+        "floor": 2722.3
       },
       {
-        "symbol": "SBICARD",
-        "price": 635.25,
-        "compPct": 33.6,
-        "delivPct": 82,
-        "floor": 610
+        "symbol": "ASTRAL",
+        "price": 1399,
+        "compPct": 43.4,
+        "delivPct": 84,
+        "floor": 1355
       },
       {
-        "symbol": "GODREJPROP",
-        "price": 1711.3,
-        "compPct": 33.9,
-        "delivPct": 90,
-        "floor": 1647.6
+        "symbol": "BANKINDIA",
+        "price": 137.94,
+        "compPct": 43.9,
+        "delivPct": 92,
+        "floor": 136.85
       },
       {
-        "symbol": "MARICO",
-        "price": 829.3,
-        "compPct": 34.2,
-        "delivPct": 81,
-        "floor": 791.25
+        "symbol": "HAVELLS",
+        "price": 1096.5,
+        "compPct": 44.5,
+        "delivPct": 92,
+        "floor": 1081.1
       }
     ],
     "volumeDrives": [
       {
-        "symbol": "BANDHANBNK",
-        "price": 191.21,
-        "volMult": 4.03,
-        "action": "BUY BANDHANBNK 190 CE / Spot"
+        "symbol": "POLICYBZR",
+        "price": 1166,
+        "volMult": 11.74
       },
       {
-        "symbol": "360ONE",
-        "price": 1114.3,
-        "volMult": 3.63,
-        "action": "BUY 360ONE 1120 CE / Spot"
+        "symbol": "IREDA",
+        "price": 113.22,
+        "volMult": 3.3,
+        "action": "BUY IREDA 112.5 CE / Spot"
       },
       {
-        "symbol": "IDFCFIRSTB",
-        "price": 87.95,
-        "volMult": 3.52
+        "symbol": "MFSL",
+        "price": 1458,
+        "volMult": 3.2,
+        "action": "BUY MFSL 1460 CE / Spot"
       },
       {
-        "symbol": "SUZLON",
-        "price": 42.2,
-        "volMult": 1.97
+        "symbol": "OFSS",
+        "price": 10770,
+        "volMult": 2.37,
+        "action": "BUY OFSS 10800 CE / Spot"
       },
       {
-        "symbol": "MOTILALOFS",
-        "price": 1045.8,
-        "volMult": 1.69,
-        "action": "BUY MOTILALOFS 1040 CE / Spot"
+        "symbol": "CHOLAFIN",
+        "price": 1662.7,
+        "volMult": 2.3
       }
     ],
     "distributionTraps": [
       {
-        "symbol": "MANKIND",
-        "price": 2462,
-        "ceil": 2493,
-        "distCeilPct": 1.26
+        "symbol": "TATASTEEL",
+        "price": 187.97,
+        "ceil": 191.8,
+        "distCeilPct": 2.04
       },
       {
-        "symbol": "UPL",
-        "price": 551.75,
-        "ceil": 591,
-        "distCeilPct": 7.11
+        "symbol": "PNB",
+        "price": 116.6,
+        "ceil": 119.4,
+        "distCeilPct": 2.4
       },
       {
-        "symbol": "ESCORTS",
-        "price": 2794.8,
-        "ceil": 3158.5,
-        "distCeilPct": 13.01
+        "symbol": "NUVAMA",
+        "price": 1681.4,
+        "ceil": 1903.9,
+        "distCeilPct": 13.23
       }
     ],
     "sectorLeadership": [
       {
-        "sector": "Automobile",
+        "sector": "Information Technology",
+        "coilingCount": 6,
+        "totalStocks": 12
+      },
+      {
+        "sector": "Public Sector Banking",
         "coilingCount": 4,
+        "totalStocks": 7
+      },
+      {
+        "sector": "Automobile",
+        "coilingCount": 3,
         "totalStocks": 7
       },
       {
@@ -206,9 +243,9 @@
         "totalStocks": 3
       },
       {
-        "sector": "Information Technology",
+        "sector": "Financial Services",
         "coilingCount": 2,
-        "totalStocks": 12
+        "totalStocks": 2
       },
       {
         "sector": "Private Banking",
@@ -217,16 +254,6 @@
       },
       {
         "sector": "Electrical Consumer Goods",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Telecom",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Defense Shipbuilding & Marine",
         "coilingCount": 1,
         "totalStocks": 1
       }
@@ -239,7 +266,7 @@
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "20 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Automobile (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "41 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (6 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",
