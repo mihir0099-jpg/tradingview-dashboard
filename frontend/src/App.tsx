@@ -38,6 +38,7 @@ import { GexContainer } from './components/GexContainer';
 import { ValueTraderContainer } from './components/ValueTraderContainer';
 import { StockPcrScannerContainer } from './components/StockPcrScannerContainer';
 import { InstitutionalMLSuiteV2Card } from './components/InstitutionalMLSuiteV2Card';
+import { MLBrainContainer } from './components/MLBrainContainer';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'institutional_ml_v2' | 'stock_pcr' | 'gex_algo' | 'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
+  const [activeTab, setActiveTab] = useState<'institutional_ml_v2' | 'ml_brain' | 'stock_pcr' | 'gex_algo' | 'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
   const [biasData, setBiasData] = useState<any>(null);
   const [chartFeedSource, setChartFeedSource] = useState<'angelone' | 'tradingview'>('angelone');
 
@@ -229,6 +230,20 @@ function App() {
           }}
         >
           🧠 Institutional AI V2 (6 Engines)
+        </button>
+        <button
+          onClick={() => setActiveTab('ml_brain')}
+          style={{
+            background: activeTab === 'ml_brain' ? 'linear-gradient(135deg, rgba(168,85,247,0.3) 0%, rgba(109,40,217,0.3) 100%)' : 'rgba(168,85,247,0.08)',
+            border: activeTab === 'ml_brain' ? '1px solid #a855f7' : '1px solid rgba(168,85,247,0.25)',
+            borderBottom: activeTab === 'ml_brain' ? '2px solid #a855f7' : '2px solid transparent',
+            color: activeTab === 'ml_brain' ? '#c084fc' : '#e2e8f0',
+            padding: '8px 16px', fontSize: '14px', fontWeight: '900', cursor: 'pointer',
+            borderRadius: '6px', transition: 'all 0.15s', display: 'flex', alignItems: 'center', gap: '6px',
+            boxShadow: activeTab === 'ml_brain' ? '0 0 14px rgba(168,85,247,0.4)' : 'none'
+          }}
+        >
+          🤖 ML Brain (Rule Synthesizer)
         </button>
         <button
           onClick={() => setActiveTab('historical')}
@@ -916,6 +931,11 @@ function App() {
         {activeTab === 'institutional_ml_v2' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
             <InstitutionalMLSuiteV2Card />
+          </div>
+        )}
+        {activeTab === 'ml_brain' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <MLBrainContainer />
           </div>
         )}
         {activeTab === 'historical' && (

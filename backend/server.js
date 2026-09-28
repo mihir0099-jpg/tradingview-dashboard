@@ -28,6 +28,7 @@ import { initLotSizeService } from './lot_size_service.js';
 import { stockPcrScannerEngine } from './stock_pcr_scanner_engine.js';
 import { getInstitutionalMLV2Insights, executeInstitutionalMLV2, startInstitutionalMLScheduler } from './institutional_ml_v2_service.js';
 import { initHolidayService } from './holiday_service.js';
+import { executeMLRuleSynthesis } from './ml_rule_synthesizer.js';
 import { computeConfluenceScore, getConfluenceScoreInsights, getCurrentTPOPeriod, getGPeriodStatus } from './confluence_score_engine.js';
 
 const liveOptionCandlesCache = {};
@@ -5855,14 +5856,63 @@ app.get('/api/system/market-brain', (req, res) => {
   }
 });
 
-// On-Demand Market Brain Self-Evolution Trigger
+// On-Demand Market Brain Self-Evolution Trigger (+ auto-synthesis after)
 app.post('/api/system/trigger-market-brain', async (req, res) => {
   try {
-    console.log('[Market Brain] 🧠 Triggering autonomous daily self-evolution cycle...');
+    console.log('[Market Brain] Triggering autonomous daily self-evolution cycle...');
     const result = await executeDailySelfEvolution();
+    // Also run ML rule synthesis immediately after brain evolution
+    try {
+      console.log('[ML Synthesizer] Running rule synthesis post-brain-evolution...');
+      await executeMLRuleSynthesis();
+    } catch (synthErr) {
+      console.warn('[ML Synthesizer] Non-fatal synthesis error:', synthErr.message);
+    }
     res.json({ success: true, evolution: result });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ============================================================
+// ML RULE SYNTHESIZER API
+// ============================================================
+
+// GET /api/ml/synthesized-rules
+app.get('/api/ml/synthesized-rules', (req, res) => {
+  try {
+    const synthPath = path.join(__dirname, 'data', 'ml_synthesized_rules.json');
+    if (!fs.existsSync(synthPath)) {
+      return res.json({ ok: false, message: 'No synthesized rules yet.', rules: [], summary: null });
+    }
+    const data = JSON.parse(fs.readFileSync(synthPath, 'utf8'));
+    res.json({
+      ok: true,
+      generated_at: data.generated_at,
+      summary: data.summary,
+      synthesized_rules: data.synthesized_rules || [],
+      setup_performance_ranking: data.setup_performance_ranking || [],
+      symbol_performance: data.symbol_performance || [],
+      tpo_period_empirical_stats: data.tpo_period_empirical_stats || []
+    });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// POST /api/ml/trigger-synthesis
+app.post('/api/ml/trigger-synthesis', async (req, res) => {
+  try {
+    console.log('[ML Synthesizer] Manual synthesis trigger...');
+    const result = await executeMLRuleSynthesis();
+    res.json({
+      ok: true,
+      message: `Synthesis complete. Generated ${result.synthesized_rules?.length || 0} rules from ${result.summary?.total_trades_analyzed || 0} trades.`,
+      summary: result.summary,
+      rulesGenerated: result.synthesized_rules?.length || 0
+    });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
   }
 });
 

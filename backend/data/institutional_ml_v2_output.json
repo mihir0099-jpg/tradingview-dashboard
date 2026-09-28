@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "timestamp": "2026-09-28T09:02:37.096078",
-  "ist_time": "09:02:36",
-  "execution_latency_ms": 226.37,
+  "timestamp": "2026-09-28T14:59:45.840976",
+  "ist_time": "14:59:45",
+  "execution_latency_ms": 201.04,
   "status": "ALL_SYSTEMS_ACTIVE",
   "engines": {
     "engine_1_trap_predictor": {
@@ -20,7 +20,7 @@
         "oi_call_put_accel": -0.12,
         "heavyweight_breadth_pct": 72.0,
         "ib_extension_ratio": 0.45,
-        "dalton_period_code": 1
+        "dalton_period_code": 4
       },
       "diagnostic_summary": "Delta volume confirmation and heavyweight breadth support authentic continuation."
     },
