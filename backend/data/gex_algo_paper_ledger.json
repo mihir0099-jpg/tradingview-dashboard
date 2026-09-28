@@ -2,7 +2,7 @@
   "paperCapital": 496490.1,
   "cashBalance": 468046.2,
   "realizedPnL": -3509.9,
-  "unrealizedPnL": -2065.2,
+  "unrealizedPnL": -3275.1,
   "openPositions": [
     {
       "positionId": "POS_1790577797655_KOTAKBANK",
@@ -14,14 +14,14 @@
       "lotSize": 2000,
       "quantity": 2000,
       "entryPrice": 3.96,
-      "currentLtp": 2.85,
+      "currentLtp": 2.77,
       "spotEntry": 399.95,
       "spotSL": 411.95,
       "targetSpot": 359.95,
       "optionSL": 0.61,
       "optionTarget": 39.69,
       "entryDelta": 0.483,
-      "currentDelta": 0.386,
+      "currentDelta": 0.379,
       "greeks": {
         "delta": -0.483,
         "absDelta": 0.483,
@@ -31,9 +31,9 @@
       },
       "dteDays": 5,
       "iv": 0.22,
-      "lastSpot": 402.5,
+      "lastSpot": 402.7,
       "cost": 7920,
-      "unrealizedPnL": -2220,
+      "unrealizedPnL": -2380,
       "confluence": {
         "score": 92,
         "stars": "⭐⭐⭐⭐⭐",
@@ -59,9 +59,9 @@
       "entryTimestamp": "12:13:17",
       "entryDate": "28/9/2026",
       "currentGreeks": {
-        "delta": -0.386,
-        "absDelta": 0.386,
-        "gamma": 0.0369,
+        "delta": -0.379,
+        "absDelta": 0.379,
+        "gamma": 0.0367,
         "theta": -0.37,
         "vega": 0.18
       }
@@ -76,14 +76,14 @@
       "lotSize": 1500,
       "quantity": 1500,
       "entryPrice": 2.44,
-      "currentLtp": 2.82,
+      "currentLtp": 2.24,
       "spotEntry": 321.6,
       "spotSL": 326.6,
       "targetSpot": 311.6,
       "optionSL": 0.95,
       "optionTarget": 8.79,
       "entryDelta": 0.405,
-      "currentDelta": 0.447,
+      "currentDelta": 0.382,
       "greeks": {
         "delta": -0.405,
         "absDelta": 0.405,
@@ -93,9 +93,9 @@
       },
       "dteDays": 5,
       "iv": 0.22,
-      "lastSpot": 320.7,
+      "lastSpot": 322.1,
       "cost": 3660,
-      "unrealizedPnL": 570,
+      "unrealizedPnL": -300,
       "confluence": {
         "score": 92,
         "stars": "⭐⭐⭐⭐⭐",
@@ -121,11 +121,11 @@
       "entryTimestamp": "13:43:10",
       "entryDate": "28/9/2026",
       "currentGreeks": {
-        "delta": -0.447,
-        "absDelta": 0.447,
-        "gamma": 0.0479,
-        "theta": -0.3,
-        "vega": 0.15
+        "delta": -0.382,
+        "absDelta": 0.382,
+        "gamma": 0.046,
+        "theta": -0.29,
+        "vega": 0.14
       }
     },
     {
@@ -138,14 +138,14 @@
       "lotSize": 50,
       "quantity": 50,
       "entryPrice": 105.42,
-      "currentLtp": 101.46,
+      "currentLtp": 102.77,
       "spotEntry": 12027,
       "spotSL": 12230,
       "targetSpot": 11800,
       "optionSL": 39.37,
       "optionTarget": 239.65,
       "entryDelta": 0.446,
-      "currentDelta": 0.435,
+      "currentDelta": 0.439,
       "greeks": {
         "delta": -0.446,
         "absDelta": 0.446,
@@ -155,9 +155,9 @@
       },
       "dteDays": 5,
       "iv": 0.22,
-      "lastSpot": 12036,
+      "lastSpot": 12033,
       "cost": 5271,
-      "unrealizedPnL": -198,
+      "unrealizedPnL": -132.5,
       "confluence": {
         "score": 92,
         "stars": "⭐⭐⭐⭐⭐",
@@ -183,10 +183,10 @@
       "entryTimestamp": "14:16:10",
       "entryDate": "28/9/2026",
       "currentGreeks": {
-        "delta": -0.435,
-        "absDelta": 0.435,
+        "delta": -0.439,
+        "absDelta": 0.439,
         "gamma": 0.0013,
-        "theta": -11.25,
+        "theta": -11.26,
         "vega": 5.55
       }
     },
@@ -200,14 +200,14 @@
       "lotSize": 30,
       "quantity": 30,
       "entryPrice": 386.43,
-      "currentLtp": 379.19,
+      "currentLtp": 371.01,
       "spotEntry": 54505.1,
       "spotSL": 54435.1,
       "targetSpot": 54655.1,
       "optionSL": 350.93,
       "optionTarget": 502.36,
       "entryDelta": 0.523,
-      "currentDelta": 0.516,
+      "currentDelta": 0.509,
       "greeks": {
         "delta": 0.523,
         "absDelta": 0.523,
@@ -217,9 +217,9 @@
       },
       "dteDays": 4,
       "iv": 0.16,
-      "lastSpot": 54491.15,
+      "lastSpot": 54475.2,
       "cost": 11592.9,
-      "unrealizedPnL": -217.2,
+      "unrealizedPnL": -462.6,
       "confluence": {
         "score": 89,
         "stars": "⭐⭐⭐⭐",
@@ -245,10 +245,10 @@
       "entryTimestamp": "14:23:39",
       "entryDate": "28/9/2026",
       "currentGreeks": {
-        "delta": 0.516,
-        "absDelta": 0.516,
+        "delta": 0.509,
+        "absDelta": 0.509,
         "gamma": 0.0004,
-        "theta": -50.42,
+        "theta": -50.36,
         "vega": 22.74
       }
     }
@@ -5285,6 +5285,286 @@
   ],
   "scanLogs": [
     {
+      "id": "1790588410878_4bho",
+      "timestamp": "15:10:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:10:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588410876_vt6j",
+      "timestamp": "15:10:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22784.75 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588382176_kepv",
+      "timestamp": "15:09:42",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:09:42 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588382175_ehpa",
+      "timestamp": "15:09:42",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22784.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588350919_s2y1",
+      "timestamp": "15:09:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:09:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588350916_7lzt",
+      "timestamp": "15:09:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22781 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588320772_nwc6",
+      "timestamp": "15:08:40",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:08:40 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588320770_l4r4",
+      "timestamp": "15:08:40",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22783.8 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
+    },
+    {
+      "id": "1790588290941_2jyx",
+      "timestamp": "15:08:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:08:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588290941_9uaf",
+      "timestamp": "15:08:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22784.45 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588261965_t6iv",
+      "timestamp": "15:07:41",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:07:41 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588261963_kzbx",
+      "timestamp": "15:07:41",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22782.65 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
+    },
+    {
+      "id": "1790588230614_y2is",
+      "timestamp": "15:07:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:07:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588230612_lqh8",
+      "timestamp": "15:07:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22782.7 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588201118_uojp",
+      "timestamp": "15:06:41",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:06:41 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588201117_mjnv",
+      "timestamp": "15:06:41",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22780.15 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588170751_v89x",
+      "timestamp": "15:06:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:06:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588170750_4npe",
+      "timestamp": "15:06:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22784.1 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588141068_ztvr",
+      "timestamp": "15:05:41",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:05:41 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588141066_l7f3",
+      "timestamp": "15:05:41",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22786.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588110606_1z8n",
+      "timestamp": "15:05:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:05:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588110605_4y4h",
+      "timestamp": "15:05:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22784.4 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588082222_vd8l",
+      "timestamp": "15:04:42",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:04:42 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588082222_7smj",
+      "timestamp": "15:04:42",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22793.85 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588050607_xqpl",
+      "timestamp": "15:04:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:04:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588050606_bvos",
+      "timestamp": "15:04:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22793.8 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790588022000_0ybz",
+      "timestamp": "15:03:42",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:03:42 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790588021999_a1qn",
+      "timestamp": "15:03:41",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22791.85 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
+    },
+    {
+      "id": "1790587990928_nolc",
+      "timestamp": "15:03:10",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:03:10 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790587990927_ycne",
+      "timestamp": "15:03:10",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22785.15 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790587960722_mh1g",
+      "timestamp": "15:02:40",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:02:40 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790587960721_u19v",
+      "timestamp": "15:02:40",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22785.25 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790587932379_dzh2",
+      "timestamp": "15:02:12",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:02:12 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790587932378_1bxc",
+      "timestamp": "15:02:12",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22789.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790587902721_qhvt",
+      "timestamp": "15:01:42",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:01:42 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790587902719_i21k",
+      "timestamp": "15:01:42",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22792.5 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
+    },
+    {
+      "id": "1790587871363_bw45",
+      "timestamp": "15:01:11",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:01:11 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790587871360_1c1a",
+      "timestamp": "15:01:11",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22793.75 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1790587841204_w9qc",
+      "timestamp": "15:00:41",
+      "symbol": "SCAN",
+      "type": "MARKET_GATE",
+      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-09-28 15:00:41 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
+    },
+    {
+      "id": "1790587841203_vf1n",
+      "timestamp": "15:00:41",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22797.55 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
       "id": "1790587810920_qymx",
       "timestamp": "15:00:10",
       "symbol": "SCAN",
@@ -6403,286 +6683,6 @@
       "symbol": "BAJFINANCE",
       "type": "FILTER",
       "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586221646_qtvu",
-      "timestamp": "14:33:41",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586220470_57gz",
-      "timestamp": "14:33:40",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22789.9 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790586190846_w380",
-      "timestamp": "14:33:10",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790586190782_l45c",
-      "timestamp": "14:33:10",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586190717_dh5b",
-      "timestamp": "14:33:10",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586190199_1mch",
-      "timestamp": "14:33:10",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22792.6 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790586161752_vktx",
-      "timestamp": "14:32:41",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790586161689_ngjr",
-      "timestamp": "14:32:41",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586161634_8qf5",
-      "timestamp": "14:32:41",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586161214_k81p",
-      "timestamp": "14:32:41",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 21 F&O stocks | NIFTY: ₹22793.85 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790586130676_gbh1",
-      "timestamp": "14:32:10",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790586130612_0kog",
-      "timestamp": "14:32:10",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586130558_gpbh",
-      "timestamp": "14:32:10",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586130003_1on6",
-      "timestamp": "14:32:10",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22797.5 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790586100897_w6ta",
-      "timestamp": "14:31:40",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790586100430_proe",
-      "timestamp": "14:31:40",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586100359_cyi8",
-      "timestamp": "14:31:40",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586099854_iacu",
-      "timestamp": "14:31:39",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22803.05 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790586070114_k4ff",
-      "timestamp": "14:31:10",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790586070051_6bm7",
-      "timestamp": "14:31:10",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586069986_ivfl",
-      "timestamp": "14:31:09",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586069456_08np",
-      "timestamp": "14:31:09",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22804.6 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790586040612_oms7",
-      "timestamp": "14:30:40",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790586040551_x98l",
-      "timestamp": "14:30:40",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586040487_8w58",
-      "timestamp": "14:30:40",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586039979_qi4u",
-      "timestamp": "14:30:39",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22804.4 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790586010832_5do7",
-      "timestamp": "14:30:10",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790586010770_ks8c",
-      "timestamp": "14:30:10",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790586010702_g6vz",
-      "timestamp": "14:30:10",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790586010186_7str",
-      "timestamp": "14:30:10",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22794.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790585980552_1n97",
-      "timestamp": "14:29:40",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790585980492_4vz3",
-      "timestamp": "14:29:40",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790585980436_quny",
-      "timestamp": "14:29:40",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790585979914_b7mt",
-      "timestamp": "14:29:39",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22799.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790585950635_ri4m",
-      "timestamp": "14:29:10",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 64/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790585950578_n0n9",
-      "timestamp": "14:29:10",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
-    },
-    {
-      "id": "1790585950516_wgy1",
-      "timestamp": "14:29:10",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY CE Bounce: Stock's Own PCR is Bearish Call Writing (-11.3% drift ceiling)."
-    },
-    {
-      "id": "1790585950004_oo98",
-      "timestamp": "14:29:10",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22797.95 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1790585920138_7qsa",
-      "timestamp": "14:28:40",
-      "symbol": "ITC",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on ITC: Confluence Score 75/100 (< 82 required for high win rate). [OF: BULLISH ABSORPTION | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.1 ATR)]"
-    },
-    {
-      "id": "1790585920087_aqb0",
-      "timestamp": "14:28:40",
-      "symbol": "BAJFINANCE",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BAJFINANCE CE Bounce: Stock's Own PCR is Bearish Call Writing (-6.7% drift ceiling)."
     }
   ],
   "stats": {
@@ -6692,9 +6692,9 @@
     "winRate": 34.5,
     "maxDrawdown": 2.87
   },
-  "lastScanTime": "15:00:09",
+  "lastScanTime": "15:10:09",
   "marketSession": {
-    "istTime": "15:00:10",
+    "istTime": "15:10:10",
     "istDate": "2026-09-28",
     "dayOfWeek": 1,
     "dayName": "Monday",
@@ -6717,8 +6717,8 @@
     }
   },
   "indexContext": {
-    "niftySpot": 22796.4,
-    "niftyOpen": 22796.4,
+    "niftySpot": 22784.75,
+    "niftyOpen": 22784.75,
     "niftyBullish": true,
     "pcrDrift": 0,
     "firstHourBaselinePcr": 1.032,

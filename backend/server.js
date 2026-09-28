@@ -5905,12 +5905,45 @@ app.post('/api/ml/trigger-synthesis', async (req, res) => {
   try {
     console.log('[ML Synthesizer] Manual synthesis trigger...');
     const result = await executeMLRuleSynthesis();
+    // Also run live rule learner for validated rules
+    try {
+      const { buildLiveRules } = await import('./live_rule_learner.js');
+      await buildLiveRules();
+    } catch (e) { console.warn('[LiveRuleLearner] Non-fatal:', e.message); }
     res.json({
       ok: true,
       message: `Synthesis complete. Generated ${result.synthesized_rules?.length || 0} rules from ${result.summary?.total_trades_analyzed || 0} trades.`,
       summary: result.summary,
       rulesGenerated: result.synthesized_rules?.length || 0
     });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// GET /api/ml/live-rules — validated live rules with sample-size gating + backtest cross-check
+app.get('/api/ml/live-rules', async (req, res) => {
+  try {
+    const liveRulesPath = path.join(__dirname, 'data', 'live_learned_rules.json');
+    if (!fs.existsSync(liveRulesPath)) {
+      // Auto-generate on first call
+      const { buildLiveRules } = await import('./live_rule_learner.js');
+      const result = await buildLiveRules();
+      return res.json({ ok: true, ...result });
+    }
+    const data = JSON.parse(fs.readFileSync(liveRulesPath, 'utf8'));
+    res.json({ ok: true, ...data });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// POST /api/ml/run-live-learner — manually trigger live rule learning
+app.post('/api/ml/run-live-learner', async (req, res) => {
+  try {
+    const { buildLiveRules } = await import('./live_rule_learner.js');
+    const result = await buildLiveRules();
+    res.json({ ok: true, rules: result.rules, totalTrades: result.total_trades_analyzed, rulesGenerated: result.rules.length });
   } catch (err) {
     res.status(500).json({ ok: false, error: err.message });
   }

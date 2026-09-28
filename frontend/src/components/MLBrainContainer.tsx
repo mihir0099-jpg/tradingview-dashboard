@@ -2,6 +2,49 @@ import React, { useState, useEffect } from 'react';
 import { getBackendUrl } from '../utils/config';
 import { RefreshCw, Brain, TrendingUp, TrendingDown, Zap, Shield, Target, BarChart2, Award, AlertTriangle, CheckCircle, Clock } from 'lucide-react';
 
+interface LiveRule {
+  rule_id: string;
+  rule_type: string;
+  name: string;
+  condition: string;
+  action: string;
+  trust_level: string;
+  trust_label: string;
+  enforce: boolean;
+  live_wr_pct?: number;
+  backtest_wr_pct?: number;
+  backtest_source?: string;
+  contradicts_backtest?: boolean;
+  backtest_warning?: string;
+  ml_insight?: string;
+  sample_count?: number;
+  avg_pnl?: number;
+  period?: string;
+  symbol?: string;
+  setup_category?: string;
+  wins?: number;
+  sl?: number;
+  closed?: number;
+  total?: number;
+  date_discovered: string;
+  expires_after_sessions: number;
+  source: string;
+}
+
+interface LiveRulesResponse {
+  ok: boolean;
+  generated_at?: string;
+  total_trades_analyzed?: number;
+  sample_size_policy?: Record<string, string>;
+  cross_validation_policy?: string;
+  rules: LiveRule[];
+  statistics?: {
+    by_symbol: any[];
+    by_period: any[];
+    by_setup: any[];
+  };
+}
+
 interface SynthesizedRule {
   rule_id: string;
   rule_type: string;
@@ -99,21 +142,23 @@ function WinRateBar({ winRate, total }: { winRate: number; total: number }) {
 
 export function MLBrainContainer() {
   const [data, setData] = useState<SynthResponse | null>(null);
+  const [liveRulesData, setLiveRulesData] = useState<LiveRulesResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [triggering, setTriggering] = useState(false);
   const [triggerMsg, setTriggerMsg] = useState<string | null>(null);
   const [activeFilter, setActiveFilter] = useState<'ALL' | 'NEGATIVE_FILTER' | 'POSITIVE_AMPLIFIER' | 'TIME_FILTER' | 'POSITION_MANAGEMENT' | 'SETUP_PRIORITY' | 'CONFLUENCE_BOOSTER'>('ALL');
   const [expandedRule, setExpandedRule] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'rules' | 'setups' | 'symbols' | 'tpo'>('rules');
+  const [activeTab, setActiveTab] = useState<'live' | 'rules' | 'setups' | 'symbols' | 'tpo'>('live');
 
   const fetchData = async () => {
     try {
       const backendUrl = getBackendUrl();
-      const res = await fetch(`${backendUrl}/api/ml/synthesized-rules?_t=${Date.now()}`, { cache: 'no-store' });
-      if (res.ok) {
-        const json = await res.json();
-        setData(json);
-      }
+      const [synthRes, liveRes] = await Promise.all([
+        fetch(`${backendUrl}/api/ml/synthesized-rules?_t=${Date.now()}`, { cache: 'no-store' }),
+        fetch(`${backendUrl}/api/ml/live-rules?_t=${Date.now()}`, { cache: 'no-store' }),
+      ]);
+      if (synthRes.ok) setData(await synthRes.json());
+      if (liveRes.ok) setLiveRulesData(await liveRes.json());
     } catch (e) {
       console.error('ML Brain fetch error:', e);
     } finally {
@@ -224,10 +269,11 @@ export function MLBrainContainer() {
       {/* ── Sub-Tab Navigation ── */}
       <div style={{ display: 'flex', gap: '4px', marginBottom: '14px', borderBottom: '1px solid #1e293b', paddingBottom: '2px' }}>
         {([
-          { id: 'rules',   label: `Rules (${data?.synthesized_rules?.length || 0})`,  icon: '🤖' },
-          { id: 'setups',  label: `Setup Rankings`,                                    icon: '🏆' },
-          { id: 'symbols', label: `Symbol P&L`,                                        icon: '📊' },
-          { id: 'tpo',     label: `TPO Empirical`,                                     icon: '⏱️' },
+          { id: 'live',    label: `✅ Live Validated Rules`,                               icon: '🔴' },
+          { id: 'rules',   label: `All Synthesized (${data?.synthesized_rules?.length || 0})`, icon: '🤖' },
+          { id: 'setups',  label: `Setup Rankings`,                                        icon: '🏆' },
+          { id: 'symbols', label: `Symbol P&L`,                                            icon: '📊' },
+          { id: 'tpo',     label: `TPO Empirical`,                                         icon: '⏱️' },
         ] as const).map(tab => (
           <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
             padding: '7px 14px', border: 'none', borderRadius: '6px 6px 0 0',
@@ -240,6 +286,98 @@ export function MLBrainContainer() {
           </button>
         ))}
       </div>
+
+      {/* ══════════════ TAB: LIVE VALIDATED RULES ══════════════ */}
+      {activeTab === 'live' && (
+        <div>
+          {/* HOW RULES ARE MADE — explanation box */}
+          <div style={{ background: 'rgba(168,85,247,0.08)', border: '1px solid rgba(168,85,247,0.3)', borderRadius: '10px', padding: '14px', marginBottom: '16px' }}>
+            <div style={{ fontSize: '13px', fontWeight: 900, color: '#c084fc', marginBottom: '8px' }}>🔍 How Rules Are Made — Explained Simply</div>
+            <div style={{ fontSize: '12px', color: '#94a3b8', lineHeight: 1.7 }}>
+              <b style={{ color: '#e2e8f0' }}>Step 1: Every paper trade is tagged</b> — symbol, time period (A-M), setup type, exit reason.<br/>
+              <b style={{ color: '#e2e8f0' }}>Step 2: Win rates are calculated per dimension</b> — e.g. "Period E had 8 trades: 5 wins = 62.5%".<br/>
+              <b style={{ color: '#e2e8f0' }}>Step 3: Each candidate rule is checked against the 6-year global backtest</b> — if the live data contradicts the backtest and the sample is small, it shows as MONITORING (not enforced).<br/>
+              <b style={{ color: '#e2e8f0' }}>Step 4: Minimum sample gates</b> — rules need 15+ trades before weak enforcement, 30+ trades for full enforcement.<br/>
+              <b style={{ color: '#e2e8f0' }}>Step 5: Root cause analysis</b> — if a setup has low win rate, the ML checks WHY (exit management? index direction? wrong period?) before creating a rule.
+            </div>
+            <div style={{ marginTop: '10px', display: 'flex', gap: '12px', fontSize: '11px' }}>
+              <span style={{ color: '#ef4444' }}>❌ &lt;5 trades = IGNORED (noise)</span>
+              <span style={{ color: '#f59e0b' }}>👁 5-14 = MONITORING only</span>
+              <span style={{ color: '#f59e0b' }}>⚠️ 15-29 = CANDIDATE (weak enforce)</span>
+              <span style={{ color: '#22c55e' }}>✅ 30+ = ACTIVE (full enforce)</span>
+            </div>
+          </div>
+
+          {/* Live rules cards */}
+          {(!liveRulesData || !liveRulesData.rules || liveRulesData.rules.length === 0) ? (
+            <div style={{ textAlign: 'center', color: '#64748b', padding: '40px 0' }}>
+              <div style={{ fontSize: '40px', marginBottom: '12px' }}>🔴</div>
+              <div style={{ fontWeight: 700 }}>No live rules generated yet</div>
+              <div style={{ fontSize: '12px', marginTop: '6px' }}>Click "Re-Mine Rules Now" to generate live validated rules from your trade data</div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {liveRulesData.rules.map(rule => {
+                const trustColors: Record<string, string> = {
+                  NOISE: '#ef4444', MONITORING: '#f59e0b', CANDIDATE: '#fb923c', ACTIVE: '#22c55e'
+                };
+                const trustBg: Record<string, string> = {
+                  NOISE: 'rgba(239,68,68,0.08)', MONITORING: 'rgba(245,158,11,0.08)', CANDIDATE: 'rgba(251,146,60,0.08)', ACTIVE: 'rgba(34,197,94,0.08)'
+                };
+                const tc = trustColors[rule.trust_level] || '#94a3b8';
+                const bg = trustBg[rule.trust_level] || 'rgba(148,163,184,0.06)';
+                return (
+                  <div key={rule.rule_id} style={{ background: bg, border: `1px solid ${tc}40`, borderRadius: '10px', padding: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                      <div style={{ fontSize: '13px', fontWeight: 900, color: '#e2e8f0', flex: 1 }}>{rule.name}</div>
+                      <div style={{ display: 'flex', gap: '6px', flexShrink: 0, marginLeft: '10px' }}>
+                        <span style={{ background: tc + '22', color: tc, padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 800 }}>
+                          {rule.trust_label}
+                        </span>
+                        {rule.enforce
+                          ? <span style={{ background: 'rgba(34,197,94,0.15)', color: '#22c55e', padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 800 }}>✅ ENFORCED</span>
+                          : <span style={{ background: 'rgba(245,158,11,0.15)', color: '#f59e0b', padding: '2px 8px', borderRadius: '12px', fontSize: '11px', fontWeight: 800 }}>👁 MONITORING</span>
+                        }
+                      </div>
+                    </div>
+                    <div style={{ display: 'flex', gap: '16px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                      {rule.live_wr_pct != null && (
+                        <span style={{ fontSize: '12px', color: rule.live_wr_pct >= 60 ? '#22c55e' : rule.live_wr_pct < 40 ? '#ef4444' : '#f59e0b' }}>
+                          📊 Live WR: <b>{rule.live_wr_pct}%</b>
+                        </span>
+                      )}
+                      {rule.backtest_wr_pct != null && (
+                        <span style={{ fontSize: '12px', color: '#60a5fa' }}>🗃 Backtest: <b>{rule.backtest_wr_pct}%</b> ({rule.backtest_source})</span>
+                      )}
+                      {rule.sample_count != null && (
+                        <span style={{ fontSize: '12px', color: '#94a3b8' }}>🔢 Sample: <b>{rule.sample_count} trades</b></span>
+                      )}
+                      {rule.avg_pnl != null && (
+                        <span style={{ fontSize: '12px', color: rule.avg_pnl >= 0 ? '#22c55e' : '#ef4444' }}>
+                          💰 Avg P&L: <b>₹{rule.avg_pnl}</b>
+                        </span>
+                      )}
+                    </div>
+                    <div style={{ fontSize: '11px', color: '#64748b', marginBottom: rule.contradicts_backtest || rule.ml_insight ? '6px' : 0 }}>
+                      🔧 Action: <span style={{ color: '#a78bfa' }}>{rule.action.replace(/_/g,' ')}</span>
+                    </div>
+                    {rule.contradicts_backtest && rule.backtest_warning && (
+                      <div style={{ background: 'rgba(245,158,11,0.1)', border: '1px solid rgba(245,158,11,0.3)', borderRadius: '6px', padding: '8px', marginTop: '6px', fontSize: '11px', color: '#fcd34d' }}>
+                        ⚠️ {rule.backtest_warning}
+                      </div>
+                    )}
+                    {rule.ml_insight && (
+                      <div style={{ background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.25)', borderRadius: '6px', padding: '8px', marginTop: '6px', fontSize: '11px', color: '#c084fc' }}>
+                        🤖 ML Insight: {rule.ml_insight}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* ══════════════ TAB: RULES ══════════════ */}
       {activeTab === 'rules' && (

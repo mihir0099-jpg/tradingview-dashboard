@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-28T14:57:36.391884",
+  "generated_at": "2026-09-28T15:07:31.440956",
   "session_date": "2026-09-28",
   "suite_version": "3.0-Production-Multi-Model",
   "packages_installed": {
@@ -15,88 +15,96 @@
       "input_sequence_bars": 30,
       "forecast_steps_ahead": 5,
       "predicted_cumulative_drift_pct": [
-        -0.235,
-        -1.209,
-        -1.106,
-        -1.232,
-        -1.267
+        -0.111,
+        -0.606,
+        -0.026,
+        0.177,
+        -0.137
       ],
       "projected_direction": "BEARISH_EXPANSION",
-      "lstm_memory_energy": 0.88,
-      "final_training_loss": 1.2e-05,
+      "lstm_memory_energy": 0.74,
+      "final_training_loss": 3.4e-05,
       "inference_latency_ms": 2.4
     },
     "gradient_boosting": {
       "status": "success",
       "algorithm": "Native LightGBM v4.7.0 & XGBoost v3.4.1",
-      "win_probability_pct": 0.7,
-      "bearish_probability_pct": 99.3,
-      "xgboost_win_prob_pct": 1.4,
-      "xgboost_bear_prob_pct": 98.6,
+      "win_probability_pct": 0.6,
+      "bearish_probability_pct": 99.4,
+      "xgboost_win_prob_pct": 0.9,
+      "xgboost_bear_prob_pct": 99.1,
       "model_verdict": "STRONG_BUY_PE",
       "feature_importances": [
         {
           "feature": "Dist Vwap",
-          "importance_pct": 22.6
+          "importance_pct": 24.7
         },
         {
           "feature": "Lower Wick",
-          "importance_pct": 19.2
+          "importance_pct": 19.7
         },
         {
           "feature": "Upper Wick",
-          "importance_pct": 19.0
+          "importance_pct": 18.7
         },
         {
           "feature": "Hl Spread",
-          "importance_pct": 15.1
+          "importance_pct": 14.1
         },
         {
           "feature": "Body Ratio",
-          "importance_pct": 13.1
+          "importance_pct": 11.5
         },
         {
           "feature": "Ret",
-          "importance_pct": 11.0
+          "importance_pct": 11.3
         }
       ],
-      "training_time_ms": 2767.09,
-      "xgb_training_time_ms": 488.68,
-      "inference_latency_ms": 18.127
+      "training_time_ms": 2213.38,
+      "xgb_training_time_ms": 641.34,
+      "inference_latency_ms": 14.239
     },
     "random_forest": {
       "status": "success",
       "ensemble_size": 100,
       "predicted_regime": "TREND_EXPANSION_DAY",
-      "ensemble_confidence_pct": 98.4,
+      "ensemble_confidence_pct": 100.0,
       "voting_distribution": {
-        "trend_day_votes_pct": 98.4,
+        "trend_day_votes_pct": 100.0,
         "normal_range_votes_pct": 0.0,
         "neutral_double_break_votes_pct": 0.0,
-        "liquidation_votes_pct": 1.6
+        "liquidation_votes_pct": 0.0
       },
-      "model_entropy_uncertainty": 0.121,
-      "explainable_rule": "IF (Session Range = 1.38% AND Net Change = -1.14%) -> TREND_EXPANSION_DAY (Consensus: 98.4%)",
+      "model_entropy_uncertainty": -0.0,
+      "explainable_rule": "IF (Session Range = 1.38% AND Net Change = -1.19%) -> TREND_EXPANSION_DAY (Consensus: 100.0%)",
       "inference_latency_ms": 0.8
     },
     "isolation_forest": {
       "status": "success",
       "algorithm": "Isolation Forest (3.5% Contamination Outlier Partitioning)",
-      "total_anomalies_isolated": 12,
+      "total_anomalies_isolated": 13,
       "recent_anomalies": [
         {
           "time": "09:35:00",
           "bar_index": 20,
           "price_level": 22878.45,
-          "anomaly_score": -0.1434,
+          "anomaly_score": -0.1492,
           "archetype": "VOLATILITY_EXPANSION_ANOMALY",
           "description": "Microstructure divergence from baseline Gaussian manifold."
+        },
+        {
+          "time": "09:38:00",
+          "bar_index": 23,
+          "price_level": 22862.5,
+          "anomaly_score": -0.0046,
+          "archetype": "LIQUIDITY_SWEEP_ABSORPTION",
+          "description": "Stop run below swing low absorbed into institutional buy inventory."
         },
         {
           "time": "10:17:00",
           "bar_index": 62,
           "price_level": 22839.8,
-          "anomaly_score": -0.0669,
+          "anomaly_score": -0.0443,
           "archetype": "VOLATILITY_EXPANSION_ANOMALY",
           "description": "Microstructure divergence from baseline Gaussian manifold."
         },
@@ -104,7 +112,7 @@
           "time": "13:23:00",
           "bar_index": 248,
           "price_level": 22842.05,
-          "anomaly_score": -0.0196,
+          "anomaly_score": -0.0171,
           "archetype": "VOLATILITY_EXPANSION_ANOMALY",
           "description": "Microstructure divergence from baseline Gaussian manifold."
         },
@@ -112,7 +120,7 @@
           "time": "13:49:00",
           "bar_index": 274,
           "price_level": 22835.95,
-          "anomaly_score": -0.0123,
+          "anomaly_score": -0.001,
           "archetype": "LIQUIDITY_SWEEP_ABSORPTION",
           "description": "Stop run below swing low absorbed into institutional buy inventory."
         },
@@ -120,15 +128,7 @@
           "time": "14:18:00",
           "bar_index": 303,
           "price_level": 22795.4,
-          "anomaly_score": -0.1188,
-          "archetype": "VOLATILITY_EXPANSION_ANOMALY",
-          "description": "Microstructure divergence from baseline Gaussian manifold."
-        },
-        {
-          "time": "14:54:55",
-          "bar_index": 339,
-          "price_level": 22802.8,
-          "anomaly_score": -0.0223,
+          "anomaly_score": -0.1268,
           "archetype": "VOLATILITY_EXPANSION_ANOMALY",
           "description": "Microstructure divergence from baseline Gaussian manifold."
         }
