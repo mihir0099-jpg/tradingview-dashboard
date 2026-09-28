@@ -1,6 +1,6 @@
 {
   "timeframe": "1d",
-  "updatedAt": "15:14:25 IST",
+  "updatedAt": "15:44:03 IST",
   "totalScanned": 47,
   "kpis": {
     "totalActiveSetups": 34,
@@ -8,7 +8,7 @@
     "v1Shorts": 4,
     "v2Longs": 4,
     "v2Shorts": 5,
-    "extremeDiscount": 16,
+    "extremeDiscount": 15,
     "extremePremium": 0,
     "benchmarkTargetHitRate": "78.4%"
   },
@@ -19,25 +19,25 @@
       "name": "NIFTY 50 Index",
       "sector": "Broad Market",
       "timeframe": "1d",
-      "spotPrice": 22784.55,
-      "dayChangePts": -355.95,
-      "dayChangePct": -1.54,
+      "spotPrice": 22780.25,
+      "dayChangePts": -360.25,
+      "dayChangePct": -1.56,
       "atr": 205.33,
-      "ema": 23483.88,
+      "ema": 23483.5,
       "bands": {
-        "bandPlus3": 24099.87,
-        "bandPlus2": 23894.54,
-        "bandPlus1": 23689.21,
-        "fairValue": 23483.88,
-        "bandMinus1": 23278.55,
-        "bandMinus2": 23073.22,
-        "bandMinus3": 22867.89
+        "bandPlus3": 24099.49,
+        "bandPlus2": 23894.16,
+        "bandPlus1": 23688.83,
+        "fairValue": 23483.5,
+        "bandMinus1": 23278.17,
+        "bandMinus2": 23072.84,
+        "bandMinus3": 22867.51
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -3.41,
-        "text": "Below -2 ATR (-3.41 ATR)"
+        "atrOffset": -3.42,
+        "text": "Below -2 ATR (-3.42 ATR)"
       },
       "activeSetups": [
         {
@@ -119,25 +119,25 @@
       "name": "NIFTY Bank Index",
       "sector": "Banking",
       "timeframe": "1d",
-      "spotPrice": 54464.6,
-      "dayChangePts": -1115.8,
-      "dayChangePct": -2.01,
+      "spotPrice": 54471.65,
+      "dayChangePts": -1108.75,
+      "dayChangePct": -1.99,
       "atr": 617.02,
-      "ema": 56369.26,
+      "ema": 56369.87,
       "bands": {
-        "bandPlus3": 58220.32,
-        "bandPlus2": 57603.3,
-        "bandPlus1": 56986.28,
-        "fairValue": 56369.26,
-        "bandMinus1": 55752.24,
-        "bandMinus2": 55135.22,
-        "bandMinus3": 54518.2
+        "bandPlus3": 58220.93,
+        "bandPlus2": 57603.91,
+        "bandPlus1": 56986.89,
+        "fairValue": 56369.87,
+        "bandMinus1": 55752.85,
+        "bandMinus2": 55135.83,
+        "bandMinus3": 54518.81
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -3.09,
-        "text": "Below -2 ATR (-3.09 ATR)"
+        "atrOffset": -3.08,
+        "text": "Below -2 ATR (-3.08 ATR)"
       },
       "activeSetups": [
         {
@@ -197,25 +197,25 @@
       "name": "Reliance Industries",
       "sector": "Energy & Retail",
       "timeframe": "1d",
-      "spotPrice": 1199,
-      "dayChangePts": -27,
-      "dayChangePct": -2.2,
+      "spotPrice": 1197.6,
+      "dayChangePts": -28.4,
+      "dayChangePct": -2.32,
       "atr": 20.48,
-      "ema": 1255.58,
+      "ema": 1255.45,
       "bands": {
-        "bandPlus3": 1317.02,
-        "bandPlus2": 1296.54,
-        "bandPlus1": 1276.06,
-        "fairValue": 1255.58,
-        "bandMinus1": 1235.1,
-        "bandMinus2": 1214.62,
-        "bandMinus3": 1194.14
+        "bandPlus3": 1316.89,
+        "bandPlus2": 1296.41,
+        "bandPlus1": 1275.93,
+        "fairValue": 1255.45,
+        "bandMinus1": 1234.97,
+        "bandMinus2": 1214.49,
+        "bandMinus3": 1194.01
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.76,
-        "text": "Below -2 ATR (-2.76 ATR)"
+        "atrOffset": -2.82,
+        "text": "Below -2 ATR (-2.82 ATR)"
       },
       "activeSetups": [
         {
@@ -277,19 +277,19 @@
       "name": "HDFC Bank Ltd.",
       "sector": "Private Banks",
       "timeframe": "1d",
-      "spotPrice": 719,
-      "dayChangePts": -16.6,
-      "dayChangePct": -2.26,
+      "spotPrice": 719.05,
+      "dayChangePts": -16.55,
+      "dayChangePct": -2.25,
       "atr": 13.08,
-      "ema": 723.18,
+      "ema": 723.19,
       "bands": {
-        "bandPlus3": 762.42,
-        "bandPlus2": 749.34,
-        "bandPlus1": 736.26,
-        "fairValue": 723.18,
-        "bandMinus1": 710.1,
-        "bandMinus2": 697.02,
-        "bandMinus3": 683.94
+        "bandPlus3": 762.43,
+        "bandPlus2": 749.35,
+        "bandPlus1": 736.27,
+        "fairValue": 723.19,
+        "bandMinus1": 710.11,
+        "bandMinus2": 697.03,
+        "bandMinus3": 683.95
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
@@ -306,10 +306,10 @@
           "barsAgo": 0,
           "penetrationPts": 4.8,
           "penetrationAtr": 0.38,
-          "entry": 719,
+          "entry": 719.05,
           "stopLoss": 739.65,
-          "target1": 705.92,
-          "target2": 723.18,
+          "target1": 705.97,
+          "target2": 723.19,
           "rrRatio": 0.63,
           "location": {
             "label": "AT_FAIR_VALUE",
@@ -333,10 +333,10 @@
         "barsAgo": 0,
         "penetrationPts": 4.8,
         "penetrationAtr": 0.38,
-        "entry": 719,
+        "entry": 719.05,
         "stopLoss": 739.65,
-        "target1": 705.92,
-        "target2": 723.18,
+        "target1": 705.97,
+        "target2": 723.19,
         "rrRatio": 0.63,
         "location": {
           "label": "AT_FAIR_VALUE",
@@ -359,25 +359,25 @@
       "name": "ICICI Bank Ltd.",
       "sector": "Private Banks",
       "timeframe": "1d",
-      "spotPrice": 1300.6,
-      "dayChangePts": -26.2,
-      "dayChangePct": -1.97,
+      "spotPrice": 1302,
+      "dayChangePts": -24.8,
+      "dayChangePct": -1.87,
       "atr": 20.49,
-      "ema": 1365.8,
+      "ema": 1365.92,
       "bands": {
-        "bandPlus3": 1427.27,
-        "bandPlus2": 1406.78,
-        "bandPlus1": 1386.29,
-        "fairValue": 1365.8,
-        "bandMinus1": 1345.31,
-        "bandMinus2": 1324.82,
-        "bandMinus3": 1304.33
+        "bandPlus3": 1427.39,
+        "bandPlus2": 1406.9,
+        "bandPlus1": 1386.41,
+        "fairValue": 1365.92,
+        "bandMinus1": 1345.43,
+        "bandMinus2": 1324.94,
+        "bandMinus3": 1304.45
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -3.18,
-        "text": "Below -2 ATR (-3.18 ATR)"
+        "atrOffset": -3.12,
+        "text": "Below -2 ATR (-3.12 ATR)"
       },
       "activeSetups": [
         {
@@ -435,25 +435,25 @@
       "name": "State Bank of India",
       "sector": "PSU Banks",
       "timeframe": "1d",
-      "spotPrice": 961,
-      "dayChangePts": -22,
-      "dayChangePct": -2.24,
+      "spotPrice": 962,
+      "dayChangePts": -21,
+      "dayChangePct": -2.14,
       "atr": 17.03,
-      "ema": 1000.26,
+      "ema": 1000.35,
       "bands": {
-        "bandPlus3": 1051.35,
-        "bandPlus2": 1034.32,
-        "bandPlus1": 1017.29,
-        "fairValue": 1000.26,
-        "bandMinus1": 983.23,
-        "bandMinus2": 966.2,
-        "bandMinus3": 949.17
+        "bandPlus3": 1051.44,
+        "bandPlus2": 1034.41,
+        "bandPlus1": 1017.38,
+        "fairValue": 1000.35,
+        "bandMinus1": 983.32,
+        "bandMinus2": 966.29,
+        "bandMinus3": 949.26
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.31,
-        "text": "Below -2 ATR (-2.31 ATR)"
+        "atrOffset": -2.25,
+        "text": "Below -2 ATR (-2.25 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -465,25 +465,25 @@
       "name": "Tata Consultancy Services",
       "sector": "IT",
       "timeframe": "1d",
-      "spotPrice": 2075.4,
-      "dayChangePts": -6.6,
-      "dayChangePct": -0.32,
+      "spotPrice": 2070.7,
+      "dayChangePts": -11.3,
+      "dayChangePct": -0.54,
       "atr": 58.53,
-      "ema": 2183.22,
+      "ema": 2182.81,
       "bands": {
-        "bandPlus3": 2358.81,
-        "bandPlus2": 2300.28,
-        "bandPlus1": 2241.75,
-        "fairValue": 2183.22,
-        "bandMinus1": 2124.69,
-        "bandMinus2": 2066.16,
-        "bandMinus3": 2007.63
+        "bandPlus3": 2358.4,
+        "bandPlus2": 2299.87,
+        "bandPlus1": 2241.34,
+        "fairValue": 2182.81,
+        "bandMinus1": 2124.28,
+        "bandMinus2": 2065.75,
+        "bandMinus3": 2007.22
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.84,
-        "text": "-1 to -2 ATR (-1.84 ATR)"
+        "atrOffset": -1.92,
+        "text": "-1 to -2 ATR (-1.92 ATR)"
       },
       "activeSetups": [
         {
@@ -494,16 +494,16 @@
           "barsAgo": 0,
           "penetrationPts": 9.8,
           "penetrationAtr": 0.17,
-          "entry": 2075.4,
+          "entry": 2070.7,
           "stopLoss": 2100,
-          "target1": 2016.87,
-          "target2": 2183.22,
-          "rrRatio": 2.38,
+          "target1": 2012.17,
+          "target2": 2182.81,
+          "rrRatio": 2,
           "location": {
             "label": "VALUE_DISCOUNT",
             "zone": "VALUE_ZONE",
-            "atrOffset": -1.84,
-            "text": "-1 to -2 ATR (-1.84 ATR)"
+            "atrOffset": -1.92,
+            "text": "-1 to -2 ATR (-1.92 ATR)"
           },
           "reclaimedLevels": [],
           "d1Date": "2026-09-25",
@@ -518,16 +518,16 @@
         "barsAgo": 0,
         "penetrationPts": 9.8,
         "penetrationAtr": 0.17,
-        "entry": 2075.4,
+        "entry": 2070.7,
         "stopLoss": 2100,
-        "target1": 2016.87,
-        "target2": 2183.22,
-        "rrRatio": 2.38,
+        "target1": 2012.17,
+        "target2": 2182.81,
+        "rrRatio": 2,
         "location": {
           "label": "VALUE_DISCOUNT",
           "zone": "VALUE_ZONE",
-          "atrOffset": -1.84,
-          "text": "-1 to -2 ATR (-1.84 ATR)"
+          "atrOffset": -1.92,
+          "text": "-1 to -2 ATR (-1.92 ATR)"
         },
         "reclaimedLevels": [],
         "d1Date": "2026-09-25",
@@ -541,25 +541,25 @@
       "name": "Infosys Ltd.",
       "sector": "IT",
       "timeframe": "1d",
-      "spotPrice": 1004.2,
-      "dayChangePts": 4,
-      "dayChangePct": 0.4,
+      "spotPrice": 1003.2,
+      "dayChangePts": 3,
+      "dayChangePct": 0.3,
       "atr": 26.13,
-      "ema": 1057.39,
+      "ema": 1057.31,
       "bands": {
-        "bandPlus3": 1135.78,
-        "bandPlus2": 1109.65,
-        "bandPlus1": 1083.52,
-        "fairValue": 1057.39,
-        "bandMinus1": 1031.26,
-        "bandMinus2": 1005.13,
-        "bandMinus3": 979
+        "bandPlus3": 1135.7,
+        "bandPlus2": 1109.57,
+        "bandPlus1": 1083.44,
+        "fairValue": 1057.31,
+        "bandMinus1": 1031.18,
+        "bandMinus2": 1005.05,
+        "bandMinus3": 978.92
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.04,
-        "text": "Below -2 ATR (-2.04 ATR)"
+        "atrOffset": -2.07,
+        "text": "Below -2 ATR (-2.07 ATR)"
       },
       "activeSetups": [
         {
@@ -570,16 +570,16 @@
           "barsAgo": 0,
           "penetrationPts": 5,
           "penetrationAtr": 0.19,
-          "entry": 1004.2,
+          "entry": 1003.2,
           "stopLoss": 986.6,
-          "target1": 1030.33,
-          "target2": 1057.39,
-          "rrRatio": 1.48,
+          "target1": 1029.33,
+          "target2": 1057.31,
+          "rrRatio": 1.57,
           "location": {
             "label": "EXTREME_DISCOUNT",
             "zone": "DEEP_VALUE",
-            "atrOffset": -2.04,
-            "text": "Below -2 ATR (-2.04 ATR)"
+            "atrOffset": -2.07,
+            "text": "Below -2 ATR (-2.07 ATR)"
           },
           "reclaimedLevels": [],
           "d1Date": "2026-09-25",
@@ -594,16 +594,16 @@
         "barsAgo": 0,
         "penetrationPts": 5,
         "penetrationAtr": 0.19,
-        "entry": 1004.2,
+        "entry": 1003.2,
         "stopLoss": 986.6,
-        "target1": 1030.33,
-        "target2": 1057.39,
-        "rrRatio": 1.48,
+        "target1": 1029.33,
+        "target2": 1057.31,
+        "rrRatio": 1.57,
         "location": {
           "label": "EXTREME_DISCOUNT",
           "zone": "DEEP_VALUE",
-          "atrOffset": -2.04,
-          "text": "Below -2 ATR (-2.04 ATR)"
+          "atrOffset": -2.07,
+          "text": "Below -2 ATR (-2.07 ATR)"
         },
         "reclaimedLevels": [],
         "d1Date": "2026-09-25",
@@ -617,25 +617,25 @@
       "name": "Bajaj Finance Ltd.",
       "sector": "NBFC",
       "timeframe": "1d",
-      "spotPrice": 980.9,
-      "dayChangePts": -16,
-      "dayChangePct": -1.6,
+      "spotPrice": 985,
+      "dayChangePts": -11.9,
+      "dayChangePct": -1.19,
       "atr": 23.72,
-      "ema": 1029.06,
+      "ema": 1029.42,
       "bands": {
-        "bandPlus3": 1100.22,
-        "bandPlus2": 1076.5,
-        "bandPlus1": 1052.78,
-        "fairValue": 1029.06,
-        "bandMinus1": 1005.34,
-        "bandMinus2": 981.62,
-        "bandMinus3": 957.9
+        "bandPlus3": 1100.58,
+        "bandPlus2": 1076.86,
+        "bandPlus1": 1053.14,
+        "fairValue": 1029.42,
+        "bandMinus1": 1005.7,
+        "bandMinus2": 981.98,
+        "bandMinus3": 958.26
       },
       "currentLocation": {
-        "label": "EXTREME_DISCOUNT",
-        "zone": "DEEP_VALUE",
-        "atrOffset": -2.03,
-        "text": "Below -2 ATR (-2.03 ATR)"
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.87,
+        "text": "-1 to -2 ATR (-1.87 ATR)"
       },
       "activeSetups": [
         {
@@ -725,25 +725,25 @@
       "name": "Axis Bank Ltd.",
       "sector": "Private Banks",
       "timeframe": "1d",
-      "spotPrice": 1210.3,
-      "dayChangePts": -12.1,
-      "dayChangePct": -0.99,
+      "spotPrice": 1209.9,
+      "dayChangePts": -12.5,
+      "dayChangePct": -1.02,
       "atr": 23.91,
-      "ema": 1238.4,
+      "ema": 1238.37,
       "bands": {
-        "bandPlus3": 1310.13,
-        "bandPlus2": 1286.22,
-        "bandPlus1": 1262.31,
-        "fairValue": 1238.4,
-        "bandMinus1": 1214.49,
-        "bandMinus2": 1190.58,
-        "bandMinus3": 1166.67
+        "bandPlus3": 1310.1,
+        "bandPlus2": 1286.19,
+        "bandPlus1": 1262.28,
+        "fairValue": 1238.37,
+        "bandMinus1": 1214.46,
+        "bandMinus2": 1190.55,
+        "bandMinus3": 1166.64
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.18,
-        "text": "-1 to -2 ATR (-1.18 ATR)"
+        "atrOffset": -1.19,
+        "text": "-1 to -2 ATR (-1.19 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -755,25 +755,25 @@
       "name": "Kotak Mahindra Bank",
       "sector": "Private Banks",
       "timeframe": "1d",
-      "spotPrice": 401.9,
-      "dayChangePts": -2.1,
-      "dayChangePct": -0.52,
+      "spotPrice": 401.55,
+      "dayChangePts": -2.45,
+      "dayChangePct": -0.61,
       "atr": 7.07,
-      "ema": 410.79,
+      "ema": 410.76,
       "bands": {
-        "bandPlus3": 432,
-        "bandPlus2": 424.93,
-        "bandPlus1": 417.86,
-        "fairValue": 410.79,
-        "bandMinus1": 403.72,
-        "bandMinus2": 396.65,
-        "bandMinus3": 389.58
+        "bandPlus3": 431.97,
+        "bandPlus2": 424.9,
+        "bandPlus1": 417.83,
+        "fairValue": 410.76,
+        "bandMinus1": 403.69,
+        "bandMinus2": 396.62,
+        "bandMinus3": 389.55
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.26,
-        "text": "-1 to -2 ATR (-1.26 ATR)"
+        "atrOffset": -1.3,
+        "text": "-1 to -2 ATR (-1.3 ATR)"
       },
       "activeSetups": [
         {
@@ -835,25 +835,25 @@
       "name": "Bharti Airtel Ltd.",
       "sector": "Telecom",
       "timeframe": "1d",
-      "spotPrice": 1776.1,
-      "dayChangePts": -9.3,
-      "dayChangePct": -0.52,
+      "spotPrice": 1771.4,
+      "dayChangePts": -14,
+      "dayChangePct": -0.78,
       "atr": 31.61,
-      "ema": 1839.75,
+      "ema": 1839.34,
       "bands": {
-        "bandPlus3": 1934.58,
-        "bandPlus2": 1902.97,
-        "bandPlus1": 1871.36,
-        "fairValue": 1839.75,
-        "bandMinus1": 1808.14,
-        "bandMinus2": 1776.53,
-        "bandMinus3": 1744.92
+        "bandPlus3": 1934.17,
+        "bandPlus2": 1902.56,
+        "bandPlus1": 1870.95,
+        "fairValue": 1839.34,
+        "bandMinus1": 1807.73,
+        "bandMinus2": 1776.12,
+        "bandMinus3": 1744.51
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.01,
-        "text": "Below -2 ATR (-2.01 ATR)"
+        "atrOffset": -2.15,
+        "text": "Below -2 ATR (-2.15 ATR)"
       },
       "activeSetups": [
         {
@@ -917,25 +917,25 @@
       "name": "Larsen & Toubro Ltd.",
       "sector": "Infrastructure",
       "timeframe": "1d",
-      "spotPrice": 3772.9,
-      "dayChangePts": -103.3,
-      "dayChangePct": -2.66,
-      "atr": 62.24,
-      "ema": 3909.75,
+      "spotPrice": 3766.4,
+      "dayChangePts": -109.8,
+      "dayChangePct": -2.83,
+      "atr": 62.41,
+      "ema": 3909.18,
       "bands": {
-        "bandPlus3": 4096.47,
-        "bandPlus2": 4034.23,
-        "bandPlus1": 3971.99,
-        "fairValue": 3909.75,
-        "bandMinus1": 3847.51,
-        "bandMinus2": 3785.27,
-        "bandMinus3": 3723.03
+        "bandPlus3": 4096.41,
+        "bandPlus2": 4034,
+        "bandPlus1": 3971.59,
+        "fairValue": 3909.18,
+        "bandMinus1": 3846.77,
+        "bandMinus2": 3784.36,
+        "bandMinus3": 3721.95
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.2,
-        "text": "Below -2 ATR (-2.2 ATR)"
+        "atrOffset": -2.29,
+        "text": "Below -2 ATR (-2.29 ATR)"
       },
       "activeSetups": [
         {
@@ -1049,25 +1049,25 @@
       "name": "ITC Ltd.",
       "sector": "FMCG",
       "timeframe": "1d",
-      "spotPrice": 266.05,
-      "dayChangePts": -2.95,
-      "dayChangePct": -1.1,
+      "spotPrice": 265.2,
+      "dayChangePts": -3.8,
+      "dayChangePct": -1.41,
       "atr": 4.54,
-      "ema": 266.36,
+      "ema": 266.28,
       "bands": {
-        "bandPlus3": 279.98,
-        "bandPlus2": 275.44,
-        "bandPlus1": 270.9,
-        "fairValue": 266.36,
-        "bandMinus1": 261.82,
-        "bandMinus2": 257.28,
-        "bandMinus3": 252.74
+        "bandPlus3": 279.9,
+        "bandPlus2": 275.36,
+        "bandPlus1": 270.82,
+        "fairValue": 266.28,
+        "bandMinus1": 261.74,
+        "bandMinus2": 257.2,
+        "bandMinus3": 252.66
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.07,
-        "text": "Near Fair Value (-0.07 ATR)"
+        "atrOffset": -0.24,
+        "text": "Near Fair Value (-0.24 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -1079,25 +1079,25 @@
       "name": "Sun Pharmaceutical",
       "sector": "Pharma",
       "timeframe": "1d",
-      "spotPrice": 1843.4,
-      "dayChangePts": -8.8,
-      "dayChangePct": -0.48,
-      "atr": 30.39,
-      "ema": 1870.25,
+      "spotPrice": 1838,
+      "dayChangePts": -14.2,
+      "dayChangePct": -0.77,
+      "atr": 30.44,
+      "ema": 1869.78,
       "bands": {
-        "bandPlus3": 1961.42,
-        "bandPlus2": 1931.03,
-        "bandPlus1": 1900.64,
-        "fairValue": 1870.25,
-        "bandMinus1": 1839.86,
-        "bandMinus2": 1809.47,
-        "bandMinus3": 1779.08
+        "bandPlus3": 1961.1,
+        "bandPlus2": 1930.66,
+        "bandPlus1": 1900.22,
+        "fairValue": 1869.78,
+        "bandMinus1": 1839.34,
+        "bandMinus2": 1808.9,
+        "bandMinus3": 1778.46
       },
       "currentLocation": {
-        "label": "AT_FAIR_VALUE",
-        "zone": "FAIR_VALUE",
-        "atrOffset": -0.88,
-        "text": "Near Fair Value (-0.88 ATR)"
+        "label": "VALUE_DISCOUNT",
+        "zone": "VALUE_ZONE",
+        "atrOffset": -1.04,
+        "text": "-1 to -2 ATR (-1.04 ATR)"
       },
       "activeSetups": [
         {
@@ -1184,25 +1184,25 @@
       "name": "Maruti Suzuki India",
       "sector": "Automotive",
       "timeframe": "1d",
-      "spotPrice": 12035,
-      "dayChangePts": -30,
-      "dayChangePct": -0.25,
+      "spotPrice": 12008,
+      "dayChangePts": -57,
+      "dayChangePct": -0.47,
       "atr": 217.89,
-      "ema": 12507.38,
+      "ema": 12505.03,
       "bands": {
-        "bandPlus3": 13161.05,
-        "bandPlus2": 12943.16,
-        "bandPlus1": 12725.27,
-        "fairValue": 12507.38,
-        "bandMinus1": 12289.49,
-        "bandMinus2": 12071.6,
-        "bandMinus3": 11853.71
+        "bandPlus3": 13158.7,
+        "bandPlus2": 12940.81,
+        "bandPlus1": 12722.92,
+        "fairValue": 12505.03,
+        "bandMinus1": 12287.14,
+        "bandMinus2": 12069.25,
+        "bandMinus3": 11851.36
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.17,
-        "text": "Below -2 ATR (-2.17 ATR)"
+        "atrOffset": -2.28,
+        "text": "Below -2 ATR (-2.28 ATR)"
       },
       "activeSetups": [
         {
@@ -1264,25 +1264,25 @@
       "name": "Titan Company Ltd.",
       "sector": "Consumer Discretionary",
       "timeframe": "1d",
-      "spotPrice": 4820,
-      "dayChangePts": -64,
-      "dayChangePct": -1.31,
+      "spotPrice": 4819.5,
+      "dayChangePts": -64.5,
+      "dayChangePct": -1.32,
       "atr": 81.62,
-      "ema": 4924.56,
+      "ema": 4924.51,
       "bands": {
-        "bandPlus3": 5169.42,
-        "bandPlus2": 5087.8,
-        "bandPlus1": 5006.18,
-        "fairValue": 4924.56,
-        "bandMinus1": 4842.94,
-        "bandMinus2": 4761.32,
-        "bandMinus3": 4679.7
+        "bandPlus3": 5169.37,
+        "bandPlus2": 5087.75,
+        "bandPlus1": 5006.13,
+        "fairValue": 4924.51,
+        "bandMinus1": 4842.89,
+        "bandMinus2": 4761.27,
+        "bandMinus3": 4679.65
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.28,
-        "text": "-1 to -2 ATR (-1.28 ATR)"
+        "atrOffset": -1.29,
+        "text": "-1 to -2 ATR (-1.29 ATR)"
       },
       "activeSetups": [
         {
@@ -1344,25 +1344,25 @@
       "name": "Tata Steel Ltd.",
       "sector": "Metals",
       "timeframe": "1d",
-      "spotPrice": 185.45,
-      "dayChangePts": -2.52,
-      "dayChangePct": -1.34,
+      "spotPrice": 186.3,
+      "dayChangePts": -1.67,
+      "dayChangePct": -0.89,
       "atr": 4.15,
-      "ema": 186.06,
+      "ema": 186.14,
       "bands": {
-        "bandPlus3": 198.51,
-        "bandPlus2": 194.36,
-        "bandPlus1": 190.21,
-        "fairValue": 186.06,
-        "bandMinus1": 181.91,
-        "bandMinus2": 177.76,
-        "bandMinus3": 173.61
+        "bandPlus3": 198.59,
+        "bandPlus2": 194.44,
+        "bandPlus1": 190.29,
+        "fairValue": 186.14,
+        "bandMinus1": 181.99,
+        "bandMinus2": 177.84,
+        "bandMinus3": 173.69
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.15,
-        "text": "Near Fair Value (-0.15 ATR)"
+        "atrOffset": 0.04,
+        "text": "Near Fair Value (0.04 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -1374,25 +1374,25 @@
       "name": "Hindalco Industries",
       "sector": "Metals",
       "timeframe": "1d",
-      "spotPrice": 958.8,
-      "dayChangePts": -18.2,
-      "dayChangePct": -1.86,
+      "spotPrice": 955.9,
+      "dayChangePts": -21.1,
+      "dayChangePct": -2.16,
       "atr": 22.19,
-      "ema": 992.14,
+      "ema": 991.89,
       "bands": {
-        "bandPlus3": 1058.71,
-        "bandPlus2": 1036.52,
-        "bandPlus1": 1014.33,
-        "fairValue": 992.14,
-        "bandMinus1": 969.95,
-        "bandMinus2": 947.76,
-        "bandMinus3": 925.57
+        "bandPlus3": 1058.46,
+        "bandPlus2": 1036.27,
+        "bandPlus1": 1014.08,
+        "fairValue": 991.89,
+        "bandMinus1": 969.7,
+        "bandMinus2": 947.51,
+        "bandMinus3": 925.32
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.5,
-        "text": "-1 to -2 ATR (-1.5 ATR)"
+        "atrOffset": -1.62,
+        "text": "-1 to -2 ATR (-1.62 ATR)"
       },
       "activeSetups": [
         {
@@ -1456,25 +1456,25 @@
       "name": "JSW Steel Ltd.",
       "sector": "Metals",
       "timeframe": "1d",
-      "spotPrice": 1258.5,
-      "dayChangePts": -18.5,
-      "dayChangePct": -1.45,
+      "spotPrice": 1264.1,
+      "dayChangePts": -12.9,
+      "dayChangePct": -1.01,
       "atr": 24.43,
-      "ema": 1279.38,
+      "ema": 1279.87,
       "bands": {
-        "bandPlus3": 1352.67,
-        "bandPlus2": 1328.24,
-        "bandPlus1": 1303.81,
-        "fairValue": 1279.38,
-        "bandMinus1": 1254.95,
-        "bandMinus2": 1230.52,
-        "bandMinus3": 1206.09
+        "bandPlus3": 1353.16,
+        "bandPlus2": 1328.73,
+        "bandPlus1": 1304.3,
+        "fairValue": 1279.87,
+        "bandMinus1": 1255.44,
+        "bandMinus2": 1231.01,
+        "bandMinus3": 1206.58
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.85,
-        "text": "Near Fair Value (-0.85 ATR)"
+        "atrOffset": -0.65,
+        "text": "Near Fair Value (-0.65 ATR)"
       },
       "activeSetups": [
         {
@@ -1558,25 +1558,25 @@
       "name": "Adani Enterprises",
       "sector": "Conglomerate",
       "timeframe": "1d",
-      "spotPrice": 2818.5,
-      "dayChangePts": -98,
-      "dayChangePct": -3.36,
+      "spotPrice": 2831.1,
+      "dayChangePts": -85.4,
+      "dayChangePct": -2.93,
       "atr": 75.32,
-      "ema": 2966.04,
+      "ema": 2967.13,
       "bands": {
-        "bandPlus3": 3192,
-        "bandPlus2": 3116.68,
-        "bandPlus1": 3041.36,
-        "fairValue": 2966.04,
-        "bandMinus1": 2890.72,
-        "bandMinus2": 2815.4,
-        "bandMinus3": 2740.08
+        "bandPlus3": 3193.09,
+        "bandPlus2": 3117.77,
+        "bandPlus1": 3042.45,
+        "fairValue": 2967.13,
+        "bandMinus1": 2891.81,
+        "bandMinus2": 2816.49,
+        "bandMinus3": 2741.17
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.96,
-        "text": "-1 to -2 ATR (-1.96 ATR)"
+        "atrOffset": -1.81,
+        "text": "-1 to -2 ATR (-1.81 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -1588,25 +1588,25 @@
       "name": "Adani Ports & SEZ",
       "sector": "Infrastructure",
       "timeframe": "1d",
-      "spotPrice": 1740.2,
-      "dayChangePts": -47.8,
-      "dayChangePct": -2.67,
+      "spotPrice": 1743.7,
+      "dayChangePts": -44.3,
+      "dayChangePct": -2.48,
       "atr": 37.88,
-      "ema": 1750.79,
+      "ema": 1751.09,
       "bands": {
-        "bandPlus3": 1864.43,
-        "bandPlus2": 1826.55,
-        "bandPlus1": 1788.67,
-        "fairValue": 1750.79,
-        "bandMinus1": 1712.91,
-        "bandMinus2": 1675.03,
-        "bandMinus3": 1637.15
+        "bandPlus3": 1864.73,
+        "bandPlus2": 1826.85,
+        "bandPlus1": 1788.97,
+        "fairValue": 1751.09,
+        "bandMinus1": 1713.21,
+        "bandMinus2": 1675.33,
+        "bandMinus3": 1637.45
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.28,
-        "text": "Near Fair Value (-0.28 ATR)"
+        "atrOffset": -0.2,
+        "text": "Near Fair Value (-0.2 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -1618,25 +1618,25 @@
       "name": "Power Grid Corp.",
       "sector": "Power",
       "timeframe": "1d",
-      "spotPrice": 262.5,
-      "dayChangePts": -7,
-      "dayChangePct": -2.6,
-      "atr": 4.66,
-      "ema": 267.27,
+      "spotPrice": 261.85,
+      "dayChangePts": -7.65,
+      "dayChangePct": -2.84,
+      "atr": 4.69,
+      "ema": 267.21,
       "bands": {
-        "bandPlus3": 281.25,
+        "bandPlus3": 281.28,
         "bandPlus2": 276.59,
-        "bandPlus1": 271.93,
-        "fairValue": 267.27,
-        "bandMinus1": 262.61,
-        "bandMinus2": 257.95,
-        "bandMinus3": 253.29
+        "bandPlus1": 271.9,
+        "fairValue": 267.21,
+        "bandMinus1": 262.52,
+        "bandMinus2": 257.83,
+        "bandMinus3": 253.14
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.02,
-        "text": "-1 to -2 ATR (-1.02 ATR)"
+        "atrOffset": -1.14,
+        "text": "-1 to -2 ATR (-1.14 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -1648,25 +1648,25 @@
       "name": "NTPC Ltd.",
       "sector": "Power",
       "timeframe": "1d",
-      "spotPrice": 321.25,
-      "dayChangePts": -5.35,
-      "dayChangePct": -1.64,
+      "spotPrice": 321.1,
+      "dayChangePts": -5.5,
+      "dayChangePct": -1.68,
       "atr": 5.17,
-      "ema": 329.61,
+      "ema": 329.6,
       "bands": {
-        "bandPlus3": 345.12,
-        "bandPlus2": 339.95,
-        "bandPlus1": 334.78,
-        "fairValue": 329.61,
-        "bandMinus1": 324.44,
-        "bandMinus2": 319.27,
-        "bandMinus3": 314.1
+        "bandPlus3": 345.11,
+        "bandPlus2": 339.94,
+        "bandPlus1": 334.77,
+        "fairValue": 329.6,
+        "bandMinus1": 324.43,
+        "bandMinus2": 319.26,
+        "bandMinus3": 314.09
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.62,
-        "text": "-1 to -2 ATR (-1.62 ATR)"
+        "atrOffset": -1.64,
+        "text": "-1 to -2 ATR (-1.64 ATR)"
       },
       "activeSetups": [
         {
@@ -1728,25 +1728,25 @@
       "name": "Oil & Natural Gas Corp.",
       "sector": "Energy",
       "timeframe": "1d",
-      "spotPrice": 230.45,
-      "dayChangePts": -5.41,
-      "dayChangePct": -2.29,
+      "spotPrice": 230,
+      "dayChangePts": -5.86,
+      "dayChangePct": -2.48,
       "atr": 4.08,
-      "ema": 235.38,
+      "ema": 235.34,
       "bands": {
-        "bandPlus3": 247.62,
-        "bandPlus2": 243.54,
-        "bandPlus1": 239.46,
-        "fairValue": 235.38,
-        "bandMinus1": 231.3,
-        "bandMinus2": 227.22,
-        "bandMinus3": 223.14
+        "bandPlus3": 247.58,
+        "bandPlus2": 243.5,
+        "bandPlus1": 239.42,
+        "fairValue": 235.34,
+        "bandMinus1": 231.26,
+        "bandMinus2": 227.18,
+        "bandMinus3": 223.1
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.21,
-        "text": "-1 to -2 ATR (-1.21 ATR)"
+        "atrOffset": -1.31,
+        "text": "-1 to -2 ATR (-1.31 ATR)"
       },
       "activeSetups": [
         {
@@ -1806,25 +1806,25 @@
       "name": "Coal India Ltd.",
       "sector": "Energy",
       "timeframe": "1d",
-      "spotPrice": 421.95,
-      "dayChangePts": -4.15,
-      "dayChangePct": -0.97,
+      "spotPrice": 422.5,
+      "dayChangePts": -3.6,
+      "dayChangePct": -0.84,
       "atr": 7.64,
-      "ema": 419.56,
+      "ema": 419.61,
       "bands": {
-        "bandPlus3": 442.48,
-        "bandPlus2": 434.84,
-        "bandPlus1": 427.2,
-        "fairValue": 419.56,
-        "bandMinus1": 411.92,
-        "bandMinus2": 404.28,
-        "bandMinus3": 396.64
+        "bandPlus3": 442.53,
+        "bandPlus2": 434.89,
+        "bandPlus1": 427.25,
+        "fairValue": 419.61,
+        "bandMinus1": 411.97,
+        "bandMinus2": 404.33,
+        "bandMinus3": 396.69
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": 0.31,
-        "text": "Near Fair Value (0.31 ATR)"
+        "atrOffset": 0.38,
+        "text": "Near Fair Value (0.38 ATR)"
       },
       "activeSetups": [
         {
@@ -1859,16 +1859,16 @@
           "barsAgo": 0,
           "penetrationPts": 2.65,
           "penetrationAtr": 0.35,
-          "entry": 421.95,
+          "entry": 422.5,
           "stopLoss": 429.3,
-          "target1": 414.31,
-          "target2": 419.56,
-          "rrRatio": 1.04,
+          "target1": 414.86,
+          "target2": 419.61,
+          "rrRatio": 1.12,
           "location": {
             "label": "AT_FAIR_VALUE",
             "zone": "FAIR_VALUE",
-            "atrOffset": 0.31,
-            "text": "Near Fair Value (0.31 ATR)"
+            "atrOffset": 0.38,
+            "text": "Near Fair Value (0.38 ATR)"
           },
           "reclaimedLevels": [
             "EMA + 1 ATR"
@@ -1885,16 +1885,16 @@
         "barsAgo": 0,
         "penetrationPts": 2.65,
         "penetrationAtr": 0.35,
-        "entry": 421.95,
+        "entry": 422.5,
         "stopLoss": 429.3,
-        "target1": 414.31,
-        "target2": 419.56,
-        "rrRatio": 1.04,
+        "target1": 414.86,
+        "target2": 419.61,
+        "rrRatio": 1.12,
         "location": {
           "label": "AT_FAIR_VALUE",
           "zone": "FAIR_VALUE",
-          "atrOffset": 0.31,
-          "text": "Near Fair Value (0.31 ATR)"
+          "atrOffset": 0.38,
+          "text": "Near Fair Value (0.38 ATR)"
         },
         "reclaimedLevels": [
           "EMA + 1 ATR"
@@ -1910,25 +1910,25 @@
       "name": "Wipro Ltd.",
       "sector": "IT",
       "timeframe": "1d",
-      "spotPrice": 162.13,
-      "dayChangePts": -1.89,
-      "dayChangePct": -1.15,
+      "spotPrice": 161.56,
+      "dayChangePts": -2.46,
+      "dayChangePct": -1.5,
       "atr": 3.43,
-      "ema": 169.13,
+      "ema": 169.08,
       "bands": {
-        "bandPlus3": 179.42,
-        "bandPlus2": 175.99,
-        "bandPlus1": 172.56,
-        "fairValue": 169.13,
-        "bandMinus1": 165.7,
-        "bandMinus2": 162.27,
-        "bandMinus3": 158.84
+        "bandPlus3": 179.37,
+        "bandPlus2": 175.94,
+        "bandPlus1": 172.51,
+        "fairValue": 169.08,
+        "bandMinus1": 165.65,
+        "bandMinus2": 162.22,
+        "bandMinus3": 158.79
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.04,
-        "text": "Below -2 ATR (-2.04 ATR)"
+        "atrOffset": -2.19,
+        "text": "Below -2 ATR (-2.19 ATR)"
       },
       "activeSetups": [
         {
@@ -1990,25 +1990,25 @@
       "name": "HCL Technologies",
       "sector": "IT",
       "timeframe": "1d",
-      "spotPrice": 1256.4,
-      "dayChangePts": -1.6,
-      "dayChangePct": -0.13,
+      "spotPrice": 1252.6,
+      "dayChangePts": -5.4,
+      "dayChangePct": -0.43,
       "atr": 33.57,
-      "ema": 1266.3,
+      "ema": 1265.96,
       "bands": {
-        "bandPlus3": 1367.01,
-        "bandPlus2": 1333.44,
-        "bandPlus1": 1299.87,
-        "fairValue": 1266.3,
-        "bandMinus1": 1232.73,
-        "bandMinus2": 1199.16,
-        "bandMinus3": 1165.59
+        "bandPlus3": 1366.67,
+        "bandPlus2": 1333.1,
+        "bandPlus1": 1299.53,
+        "fairValue": 1265.96,
+        "bandMinus1": 1232.39,
+        "bandMinus2": 1198.82,
+        "bandMinus3": 1165.25
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.29,
-        "text": "Near Fair Value (-0.29 ATR)"
+        "atrOffset": -0.4,
+        "text": "Near Fair Value (-0.4 ATR)"
       },
       "activeSetups": [
         {
@@ -2066,25 +2066,25 @@
       "name": "Mahindra & Mahindra",
       "sector": "Automotive",
       "timeframe": "1d",
-      "spotPrice": 2995.3,
-      "dayChangePts": -39.7,
-      "dayChangePct": -1.31,
+      "spotPrice": 2995,
+      "dayChangePts": -40,
+      "dayChangePct": -1.32,
       "atr": 62.23,
-      "ema": 3114.3,
+      "ema": 3114.27,
       "bands": {
-        "bandPlus3": 3300.99,
-        "bandPlus2": 3238.76,
-        "bandPlus1": 3176.53,
-        "fairValue": 3114.3,
-        "bandMinus1": 3052.07,
-        "bandMinus2": 2989.84,
-        "bandMinus3": 2927.61
+        "bandPlus3": 3300.96,
+        "bandPlus2": 3238.73,
+        "bandPlus1": 3176.5,
+        "fairValue": 3114.27,
+        "bandMinus1": 3052.04,
+        "bandMinus2": 2989.81,
+        "bandMinus3": 2927.58
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.91,
-        "text": "-1 to -2 ATR (-1.91 ATR)"
+        "atrOffset": -1.92,
+        "text": "-1 to -2 ATR (-1.92 ATR)"
       },
       "activeSetups": [
         {
@@ -2146,25 +2146,25 @@
       "name": "Bajaj Auto Ltd.",
       "sector": "Automotive",
       "timeframe": "1d",
-      "spotPrice": 10984,
-      "dayChangePts": -297,
-      "dayChangePct": -2.63,
+      "spotPrice": 11024,
+      "dayChangePts": -257,
+      "dayChangePct": -2.28,
       "atr": 202.39,
-      "ema": 11501.6,
+      "ema": 11505.08,
       "bands": {
-        "bandPlus3": 12108.77,
-        "bandPlus2": 11906.38,
-        "bandPlus1": 11703.99,
-        "fairValue": 11501.6,
-        "bandMinus1": 11299.21,
-        "bandMinus2": 11096.82,
-        "bandMinus3": 10894.43
+        "bandPlus3": 12112.25,
+        "bandPlus2": 11909.86,
+        "bandPlus1": 11707.47,
+        "fairValue": 11505.08,
+        "bandMinus1": 11302.69,
+        "bandMinus2": 11100.3,
+        "bandMinus3": 10897.91
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.56,
-        "text": "Below -2 ATR (-2.56 ATR)"
+        "atrOffset": -2.38,
+        "text": "Below -2 ATR (-2.38 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -2176,25 +2176,25 @@
       "name": "Hero MotoCorp",
       "sector": "Automotive",
       "timeframe": "1d",
-      "spotPrice": 5382.5,
-      "dayChangePts": 22.5,
-      "dayChangePct": 0.42,
+      "spotPrice": 5390,
+      "dayChangePts": 30,
+      "dayChangePct": 0.56,
       "atr": 111.23,
-      "ema": 5361.67,
+      "ema": 5362.32,
       "bands": {
-        "bandPlus3": 5695.36,
-        "bandPlus2": 5584.13,
-        "bandPlus1": 5472.9,
-        "fairValue": 5361.67,
-        "bandMinus1": 5250.44,
-        "bandMinus2": 5139.21,
-        "bandMinus3": 5027.98
+        "bandPlus3": 5696.01,
+        "bandPlus2": 5584.78,
+        "bandPlus1": 5473.55,
+        "fairValue": 5362.32,
+        "bandMinus1": 5251.09,
+        "bandMinus2": 5139.86,
+        "bandMinus3": 5028.63
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": 0.19,
-        "text": "Near Fair Value (0.19 ATR)"
+        "atrOffset": 0.25,
+        "text": "Near Fair Value (0.25 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -2206,25 +2206,25 @@
       "name": "Asian Paints Ltd.",
       "sector": "Paints & Chemicals",
       "timeframe": "1d",
-      "spotPrice": 2418.1,
-      "dayChangePts": -25.9,
-      "dayChangePct": -1.06,
+      "spotPrice": 2420,
+      "dayChangePts": -24,
+      "dayChangePct": -0.98,
       "atr": 45.13,
-      "ema": 2487.3,
+      "ema": 2487.46,
       "bands": {
-        "bandPlus3": 2622.69,
-        "bandPlus2": 2577.56,
-        "bandPlus1": 2532.43,
-        "fairValue": 2487.3,
-        "bandMinus1": 2442.17,
-        "bandMinus2": 2397.04,
-        "bandMinus3": 2351.91
+        "bandPlus3": 2622.85,
+        "bandPlus2": 2577.72,
+        "bandPlus1": 2532.59,
+        "fairValue": 2487.46,
+        "bandMinus1": 2442.33,
+        "bandMinus2": 2397.2,
+        "bandMinus3": 2352.07
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.53,
-        "text": "-1 to -2 ATR (-1.53 ATR)"
+        "atrOffset": -1.49,
+        "text": "-1 to -2 ATR (-1.49 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -2236,25 +2236,25 @@
       "name": "UltraTech Cement",
       "sector": "Cement",
       "timeframe": "1d",
-      "spotPrice": 11020,
-      "dayChangePts": -135,
-      "dayChangePct": -1.21,
+      "spotPrice": 11025,
+      "dayChangePts": -130,
+      "dayChangePct": -1.17,
       "atr": 189.12,
-      "ema": 11136.15,
+      "ema": 11136.58,
       "bands": {
-        "bandPlus3": 11703.51,
-        "bandPlus2": 11514.39,
-        "bandPlus1": 11325.27,
-        "fairValue": 11136.15,
-        "bandMinus1": 10947.03,
-        "bandMinus2": 10757.91,
-        "bandMinus3": 10568.79
+        "bandPlus3": 11703.94,
+        "bandPlus2": 11514.82,
+        "bandPlus1": 11325.7,
+        "fairValue": 11136.58,
+        "bandMinus1": 10947.46,
+        "bandMinus2": 10758.34,
+        "bandMinus3": 10569.22
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.61,
-        "text": "Near Fair Value (-0.61 ATR)"
+        "atrOffset": -0.59,
+        "text": "Near Fair Value (-0.59 ATR)"
       },
       "activeSetups": [
         {
@@ -2316,25 +2316,25 @@
       "name": "Grasim Industries",
       "sector": "Materials",
       "timeframe": "1d",
-      "spotPrice": 3149,
-      "dayChangePts": -42,
-      "dayChangePct": -1.32,
+      "spotPrice": 3150,
+      "dayChangePts": -41,
+      "dayChangePct": -1.28,
       "atr": 59.03,
-      "ema": 3217.91,
+      "ema": 3218,
       "bands": {
-        "bandPlus3": 3395,
-        "bandPlus2": 3335.97,
-        "bandPlus1": 3276.94,
-        "fairValue": 3217.91,
-        "bandMinus1": 3158.88,
-        "bandMinus2": 3099.85,
-        "bandMinus3": 3040.82
+        "bandPlus3": 3395.09,
+        "bandPlus2": 3336.06,
+        "bandPlus1": 3277.03,
+        "fairValue": 3218,
+        "bandMinus1": 3158.97,
+        "bandMinus2": 3099.94,
+        "bandMinus3": 3040.91
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.17,
-        "text": "-1 to -2 ATR (-1.17 ATR)"
+        "atrOffset": -1.15,
+        "text": "-1 to -2 ATR (-1.15 ATR)"
       },
       "activeSetups": [
         {
@@ -2396,16 +2396,16 @@
           "barsAgo": 0,
           "penetrationPts": 8.8,
           "penetrationAtr": 0.15,
-          "entry": 3149,
+          "entry": 3150,
           "stopLoss": 3212.5,
-          "target1": 3089.97,
-          "target2": 3217.91,
-          "rrRatio": 0.93,
+          "target1": 3090.97,
+          "target2": 3218,
+          "rrRatio": 0.94,
           "location": {
             "label": "VALUE_DISCOUNT",
             "zone": "VALUE_ZONE",
-            "atrOffset": -1.17,
-            "text": "-1 to -2 ATR (-1.17 ATR)"
+            "atrOffset": -1.15,
+            "text": "-1 to -2 ATR (-1.15 ATR)"
           },
           "reclaimedLevels": [
             "EMA - 1 ATR"
@@ -2423,16 +2423,16 @@
         "barsAgo": 0,
         "penetrationPts": 8.8,
         "penetrationAtr": 0.15,
-        "entry": 3149,
+        "entry": 3150,
         "stopLoss": 3212.5,
-        "target1": 3089.97,
-        "target2": 3217.91,
-        "rrRatio": 0.93,
+        "target1": 3090.97,
+        "target2": 3218,
+        "rrRatio": 0.94,
         "location": {
           "label": "VALUE_DISCOUNT",
           "zone": "VALUE_ZONE",
-          "atrOffset": -1.17,
-          "text": "-1 to -2 ATR (-1.17 ATR)"
+          "atrOffset": -1.15,
+          "text": "-1 to -2 ATR (-1.15 ATR)"
         },
         "reclaimedLevels": [
           "EMA - 1 ATR"
@@ -2449,25 +2449,25 @@
       "name": "IndusInd Bank",
       "sector": "Private Banks",
       "timeframe": "1d",
-      "spotPrice": 909.1,
-      "dayChangePts": -3.1,
-      "dayChangePct": -0.34,
+      "spotPrice": 909.7,
+      "dayChangePts": -2.5,
+      "dayChangePct": -0.27,
       "atr": 20.6,
-      "ema": 963.72,
+      "ema": 963.77,
       "bands": {
-        "bandPlus3": 1025.52,
-        "bandPlus2": 1004.92,
-        "bandPlus1": 984.32,
-        "fairValue": 963.72,
-        "bandMinus1": 943.12,
-        "bandMinus2": 922.52,
-        "bandMinus3": 901.92
+        "bandPlus3": 1025.57,
+        "bandPlus2": 1004.97,
+        "bandPlus1": 984.37,
+        "fairValue": 963.77,
+        "bandMinus1": 943.17,
+        "bandMinus2": 922.57,
+        "bandMinus3": 901.97
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.65,
-        "text": "Below -2 ATR (-2.65 ATR)"
+        "atrOffset": -2.62,
+        "text": "Below -2 ATR (-2.62 ATR)"
       },
       "activeSetups": [
         {
@@ -2551,25 +2551,25 @@
       "name": "Cipla Ltd.",
       "sector": "Pharma",
       "timeframe": "1d",
-      "spotPrice": 1384.8,
-      "dayChangePts": -14.9,
-      "dayChangePct": -1.06,
-      "atr": 24.3,
-      "ema": 1391.76,
+      "spotPrice": 1383.7,
+      "dayChangePts": -16,
+      "dayChangePct": -1.14,
+      "atr": 24.43,
+      "ema": 1391.66,
       "bands": {
-        "bandPlus3": 1464.66,
-        "bandPlus2": 1440.36,
-        "bandPlus1": 1416.06,
-        "fairValue": 1391.76,
-        "bandMinus1": 1367.46,
-        "bandMinus2": 1343.16,
-        "bandMinus3": 1318.86
+        "bandPlus3": 1464.95,
+        "bandPlus2": 1440.52,
+        "bandPlus1": 1416.09,
+        "fairValue": 1391.66,
+        "bandMinus1": 1367.23,
+        "bandMinus2": 1342.8,
+        "bandMinus3": 1318.37
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.29,
-        "text": "Near Fair Value (-0.29 ATR)"
+        "atrOffset": -0.33,
+        "text": "Near Fair Value (-0.33 ATR)"
       },
       "activeSetups": [
         {
@@ -2633,25 +2633,25 @@
       "name": "Dr. Reddy Laboratories",
       "sector": "Pharma",
       "timeframe": "1d",
-      "spotPrice": 1223,
-      "dayChangePts": 22,
-      "dayChangePct": 1.83,
+      "spotPrice": 1221,
+      "dayChangePts": 20,
+      "dayChangePct": 1.67,
       "atr": 22.58,
-      "ema": 1183.49,
+      "ema": 1183.32,
       "bands": {
-        "bandPlus3": 1251.23,
-        "bandPlus2": 1228.65,
-        "bandPlus1": 1206.07,
-        "fairValue": 1183.49,
-        "bandMinus1": 1160.91,
-        "bandMinus2": 1138.33,
-        "bandMinus3": 1115.75
+        "bandPlus3": 1251.06,
+        "bandPlus2": 1228.48,
+        "bandPlus1": 1205.9,
+        "fairValue": 1183.32,
+        "bandMinus1": 1160.74,
+        "bandMinus2": 1138.16,
+        "bandMinus3": 1115.58
       },
       "currentLocation": {
         "label": "VALUE_PREMIUM",
         "zone": "PREMIUM_ZONE",
-        "atrOffset": 1.75,
-        "text": "+1 to +2 ATR (+1.75 ATR)"
+        "atrOffset": 1.67,
+        "text": "+1 to +2 ATR (+1.67 ATR)"
       },
       "activeSetups": [
         {
@@ -2709,25 +2709,25 @@
       "name": "Divi’s Laboratories",
       "sector": "Pharma",
       "timeframe": "1d",
-      "spotPrice": 9528.5,
-      "dayChangePts": -91,
-      "dayChangePct": -0.95,
+      "spotPrice": 9550,
+      "dayChangePts": -69.5,
+      "dayChangePct": -0.72,
       "atr": 186.77,
-      "ema": 9281.59,
+      "ema": 9283.46,
       "bands": {
-        "bandPlus3": 9841.9,
-        "bandPlus2": 9655.13,
-        "bandPlus1": 9468.36,
-        "fairValue": 9281.59,
-        "bandMinus1": 9094.82,
-        "bandMinus2": 8908.05,
-        "bandMinus3": 8721.28
+        "bandPlus3": 9843.77,
+        "bandPlus2": 9657,
+        "bandPlus1": 9470.23,
+        "fairValue": 9283.46,
+        "bandMinus1": 9096.69,
+        "bandMinus2": 8909.92,
+        "bandMinus3": 8723.15
       },
       "currentLocation": {
         "label": "VALUE_PREMIUM",
         "zone": "PREMIUM_ZONE",
-        "atrOffset": 1.32,
-        "text": "+1 to +2 ATR (+1.32 ATR)"
+        "atrOffset": 1.43,
+        "text": "+1 to +2 ATR (+1.43 ATR)"
       },
       "activeSetups": [
         {
@@ -2789,25 +2789,25 @@
       "name": "Apollo Hospitals",
       "sector": "Healthcare",
       "timeframe": "1d",
-      "spotPrice": 8858.5,
-      "dayChangePts": -30.5,
-      "dayChangePct": -0.34,
+      "spotPrice": 8860,
+      "dayChangePts": -29,
+      "dayChangePct": -0.33,
       "atr": 148.06,
-      "ema": 8847.46,
+      "ema": 8847.59,
       "bands": {
-        "bandPlus3": 9291.64,
-        "bandPlus2": 9143.58,
-        "bandPlus1": 8995.52,
-        "fairValue": 8847.46,
-        "bandMinus1": 8699.4,
-        "bandMinus2": 8551.34,
-        "bandMinus3": 8403.28
+        "bandPlus3": 9291.77,
+        "bandPlus2": 9143.71,
+        "bandPlus1": 8995.65,
+        "fairValue": 8847.59,
+        "bandMinus1": 8699.53,
+        "bandMinus2": 8551.47,
+        "bandMinus3": 8403.41
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": 0.07,
-        "text": "Near Fair Value (0.07 ATR)"
+        "atrOffset": 0.08,
+        "text": "Near Fair Value (0.08 ATR)"
       },
       "activeSetups": [
         {
@@ -2869,25 +2869,25 @@
       "name": "Eicher Motors",
       "sector": "Automotive",
       "timeframe": "1d",
-      "spotPrice": 7214.5,
-      "dayChangePts": -145.5,
-      "dayChangePct": -1.98,
+      "spotPrice": 7213.5,
+      "dayChangePts": -146.5,
+      "dayChangePct": -1.99,
       "atr": 125.38,
-      "ema": 7562.06,
+      "ema": 7561.97,
       "bands": {
-        "bandPlus3": 7938.2,
-        "bandPlus2": 7812.82,
-        "bandPlus1": 7687.44,
-        "fairValue": 7562.06,
-        "bandMinus1": 7436.68,
-        "bandMinus2": 7311.3,
-        "bandMinus3": 7185.92
+        "bandPlus3": 7938.11,
+        "bandPlus2": 7812.73,
+        "bandPlus1": 7687.35,
+        "fairValue": 7561.97,
+        "bandMinus1": 7436.59,
+        "bandMinus2": 7311.21,
+        "bandMinus3": 7185.83
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.77,
-        "text": "Below -2 ATR (-2.77 ATR)"
+        "atrOffset": -2.78,
+        "text": "Below -2 ATR (-2.78 ATR)"
       },
       "activeSetups": [
         {
@@ -2972,25 +2972,25 @@
       "name": "Bharat Petroleum Corp.",
       "sector": "Energy",
       "timeframe": "1d",
-      "spotPrice": 301,
-      "dayChangePts": -7.5,
-      "dayChangePct": -2.43,
+      "spotPrice": 302.25,
+      "dayChangePts": -6.25,
+      "dayChangePct": -2.03,
       "atr": 6.84,
-      "ema": 309.79,
+      "ema": 309.9,
       "bands": {
-        "bandPlus3": 330.31,
-        "bandPlus2": 323.47,
-        "bandPlus1": 316.63,
-        "fairValue": 309.79,
-        "bandMinus1": 302.95,
-        "bandMinus2": 296.11,
-        "bandMinus3": 289.27
+        "bandPlus3": 330.42,
+        "bandPlus2": 323.58,
+        "bandPlus1": 316.74,
+        "fairValue": 309.9,
+        "bandMinus1": 303.06,
+        "bandMinus2": 296.22,
+        "bandMinus3": 289.38
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.29,
-        "text": "-1 to -2 ATR (-1.29 ATR)"
+        "atrOffset": -1.12,
+        "text": "-1 to -2 ATR (-1.12 ATR)"
       },
       "activeSetups": [
         {
@@ -3048,25 +3048,25 @@
       "name": "Nestle India Ltd.",
       "sector": "FMCG",
       "timeframe": "1d",
-      "spotPrice": 1347.4,
-      "dayChangePts": -15.2,
-      "dayChangePct": -1.12,
+      "spotPrice": 1346,
+      "dayChangePts": -16.6,
+      "dayChangePct": -1.22,
       "atr": 29.06,
-      "ema": 1392.44,
+      "ema": 1392.31,
       "bands": {
-        "bandPlus3": 1479.62,
-        "bandPlus2": 1450.56,
-        "bandPlus1": 1421.5,
-        "fairValue": 1392.44,
-        "bandMinus1": 1363.38,
-        "bandMinus2": 1334.32,
-        "bandMinus3": 1305.26
+        "bandPlus3": 1479.49,
+        "bandPlus2": 1450.43,
+        "bandPlus1": 1421.37,
+        "fairValue": 1392.31,
+        "bandMinus1": 1363.25,
+        "bandMinus2": 1334.19,
+        "bandMinus3": 1305.13
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.55,
-        "text": "-1 to -2 ATR (-1.55 ATR)"
+        "atrOffset": -1.59,
+        "text": "-1 to -2 ATR (-1.59 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -3078,25 +3078,25 @@
       "name": "Britannia Industries",
       "sector": "FMCG",
       "timeframe": "1d",
-      "spotPrice": 4910,
-      "dayChangePts": -27.5,
-      "dayChangePct": -0.56,
+      "spotPrice": 4915,
+      "dayChangePts": -22.5,
+      "dayChangePct": -0.46,
       "atr": 85.88,
-      "ema": 5047.08,
+      "ema": 5047.52,
       "bands": {
-        "bandPlus3": 5304.72,
-        "bandPlus2": 5218.84,
-        "bandPlus1": 5132.96,
-        "fairValue": 5047.08,
-        "bandMinus1": 4961.2,
-        "bandMinus2": 4875.32,
-        "bandMinus3": 4789.44
+        "bandPlus3": 5305.16,
+        "bandPlus2": 5219.28,
+        "bandPlus1": 5133.4,
+        "fairValue": 5047.52,
+        "bandMinus1": 4961.64,
+        "bandMinus2": 4875.76,
+        "bandMinus3": 4789.88
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.6,
-        "text": "-1 to -2 ATR (-1.6 ATR)"
+        "atrOffset": -1.54,
+        "text": "-1 to -2 ATR (-1.54 ATR)"
       },
       "activeSetups": [
         {
@@ -3158,25 +3158,25 @@
       "name": "Tata Consumer Products",
       "sector": "FMCG",
       "timeframe": "1d",
-      "spotPrice": 958.6,
-      "dayChangePts": -24.6,
-      "dayChangePct": -2.5,
+      "spotPrice": 960,
+      "dayChangePts": -23.2,
+      "dayChangePct": -2.36,
       "atr": 18.46,
-      "ema": 1004.72,
+      "ema": 1004.84,
       "bands": {
-        "bandPlus3": 1060.1,
-        "bandPlus2": 1041.64,
-        "bandPlus1": 1023.18,
-        "fairValue": 1004.72,
-        "bandMinus1": 986.26,
-        "bandMinus2": 967.8,
-        "bandMinus3": 949.34
+        "bandPlus3": 1060.22,
+        "bandPlus2": 1041.76,
+        "bandPlus1": 1023.3,
+        "fairValue": 1004.84,
+        "bandMinus1": 986.38,
+        "bandMinus2": 967.92,
+        "bandMinus3": 949.46
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.5,
-        "text": "Below -2 ATR (-2.5 ATR)"
+        "atrOffset": -2.43,
+        "text": "Below -2 ATR (-2.43 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,
@@ -3188,19 +3188,19 @@
       "name": "Bharat Electronics Ltd.",
       "sector": "Defence",
       "timeframe": "1d",
-      "spotPrice": 385.55,
-      "dayChangePts": -8,
-      "dayChangePct": -2.03,
+      "spotPrice": 385.5,
+      "dayChangePts": -8.05,
+      "dayChangePct": -2.05,
       "atr": 7.12,
-      "ema": 398.21,
+      "ema": 398.2,
       "bands": {
-        "bandPlus3": 419.57,
-        "bandPlus2": 412.45,
-        "bandPlus1": 405.33,
-        "fairValue": 398.21,
-        "bandMinus1": 391.09,
-        "bandMinus2": 383.97,
-        "bandMinus3": 376.85
+        "bandPlus3": 419.56,
+        "bandPlus2": 412.44,
+        "bandPlus1": 405.32,
+        "fairValue": 398.2,
+        "bandMinus1": 391.08,
+        "bandMinus2": 383.96,
+        "bandMinus3": 376.84
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
@@ -3268,25 +3268,25 @@
       "name": "Hindustan Aeronautics",
       "sector": "Defence",
       "timeframe": "1d",
-      "spotPrice": 4738.8,
-      "dayChangePts": -61.2,
-      "dayChangePct": -1.28,
+      "spotPrice": 4738,
+      "dayChangePts": -62,
+      "dayChangePct": -1.29,
       "atr": 99.34,
-      "ema": 4820.64,
+      "ema": 4820.57,
       "bands": {
-        "bandPlus3": 5118.66,
-        "bandPlus2": 5019.32,
-        "bandPlus1": 4919.98,
-        "fairValue": 4820.64,
-        "bandMinus1": 4721.3,
-        "bandMinus2": 4621.96,
-        "bandMinus3": 4522.62
+        "bandPlus3": 5118.59,
+        "bandPlus2": 5019.25,
+        "bandPlus1": 4919.91,
+        "fairValue": 4820.57,
+        "bandMinus1": 4721.23,
+        "bandMinus2": 4621.89,
+        "bandMinus3": 4522.55
       },
       "currentLocation": {
         "label": "AT_FAIR_VALUE",
         "zone": "FAIR_VALUE",
-        "atrOffset": -0.82,
-        "text": "Near Fair Value (-0.82 ATR)"
+        "atrOffset": -0.83,
+        "text": "Near Fair Value (-0.83 ATR)"
       },
       "activeSetups": [
         {
@@ -3346,25 +3346,25 @@
       "name": "Trent Ltd.",
       "sector": "Retail",
       "timeframe": "1d",
-      "spotPrice": 2621.3,
-      "dayChangePts": -48,
-      "dayChangePct": -1.8,
+      "spotPrice": 2626,
+      "dayChangePts": -43.3,
+      "dayChangePct": -1.62,
       "atr": 59.67,
-      "ema": 2789.89,
+      "ema": 2790.3,
       "bands": {
-        "bandPlus3": 2968.9,
-        "bandPlus2": 2909.23,
-        "bandPlus1": 2849.56,
-        "fairValue": 2789.89,
-        "bandMinus1": 2730.22,
-        "bandMinus2": 2670.55,
-        "bandMinus3": 2610.88
+        "bandPlus3": 2969.31,
+        "bandPlus2": 2909.64,
+        "bandPlus1": 2849.97,
+        "fairValue": 2790.3,
+        "bandMinus1": 2730.63,
+        "bandMinus2": 2670.96,
+        "bandMinus3": 2611.29
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -2.83,
-        "text": "Below -2 ATR (-2.83 ATR)"
+        "atrOffset": -2.75,
+        "text": "Below -2 ATR (-2.75 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,

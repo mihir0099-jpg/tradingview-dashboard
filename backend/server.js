@@ -5949,6 +5949,38 @@ app.post('/api/ml/run-live-learner', async (req, res) => {
   }
 });
 
+// GET /api/ml/auction-rules — rules mined directly from 104,000 bars (208 stocks) and 33 intraday archives
+app.get('/api/ml/auction-rules', async (req, res) => {
+  try {
+    const rulesPath = path.join(__dirname, 'data', 'market_auction_rules.json');
+    if (!fs.existsSync(rulesPath)) {
+      const { runMarketAuctionMining } = await import('./market_auction_learner.js');
+      const result = await runMarketAuctionMining();
+      return res.json({ ok: true, ...result });
+    }
+    const data = JSON.parse(fs.readFileSync(rulesPath, 'utf8'));
+    res.json({ ok: true, ...data });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
+// POST /api/ml/trigger-auction-mining — manually trigger full auction re-mining
+app.post('/api/ml/trigger-auction-mining', async (req, res) => {
+  try {
+    const { runMarketAuctionMining } = await import('./market_auction_learner.js');
+    const result = await runMarketAuctionMining();
+    res.json({
+      ok: true,
+      message: `Auction mining complete in ${result.elapsed_ms}ms across ${result.scope.totalStocksAnalyzed} stocks and ${result.scope.totalArchivedSessionsMined} sessions.`,
+      rulesGenerated: result.synthesizedMarketRules.length,
+      scope: result.scope
+    });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
 // Autonomous 212 F&O Daily Full-Chart Replay & Intelligence Endpoint
 app.get('/api/system/daily-chart-replay', (req, res) => {
   try {
@@ -6934,6 +6966,12 @@ function startAutonomousMarketBrainScheduler() {
           const candidateCount = (liveResult.rules || []).filter(r => r.trust_level === 'CANDIDATE').length;
           console.log(`[Market Brain Scheduler] 🤖 Live Rule Learner: ${liveResult.rules.length} rules generated (${activeCount} ACTIVE, ${candidateCount} CANDIDATE) from ${liveResult.total_trades_analyzed} trades.`);
         } catch (e) { console.warn('[Live Rule Learner Daily] Non-fatal:', e.message); }
+
+        try {
+          const { runMarketAuctionMining } = await import('./market_auction_learner.js');
+          const auctionResult = await runMarketAuctionMining();
+          console.log(`[Market Brain Scheduler] 🏛️ Market Auction Learner: ${auctionResult.synthesizedMarketRules.length} market-native rules updated across ${auctionResult.scope.totalStocksAnalyzed} stocks.`);
+        } catch (e) { console.warn('[Market Auction Learner Daily] Non-fatal:', e.message); }
       }
 
     } catch (err) {

@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-09-25T10:17:03.290Z",
-  "total_sessions_scanned": 37,
-  "active_triggers": 29,
+  "last_updated": "2026-09-28T10:17:12.417Z",
+  "total_sessions_scanned": 38,
+  "active_triggers": 30,
   "wins": 19,
-  "mistakes_learned": 10,
-  "live_accuracy_pct": "65.5%",
+  "mistakes_learned": 11,
+  "live_accuracy_pct": "63.3%",
   "auto_learned_adaptations": [
     {
       "rule_id": "ADAPT_01_PERIOD_C_FILTER",
@@ -23,6 +23,19 @@
     }
   ],
   "recent_sessions": [
+    {
+      "date": "2026_09_25",
+      "niftyClose": 23140.5,
+      "changePct": 0.34,
+      "ce": 114.5,
+      "pe": 77.6,
+      "skew": 19.2,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BULLISH",
+      "outcome": "MISTAKE_CORRECTED",
+      "lesson": "FAILURE MISTAKE: Short-Covering Squeeze. Call writers got trapped as buyers broke past morning resistance with volume. Adaptation rule: Exit short calls immediately if Period C candle closes above IB High."
+    },
     {
       "date": "2026_09_24",
       "niftyClose": 23063.1,
@@ -139,19 +152,6 @@
       "actual": "BULLISH",
       "outcome": "WIN",
       "lesson": "Institutional Put writers defended support floor (Skew -23%). Price rallied +0.20%. Rule reinforced: PE bloat = sell PE / buy CE."
-    },
-    {
-      "date": "2026_09_08",
-      "niftyClose": 23635.1,
-      "changePct": -0.61,
-      "ce": 0.05,
-      "pe": 14.85,
-      "skew": -99.3,
-      "signal": "PUT_WRITING_SUPPORT",
-      "predicted": "BULLISH",
-      "actual": "BEARISH",
-      "outcome": "MISTAKE_CORRECTED",
-      "lesson": "FAILURE MISTAKE: Long Liquidation. Put writers failed to defend morning support. Adaptation rule: Invalidate put writing support if spot breaks below IB Low in Period C."
     }
   ]
 }

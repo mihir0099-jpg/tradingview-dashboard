@@ -1,5 +1,12 @@
 [
   {
+    "date": "2026-09-28",
+    "source": "EOD_MACHINE_LEARNING_ENGINE",
+    "behaviorClassification": "NORMAL_VARIATION_BEAR",
+    "primaryLesson": "Market traded in balance around morning POC.",
+    "modelConfidencePct": 91.8
+  },
+  {
     "date": "2026-09-27",
     "timestamp": 1790505928083,
     "istTime": "2026-09-27 16:15:28 IST",
