@@ -642,15 +642,18 @@ class StockGexAlgoEngine {
           const nowMinutes = istNow.getHours() * 60 + istNow.getMinutes();
           const heldMinutes = nowMinutes - entryMinutes;
 
-          if (heldMinutes >= 90) {
+          // AI-OPTIMIZED STAGNANT EXIT: Standard timeout reduced from 90m to 60m per Rule LIVE-EXIT-STAGNANT60
+          // EXCEPTION: If position was entered on Period C trend breakdown, hold until Period L (14:30+ IST) per Rule AUTO_RULE_1790591212533
+          const isPeriodLHold = pos.autoHoldingPeriod === 'L' && nowMinutes < (14 * 60 + 30);
+          const maxHeldMinutes = 60; // 60-minute theta preservation limit
+
+          if (!isPeriodLHold && heldMinutes >= maxHeldMinutes) {
             const premiumMovePct = pos.entryPrice > 0 ? Math.abs((pos.currentLtp - pos.entryPrice) / pos.entryPrice) * 100 : 0;
             if (premiumMovePct < 15) {
               shouldClose = true;
-              exitReason = `STAGNANT_EXIT (Held ${heldMinutes}m with only ${premiumMovePct.toFixed(1)}% move — theta preservation exit)`;
+              exitReason = `STAGNANT_EXIT (Held ${heldMinutes}m with ${premiumMovePct.toFixed(1)}% move — 60m theta preservation exit)`;
             }
           }
-        }
-      } catch (e) {}
 
       // 1. PRIMARY: Check Option Premium Exits (Options run dynamically with theta, delta & IV)
       if (!shouldClose && pos.optionTarget && pos.currentLtp >= pos.optionTarget) {
@@ -1390,10 +1393,26 @@ class StockGexAlgoEngine {
 
     const { niftyBullish, pcrVelocityState, pcrDrift } = this.state.indexContext;
 
-    // ── Enforce Self-Learned Dynamic Rules ─────────────────────────────────────
+    // ── Enforce Self-Learned Dynamic Rules & Market Auction Rules (Pillar 1) ───
+    let autoConstraints = null;
+    try {
+      const cp = path.join(__dirname, 'data', 'auto_learned_constraints.json');
+      if (fs.existsSync(cp)) autoConstraints = JSON.parse(fs.readFileSync(cp, 'utf8'));
+    } catch (e) {}
+
+    const negativeFilters = autoConstraints?.negativeFilters || [];
+    
+    // Auto-learned rule: Strictly prohibit CE buying if PCR drift is deeply negative (< -0.05) or Nifty is below Open
+    const hasCeVetoRule = negativeFilters.some(f => f.condition && (f.condition.includes('prohibit long Call') || f.condition.includes('Never buy CE')));
+    const blockCeByAi = hasCeVetoRule && (pcrDrift <= -0.05 || !niftyBullish);
+
+    // Auto-learned rule: Strictly veto PE entries if PCR drift is deeply positive (> +0.03)
+    const hasPeVetoRule = negativeFilters.some(f => f.condition && (f.condition.includes('veto downside Put') || f.condition.includes('BLOCK_PE')));
+    const blockPeByAi = hasPeVetoRule && (pcrDrift >= 0.03 || pcrVelocityState === 'BULLISH_PUT_WRITING');
+
     const activeRules = this.state.learnedRules || [];
-    const blockCeIfRed = activeRules.some(r => r.applied && r.action === 'BLOCK_CE_IF_INDEX_RED');
-    const blockPeIfBullish = activeRules.some(r => r.applied && r.action === 'BLOCK_PE_IF_PCR_BULLISH');
+    const blockCeIfRed = blockCeByAi || activeRules.some(r => r.applied && r.action === 'BLOCK_CE_IF_INDEX_RED');
+    const blockPeIfBullish = blockPeByAi || activeRules.some(r => r.applied && r.action === 'BLOCK_PE_IF_PCR_BULLISH');
 
     // ── Stock-Specific PCR Velocity Check (Rule #2D) ─────────────────────────
     let stockPcrItem = null;

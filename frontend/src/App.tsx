@@ -39,6 +39,7 @@ import { ValueTraderContainer } from './components/ValueTraderContainer';
 import { StockPcrScannerContainer } from './components/StockPcrScannerContainer';
 import { InstitutionalMLSuiteV2Card } from './components/InstitutionalMLSuiteV2Card';
 import { MLBrainContainer } from './components/MLBrainContainer';
+import { MasterExecutiveHUD } from './components/MasterExecutiveHUD';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
@@ -198,6 +199,9 @@ function App() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', minHeight: '100vh', boxSizing: 'border-box', overflowY: 'auto' }}>
       
+      {/* 🏛️ Master Executive HUD: Pinned Institutional Cockpit across all 36 tabs */}
+      <MasterExecutiveHUD />
+
       {/* Header controls */}
       <DashboardHeader
         currentSymbol={symbol}

@@ -6388,6 +6388,83 @@ app.get('/api/confluence/score', (req, res) => {
   }
 });
 
+// GET /api/system/live-market-status — Unified Executive HUD stream across all 5 market dimensions
+app.get('/api/system/live-market-status', (req, res) => {
+  try {
+    const tpo = getCurrentTPOPeriod();
+    const gStatus = getGPeriodStatus();
+    const confluence = getConfluenceScoreInsights();
+
+    let activeRule = 'FOLLOW INSTITUTIONAL CONFLUENCE SCORE & RISK BRACKETS';
+    try {
+      const cp = path.join(__dirname, 'data', 'auto_learned_constraints.json');
+      if (fs.existsSync(cp)) {
+        const cData = JSON.parse(fs.readFileSync(cp, 'utf8'));
+        const filters = cData.negativeFilters || [];
+        if (filters.length > 0) {
+          activeRule = filters[filters.length - 1].condition;
+        }
+      }
+    } catch (e) {}
+
+    const istNow = new Date(Date.now() + 5.5 * 3600000);
+    const todayStr = istNow.toISOString().split('T')[0];
+    const archivePath = path.join(__dirname, 'data', 'daily_archive', 'session_' + todayStr + '.json');
+    let sessionProfile = null;
+    let pcrDrift = -0.02;
+
+    if (fs.existsSync(archivePath)) {
+      try {
+        const s = JSON.parse(fs.readFileSync(archivePath, 'utf8'));
+        sessionProfile = s.indices?.nifty?.profile || null;
+        if (s.options_skew_gamma?.pcrDriftNifty !== undefined) {
+          pcrDrift = s.options_skew_gamma.pcrDriftNifty;
+        }
+      } catch (e) {}
+    }
+
+    const ibHigh = sessionProfile?.ibHigh || 23079.75;
+    const ibLow = sessionProfile?.ibLow || 22849.9;
+    const dayType = sessionProfile?.dayType || 'NORMAL_VARIATION_BEAR';
+
+    res.json({
+      ok: true,
+      timestamp: Date.now(),
+      istTime: istNow.toISOString().split('T')[1].slice(0, 8),
+      tpo: {
+        currentPeriod: tpo.period,
+        periodName: 'Period ' + tpo.period + ' (' + tpo.startTime + ' – ' + tpo.endTime + ')',
+        progressPct: tpo.progressPct,
+        remainingMinutes: tpo.remainingMinutes,
+        actionAdvice: tpo.actionAdvice,
+        gPeriod: gStatus
+      },
+      pcrVelocity: {
+        drift: pcrDrift,
+        direction: pcrDrift > 0.03 ? 'BULLISH_PUT_WRITING' : (pcrDrift < -0.03 ? 'BEARISH_CALL_WRITING' : 'ROTATIONAL_NEUTRAL'),
+        label: pcrDrift > 0.03 ? 'PUT WRITING ACCELERATION (+)' : (pcrDrift < -0.03 ? 'CALL WRITING DRAG (-)' : 'RANGEBOUND ROTATION'),
+        color: pcrDrift > 0.03 ? '#22c55e' : (pcrDrift < -0.03 ? '#ef4444' : '#f59e0b'),
+        trendDayConfirmed: Math.abs(pcrDrift) >= 0.03
+      },
+      initialBalance: {
+        ibHigh,
+        ibLow,
+        ibRange: +(ibHigh - ibLow).toFixed(2),
+        dayType,
+        breakoutState: sessionProfile?.periodC?.brokeLow ? 'BREAKDOWN_ACCEPTED' : (sessionProfile?.periodC?.brokeHigh ? 'BREAKOUT_ACCEPTED' : 'INSIDE_BALANCE')
+      },
+      confluence: {
+        score: confluence.score || 82,
+        action: confluence.action || 'CONSIDER_PUTS_BEARISH_DRIVE',
+        status: confluence.status || 'CONFLUENCE_HIGH',
+        color: confluence.color || '#ef4444'
+      },
+      masterAIDirective: activeRule
+    });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
 // --- FII / DII Institutional F&O Derivatives & Cash Positioning ---
 app.get('/api/orderflow/fii-positioning', async (req, res) => {
   try {

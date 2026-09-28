@@ -1,11 +1,11 @@
 {
-  "timestamp": 1790590880154,
+  "timestamp": 1790593070074,
   "dateStr": "2026-09-28",
-  "timeStr": "15:51:20 IST",
+  "timeStr": "16:27:50 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 22799.7,
+      "spot": 22780.25,
       "open": 23270.9,
       "dayHigh": 22854.3,
       "dayLow": 22765.05,
@@ -22,7 +22,7 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 54503.05,
+      "spot": 54471.65,
       "open": 56420,
       "dayHigh": 54650.15,
       "dayLow": 54444.8,
