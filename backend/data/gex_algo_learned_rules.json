@@ -1,5 +1,5 @@
 {
-  "updatedAt": "14:38:39",
+  "updatedAt": "15:13:10",
   "learnedRules": [
     {
       "id": "ALGO-RULE-STOCK-PCR-ALPHA",
@@ -101,6 +101,27 @@
     }
   ],
   "tradeForensics": [
+    {
+      "tradeId": "POS_1790583190085_NTPC",
+      "timestamp": "15:13:10",
+      "date": "28/9/2026",
+      "symbol": "NTPC",
+      "contract": "320 PE",
+      "setupName": "NTPC Stock PCR Call-Writing Breakdown (Rule 2D)",
+      "outcome": "CLOSED",
+      "realizedPnL": -150,
+      "pnlPct": -4.1,
+      "entryPrice": 2.44,
+      "exitPrice": 2.34,
+      "spotEntry": 321.6,
+      "spotSL": 326.6,
+      "targetSpot": 311.6,
+      "exitReason": "STAGNANT_EXIT (Held 90m with only 4.1% move — theta preservation exit)",
+      "rootCause": "Manual or Discretionary Exit: Position was squared off manually prior to structural resolution.",
+      "tacticalMistake": "Discretionary early exits risk truncating target runs and eroding statistical expectancy.",
+      "whatCouldHaveBeenDone": "Trust the statistical edge; let the algo manage orders strictly to pure spot SL or target.",
+      "synthesizedRule": null
+    },
     {
       "tradeId": "POS_1790585619502_NIFTY",
       "timestamp": "14:38:39",
@@ -1342,36 +1363,6 @@
         "action": "BOOK_70_PCT_AND_TRAIL_30_PCT_BREAKEVEN",
         "description": "Lock in 70% of profit at Target 1, trail remainder with zero risk.",
         "confidence": "92%",
-        "applied": true,
-        "createdAt": "23/9/2026"
-      }
-    },
-    {
-      "tradeId": "POS_1790135714860_NIFTY",
-      "timestamp": "09:54:15",
-      "date": "23/9/2026",
-      "symbol": "NIFTY",
-      "contract": "23400 CE",
-      "setupName": "NIFTY Put Wall Absorption Floor Bounce",
-      "outcome": "SL_HIT",
-      "realizedPnL": -872.3,
-      "pnlPct": -12.3,
-      "entryPrice": 108.94,
-      "exitPrice": 95.52,
-      "spotEntry": 23385.45,
-      "spotSL": 23360.45,
-      "targetSpot": 23430.45,
-      "exitReason": "OPTION_SL_HIT (Option LTP ₹95.52 ≤ SL ₹96.9)",
-      "rootCause": "Wall Exhaustion Reversal: NIFTY tested gamma resistance but met institutional call supply, snapping back below the SL coordinate.",
-      "tacticalMistake": "Entered breakout directly into the wall before waiting for a sustained 5-minute candle close confirmation.",
-      "whatCouldHaveBeenDone": "Wait for a 5-minute candle close strictly above the Call Wall before buying CE, reducing false break traps.",
-      "synthesizedRule": {
-        "id": "ALGO-RULE-NIFTY-CANDLE-CLOSE",
-        "name": "NIFTY 5-Min Close Filter on Breakout",
-        "condition": "Requires 5-min candle close outside Wall",
-        "action": "REQUIRE_CANDLE_CLOSE_CONFIRMATION",
-        "description": "Filter NIFTY breakout entries until candle body closes past wall boundary.",
-        "confidence": "91%",
         "applied": true,
         "createdAt": "23/9/2026"
       }

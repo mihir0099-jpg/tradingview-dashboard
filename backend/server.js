@@ -6920,7 +6920,22 @@ function startAutonomousMarketBrainScheduler() {
         console.log(`[Market Brain Scheduler] ⏰ 16:15 IST Reached (${istHours}:${istMinutes} IST)! Running autonomous daily self-evolution for ${todayStr}...`);
         lastMarketBrainDate = todayStr;
         await executeDailySelfEvolution();
+
+        // ── Auto run live rule learner + ML synthesis after brain evolution ──
+        try {
+          await executeMLRuleSynthesis();
+          console.log('[Market Brain Scheduler] ✅ ML Rule Synthesis complete.');
+        } catch (e) { console.warn('[ML Synthesis Daily] Non-fatal:', e.message); }
+
+        try {
+          const { buildLiveRules } = await import('./live_rule_learner.js');
+          const liveResult = await buildLiveRules();
+          const activeCount = (liveResult.rules || []).filter(r => r.enforce && r.trust_level === 'ACTIVE').length;
+          const candidateCount = (liveResult.rules || []).filter(r => r.trust_level === 'CANDIDATE').length;
+          console.log(`[Market Brain Scheduler] 🤖 Live Rule Learner: ${liveResult.rules.length} rules generated (${activeCount} ACTIVE, ${candidateCount} CANDIDATE) from ${liveResult.total_trades_analyzed} trades.`);
+        } catch (e) { console.warn('[Live Rule Learner Daily] Non-fatal:', e.message); }
       }
+
     } catch (err) {
       console.error('[Market Brain Scheduler Error]', err.message);
     }

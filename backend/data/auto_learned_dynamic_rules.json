@@ -6,9 +6,9 @@
     "last_validated_date": "2026-09-28",
     "conditions_text": "IF Dist_VWAP <= -0.002 AND HL_Spread > 0.0 AND Body_Ratio <= 0.602",
     "statistical_win_rate_pct": 100.0,
-    "sample_support_count": 9,
+    "sample_support_count": 11,
     "recommended_action": "BUY_PUT_OPTION",
-    "market_logic": "Autonomous decision branch isolated 9 occurrences with 100.0% directional outcome.",
+    "market_logic": "Autonomous decision branch isolated 11 occurrences with 100.0% directional outcome.",
     "status": "ACTIVE_LIVE_ENFORCEMENT",
     "expires_after_sessions": 30
   },
@@ -31,10 +31,10 @@
     "date_discovered": "2026-09-28",
     "last_validated_date": "2026-09-28",
     "conditions_text": "IF Dist_VWAP > -0.002 AND Upper_Wick > 0.0 AND Dist_VWAP <= -0.001 AND Dist_VWAP <= -0.001",
-    "statistical_win_rate_pct": 90.5,
-    "sample_support_count": 169,
+    "statistical_win_rate_pct": 90.6,
+    "sample_support_count": 170,
     "recommended_action": "BUY_PUT_OPTION",
-    "market_logic": "Autonomous decision branch isolated 169 occurrences with 90.5% directional outcome.",
+    "market_logic": "Autonomous decision branch isolated 170 occurrences with 90.6% directional outcome.",
     "status": "ACTIVE_LIVE_ENFORCEMENT",
     "expires_after_sessions": 30
   },
@@ -57,10 +57,10 @@
     "date_discovered": "2026-09-28",
     "last_validated_date": "2026-09-28",
     "conditions_text": "IF Dist_VWAP <= -0.0011",
-    "statistical_win_rate_pct": 80.3,
-    "sample_support_count": 173,
+    "statistical_win_rate_pct": 81.2,
+    "sample_support_count": 176,
     "recommended_action": "BUY_PUT_OPTION",
-    "market_logic": "LightGBM gradient booster identified Dist_VWAP floor rejection with 80.3% short win rate.",
+    "market_logic": "LightGBM gradient booster identified Dist_VWAP floor rejection with 81.2% short win rate.",
     "status": "ACTIVE_LIVE_ENFORCEMENT",
     "expires_after_sessions": 30
   },
@@ -76,6 +76,19 @@
     "market_logic": "Smart money absorbed supply across 14 outlier bars near \u20b922893.12. Floor acts as dynamic bid wall.",
     "status": "ACTIVE_LIVE_ENFORCEMENT",
     "expires_after_sessions": 30
+  },
+  {
+    "rule_id": "RULE_AUTOGEN_LSTM_20260928_XPANSION",
+    "origin_model": "PyTorch LSTM Recurrent Memory Network",
+    "date_discovered": "2026-09-28",
+    "last_validated_date": "2026-09-28",
+    "conditions_text": "IF LSTM Cell Memory Energy > 0.67 AND 5-Bar Projected Path is BEARISH_EXPANSION",
+    "statistical_win_rate_pct": 87.2,
+    "sample_support_count": 30,
+    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
+    "market_logic": "LSTM neural cell state retains 0.74 memory momentum. Anticipate continuation towards -0.137% path.",
+    "status": "ACTIVE_LIVE_ENFORCEMENT",
+    "expires_after_sessions": 90
   },
   {
     "rule_id": "RULE_AUTOGEN_LSTM_20260928_XPANSION",
@@ -635,18 +648,5 @@
     "market_logic": "LSTM neural cell state retains 0.785 memory momentum. Anticipate continuation towards 0.378% path.",
     "status": "ACTIVE_LIVE_ENFORCEMENT",
     "expires_after_sessions": 90
-  },
-  {
-    "rule_id": "RULE_AUTOGEN_DT_20260928_04",
-    "origin_model": "Decision Tree Purity Leaf Extractor",
-    "date_discovered": "2026-09-28",
-    "last_validated_date": "2026-09-28",
-    "conditions_text": "IF Dist_VWAP > -0.002 AND Upper_Wick > 0.0 AND Dist_VWAP <= -0.001 AND Lower_Wick <= 0.0",
-    "statistical_win_rate_pct": 89.2,
-    "sample_support_count": 74,
-    "recommended_action": "BUY_PUT_OPTION",
-    "market_logic": "Autonomous decision branch isolated 74 occurrences with 89.2% directional outcome.",
-    "status": "ACTIVE_LIVE_ENFORCEMENT",
-    "expires_after_sessions": 30
   }
 ]

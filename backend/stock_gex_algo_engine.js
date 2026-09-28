@@ -950,6 +950,26 @@ class StockGexAlgoEngine {
     }
 
     this.saveLearnedRules();
+
+    // ── AUTO LIVE RULE LEARNER: runs asynchronously after every trade close ──
+    // This is the core of the self-learning loop. Every closed trade updates the
+    // aggregate statistics and may promote a MONITORING rule to CANDIDATE or ACTIVE.
+    setImmediate(async () => {
+      try {
+        const { buildLiveRules } = await import('./live_rule_learner.js');
+        const result = await buildLiveRules();
+        const newActive = (result.rules || []).filter(r => r.enforce && r.trust_level === 'ACTIVE').length;
+        const newCandidates = (result.rules || []).filter(r => r.trust_level === 'CANDIDATE').length;
+        if (newActive > 0 || newCandidates > 0) {
+          this.addLog('AI_LEARNER', 'RULE_LEARNED',
+            `🤖 Live Rule Learner updated: ${result.rules.length} rules (${newActive} ACTIVE enforced, ${newCandidates} CANDIDATE). Trigger: ${forensic.symbol} ${forensic.outcome} trade closed.`
+          );
+        }
+      } catch (e) {
+        // Non-fatal — don't crash the engine if learner fails
+      }
+    });
+
     return forensic;
   }
 
