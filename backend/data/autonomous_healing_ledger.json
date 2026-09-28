@@ -1,5 +1,37 @@
 [
   {
+    "timestamp": 1790590898856,
+    "istTime": "28/9/2026, 3:51:38 pm",
+    "component": "🔥 Weekly Option Selling Engine",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Recalculated weekly 2-day Initial Balance strangle boundaries",
+    "status": "AUTO_RESOLVED"
+  },
+  {
+    "timestamp": 1790590892410,
+    "istTime": "28/9/2026, 3:51:32 pm",
+    "component": "⚡ Early Picks",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Rebuilt institutional early picks ranking",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1790590879774,
+    "istTime": "28/9/2026, 3:51:19 pm",
+    "component": "⚡ Opening Bias",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Recomputed opening auction drive classifications",
+    "status": "HEAL_APPLIED_RETRY_QUEUED"
+  },
+  {
+    "timestamp": 1790590863069,
+    "istTime": "28/9/2026, 3:51:03 pm",
+    "component": "🐋 Stocks Tracker",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Recalculated institutional block deal allocations",
+    "status": "AUTO_RESOLVED"
+  },
+  {
     "timestamp": 1790561237974,
     "istTime": "28/9/2026, 7:37:17 am",
     "component": "HealthCheck",

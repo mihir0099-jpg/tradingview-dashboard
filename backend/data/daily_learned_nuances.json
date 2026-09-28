@@ -1,10 +1,34 @@
 [
   {
     "date": "2026-09-28",
-    "source": "EOD_MACHINE_LEARNING_ENGINE",
-    "behaviorClassification": "NORMAL_VARIATION_BEAR",
-    "primaryLesson": "Market traded in balance around morning POC.",
-    "modelConfidencePct": 91.8
+    "timestamp": 1790591212538,
+    "istTime": "2026-09-28 15:56:52 IST",
+    "macroProfile": {
+      "niftySpot": 22780.25,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-2.11%",
+      "bankniftySpot": 54471.65,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 34
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Period C Downside Continuation Acceptance",
+        "observation": "Period C broke NIFTY IB Low (22849.9) and closed strictly below at 22827.1. Trend extended an additional 64.8 pts to LOD (22762.25).",
+        "ruleAction": "When Period C closes strictly below IB Low with negative PCR drift, hold ATM Puts until Period L (14:30+ IST) for maximum range extension."
+      },
+      {
+        "domain": "First-Hour Put Supply Collapse (Call Writing Drive)",
+        "observation": "NIFTY First-Hour PCR drift collapsed to -2.16 indicating aggressive institutional Call writing. NIFTY closed -284.65 pts (-1.23%).",
+        "ruleAction": "Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 09:15:00 (Period A) at 23079.75. Absolute LOD printed at 14:39:00 (Period L/M) at 22762.25.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
   },
   {
     "date": "2026-09-27",

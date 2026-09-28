@@ -1,14 +1,14 @@
 {
-  "timestamp": 1790506224719,
-  "dateStr": "2026-09-27",
-  "timeStr": "16:20:24 IST",
+  "timestamp": 1790590880154,
+  "dateStr": "2026-09-28",
+  "timeStr": "15:51:20 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
-      "spot": 23140.5,
+      "spot": 22799.7,
       "open": 23270.9,
-      "dayHigh": 23140.5,
-      "dayLow": 23140.5,
+      "dayHigh": 22854.3,
+      "dayLow": 22765.05,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
       "ibWidthPts": 60,
@@ -22,10 +22,10 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 55580.4,
+      "spot": 54503.05,
       "open": 56420,
-      "dayHigh": 55580.4,
-      "dayLow": 55580.4,
+      "dayHigh": 54650.15,
+      "dayLow": 54444.8,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
@@ -39,221 +39,231 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 212,
-    "coilingDematCount": 41,
-    "volumeBreakoutCount": 9,
-    "distributionTrapCount": 3,
-    "swingLowFormations": 41,
-    "swingHighFormations": 3
+    "coilingDematCount": 12,
+    "volumeBreakoutCount": 3,
+    "distributionTrapCount": 19,
+    "swingLowFormations": 12,
+    "swingHighFormations": 19
   },
   "tomorrowHighConvictionWatchlist": [
     {
       "rank": 4,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "BANKINDIA",
-      "name": "Bank of India",
-      "sector": "Public Sector Banking",
+      "symbol": "MRF",
+      "name": "MRF Limited",
+      "sector": "Auto Tyres",
       "trade": {
-        "action": "BUY BANKINDIA 137.5 CE / Spot",
-        "spotEntry": 137.94,
-        "spotSL": 135.97,
-        "spotRiskPts": 1.97,
-        "spotTarget1": 141.09,
-        "spotTarget2": 143.46,
-        "atmStrike": 137.5,
-        "lotSize": 5200,
-        "riskPerLotINR": 10244,
-        "target1GainPerLotINR": 16380,
-        "target2GainPerLotINR": 28704,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹135.97",
+        "action": "BUY MRF 123400 CE / Spot",
+        "spotEntry": 123425,
+        "spotSL": 122818.52,
+        "spotRiskPts": 606.48,
+        "spotTarget1": 124395.37,
+        "spotTarget2": 125123.14,
+        "atmStrike": 123400,
+        "lotSize": 5,
+        "riskPerLotINR": 3032,
+        "target1GainPerLotINR": 4852,
+        "target2GainPerLotINR": 8491,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹122818.52",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 76,
-      "catalystRationale": "Range compressed to 43.9% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹136.85). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 71,
+      "catalystRationale": "Range compressed to 44.6% of ATR with 86% Demat delivery. Smart money hoarding at Demand Floor (₹123195). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 2,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "TATASTEEL",
-      "name": "Tata Steel Ltd.",
-      "sector": "Metals & Mining",
+      "symbol": "LICHSGFIN",
+      "name": "LIC Housing Finance",
+      "sector": "Housing Finance",
       "trade": {
-        "action": "BUY TATASTEEL 187.5 PE / Short Spot",
-        "spotEntry": 187.97,
-        "spotSL": 192.68,
-        "spotRiskPts": 4.71,
-        "spotTarget1": 180.43,
-        "spotTarget2": 174.78,
-        "atmStrike": 187.5,
-        "lotSize": 2750,
-        "riskPerLotINR": 12953,
-        "target1GainPerLotINR": 20735,
-        "target2GainPerLotINR": 36272,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹192.68",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
-      },
-      "confidencePct": 46,
-      "catalystRationale": "Tested 20-day Resistance (₹191.8) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
-    },
-    {
-      "rank": 3,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "PNB",
-      "name": "Punjab National Bank",
-      "sector": "Public Sector Banking",
-      "trade": {
-        "action": "BUY PNB 117.5 PE / Short Spot",
-        "spotEntry": 116.6,
-        "spotSL": 120.28,
-        "spotRiskPts": 3.68,
-        "spotTarget1": 110.71,
-        "spotTarget2": 106.3,
-        "atmStrike": 117.5,
-        "lotSize": 8000,
-        "riskPerLotINR": 29440,
-        "target1GainPerLotINR": 47120,
-        "target2GainPerLotINR": 82400,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹120.28",
+        "action": "BUY LICHSGFIN 560 PE / Short Spot",
+        "spotEntry": 564.15,
+        "spotSL": 582.9,
+        "spotRiskPts": 18.75,
+        "spotTarget1": 534.15,
+        "spotTarget2": 511.65,
+        "atmStrike": 560,
+        "lotSize": 1000,
+        "riskPerLotINR": 18750,
+        "target1GainPerLotINR": 30000,
+        "target2GainPerLotINR": 52500,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹582.9",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
       },
       "confidencePct": 45,
-      "catalystRationale": "Tested 20-day Resistance (₹119.4) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "catalystRationale": "Tested 20-day Resistance (₹579.4) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    },
+    {
+      "rank": 3,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "MANKIND",
+      "name": "Mankind Pharma Ltd.",
+      "sector": "Pharma & Consumer Healthcare",
+      "trade": {
+        "action": "BUY MANKIND 2440 PE / Short Spot",
+        "spotEntry": 2435.6,
+        "spotSL": 2515.07,
+        "spotRiskPts": 79.47,
+        "spotTarget1": 2308.45,
+        "spotTarget2": 2213.08,
+        "atmStrike": 2440,
+        "lotSize": 250,
+        "riskPerLotINR": 19868,
+        "target1GainPerLotINR": 31788,
+        "target2GainPerLotINR": 55630,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹2515.07",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
+      },
+      "confidencePct": 48,
+      "catalystRationale": "Tested 20-day Resistance (₹2504.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
-        "symbol": "VEDL",
-        "price": 266.35,
-        "compPct": 39.1,
+        "symbol": "COFORGE",
+        "price": 1773,
+        "compPct": 33.8,
+        "delivPct": 82,
+        "floor": 1717
+      },
+      {
+        "symbol": "HINDCOPPER",
+        "price": 479.6,
+        "compPct": 36.6,
+        "delivPct": 90,
+        "floor": 477.5
+      },
+      {
+        "symbol": "NESTLEIND",
+        "price": 1346,
+        "compPct": 43.8,
         "delivPct": 86,
-        "floor": 252.5
+        "floor": 1332.8
       },
       {
-        "symbol": "MUTHOOTFIN",
-        "price": 2835,
-        "compPct": 40.5,
+        "symbol": "MRF",
+        "price": 123425,
+        "compPct": 44.6,
         "delivPct": 86,
-        "floor": 2722.3
+        "floor": 123195
       },
       {
-        "symbol": "ASTRAL",
-        "price": 1399,
-        "compPct": 43.4,
-        "delivPct": 84,
-        "floor": 1355
-      },
-      {
-        "symbol": "BANKINDIA",
-        "price": 137.94,
-        "compPct": 43.9,
-        "delivPct": 92,
-        "floor": 136.85
-      },
-      {
-        "symbol": "HAVELLS",
-        "price": 1096.5,
-        "compPct": 44.5,
-        "delivPct": 92,
-        "floor": 1081.1
+        "symbol": "UNITDSPR",
+        "price": 1415.4,
+        "compPct": 48.6,
+        "delivPct": 82,
+        "floor": 1368.1
       }
     ],
     "volumeDrives": [
       {
-        "symbol": "POLICYBZR",
-        "price": 1166,
-        "volMult": 11.74
-      },
-      {
         "symbol": "IREDA",
-        "price": 113.22,
-        "volMult": 3.3,
-        "action": "BUY IREDA 112.5 CE / Spot"
+        "price": 114.82,
+        "volMult": 3.79
       },
       {
-        "symbol": "MFSL",
-        "price": 1458,
-        "volMult": 3.2,
-        "action": "BUY MFSL 1460 CE / Spot"
+        "symbol": "POLICYBZR",
+        "price": 1151.3,
+        "volMult": 2.79
       },
       {
-        "symbol": "OFSS",
-        "price": 10770,
-        "volMult": 2.37,
-        "action": "BUY OFSS 10800 CE / Spot"
+        "symbol": "ZYDUSLIFE",
+        "price": 1215,
+        "volMult": 2.79
       },
       {
-        "symbol": "CHOLAFIN",
-        "price": 1662.7,
-        "volMult": 2.3
+        "symbol": "BLUESTARCO",
+        "price": 1575.4,
+        "volMult": 2.68
+      },
+      {
+        "symbol": "DELHIVERY",
+        "price": 407.5,
+        "volMult": 2.08,
+        "action": "BUY DELHIVERY 410 PE / Short Spot"
       }
     ],
     "distributionTraps": [
       {
-        "symbol": "TATASTEEL",
-        "price": 187.97,
-        "ceil": 191.8,
-        "distCeilPct": 2.04
+        "symbol": "LICHSGFIN",
+        "price": 564.15,
+        "ceil": 579.4,
+        "distCeilPct": 2.7
       },
       {
-        "symbol": "PNB",
-        "price": 116.6,
-        "ceil": 119.4,
-        "distCeilPct": 2.4
+        "symbol": "MANKIND",
+        "price": 2435.6,
+        "ceil": 2504.6,
+        "distCeilPct": 2.83
       },
       {
-        "symbol": "NUVAMA",
-        "price": 1681.4,
-        "ceil": 1903.9,
-        "distCeilPct": 13.23
+        "symbol": "SBILIFE",
+        "price": 1728.1,
+        "ceil": 1801.7,
+        "distCeilPct": 4.26
+      },
+      {
+        "symbol": "SONACOMS",
+        "price": 807.9,
+        "ceil": 844,
+        "distCeilPct": 4.47
+      },
+      {
+        "symbol": "INDHOTEL",
+        "price": 711,
+        "ceil": 755,
+        "distCeilPct": 6.19
       }
     ],
     "sectorLeadership": [
       {
         "sector": "Information Technology",
-        "coilingCount": 6,
+        "coilingCount": 2,
         "totalStocks": 12
       },
       {
-        "sector": "Public Sector Banking",
-        "coilingCount": 4,
-        "totalStocks": 7
-      },
-      {
         "sector": "Automobile",
-        "coilingCount": 3,
+        "coilingCount": 2,
         "totalStocks": 7
-      },
-      {
-        "sector": "FMCG",
-        "coilingCount": 3,
-        "totalStocks": 4
       },
       {
         "sector": "Auto Tyres",
-        "coilingCount": 2,
+        "coilingCount": 1,
         "totalStocks": 3
       },
       {
-        "sector": "Financial Services",
-        "coilingCount": 2,
-        "totalStocks": 2
-      },
-      {
-        "sector": "Private Banking",
+        "sector": "Adhesives & Chemicals",
         "coilingCount": 1,
-        "totalStocks": 5
+        "totalStocks": 1
       },
       {
-        "sector": "Electrical Consumer Goods",
+        "sector": "NBFC & Rural Finance",
+        "coilingCount": 1,
+        "totalStocks": 1
+      },
+      {
+        "sector": "FMCG",
+        "coilingCount": 1,
+        "totalStocks": 4
+      },
+      {
+        "sector": "Telecom",
+        "coilingCount": 1,
+        "totalStocks": 1
+      },
+      {
+        "sector": "Agrochemicals & Crop Protection",
         "coilingCount": 1,
         "totalStocks": 1
       }
@@ -266,7 +276,7 @@
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "41 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (6 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "12 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (2 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

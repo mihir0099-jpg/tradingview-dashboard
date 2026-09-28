@@ -82,6 +82,45 @@
     "origin_model": "PyTorch LSTM Recurrent Memory Network",
     "date_discovered": "2026-09-28",
     "last_validated_date": "2026-09-28",
+    "conditions_text": "IF LSTM Cell Memory Energy > 0.76 AND 5-Bar Projected Path is BULLISH_EXPANSION",
+    "statistical_win_rate_pct": 87.2,
+    "sample_support_count": 30,
+    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
+    "market_logic": "LSTM neural cell state retains 0.846 memory momentum. Anticipate continuation towards 0.945% path.",
+    "status": "ACTIVE_LIVE_ENFORCEMENT",
+    "expires_after_sessions": 90
+  },
+  {
+    "rule_id": "RULE_AUTOGEN_LSTM_20260928_XPANSION",
+    "origin_model": "PyTorch LSTM Recurrent Memory Network",
+    "date_discovered": "2026-09-28",
+    "last_validated_date": "2026-09-28",
+    "conditions_text": "IF LSTM Cell Memory Energy > 0.71 AND 5-Bar Projected Path is BULLISH_EXPANSION",
+    "statistical_win_rate_pct": 87.2,
+    "sample_support_count": 30,
+    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
+    "market_logic": "LSTM neural cell state retains 0.788 memory momentum. Anticipate continuation towards 0.366% path.",
+    "status": "ACTIVE_LIVE_ENFORCEMENT",
+    "expires_after_sessions": 90
+  },
+  {
+    "rule_id": "RULE_AUTOGEN_LSTM_20260928_XPANSION",
+    "origin_model": "PyTorch LSTM Recurrent Memory Network",
+    "date_discovered": "2026-09-28",
+    "last_validated_date": "2026-09-28",
+    "conditions_text": "IF LSTM Cell Memory Energy > 0.77 AND 5-Bar Projected Path is BULLISH_EXPANSION",
+    "statistical_win_rate_pct": 87.2,
+    "sample_support_count": 30,
+    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
+    "market_logic": "LSTM neural cell state retains 0.85 memory momentum. Anticipate continuation towards 0.572% path.",
+    "status": "ACTIVE_LIVE_ENFORCEMENT",
+    "expires_after_sessions": 90
+  },
+  {
+    "rule_id": "RULE_AUTOGEN_LSTM_20260928_XPANSION",
+    "origin_model": "PyTorch LSTM Recurrent Memory Network",
+    "date_discovered": "2026-09-28",
+    "last_validated_date": "2026-09-28",
     "conditions_text": "IF LSTM Cell Memory Energy > 0.76 AND 5-Bar Projected Path is BEARISH_EXPANSION",
     "statistical_win_rate_pct": 87.2,
     "sample_support_count": 30,
@@ -141,19 +180,6 @@
     "market_logic": "Smart money absorbed supply across 15 outlier bars near \u20b922862.5. Floor acts as dynamic bid wall.",
     "status": "ACTIVE_LIVE_ENFORCEMENT",
     "expires_after_sessions": 30
-  },
-  {
-    "rule_id": "RULE_AUTOGEN_LSTM_20260928_XPANSION",
-    "origin_model": "PyTorch LSTM Recurrent Memory Network",
-    "date_discovered": "2026-09-28",
-    "last_validated_date": "2026-09-28",
-    "conditions_text": "IF LSTM Cell Memory Energy > 0.76 AND 5-Bar Projected Path is BULLISH_EXPANSION",
-    "statistical_win_rate_pct": 87.2,
-    "sample_support_count": 30,
-    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
-    "market_logic": "LSTM neural cell state retains 0.845 memory momentum. Anticipate continuation towards 2.108% path.",
-    "status": "ACTIVE_LIVE_ENFORCEMENT",
-    "expires_after_sessions": 90
   },
   {
     "rule_id": "RULE_AUTOGEN_DT_20260928_01",
@@ -620,32 +646,6 @@
     "sample_support_count": 13,
     "recommended_action": "BUY_CALL_ON_RETEST_SUPPORT",
     "market_logic": "Smart money absorbed supply across 13 outlier bars near \u20b922907.8. Floor acts as dynamic bid wall.",
-    "status": "ACTIVE_LIVE_ENFORCEMENT",
-    "expires_after_sessions": 30
-  },
-  {
-    "rule_id": "RULE_AUTOGEN_LSTM_20260928_XPANSION",
-    "origin_model": "PyTorch LSTM Recurrent Memory Network",
-    "date_discovered": "2026-09-28",
-    "last_validated_date": "2026-09-28",
-    "conditions_text": "IF LSTM Cell Memory Energy > 0.74 AND 5-Bar Projected Path is BEARISH_EXPANSION",
-    "statistical_win_rate_pct": 87.2,
-    "sample_support_count": 30,
-    "recommended_action": "FOLLOW_LSTM_PROJECTED_TRAJECTORY",
-    "market_logic": "LSTM neural cell state retains 0.821 memory momentum. Anticipate continuation towards -0.368% path.",
-    "status": "ACTIVE_LIVE_ENFORCEMENT",
-    "expires_after_sessions": 90
-  },
-  {
-    "rule_id": "RULE_AUTOGEN_DT_20260928_01",
-    "origin_model": "Decision Tree Purity Leaf Extractor",
-    "date_discovered": "2026-09-28",
-    "last_validated_date": "2026-09-28",
-    "conditions_text": "IF Dist_VWAP <= -0.002 AND Dist_VWAP <= -0.002",
-    "statistical_win_rate_pct": 100.0,
-    "sample_support_count": 10,
-    "recommended_action": "BUY_PUT_OPTION",
-    "market_logic": "Autonomous decision branch isolated 10 occurrences with 100.0% directional outcome.",
     "status": "ACTIVE_LIVE_ENFORCEMENT",
     "expires_after_sessions": 30
   }
