@@ -267,8 +267,8 @@ async function fetchCandlesForSymbol(tvBridge, symbol, timeframe, limit = 10) {
     else if (cleanSym === 'BANKNIFTY') token = '99926009';
     else if (cleanSym === 'FINNIFTY') token = '99926037';
     else if (cleanSym === 'MIDCPNIFTY') token = '99926074';
-    else if (cleanSym === 'NIFTYFUT') { exchange = 'NFO'; token = '68407'; }
-    else if (cleanSym === 'BANKNIFTYFUT') { exchange = 'NFO'; token = '68390'; }
+    else if (cleanSym === 'NIFTYFUT') { exchange = 'NFO'; token = '48704'; }
+    else if (cleanSym === 'BANKNIFTYFUT') { exchange = 'NFO'; token = '48699'; }
     else {
       const meta = angelOneBridge._tokenMap?.get(cleanSym);
       if (meta) {

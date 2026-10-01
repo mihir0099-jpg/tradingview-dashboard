@@ -4,10 +4,10 @@ import { analyseCompletedCandle } from './footprint_ml_reader.js';
 
 // Supported Order Flow Instruments
 export const ORDERFLOW_SYMBOLS = [
-  { symbol: 'NIFTYFUT', label: 'NIFTY FUT', token: '68407', exchange: 'NFO', tickSize: 1.0, lotSize: 25, groupSize: 1.0 },
-  { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', token: '68390', exchange: 'NFO', tickSize: 1.0, lotSize: 15, groupSize: 1.0 },
-  { symbol: 'CRUDEOILFUT', label: 'CRUDE OIL FUT (MCX)', token: '565899', exchange: 'MCX', tickSize: 1.0, lotSize: 100, groupSize: 5.0, tradingsymbol: 'CRUDEOIL21SEP26FUT' },
-  { symbol: 'CRUDEOILM', label: 'CRUDE OIL MINI (MCX)', token: '565900', exchange: 'MCX', tickSize: 1.0, lotSize: 10, groupSize: 5.0, tradingsymbol: 'CRUDEOILM21SEP26FUT' },
+  { symbol: 'NIFTYFUT', label: 'NIFTY FUT', token: '48704', exchange: 'NFO', tickSize: 1.0, lotSize: 25, groupSize: 1.0, tradingsymbol: 'NIFTY27OCT26FUT' },
+  { symbol: 'BANKNIFTYFUT', label: 'BANKNIFTY FUT', token: '48699', exchange: 'NFO', tickSize: 1.0, lotSize: 15, groupSize: 1.0, tradingsymbol: 'BANKNIFTY27OCT26FUT' },
+  { symbol: 'CRUDEOILFUT', label: 'CRUDE OIL FUT (MCX)', token: '569900', exchange: 'MCX', tickSize: 1.0, lotSize: 100, groupSize: 5.0, tradingsymbol: 'CRUDEOIL19OCT26FUT' },
+  { symbol: 'CRUDEOILM', label: 'CRUDE OIL MINI (MCX)', token: '565900', exchange: 'MCX', tickSize: 1.0, lotSize: 10, groupSize: 5.0, tradingsymbol: 'CRUDEOILM19OCT26FUT' },
   { symbol: 'SENSEX', label: 'SENSEX', token: '99919000', exchange: 'BSE', tickSize: 5.0, lotSize: 10, groupSize: 10.0 },
   { symbol: 'NIFTY', label: 'NIFTY 50', token: '99926000', exchange: 'NSE', tickSize: 1.0, lotSize: 75, groupSize: 1.0 },
   { symbol: 'BANKNIFTY', label: 'BANK NIFTY', token: '99926009', exchange: 'NSE', tickSize: 1.0, lotSize: 30, groupSize: 1.0 },
@@ -35,6 +35,19 @@ function getExchangeType(exchange) {
   }
 }
 
+// Expiry parser for futures contracts (e.g. 27OCT26 -> Date)
+function parseExpiry(str) {
+  if (!str) return null;
+  const m = str.match(/(\d{2})([A-Z]{3})(\d{2})/);
+  if (!m) return null;
+  const day = parseInt(m[1], 10);
+  const monthMap = { JAN:0, FEB:1, MAR:2, APR:3, MAY:4, JUN:5, JUL:6, AUG:7, SEP:8, OCT:9, NOV:10, DEC:11 };
+  const month = monthMap[m[2]];
+  if (month === undefined) return null;
+  const year = 2000 + parseInt(m[3], 10);
+  return new Date(year, month, day);
+}
+
 // Session period letters matching Market Profile standard (A = 9:00/9:15, B = 9:30/9:45, etc.)
 function getPeriodLetter(date, exchange = 'NSE') {
   const hours = date.getHours();
@@ -52,7 +65,7 @@ class OrderFlowStreamEngine {
     this.ws = null;
     this.connected = false;
     this.activeSymbol = 'NIFTYFUT';
-    this.activeToken = '68407';
+    this.activeToken = '48704';
     this.timeframeMinutes = 5; // 5-minute footprint candles default
     this.lastLtp = null;
     this.lastSide = 'BUY';
@@ -67,8 +80,9 @@ class OrderFlowStreamEngine {
     this.historicalLoaded = false;
   }
 
-  start() {
-    this.seedHistoricalCandles();
+  async start() {
+    await this.autoResolveActiveTokens();
+    await this.seedHistoricalCandles();
     this.connect();
   }
 
@@ -76,11 +90,83 @@ class OrderFlowStreamEngine {
     return ORDERFLOW_SYMBOLS.find(s => s.symbol === this.activeSymbol) || ORDERFLOW_SYMBOLS[0];
   }
 
+  async autoResolveActiveTokens() {
+    try {
+      if (!angelOneBridge.session.jwtToken) {
+        await angelOneBridge.login().catch(() => {});
+      }
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      // 1. Resolve NIFTY FUT
+      const nfoNifty = await angelOneBridge.searchScrip('NFO', 'NIFTY').catch(() => []);
+      if (nfoNifty && nfoNifty.length > 0) {
+        const futs = nfoNifty
+          .filter(r => r.tradingsymbol && r.tradingsymbol.endsWith('FUT') && (r.tradingsymbol.match(/\d{2}[A-Z]{3}\d{2}/g) || []).length === 1)
+          .map(r => ({ ...r, expiry: parseExpiry(r.tradingsymbol) }))
+          .filter(r => r.expiry && r.expiry >= today)
+          .sort((a, b) => a.expiry - b.expiry);
+        if (futs.length > 0) {
+          const near = futs[0];
+          const sym = ORDERFLOW_SYMBOLS.find(s => s.symbol === 'NIFTYFUT');
+          if (sym) {
+            sym.token = near.symboltoken.split(' ')[0];
+            sym.tradingsymbol = near.tradingsymbol;
+            if (this.activeSymbol === 'NIFTYFUT') this.activeToken = sym.token;
+            console.log(`[OrderFlow] Auto-resolved NIFTYFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol}`);
+          }
+        }
+      }
+
+      // 2. Resolve BANKNIFTY FUT
+      const nfoBnf = await angelOneBridge.searchScrip('NFO', 'BANKNIFTY').catch(() => []);
+      if (nfoBnf && nfoBnf.length > 0) {
+        const futs = nfoBnf
+          .filter(r => r.tradingsymbol && r.tradingsymbol.endsWith('FUT') && (r.tradingsymbol.match(/\d{2}[A-Z]{3}\d{2}/g) || []).length === 1)
+          .map(r => ({ ...r, expiry: parseExpiry(r.tradingsymbol) }))
+          .filter(r => r.expiry && r.expiry >= today)
+          .sort((a, b) => a.expiry - b.expiry);
+        if (futs.length > 0) {
+          const near = futs[0];
+          const sym = ORDERFLOW_SYMBOLS.find(s => s.symbol === 'BANKNIFTYFUT');
+          if (sym) {
+            sym.token = near.symboltoken.split(' ')[0];
+            sym.tradingsymbol = near.tradingsymbol;
+            if (this.activeSymbol === 'BANKNIFTYFUT') this.activeToken = sym.token;
+            console.log(`[OrderFlow] Auto-resolved BANKNIFTYFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol}`);
+          }
+        }
+      }
+
+      // 3. Resolve CRUDEOIL FUT
+      const mcxCrude = await angelOneBridge.searchScrip('MCX', 'CRUDEOIL').catch(() => []);
+      if (mcxCrude && mcxCrude.length > 0) {
+        const futs = mcxCrude
+          .filter(r => r.tradingsymbol && r.tradingsymbol.endsWith('FUT') && (r.tradingsymbol.match(/\d{2}[A-Z]{3}\d{2}/g) || []).length === 1)
+          .map(r => ({ ...r, expiry: parseExpiry(r.tradingsymbol) }))
+          .filter(r => r.expiry && r.expiry >= today)
+          .sort((a, b) => a.expiry - b.expiry);
+        if (futs.length > 0) {
+          const near = futs[0];
+          const sym = ORDERFLOW_SYMBOLS.find(s => s.symbol === 'CRUDEOILFUT');
+          if (sym) {
+            sym.token = near.symboltoken.split(' ')[0];
+            sym.tradingsymbol = near.tradingsymbol;
+            if (this.activeSymbol === 'CRUDEOILFUT') this.activeToken = sym.token;
+            console.log(`[OrderFlow] Auto-resolved CRUDEOILFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol}`);
+          }
+        }
+      }
+    } catch (err) {
+      console.warn('[OrderFlow AutoResolve] Warning:', err.message);
+    }
+  }
+
   async seedHistoricalCandles() {
     try {
       const meta = this.getActiveMeta();
       const today = new Date();
-      const dateStr = today.toISOString().split('T')[0];
+      const dateStr = today.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
       const interval = this.timeframeMinutes === 1 ? 'ONE_MINUTE' :
                        (this.timeframeMinutes === 3 ? 'THREE_MINUTE' :
                        (this.timeframeMinutes === 10 ? 'TEN_MINUTE' :
@@ -232,6 +318,9 @@ class OrderFlowStreamEngine {
         };
       } else {
         this.candles.push(candleObj);
+        try {
+          analyseCompletedCandle(candleObj, meta);
+        } catch (e) {}
       }
     });
 
