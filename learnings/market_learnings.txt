@@ -67659,3 +67659,1832 @@ AUTONOMOUS SESSION FORENSIC: 2026-09-28 (16:27:40 IST)
 * 212 F&O UNIVERSE CAPITAL CONCENTRATION: 12 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (2 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
 * INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
 ================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type NORMAL_VARIATION | Range: 168.4 pts
+- BANKNIFTY: Day Type NORMAL_VARIATION | Range: 554.3 pts
+- Rule 5A: Period A Low held all day at 23116.35
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (07:42:44 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22595.65 (-2.9%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 53850.2 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 96 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] INSTITUTIONAL DEMAT ABSORPTION:
+  - Insight: 13 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (NESTLEIND, SWIGGY, HINDCOPPER, M&MFIN).
+  - Applied Rule: Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor.
+
+[2] INDEX VS SECTOR COINTEGRATION:
+  - Insight: On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.
+  - Applied Rule: Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 9 institutional rules
+* Auto-Learned Rules Added: 6 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22595.65 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹53850.2 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 13 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 27 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: NBFC (2 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> NESTLEIND (FMCG)
+    Action: BUY NESTLEIND 1340 CE / Spot
+    Entry: ₹1345.7 | SL: ₹1325.8 (Risk: ₹9950/lot)
+    Target 1: ₹1377.54 (+₹15920/lot)
+    Target 2: ₹1401.42 (+₹27860/lot)
+    Win Rate: 69% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 53.4% of ATR with 91% Demat delivery. Smart money hoarding at Demand Floor (₹1332.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 💥 BREAKDOWN / FADE -> ZYDUSLIFE (Pharmaceuticals)
+    Action: BUY ZYDUSLIFE 1200 PE / Short Spot
+    Entry: ₹1200.5 | SL: ₹1239.1 (Risk: ₹34740/lot)
+    Target 1: ₹1138.74 (+₹55584/lot)
+    Target 2: ₹1092.42 (+₹97272/lot)
+    Win Rate: 62% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹1232.1) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[3] 💥 BREAKDOWN / FADE -> BLUESTARCO (Air Conditioning & Cooling)
+    Action: BUY BLUESTARCO 1520 PE / Short Spot
+    Entry: ₹1529.5 | SL: ₹1602.04 (Risk: ₹23576/lot)
+    Target 1: ₹1413.44 (+₹37719/lot)
+    Target 2: ₹1326.39 (+₹66011/lot)
+    Win Rate: 47% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹1593.5) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 13 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in NBFC (2 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 309.1 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 839.8 pts
+- Rule 5A: Period A Low held all day at 22301.45
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (13:11:00 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22366.1 (-3.89%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54448.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 55 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT SUPPLY COLLAPSE (CALL WRITING DRIVE):
+  - Insight: NIFTY First-Hour PCR drift collapsed to -0.46 indicating aggressive institutional Call writing. NIFTY closed -167.4 pts (-0.74%).
+  - Applied Rule: Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 12:59:00 (Midday) at 22301.45.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 9 institutional rules
+* Auto-Learned Rules Added: 6 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22366.1 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54448.75 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 53 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 0 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: NBFC (4 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 430 PE / Short Spot
+    Entry: ₹425.6 | SL: ₹439.1 (Risk: ₹27000/lot)
+    Target 1: ₹404 (+₹43200/lot)
+    Target 2: ₹387.8 (+₹75600/lot)
+    Win Rate: 70% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[2] 💥 BREAKDOWN / FADE -> BAJAJ-AUTO (Automobile)
+    Action: BUY BAJAJ-AUTO 9900 PE / Short Spot
+    Entry: ₹9942 | SL: ₹10759.71 (Risk: ₹61328/lot)
+    Target 1: ₹8633.66 (+₹98126/lot)
+    Target 2: ₹7652.41 (+₹171719/lot)
+    Win Rate: 96% | Move: -4.0% to -7.5% Waterfall Drop
+    Rationale: Tested 20-day Resistance (₹12470) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 53 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in NBFC (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 309.1 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 839.8 pts
+- Rule 5A: Period A Low held all day at 22301.45
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (13:12:23 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22366.1 (-3.89%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54448.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 55 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT SUPPLY COLLAPSE (CALL WRITING DRIVE):
+  - Insight: NIFTY First-Hour PCR drift collapsed to -0.46 indicating aggressive institutional Call writing. NIFTY closed -162.35 pts (-0.72%).
+  - Applied Rule: Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 12:59:00 (Midday) at 22301.45.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 9 institutional rules
+* Auto-Learned Rules Added: 6 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22366.1 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54448.75 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 53 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 0 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: NBFC (4 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 430 PE / Short Spot
+    Entry: ₹425.6 | SL: ₹439.1 (Risk: ₹27000/lot)
+    Target 1: ₹404 (+₹43200/lot)
+    Target 2: ₹387.8 (+₹75600/lot)
+    Win Rate: 70% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[2] 💥 BREAKDOWN / FADE -> BAJAJ-AUTO (Automobile)
+    Action: BUY BAJAJ-AUTO 9900 PE / Short Spot
+    Entry: ₹9942 | SL: ₹10759.71 (Risk: ₹61328/lot)
+    Target 1: ₹8633.66 (+₹98126/lot)
+    Target 2: ₹7652.41 (+₹171719/lot)
+    Win Rate: 96% | Move: -4.0% to -7.5% Waterfall Drop
+    Rationale: Tested 20-day Resistance (₹12470) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 53 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in NBFC (4 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 309.1 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 839.8 pts
+- Rule 5A: Period A Low held all day at 22301.45
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (13:18:33 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22338.1 (-4.01%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54327.25 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 18 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT SUPPLY COLLAPSE (CALL WRITING DRIVE):
+  - Insight: NIFTY First-Hour PCR drift collapsed to -16.56 indicating aggressive institutional Call writing. NIFTY closed -197.05 pts (-0.87%).
+  - Applied Rule: Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 12:59:00 (Midday) at 22301.45.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 9 institutional rules
+* Auto-Learned Rules Added: 6 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22338.1 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54327.25 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 9 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 3 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: FMCG (3 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> FINPIPE (Pipes & PVC Products)
+    Action: BUY FINPIPE 150 CE / Spot
+    Entry: ₹150 | SL: ₹147.17 (Risk: ₹8490/lot)
+    Target 1: ₹154.53 (+₹13590/lot)
+    Target 2: ₹157.92 (+₹23760/lot)
+    Win Rate: 61% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 52.9% of ATR with 91% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 🔒 HIGH-CONVICTION COIL -> ASIANPAINT (Paints & Chemicals)
+    Action: BUY ASIANPAINT 2380 CE / Spot
+    Entry: ₹2386.4 | SL: ₹2368.18 (Risk: ₹4555/lot)
+    Target 1: ₹2415.55 (+₹7288/lot)
+    Target 2: ₹2437.42 (+₹12755/lot)
+    Win Rate: 64% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 55.1% of ATR with 83% Demat delivery. Smart money hoarding at Demand Floor (₹2377). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[3] 🔒 HIGH-CONVICTION COIL -> ICICIPRULI (Insurance)
+    Action: BUY ICICIPRULI 445 CE / Spot
+    Entry: ₹446.7 | SL: ₹439.11 (Risk: ₹7021/lot)
+    Target 1: ₹458.84 (+₹11229/lot)
+    Target 2: ₹467.95 (+₹19656/lot)
+    Win Rate: 62% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 56.6% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹442.1). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[4] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 420 PE / Short Spot
+    Entry: ₹420.65 | SL: ₹439.1 (Risk: ₹36900/lot)
+    Target 1: ₹391.13 (+₹59040/lot)
+    Target 2: ₹368.99 (+₹103320/lot)
+    Win Rate: 63% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[5] 💥 BREAKDOWN / FADE -> JIOFIN (Fintech & Financial Services)
+    Action: BUY JIOFIN 210 PE / Short Spot
+    Entry: ₹211.31 | SL: ₹217.95 (Risk: ₹15604/lot)
+    Target 1: ₹200.69 (+₹24957/lot)
+    Target 2: ₹192.72 (+₹43687/lot)
+    Win Rate: 62% | Move: -4.0% to -7.5% Waterfall Drop
+    Rationale: Tested 20-day Resistance (₹247.25) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 9 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in FMCG (3 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 309.1 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 839.8 pts
+- Rule 5A: Period A Low held all day at 22301.45
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (13:20:43 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22338.1 (-4.01%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54327.25 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 18 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT SUPPLY COLLAPSE (CALL WRITING DRIVE):
+  - Insight: NIFTY First-Hour PCR drift collapsed to -16.56 indicating aggressive institutional Call writing. NIFTY closed -209.45 pts (-0.93%).
+  - Applied Rule: Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 12:59:00 (Midday) at 22301.45.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 9 institutional rules
+* Auto-Learned Rules Added: 6 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22338.1 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54327.25 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 9 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 3 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: FMCG (3 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> FINPIPE (Pipes & PVC Products)
+    Action: BUY FINPIPE 150 CE / Spot
+    Entry: ₹150 | SL: ₹147.17 (Risk: ₹8490/lot)
+    Target 1: ₹154.53 (+₹13590/lot)
+    Target 2: ₹157.92 (+₹23760/lot)
+    Win Rate: 61% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 52.9% of ATR with 91% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 🔒 HIGH-CONVICTION COIL -> ASIANPAINT (Paints & Chemicals)
+    Action: BUY ASIANPAINT 2380 CE / Spot
+    Entry: ₹2386.4 | SL: ₹2368.18 (Risk: ₹4555/lot)
+    Target 1: ₹2415.55 (+₹7288/lot)
+    Target 2: ₹2437.42 (+₹12755/lot)
+    Win Rate: 64% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 55.1% of ATR with 83% Demat delivery. Smart money hoarding at Demand Floor (₹2377). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[3] 🔒 HIGH-CONVICTION COIL -> ICICIPRULI (Insurance)
+    Action: BUY ICICIPRULI 445 CE / Spot
+    Entry: ₹446.7 | SL: ₹439.11 (Risk: ₹7021/lot)
+    Target 1: ₹458.84 (+₹11229/lot)
+    Target 2: ₹467.95 (+₹19656/lot)
+    Win Rate: 62% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 56.6% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹442.1). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[4] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 420 PE / Short Spot
+    Entry: ₹420.65 | SL: ₹439.1 (Risk: ₹36900/lot)
+    Target 1: ₹391.13 (+₹59040/lot)
+    Target 2: ₹368.99 (+₹103320/lot)
+    Win Rate: 63% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[5] 💥 BREAKDOWN / FADE -> JIOFIN (Fintech & Financial Services)
+    Action: BUY JIOFIN 210 PE / Short Spot
+    Entry: ₹211.31 | SL: ₹217.95 (Risk: ₹15604/lot)
+    Target 1: ₹200.69 (+₹24957/lot)
+    Target 2: ₹192.72 (+₹43687/lot)
+    Win Rate: 62% | Move: -4.0% to -7.5% Waterfall Drop
+    Rationale: Tested 20-day Resistance (₹247.25) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 9 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in FMCG (3 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+[WEEKLY STRIKE ZERO SETTLEMENT DISCOVERY - 2026-09-29]
+* Series: SERIES-2026-09-29 | Settled: NIFTY 22421.95 / BANKNIFTY 54450.75
+* Total Strikes Tracked: 82 (20 Above + 20 Below ATM)
+* Expired to ₹0.00: 69 (84.1% Zero Rate) | Breached/ITM: 11
+* Empirical Safe Writing Boundary: Nifty Puts > -929 pts and Calls > +71 pts decayed to ZERO with 100% hold rate.
+* Core Takeaway: Institutional writers collected full 100% premium outside the 1000 pt corridor.
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 392.9 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 1020.5 pts
+- Rule 5A: Period A Low held all day at 22217.65
+- Stock Universe Win Rate: 100% (31 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+SESSION REPORT: 1/10/2026
+================================================================================
+
+1. MACRO SUMMARY
+--------------------------------------------------------------------------------
+* Nifty 50: 22421.95 (-0.88%)
+* Bank Nifty: 54450.75 (-0.33%)
+
+1B. INDEX LEVEL INTERACTIONS:
+--------------------------------------------------------------------------------
+  - Nifty triggered a Monthly S4 (VAL Breakdown Trigger) Breakdown (close: 22421.95, excess: 0.4%)
+  - Bank Nifty touched Monthly S4 (VAL Breakdown Trigger) (54104.39) at 01:55 pm | Candle = Tweezer Top (Double Rejection) | Bounced (low: 54066.60, close: 54450.75)
+  - Bank Nifty touched Monthly R4 (VAH Breakout Trigger) (55161.71) at 01:05 pm | Candle = Neutral Candle | Rejected (high: 55091.45, close: 54450.75)
+
+2. HIGH-PROBABILITY MATRIX REVERSALS (BOUNCES & REJECTIONS)
+--------------------------------------------------------------------------------
+
+A. BULLISH SUPPORT BOUNCES (Tested VAL Support and Reverted)
+
+* NSE:ATLANTAELE (+7.55% Bounce) | Candle = Bullish Engulfing (Momentum Shift) | SSL Sweep Reversal (Low swept 1600.0, close 1716.5)
+  - The Setup: Price traded down to a session low of 1596.00, testing the S3 (VAL Reversion) Matrix line at 1593.66 (within 0.15% proximity).
+  - The Action: Bounced +7.55% off the level to close at 1716.50.
+
+* NSE:AYE (+7.08% Bounce) | Candle = Bullish Engulfing (Momentum Shift) | SSL Sweep Reversal (Low swept 155.0, close 163.3) | Double Top Breakdown
+  - The Setup: Price traded down to a session low of 152.50, testing the S4 (VAL Breakdown Trigger) Matrix line at 152.43 (within 0.05% proximity).
+  - The Action: Bounced +7.08% off the level to close at 163.29.
+
+* NSE:DPABHUSHAN (+6.96% Bounce) | Candle = Neutral Candle
+  - The Setup: Price traded down to a session low of 1752.10, testing the S3 (VAL Reversion) Matrix line at 1752.86 (within 0.04% proximity).
+  - The Action: Bounced +6.96% off the level to close at 1874.00.
+
+* NSE:DAICHI (+6.37% Bounce) | Candle = Bullish Engulfing (Momentum Shift) | SSL Sweep Reversal (Low swept 306.5, close 317.1)
+  - The Setup: Price traded down to a session low of 298.10, testing the S5 (VAL Extreme) Matrix line at 298.52 (within 0.14% proximity).
+  - The Action: Bounced +6.37% off the level to close at 317.10.
+
+* NSE:LXCHEM (+6.03% Bounce) | Candle = SSL Sweep Reversal (Low swept 176.0, close 181.4)
+  - The Setup: Price traded down to a session low of 171.07, testing the S6 (VAL Capitulation) Matrix line at 171.11 (within 0.02% proximity).
+  - The Action: Bounced +6.03% off the level to close at 181.39.
+
+B. BEARISH RESISTANCE REJECTIONS (Tested VAH Resistance and Pullback)
+
+* NSE:BHAGERIA (-8.12% Rejection) | Candle = Dark Cloud Cover (Bearish Reversal) | SSL Sweep Reversal (Low swept 378.0, close 382.1)
+  - The Setup: Price traded up to a session high of 415.80, testing the R3 (VAH Reversion) Matrix line at 416.21 (within 0.10% proximity).
+  - The Action: Rejected -8.12% off the level to close at 382.05.
+
+* NSE:NIITMTS (-8.00% Rejection) | Candle = Neutral Candle
+  - The Setup: Price traded up to a session high of 207.69, testing the R4 (VAH Breakout Trigger) Matrix line at 207.69 (within 0.00% proximity).
+  - The Action: Rejected -8.00% off the level to close at 191.08.
+
+* NSE:AMNPLST (-7.06% Rejection) | Candle = BSL Sweep Reversal (High swept 174.9, close 165.4)
+  - The Setup: Price traded up to a session high of 178.00, testing the R6 (VAH Exhaustion) Matrix line at 178.02 (within 0.01% proximity).
+  - The Action: Rejected -7.06% off the level to close at 165.43.
+
+* NSE:MMFL (-6.08% Rejection) | Candle = Double Top Breakdown
+  - The Setup: Price traded up to a session high of 609.00, testing the R3 (VAH Reversion) Matrix line at 608.36 (within 0.10% proximity).
+  - The Action: Rejected -6.08% off the level to close at 571.95.
+
+* NSE:IFBAGRO (-5.76% Rejection) | Candle = Neutral Candle
+  - The Setup: Price traded up to a session high of 919.95, testing the R4 (VAH Breakout Trigger) Matrix line at 919.92 (within 0.00% proximity).
+  - The Action: Rejected -5.76% off the level to close at 866.95.
+
+3. LEVEL BREAKDOWNS (Closed Below S4)
+--------------------------------------------------------------------------------
+* NSE:PELATRO: Closed at 359.90, breaking below Monthly S4 (395.13) by -8.92%.
+* NSE:AVIENCE: Closed at 323.75, breaking below Monthly S4 (349.00) by -7.24%.
+* NSE:BAJAJ_AUTO: Closed at 10045.00, breaking below Monthly S4 (10778.30) by -6.80%.
+* NSE:INM: Closed at 140.05, breaking below Monthly S4 (149.42) by -6.27%.
+* NSE:PCCL: Closed at 406.00, breaking below Monthly S4 (430.56) by -5.70%.
+
+4. DETECTED PRICE ACTION & CANDLESTICK PATTERNS
+--------------------------------------------------------------------------------
+* NSE:BANKNIFTY: Bearish Spinning Top (Indecision) | SSL Sweep Reversal (Low swept 54174.3, close 54450.8) | Double Top Breakdown
+* NSE:CNXIT: Morning Star (Bullish Reversal)
+* NSE:NIFTY: Double Top Breakdown
+* NSE:CNXENERGY: Double Top Breakdown
+* NSE:CNXMETAL: Double Top Breakdown
+* NSE:CNXPSUBANK: Double Top Breakdown
+* NSE:CNXINFRA: Double Top Breakdown
+* NSE:360ONE: SSL Sweep Reversal (Low swept 1029.0, close 1040.0)
+* NSE:3BBLACKBIO: Cup & Handle Breakout (19% Handle retracement)
+* NSE:5PAISA: SSL Sweep Reversal (Low swept 302.4, close 316.4)
+* NSE:3MINDIA: Double Top Breakdown
+* NSE:AARTIDRUGS: Bearish Engulfing (Momentum Shift)
+* NSE:63MOONS: Bearish Spinning Top (Indecision) | Bearish Engulfing (Momentum Shift)
+* NSE:AARTISURF: BSL Sweep Reversal (High swept 504.1, close 498.5) | Double Top Breakdown
+* NSE:AARTIIND: Bearish Engulfing (Momentum Shift)
+
+5. INTRADAY 5-MIN OPTION PREMIUM BACKTEST & LEARNINGS
+--------------------------------------------------------------------------------
+* ATLANTAELE (LONG) touched S3 (VAL Reversion) (1593.66) at 09:15 am
+  - Entry Premium: ₹24.25 | Exit Premium: ₹50.68 | ROI: 109.0% (Target Hit at 09:20 am)
+* AYE (LONG) touched S4 (VAL Breakdown Trigger) (152.43) at 09:25 am
+  - Entry Premium: ₹2.31 | Exit Premium: ₹4.48 | ROI: 93.5% (Target Hit at 11:00 am)
+* DPABHUSHAN (LONG) touched S3 (VAL Reversion) (1752.86) at 09:15 am
+  - Entry Premium: ₹27.22 | Exit Premium: ₹59.82 | ROI: 119.8% (Target/Close Exit)
+* DAICHI (LONG) touched S5 (VAL Extreme) (298.52) at 01:35 pm
+  - Entry Premium: ₹4.50 | Exit Premium: ₹6.58 | ROI: 46.2% (Target Hit at 02:20 pm)
+* LXCHEM (LONG) touched S6 (VAL Capitulation) (171.11) at 12:55 pm
+  - Entry Premium: ₹2.59 | Exit Premium: ₹4.40 | ROI: 69.9% (Target Hit at 02:25 pm)
+* CCL (LONG) touched S4 (VAL Breakdown Trigger) (997.72) at 09:15 am
+  - Entry Premium: ₹15.14 | Exit Premium: ₹28.51 | ROI: 88.4% (Target Hit at 02:40 pm)
+* 5PAISA (LONG) touched S5 (VAL Extreme) (298.80) at 09:15 am
+  - Entry Premium: ₹4.60 | Exit Premium: ₹10.87 | ROI: 136.5% (Target/Close Exit)
+* MONARCH (LONG) touched S6 (VAL Capitulation) (324.58) at 02:15 pm
+  - Entry Premium: ₹4.91 | Exit Premium: ₹8.28 | ROI: 68.7% (Target Hit at 02:35 pm)
+* OMAXAUTO (LONG) touched S6 (VAL Capitulation) (190.73) at 09:50 am
+  - Entry Premium: ₹2.90 | Exit Premium: ₹5.74 | ROI: 98.1% (Target Hit at 10:45 am)
+* MAXIND (LONG) touched S6 (VAL Capitulation) (154.75) at 09:30 am
+  - Entry Premium: ₹2.33 | Exit Premium: ₹3.26 | ROI: 39.8% (Target Hit at 09:50 am)
+* MIDWESTLTD (LONG) touched S5 (VAL Extreme) (859.28) at 12:45 pm
+  - Entry Premium: ₹13.01 | Exit Premium: ₹22.70 | ROI: 74.5% (Target Hit at 02:55 pm)
+* AEGISLOG (LONG) touched S4 (VAL Breakdown Trigger) (1331.97) at 09:15 am
+  - Entry Premium: ₹20.30 | Exit Premium: ₹44.59 | ROI: 119.6% (Target Hit at 10:05 am)
+* AARTIPHARM (LONG) touched S4 (VAL Breakdown Trigger) (921.08) at 12:45 pm
+  - Entry Premium: ₹13.89 | Exit Premium: ₹20.65 | ROI: 48.7% (Target Hit at 02:25 pm)
+* CARYSIL (LONG) touched S6 (VAL Capitulation) (995.06) at 12:55 pm
+  - Entry Premium: ₹14.98 | Exit Premium: ₹20.61 | ROI: 37.6% (Target Hit at 01:05 pm)
+* PNCINFRA (LONG) touched S3 (VAL Reversion) (131.85) at 09:15 am
+  - Entry Premium: ₹2.04 | Exit Premium: ₹3.69 | ROI: 81.3% (Target/Close Exit)
+* MADHAVBAUG (LONG) touched S3 (VAL Reversion) (170.03) at 10:45 am
+  - Entry Premium: ₹2.55 | Exit Premium: ₹2.87 | ROI: 12.4% (Target Hit at 11:15 am)
+* EMKAY (LONG) touched S3 (VAL Reversion) (274.90) at 09:15 am
+  - Entry Premium: ₹4.19 | Exit Premium: ₹9.04 | ROI: 115.8% (Target Hit at 03:25 pm)
+* OAL (LONG) touched S5 (VAL Extreme) (510.77) at 12:55 pm
+  - Entry Premium: ₹7.67 | Exit Premium: ₹8.96 | ROI: 16.9% (Target Hit at 01:00 pm)
+* KSHINTL (LONG) touched S3 (VAL Reversion) (990.04) at 09:15 am
+  - Entry Premium: ₹14.96 | Exit Premium: ₹24.19 | ROI: 61.7% (Target Hit at 10:00 am)
+* BECTORFOOD (LONG) touched S3 (VAL Reversion) (205.01) at 09:15 am
+  - Entry Premium: ₹3.17 | Exit Premium: ₹3.14 | ROI: -0.9% (Target/Close Exit)
+* MCCHRLS_B (LONG) touched S4 (VAL Breakdown Trigger) (665.65) at 02:10 pm
+  - Entry Premium: ₹9.97 | Exit Premium: ₹10.66 | ROI: 6.8% (Target Hit at 02:55 pm)
+* PONNIERODE (LONG) touched S4 (VAL Breakdown Trigger) (358.92) at 12:45 pm
+  - Entry Premium: ₹5.42 | Exit Premium: ₹8.27 | ROI: 52.6% (Target Hit at 02:30 pm)
+* ARMANFIN (LONG) touched S5 (VAL Extreme) (1700.99) at 09:15 am
+  - Entry Premium: ₹26.26 | Exit Premium: ₹30.96 | ROI: 17.9% (Target/Close Exit)
+* ASTERDM (LONG) touched S3 (VAL Reversion) (684.00) at 09:15 am
+  - Entry Premium: ₹10.36 | Exit Premium: ₹18.63 | ROI: 79.7% (Target Hit at 12:30 pm)
+* KINGFA (LONG) touched S4 (VAL Breakdown Trigger) (6361.23) at 12:55 pm
+  - Entry Premium: ₹96.31 | Exit Premium: ₹168.81 | ROI: 75.3% (Target Hit at 02:35 pm)
+* JSFB (LONG) touched S6 (VAL Capitulation) (466.14) at 12:55 pm
+  - Entry Premium: ₹7.05 | Exit Premium: ₹11.79 | ROI: 67.2% (Target Hit at 02:35 pm)
+* GUJTHEM (LONG) touched S5 (VAL Extreme) (368.35) at 12:50 pm
+  - Entry Premium: ₹5.58 | Exit Premium: ₹10.27 | ROI: 84.0% (Target Hit at 03:00 pm)
+* JYOTICNC (LONG) touched S6 (VAL Capitulation) (999.03) at 12:45 pm
+  - Entry Premium: ₹15.10 | Exit Premium: ₹24.56 | ROI: 62.7% (Target Hit at 02:30 pm)
+* DYNAMATECH (LONG) touched S4 (VAL Breakdown Trigger) (13286.50) at 09:25 am
+  - Entry Premium: ₹201.78 | Exit Premium: ₹393.85 | ROI: 95.2% (Target Hit at 02:40 pm)
+* AGARWALEYE (LONG) touched S3 (VAL Reversion) (471.81) at 09:15 am
+  - Entry Premium: ₹7.09 | Exit Premium: ₹9.03 | ROI: 27.3% (Target Hit at 10:05 am)
+* HDFCLIFE (LONG) touched S4 (VAL Breakdown Trigger) (516.91) at 09:15 am
+  - Entry Premium: ₹7.89 | Exit Premium: ₹12.69 | ROI: 60.8% (Target/Close Exit)
+* ENGINERSIN (LONG) touched S5 (VAL Extreme) (302.63) at 09:15 am
+  - Entry Premium: ₹4.63 | Exit Premium: ₹6.13 | ROI: 32.4% (Target/Close Exit)
+* BOROLTD (LONG) touched S6 (VAL Capitulation) (271.76) at 12:55 pm
+  - Entry Premium: ₹4.11 | Exit Premium: ₹6.64 | ROI: 61.7% (Target Hit at 02:30 pm)
+* EUROPRATIK (LONG) touched S3 (VAL Reversion) (184.96) at 12:50 pm
+  - Entry Premium: ₹2.80 | Exit Premium: ₹5.17 | ROI: 84.2% (Target Hit at 02:25 pm)
+* MANORAMA (LONG) touched S5 (VAL Extreme) (1822.66) at 09:15 am
+  - Entry Premium: ₹27.49 | Exit Premium: ₹41.18 | ROI: 49.8% (Target Hit at 09:50 am)
+* IFGLEXPOR (LONG) touched S5 (VAL Extreme) (184.14) at 12:55 pm
+  - Entry Premium: ₹2.79 | Exit Premium: ₹4.83 | ROI: 73.5% (Target Hit at 03:25 pm)
+* CELLO (LONG) touched S5 (VAL Extreme) (313.83) at 12:50 pm
+  - Entry Premium: ₹4.74 | Exit Premium: ₹7.74 | ROI: 63.2% (Target Hit at 03:15 pm)
+* JUBLCPL (LONG) touched S5 (VAL Extreme) (1981.49) at 12:45 pm
+  - Entry Premium: ₹29.92 | Exit Premium: ₹47.20 | ROI: 57.7% (Target Hit at 02:40 pm)
+* HEG (LONG) touched S3 (VAL Reversion) (232.62) at 12:45 pm
+  - Entry Premium: ₹3.51 | Exit Premium: ₹5.56 | ROI: 58.3% (Target Hit at 03:00 pm)
+* CEATLTD (LONG) touched S5 (VAL Extreme) (3195.92) at 09:15 am
+  - Entry Premium: ₹48.31 | Exit Premium: ₹79.17 | ROI: 63.9% (Target Hit at 03:00 pm)
+* JAGSNPHARM (LONG) touched S5 (VAL Extreme) (225.54) at 12:55 pm
+  - Entry Premium: ₹3.42 | Exit Premium: ₹5.61 | ROI: 64.0% (Target/Close Exit)
+* GOACARBON (LONG) touched S6 (VAL Capitulation) (391.68) at 09:15 am
+  - Entry Premium: ₹6.04 | Exit Premium: ₹7.74 | ROI: 28.2% (Target/Close Exit)
+* NORTHARC (LONG) touched S4 (VAL Breakdown Trigger) (281.03) at 12:50 pm
+  - Entry Premium: ₹4.25 | Exit Premium: ₹7.44 | ROI: 74.9% (Target Hit at 03:25 pm)
+* KCP (LONG) touched S5 (VAL Extreme) (150.07) at 12:45 pm
+  - Entry Premium: ₹2.26 | Exit Premium: ₹3.29 | ROI: 45.4% (Target Hit at 02:50 pm)
+* CMSINFO (LONG) touched S4 (VAL Breakdown Trigger) (215.40) at 01:15 pm
+  - Entry Premium: ₹3.25 | Exit Premium: ₹4.88 | ROI: 50.2% (Target Hit at 02:55 pm)
+* PANACEABIO (LONG) touched S6 (VAL Capitulation) (350.31) at 12:40 pm
+  - Entry Premium: ₹5.30 | Exit Premium: ₹8.73 | ROI: 64.9% (Target Hit at 02:55 pm)
+* PAUSHAKLTD (LONG) touched S6 (VAL Capitulation) (634.91) at 12:50 pm
+  - Entry Premium: ₹9.57 | Exit Premium: ₹14.03 | ROI: 46.6% (Target Hit at 01:05 pm)
+* ASALCBR (LONG) touched S5 (VAL Extreme) (596.85) at 01:00 pm
+  - Entry Premium: ₹9.05 | Exit Premium: ₹14.88 | ROI: 64.4% (Target/Close Exit)
+* IMFA (LONG) touched S6 (VAL Capitulation) (1147.89) at 12:45 pm
+  - Entry Premium: ₹17.34 | Exit Premium: ₹27.64 | ROI: 59.4% (Target Hit at 03:00 pm)
+* PANAMAPET (LONG) touched S4 (VAL Breakdown Trigger) (474.57) at 09:20 am
+  - Entry Premium: ₹7.16 | Exit Premium: ₹11.14 | ROI: 55.5% (Target Hit at 02:40 pm)
+* CLAYCRAFT (LONG) touched S4 (VAL Breakdown Trigger) (163.24) at 02:30 pm
+  - Entry Premium: ₹2.45 | Exit Premium: ₹2.73 | ROI: 11.7% (Target Hit at 02:50 pm)
+* ABB (LONG) touched S3 (VAL Reversion) (6732.96) at 09:15 am
+  - Entry Premium: ₹101.97 | Exit Premium: ₹140.47 | ROI: 37.8% (Target/Close Exit)
+* MANKIND (LONG) touched S3 (VAL Reversion) (2477.13) at 09:15 am
+  - Entry Premium: ₹37.20 | Exit Premium: ₹45.33 | ROI: 21.9% (Target Hit at 09:35 am)
+* ETHOSLTD (LONG) touched S5 (VAL Extreme) (2475.69) at 12:55 pm
+  - Entry Premium: ₹37.37 | Exit Premium: ₹57.93 | ROI: 55.0% (Target Hit at 03:10 pm)
+* INOXGREEN (LONG) touched S5 (VAL Extreme) (155.13) at 02:00 pm
+  - Entry Premium: ₹2.34 | Exit Premium: ₹3.42 | ROI: 46.3% (Target Hit at 02:45 pm)
+* ELLEN (LONG) touched S5 (VAL Extreme) (333.51) at 12:10 pm
+  - Entry Premium: ₹5.05 | Exit Premium: ₹7.42 | ROI: 47.0% (Target/Close Exit)
+* LAXMIDENTL (LONG) touched S3 (VAL Reversion) (189.60) at 12:45 pm
+  - Entry Premium: ₹2.86 | Exit Premium: ₹4.36 | ROI: 52.4% (Target Hit at 03:00 pm)
+* DATAPATTNS (LONG) touched S6 (VAL Capitulation) (4152.19) at 12:55 pm
+  - Entry Premium: ₹62.73 | Exit Premium: ₹100.85 | ROI: 60.8% (Target Hit at 02:35 pm)
+* PIRAMALFIN (LONG) touched S4 (VAL Breakdown Trigger) (1980.38) at 09:15 am
+  - Entry Premium: ₹29.91 | Exit Premium: ₹47.70 | ROI: 59.5% (Target Hit at 10:25 am)
+* GICRE (LONG) touched S6 (VAL Capitulation) (317.18) at 01:35 pm
+  - Entry Premium: ₹4.79 | Exit Premium: ₹7.24 | ROI: 51.3% (Target Hit at 02:35 pm)
+* HERITGFOOD (LONG) touched S5 (VAL Extreme) (394.03) at 09:15 am
+  - Entry Premium: ₹5.96 | Exit Premium: ₹10.27 | ROI: 72.3% (Target Hit at 10:40 am)
+* BHARATRAS (LONG) touched S5 (VAL Extreme) (976.46) at 12:50 pm
+  - Entry Premium: ₹14.73 | Exit Premium: ₹22.23 | ROI: 50.9% (Target Hit at 02:55 pm)
+* QUADFUTURE (LONG) touched S6 (VAL Capitulation) (520.19) at 12:45 pm
+  - Entry Premium: ₹7.87 | Exit Premium: ₹11.35 | ROI: 44.1% (Target/Close Exit)
+* NATCOPHARM (LONG) touched S5 (VAL Extreme) (803.19) at 09:15 am
+  - Entry Premium: ₹12.16 | Exit Premium: ₹16.41 | ROI: 35.0% (Target/Close Exit)
+* OIL (LONG) touched S5 (VAL Extreme) (434.71) at 01:25 pm
+  - Entry Premium: ₹6.55 | Exit Premium: ₹9.53 | ROI: 45.4% (Target/Close Exit)
+* CENTUM (LONG) touched S6 (VAL Capitulation) (4608.96) at 12:45 pm
+  - Entry Premium: ₹69.36 | Exit Premium: ₹93.32 | ROI: 34.5% (Target Hit at 12:55 pm)
+* KAMATHOTEL (LONG) touched S5 (VAL Extreme) (232.59) at 09:15 am
+  - Entry Premium: ₹3.55 | Exit Premium: ₹4.01 | ROI: 12.9% (Target/Close Exit)
+* CGCL (LONG) touched S4 (VAL Breakdown Trigger) (244.01) at 09:15 am
+  - Entry Premium: ₹3.72 | Exit Premium: ₹4.59 | ROI: 23.2% (Target/Close Exit)
+* FINCABLES (LONG) touched S4 (VAL Breakdown Trigger) (1428.08) at 09:15 am
+  - Entry Premium: ₹22.01 | Exit Premium: ₹13.36 | ROI: -39.3% (Target/Close Exit)
+* DANISH (LONG) touched S6 (VAL Capitulation) (932.62) at 01:30 pm
+  - Entry Premium: ₹14.25 | Exit Premium: ₹22.82 | ROI: 60.2% (Target/Close Exit)
+* PREMIERENE (LONG) touched S4 (VAL Breakdown Trigger) (860.31) at 09:20 am
+  - Entry Premium: ₹12.99 | Exit Premium: ₹20.25 | ROI: 55.9% (Target Hit at 10:00 am)
+* BAJAJHCARE (LONG) touched S5 (VAL Extreme) (316.01) at 11:45 am
+  - Entry Premium: ₹4.78 | Exit Premium: ₹5.86 | ROI: 22.5% (Target/Close Exit)
+* BAJAJCON (LONG) touched S5 (VAL Extreme) (486.45) at 09:15 am
+  - Entry Premium: ₹7.42 | Exit Premium: ₹8.43 | ROI: 13.5% (Target/Close Exit)
+* GRWRHITECH (LONG) touched S6 (VAL Capitulation) (6790.99) at 12:45 pm
+  - Entry Premium: ₹102.64 | Exit Premium: ₹168.24 | ROI: 63.9% (Target Hit at 02:40 pm)
+* AAVAS (LONG) touched S6 (VAL Capitulation) (1166.88) at 09:40 am
+  - Entry Premium: ₹17.64 | Exit Premium: ₹29.19 | ROI: 65.5% (Target Hit at 03:20 pm)
+* CARBORUNIV (LONG) touched S4 (VAL Breakdown Trigger) (1216.47) at 09:15 am
+  - Entry Premium: ₹18.47 | Exit Premium: ₹25.32 | ROI: 37.1% (Target/Close Exit)
+* AEROPLANE (LONG) touched S3 (VAL Reversion) (203.82) at 09:15 am
+  - Entry Premium: ₹3.12 | Exit Premium: ₹2.79 | ROI: -10.4% (Target/Close Exit)
+* GARFIBRES (LONG) touched S4 (VAL Breakdown Trigger) (753.66) at 09:15 am
+  - Entry Premium: ₹11.45 | Exit Premium: ₹14.40 | ROI: 25.8% (Target/Close Exit)
+* GPPL (LONG) touched S4 (VAL Breakdown Trigger) (162.49) at 01:40 pm
+  - Entry Premium: ₹2.45 | Exit Premium: ₹3.78 | ROI: 54.3% (Target Hit at 02:50 pm)
+* LICHSGFIN (LONG) touched S5 (VAL Extreme) (499.88) at 01:50 pm
+  - Entry Premium: ₹7.56 | Exit Premium: ₹9.49 | ROI: 25.5% (Target/Close Exit)
+* DRAGARWQ (LONG) touched S4 (VAL Breakdown Trigger) (5053.00) at 09:25 am
+  - Entry Premium: ₹76.40 | Exit Premium: ₹119.65 | ROI: 56.6% (Target/Close Exit)
+* HIRECT (LONG) touched S5 (VAL Extreme) (1101.81) at 01:45 pm
+  - Entry Premium: ₹16.65 | Exit Premium: ₹27.04 | ROI: 62.4% (Target Hit at 02:55 pm)
+* PRUDENT (LONG) touched S6 (VAL Capitulation) (3062.44) at 09:15 am
+  - Entry Premium: ₹46.43 | Exit Premium: ₹49.63 | ROI: 6.9% (Target/Close Exit)
+* CRISIL (LONG) touched S6 (VAL Capitulation) (4346.99) at 09:15 am
+  - Entry Premium: ₹65.80 | Exit Premium: ₹88.80 | ROI: 35.0% (Target/Close Exit)
+* GOPAL (LONG) touched S3 (VAL Reversion) (249.62) at 09:15 am
+  - Entry Premium: ₹3.78 | Exit Premium: ₹6.51 | ROI: 72.3% (Target Hit at 01:50 pm)
+* DOLLAR (LONG) touched S6 (VAL Capitulation) (267.31) at 12:55 pm
+  - Entry Premium: ₹4.04 | Exit Premium: ₹4.31 | ROI: 6.8% (Target/Close Exit)
+* BANSALWIRE (LONG) touched S4 (VAL Breakdown Trigger) (316.88) at 09:40 am
+  - Entry Premium: ₹4.80 | Exit Premium: ₹7.15 | ROI: 49.0% (Target/Close Exit)
+* GOCOLORS (LONG) touched S5 (VAL Extreme) (289.86) at 02:05 pm
+  - Entry Premium: ₹4.39 | Exit Premium: ₹6.46 | ROI: 47.3% (Target/Close Exit)
+* KAYA (LONG) touched S6 (VAL Capitulation) (292.91) at 02:10 pm
+  - Entry Premium: ₹4.39 | Exit Premium: ₹4.66 | ROI: 6.2% (Target Hit at 02:20 pm)
+* DIVISLAB (LONG) touched S5 (VAL Extreme) (9091.12) at 09:25 am
+  - Entry Premium: ₹137.81 | Exit Premium: ₹144.31 | ROI: 4.7% (Target/Close Exit)
+* BHAGERIA (LONG) touched S5 (VAL Extreme) (375.52) at 09:40 am
+  - Entry Premium: ₹5.71 | Exit Premium: ₹5.96 | ROI: 4.4% (Target/Close Exit)
+* HERANBA (LONG) touched S6 (VAL Capitulation) (169.07) at 12:55 pm
+  - Entry Premium: ₹2.55 | Exit Premium: ₹4.02 | ROI: 57.6% (Target Hit at 02:40 pm)
+* JKTYRE (LONG) touched S6 (VAL Capitulation) (334.64) at 12:25 pm
+  - Entry Premium: ₹5.06 | Exit Premium: ₹6.78 | ROI: 34.1% (Target/Close Exit)
+* DYNPRO (LONG) touched S4 (VAL Breakdown Trigger) (220.27) at 09:40 am
+  - Entry Premium: ₹3.31 | Exit Premium: ₹4.15 | ROI: 25.4% (Target Hit at 09:50 am)
+* AVANTEL (LONG) touched S5 (VAL Extreme) (147.53) at 12:20 pm
+  - Entry Premium: ₹2.23 | Exit Premium: ₹3.03 | ROI: 35.6% (Target/Close Exit)
+* AIAENG (LONG) touched S6 (VAL Capitulation) (3760.48) at 12:30 pm
+  - Entry Premium: ₹56.95 | Exit Premium: ₹65.80 | ROI: 15.5% (Target/Close Exit)
+* ADVAIT (LONG) touched S6 (VAL Capitulation) (1828.52) at 12:45 pm
+  - Entry Premium: ₹27.63 | Exit Premium: ₹35.88 | ROI: 29.9% (Target/Close Exit)
+* PFIZER (LONG) touched S5 (VAL Extreme) (3787.92) at 12:40 pm
+  - Entry Premium: ₹57.28 | Exit Premium: ₹76.33 | ROI: 33.3% (Target/Close Exit)
+* PICCADIL (LONG) touched S5 (VAL Extreme) (570.83) at 12:10 pm
+  - Entry Premium: ₹8.68 | Exit Premium: ₹13.23 | ROI: 52.4% (Target/Close Exit)
+* LAOPALA (LONG) touched S5 (VAL Extreme) (153.24) at 12:50 pm
+  - Entry Premium: ₹2.32 | Exit Premium: ₹2.41 | ROI: 3.7% (Target/Close Exit)
+* HAWKINCOOK (LONG) touched S4 (VAL Breakdown Trigger) (7885.40) at 09:15 am
+  - Entry Premium: ₹119.20 | Exit Premium: ₹176.45 | ROI: 48.0% (Target/Close Exit)
+* LGEINDIA (LONG) touched S5 (VAL Extreme) (1692.14) at 09:20 am
+  - Entry Premium: ₹25.67 | Exit Premium: ₹27.12 | ROI: 5.6% (Target/Close Exit)
+* BAJAJFINSV (LONG) touched S4 (VAL Breakdown Trigger) (1705.75) at 09:15 am
+  - Entry Premium: ₹25.80 | Exit Premium: ₹30.75 | ROI: 19.2% (Target/Close Exit)
+* ARVINDFASN (LONG) touched S4 (VAL Breakdown Trigger) (373.51) at 12:45 pm
+  - Entry Premium: ₹5.64 | Exit Premium: ₹8.64 | ROI: 53.1% (Target/Close Exit)
+* AJAXENGG (LONG) touched S5 (VAL Extreme) (577.42) at 12:50 pm
+  - Entry Premium: ₹8.74 | Exit Premium: ₹10.32 | ROI: 18.0% (Target/Close Exit)
+* AJAXENGG (LONG) touched S6 (VAL Capitulation) (575.98) at 12:50 pm
+  - Entry Premium: ₹8.74 | Exit Premium: ₹10.32 | ROI: 18.0% (Target/Close Exit)
+* KDDL (LONG) touched S3 (VAL Reversion) (3844.66) at 01:35 pm
+  - Entry Premium: ₹58.29 | Exit Premium: ₹70.29 | ROI: 20.6% (Target/Close Exit)
+* LAURUSLABS (LONG) touched S4 (VAL Breakdown Trigger) (1954.42) at 09:15 am
+  - Entry Premium: ₹29.55 | Exit Premium: ₹33.15 | ROI: 12.2% (Target/Close Exit)
+* IRCTC (LONG) touched S4 (VAL Breakdown Trigger) (447.26) at 09:15 am
+  - Entry Premium: ₹6.74 | Exit Premium: ₹9.42 | ROI: 39.9% (Target Hit at 11:50 am)
+* OBEROIRLTY (LONG) touched S5 (VAL Extreme) (1726.67) at 12:45 pm
+  - Entry Premium: ₹26.05 | Exit Premium: ₹37.80 | ROI: 45.1% (Target/Close Exit)
+* NAVA (LONG) touched S5 (VAL Extreme) (543.23) at 12:45 pm
+  - Entry Premium: ₹8.19 | Exit Premium: ₹11.74 | ROI: 43.4% (Target Hit at 02:30 pm)
+* BERGEPAINT (LONG) touched S6 (VAL Capitulation) (445.82) at 09:15 am
+  - Entry Premium: ₹6.72 | Exit Premium: ₹9.89 | ROI: 47.2% (Target Hit at 12:05 pm)
+* DVL (LONG) touched S5 (VAL Extreme) (274.80) at 09:20 am
+  - Entry Premium: ₹4.20 | Exit Premium: ₹5.20 | ROI: 23.8% (Target/Close Exit)
+* GLOBUSSPR (LONG) touched S3 (VAL Reversion) (774.42) at 12:40 pm
+  - Entry Premium: ₹11.71 | Exit Premium: ₹13.91 | ROI: 18.8% (Target/Close Exit)
+* GALLANTT (LONG) touched S6 (VAL Capitulation) (521.63) at 12:45 pm
+  - Entry Premium: ₹7.91 | Exit Premium: ₹10.06 | ROI: 27.2% (Target/Close Exit)
+* OFSS (LONG) touched S6 (VAL Capitulation) (10256.43) at 01:40 pm
+  - Entry Premium: ₹155.29 | Exit Premium: ₹183.79 | ROI: 18.4% (Target/Close Exit)
+* GUJAPOLLO (LONG) touched S6 (VAL Capitulation) (320.33) at 03:20 pm
+  - Entry Premium: ₹4.92 | Exit Premium: ₹2.92 | ROI: -40.7% (Target/Close Exit)
+* MAPMYINDIA (LONG) touched S6 (VAL Capitulation) (833.54) at 12:40 pm
+  - Entry Premium: ₹12.60 | Exit Premium: ₹14.60 | ROI: 15.9% (Target/Close Exit)
+* CHALET (LONG) touched S5 (VAL Extreme) (818.24) at 09:15 am
+  - Entry Premium: ₹12.50 | Exit Premium: ₹13.42 | ROI: 7.4% (Target/Close Exit)
+* MHRIL (LONG) touched S4 (VAL Breakdown Trigger) (191.93) at 12:55 pm
+  - Entry Premium: ₹2.90 | Exit Premium: ₹4.44 | ROI: 53.3% (Target Hit at 02:30 pm)
+* KAMAHOLD (LONG) touched S6 (VAL Capitulation) (2232.98) at 12:50 pm
+  - Entry Premium: ₹33.73 | Exit Premium: ₹54.22 | ROI: 60.7% (Target Hit at 03:25 pm)
+* IDEAFORGE (LONG) touched S3 (VAL Reversion) (723.44) at 09:15 am
+  - Entry Premium: ₹11.00 | Exit Premium: ₹22.10 | ROI: 101.0% (Target Hit at 10:35 am)
+* DLINKINDIA (LONG) touched S6 (VAL Capitulation) (400.35) at 12:50 pm
+  - Entry Premium: ₹6.06 | Exit Premium: ₹6.54 | ROI: 7.8% (Target/Close Exit)
+* FEDERALBNK (LONG) touched S4 (VAL Breakdown Trigger) (313.63) at 09:15 am
+  - Entry Premium: ₹4.74 | Exit Premium: ₹6.54 | ROI: 37.9% (Target/Close Exit)
+* PINELABS (LONG) touched S5 (VAL Extreme) (165.16) at 01:35 pm
+  - Entry Premium: ₹2.50 | Exit Premium: ₹3.03 | ROI: 21.2% (Target/Close Exit)
+* ICICIPRULI (LONG) touched S3 (VAL Reversion) (441.71) at 09:15 am
+  - Entry Premium: ₹6.71 | Exit Premium: ₹7.76 | ROI: 15.6% (Target/Close Exit)
+* PROTEAN (LONG) touched S5 (VAL Extreme) (630.77) at 12:55 pm
+  - Entry Premium: ₹9.53 | Exit Premium: ₹11.15 | ROI: 17.1% (Target/Close Exit)
+* FINEORG (LONG) touched S5 (VAL Extreme) (5061.34) at 09:15 am
+  - Entry Premium: ₹76.55 | Exit Premium: ₹100.05 | ROI: 30.7% (Target/Close Exit)
+* EXIDEIND (LONG) touched S5 (VAL Extreme) (404.11) at 09:15 am
+  - Entry Premium: ₹6.18 | Exit Premium: ₹5.05 | ROI: -18.2% (Target/Close Exit)
+* KARURVYSYA (LONG) touched S3 (VAL Reversion) (320.51) at 09:15 am
+  - Entry Premium: ₹4.85 | Exit Premium: ₹6.03 | ROI: 24.2% (Target/Close Exit)
+* PNGJL (LONG) touched S5 (VAL Extreme) (574.95) at 09:50 am
+  - Entry Premium: ₹8.68 | Exit Premium: ₹8.65 | ROI: -0.3% (Target/Close Exit)
+* AUROPHARMA (LONG) touched S3 (VAL Reversion) (1656.08) at 09:15 am
+  - Entry Premium: ₹25.03 | Exit Premium: ₹40.97 | ROI: 63.7% (Target Hit at 09:40 am)
+* CARERATING (LONG) touched S5 (VAL Extreme) (1580.28) at 12:50 pm
+  - Entry Premium: ₹23.82 | Exit Premium: ₹34.39 | ROI: 44.4% (Target Hit at 03:25 pm)
+* M&MFIN (LONG) touched S5 (VAL Extreme) (315.62) at 12:45 pm
+  - Entry Premium: ₹4.78 | Exit Premium: ₹5.55 | ROI: 16.2% (Target/Close Exit)
+* AKUMS (LONG) touched S6 (VAL Capitulation) (801.24) at 09:15 am
+  - Entry Premium: ₹12.05 | Exit Premium: ₹15.96 | ROI: 32.4% (Target Hit at 09:20 am)
+* POLYCAB (LONG) touched S5 (VAL Extreme) (7894.45) at 12:45 pm
+  - Entry Premium: ₹119.28 | Exit Premium: ₹137.28 | ROI: 15.1% (Target/Close Exit)
+* POLYCAB (LONG) touched S6 (VAL Capitulation) (7875.00) at 01:40 pm
+  - Entry Premium: ₹118.88 | Exit Premium: ₹150.38 | ROI: 26.5% (Target/Close Exit)
+* HONAUT (LONG) touched S4 (VAL Breakdown Trigger) (32976.00) at 09:15 am
+  - Entry Premium: ₹500.92 | Exit Premium: ₹503.42 | ROI: 0.5% (Target/Close Exit)
+* LUPIN (LONG) touched S4 (VAL Breakdown Trigger) (2005.62) at 09:15 am
+  - Entry Premium: ₹30.27 | Exit Premium: ₹33.72 | ROI: 11.4% (Target/Close Exit)
+* ETERNAL (LONG) touched S5 (VAL Extreme) (309.63) at 09:50 am
+  - Entry Premium: ₹4.68 | Exit Premium: ₹7.77 | ROI: 65.9% (Target Hit at 11:05 am)
+* KEC (LONG) touched S6 (VAL Capitulation) (367.95) at 12:50 pm
+  - Entry Premium: ₹5.56 | Exit Premium: ₹7.01 | ROI: 26.1% (Target/Close Exit)
+* MOLDTECH (LONG) touched S4 (VAL Breakdown Trigger) (202.31) at 09:15 am
+  - Entry Premium: ₹3.13 | Exit Premium: ₹1.59 | ROI: -49.3% (Target/Close Exit)
+* BIKAJI (LONG) touched S5 (VAL Extreme) (498.28) at 12:10 pm
+  - Entry Premium: ₹7.54 | Exit Premium: ₹7.79 | ROI: 3.3% (Target/Close Exit)
+* FOSECOIND (LONG) touched S4 (VAL Breakdown Trigger) (6297.23) at 12:45 pm
+  - Entry Premium: ₹95.10 | Exit Premium: ₹95.60 | ROI: 0.5% (Target/Close Exit)
+* BAJAJELEC (LONG) touched S4 (VAL Breakdown Trigger) (296.33) at 12:30 pm
+  - Entry Premium: ₹4.48 | Exit Premium: ₹4.83 | ROI: 7.8% (Target/Close Exit)
+* AZAD (LONG) touched S4 (VAL Breakdown Trigger) (2824.43) at 09:25 am
+  - Entry Premium: ₹43.14 | Exit Premium: ₹30.24 | ROI: -29.9% (Target/Close Exit)
+* NETWEB (LONG) touched S4 (VAL Breakdown Trigger) (4463.02) at 12:55 pm
+  - Entry Premium: ₹67.51 | Exit Premium: ₹79.26 | ROI: 17.4% (Target/Close Exit)
+* NAVINFLUOR (LONG) touched S6 (VAL Capitulation) (8026.82) at 12:45 pm
+  - Entry Premium: ₹121.16 | Exit Premium: ₹151.66 | ROI: 25.2% (Target/Close Exit)
+* ASIANPAINT (LONG) touched S4 (VAL Breakdown Trigger) (2380.32) at 09:15 am
+  - Entry Premium: ₹35.82 | Exit Premium: ₹48.46 | ROI: 35.3% (Target Hit at 03:10 pm)
+* ARVSMART (LONG) touched S5 (VAL Extreme) (585.07) at 12:45 pm
+  - Entry Premium: ₹8.86 | Exit Premium: ₹9.91 | ROI: 11.8% (Target/Close Exit)
+* ADANIGREEN (LONG) touched S4 (VAL Breakdown Trigger) (1259.08) at 09:15 am
+  - Entry Premium: ₹19.06 | Exit Premium: ₹25.11 | ROI: 31.7% (Target/Close Exit)
+* ALLDIGI (LONG) touched S5 (VAL Extreme) (746.78) at 12:05 pm
+  - Entry Premium: ₹11.28 | Exit Premium: ₹12.90 | ROI: 14.4% (Target/Close Exit)
+* APS (LONG) touched S3 (VAL Reversion) (223.90) at 01:10 pm
+  - Entry Premium: ₹3.38 | Exit Premium: ₹3.71 | ROI: 9.6% (Target/Close Exit)
+* BPCL (LONG) touched S5 (VAL Extreme) (296.97) at 09:15 am
+  - Entry Premium: ₹4.49 | Exit Premium: ₹5.72 | ROI: 27.3% (Target/Close Exit)
+* BAJFINANCE (LONG) touched S5 (VAL Extreme) (937.01) at 12:45 pm
+  - Entry Premium: ₹14.15 | Exit Premium: ₹16.38 | ROI: 15.7% (Target/Close Exit)
+* AARTIIND (LONG) touched S5 (VAL Extreme) (459.54) at 01:40 pm
+  - Entry Premium: ₹6.95 | Exit Premium: ₹8.00 | ROI: 15.1% (Target/Close Exit)
+* IGIL (LONG) touched S4 (VAL Breakdown Trigger) (308.75) at 12:45 pm
+  - Entry Premium: ₹4.66 | Exit Premium: ₹5.63 | ROI: 20.9% (Target/Close Exit)
+* JSWHL (LONG) touched S4 (VAL Breakdown Trigger) (11121.05) at 09:15 am
+  - Entry Premium: ₹167.84 | Exit Premium: ₹198.34 | ROI: 18.2% (Target/Close Exit)
+* HITECHGEAR (LONG) touched S5 (VAL Extreme) (595.66) at 02:15 pm
+  - Entry Premium: ₹9.00 | Exit Premium: ₹14.53 | ROI: 61.4% (Target Hit at 02:20 pm)
+* BLAL (LONG) touched S6 (VAL Capitulation) (156.15) at 01:00 pm
+  - Entry Premium: ₹2.37 | Exit Premium: ₹3.07 | ROI: 29.5% (Target/Close Exit)
+* COLPAL (LONG) touched S6 (VAL Capitulation) (1718.00) at 12:55 pm
+  - Entry Premium: ₹25.99 | Exit Premium: ₹29.59 | ROI: 13.9% (Target/Close Exit)
+* HYUNDAI (LONG) touched S4 (VAL Breakdown Trigger) (1999.15) at 09:15 am
+  - Entry Premium: ₹30.21 | Exit Premium: ₹49.26 | ROI: 63.0% (Target Hit at 10:05 am)
+* RAJPALAYAM (LONG) touched S4 (VAL Breakdown Trigger) (730.56) at 02:00 pm
+  - Entry Premium: ₹11.23 | Exit Premium: ₹9.18 | ROI: -18.2% (Target/Close Exit)
+* IMPAL (LONG) touched S6 (VAL Capitulation) (998.70) at 01:50 pm
+  - Entry Premium: ₹15.07 | Exit Premium: ₹23.38 | ROI: 55.1% (Target Hit at 02:00 pm)
+* INDIGO (LONG) touched S5 (VAL Extreme) (4872.49) at 09:20 am
+  - Entry Premium: ₹73.70 | Exit Premium: ₹124.16 | ROI: 68.5% (Target Hit at 10:05 am)
+* JUSTDIAL (LONG) touched S6 (VAL Capitulation) (645.35) at 12:55 pm
+  - Entry Premium: ₹9.76 | Exit Premium: ₹10.16 | ROI: 4.1% (Target/Close Exit)
+* AWL (LONG) touched S6 (VAL Capitulation) (173.48) at 09:15 am
+  - Entry Premium: ₹2.63 | Exit Premium: ₹2.76 | ROI: 4.7% (Target/Close Exit)
+* FINPIPE (LONG) touched S5 (VAL Extreme) (148.80) at 09:15 am
+  - Entry Premium: ₹2.25 | Exit Premium: ₹2.60 | ROI: 15.6% (Target/Close Exit)
+* AMBIKCO (LONG) touched S6 (VAL Capitulation) (1490.81) at 12:45 pm
+  - Entry Premium: ₹22.50 | Exit Premium: ₹30.45 | ROI: 35.3% (Target/Close Exit)
+* COALINDIA (LONG) touched S6 (VAL Capitulation) (416.03) at 09:35 am
+  - Entry Premium: ₹6.28 | Exit Premium: ₹9.68 | ROI: 54.2% (Target Hit at 12:40 pm)
+* ICICIAMC (LONG) touched S4 (VAL Breakdown Trigger) (3058.82) at 09:50 am
+  - Entry Premium: ₹46.24 | Exit Premium: ₹43.74 | ROI: -5.4% (Target/Close Exit)
+* KRISHNADEF (LONG) touched S6 (VAL Capitulation) (992.84) at 12:30 pm
+  - Entry Premium: ₹15.01 | Exit Premium: ₹15.51 | ROI: 3.3% (Target/Close Exit)
+* AHLWEST (LONG) touched S3 (VAL Reversion) (529.33) at 10:10 am
+  - Entry Premium: ₹7.95 | Exit Premium: ₹9.68 | ROI: 21.7% (Target Hit at 10:15 am)
+* PHOENIXLTD (LONG) touched S4 (VAL Breakdown Trigger) (1909.04) at 09:15 am
+  - Entry Premium: ₹29.04 | Exit Premium: ₹30.59 | ROI: 5.3% (Target/Close Exit)
+* HEXATRADEX (LONG) touched S5 (VAL Extreme) (153.50) at 09:35 am
+  - Entry Premium: ₹2.31 | Exit Premium: ₹3.14 | ROI: 36.0% (Target Hit at 09:40 am)
+* DPEL (LONG) touched S4 (VAL Breakdown Trigger) (612.05) at 12:45 pm
+  - Entry Premium: ₹9.24 | Exit Premium: ₹10.99 | ROI: 18.9% (Target/Close Exit)
+* JPOLYINVST (LONG) touched S6 (VAL Capitulation) (903.84) at 12:10 pm
+  - Entry Premium: ₹13.67 | Exit Premium: ₹13.17 | ROI: -3.7% (Target/Close Exit)
+* CHEMBOND (LONG) touched S5 (VAL Extreme) (175.92) at 03:25 pm
+  - Entry Premium: ₹2.64 | Exit Premium: ₹2.64 | ROI: 0.0% (Target/Close Exit)
+* IIFLCAPS (LONG) touched S4 (VAL Breakdown Trigger) (342.64) at 09:15 am
+  - Entry Premium: ₹5.18 | Exit Premium: ₹5.03 | ROI: -2.9% (Target/Close Exit)
+* AUTOAXLES (LONG) touched S6 (VAL Capitulation) (1668.92) at 09:15 am
+  - Entry Premium: ₹25.36 | Exit Premium: ₹19.82 | ROI: -21.9% (Target/Close Exit)
+* BFINVEST (LONG) touched S5 (VAL Extreme) (424.95) at 12:55 pm
+  - Entry Premium: ₹6.40 | Exit Premium: ₹7.53 | ROI: 17.6% (Target/Close Exit)
+* PREMEXPLN (LONG) touched S5 (VAL Extreme) (675.65) at 09:15 am
+  - Entry Premium: ₹10.25 | Exit Premium: ₹8.55 | ROI: -16.6% (Target/Close Exit)
+* PARKHOSPS (LONG) touched S4 (VAL Breakdown Trigger) (268.84) at 09:15 am
+  - Entry Premium: ₹4.04 | Exit Premium: ₹5.13 | ROI: 27.0% (Target Hit at 09:30 am)
+* DSSL (LONG) touched S6 (VAL Capitulation) (940.71) at 12:55 pm
+  - Entry Premium: ₹14.22 | Exit Premium: ₹12.67 | ROI: -10.9% (Target/Close Exit)
+* MRF (LONG) touched S5 (VAL Extreme) (122840.64) at 10:15 am
+  - Entry Premium: ₹1851.00 | Exit Premium: ₹1913.50 | ROI: 3.4% (Target/Close Exit)
+* CENTURYPLY (LONG) touched S5 (VAL Extreme) (661.86) at 12:55 pm
+  - Entry Premium: ₹10.01 | Exit Premium: ₹7.98 | ROI: -20.2% (Target/Close Exit)
+* PETRONET (LONG) touched S3 (VAL Reversion) (283.15) at 09:15 am
+  - Entry Premium: ₹4.26 | Exit Premium: ₹5.47 | ROI: 28.5% (Target Hit at 10:35 am)
+* BANKNIFTY (LONG) touched S4 (VAL Breakdown Trigger) (54104.39) at 12:45 pm
+  - Entry Premium: ₹817.43 | Exit Premium: ₹795.25 | ROI: -2.7% (Target/Close Exit)
+* ALBERTDAVD (LONG) touched S5 (VAL Extreme) (851.04) at 02:00 pm
+  - Entry Premium: ₹12.80 | Exit Premium: ₹11.75 | ROI: -8.2% (Target/Close Exit)
+* EMAMILTD (LONG) touched S6 (VAL Capitulation) (370.07) at 09:15 am
+  - Entry Premium: ₹5.65 | Exit Premium: ₹3.75 | ROI: -33.6% (Target/Close Exit)
+* GOODYEAR (LONG) touched S6 (VAL Capitulation) (689.29) at 02:25 pm
+  - Entry Premium: ₹10.44 | Exit Premium: ₹8.89 | ROI: -14.8% (Target/Close Exit)
+* EIEL (LONG) touched S5 (VAL Extreme) (182.95) at 01:50 pm
+  - Entry Premium: ₹2.76 | Exit Premium: ₹2.67 | ROI: -3.3% (Target/Close Exit)
+* DIAMINESQ (LONG) touched S4 (VAL Breakdown Trigger) (234.77) at 02:20 pm
+  - Entry Premium: ₹3.54 | Exit Premium: ₹2.94 | ROI: -16.9% (Target/Close Exit)
+* GSPCROP (LONG) touched S5 (VAL Extreme) (451.47) at 12:40 pm
+  - Entry Premium: ₹6.81 | Exit Premium: ₹5.76 | ROI: -15.4% (Target/Close Exit)
+* NXST.RR (LONG) touched S5 (VAL Extreme) (164.91) at 09:25 am
+  - Entry Premium: ₹2.50 | Exit Premium: ₹3.05 | ROI: 22.2% (Target/Close Exit)
+* NXST.RR (LONG) touched S6 (VAL Capitulation) (164.52) at 09:25 am
+  - Entry Premium: ₹2.50 | Exit Premium: ₹3.05 | ROI: 22.2% (Target/Close Exit)
+* PIDILITIND (LONG) touched S3 (VAL Reversion) (1456.35) at 09:15 am
+  - Entry Premium: ₹22.01 | Exit Premium: ₹23.36 | ROI: 6.1% (Target/Close Exit)
+* NURECA (LONG) touched S5 (VAL Extreme) (348.30) at 02:10 pm
+  - Entry Premium: ₹5.26 | Exit Premium: ₹5.21 | ROI: -0.9% (Target/Close Exit)
+* OPTIVALUE (LONG) touched S6 (VAL Capitulation) (213.13) at 12:50 pm
+  - Entry Premium: ₹3.20 | Exit Premium: ₹3.64 | ROI: 13.9% (Target Hit at 02:00 pm)
+* KAJARIACER (LONG) touched S3 (VAL Reversion) (1220.50) at 09:15 am
+  - Entry Premium: ₹18.51 | Exit Premium: ₹16.46 | ROI: -11.1% (Target/Close Exit)
+* RAJPUTANA (LONG) touched S3 (VAL Reversion) (198.90) at 11:45 am
+  - Entry Premium: ₹2.98 | Exit Premium: ₹3.36 | ROI: 12.6% (Target/Close Exit)
+* RAJPUTANA (LONG) touched S4 (VAL Breakdown Trigger) (198.81) at 11:45 am
+  - Entry Premium: ₹2.98 | Exit Premium: ₹3.36 | ROI: 12.6% (Target/Close Exit)
+* GLOSTERLTD (LONG) touched S6 (VAL Capitulation) (537.59) at 09:25 am
+  - Entry Premium: ₹8.06 | Exit Premium: ₹8.74 | ROI: 8.5% (Target Hit at 09:30 am)
+* KIRLOSIND (LONG) touched S6 (VAL Capitulation) (3455.38) at 02:00 pm
+  - Entry Premium: ₹51.98 | Exit Premium: ₹68.51 | ROI: 31.8% (Target Hit at 02:25 pm)
+* HINDPETRO (LONG) touched S5 (VAL Extreme) (344.21) at 09:45 am
+  - Entry Premium: ₹5.21 | Exit Premium: ₹4.56 | ROI: -12.5% (Target/Close Exit)
+* GKWLIMITED (LONG) touched S4 (VAL Breakdown Trigger) (1528.11) at 11:55 am
+  - Entry Premium: ₹23.10 | Exit Premium: ₹18.10 | ROI: -21.6% (Target/Close Exit)
+* INDIGRID (LONG) touched S5 (VAL Extreme) (169.40) at 09:20 am
+  - Entry Premium: ₹2.56 | Exit Premium: ₹2.07 | ROI: -19.3% (Target/Close Exit)
+* ICICIBANK (LONG) touched S3 (VAL Reversion) (1310.23) at 09:15 am
+  - Entry Premium: ₹19.82 | Exit Premium: ₹18.02 | ROI: -9.1% (Target/Close Exit)
+* NATCAPSUQ (LONG) touched S6 (VAL Capitulation) (161.88) at 10:55 am
+  - Entry Premium: ₹2.43 | Exit Premium: ₹2.87 | ROI: 18.3% (Target Hit at 12:30 pm)
+* AXISBANK (LONG) touched S3 (VAL Reversion) (1216.10) at 09:15 am
+  - Entry Premium: ₹18.46 | Exit Premium: ₹14.81 | ROI: -19.8% (Target/Close Exit)
+* INDPRUD (LONG) touched S4 (VAL Breakdown Trigger) (6248.50) at 02:05 pm
+  - Entry Premium: ₹93.80 | Exit Premium: ₹92.80 | ROI: -1.1% (Target/Close Exit)
+* RADICO (LONG) touched S5 (VAL Extreme) (4234.54) at 12:45 pm
+  - Entry Premium: ₹64.04 | Exit Premium: ₹56.69 | ROI: -11.5% (Target/Close Exit)
+* AFSL (LONG) touched S3 (VAL Reversion) (200.79) at 09:20 am
+  - Entry Premium: ₹3.02 | Exit Premium: ₹3.01 | ROI: -0.3% (Target/Close Exit)
+* PROV (LONG) touched S3 (VAL Reversion) (1938.78) at 12:05 pm
+  - Entry Premium: ₹29.17 | Exit Premium: ₹26.67 | ROI: -8.6% (Target/Close Exit)
+* BHAGERIA (SHORT) touched R3 (VAH Reversion) (416.21) at 09:15 am
+  - Entry Premium: ₹6.06 | Exit Premium: ₹19.20 | ROI: 217.0% (Target Hit at 09:40 am)
+* NIITMTS (SHORT) touched R4 (VAH Breakout Trigger) (207.69) at 09:15 am
+  - Entry Premium: ₹3.07 | Exit Premium: ₹6.47 | ROI: 110.9% (Target Hit at 12:00 pm)
+* AMNPLST (SHORT) touched R6 (VAH Exhaustion) (178.02) at 09:15 am
+  - Entry Premium: ₹2.62 | Exit Premium: ₹6.01 | ROI: 129.1% (Target Hit at 09:20 am)
+* MMFL (SHORT) touched R3 (VAH Reversion) (608.36) at 09:15 am
+  - Entry Premium: ₹8.90 | Exit Premium: ₹21.02 | ROI: 136.3% (Target/Close Exit)
+* IFBAGRO (SHORT) touched R4 (VAH Breakout Trigger) (919.92) at 09:15 am
+  - Entry Premium: ₹13.45 | Exit Premium: ₹23.30 | ROI: 73.2% (Target/Close Exit)
+* NITIRAJ (SHORT) touched R3 (VAH Reversion) (212.98) at 09:40 am
+  - Entry Premium: ₹3.19 | Exit Premium: ₹3.63 | ROI: 13.7% (Target Hit at 09:45 am)
+* PROTEAN (SHORT) touched R4 (VAH Breakout Trigger) (677.31) at 09:15 am
+  - Entry Premium: ₹10.05 | Exit Premium: ₹18.72 | ROI: 86.2% (Target Hit at 11:20 am)
+* PFOCUS (SHORT) touched R3 (VAH Reversion) (319.48) at 09:15 am
+  - Entry Premium: ₹4.72 | Exit Premium: ₹10.19 | ROI: 115.8% (Target Hit at 12:50 pm)
+* AVADHSUGAR (SHORT) touched R3 (VAH Reversion) (808.59) at 09:15 am
+  - Entry Premium: ₹11.90 | Exit Premium: ₹29.00 | ROI: 143.8% (Target Hit at 12:30 pm)
+* FLYSBS (SHORT) touched R6 (VAH Exhaustion) (639.40) at 09:30 am
+  - Entry Premium: ₹9.53 | Exit Premium: ₹15.20 | ROI: 59.6% (Target Hit at 12:35 pm)
+* IITL (SHORT) touched R4 (VAH Breakout Trigger) (139.71) at 03:25 pm
+  - Entry Premium: ₹2.08 | Exit Premium: ₹2.08 | ROI: 0.0% (Target/Close Exit)
+* PPAP (SHORT) touched R4 (VAH Breakout Trigger) (239.98) at 09:30 am
+  - Entry Premium: ₹3.60 | Exit Premium: ₹4.26 | ROI: 18.6% (Target Hit at 10:15 am)
+* AWFIS (SHORT) touched R3 (VAH Reversion) (246.33) at 09:55 am
+  - Entry Premium: ₹3.66 | Exit Premium: ₹6.67 | ROI: 82.3% (Target Hit at 12:10 pm)
+* MODINATUR (SHORT) touched R3 (VAH Reversion) (340.13) at 09:30 am
+  - Entry Premium: ₹5.10 | Exit Premium: ₹5.91 | ROI: 15.8% (Target Hit at 09:40 am)
+* HAPPYFORGE (SHORT) touched R4 (VAH Breakout Trigger) (2098.55) at 09:15 am
+  - Entry Premium: ₹31.47 | Exit Premium: ₹35.92 | ROI: 14.1% (Target Hit at 09:20 am)
+* DIXON (SHORT) touched R4 (VAH Breakout Trigger) (13278.75) at 09:15 am
+  - Entry Premium: ₹198.39 | Exit Premium: ₹277.70 | ROI: 40.0% (Target Hit at 11:45 am)
+* DENEERS (SHORT) touched R4 (VAH Breakout Trigger) (181.27) at 10:00 am
+  - Entry Premium: ₹2.72 | Exit Premium: ₹2.86 | ROI: 5.0% (Target Hit at 11:50 am)
+* POCL (SHORT) touched R3 (VAH Reversion) (457.23) at 09:15 am
+  - Entry Premium: ₹6.83 | Exit Premium: ₹9.97 | ROI: 46.1% (Target Hit at 09:25 am)
+* EIEL (SHORT) touched R3 (VAH Reversion) (191.73) at 09:15 am
+  - Entry Premium: ₹2.85 | Exit Premium: ₹5.26 | ROI: 84.7% (Target Hit at 01:50 pm)
+* BAJAJST (SHORT) touched R4 (VAH Breakout Trigger) (349.71) at 09:15 am
+  - Entry Premium: ₹5.10 | Exit Premium: ₹5.10 | ROI: 0.0% (Target/Close Exit)
+* IFBIND (SHORT) touched R4 (VAH Breakout Trigger) (1214.64) at 09:15 am
+  - Entry Premium: ₹18.03 | Exit Premium: ₹33.10 | ROI: 83.6% (Target Hit at 12:45 pm)
+* KISSHT (SHORT) touched R5 (VAH Extreme) (386.80) at 10:00 am
+  - Entry Premium: ₹5.77 | Exit Premium: ₹8.50 | ROI: 47.2% (Target Hit at 10:15 am)
+* ADOR (SHORT) touched R6 (VAH Exhaustion) (1631.87) at 09:15 am
+  - Entry Premium: ₹24.03 | Exit Premium: ₹40.88 | ROI: 70.1% (Target/Close Exit)
+* ORISSAMINE (SHORT) touched R3 (VAH Reversion) (3683.89) at 09:15 am
+  - Entry Premium: ₹55.08 | Exit Premium: ₹74.44 | ROI: 35.2% (Target Hit at 10:15 am)
+* HUDCO (SHORT) touched R3 (VAH Reversion) (167.95) at 09:15 am
+  - Entry Premium: ₹2.50 | Exit Premium: ₹4.16 | ROI: 66.5% (Target Hit at 12:20 pm)
+* BLSE (SHORT) touched R4 (VAH Breakout Trigger) (334.60) at 09:15 am
+  - Entry Premium: ₹5.01 | Exit Premium: ₹6.27 | ROI: 25.2% (Target Hit at 09:20 am)
+* IIFL (SHORT) touched R4 (VAH Breakout Trigger) (606.61) at 11:00 am
+  - Entry Premium: ₹9.05 | Exit Premium: ₹13.77 | ROI: 52.2% (Target Hit at 12:40 pm)
+* KSOLVES (SHORT) touched R3 (VAH Reversion) (250.59) at 09:20 am
+  - Entry Premium: ₹3.76 | Exit Premium: ₹4.46 | ROI: 18.9% (Target Hit at 09:25 am)
+* FOSECOIND (SHORT) touched R4 (VAH Breakout Trigger) (6627.77) at 10:15 am
+  - Entry Premium: ₹98.41 | Exit Premium: ₹178.94 | ROI: 81.8% (Target Hit at 12:45 pm)
+* ASTAR (SHORT) touched R3 (VAH Reversion) (690.70) at 10:15 am
+  - Entry Premium: ₹10.35 | Exit Premium: ₹12.58 | ROI: 21.6% (Target Hit at 10:20 am)
+* INDPRUD (SHORT) touched R6 (VAH Exhaustion) (6497.68) at 09:30 am
+  - Entry Premium: ₹97.39 | Exit Premium: ₹115.07 | ROI: 18.2% (Target Hit at 10:00 am)
+* GABRIEL (SHORT) touched R4 (VAH Breakout Trigger) (1364.90) at 10:00 am
+  - Entry Premium: ₹20.34 | Exit Premium: ₹32.07 | ROI: 57.7% (Target Hit at 10:50 am)
+* GIPCL (SHORT) touched R3 (VAH Reversion) (181.21) at 09:15 am
+  - Entry Premium: ₹2.67 | Exit Premium: ₹6.18 | ROI: 131.4% (Target Hit at 01:40 pm)
+* PARIN (SHORT) touched R5 (VAH Extreme) (730.37) at 09:15 am
+  - Entry Premium: ₹10.55 | Exit Premium: ₹7.22 | ROI: -31.5% (Target/Close Exit)
+* NDGL (SHORT) touched R4 (VAH Breakout Trigger) (2502.70) at 09:15 am
+  - Entry Premium: ₹37.26 | Exit Premium: ₹60.97 | ROI: 63.6% (Target Hit at 01:25 pm)
+* IGPL (SHORT) touched R4 (VAH Breakout Trigger) (589.60) at 09:15 am
+  - Entry Premium: ₹8.66 | Exit Premium: ₹14.73 | ROI: 70.2% (Target/Close Exit)
+* EPIGRAL (SHORT) touched R3 (VAH Reversion) (1017.73) at 09:15 am
+  - Entry Premium: ₹15.21 | Exit Premium: ₹20.87 | ROI: 37.2% (Target Hit at 10:25 am)
+* CANTABIL (SHORT) touched R3 (VAH Reversion) (232.51) at 09:15 am
+  - Entry Premium: ₹3.46 | Exit Premium: ₹5.65 | ROI: 63.1% (Target Hit at 12:35 pm)
+* KPITTECH (SHORT) touched R4 (VAH Breakout Trigger) (509.50) at 09:15 am
+  - Entry Premium: ₹7.61 | Exit Premium: ₹10.58 | ROI: 38.9% (Target Hit at 09:35 am)
+* EXICOM (SHORT) touched R4 (VAH Breakout Trigger) (156.29) at 09:15 am
+  - Entry Premium: ₹2.33 | Exit Premium: ₹3.73 | ROI: 60.2% (Target Hit at 09:45 am)
+* AURIONPRO (SHORT) touched R3 (VAH Reversion) (628.98) at 09:15 am
+  - Entry Premium: ₹9.38 | Exit Premium: ₹14.07 | ROI: 49.9% (Target Hit at 12:05 pm)
+* JPOLYINVST (SHORT) touched R3 (VAH Reversion) (941.50) at 09:15 am
+  - Entry Premium: ₹14.13 | Exit Premium: ₹15.56 | ROI: 10.1% (Target Hit at 09:20 am)
+* ACMESOLAR (SHORT) touched R6 (VAH Exhaustion) (447.66) at 09:15 am
+  - Entry Premium: ₹6.57 | Exit Premium: ₹9.12 | ROI: 38.8% (Target/Close Exit)
+* APOLSINHOT (SHORT) touched R6 (VAH Exhaustion) (1196.59) at 09:35 am
+  - Entry Premium: ₹17.40 | Exit Premium: ₹19.40 | ROI: 11.5% (Target/Close Exit)
+* NIMBSPROJ (SHORT) touched R3 (VAH Reversion) (196.01) at 09:40 am
+  - Entry Premium: ₹2.93 | Exit Premium: ₹4.22 | ROI: 44.0% (Target Hit at 09:45 am)
+* NAZARA (SHORT) touched R3 (VAH Reversion) (397.17) at 09:15 am
+  - Entry Premium: ₹5.91 | Exit Premium: ₹9.58 | ROI: 61.9% (Target Hit at 12:40 pm)
+* ALBERTDAVD (SHORT) touched R4 (VAH Breakout Trigger) (885.64) at 09:50 am
+  - Entry Premium: ₹13.21 | Exit Premium: ₹20.02 | ROI: 51.6% (Target Hit at 11:15 am)
+* PGEL (SHORT) touched R3 (VAH Reversion) (496.90) at 09:15 am
+  - Entry Premium: ₹7.44 | Exit Premium: ₹9.58 | ROI: 28.8% (Target Hit at 09:45 am)
+* APS (SHORT) touched R4 (VAH Breakout Trigger) (234.09) at 09:15 am
+  - Entry Premium: ₹3.49 | Exit Premium: ₹5.06 | ROI: 44.7% (Target Hit at 10:20 am)
+* NCLIND (SHORT) touched R3 (VAH Reversion) (175.38) at 09:25 am
+  - Entry Premium: ₹2.61 | Exit Premium: ₹4.34 | ROI: 66.2% (Target Hit at 12:50 pm)
+* CENTUM (SHORT) touched R3 (VAH Reversion) (4849.22) at 09:15 am
+  - Entry Premium: ₹71.21 | Exit Premium: ₹101.76 | ROI: 42.9% (Target/Close Exit)
+* GAEL (SHORT) touched R4 (VAH Breakout Trigger) (162.83) at 03:25 pm
+  - Entry Premium: ₹2.36 | Exit Premium: ₹2.36 | ROI: 0.0% (Target/Close Exit)
+* KAJARIACER (SHORT) touched R4 (VAH Breakout Trigger) (1264.31) at 10:00 am
+  - Entry Premium: ₹18.83 | Exit Premium: ₹30.17 | ROI: 60.2% (Target Hit at 12:40 pm)
+* ASPINWALL (SHORT) touched R4 (VAH Breakout Trigger) (247.43) at 10:15 am
+  - Entry Premium: ₹3.68 | Exit Premium: ₹6.57 | ROI: 78.8% (Target Hit at 10:30 am)
+* PATANJALI (SHORT) touched R3 (VAH Reversion) (365.54) at 09:15 am
+  - Entry Premium: ₹5.48 | Exit Premium: ₹6.65 | ROI: 21.5% (Target Hit at 09:25 am)
+* CAPILLARY (SHORT) touched R4 (VAH Breakout Trigger) (571.92) at 10:10 am
+  - Entry Premium: ₹8.50 | Exit Premium: ₹15.11 | ROI: 77.8% (Target Hit at 12:05 pm)
+* GOCOLORS (SHORT) touched R3 (VAH Reversion) (304.19) at 09:15 am
+  - Entry Premium: ₹4.51 | Exit Premium: ₹8.31 | ROI: 84.1% (Target Hit at 01:40 pm)
+* BELRISE (SHORT) touched R6 (VAH Exhaustion) (244.51) at 09:55 am
+  - Entry Premium: ₹3.64 | Exit Premium: ₹5.75 | ROI: 57.8% (Target Hit at 12:45 pm)
+* POONAWALLA (SHORT) touched R3 (VAH Reversion) (447.07) at 09:15 am
+  - Entry Premium: ₹6.63 | Exit Premium: ₹12.59 | ROI: 89.9% (Target Hit at 01:55 pm)
+* EPACK (SHORT) touched R3 (VAH Reversion) (176.77) at 09:15 am
+  - Entry Premium: ₹2.63 | Exit Premium: ₹4.74 | ROI: 80.8% (Target Hit at 12:45 pm)
+* CHAMBLFERT (SHORT) touched R3 (VAH Reversion) (411.74) at 09:15 am
+  - Entry Premium: ₹6.09 | Exit Premium: ₹9.46 | ROI: 55.4% (Target/Close Exit)
+* DEEDEV (SHORT) touched R3 (VAH Reversion) (683.29) at 09:15 am
+  - Entry Premium: ₹10.02 | Exit Premium: ₹14.52 | ROI: 44.9% (Target/Close Exit)
+* GLOSTERLTD (SHORT) touched R6 (VAH Exhaustion) (554.61) at 10:15 am
+  - Entry Premium: ₹8.32 | Exit Premium: ₹9.05 | ROI: 8.7% (Target Hit at 10:40 am)
+* GANESHCP (SHORT) touched R3 (VAH Reversion) (153.41) at 09:15 am
+  - Entry Premium: ₹2.28 | Exit Premium: ₹4.11 | ROI: 80.6% (Target Hit at 12:50 pm)
+* ORIENTELEC (SHORT) touched R3 (VAH Reversion) (158.90) at 09:15 am
+  - Entry Premium: ₹2.34 | Exit Premium: ₹3.24 | ROI: 38.5% (Target/Close Exit)
+* MEGATHERM (SHORT) touched R4 (VAH Breakout Trigger) (250.65) at 10:15 am
+  - Entry Premium: ₹3.73 | Exit Premium: ₹5.89 | ROI: 57.6% (Target Hit at 12:50 pm)
+* GROWW (SHORT) touched R3 (VAH Reversion) (185.17) at 09:15 am
+  - Entry Premium: ₹2.75 | Exit Premium: ₹4.83 | ROI: 75.5% (Target Hit at 01:25 pm)
+* ASHOKLEY (SHORT) touched R3 (VAH Reversion) (154.97) at 09:15 am
+  - Entry Premium: ₹2.26 | Exit Premium: ₹2.08 | ROI: -8.0% (Target/Close Exit)
+* MIDWESTLTD (SHORT) touched R5 (VAH Extreme) (930.72) at 03:25 pm
+  - Entry Premium: ₹13.95 | Exit Premium: ₹13.95 | ROI: 0.0% (Target/Close Exit)
+* KAPSTON (SHORT) touched R3 (VAH Reversion) (556.88) at 09:15 am
+  - Entry Premium: ₹8.29 | Exit Premium: ₹13.73 | ROI: 65.7% (Target Hit at 09:30 am)
+* NEOGEN (SHORT) touched R3 (VAH Reversion) (2472.78) at 09:15 am
+  - Entry Premium: ₹37.03 | Exit Premium: ₹46.05 | ROI: 24.4% (Target Hit at 09:25 am)
+* KDDL (SHORT) touched R5 (VAH Extreme) (4020.72) at 09:20 am
+  - Entry Premium: ₹59.62 | Exit Premium: ₹113.48 | ROI: 90.3% (Target Hit at 02:00 pm)
+* INTERARCH (SHORT) touched R5 (VAH Extreme) (1711.30) at 09:15 am
+  - Entry Premium: ₹25.51 | Exit Premium: ₹39.53 | ROI: 55.0% (Target Hit at 09:45 am)
+* HYUNDAI (SHORT) touched R5 (VAH Extreme) (2081.44) at 10:40 am
+  - Entry Premium: ₹30.72 | Exit Premium: ₹42.22 | ROI: 37.4% (Target/Close Exit)
+* INNOVANA (SHORT) touched R4 (VAH Breakout Trigger) (298.08) at 09:15 am
+  - Entry Premium: ₹4.39 | Exit Premium: ₹10.12 | ROI: 130.3% (Target Hit at 12:35 pm)
+* PURVA (SHORT) touched R4 (VAH Breakout Trigger) (210.00) at 03:25 pm
+  - Entry Premium: ₹3.15 | Exit Premium: ₹3.15 | ROI: 0.0% (Target/Close Exit)
+* CHEVIOT (SHORT) touched R4 (VAH Breakout Trigger) (1196.67) at 10:05 am
+  - Entry Premium: ₹17.65 | Exit Premium: ₹20.90 | ROI: 18.4% (Target/Close Exit)
+* BIMETAL (SHORT) touched R4 (VAH Breakout Trigger) (656.07) at 09:45 am
+  - Entry Premium: ₹9.85 | Exit Premium: ₹10.83 | ROI: 10.0% (Target Hit at 11:15 am)
+* MUTHOOTFIN (SHORT) touched R4 (VAH Breakout Trigger) (2762.84) at 09:15 am
+  - Entry Premium: ₹40.95 | Exit Premium: ₹56.80 | ROI: 38.7% (Target/Close Exit)
+* MINDTECK (SHORT) touched R3 (VAH Reversion) (154.60) at 09:15 am
+  - Entry Premium: ₹2.32 | Exit Premium: ₹2.69 | ROI: 16.1% (Target Hit at 09:20 am)
+* CSLFINANCE (SHORT) touched R4 (VAH Breakout Trigger) (213.74) at 09:15 am
+  - Entry Premium: ₹3.15 | Exit Premium: ₹3.81 | ROI: 21.0% (Target/Close Exit)
+* MAHSCOOTER (SHORT) touched R3 (VAH Reversion) (12670.88) at 09:15 am
+  - Entry Premium: ₹188.17 | Exit Premium: ₹339.39 | ROI: 80.4% (Target Hit at 12:25 pm)
+* CNL (SHORT) touched R3 (VAH Reversion) (1103.90) at 09:15 am
+  - Entry Premium: ₹16.39 | Exit Premium: ₹24.14 | ROI: 47.3% (Target/Close Exit)
+* DIAMINESQ (SHORT) touched R4 (VAH Breakout Trigger) (242.23) at 10:15 am
+  - Entry Premium: ₹3.63 | Exit Premium: ₹4.62 | ROI: 27.4% (Target Hit at 12:50 pm)
+* COLPAL (SHORT) touched R3 (VAH Reversion) (1775.76) at 09:15 am
+  - Entry Premium: ₹26.54 | Exit Premium: ₹36.65 | ROI: 38.1% (Target Hit at 12:25 pm)
+* GRPLTD (SHORT) touched R5 (VAH Extreme) (1938.59) at 09:15 am
+  - Entry Premium: ₹29.07 | Exit Premium: ₹33.54 | ROI: 15.4% (Target Hit at 09:25 am)
+* HINDPETRO (SHORT) touched R3 (VAH Reversion) (352.29) at 09:15 am
+  - Entry Premium: ₹5.23 | Exit Premium: ₹6.48 | ROI: 23.9% (Target/Close Exit)
+* BLAL (SHORT) touched R3 (VAH Reversion) (161.38) at 09:20 am
+  - Entry Premium: ₹2.40 | Exit Premium: ₹3.82 | ROI: 58.8% (Target Hit at 01:00 pm)
+* GARUDA (SHORT) touched R3 (VAH Reversion) (176.15) at 09:15 am
+  - Entry Premium: ₹2.63 | Exit Premium: ₹4.05 | ROI: 54.3% (Target Hit at 12:20 pm)
+* KPIL (SHORT) touched R3 (VAH Reversion) (1385.63) at 09:15 am
+  - Entry Premium: ₹20.64 | Exit Premium: ₹32.95 | ROI: 59.6% (Target Hit at 01:40 pm)
+* J&KBANK (SHORT) touched R6 (VAH Exhaustion) (142.93) at 11:50 am
+  - Entry Premium: ₹2.13 | Exit Premium: ₹3.03 | ROI: 42.0% (Target Hit at 01:15 pm)
+* INDIANB (SHORT) touched R3 (VAH Reversion) (810.15) at 09:15 am
+  - Entry Premium: ₹12.04 | Exit Premium: ₹16.60 | ROI: 37.8% (Target/Close Exit)
+* MEDANTA (SHORT) touched R3 (VAH Reversion) (1386.09) at 10:40 am
+  - Entry Premium: ₹20.58 | Exit Premium: ₹37.35 | ROI: 81.5% (Target Hit at 02:00 pm)
+* KFINTECH (SHORT) touched R4 (VAH Breakout Trigger) (849.02) at 09:15 am
+  - Entry Premium: ₹12.70 | Exit Premium: ₹16.82 | ROI: 32.4% (Target Hit at 09:25 am)
+* METROPOLIS (SHORT) touched R3 (VAH Reversion) (548.47) at 10:40 am
+  - Entry Premium: ₹8.16 | Exit Premium: ₹11.16 | ROI: 36.8% (Target/Close Exit)
+* PAYTM (SHORT) touched R3 (VAH Reversion) (1689.25) at 09:15 am
+  - Entry Premium: ₹25.11 | Exit Premium: ₹43.83 | ROI: 74.6% (Target Hit at 01:30 pm)
+* ANURAS (SHORT) touched R3 (VAH Reversion) (1186.36) at 09:15 am
+  - Entry Premium: ₹17.66 | Exit Premium: ₹29.00 | ROI: 64.2% (Target Hit at 03:20 pm)
+* CAMPUS (SHORT) touched R3 (VAH Reversion) (209.89) at 09:15 am
+  - Entry Premium: ₹3.15 | Exit Premium: ₹3.47 | ROI: 10.0% (Target Hit at 09:20 am)
+* GENESYS (SHORT) touched R5 (VAH Extreme) (286.75) at 09:55 am
+  - Entry Premium: ₹4.27 | Exit Premium: ₹7.04 | ROI: 65.0% (Target Hit at 11:10 am)
+* AWL (SHORT) touched R3 (VAH Reversion) (178.83) at 09:55 am
+  - Entry Premium: ₹2.66 | Exit Premium: ₹4.35 | ROI: 63.5% (Target Hit at 01:40 pm)
+* ARVIND (SHORT) touched R3 (VAH Reversion) (543.80) at 09:30 am
+  - Entry Premium: ₹8.10 | Exit Premium: ₹13.04 | ROI: 61.0% (Target Hit at 12:55 pm)
+* EXIDEIND (SHORT) touched R4 (VAH Breakout Trigger) (417.96) at 09:25 am
+  - Entry Premium: ₹6.22 | Exit Premium: ₹10.57 | ROI: 69.9% (Target Hit at 12:45 pm)
+* GKWLIMITED (SHORT) touched R3 (VAH Reversion) (1560.94) at 11:55 am
+  - Entry Premium: ₹23.10 | Exit Premium: ₹28.10 | ROI: 21.6% (Target/Close Exit)
+* NAHARPOLY (SHORT) touched R4 (VAH Breakout Trigger) (230.18) at 09:15 am
+  - Entry Premium: ₹3.43 | Exit Premium: ₹5.28 | ROI: 53.8% (Target Hit at 09:25 am)
+* AUTOAXLES (SHORT) touched R3 (VAH Reversion) (1716.67) at 09:15 am
+  - Entry Premium: ₹25.36 | Exit Premium: ₹30.91 | ROI: 21.9% (Target/Close Exit)
+* GVT&D (SHORT) touched R6 (VAH Exhaustion) (4334.86) at 09:25 am
+  - Entry Premium: ₹65.00 | Exit Premium: ₹75.23 | ROI: 15.7% (Target Hit at 09:30 am)
+* AKUMS (SHORT) touched R4 (VAH Breakout Trigger) (827.90) at 09:30 am
+  - Entry Premium: ₹12.29 | Exit Premium: ₹14.09 | ROI: 14.6% (Target/Close Exit)
+* AEROPLANE (SHORT) touched R4 (VAH Breakout Trigger) (212.07) at 09:45 am
+  - Entry Premium: ₹3.15 | Exit Premium: ₹4.45 | ROI: 41.5% (Target/Close Exit)
+* GOODYEAR (SHORT) touched R3 (VAH Reversion) (706.94) at 09:25 am
+  - Entry Premium: ₹10.61 | Exit Premium: ₹11.96 | ROI: 12.8% (Target Hit at 09:30 am)
+* MEIL (SHORT) touched R3 (VAH Reversion) (266.40) at 09:15 am
+  - Entry Premium: ₹3.94 | Exit Premium: ₹3.44 | ROI: -12.7% (Target/Close Exit)
+* BIRLANU (SHORT) touched R4 (VAH Breakout Trigger) (1417.92) at 10:00 am
+  - Entry Premium: ₹21.02 | Exit Premium: ₹40.38 | ROI: 92.1% (Target Hit at 12:50 pm)
+* GEECEE (SHORT) touched R3 (VAH Reversion) (379.69) at 03:25 pm
+  - Entry Premium: ₹5.70 | Exit Premium: ₹5.70 | ROI: 0.0% (Target/Close Exit)
+* DMART (SHORT) touched R5 (VAH Extreme) (3884.60) at 11:15 am
+  - Entry Premium: ₹57.87 | Exit Premium: ₹92.24 | ROI: 59.4% (Target Hit at 01:40 pm)
+* INDIGO (SHORT) touched R3 (VAH Reversion) (5019.20) at 10:00 am
+  - Entry Premium: ₹75.08 | Exit Premium: ₹99.31 | ROI: 32.3% (Target Hit at 11:05 am)
+* EXPLEOSOL (SHORT) touched R3 (VAH Reversion) (863.05) at 09:15 am
+  - Entry Premium: ₹12.85 | Exit Premium: ₹20.73 | ROI: 61.3% (Target Hit at 12:30 pm)
+* ADANIGREEN (SHORT) touched R4 (VAH Breakout Trigger) (1296.92) at 09:35 am
+  - Entry Premium: ₹19.35 | Exit Premium: ₹28.86 | ROI: 49.2% (Target Hit at 01:40 pm)
+* PHOENIXLTD (SHORT) touched R4 (VAH Breakout Trigger) (1960.96) at 09:30 am
+  - Entry Premium: ₹29.15 | Exit Premium: ₹31.25 | ROI: 7.2% (Target/Close Exit)
+* NGLFINE (SHORT) touched R4 (VAH Breakout Trigger) (2976.38) at 10:50 am
+  - Entry Premium: ₹44.55 | Exit Premium: ₹56.88 | ROI: 27.7% (Target Hit at 10:55 am)
+* KAMAHOLD (SHORT) touched R3 (VAH Reversion) (2301.38) at 09:15 am
+  - Entry Premium: ₹34.22 | Exit Premium: ₹58.70 | ROI: 71.5% (Target Hit at 01:45 pm)
+* LGBBROSLTD (SHORT) touched R3 (VAH Reversion) (1738.87) at 09:15 am
+  - Entry Premium: ₹25.70 | Exit Premium: ₹29.25 | ROI: 13.8% (Target/Close Exit)
+* JUNIPER (SHORT) touched R5 (VAH Extreme) (218.52) at 03:25 pm
+  - Entry Premium: ₹3.28 | Exit Premium: ₹3.28 | ROI: 0.0% (Target/Close Exit)
+* KNACK (SHORT) touched R4 (VAH Breakout Trigger) (183.44) at 12:30 pm
+  - Entry Premium: ₹2.73 | Exit Premium: ₹3.60 | ROI: 31.7% (Target/Close Exit)
+* BLACKBUCK (SHORT) touched R3 (VAH Reversion) (615.60) at 11:40 am
+  - Entry Premium: ₹9.21 | Exit Premium: ₹11.99 | ROI: 30.2% (Target Hit at 11:50 am)
+* HONDAPOWER (SHORT) touched R5 (VAH Extreme) (1917.01) at 03:00 pm
+  - Entry Premium: ₹27.94 | Exit Premium: ₹9.74 | ROI: -65.1% (Target/Close Exit)
+* EIHAHOTELS (SHORT) touched R3 (VAH Reversion) (300.77) at 09:15 am
+  - Entry Premium: ₹4.47 | Exit Premium: ₹4.77 | ROI: 6.7% (Target/Close Exit)
+* BLS (SHORT) touched R3 (VAH Reversion) (220.10) at 09:15 am
+  - Entry Premium: ₹3.27 | Exit Premium: ₹5.83 | ROI: 78.4% (Target Hit at 12:55 pm)
+* CGCL (SHORT) touched R5 (VAH Extreme) (252.89) at 10:05 am
+  - Entry Premium: ₹3.75 | Exit Premium: ₹3.90 | ROI: 3.9% (Target/Close Exit)
+* EMCURE (SHORT) touched R4 (VAH Breakout Trigger) (1975.29) at 09:40 am
+  - Entry Premium: ₹29.30 | Exit Premium: ₹38.85 | ROI: 32.6% (Target/Close Exit)
+* FEDFINA (SHORT) touched R3 (VAH Reversion) (151.80) at 09:15 am
+  - Entry Premium: ₹2.25 | Exit Premium: ₹2.06 | ROI: -8.4% (Target/Close Exit)
+* BPCL (SHORT) touched R3 (VAH Reversion) (305.17) at 09:15 am
+  - Entry Premium: ₹4.49 | Exit Premium: ₹3.27 | ROI: -27.3% (Target/Close Exit)
+* CNXPSUBANK (SHORT) touched R3 (VAH Reversion) (8044.94) at 09:15 am
+  - Entry Premium: ₹120.04 | Exit Premium: ₹178.62 | ROI: 48.8% (Target Hit at 01:45 pm)
+* OBEROIRLTY (SHORT) touched R3 (VAH Reversion) (1778.02) at 09:15 am
+  - Entry Premium: ₹26.46 | Exit Premium: ₹44.04 | ROI: 66.4% (Target Hit at 01:40 pm)
+* MAHASTEEL (SHORT) touched R3 (VAH Reversion) (1200.55) at 09:20 am
+  - Entry Premium: ₹18.00 | Exit Premium: ₹21.05 | ROI: 17.0% (Target Hit at 09:25 am)
+* DAICHI (SHORT) touched R4 (VAH Breakout Trigger) (321.90) at 09:30 am
+  - Entry Premium: ₹4.83 | Exit Premium: ₹5.62 | ROI: 16.4% (Target Hit at 11:35 am)
+* HARRMALAYA (SHORT) touched R3 (VAH Reversion) (182.29) at 09:15 am
+  - Entry Premium: ₹2.66 | Exit Premium: ₹0.26 | ROI: -90.1% (Target/Close Exit)
+* DCMSHRIRAM (SHORT) touched R3 (VAH Reversion) (920.77) at 09:15 am
+  - Entry Premium: ₹13.45 | Exit Premium: ₹8.10 | ROI: -39.8% (Target/Close Exit)
+* GODREJCP (SHORT) touched R3 (VAH Reversion) (852.74) at 09:15 am
+  - Entry Premium: ₹12.70 | Exit Premium: ₹14.95 | ROI: 17.7% (Target/Close Exit)
+* PATELRMART (SHORT) touched R3 (VAH Reversion) (214.02) at 01:10 pm
+  - Entry Premium: ₹3.17 | Exit Premium: ₹1.94 | ROI: -38.7% (Target/Close Exit)
+* IVP (SHORT) touched R3 (VAH Reversion) (227.78) at 10:00 am
+  - Entry Premium: ₹3.42 | Exit Premium: ₹3.75 | ROI: 9.8% (Target Hit at 10:15 am)
+* BHARTIARTL (SHORT) touched R3 (VAH Reversion) (1764.10) at 09:15 am
+  - Entry Premium: ₹26.14 | Exit Premium: ₹24.34 | ROI: -6.9% (Target/Close Exit)
+* KIRLPNU (SHORT) touched R4 (VAH Breakout Trigger) (691.74) at 03:15 pm
+  - Entry Premium: ₹10.22 | Exit Premium: ₹6.95 | ROI: -32.0% (Target/Close Exit)
+* PRECWIRE (SHORT) touched R5 (VAH Extreme) (508.78) at 10:25 am
+  - Entry Premium: ₹7.57 | Exit Premium: ₹13.02 | ROI: 72.1% (Target Hit at 12:25 pm)
+* ADFFOODS (SHORT) touched R6 (VAH Exhaustion) (285.40) at 03:25 pm
+  - Entry Premium: ₹4.21 | Exit Premium: ₹4.21 | ROI: 0.0% (Target/Close Exit)
+* NUCLEUS (SHORT) touched R3 (VAH Reversion) (654.62) at 09:15 am
+  - Entry Premium: ₹9.76 | Exit Premium: ₹14.70 | ROI: 50.5% (Target Hit at 12:50 pm)
+* INDIQUBE (SHORT) touched R4 (VAH Breakout Trigger) (200.13) at 03:10 pm
+  - Entry Premium: ₹2.95 | Exit Premium: ₹1.88 | ROI: -36.4% (Target/Close Exit)
+* INNOVISION (SHORT) touched R5 (VAH Extreme) (255.88) at 09:20 am
+  - Entry Premium: ₹3.83 | Exit Premium: ₹5.07 | ROI: 32.4% (Target Hit at 12:40 pm)
+* INNOVISION (SHORT) touched R6 (VAH Exhaustion) (256.46) at 09:20 am
+  - Entry Premium: ₹3.83 | Exit Premium: ₹5.65 | ROI: 47.7% (Target Hit at 01:50 pm)
+* GHCL (SHORT) touched R3 (VAH Reversion) (407.40) at 03:25 pm
+  - Entry Premium: ₹6.03 | Exit Premium: ₹6.03 | ROI: 0.0% (Target/Close Exit)
+* LICI (SHORT) touched R3 (VAH Reversion) (397.14) at 09:15 am
+  - Entry Premium: ₹5.94 | Exit Premium: ₹7.92 | ROI: 33.4% (Target Hit at 12:05 pm)
+* LGEINDIA (SHORT) touched R4 (VAH Breakout Trigger) (1743.30) at 09:50 am
+  - Entry Premium: ₹25.85 | Exit Premium: ₹30.65 | ROI: 18.6% (Target/Close Exit)
+* BERGEPAINT (SHORT) touched R3 (VAH Reversion) (458.06) at 09:15 am
+  - Entry Premium: ₹6.72 | Exit Premium: ₹4.57 | ROI: -32.0% (Target/Close Exit)
+* IPCALAB (SHORT) touched R4 (VAH Breakout Trigger) (1964.67) at 10:25 am
+  - Entry Premium: ₹29.18 | Exit Premium: ₹29.43 | ROI: 0.9% (Target/Close Exit)
+* PREMIERENE (SHORT) touched R6 (VAH Exhaustion) (888.00) at 10:00 am
+  - Entry Premium: ₹13.19 | Exit Premium: ₹12.92 | ROI: -2.1% (Target/Close Exit)
+* EBGNG (SHORT) touched R6 (VAH Exhaustion) (713.37) at 03:10 pm
+  - Entry Premium: ₹10.63 | Exit Premium: ₹14.11 | ROI: 32.7% (Target/Close Exit)
+* BANKNIFTY (SHORT) touched R4 (VAH Breakout Trigger) (55161.71) at 09:15 am
+  - Entry Premium: ₹821.87 | Exit Premium: ₹992.02 | ROI: 20.7% (Target/Close Exit)
+* APCOTEXIND (SHORT) touched R3 (VAH Reversion) (599.84) at 09:15 am
+  - Entry Premium: ₹8.94 | Exit Premium: ₹13.93 | ROI: 55.8% (Target Hit at 12:10 pm)
+* ARMANFIN (SHORT) touched R5 (VAH Extreme) (1787.41) at 02:50 pm
+  - Entry Premium: ₹26.65 | Exit Premium: ₹35.16 | ROI: 31.9% (Target/Close Exit)
+* CPEDU (SHORT) touched R3 (VAH Reversion) (178.50) at 10:00 am
+  - Entry Premium: ₹2.68 | Exit Premium: ₹3.13 | ROI: 16.9% (Target Hit at 12:55 pm)
+* LAURUSLABS (SHORT) touched R4 (VAH Breakout Trigger) (2005.58) at 09:35 am
+  - Entry Premium: ₹29.91 | Exit Premium: ₹45.50 | ROI: 52.1% (Target Hit at 12:55 pm)
+* COCKERILL (SHORT) touched R4 (VAH Breakout Trigger) (8070.18) at 03:15 pm
+  - Entry Premium: ₹121.05 | Exit Premium: ₹137.37 | ROI: 13.5% (Target Hit at 03:20 pm)
+* JSWINFRA (SHORT) touched R4 (VAH Breakout Trigger) (361.99) at 03:10 pm
+  - Entry Premium: ₹5.40 | Exit Premium: ₹7.37 | ROI: 36.6% (Target/Close Exit)
+* PRIMESECU (SHORT) touched R4 (VAH Breakout Trigger) (304.94) at 03:25 pm
+  - Entry Premium: ₹4.56 | Exit Premium: ₹4.56 | ROI: 0.0% (Target/Close Exit)
+* NOVARTIND (SHORT) touched R4 (VAH Breakout Trigger) (1985.38) at 03:15 pm
+  - Entry Premium: ₹29.63 | Exit Premium: ₹37.38 | ROI: 26.2% (Target/Close Exit)
+* FINEORG (SHORT) touched R5 (VAH Extreme) (5187.66) at 09:35 am
+  - Entry Premium: ₹77.52 | Exit Premium: ₹107.56 | ROI: 38.7% (Target Hit at 12:55 pm)
+* KARURVYSYA (SHORT) touched R3 (VAH Reversion) (329.09) at 11:50 am
+  - Entry Premium: ₹4.91 | Exit Premium: ₹5.79 | ROI: 17.8% (Target/Close Exit)
+* HCLTECH (SHORT) touched R5 (VAH Extreme) (1257.53) at 09:15 am
+  - Entry Premium: ₹18.62 | Exit Premium: ₹15.62 | ROI: -16.1% (Target/Close Exit)
+* CASTROLIND (SHORT) touched R3 (VAH Reversion) (201.32) at 09:15 am
+  - Entry Premium: ₹3.00 | Exit Premium: ₹4.41 | ROI: 46.8% (Target Hit at 09:25 am)
+* NESTLEIND (SHORT) touched R3 (VAH Reversion) (1319.76) at 09:15 am
+  - Entry Premium: ₹19.69 | Exit Premium: ₹22.84 | ROI: 16.0% (Target/Close Exit)
+* DHARMAJ (SHORT) touched R3 (VAH Reversion) (270.10) at 09:15 am
+  - Entry Premium: ₹3.99 | Exit Premium: ₹8.63 | ROI: 116.2% (Target Hit at 01:00 pm)
+* GLAXO (SHORT) touched R4 (VAH Breakout Trigger) (2803.13) at 11:30 am
+  - Entry Premium: ₹41.63 | Exit Premium: ₹49.38 | ROI: 18.6% (Target/Close Exit)
+* PRESTIGE (SHORT) touched R3 (VAH Reversion) (1501.84) at 10:00 am
+  - Entry Premium: ₹22.37 | Exit Premium: ₹36.01 | ROI: 61.0% (Target Hit at 10:45 am)
+* FEDERALBNK (SHORT) touched R4 (VAH Breakout Trigger) (321.17) at 10:20 am
+  - Entry Premium: ₹4.78 | Exit Premium: ₹4.05 | ROI: -15.2% (Target/Close Exit)
+* MAXIND (SHORT) touched R4 (VAH Breakout Trigger) (164.12) at 03:15 pm
+  - Entry Premium: ₹2.46 | Exit Premium: ₹2.91 | ROI: 18.2% (Target Hit at 03:20 pm)
+* KEYFINSERV (SHORT) touched R3 (VAH Reversion) (246.55) at 09:20 am
+  - Entry Premium: ₹3.64 | Exit Premium: ₹7.74 | ROI: 112.4% (Target Hit at 10:10 am)
+* MAXHEALTH (SHORT) touched R3 (VAH Reversion) (948.66) at 12:30 pm
+  - Entry Premium: ₹14.15 | Exit Premium: ₹21.31 | ROI: 50.6% (Target Hit at 02:00 pm)
+* INDIGRID (SHORT) touched R3 (VAH Reversion) (171.48) at 09:15 am
+  - Entry Premium: ₹2.56 | Exit Premium: ₹3.11 | ROI: 21.4% (Target/Close Exit)
+* HINDCOMPOS (SHORT) touched R3 (VAH Reversion) (385.03) at 09:15 am
+  - Entry Premium: ₹5.77 | Exit Premium: ₹7.11 | ROI: 23.3% (Target Hit at 09:25 am)
+* KOVAI (SHORT) touched R4 (VAH Breakout Trigger) (6058.98) at 09:15 am
+  - Entry Premium: ₹89.60 | Exit Premium: ₹85.85 | ROI: -4.2% (Target/Close Exit)
+* LTFOODS (SHORT) touched R3 (VAH Reversion) (403.26) at 11:15 am
+  - Entry Premium: ₹6.00 | Exit Premium: ₹10.07 | ROI: 67.8% (Target Hit at 01:40 pm)
+* CNXENERGY (SHORT) touched R3 (VAH Reversion) (36756.71) at 09:15 am
+  - Entry Premium: ₹546.52 | Exit Premium: ₹569.42 | ROI: 4.2% (Target/Close Exit)
+* CLEAN (SHORT) touched R4 (VAH Breakout Trigger) (808.87) at 03:20 pm
+  - Entry Premium: ₹12.04 | Exit Premium: ₹9.49 | ROI: -21.2% (Target/Close Exit)
+* MAITHANALL (SHORT) touched R3 (VAH Reversion) (935.41) at 03:05 pm
+  - Entry Premium: ₹14.01 | Exit Premium: ₹17.34 | ROI: 23.8% (Target Hit at 03:10 pm)
+* BANARISUG (SHORT) touched R3 (VAH Reversion) (3323.33) at 09:15 am
+  - Entry Premium: ₹49.88 | Exit Premium: ₹54.46 | ROI: 9.2% (Target Hit at 09:20 am)
+* MFSL (SHORT) touched R4 (VAH Breakout Trigger) (1401.34) at 10:20 am
+  - Entry Premium: ₹20.90 | Exit Premium: ₹25.10 | ROI: 20.1% (Target/Close Exit)
+* COHANCE (SHORT) touched R4 (VAH Breakout Trigger) (455.08) at 03:05 pm
+  - Entry Premium: ₹6.79 | Exit Premium: ₹6.77 | ROI: -0.4% (Target/Close Exit)
+* NEULANDLAB (SHORT) touched R5 (VAH Extreme) (21698.48) at 03:05 pm
+  - Entry Premium: ₹322.80 | Exit Premium: ₹377.80 | ROI: 17.0% (Target/Close Exit)
+* BETA (SHORT) touched R4 (VAH Breakout Trigger) (2090.62) at 03:05 pm
+  - Entry Premium: ₹31.30 | Exit Premium: ₹39.11 | ROI: 24.9% (Target Hit at 03:10 pm)
+* EIMCOELECO (SHORT) touched R3 (VAH Reversion) (2285.86) at 09:15 am
+  - Entry Premium: ₹34.16 | Exit Premium: ₹47.49 | ROI: 39.0% (Target Hit at 11:50 am)
+* PETRONET (SHORT) touched R4 (VAH Breakout Trigger) (287.19) at 09:15 am
+  - Entry Premium: ₹4.26 | Exit Premium: ₹2.41 | ROI: -43.5% (Target/Close Exit)
+* INDIASHLTR (SHORT) touched R6 (VAH Exhaustion) (650.77) at 01:40 pm
+  - Entry Premium: ₹9.66 | Exit Premium: ₹8.71 | ROI: -9.8% (Target/Close Exit)
+* MPHASIS (SHORT) touched R6 (VAH Exhaustion) (2262.68) at 10:10 am
+  - Entry Premium: ₹33.69 | Exit Premium: ₹28.54 | ROI: -15.3% (Target/Close Exit)
+* MAGSON (SHORT) touched R3 (VAH Reversion) (180.28) at 01:20 pm
+  - Entry Premium: ₹2.69 | Exit Premium: ₹2.94 | ROI: 9.3% (Target/Close Exit)
+* MAGSON (SHORT) touched R4 (VAH Breakout Trigger) (180.55) at 01:20 pm
+  - Entry Premium: ₹2.69 | Exit Premium: ₹2.94 | ROI: 9.3% (Target/Close Exit)
+* LUPIN (SHORT) touched R3 (VAH Reversion) (2042.49) at 09:15 am
+  - Entry Premium: ₹30.27 | Exit Premium: ₹26.82 | ROI: -11.4% (Target/Close Exit)
+* MEDPLUS (SHORT) touched R4 (VAH Breakout Trigger) (658.89) at 09:15 am
+  - Entry Premium: ₹9.79 | Exit Premium: ₹10.94 | ROI: 11.7% (Target/Close Exit)
+* CHEMPLASTS (SHORT) touched R4 (VAH Breakout Trigger) (192.68) at 03:00 pm
+  - Entry Premium: ₹2.87 | Exit Premium: ₹2.83 | ROI: -1.2% (Target/Close Exit)
+* KAMATHOTEL (SHORT) touched R3 (VAH Reversion) (238.65) at 09:15 am
+  - Entry Premium: ₹3.55 | Exit Premium: ₹5.71 | ROI: 60.5% (Target Hit at 09:55 am)
+* GCSL (SHORT) touched R4 (VAH Breakout Trigger) (684.51) at 09:15 am
+  - Entry Premium: ₹10.21 | Exit Premium: ₹15.20 | ROI: 48.8% (Target Hit at 02:05 pm)
+* BLUEJET (SHORT) touched R3 (VAH Reversion) (545.57) at 09:30 am
+  - Entry Premium: ₹8.13 | Exit Premium: ₹12.94 | ROI: 59.2% (Target Hit at 12:40 pm)
+* PREMEXPLN (SHORT) touched R3 (VAH Reversion) (686.77) at 09:15 am
+  - Entry Premium: ₹10.25 | Exit Premium: ₹11.95 | ROI: 16.6% (Target/Close Exit)
+* ICICIPRULI (SHORT) touched R5 (VAH Extreme) (450.42) at 09:15 am
+  - Entry Premium: ₹6.71 | Exit Premium: ₹5.66 | ROI: -15.6% (Target/Close Exit)
+* HINDALCO (SHORT) touched R3 (VAH Reversion) (946.12) at 09:15 am
+  - Entry Premium: ₹13.99 | Exit Premium: ₹10.59 | ROI: -24.3% (Target/Close Exit)
+* ELCIDIN (SHORT) touched R3 (VAH Reversion) (102757.13) at 09:25 am
+  - Entry Premium: ₹1539.97 | Exit Premium: ₹1837.61 | ROI: 19.3% (Target Hit at 01:45 pm)
+* GODREJAGRO (SHORT) touched R4 (VAH Breakout Trigger) (634.82) at 03:05 pm
+  - Entry Premium: ₹9.48 | Exit Premium: ₹8.90 | ROI: -6.1% (Target/Close Exit)
+* GANDHAR (SHORT) touched R4 (VAH Breakout Trigger) (284.05) at 09:15 am
+  - Entry Premium: ₹4.24 | Exit Premium: ₹6.16 | ROI: 45.2% (Target Hit at 09:20 am)
+* HAWKINCOOK (SHORT) touched R3 (VAH Reversion) (8068.55) at 10:30 am
+  - Entry Premium: ₹120.12 | Exit Premium: ₹93.62 | ROI: -22.1% (Target/Close Exit)
+* GAIL (SHORT) touched R4 (VAH Breakout Trigger) (172.08) at 09:15 am
+  - Entry Premium: ₹2.55 | Exit Premium: ₹2.33 | ROI: -8.8% (Target/Close Exit)
+* PANAMAPET (SHORT) touched R3 (VAH Reversion) (489.09) at 09:15 am
+  - Entry Premium: ₹7.21 | Exit Premium: ₹3.81 | ROI: -47.1% (Target/Close Exit)
+* HOMEFIRST (SHORT) touched R4 (VAH Breakout Trigger) (1128.17) at 02:30 pm
+  - Entry Premium: ₹16.79 | Exit Premium: ₹16.14 | ROI: -3.9% (Target/Close Exit)
+* FORTIS (SHORT) touched R3 (VAH Reversion) (787.48) at 02:35 pm
+  - Entry Premium: ₹11.69 | Exit Premium: ₹8.94 | ROI: -23.5% (Target/Close Exit)
+* MODISONLTD (SHORT) touched R6 (VAH Exhaustion) (486.09) at 10:00 am
+  - Entry Premium: ₹7.26 | Exit Premium: ₹10.37 | ROI: 42.8% (Target Hit at 12:40 pm)
+
+5B. INTRADAY BACKTEST STATISTICAL SUMMARY:
+--------------------------------------------------------------------------------
+* Total Trades Triggered   : 425
+* Profit Closures (>0% ROI): 348 (81.9%)
+* Neutral Closures (0% ROI): 11 (2.6%)
+* Loss Closures (<0% ROI)  : 66 (15.5%)
+* Stop Loss Hits (SL Hit)  : 0 (0.0%)
+* Win Rate (Strict Profit) : 81.9%
+* Survival Rate (No SL Hit): 100.0%
+
+5C. PERFORMANCE BREAKDOWN BY LEVEL:
+--------------------------------------------------------------------------------
+* Level R3  : Total = 104 | Profit = 88  (84.6%) | Avg ROI = 39.0%
+* Level S3  : Total = 32  | Profit = 25  (78.1%) | Avg ROI = 37.4%
+* Level R6  : Total = 17  | Profit = 13  (76.5%) | Avg ROI = 32.2%
+* Level S6  : Total = 57  | Profit = 51  (89.5%) | Avg ROI = 30.7%
+* Level R4  : Total = 71  | Profit = 55  (77.5%) | Avg ROI = 30.4%
+* Level S4  : Total = 53  | Profit = 43  (81.1%) | Avg ROI = 29.6%
+* Level S5  : Total = 72  | Profit = 60  (83.3%) | Avg ROI = 29.2%
+* Level R5  : Total = 19  | Profit = 13  (68.4%) | Avg ROI = 23.0%
+
+5D. PERFORMANCE BREAKDOWN BY DIRECTION:
+--------------------------------------------------------------------------------
+* LONG      : Total = 214 | Profit = 179 (83.6%) | Avg ROI = 30.9%
+* SHORT     : Total = 211 | Profit = 169 (80.1%) | Avg ROI = 34.1%
+
+================================================================================
+6. OPENING BIAS & BHAICHARA INSTITUTIONAL VALIDATION
+================================================================================
+
+
+8. OPENING BIAS VALIDATION (Did the market follow the 2-Year Opening Bias?):
+-----------------------------------------
+* NIFTY: SUCCESS
+  - Zone: Open Between S4 and S3
+  - Prediction: Expected RED Close (Probability: 40.1%)
+  - Actual: Closed RED (Open: 22543.70 | Close: 22421.95 | Move: -121.75 pts)
+  - Analysis: The index behaved exactly as predicted by the 2-year backtest for Open Between S4 and S3.
+
+* BANKNIFTY: FAILED
+  - Zone: Open Between S2 and R2 (Value Area Midpoint)
+  - Prediction: Expected GREEN Close (Probability: 52.3%)
+  - Actual: Closed RED (Open: 54583.05 | Close: 54450.75 | Move: -132.30 pts)
+  - Analysis: The gap was rejected/accepted differently. Today's close (RED) deviated from the historical bias. Re-calibrating future zone expectations (New Green Close probability: 52.3%).
+
+================================================================================
+7. BHAICHARA WORK AUTO-LEARNED INSTITUTIONAL LESSONS
+================================================================================
+* ATM Straddle Skew Asymmetry: SKEW > +15% correctly predicted bullish call accumulation on winning sessions.
+* Gamma Crossover Ratio (Γ): Institutional volume accumulation (>2.0x) confirmed late-day drives after 2:15 PM.
+* Lunchtime Theta vs IV Filter: Period G consolidation successfully filtered false breakouts between 12:15 - 12:45 PM.
+* Hero Reversal Traps: Failed morning expansions (C/D/E periods) respected the opposite extreme target.
+================================================================================
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (16:15:11 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22421.95 (-3.65%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54450.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 9 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT WRITING CONVICTION (FLOOR ABSORPTION):
+  - Insight: NIFTY First-Hour PCR drift expanded to +18.97 indicating heavy institutional put absorption.
+  - Applied Rule: Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 14:05:00 (Midday) at 22217.65.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 10 institutional rules
+* Auto-Learned Rules Added: 7 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (16:15:29 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22421.95 (-3.65%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54450.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 9 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT WRITING CONVICTION (FLOOR ABSORPTION):
+  - Insight: NIFTY First-Hour PCR drift expanded to +18.97 indicating heavy institutional put absorption.
+  - Applied Rule: Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 14:05:00 (Midday) at 22217.65.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 10 institutional rules
+* Auto-Learned Rules Added: 7 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22421.95 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54450.75 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 0 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 2 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Automobile (0 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 420 PE / Short Spot
+    Entry: ₹418.35 | SL: ₹439.1 (Risk: ₹41500/lot)
+    Target 1: ₹385.15 (+₹66400/lot)
+    Target 2: ₹360.25 (+₹116200/lot)
+    Win Rate: 55% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[2] 💥 BREAKDOWN / FADE -> AXISBANK (Banking & Financials)
+    Action: BUY AXISBANK 1220 PE / Short Spot
+    Entry: ₹1217.1 | SL: ₹1304.91 (Risk: ₹54881/lot)
+    Target 1: ₹1076.6 (+₹87813/lot)
+    Target 2: ₹971.23 (+₹153669/lot)
+    Win Rate: 15% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹1300) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 0 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Automobile (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22421.95 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54450.75 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 0 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 2 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Automobile (0 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 420 PE / Short Spot
+    Entry: ₹418.35 | SL: ₹439.1 (Risk: ₹41500/lot)
+    Target 1: ₹385.15 (+₹66400/lot)
+    Target 2: ₹360.25 (+₹116200/lot)
+    Win Rate: 55% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[2] 💥 BREAKDOWN / FADE -> AXISBANK (Banking & Financials)
+    Action: BUY AXISBANK 1220 PE / Short Spot
+    Entry: ₹1217.1 | SL: ₹1304.91 (Risk: ₹54881/lot)
+    Target 1: ₹1076.6 (+₹87813/lot)
+    Target 2: ₹971.23 (+₹153669/lot)
+    Win Rate: 15% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹1300) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 0 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Automobile (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 392.9 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 1020.5 pts
+- Rule 5A: Period A Low held all day at 22217.65
+- Stock Universe Win Rate: 100% (31 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (20:20:12 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22421.95 (-3.65%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54450.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 35 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT WRITING CONVICTION (FLOOR ABSORPTION):
+  - Insight: NIFTY First-Hour PCR drift expanded to +18.97 indicating heavy institutional put absorption.
+  - Applied Rule: Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 14:05:00 (Midday) at 22217.65.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 10 institutional rules
+* Auto-Learned Rules Added: 7 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22421.95 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54450.75 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 2 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 20 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Information Technology (0 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> FINPIPE (Pipes & PVC Products)
+    Action: BUY FINPIPE 150 CE / Spot
+    Entry: ₹150.49 | SL: ₹147.17 (Risk: ₹9960/lot)
+    Target 1: ₹155.8 (+₹15930/lot)
+    Target 2: ₹159.79 (+₹27900/lot)
+    Win Rate: 54% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 55.4% of ATR with 80% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 🔒 HIGH-CONVICTION COIL -> ICICIPRULI (Insurance)
+    Action: BUY ICICIPRULI 450 CE / Spot
+    Entry: ₹448.05 | SL: ₹438.81 (Risk: ₹8547/lot)
+    Target 1: ₹462.83 (+₹13671/lot)
+    Target 2: ₹473.92 (+₹23930/lot)
+    Win Rate: 60% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 58.6% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[3] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 420 PE / Short Spot
+    Entry: ₹418.35 | SL: ₹439.1 (Risk: ₹41500/lot)
+    Target 1: ₹385.15 (+₹66400/lot)
+    Target 2: ₹360.25 (+₹116200/lot)
+    Win Rate: 55% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[4] 💥 BREAKDOWN / FADE -> AXISBANK (Banking & Financials)
+    Action: BUY AXISBANK 1220 PE / Short Spot
+    Entry: ₹1217.1 | SL: ₹1304.91 (Risk: ₹54881/lot)
+    Target 1: ₹1076.6 (+₹87813/lot)
+    Target 2: ₹971.23 (+₹153669/lot)
+    Win Rate: 15% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹1300) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 2 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 392.9 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 1020.5 pts
+- Rule 5A: Period A Low held all day at 22217.65
+- Stock Universe Win Rate: 100% (31 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (20:20:17 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22421.95 (-3.65%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54450.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 35 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT WRITING CONVICTION (FLOOR ABSORPTION):
+  - Insight: NIFTY First-Hour PCR drift expanded to +18.97 indicating heavy institutional put absorption.
+  - Applied Rule: Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 14:05:00 (Midday) at 22217.65.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 10 institutional rules
+* Auto-Learned Rules Added: 7 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22421.95 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54450.75 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 2 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 20 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Information Technology (0 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> FINPIPE (Pipes & PVC Products)
+    Action: BUY FINPIPE 150 CE / Spot
+    Entry: ₹150.49 | SL: ₹147.17 (Risk: ₹9960/lot)
+    Target 1: ₹155.8 (+₹15930/lot)
+    Target 2: ₹159.79 (+₹27900/lot)
+    Win Rate: 54% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 55.4% of ATR with 80% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 🔒 HIGH-CONVICTION COIL -> ICICIPRULI (Insurance)
+    Action: BUY ICICIPRULI 450 CE / Spot
+    Entry: ₹448.05 | SL: ₹438.81 (Risk: ₹8547/lot)
+    Target 1: ₹462.83 (+₹13671/lot)
+    Target 2: ₹473.92 (+₹23930/lot)
+    Win Rate: 60% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 58.6% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[3] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 420 PE / Short Spot
+    Entry: ₹418.35 | SL: ₹439.1 (Risk: ₹41500/lot)
+    Target 1: ₹385.15 (+₹66400/lot)
+    Target 2: ₹360.25 (+₹116200/lot)
+    Win Rate: 55% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[4] 💥 BREAKDOWN / FADE -> AXISBANK (Banking & Financials)
+    Action: BUY AXISBANK 1220 PE / Short Spot
+    Entry: ₹1217.1 | SL: ₹1304.91 (Risk: ₹54881/lot)
+    Target 1: ₹1076.6 (+₹87813/lot)
+    Target 2: ₹971.23 (+₹153669/lot)
+    Win Rate: 15% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹1300) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 2 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 392.9 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 1020.5 pts
+- Rule 5A: Period A Low held all day at 22217.65
+- Stock Universe Win Rate: 100% (31 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (20:23:32 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22421.95 (-3.65%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54450.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 41 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT WRITING CONVICTION (FLOOR ABSORPTION):
+  - Insight: NIFTY First-Hour PCR drift expanded to +18.97 indicating heavy institutional put absorption.
+  - Applied Rule: Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 14:05:00 (Midday) at 22217.65.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 10 institutional rules
+* Auto-Learned Rules Added: 7 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-01
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22421.95 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54450.75 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 212 F&O Assets
+* Extreme Vault Accumulation: 2 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 24 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Information Technology (0 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> FINPIPE (Pipes & PVC Products)
+    Action: BUY FINPIPE 150 CE / Spot
+    Entry: ₹150.49 | SL: ₹147.17 (Risk: ₹9960/lot)
+    Target 1: ₹155.8 (+₹15930/lot)
+    Target 2: ₹159.79 (+₹27900/lot)
+    Win Rate: 51% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 60.4% of ATR with 79% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 🔒 HIGH-CONVICTION COIL -> ICICIPRULI (Insurance)
+    Action: BUY ICICIPRULI 450 CE / Spot
+    Entry: ₹448.05 | SL: ₹438.92 (Risk: ₹8445/lot)
+    Target 1: ₹462.66 (+₹13514/lot)
+    Target 2: ₹473.61 (+₹23643/lot)
+    Win Rate: 59% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 60.7% of ATR with 89% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[3] 💥 BREAKDOWN / FADE -> ICICIGI (Insurance)
+    Action: BUY ICICIGI 1560 PE / Short Spot
+    Entry: ₹1563 | SL: ₹1602.37 (Risk: ₹12795/lot)
+    Target 1: ₹1500.01 (+₹20472/lot)
+    Target 2: ₹1452.76 (+₹35828/lot)
+    Win Rate: 64% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹1594.7) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[4] 💥 BREAKDOWN / FADE -> KOTAKBANK (Banking & Financials)
+    Action: BUY KOTAKBANK 420 PE / Short Spot
+    Entry: ₹418.35 | SL: ₹439.1 (Risk: ₹41500/lot)
+    Target 1: ₹385.15 (+₹66400/lot)
+    Target 2: ₹360.25 (+₹116200/lot)
+    Win Rate: 55% | Move: -4.5% to -7.0% Trend Down
+    Rationale: Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 2 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Information Technology (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-01 ===
+- NIFTY: Day Type TREND_DAY_BEARISH | Range: 392.9 pts
+- BANKNIFTY: Day Type NEUTRAL_DAY (Double Extension - Reversal Trap) | Range: 1020.5 pts
+- Rule 5A: Period A Low held all day at 22217.65
+- Stock Universe Win Rate: 100% (31 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-01 (20:23:37 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22421.95 (-3.65%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54450.75 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 41 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT WRITING CONVICTION (FLOOR ABSORPTION):
+  - Insight: NIFTY First-Hour PCR drift expanded to +18.97 indicating heavy institutional put absorption.
+  - Applied Rule: Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 14:05:00 (Midday) at 22217.65.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 10 institutional rules
+* Auto-Learned Rules Added: 7 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================

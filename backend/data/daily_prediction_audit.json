@@ -1,5 +1,47 @@
 [
   {
+    "date": "2026-10-01",
+    "timeframe": "DAILY",
+    "actual_range": 392.9,
+    "predicted_range": 139,
+    "range_error_pts": 253.9,
+    "range_accuracy_pct": 35.38,
+    "ib_range": 102.2,
+    "is_wide_ib": true,
+    "day_type": "TREND_DAY_BEARISH",
+    "mistake_diagnosed": "Range deviated by 253.9 pts. Check VIX shifts and day-of-week multipliers.",
+    "remedy_applied": "Apply 1.36x compression cap on morning climax.",
+    "logged_at": "2026-10-01T10:17:13.018Z"
+  },
+  {
+    "date": "2026-09-30",
+    "timeframe": "DAILY",
+    "actual_range": 183.5,
+    "predicted_range": 249,
+    "range_error_pts": 65.5,
+    "range_accuracy_pct": 64.31,
+    "ib_range": 182.8,
+    "is_wide_ib": true,
+    "day_type": "NORMAL_VARIATION_BULL",
+    "mistake_diagnosed": "Range deviated by 65.5 pts. Check VIX shifts and day-of-week multipliers.",
+    "remedy_applied": "Apply 1.36x compression cap on morning climax.",
+    "logged_at": "2026-09-30T02:29:54.374Z"
+  },
+  {
+    "date": "2026-09-29",
+    "timeframe": "DAILY",
+    "actual_range": 182.8,
+    "predicted_range": 249,
+    "range_error_pts": 66.2,
+    "range_accuracy_pct": 63.79,
+    "ib_range": 182.8,
+    "is_wide_ib": true,
+    "day_type": "NORMAL_DAY",
+    "mistake_diagnosed": "Range deviated by 66.2 pts. Check VIX shifts and day-of-week multipliers.",
+    "remedy_applied": "Apply 1.36x compression cap on morning climax.",
+    "logged_at": "2026-09-29T04:20:51.083Z"
+  },
+  {
     "date": "2026-09-28",
     "timeframe": "DAILY",
     "actual_range": 317.5,

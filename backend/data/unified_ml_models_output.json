@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-28T16:27:54.871534",
-  "session_date": "2026-09-28",
+  "generated_at": "2026-10-01T20:23:21.347030",
+  "session_date": "2026-10-01",
   "suite_version": "3.0-Production-Multi-Model",
   "packages_installed": {
     "lightgbm": "4.7.0",
@@ -15,68 +15,68 @@
       "input_sequence_bars": 30,
       "forecast_steps_ahead": 5,
       "predicted_cumulative_drift_pct": [
-        -0.147,
-        -0.294,
-        -0.38,
-        -0.027,
-        0.462
+        0.584,
+        0.294,
+        -0.062,
+        -0.012,
+        0.057
       ],
-      "projected_direction": "BULLISH_EXPANSION",
-      "lstm_memory_energy": 0.798,
-      "final_training_loss": 1.9e-05,
+      "projected_direction": "MEAN_REVERSION_DAMPENING",
+      "lstm_memory_energy": 0.829,
+      "final_training_loss": 3e-05,
       "inference_latency_ms": 2.4
     },
     "gradient_boosting": {
       "status": "success",
       "algorithm": "Native LightGBM v4.7.0 & XGBoost v3.4.1",
-      "win_probability_pct": 0.6,
-      "bearish_probability_pct": 99.4,
-      "xgboost_win_prob_pct": 1.2,
-      "xgboost_bear_prob_pct": 98.8,
+      "win_probability_pct": 2.5,
+      "bearish_probability_pct": 97.5,
+      "xgboost_win_prob_pct": 1.4,
+      "xgboost_bear_prob_pct": 98.6,
       "model_verdict": "STRONG_BUY_PE",
       "feature_importances": [
         {
           "feature": "Dist Vwap",
-          "importance_pct": 22.5
-        },
-        {
-          "feature": "Lower Wick",
-          "importance_pct": 19.0
+          "importance_pct": 22.2
         },
         {
           "feature": "Hl Spread",
-          "importance_pct": 16.2
-        },
-        {
-          "feature": "Upper Wick",
-          "importance_pct": 15.6
-        },
-        {
-          "feature": "Ret",
-          "importance_pct": 13.3
+          "importance_pct": 20.8
         },
         {
           "feature": "Body Ratio",
-          "importance_pct": 13.3
+          "importance_pct": 16.8
+        },
+        {
+          "feature": "Lower Wick",
+          "importance_pct": 14.5
+        },
+        {
+          "feature": "Upper Wick",
+          "importance_pct": 14.2
+        },
+        {
+          "feature": "Ret",
+          "importance_pct": 11.6
         }
       ],
-      "training_time_ms": 1489.8,
-      "xgb_training_time_ms": 192.71,
-      "inference_latency_ms": 10.405
+      "training_time_ms": 1478.56,
+      "xgb_training_time_ms": 342.62,
+      "inference_latency_ms": 16.175
     },
     "random_forest": {
       "status": "success",
       "ensemble_size": 100,
-      "predicted_regime": "TREND_EXPANSION_DAY",
-      "ensemble_confidence_pct": 100.0,
+      "predicted_regime": "LIQUIDATION_FLUSH_DAY",
+      "ensemble_confidence_pct": 93.2,
       "voting_distribution": {
-        "trend_day_votes_pct": 100.0,
+        "trend_day_votes_pct": 1.6,
         "normal_range_votes_pct": 0.0,
-        "neutral_double_break_votes_pct": 0.0,
-        "liquidation_votes_pct": 0.0
+        "neutral_double_break_votes_pct": 5.2,
+        "liquidation_votes_pct": 93.2
       },
-      "model_entropy_uncertainty": -0.0,
-      "explainable_rule": "IF (Session Range = 1.38% AND Net Change = -1.23%) -> TREND_EXPANSION_DAY (Consensus: 100.0%)",
+      "model_entropy_uncertainty": 0.259,
+      "explainable_rule": "IF (Session Range = 1.74% AND Net Change = -0.54%) -> LIQUIDATION_FLUSH_DAY (Consensus: 93.2%)",
       "inference_latency_ms": 0.8
     },
     "isolation_forest": {
@@ -85,50 +85,50 @@
       "total_anomalies_isolated": 14,
       "recent_anomalies": [
         {
-          "time": "10:17:00",
-          "bar_index": 62,
-          "price_level": 22839.8,
-          "anomaly_score": -0.0567,
+          "time": "14:07:00",
+          "bar_index": 292,
+          "price_level": 22263.45,
+          "anomaly_score": -0.0263,
           "archetype": "VOLATILITY_EXPANSION_ANOMALY",
           "description": "Microstructure divergence from baseline Gaussian manifold."
         },
         {
-          "time": "13:23:00",
-          "bar_index": 248,
-          "price_level": 22842.05,
-          "anomaly_score": -0.0423,
+          "time": "14:14:00",
+          "bar_index": 299,
+          "price_level": 22296.15,
+          "anomaly_score": -0.0035,
           "archetype": "VOLATILITY_EXPANSION_ANOMALY",
           "description": "Microstructure divergence from baseline Gaussian manifold."
         },
         {
-          "time": "14:18:00",
-          "bar_index": 303,
-          "price_level": 22795.4,
-          "anomaly_score": -0.1111,
+          "time": "14:27:00",
+          "bar_index": 312,
+          "price_level": 22301.7,
+          "anomaly_score": -0.0007,
+          "archetype": "OVERHEAD_SUPPLY_CAP",
+          "description": "Severe rejection wick; smart money absorbed aggressive market buyers."
+        },
+        {
+          "time": "14:33:00",
+          "bar_index": 318,
+          "price_level": 22360.05,
+          "anomaly_score": -0.1114,
           "archetype": "VOLATILITY_EXPANSION_ANOMALY",
           "description": "Microstructure divergence from baseline Gaussian manifold."
         },
         {
-          "time": "14:38:00",
-          "bar_index": 323,
-          "price_level": 22767.0,
-          "anomaly_score": -0.0139,
-          "archetype": "VOLATILITY_EXPANSION_ANOMALY",
-          "description": "Microstructure divergence from baseline Gaussian manifold."
+          "time": "14:35:00",
+          "bar_index": 320,
+          "price_level": 22366.1,
+          "anomaly_score": -0.0337,
+          "archetype": "LIQUIDITY_SWEEP_ABSORPTION",
+          "description": "Stop run below swing low absorbed into institutional buy inventory."
         },
         {
-          "time": "15:10:00",
-          "bar_index": 355,
-          "price_level": 22793.55,
-          "anomaly_score": -0.0154,
-          "archetype": "VOLATILITY_EXPANSION_ANOMALY",
-          "description": "Microstructure divergence from baseline Gaussian manifold."
-        },
-        {
-          "time": "15:12:00",
-          "bar_index": 357,
-          "price_level": 22795.35,
-          "anomaly_score": -0.0003,
+          "time": "14:51:00",
+          "bar_index": 336,
+          "price_level": 22381.55,
+          "anomaly_score": -0.0323,
           "archetype": "OVERHEAD_SUPPLY_CAP",
           "description": "Severe rejection wick; smart money absorbed aggressive market buyers."
         }

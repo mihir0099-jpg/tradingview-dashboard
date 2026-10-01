@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-28T16:27:42.813363",
-  "session_date": "2026-09-28",
+  "generated_at": "2026-10-01T20:23:37.004914",
+  "session_date": "2026-10-01",
   "engine_version": "2.0-Unsupervised-ML",
   "description": "Genuine machine learning models trained on raw market microstructure (Hidden Markov Models, Vector Autoregression Granger Causality, Isolation Forest, and Waveform Clustering).",
   "hmm_regimes_nifty": {
@@ -8,103 +8,103 @@
     "current_eod_state": 0,
     "current_regime_label": "Low Volatility Consolidation / Compression",
     "next_state_probabilities": [
-      0.6733,
-      0.3267,
-      0.0
+      0.3579,
+      0.5791,
+      0.063
     ],
     "transition_matrix": [
       [
-        0.6733,
-        0.3267,
-        0.0
+        0.3579,
+        0.5791,
+        0.063
       ],
       [
-        0.4983,
-        0.5017,
-        0.0
+        0.0947,
+        0.7162,
+        0.1891
       ],
       [
-        0.0,
-        1.0,
-        0.0
+        0.0597,
+        0.6407,
+        0.2996
       ]
     ],
     "stationary_distribution": [
-      0.604,
-      0.396,
-      0.0
+      0.1192,
+      0.685,
+      0.1957
     ],
     "state_profiles": [
       {
         "state_id": 0,
         "label": "Low Volatility Consolidation / Compression",
         "regime_type": "EQUILIBRIUM",
-        "variance": 8.456206881680933e-05,
-        "mean_hl_spread": 0.00021417877153742388,
-        "occupancy_pct": 60.11,
-        "bars_count": 226
+        "variance": 1.687215904467218e-05,
+        "mean_hl_spread": 0.0002351483289743728,
+        "occupancy_pct": 11.97,
+        "bars_count": 45
       },
       {
         "state_id": 1,
         "label": "Steady Drift / Directional Auction",
         "regime_type": "TREND",
-        "variance": 0.00031214528077596953,
-        "mean_hl_spread": 0.00042475429628913435,
-        "occupancy_pct": 39.63,
-        "bars_count": 149
+        "variance": 0.00024860209988951734,
+        "mean_hl_spread": 0.00046304167663178546,
+        "occupancy_pct": 69.15,
+        "bars_count": 260
       },
       {
         "state_id": 2,
         "label": "Steady Drift / Directional Auction",
         "regime_type": "TREND",
-        "variance": NaN,
-        "mean_hl_spread": 0.004657114504082592,
-        "occupancy_pct": 0.27,
-        "bars_count": 1
+        "variance": 0.0007789516255847515,
+        "mean_hl_spread": 0.0009602038614114426,
+        "occupancy_pct": 18.88,
+        "bars_count": 71
       }
     ],
-    "regime_shifts_count": 146,
+    "regime_shifts_count": 150,
     "timeline_blocks": [
       {
+        "state": 2,
+        "start_time": "14:53:00",
+        "duration_bars": 1,
+        "end_time": "14:53:00"
+      },
+      {
         "state": 1,
-        "start_time": "15:01:00",
-        "duration_bars": 3,
-        "end_time": "15:03:00"
+        "start_time": "14:54:00",
+        "duration_bars": 7,
+        "end_time": "15:00:00"
       },
       {
         "state": 0,
-        "start_time": "15:04:00",
+        "start_time": "15:01:00",
         "duration_bars": 1,
+        "end_time": "15:01:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:02:00",
+        "duration_bars": 3,
         "end_time": "15:04:00"
       },
       {
-        "state": 1,
+        "state": 2,
         "start_time": "15:05:00",
-        "duration_bars": 2,
-        "end_time": "15:06:00"
-      },
-      {
-        "state": 0,
-        "start_time": "15:07:00",
-        "duration_bars": 3,
-        "end_time": "15:09:00"
-      },
-      {
-        "state": 1,
-        "start_time": "15:10:00",
         "duration_bars": 1,
-        "end_time": "15:10:00"
-      },
-      {
-        "state": 0,
-        "start_time": "15:11:00",
-        "duration_bars": 2,
-        "end_time": "15:12:00"
+        "end_time": "15:05:00"
       },
       {
         "state": 1,
-        "start_time": "15:13:00",
-        "duration_bars": 2,
+        "start_time": "15:06:00",
+        "duration_bars": 8,
+        "end_time": "15:13:00"
+      },
+      {
+        "state": 2,
+        "start_time": "15:14:00",
+        "duration_bars": 1,
         "end_time": "15:14:00"
       },
       {
@@ -114,7 +114,7 @@
         "end_time": "15:28:00"
       },
       {
-        "state": 1,
+        "state": 2,
         "start_time": "15:29:00",
         "duration_bars": 1,
         "end_time": "15:29:00"
@@ -130,123 +130,123 @@
   "hmm_regimes_banknifty": {
     "status": "success",
     "current_eod_state": 1,
-    "current_regime_label": "Low Volatility Consolidation / Compression",
+    "current_regime_label": "Steady Drift / Directional Auction",
     "next_state_probabilities": [
-      0.4694,
-      0.5306,
-      0.0
+      0.4375,
+      0.5104,
+      0.0521
     ],
     "transition_matrix": [
       [
-        0.5142,
-        0.4858,
-        0.0
+        0.5001,
+        0.3341,
+        0.1658
       ],
       [
-        0.4694,
-        0.5306,
-        0.0
+        0.4375,
+        0.5104,
+        0.0521
       ],
       [
-        1.0,
-        0.0,
-        0.0
+        0.6444,
+        0.0674,
+        0.2882
       ]
     ],
     "stationary_distribution": [
-      0.4914,
-      0.5086,
-      -0.0
+      0.4982,
+      0.3595,
+      0.1423
     ],
     "state_profiles": [
       {
         "state_id": 0,
         "label": "Steady Drift / Directional Auction",
         "regime_type": "TREND",
-        "variance": 0.0003851803163124672,
-        "mean_hl_spread": 0.0005454867021667363,
-        "occupancy_pct": 47.07,
-        "bars_count": 177
+        "variance": 0.00040770889771107497,
+        "mean_hl_spread": 0.0006882140882546207,
+        "occupancy_pct": 49.2,
+        "bars_count": 185
       },
       {
         "state_id": 1,
-        "label": "Low Volatility Consolidation / Compression",
-        "regime_type": "EQUILIBRIUM",
-        "variance": 9.431936703204376e-05,
-        "mean_hl_spread": 0.0003067316707258144,
-        "occupancy_pct": 52.66,
-        "bars_count": 198
+        "label": "Steady Drift / Directional Auction",
+        "regime_type": "TREND",
+        "variance": 0.00010352069242588255,
+        "mean_hl_spread": 0.00040982226785065773,
+        "occupancy_pct": 36.97,
+        "bars_count": 139
       },
       {
         "state_id": 2,
         "label": "Steady Drift / Directional Auction",
         "regime_type": "TREND",
-        "variance": NaN,
-        "mean_hl_spread": 0.005263778634610997,
-        "occupancy_pct": 0.27,
-        "bars_count": 1
+        "variance": 0.0009595442806367348,
+        "mean_hl_spread": 0.0013054953286896136,
+        "occupancy_pct": 13.83,
+        "bars_count": 52
       }
     ],
-    "regime_shifts_count": 180,
+    "regime_shifts_count": 199,
     "timeline_blocks": [
       {
-        "state": 0,
-        "start_time": "14:56:00",
-        "duration_bars": 1,
-        "end_time": "14:56:00"
-      },
-      {
         "state": 1,
-        "start_time": "14:57:00",
-        "duration_bars": 1,
-        "end_time": "14:57:00"
-      },
-      {
-        "state": 0,
-        "start_time": "14:58:00",
-        "duration_bars": 1,
-        "end_time": "14:58:00"
-      },
-      {
-        "state": 1,
-        "start_time": "14:59:00",
-        "duration_bars": 3,
-        "end_time": "15:01:00"
-      },
-      {
-        "state": 0,
-        "start_time": "15:02:00",
+        "start_time": "15:03:00",
         "duration_bars": 2,
-        "end_time": "15:03:00"
-      },
-      {
-        "state": 1,
-        "start_time": "15:04:00",
-        "duration_bars": 1,
         "end_time": "15:04:00"
       },
       {
-        "state": 0,
+        "state": 2,
         "start_time": "15:05:00",
         "duration_bars": 1,
         "end_time": "15:05:00"
       },
       {
-        "state": 1,
+        "state": 0,
         "start_time": "15:06:00",
-        "duration_bars": 4,
-        "end_time": "15:09:00"
+        "duration_bars": 2,
+        "end_time": "15:07:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:08:00",
+        "duration_bars": 3,
+        "end_time": "15:10:00"
       },
       {
         "state": 0,
-        "start_time": "15:10:00",
-        "duration_bars": 3,
+        "start_time": "15:11:00",
+        "duration_bars": 2,
         "end_time": "15:12:00"
       },
       {
         "state": 1,
         "start_time": "15:13:00",
-        "duration_bars": 18,
+        "duration_bars": 1,
+        "end_time": "15:13:00"
+      },
+      {
+        "state": 0,
+        "start_time": "15:14:00",
+        "duration_bars": 1,
+        "end_time": "15:14:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:15:00",
+        "duration_bars": 14,
+        "end_time": "15:28:00"
+      },
+      {
+        "state": 2,
+        "start_time": "15:29:00",
+        "duration_bars": 1,
+        "end_time": "15:29:00"
+      },
+      {
+        "state": 1,
+        "start_time": "15:30:00",
+        "duration_bars": 1,
         "end_time": "15:30:00"
       }
     ]
@@ -355,128 +355,128 @@
       {
         "time": "09:15:00",
         "bar_index": 0,
-        "price_level": 22975.6,
-        "anomaly_score": -0.2919,
-        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
-        "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 107.0
+        "price_level": 22552.0,
+        "anomaly_score": -0.0951,
+        "archetype": "LIQUIDITY_SWEEP_ABSORPTION",
+        "description": "Aggressive absorption of sell stops beneath intraday low; institutional bid present.",
+        "hl_spread_pts": 34.15
       },
       {
         "time": "09:16:00",
         "bar_index": 1,
-        "price_level": 22965.5,
-        "anomaly_score": -0.1989,
+        "price_level": 22581.75,
+        "anomaly_score": -0.1154,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 40.4
+      },
+      {
+        "time": "09:17:00",
+        "bar_index": 2,
+        "price_level": 22569.85,
+        "anomaly_score": -0.1002,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 35.25
+      },
+      {
+        "time": "09:30:00",
+        "bar_index": 15,
+        "price_level": 22567.4,
+        "anomaly_score": -0.0097,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 30.55
+      },
+      {
+        "time": "09:34:00",
+        "bar_index": 19,
+        "price_level": 22537.9,
+        "anomaly_score": -0.0601,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 33.0
+      },
+      {
+        "time": "09:45:00",
+        "bar_index": 30,
+        "price_level": 22551.55,
+        "anomaly_score": -0.0086,
         "archetype": "LIQUIDITY_SWEEP_ABSORPTION",
         "description": "Aggressive absorption of sell stops beneath intraday low; institutional bid present.",
-        "hl_spread_pts": 27.9
+        "hl_spread_pts": 16.75
       },
       {
-        "time": "09:18:00",
-        "bar_index": 3,
-        "price_level": 22966.6,
-        "anomaly_score": -0.1353,
-        "archetype": "OVERHEAD_SUPPLY_TRAP",
-        "description": "Severe rejection of highs; aggressive hidden supply cap detected.",
-        "hl_spread_pts": 15.55
-      },
-      {
-        "time": "09:19:00",
-        "bar_index": 4,
-        "price_level": 22950.1,
-        "anomaly_score": -0.0575,
+        "time": "12:58:00",
+        "bar_index": 223,
+        "price_level": 22301.5,
+        "anomaly_score": -0.0422,
         "archetype": "VOLATILITY_EXPANSION_DISPERSION",
         "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 20.3
+        "hl_spread_pts": 32.3
       },
       {
-        "time": "09:20:00",
-        "bar_index": 5,
-        "price_level": 22925.4,
-        "anomaly_score": -0.1715,
+        "time": "12:59:00",
+        "bar_index": 224,
+        "price_level": 22325.85,
+        "anomaly_score": -0.118,
         "archetype": "VOLATILITY_EXPANSION_DISPERSION",
         "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 29.55
+        "hl_spread_pts": 36.25
       },
       {
-        "time": "09:24:00",
-        "bar_index": 9,
-        "price_level": 22926.65,
-        "anomaly_score": -0.1207,
+        "time": "14:07:00",
+        "bar_index": 292,
+        "price_level": 22263.45,
+        "anomaly_score": -0.0263,
+        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
+        "description": "Structural range blowout; aggressive liquidity extraction.",
+        "hl_spread_pts": 30.1
+      },
+      {
+        "time": "14:14:00",
+        "bar_index": 299,
+        "price_level": 22296.15,
+        "anomaly_score": -0.0035,
+        "archetype": "MICROSTRUCTURE_ANOMALY",
+        "description": "Non-linear price-action divergence from baseline session manifold.",
+        "hl_spread_pts": 24.4
+      },
+      {
+        "time": "14:27:00",
+        "bar_index": 312,
+        "price_level": 22301.7,
+        "anomaly_score": -0.0007,
         "archetype": "OVERHEAD_SUPPLY_TRAP",
         "description": "Severe rejection of highs; aggressive hidden supply cap detected.",
         "hl_spread_pts": 15.5
       },
       {
-        "time": "09:35:00",
-        "bar_index": 20,
-        "price_level": 22878.45,
-        "anomaly_score": -0.1455,
+        "time": "14:33:00",
+        "bar_index": 318,
+        "price_level": 22360.05,
+        "anomaly_score": -0.1114,
         "archetype": "VOLATILITY_EXPANSION_DISPERSION",
         "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 25.75
+        "hl_spread_pts": 41.35
       },
       {
-        "time": "09:38:00",
-        "bar_index": 23,
-        "price_level": 22862.5,
-        "anomaly_score": -0.0031,
+        "time": "14:35:00",
+        "bar_index": 320,
+        "price_level": 22366.1,
+        "anomaly_score": -0.0337,
         "archetype": "LIQUIDITY_SWEEP_ABSORPTION",
         "description": "Aggressive absorption of sell stops beneath intraday low; institutional bid present.",
-        "hl_spread_pts": 11.2
+        "hl_spread_pts": 23.15
       },
       {
-        "time": "10:17:00",
-        "bar_index": 62,
-        "price_level": 22839.8,
-        "anomaly_score": -0.0567,
-        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
-        "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 18.4
-      },
-      {
-        "time": "13:23:00",
-        "bar_index": 248,
-        "price_level": 22842.05,
-        "anomaly_score": -0.0423,
-        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
-        "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 14.9
-      },
-      {
-        "time": "14:18:00",
-        "bar_index": 303,
-        "price_level": 22795.4,
-        "anomaly_score": -0.1111,
-        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
-        "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 19.4
-      },
-      {
-        "time": "14:38:00",
-        "bar_index": 323,
-        "price_level": 22767.0,
-        "anomaly_score": -0.0139,
-        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
-        "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 15.75
-      },
-      {
-        "time": "15:10:00",
-        "bar_index": 355,
-        "price_level": 22793.55,
-        "anomaly_score": -0.0154,
-        "archetype": "VOLATILITY_EXPANSION_DISPERSION",
-        "description": "Structural range blowout; aggressive liquidity extraction.",
-        "hl_spread_pts": 15.05
-      },
-      {
-        "time": "15:12:00",
-        "bar_index": 357,
-        "price_level": 22795.35,
-        "anomaly_score": -0.0003,
+        "time": "14:51:00",
+        "bar_index": 336,
+        "price_level": 22381.55,
+        "anomaly_score": -0.0323,
         "archetype": "OVERHEAD_SUPPLY_TRAP",
         "description": "Severe rejection of highs; aggressive hidden supply cap detected.",
-        "hl_spread_pts": 10.05
+        "hl_spread_pts": 20.05
       }
     ]
   },
@@ -484,45 +484,45 @@
     "status": "success",
     "top_historical_twins": [
       {
-        "date": "2026-03-27",
-        "distance": 4.3742,
-        "similarity_pct": 67.2,
-        "next_day_return_pct": -0.76,
+        "date": "2026-02-25",
+        "distance": 3.2046,
+        "similarity_pct": 76.0,
+        "next_day_return_pct": -0.25,
         "next_day_direction": "BEARISH"
       },
       {
-        "date": "2026-03-11",
-        "distance": 4.4976,
-        "similarity_pct": 66.3,
-        "next_day_return_pct": -0.15,
-        "next_day_direction": "BEARISH"
+        "date": "2026-01-13",
+        "distance": 3.9428,
+        "similarity_pct": 70.4,
+        "next_day_return_pct": 0.08,
+        "next_day_direction": "NEUTRAL"
       },
       {
-        "date": "2025-12-16",
-        "distance": 4.969,
-        "similarity_pct": 62.7,
-        "next_day_return_pct": -0.31,
-        "next_day_direction": "BEARISH"
+        "date": "2025-12-08",
+        "distance": 3.9834,
+        "similarity_pct": 70.1,
+        "next_day_return_pct": -0.1,
+        "next_day_direction": "NEUTRAL"
       },
       {
-        "date": "2026-02-19",
-        "distance": 5.0271,
-        "similarity_pct": 62.3,
-        "next_day_return_pct": 0.63,
-        "next_day_direction": "BULLISH"
+        "date": "2026-05-04",
+        "distance": 4.1601,
+        "similarity_pct": 68.8,
+        "next_day_return_pct": -0.0,
+        "next_day_direction": "NEUTRAL"
       },
       {
-        "date": "2026-05-12",
-        "distance": 5.087,
-        "similarity_pct": 61.8,
-        "next_day_return_pct": 0.28,
+        "date": "2026-01-09",
+        "distance": 4.4503,
+        "similarity_pct": 66.6,
+        "next_day_return_pct": 0.53,
         "next_day_direction": "BULLISH"
       }
     ],
     "next_day_projection": {
-      "bullish_probability_pct": 40.0,
-      "bearish_probability_pct": 60.0,
-      "average_projected_return_pct": -0.06,
+      "bullish_probability_pct": 20.0,
+      "bearish_probability_pct": 20.0,
+      "average_projected_return_pct": 0.05,
       "mathematical_bias": "RANGE_BOUND"
     }
   },

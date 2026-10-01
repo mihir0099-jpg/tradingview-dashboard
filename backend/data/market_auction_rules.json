@@ -1,18 +1,18 @@
 {
   "version": "3.0.0-AUCTION-NATIVE",
-  "generated_at": "2026-09-28T10:57:36.386Z",
-  "elapsed_ms": 1245,
+  "generated_at": "2026-10-01T14:53:33.016Z",
+  "elapsed_ms": 878,
   "scope": {
     "totalStocksAnalyzed": 208,
     "totalHistoricalBarsMined": 104000,
-    "totalArchivedSessionsMined": 16,
+    "totalArchivedSessionsMined": 18,
     "insideBarsAnalyzed": 14962,
     "weeklyOpensAnalyzed": 21623
   },
   "tpoAuctionAnalytics": {
-    "totalSessions": 16,
+    "totalSessions": 18,
     "neutralDaysCount": 2,
-    "neutralDayRatePct": 12.5,
+    "neutralDayRatePct": 11.1,
     "periodBreakResults": [
       {
         "period": "C",
@@ -21,7 +21,7 @@
         "rejectedWicks": 3,
         "acceptanceRatePct": 66.7,
         "avgExtensionPts": 24.9,
-        "firstBreakFrequencyPct": 56.3
+        "firstBreakFrequencyPct": 50
       },
       {
         "period": "D",
@@ -30,7 +30,7 @@
         "rejectedWicks": 2,
         "acceptanceRatePct": 80,
         "avgExtensionPts": 38.2,
-        "firstBreakFrequencyPct": 12.5
+        "firstBreakFrequencyPct": 11.1
       },
       {
         "period": "E",
@@ -43,84 +43,84 @@
       },
       {
         "period": "F",
-        "attempts": 11,
+        "attempts": 13,
         "acceptedCloses": 10,
-        "rejectedWicks": 1,
-        "acceptanceRatePct": 90.9,
+        "rejectedWicks": 3,
+        "acceptanceRatePct": 76.9,
         "avgExtensionPts": 43.8,
-        "firstBreakFrequencyPct": 12.5
+        "firstBreakFrequencyPct": 22.2
       },
       {
         "period": "G",
-        "attempts": 11,
-        "acceptedCloses": 10,
-        "rejectedWicks": 1,
-        "acceptanceRatePct": 90.9,
-        "avgExtensionPts": 51,
-        "firstBreakFrequencyPct": 0
-      },
-      {
-        "period": "H",
-        "attempts": 13,
-        "acceptedCloses": 9,
-        "rejectedWicks": 4,
-        "acceptanceRatePct": 69.2,
-        "avgExtensionPts": 59.8,
-        "firstBreakFrequencyPct": 12.5
-      },
-      {
-        "period": "I",
-        "attempts": 11,
-        "acceptedCloses": 10,
-        "rejectedWicks": 1,
-        "acceptanceRatePct": 90.9,
-        "avgExtensionPts": 62,
-        "firstBreakFrequencyPct": 0
-      },
-      {
-        "period": "J",
-        "attempts": 12,
-        "acceptedCloses": 10,
-        "rejectedWicks": 2,
-        "acceptanceRatePct": 83.3,
-        "avgExtensionPts": 92.2,
-        "firstBreakFrequencyPct": 6.3
-      },
-      {
-        "period": "K",
-        "attempts": 14,
-        "acceptedCloses": 10,
-        "rejectedWicks": 4,
-        "acceptanceRatePct": 71.4,
-        "avgExtensionPts": 90,
-        "firstBreakFrequencyPct": 0
-      },
-      {
-        "period": "L",
-        "attempts": 13,
-        "acceptedCloses": 12,
-        "rejectedWicks": 1,
-        "acceptanceRatePct": 92.3,
-        "avgExtensionPts": 78.6,
-        "firstBreakFrequencyPct": 0
-      },
-      {
-        "period": "M",
         "attempts": 12,
         "acceptedCloses": 11,
         "rejectedWicks": 1,
         "acceptanceRatePct": 91.7,
-        "avgExtensionPts": 90.1,
+        "avgExtensionPts": 53.2,
+        "firstBreakFrequencyPct": 0
+      },
+      {
+        "period": "H",
+        "attempts": 14,
+        "acceptedCloses": 10,
+        "rejectedWicks": 4,
+        "acceptanceRatePct": 71.4,
+        "avgExtensionPts": 74.5,
+        "firstBreakFrequencyPct": 11.1
+      },
+      {
+        "period": "I",
+        "attempts": 12,
+        "acceptedCloses": 11,
+        "rejectedWicks": 1,
+        "acceptanceRatePct": 91.7,
+        "avgExtensionPts": 77.6,
+        "firstBreakFrequencyPct": 0
+      },
+      {
+        "period": "J",
+        "attempts": 13,
+        "acceptedCloses": 11,
+        "rejectedWicks": 2,
+        "acceptanceRatePct": 84.6,
+        "avgExtensionPts": 110.2,
+        "firstBreakFrequencyPct": 5.6
+      },
+      {
+        "period": "K",
+        "attempts": 15,
+        "acceptedCloses": 11,
+        "rejectedWicks": 4,
+        "acceptanceRatePct": 73.3,
+        "avgExtensionPts": 103.8,
+        "firstBreakFrequencyPct": 0
+      },
+      {
+        "period": "L",
+        "attempts": 14,
+        "acceptedCloses": 13,
+        "rejectedWicks": 1,
+        "acceptanceRatePct": 92.9,
+        "avgExtensionPts": 84.9,
+        "firstBreakFrequencyPct": 0
+      },
+      {
+        "period": "M",
+        "attempts": 13,
+        "acceptedCloses": 12,
+        "rejectedWicks": 1,
+        "acceptanceRatePct": 92.3,
+        "avgExtensionPts": 89.8,
         "firstBreakFrequencyPct": 0
       }
     ]
   },
   "pcrVelocityAnalytics": {
-    "totalSessionsWithPCR": 15,
+    "totalSessionsWithPCR": 16,
     "bullishVelocity": {
-      "count": 6,
+      "count": 7,
       "greenCloses": 4,
-      "winRatePct": 66.7
+      "winRatePct": 57.1
     },
     "bearishVelocity": {
       "count": 6,
@@ -355,13 +355,13 @@
       "name": "Period C (10:15–10:45 AM) Primary Breakout Catalyst",
       "condition": "IF period == \"C\" AND price breaks Initial Balance (IB) High or Low",
       "action": "ENTER_CONTINUATION_ON_CANDLE_CLOSE",
-      "sample_size_n": 16,
-      "primary_metric": "Triggered first break in 56.3% of sessions",
+      "sample_size_n": 18,
+      "primary_metric": "Triggered first break in 50% of sessions",
       "acceptance_win_rate_pct": 66.7,
       "avg_extension_pts": 24.9,
       "confidence_pct": 95,
       "data_source": "33 Full 1-Min Intraday Session Archives",
-      "mathematical_basis": "Over 56.3% of all morning expansions occur immediately in Period C. Average extension is +24.9 Nifty points when accepted.",
+      "mathematical_basis": "Over 50% of all morning expansions occur immediately in Period C. Average extension is +24.9 Nifty points when accepted.",
       "status": "VERIFIED_GROUND_TRUTH"
     },
     {
@@ -426,12 +426,12 @@
       "name": "Neutral Day Double-Expansion Reversal Guard (Rule 1C/5C)",
       "condition": "IF morning breakout reverses back inside Initial Balance (IB)",
       "action": "EXIT_BREAKOUT_AND_ENTER_REVERSAL_TO_OPPOSITE_IB",
-      "sample_size_n": 16,
-      "primary_metric": "2/16 sessions had double expansion",
-      "acceptance_win_rate_pct": 12.5,
+      "sample_size_n": 18,
+      "primary_metric": "2/18 sessions had double expansion",
+      "acceptance_win_rate_pct": 11.1,
       "confidence_pct": 91,
       "data_source": "33 Full 1-Min Intraday Session Archives",
-      "mathematical_basis": "In 12.5% of sessions, market traverses the entire morning balance to test the opposite extreme.",
+      "mathematical_basis": "In 11.1% of sessions, market traverses the entire morning balance to test the opposite extreme.",
       "status": "VERIFIED_GROUND_TRUTH"
     }
   ]

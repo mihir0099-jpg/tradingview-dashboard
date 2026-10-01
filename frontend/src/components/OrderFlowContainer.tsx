@@ -1,3 +1,4 @@
+import { EODFootprintMinerModal } from './EODFootprintMinerModal';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { getBackendUrl } from '../utils/config';
 import { 
@@ -163,7 +164,8 @@ export const OrderFlowContainer: React.FC = () => {
   const [showCotBadges, setShowCotBadges] = useState(true); // COT on candle top & bottom
   const [showClimaxZones, setShowClimaxZones] = useState(true); // VCB, VCS, SC, BC Climax Zones
   const [showObPressure, setShowObPressure] = useState(true); // Order Block (OB) Pressure + OFA Sweep
-  const [isVsaGuideOpen, setIsVsaGuideOpen] = useState(false); // VSA Educational Guide Modal
+  const [isVsaGuideOpen, setIsVsaGuideOpen] = useState(false);
+  const [isMinerModalOpen, setIsMinerModalOpen] = useState(false); // VSA Educational Guide Modal
   const [showCrCaps, setShowCrCaps] = useState(true);
   const [showProfile, setShowProfile] = useState(true);
   const [fiiData, setFiiData] = useState<any>(null);
@@ -1565,6 +1567,26 @@ export const OrderFlowContainer: React.FC = () => {
               title="Open Institutional VSA Climax Matrix & Rules"
             >
               <span>📖 Matrix Guide</span>
+            </button>
+            <button
+              onClick={() => setIsMinerModalOpen(true)}
+              style={{
+                backgroundColor: 'rgba(2, 132, 199, 0.25)',
+                color: '#38bdf8',
+                border: '1px solid #0284c7',
+                borderRadius: '4px',
+                padding: '3px 9px',
+                fontSize: '10px',
+                fontWeight: '800',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '3px',
+                boxShadow: '0 0 10px rgba(56, 189, 248, 0.3)'
+              }}
+              title="Open EOD Footprint Pattern Miner & Institutional Tape Debrief"
+            >
+              <span>🔬 Footprint Miner</span>
             </button>
           </div>
 
@@ -3806,6 +3828,7 @@ export const OrderFlowContainer: React.FC = () => {
         </div>
       )}
 
+      <EODFootprintMinerModal isOpen={isMinerModalOpen} onClose={() => setIsMinerModalOpen(false)} />
     </div>
   );
 };

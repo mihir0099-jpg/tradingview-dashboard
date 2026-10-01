@@ -1,5 +1,31 @@
 [
   {
+    "date": "2026-10-01",
+    "timestamp": 1790866417100,
+    "istTime": "2026-10-01 20:23:37 IST",
+    "macroProfile": {
+      "niftySpot": 22421.95,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.65%",
+      "bankniftySpot": 54450.75,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 41
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +18.97 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 10:07:00 (Midday) at 22610.55. Absolute LOD printed at 14:05:00 (Midday) at 22217.65.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
     "date": "2026-09-28",
     "timestamp": 1790593060099,
     "istTime": "2026-09-28 16:27:40 IST",

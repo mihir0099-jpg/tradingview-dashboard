@@ -1,7 +1,7 @@
 {
   "version": "2.0.0-AUTONOMOUS",
-  "lastEvolutionTime": "2026-09-28T10:57:40.095Z",
-  "rulesLearnedCount": 6,
+  "lastEvolutionTime": "2026-10-01T14:53:37.096Z",
+  "rulesLearnedCount": 7,
   "negativeFilters": [
     {
       "id": "RULE_INDEX_CONFLUENCE",
@@ -55,6 +55,12 @@
       "id": "AUTO_RULE_1790591212534_BMMU",
       "condition": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.",
       "addedOn": "2026-09-28",
+      "confidencePct": 91.5
+    },
+    {
+      "id": "AUTO_RULE_1790851511486_DNX2",
+      "condition": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.",
+      "addedOn": "2026-10-01",
       "confidencePct": 91.5
     }
   ],

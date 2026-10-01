@@ -6348,6 +6348,30 @@ app.get('/api/orderflow/order-blocks', async (req, res) => {
   }
 });
 
+// --- EOD Footprint Pattern Miner & Institutional Tape Narrative ---
+app.get('/api/orderflow/eod-mined-patterns', async (req, res) => {
+  try {
+    const { getCachedFootprintPatterns, executeEODFootprintMining } = await import('./eod_footprint_pattern_miner.js');
+    let data = getCachedFootprintPatterns();
+    if (!data || req.query.fresh === 'true') {
+      data = await executeEODFootprintMining();
+    }
+    res.json({ success: true, ...data });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/orderflow/trigger-footprint-mining', async (req, res) => {
+  try {
+    const { executeEODFootprintMining } = await import('./eod_footprint_pattern_miner.js');
+    const result = await executeEODFootprintMining(req.body?.targetDate, req.body?.scanAllArchives !== false);
+    res.json({ success: true, result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // ============================================================
 // CONFLUENCE SCORE ML ENGINE
 // ============================================================
@@ -7051,6 +7075,12 @@ function startAutonomousMarketBrainScheduler() {
           const auctionResult = await runMarketAuctionMining();
           console.log(`[Market Brain Scheduler] 🏛️ Market Auction Learner: ${auctionResult.synthesizedMarketRules.length} market-native rules updated across ${auctionResult.scope.totalStocksAnalyzed} stocks.`);
         } catch (e) { console.warn('[Market Auction Learner Daily] Non-fatal:', e.message); }
+
+        try {
+          const { executeEODFootprintMining } = await import('./eod_footprint_pattern_miner.js');
+          const fpResult = await executeEODFootprintMining();
+          console.log(`[Market Brain Scheduler] 🔬 EOD Footprint Pattern Miner: Discovered ${fpResult.patterns?.length || 0} footprint setups with institutional tape debrief.`);
+        } catch (e) { console.warn('[EOD Footprint Pattern Miner Daily] Non-fatal:', e.message); }
       }
 
     } catch (err) {
