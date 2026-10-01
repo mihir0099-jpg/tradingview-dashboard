@@ -1,4 +1,11 @@
 import WebSocket from 'ws';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const CONTRACTS_FILE = path.join(__dirname, 'data', 'active_futures_contracts.json');
 import { angelOneBridge } from './angelone_bridge.js';
 import { analyseCompletedCandle } from './footprint_ml_reader.js';
 
@@ -81,9 +88,152 @@ class OrderFlowStreamEngine {
   }
 
   async start() {
+    this.loadResolvedContracts();
     await this.autoResolveActiveTokens();
+    this.saveResolvedContracts();
     await this.seedHistoricalCandles();
     this.connect();
+    this.initExpiryWatchdog();
+  }
+
+
+  saveResolvedContracts() {
+    try {
+      const data = {
+        lastUpdated: new Date().toISOString(),
+        contracts: {}
+      };
+      for (const s of ORDERFLOW_SYMBOLS) {
+        if (s.tradingsymbol && s.tradingsymbol.includes('FUT')) {
+          data.contracts[s.symbol] = {
+            token: s.token,
+            tradingsymbol: s.tradingsymbol,
+            expiry: s.expiry ? s.expiry.toISOString() : null,
+            exchange: s.exchange,
+            lotSize: s.lotSize,
+            tickSize: s.tickSize
+          };
+        }
+      }
+      const dir = path.dirname(CONTRACTS_FILE);
+      if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+      fs.writeFileSync(CONTRACTS_FILE, JSON.stringify(data, null, 2), 'utf8');
+      console.log('[OrderFlow] Saved resolved futures contracts to active_futures_contracts.json');
+    } catch (e) {
+      console.warn('[OrderFlow] Error saving contracts file:', e.message);
+    }
+  }
+
+  loadResolvedContracts() {
+    try {
+      if (fs.existsSync(CONTRACTS_FILE)) {
+        const raw = fs.readFileSync(CONTRACTS_FILE, 'utf8');
+        const parsed = JSON.parse(raw);
+        if (parsed.contracts) {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          for (const [sym, info] of Object.entries(parsed.contracts)) {
+            const expDate = info.expiry ? new Date(info.expiry) : null;
+            if (expDate && expDate >= today) {
+              const target = ORDERFLOW_SYMBOLS.find(s => s.symbol === sym);
+              if (target) {
+                target.token = info.token;
+                target.tradingsymbol = info.tradingsymbol;
+                target.expiry = expDate;
+                if (this.activeSymbol === sym) this.activeToken = info.token;
+              }
+            }
+          }
+          console.log('[OrderFlow] Successfully restored active futures contracts from cache');
+        }
+      }
+    } catch (e) {
+      console.warn('[OrderFlow] Error reading contracts file:', e.message);
+    }
+  }
+
+  initExpiryWatchdog() {
+    if (this.expiryWatchdogTimer) clearInterval(this.expiryWatchdogTimer);
+    // Run watchdog check every 10 minutes
+    this.expiryWatchdogTimer = setInterval(() => {
+      this.checkContractExpiryAndRollover();
+    }, 10 * 60 * 1000);
+
+    // Initial check after 30 seconds
+    setTimeout(() => this.checkContractExpiryAndRollover(), 30000);
+  }
+
+  async checkContractExpiryAndRollover() {
+    try {
+      const now = new Date();
+      const istHours = Number(now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false, hour: '2-digit' }));
+      const istMinutes = Number(now.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour12: false, minute: '2-digit' }));
+      const istTimeVal = istHours * 100 + istMinutes;
+
+      const today = new Date(now);
+      today.setHours(0, 0, 0, 0);
+
+      let needsRollover = false;
+
+      // 1. Check if any futures contract has reached or passed expiry
+      for (const s of ORDERFLOW_SYMBOLS) {
+        if (!s.tradingsymbol || !s.tradingsymbol.includes('FUT')) continue;
+        if (s.expiry) {
+          const expTime = new Date(s.expiry);
+          expTime.setHours(0, 0, 0, 0);
+          if (today > expTime) {
+            console.log(`[OrderFlow Watchdog] Contract ${s.symbol} (${s.tradingsymbol}) expired on ${expTime.toDateString()}. Rolling over...`);
+            needsRollover = true;
+            break;
+          }
+          // On expiry day after 3:30 PM (1530)
+          if (today.getTime() === expTime.getTime() && istTimeVal >= 1530) {
+            console.log(`[OrderFlow Watchdog] Contract ${s.symbol} expired today at 3:30 PM. Rolling over to next month...`);
+            needsRollover = true;
+            break;
+          }
+        }
+      }
+
+      // 2. Pre-market check at 08:30 - 09:14 AM
+      if (istTimeVal >= 830 && istTimeVal < 915 && !this.preMarketCheckedToday) {
+        this.preMarketCheckedToday = true;
+        console.log('[OrderFlow Watchdog] Pre-Market Futures Check (08:30–09:15 IST)...');
+        needsRollover = true;
+      }
+      if (istTimeVal >= 915) {
+        this.preMarketCheckedToday = false; // Reset for next day
+      }
+
+      // 3. Stagnation check during market hours (09:15 - 15:30)
+      if (istTimeVal >= 915 && istTimeVal <= 1530) {
+        const meta = this.getActiveMeta();
+        if (meta.symbol.includes('FUT')) {
+          // If 0 ticks received in last 10 minutes while connected
+          const timeSinceLastTick = this.lastTickTime ? (Date.now() - (this.lastTickTimestamp || Date.now())) : 0;
+          if (timeSinceLastTick > 10 * 60 * 1000) {
+            console.warn(`[OrderFlow Watchdog] No ticks on ${this.activeSymbol} for 10m during market hours. Validating contract status with broker...`);
+            const ltp = await angelOneBridge.getLtp(meta.exchange, meta.tradingsymbol || meta.symbol, this.activeToken).catch(() => null);
+            if (!ltp) {
+              console.warn(`[OrderFlow Watchdog] Broker returned NULL for ${meta.tradingsymbol}. Contract likely expired! Forcing rollover...`);
+              needsRollover = true;
+            }
+          }
+        }
+      }
+
+      if (needsRollover) {
+        const oldToken = this.activeToken;
+        await this.autoResolveActiveTokens(true);
+        if (this.activeToken !== oldToken) {
+          console.log(`[OrderFlow Watchdog] 🔄 Rollover complete: Old token ${oldToken} -> New token ${this.activeToken} (${this.activeSymbol})`);
+          this.subscribeActive();
+          await this.seedHistoricalCandles();
+        }
+      }
+    } catch (err) {
+      console.warn('[OrderFlow Watchdog Error]:', err.message);
+    }
   }
 
   getActiveMeta() {
@@ -112,8 +262,9 @@ class OrderFlowStreamEngine {
           if (sym) {
             sym.token = near.symboltoken.split(' ')[0];
             sym.tradingsymbol = near.tradingsymbol;
+            sym.expiry = near.expiry;
             if (this.activeSymbol === 'NIFTYFUT') this.activeToken = sym.token;
-            console.log(`[OrderFlow] Auto-resolved NIFTYFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol}`);
+            console.log(`[OrderFlow] Auto-resolved NIFTYFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol} (Expiry: ${near.expiry?.toDateString()})`);
           }
         }
       }
@@ -132,8 +283,9 @@ class OrderFlowStreamEngine {
           if (sym) {
             sym.token = near.symboltoken.split(' ')[0];
             sym.tradingsymbol = near.tradingsymbol;
+            sym.expiry = near.expiry;
             if (this.activeSymbol === 'BANKNIFTYFUT') this.activeToken = sym.token;
-            console.log(`[OrderFlow] Auto-resolved BANKNIFTYFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol}`);
+            console.log(`[OrderFlow] Auto-resolved BANKNIFTYFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol} (Expiry: ${near.expiry?.toDateString()})`);
           }
         }
       }
@@ -152,11 +304,13 @@ class OrderFlowStreamEngine {
           if (sym) {
             sym.token = near.symboltoken.split(' ')[0];
             sym.tradingsymbol = near.tradingsymbol;
+            sym.expiry = near.expiry;
             if (this.activeSymbol === 'CRUDEOILFUT') this.activeToken = sym.token;
-            console.log(`[OrderFlow] Auto-resolved CRUDEOILFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol}`);
+            console.log(`[OrderFlow] Auto-resolved CRUDEOILFUT -> Token: ${sym.token}, Symbol: ${sym.tradingsymbol} (Expiry: ${near.expiry?.toDateString()})`);
           }
         }
       }
+      this.saveResolvedContracts();
     } catch (err) {
       console.warn('[OrderFlow AutoResolve] Warning:', err.message);
     }
@@ -815,3 +969,8 @@ class OrderFlowStreamEngine {
 }
 
 export const orderFlowStreamEngine = new OrderFlowStreamEngine();
+
+
+export function getActiveFuturesContract(symbol = 'NIFTYFUT') {
+  return ORDERFLOW_SYMBOLS.find(s => s.symbol.toUpperCase() === symbol.toUpperCase()) || null;
+}

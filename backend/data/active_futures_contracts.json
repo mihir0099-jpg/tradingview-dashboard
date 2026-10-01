@@ -1,0 +1,37 @@
+{
+  "lastUpdated": "2026-10-01T07:50:12.918Z",
+  "contracts": {
+    "NIFTYFUT": {
+      "token": "48704",
+      "tradingsymbol": "NIFTY27OCT26FUT",
+      "expiry": "2026-10-26T18:30:00.000Z",
+      "exchange": "NFO",
+      "lotSize": 25,
+      "tickSize": 1
+    },
+    "BANKNIFTYFUT": {
+      "token": "48699",
+      "tradingsymbol": "BANKNIFTY27OCT26FUT",
+      "expiry": "2026-10-26T18:30:00.000Z",
+      "exchange": "NFO",
+      "lotSize": 15,
+      "tickSize": 1
+    },
+    "CRUDEOILFUT": {
+      "token": "569900",
+      "tradingsymbol": "CRUDEOIL19OCT26FUT",
+      "expiry": "2026-10-18T18:30:00.000Z",
+      "exchange": "MCX",
+      "lotSize": 100,
+      "tickSize": 1
+    },
+    "CRUDEOILM": {
+      "token": "565900",
+      "tradingsymbol": "CRUDEOILM19OCT26FUT",
+      "expiry": null,
+      "exchange": "MCX",
+      "lotSize": 10,
+      "tickSize": 1
+    }
+  }
+}
