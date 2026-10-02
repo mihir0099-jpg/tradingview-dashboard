@@ -5687,9 +5687,10 @@ function startIntradayCheckpointScheduler() {
       if (minutesNow >= 555 && minutesNow <= 935) {
         // Run every 5 minutes
         if (m % 5 === 0) {
-          const archiverPath = path.join(__dirname, 'daily_data_archiver.js');
-          exec(`node "${archiverPath}" --reason=INTRADAY_5MIN_AUTO`, (err) => {
-            if (err) console.warn('[Intraday Checkpointer] Auto-save error:', err.message);
+          import('./daily_data_archiver.js').then(({ archiveTodayMarketData }) => {
+            return archiveTodayMarketData({ reason: 'INTRADAY_5MIN_AUTO' });
+          }).catch((err) => {
+            console.warn('[Intraday Checkpointer] Auto-save error:', err.message);
           });
         }
       }
