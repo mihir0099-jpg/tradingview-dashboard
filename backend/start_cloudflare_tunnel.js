@@ -39,19 +39,12 @@ process.on('exit', () => {
 process.on('SIGINT', () => process.exit(0));
 process.on('SIGTERM', () => process.exit(0));
 
-// ── 1. Clean up orphan cloudflared instances for this project ─────────────────
-try {
-  if (process.platform === 'win32') {
-    exec(`wmic process where "name='cloudflared.exe' and ExecutablePath like '%tradingview-dashboard%'" call terminate`, () => {});
-  }
-} catch (e) {}
-
 let child = null;
 let reconnectTimer = null;
 let lastPublishedUrl = null;
+let intentionalKill = false;
 
 function syncUrlToAllTargets(url) {
-  // 1. Save locally for instantaneous zero-latency discovery
   fs.writeFileSync(urlFile, url, 'utf8');
   fs.writeFileSync(activeFile, url, 'utf8');
 
@@ -59,27 +52,39 @@ function syncUrlToAllTargets(url) {
   const targetDirs = [
     path.join(__dirname, '..'),
     path.join(__dirname, '../docs'),
-    path.join(__dirname, '../frontend/public'),
     path.join(__dirname, '../frontend/dist'),
+    path.join(__dirname, '../frontend/public'),
     path.join(__dirname, '../hf_static_bundle')
   ];
 
-  targetDirs.forEach(dir => {
+  for (const dir of targetDirs) {
     try {
       if (fs.existsSync(dir)) {
         fs.writeFileSync(path.join(dir, 'live_backend.json'), jsonPayload, 'utf8');
       }
     } catch (e) {}
-  });
+  }
 
-  // 2. Publish to Hugging Face Space (mihir0099/tradingview-dashboard)
-  exec(`python "${syncScript}" mihir0099/tradingview-dashboard "${url}"`, (err, stdout) => {
-    if (err) console.error('[HF Auto-Sync Error (tradingview-dashboard)]:', err.message);
-    else if (stdout) console.log(stdout.trim());
-  });
+  try {
+    const pythonExe = process.platform === 'win32' ? 'python' : 'python3';
+    exec(`"${pythonExe}" "${syncScript}" "${url}"`, (error, stdout, stderr) => {
+      if (error) {
+        console.warn('[HF Auto-Sync] Warning:', error.message);
+      } else {
+        console.log(`[HF Auto-Sync] Successfully published active tunnel: ${url}`);
+      }
+    });
+  } catch (e) {}
 }
 
 function killAllCloudflared(callback) {
+  intentionalKill = true;
+  if (child) {
+    try {
+      child.removeAllListeners('close');
+      child.removeAllListeners('exit');
+    } catch (e) {}
+  }
   try {
     if (process.platform === 'win32') {
       exec(`taskkill /F /IM cloudflared.exe`, () => {
@@ -105,6 +110,9 @@ function startTunnel() {
   
   killAllCloudflared(() => {
     setTimeout(() => {
+      intentionalKill = false;
+      const spawnTime = Date.now();
+
       try {
         child = spawn(exePath, ['tunnel', '--url', 'http://localhost:3002'], {
           stdio: ['ignore', 'pipe', 'pipe']
@@ -138,18 +146,31 @@ function startTunnel() {
         child.stderr.on('data', handleData);
 
         child.on('close', (code) => {
-          console.log('[Cloudflare Tunnel] Process closed with code ' + code + '. Reconnecting in 3s...');
+          if (intentionalKill) {
+            console.log('[Cloudflare Tunnel] Process stopped intentionally.');
+            return;
+          }
+
+          const runDuration = Date.now() - spawnTime;
+          let delayMs = 10000;
+          if (runDuration < 15000) {
+            delayMs = 60000;
+            console.log(`[Cloudflare Tunnel] Process closed rapidly in ${Math.round(runDuration/1000)}s (code ${code}). Backing off for 60s to respect Cloudflare rate limits...`);
+          } else {
+            console.log(`[Cloudflare Tunnel] Process closed with code ${code}. Reconnecting in 10s...`);
+          }
+
           if (!isSpawning) {
             if (reconnectTimer) clearTimeout(reconnectTimer);
-            reconnectTimer = setTimeout(startTunnel, 3000);
+            reconnectTimer = setTimeout(startTunnel, delayMs);
           }
         });
       } catch (err) {
         isSpawning = false;
         console.error('[Cloudflare Tunnel] Spawn error:', err.message);
-        reconnectTimer = setTimeout(startTunnel, 5000);
+        reconnectTimer = setTimeout(startTunnel, 15000);
       }
-    }, 1000);
+    }, 1500);
   });
 }
 
@@ -160,12 +181,10 @@ let urlPublishedAt = 0;
 setInterval(async () => {
   if (!lastPublishedUrl || isSpawning) return;
 
-  // Grace period: allow 30s for initial Cloudflare DNS propagation
-  if (Date.now() - urlPublishedAt < 30000) {
+  if (Date.now() - urlPublishedAt < 45000) {
     return;
   }
 
-  // Check if local backend is alive first
   let localAlive = false;
   try {
     const localCtrl = new AbortController();
@@ -176,10 +195,9 @@ setInterval(async () => {
   } catch (e) {}
 
   if (!localAlive) {
-    return; // Don't kill tunnel if local node server is just restarting
+    return;
   }
 
-  // 1. Verify Public Tunnel Health
   let tunnelHealthy = false;
   try {
     const controller = new AbortController();
@@ -207,8 +225,6 @@ setInterval(async () => {
     }
   }
 
-  // 2. Continuous Hugging Face Live Sync Verification
-  // Verifies that Hugging Face Space has the exact live tunnel URL and hasn't drifted
   try {
     const hfCtrl = new AbortController();
     const hfTimer = setTimeout(() => hfCtrl.abort(), 4000);
