@@ -1,10 +1,10 @@
 {
-  "last_updated": "2026-10-01T10:17:11.610Z",
-  "total_sessions_scanned": 38,
-  "active_triggers": 30,
-  "wins": 19,
+  "last_updated": "2026-10-02T10:17:14.980Z",
+  "total_sessions_scanned": 39,
+  "active_triggers": 31,
+  "wins": 20,
   "mistakes_learned": 11,
-  "live_accuracy_pct": "63.3%",
+  "live_accuracy_pct": "64.5%",
   "auto_learned_adaptations": [
     {
       "rule_id": "ADAPT_01_PERIOD_C_FILTER",
@@ -23,6 +23,19 @@
     }
   ],
   "recent_sessions": [
+    {
+      "date": "2026_10_01",
+      "niftyClose": 22421.95,
+      "changePct": -0.88,
+      "ce": 150.8,
+      "pe": 108.35,
+      "skew": 16.4,
+      "signal": "CALL_WRITING_RESISTANCE",
+      "predicted": "BEARISH",
+      "actual": "BEARISH",
+      "outcome": "WIN",
+      "lesson": "Institutional Call writers successfully capped resistance (Skew 16.4%). Price fell -0.88%. Rule reinforced: CE bloat = sell CE / buy PE."
+    },
     {
       "date": "2026_09_25",
       "niftyClose": 23140.5,
@@ -139,19 +152,6 @@
       "actual": "BEARISH",
       "outcome": "WIN",
       "lesson": "Institutional Call writers successfully capped resistance (Skew 29.6%). Price fell -0.34%. Rule reinforced: CE bloat = sell CE / buy PE."
-    },
-    {
-      "date": "2026_09_10",
-      "niftyClose": 23477.8,
-      "changePct": 0.2,
-      "ce": 78.3,
-      "pe": 125.1,
-      "skew": -23,
-      "signal": "PUT_WRITING_SUPPORT",
-      "predicted": "BULLISH",
-      "actual": "BULLISH",
-      "outcome": "WIN",
-      "lesson": "Institutional Put writers defended support floor (Skew -23%). Price rallied +0.20%. Rule reinforced: PE bloat = sell PE / buy CE."
     }
   ]
 }

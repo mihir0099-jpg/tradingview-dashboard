@@ -58,11 +58,11 @@
     },
     "z8_s4_s3": {
       "name": "Open Between S4 and S3",
-      "recommendation": "Strong Bearish Trend bias (59.9% red close rate). Pullbacks to resistance wicks heavily favor Puts (PE).",
-      "count": 65,
-      "greenPct": 40.1,
-      "avgRange": 259,
-      "avgMove": -51
+      "recommendation": "Strong Bearish Trend bias (60.5% red close rate). Pullbacks to resistance wicks heavily favor Puts (PE).",
+      "count": 66,
+      "greenPct": 39.5,
+      "avgRange": 261,
+      "avgMove": -52.1
     },
     "z9_s5_s4": {
       "name": "Open Between S5 and S4",
@@ -132,11 +132,11 @@
     },
     "z6_s2_r2": {
       "name": "Open Between S2 and R2 (Value Area Midpoint)",
-      "recommendation": "Rotational Balanced Day (52.3% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
-      "count": 248,
-      "greenPct": 52.3,
-      "avgRange": 609,
-      "avgMove": 39.1
+      "recommendation": "Rotational Balanced Day (52.1% green close rate). Range consolidation likely. Fade extremes (Sell Calls at VAH, Puts at VAL).",
+      "count": 249,
+      "greenPct": 52.1,
+      "avgRange": 610.7,
+      "avgMove": 38.4
     },
     "z7_s3_s2": {
       "name": "Open Between S3 and S2",

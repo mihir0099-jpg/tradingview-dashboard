@@ -654,6 +654,8 @@ class StockGexAlgoEngine {
               exitReason = `STAGNANT_EXIT (Held ${heldMinutes}m with ${premiumMovePct.toFixed(1)}% move — 60m theta preservation exit)`;
             }
           }
+        }
+      } catch (e) {}
 
       // 1. PRIMARY: Check Option Premium Exits (Options run dynamically with theta, delta & IV)
       if (!shouldClose && pos.optionTarget && pos.currentLtp >= pos.optionTarget) {
@@ -1304,6 +1306,17 @@ class StockGexAlgoEngine {
     const sym = stock.symbol;
     const spot = quote.price;
     const step = stock.strikeStep || 10;
+
+    // ── STRICT DOWNSIDE GUARD (Cindy Fernández & Freddy GEX Rule) ───────────
+    // If Spot < Zero Gamma and all migration vectors are negative (<0), lock out all CE calls
+    if (candidate.optionType === 'CE' && gexProfile?.strictDownsideGuard?.isActive) {
+      this.addLog(
+        sym,
+        'FILTER',
+        `🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for ${sym}: Spot (₹${spot}) below Zero Gamma (₹${gexProfile?.gammaFlip?.mid}) with negative multi-timeframe gamma migration.`
+      );
+      return null;
+    }
 
     // ── HARD MATHEMATICAL SANITY & RISK/REWARD VALIDATION ───────────────────
     const minTargetDistance = stock.isIndex

@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-10-01T14:53:32.131Z",
+  "generated_at": "2026-10-02T10:45:14.158Z",
   "total_trades_analyzed": 50,
   "sample_size_policy": {
     "noise": "< 5 trades → ignored",
@@ -27,7 +27,7 @@
       "trust_level": "MONITORING",
       "trust_label": "👁 Monitoring (5-14)",
       "enforce": false,
-      "date_discovered": "2026-10-01",
+      "date_discovered": "2026-10-02",
       "expires_after_sessions": 20,
       "source": "LIVE_RULE_LEARNER_TPO"
     },
@@ -48,7 +48,7 @@
       "trust_level": "MONITORING",
       "trust_label": "👁 Monitoring (5-14)",
       "enforce": false,
-      "date_discovered": "2026-10-01",
+      "date_discovered": "2026-10-02",
       "expires_after_sessions": 20,
       "source": "LIVE_RULE_LEARNER_TPO"
     },
@@ -69,7 +69,7 @@
       "trust_level": "MONITORING",
       "trust_label": "👁 Monitoring (5-14)",
       "enforce": false,
-      "date_discovered": "2026-10-01",
+      "date_discovered": "2026-10-02",
       "expires_after_sessions": 20,
       "source": "LIVE_RULE_LEARNER_TPO"
     },
@@ -93,7 +93,7 @@
       "trust_level": "CANDIDATE",
       "trust_label": "⚠️ Candidate (15-29)",
       "enforce": false,
-      "date_discovered": "2026-10-01",
+      "date_discovered": "2026-10-02",
       "expires_after_sessions": 30,
       "source": "LIVE_RULE_LEARNER_SETUP"
     },
@@ -117,7 +117,7 @@
       "trust_level": "CANDIDATE",
       "trust_label": "⚠️ Candidate (15-29)",
       "enforce": false,
-      "date_discovered": "2026-10-01",
+      "date_discovered": "2026-10-02",
       "expires_after_sessions": 30,
       "source": "LIVE_RULE_LEARNER_SETUP"
     },
@@ -141,7 +141,7 @@
       "trust_level": "MONITORING",
       "trust_label": "👁 Monitoring (5-14)",
       "enforce": false,
-      "date_discovered": "2026-10-01",
+      "date_discovered": "2026-10-02",
       "expires_after_sessions": 30,
       "source": "LIVE_RULE_LEARNER_SETUP"
     },
@@ -157,7 +157,7 @@
       "trust_level": "CANDIDATE",
       "trust_label": "⚠️ Candidate (15-29)",
       "enforce": true,
-      "date_discovered": "2026-10-01",
+      "date_discovered": "2026-10-02",
       "expires_after_sessions": 90,
       "source": "LIVE_RULE_LEARNER_EXIT"
     }

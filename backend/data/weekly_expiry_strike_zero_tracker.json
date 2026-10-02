@@ -35,6 +35,20 @@
         "time": "8:23:33 pm",
         "niftySpot": 22421.95,
         "bankSpot": 54450.75
+      },
+      {
+        "date": "2026-10-02",
+        "day": "Fri",
+        "time": "3:40:13 pm",
+        "niftySpot": 22421.95,
+        "bankSpot": 54450.75
+      },
+      {
+        "date": "2026-10-02",
+        "day": "Fri",
+        "time": "3:40:26 pm",
+        "niftySpot": 22421.95,
+        "bankSpot": 54450.75
       }
     ],
     "niftyStrikes": [
@@ -6235,7 +6249,7 @@
     "safeDistanceNiftyPts": 180,
     "safeDistanceBankNiftyPts": 650
   },
-  "lastUpdated": "2026-10-01 8:23:33 pm",
+  "lastUpdated": "2026-10-02 3:40:26 pm",
   "onlineExpiriesCache": {
     "NIFTY": [
       "2026-10-06",
@@ -6246,6 +6260,6 @@
       "2026-10-27",
       "2026-11-23"
     ],
-    "lastFetched": "2026-10-01T14:53:35.074Z"
+    "lastFetched": "2026-10-02T10:10:26.468Z"
   }
 }

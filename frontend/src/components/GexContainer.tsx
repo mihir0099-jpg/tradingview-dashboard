@@ -3,8 +3,8 @@ import { getBackendUrl } from '../utils/config';
 import { 
   Activity, ArrowLeft, RefreshCw, Layers, TrendingUp, TrendingDown,
   Shield, AlertTriangle, ChevronRight, BarChart2, Eye, Info, Search, X,
-  BookOpen, CheckCircle, Flame, Lock, Play, Pause, Trash2, Cpu, Crosshair, Brain
 } from 'lucide-react';
+import { GexbotClassicDotsView } from './GexbotClassicDotsView';
 
 export interface StockGexRule {
   ruleId: string;
@@ -248,6 +248,15 @@ interface StrikeGex {
   putOi: number;
   iv: number;
   isAtm: boolean;
+  dots?: {
+    m1?: number;
+    m5?: number;
+    m10?: number;
+    m15?: number;
+    m30?: number;
+  };
+  migrationDirection?: 'RIGHTWARD' | 'LEFTWARD' | 'STABLE';
+  migrationSpeed?: number;
 }
 
 interface GexData {
@@ -292,6 +301,9 @@ interface GexData {
     minutesBelowFlip: number;
     minutesAboveFlip: number;
   };
+  gammaDeltaVector?: any;
+  maxChangeGammaMatrix?: any;
+  strictDownsideGuard?: any;
   updatedAt: string;
 }
 
@@ -330,7 +342,7 @@ export const GexContainer: React.FC<{ initialViewMode?: 'hub' | 'detail' | 'algo
   const [loading, setLoading] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [strikeRange, setStrikeRange] = useState<'auto' | '10' | '20' | '30'>('auto');
-  const [strikeView, setStrikeView] = useState<'net' | 'callVsPut' | 'table'>('net');
+  const [strikeView, setStrikeView] = useState<'net' | 'callVsPut' | 'gexbotClassic' | 'table'>('net');
   const [hoveredStrikeIdx, setHoveredStrikeIdx] = useState<number | null>(null);
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const [containerW, setContainerW] = useState<number>(1200);
@@ -2494,6 +2506,23 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                     Call vs Put
                   </button>
                   <button
+                    onClick={() => setStrikeView('gexbotClassic')}
+                    style={{
+                      backgroundColor: strikeView === 'gexbotClassic' ? '#3b0764' : '#131824',
+                      color: strikeView === 'gexbotClassic' ? '#e9d5ff' : '#9333ea',
+                      padding: '4px 10px',
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      border: 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px'
+                    }}
+                  >
+                    <span>🔬 Gexbot Classic (The Dots)</span>
+                  </button>
+                  <button
                     onClick={() => setStrikeView('table')}
                     style={{
                       backgroundColor: strikeView === 'table' ? '#1e293b' : '#131824',
@@ -2511,8 +2540,10 @@ function formatGexVal(val: number, unit = 'Cr'): string {
               </div>
             </div>
 
-            {/* SVG GEX Strike Bar Chart (Matching Image 2) */}
-            {strikeView !== 'table' ? (
+            {/* SVG GEX Strike Bar Chart OR Gexbot Classic Dots View OR Table View */}
+            {strikeView === 'gexbotClassic' ? (
+              <GexbotClassicDotsView gexData={gexData} visibleStrikes={visibleStrikes} />
+            ) : strikeView !== 'table' ? (
               <div ref={chartContainerRef} style={{ position: 'relative', width: '100%', height: '500px', overflowX: 'hidden' }}>
                 <svg
                   width={containerW}

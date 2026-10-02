@@ -1,0 +1,517 @@
+[
+  {
+    "index": 1,
+    "title": "Final Call 2026: Order Flow + GEX, the Real Institutional Methodology (Limited Spots)",
+    "videoId": "3bSYhVQ-OhA",
+    "url": "https://www.youtube.com/watch?v=3bSYhVQ-OhA",
+    "language": "es",
+    "char_count": 7118,
+    "keywords": {},
+    "excerpts": []
+  },
+  {
+    "index": 2,
+    "title": "How Institutions Trade Futures: GEX + Order Flow - Cindy Fernández from TwoMindsTrading",
+    "videoId": "O1NSSQYI7Do",
+    "url": "https://www.youtube.com/watch?v=O1NSSQYI7Do",
+    "language": "es",
+    "char_count": 1676,
+    "keywords": {},
+    "excerpts": []
+  },
+  {
+    "index": 5,
+    "title": "GEXBOT Listens to its Traders 🚀 Discover the New Tools that Revolutionize Trading",
+    "videoId": "AsNlSzOMxnA",
+    "url": "https://www.youtube.com/watch?v=AsNlSzOMxnA",
+    "language": "es",
+    "char_count": 32527,
+    "keywords": {
+      "market maker": 6,
+      "convexity": 4,
+      "order flow": 11,
+      "atas": 16
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...ale? Eh, otra de las actualizaciones que les quiero mostrar que estoy utilizando bastante eso. Eh, antes yo solamente utilizaba Get Order Flow con el Convexity Order Flow, ¿vale? Pero me ha parecido muy interesante utilizar el neto de gama, ¿vale? Y entender qué pasa eh, por ejemplo, estamos cuando el neto de gama está positivo, ¿vale? Cuando nosotros vamos al clásico, ¿vale? Y vemos acá eh, por e...",
+      "[CONVEXITY]: ...vale? Entonces, podemos configurar las alertas tanto de si me enfoco en el en si me enfoco en el en la convexividad del order, la convexividad, el el convexity order flow, ¿vale? Y voy a configurar mis alertas. Entonces me voy a mi Convexity order flow. Digo, bueno, vale, yo quiero que cuando me salgan flujos en el NDX por más de 150 millones, quiero que me des este tipo de alerta, ¿vale? Y puedo...",
+      "[CONVEXITY]: ...e enfoco en el en la convexividad del order, la convexividad, el el convexity order flow, ¿vale? Y voy a configurar mis alertas. Entonces me voy a mi Convexity order flow. Digo, bueno, vale, yo quiero que cuando me salgan flujos en el NDX por más de 150 millones, quiero que me des este tipo de alerta, ¿vale? Y puedo cuadrar el sonor también, [música] ¿vale? Quiero que me la activo y le coloco la b...",
+      "[MARKET MAKER]: ...córtica o tiene un exceso de cortosis, ¿vale? y esta esta distribución normal con este exceso de curcosis o lectocórtica. Básicamente nos dice que el market maker o los propios institucionales en sus operaciones de cubrimiento cuando operan opciones tienen que ser muy agresivos, ¿vale? Mientras que si están tienen más días, por ejemplo, dos meses, ya no tienen que ser tan agresivos al movimiento d...",
+      "[MARKET MAKER]: ...contar es que estos momentos de fricción es donde yo voy a atas, ¿vale? Porque, ¿qué es lo que pasa en estos momentos? Aquí hay una fricción. Aquí el market maker por el por el por lo que hablamos de la cer de T, Jesús, si se acuerdan la curvatura de las de las ceram, ¿vale? Esta curvatura en la cero de tesuccórtica o tiene un exceso de cortosis, ¿vale? Y esto lo que hace es que el market maker rá...",
+      "[MARKET MAKER]: ...la curvatura de las de las ceram, ¿vale? Esta curvatura en la cero de tesuccórtica o tiene un exceso de cortosis, ¿vale? Y esto lo que hace es que el market maker rápidamente tenga que salir a cubrir o incluso el mismo institucional tenga que cubrir su posición rápidamente, ¿vale? O si no perdería dinero. Y eso por eso es que esto se dan estos movimientos, ¿okay? Se dan estos movimientos cuando te..."
+    ]
+  },
+  {
+    "index": 6,
+    "title": "Operativa en Vivo NQ: Precisión Quirúrgica con GEX y ATAS",
+    "videoId": "Xm7qWINCTx8",
+    "url": "https://www.youtube.com/watch?v=Xm7qWINCTx8",
+    "language": "es",
+    "char_count": 94895,
+    "keywords": {
+      "gamma": 1,
+      "market maker": 4,
+      "volatility trigger": 10,
+      "call wall": 1,
+      "put wall": 4,
+      "order flow": 7,
+      "atas": 11
+    },
+    "excerpts": [
+      "[VOLATILITY TRIGGER]: ...qué es lo que nos muestra Spotgam Research y voy a llamar el spx R, perdón, Ges RX. El C wall sigue en el 6500 del SPX, no ha cambiado. Importante el volatility trigger en el 6445, ¿vale? Y también voy a llamar el de hoy. Entonces, le doy qué es spx para que me dé eh la exposición de gama de hoy. Voy a mirar la total y la en valores absolutos y la exposición de gama de hoy. ¿Vale? Eh, entonces el...",
+      "[VOLATILITY TRIGGER]: ...eh también quiero ver el neto de gama hoy, el absoluto, perdón. Entonces, el absoluto me está mostrando el C wall está en el 6500, no ha cambiado. El volatility trigger está en el 6445, ¿vale? Del SPX. Son como los niveles que yo tengo que tener super presentes el día de hoy. Y la pood wall, aunque no se ve ahí, está como en el 6000, debe estar en el 6435, si no estoy mal. Más o menos este nivel d...",
+      "[VOLATILITY TRIGGER]: ...putwall 6435. Esa es la que tenemos más cerquita. Ojo que estoy hablando del SPX, ¿vale? Entonces, el mercado en el SPX está en el 6448, ¿vale? Y el volatility trigger lo tenemos en el 6445. Entonces es un nivel para tener muy pendiente porque debajo del volatility trigger es donde el market maker exagera la volatilidad, ¿vale? Eh, esto lo va a colocar en full day. Full day. Entonces, como les de...",
+      "[MARKET MAKER]: ...¿vale? Y el volatility trigger lo tenemos en el 6445. Entonces es un nivel para tener muy pendiente porque debajo del volatility trigger es donde el market maker exagera la volatilidad, ¿vale? Eh, esto lo va a colocar en full day. Full day. Entonces, como les decía, el ndx en la parte alta, ¿vale? Y acá voy a mirar el spy en full day. Full day. Okay. Y acá voy a mi exposición de gama. Okay. Merca...",
+      "[MARKET MAKER]: ...ulso bajista. Vale, este bitrace, por el contrario, ¿qué pasa? Desde mi punto de vista de exposición de gama, acá hay una exposición de gama donde un market maker tiene que hacer algo. Y acá lo que me está diciendo, ¿qué es? está vendiendo, está en el está en el límit, tiene ofertas, tiene órdenes limitas y vienen algoritmos a tratar de romper este nivel y no pueden, vienen con compras atacando el...",
+      "[MARKET MAKER]: ...y lo tocó, no pudo romperlo y se devolvió. Vale, entonces vamos a volver a entrar en esa, vamos a volver a entrar en ese nivel, en esa área donde el market maker compra en bajadas y vende en subidas, ¿vale? Ah, poco de absorción. [Música] Bueno, esto no lo tomamos, pero esto es un ejemplo de un trade scalp. Eh, ingresan una put y estaba grande por 600 millones de dólares. Entonces, es una put de...",
+      "[CALL WALL]: ...hay una batalla. los los que los que están con estas estructuras alcistas le están apuntando al 6460 y 6450, ¿vale? Ahora, si ustedes se acuerdan, la call wall de las 1T está aquí en el 6460, ¿vale? ¿Qué me está diciendo eso? Si el precio por x o y razón llega a este 6460 hoy, en algún momento de hoy, tengo dos grupos de traders que le están apuntando al 6460, los de la 0 DT de hoy y los de la 1 d...",
+      "[PUT WALL]: ...es, es la es el punto de inflexión entre esta esta batalla de compradores y vendedores y la verdad no me interesa estar ahí, ¿vale? E miren, miren la put wall cómo funcionó de bien. El 6400 cco que hablamos la putall. Básicamente el spx llegó a esa putwall y es donde está encontrando rechazo, ¿vale? Está encontrando un rechazo en esa putall. ¿Por qué? Porque es el mismo concepto, sino de las opcio..."
+    ]
+  },
+  {
+    "index": 7,
+    "title": "“$6,000 Futures Trade LIVE – How  Financial Juice & Gexbot Gave Me the Edge”",
+    "videoId": "qGyGSMyiltU",
+    "url": "https://www.youtube.com/watch?v=qGyGSMyiltU",
+    "language": "en",
+    "char_count": 9440,
+    "keywords": {
+      "gamma": 9,
+      "convexity": 1,
+      "order flow": 2
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...mma levels, right? So, especially I was monitoring this level 23090, right? Um this is coming from um what we call in guess state which is a positive convexity, right? And then what happened is on thick strike here I started to hear institutional flows of the on the oxide. So it was a heavy institutional buying right. So if you can see I have like three um um three elements that I could put togeth..."
+    ]
+  },
+  {
+    "index": 8,
+    "title": "Trading NQ con GEX: La Única Estrategia que Funciona (Operativa Real)",
+    "videoId": "eAg5p1JVSFA",
+    "url": "https://www.youtube.com/watch?v=eAg5p1JVSFA",
+    "language": "es",
+    "char_count": 90626,
+    "keywords": {
+      "gamma": 1,
+      "market maker": 4,
+      "convexity": 1,
+      "volatility trigger": 1,
+      "call wall": 12,
+      "put wall": 1,
+      "order flow": 12,
+      "footprint": 1,
+      "atas": 4
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...imos históricos, ¿vale? Pero mira, acá ya vimos que metieron una col de protección de 519 millones en el NDX, ¿vale? E al tener la gama arriba, la la convexity negativa, se supone que es hay que suponer que es una exposición de gama de de especulativa. ¿Qué crees tú que es? No, no, no. Eso es una venta de una col, no es. Ah, tú dices de por order flow. Sí, perdón. Sí, sí, sí, sí. Pero lo que no me...",
+      "[VOLATILITY TRIGGER]: ...me llegue al 45. para tomar un largo. Y acuérdese el 45 nunca lo vimos, pero es es algo bueno. Yo voy a hacer un video y se los mando que se llama el volatility trigger. Por debajo del 45 es donde se el market maker queda en volatilidad negativa, positiva, perdón, y cubren caídas, o sea, mercado cae, él cubre, mercado sube, él cubre. Entonces, exagera la volatilidad. Okay. Mercado. De nuevo. Yo, ¿...",
+      "[MARKET MAKER]: ...que miramos ahorita, el mercado no tiene no hay más para dónde cubrir al alza, ¿vale? O sea, no hay exposición de gama por encima que nos dice que el market maker tiene que salir a cubrir. Entonces, ahora, ¿qué qué me gustaría ver a mí? De todos modos, la data fue buena. Seguramente estaremos esperando alguna toma de ganancias, pero me gustaría ver un order flow, ¿vale? de compra de cubrimiento y...",
+      "[MARKET MAKER]: ...iende a zigzaguear en estos niveles, tiende a ser eh como si fuera un ragn y obviamente es porque si ustedes se acuerdan en estos niveles es donde el market maker obviamente tiene que salir a cubrir. Entonces si está cubriendo al alza, a la baja, al alza, a la baja, tiende esto a hacer rangos. Vale, vamos a ver. No tengo todavía flujos de opciones. Eh, reviso mi clásico. Eh, en el clásico también...",
+      "[MARKET MAKER]: ...ional a cubrir esa eh esa subida con una put y básicamente ahí lo que crea es una fricción, ¿vale? Cuando tienen que salir a a cubrir su delta, el el market maker. Entonces es superinesante, por eso que a mí me gusta tanto ATA porque uno ve estas concentraciones. Ese era para un largo superbonito, pero bueno, no importa. Esperemos a ver qué más sigue pasando. Eh, entonces voy analizando. Todavía e...",
+      "[CALL WALL]: ...ntes para hoy de las cero de test y obviamente las del total de opciones son es 6300 en la parte alta del del SPX. Vale, estamos ahí es donde está la call wall. Entonces, no sé si ustedes han tenido tiempo de mirar eh lo último que sacó Gesbot, que es eh donde pueden mirar el otro 50% de de las opciones, ¿vale? Entonces, eh creo que es está para hoy. Entonces, para hoy en el SPX, si se dan cuenta,...",
+      "[CALL WALL]: ...s eso también es importante tenerlo en cuenta. Por eso es que esa nueva funcionalidad me parece genial, la de Gesbot, donde puedes podemos mirar esos call walls, no solamente el acero de test, sino también cómo el mercado está posicionado. Y esos call walls y put walls funcionan muy bien, ¿vale? Porque lo que miramos ahorita, el mercado no tiene no hay más para dónde cubrir al alza, ¿vale? O sea,...",
+      "[CALL WALL]: ...enial, la de Gesbot, donde puedes podemos mirar esos call walls, no solamente el acero de test, sino también cómo el mercado está posicionado. Y esos call walls y put walls funcionan muy bien, ¿vale? Porque lo que miramos ahorita, el mercado no tiene no hay más para dónde cubrir al alza, ¿vale? O sea, no hay exposición de gama por encima que nos dice que el market maker tiene que salir a cubrir. E..."
+    ]
+  },
+  {
+    "index": 9,
+    "title": "🔥 Cómo Convertí una Día Difícil de -$450 en +$7,500 con GEX – Trading en Medio de Trump &Tax Bill.",
+    "videoId": "DPiJEyJOFaU",
+    "url": "https://www.youtube.com/watch?v=DPiJEyJOFaU",
+    "language": "es",
+    "char_count": 91602,
+    "keywords": {
+      "market maker": 14,
+      "convexity": 2,
+      "call wall": 3,
+      "order flow": 19,
+      "atas": 2
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...mi mercado principal es el NQ. Entonces, miro qué flujos me están ingresando. Creo que algo está pasando y no están no están entrando los flujos del convexity. Espérate, le doy un refresh. Okay. No, bueno, no están entrando flujos del convexity. Okay, vamos a ver. en el 6200. 6200 del SPX es un nivel importante, ¿vale? Es un nivel donde aparentemente hay una gran concentración de de coles. Okay....",
+      "[CONVEXITY]: ...e algo está pasando y no están no están entrando los flujos del convexity. Espérate, le doy un refresh. Okay. No, bueno, no están entrando flujos del convexity. Okay, vamos a ver. en el 6200. 6200 del SPX es un nivel importante, ¿vale? Es un nivel donde aparentemente hay una gran concentración de de coles. Okay. Bueno, en el spx spy. Perfecto. S. Entonces tenemos el spy. El spy lo utilizo, lo esto...",
+      "[MARKET MAKER]: ...ner una guía en este momento, pero finalmente es un algoritmo que lo que trata de hacer es trata de como de predecir qué es lo que tiene que hacer el market maker. Vale, esto de acá, [Música] ¿vale? Entonces, bueno, eh yo lo miro, obviamente no opero en eso, para mí que es importante. Entonces me voy al openest, ¿vale? Eh, le doy refresh para que me muestre el open interest de hoy. Eh, listo. Ento...",
+      "[MARKET MAKER]: ...rque si el precio llega a estas salas del aerocondor, esto va a ser en estas en estos sitios hay mucha volatilidad, ¿vale? Porque entonces estaría el market maker tratando de defender su posición, tratando de vender futuros o comprar futuros para defender su posición en cualquiera de estos dos extremos, ¿vale? Porque por fuera por fuera de esta posición el market el institucional pierde dinero. Pe...",
+      "[MARKET MAKER]: ...eno, por el momento, perdón, no. Okay, esto es una put, pero es muy pequeña y miren que está está out of the money, ¿vale? Entonces, acuérdese que el market maker que tiene que cubrir esta put delta muy pequeño, o sea, que el cubrimiento no es masivo. Okay. Esta esta venta de calls está grande, son 440 millones, ¿vale? Pero acuérdes que esto es liquidez, esto es liquidez. Okay, estamos en rango de...",
+      "[CALL WALL]: ...io, el stop loss tiene que ser s super al ras, ¿vale? Además que en el SPX, mire que tenemos un un nivel gama en el 6200, ¿vale? Que es donde está la call wall. Entonces, en sí es un trade super agresivo, super riesgoso, que ya me va a sacar, yo creo. Vamos a ver si me saca o no. Si lo logran defender, bien, si no me salgo de esa posición. Vale, me acabo de salir de la posición porque no lograron...",
+      "[CALL WALL]: ...y. Okay. Ah, no, 6200. Vale. Y el precio se regresó. Por eso les decía que el 6200 es un nivel super importante del mercado, ¿vale? Es donde está una call wall del mercado, ¿vale? No tengo gama, volvieron y la quitaron. Creo que si quisiera irme largo una de dos. Tendría que esperar que me salga una gama positiva para poderme apoyar o tendría que esperar que el precio me cruce el 6200. Vale, por e...",
+      "[CALL WALL]: ...que por cualquier otra cosa. Ahora, que sí es importante el 62, ¿te acuerdas que es un nivel que era super importante, era un es lo que se llama una call wall que estaba ahí, ¿vale? Y viene por días, viene desde ayer, ¿vale? Entonces, eh nada, simplemente defendieron ese nivel, pero pero yo creo que más tiene que ver por todo lo que estaba hablando Trump sobre el sobre el tax bill, que finalmente..."
+    ]
+  },
+  {
+    "index": 10,
+    "title": "Cómo Convertí Pérdidas en +$2,000 en Plena Volatilidad con GEX y Gexbot (Powell Testificaba)",
+    "videoId": "pHSFVUuJZec",
+    "url": "https://www.youtube.com/watch?v=pHSFVUuJZec",
+    "language": "es",
+    "char_count": 98755,
+    "keywords": {
+      "gamma": 1,
+      "gex": 2,
+      "market maker": 8,
+      "convexity": 2,
+      "order flow": 4,
+      "atas": 4,
+      "opex": 1
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...porque yo fui el que traduje esta página. Entonces, excelente. Sí. No, no, super chévere porque es pues obviamente eh mira hay una parte acá en el de convexity ladder que dice que leer la convexividad lader no se trata de identificar dirección, sino de medir el riesgo. Por ejemplo, nuestro setup favorito en el spy, que es raro pero explosivo, ocurre cuando un solo strike de convexividad negativa,...",
+      "[CONVEXITY]: ...como quedarse uno en el order flow en el Ajá. Entonces tuvimos la la el gama positivo en el Gex Overflow y tuvimos la venta arribita. Entonces, en el convexity teníamos el gama negativo y en el overflow teníamos el gama positivo. En ese momento todavía estábamos enrangados. De la manera que yo asimilaría, digamos, esa estructura sería el momento para yo entrar de largo, porque ahí es cuando el bre...",
+      "[MARKET MAKER]: ...el riesgo 270, poquito riesgo, menos de 30 text. Fredy, si esos call que estás hablando tú que son especulativos fueran eh una institucionales o una market maker, los puts se verían al otro lado, ¿cierto? Eh, a que, o sea, ¿cómo así? No entiendo. La la compensación de esos calls que están sólitos ahí, sí, se verían en el lado izquierdo con unos puts para cobertura. Mm. fuera y fuera un planeamien...",
+      "[MARKET MAKER]: ...as si estas si el mercado como está, esta volatilidad implícita va a colapsar, puede que el mercado caiga. Acuérdense que cuando se compran calls, el market maker vende las calls, ¿cómo se cubre él? Comprando futuros. Y ahora si si esos si esos liquidan todas esas opciones, todas estas coss, pues el market maker va a tener que salir a vender futuros y va a ser como la, ¿cómo se llama? La la bola d...",
+      "[MARKET MAKER]: ...arket maker vende las calls, ¿cómo se cubre él? Comprando futuros. Y ahora si si esos si esos liquidan todas esas opciones, todas estas coss, pues el market maker va a tener que salir a vender futuros y va a ser como la, ¿cómo se llama? La la bola de nieve. Pues eh u qué mercado tan feo cuando uno lo ve en 15 minutos. Okay, estamos otra vez en el cero gama, entonces por operativa mía nada que hace..."
+    ]
+  },
+  {
+    "index": 11,
+    "title": "📈 Daily Trading – NQ + Gexbot (OrderFlow + State) 🔥 | $250K Account PASSED ✅",
+    "videoId": "AnZx2_Xt-xE",
+    "url": "https://www.youtube.com/watch?v=AnZx2_Xt-xE",
+    "language": "es",
+    "char_count": 38329,
+    "keywords": {
+      "market maker": 1,
+      "order flow": 1,
+      "atas": 2,
+      "opex": 3
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...significa que él tenga la razón, ¿vale? Eh, porque muchas veces eh el problema es cuando el precio llega a las alas, hay mucha volatilidad porque el market maker tiene que ajustar rápidamente, ¿vale? Entonces, eso es para tenerlo en cuenta. Lo tengo ya aquí anotado. Eh, y bueno, vamos a hacer el análisis de hoy. Papa, saco esto. Entonces, bueno, todavía estamos, el mercado está empezando ligerame..."
+    ]
+  },
+  {
+    "index": 12,
+    "title": "🔥 Live NQ Trading with GEXBOT: +$3,000 using Gamma Exposure 💰 (June 3, 2025)",
+    "videoId": "sw3N0leUULg",
+    "url": "https://www.youtube.com/watch?v=sw3N0leUULg",
+    "language": "es",
+    "char_count": 52053,
+    "keywords": {
+      "market maker": 4,
+      "order flow": 17,
+      "atas": 7,
+      "charm": 1
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...izquierdo, el precio viene cayendo, me sale una gama de reversión y el precio se va. No sé si se acuerdan que yo les decía en la mentoría, es como el market maker va en un en un en un carro de 300 km porh. Entonces el el en Fórmula 1 cuando encuentra una curva, un nivel de gama, tiene que frenar y acelerar otra vez a 300 km porh. Vale. Eh, ahora si quisiera incorporarme, necesito niveles de gama q...",
+      "[MARKET MAKER]: ...e, sí, que el agua marina en el SPX, en el floor es lo mismo, ¿no? Digamos en Vale, vale. Es son niveles son niveles donde hay fricción, donde hay un market maker que tiene que hacer algo, ¿vale? Entonces, mira, otra vez lo van a buscar. Van a buscar este nivel que es el 21598. Entonces, acá, acá yo tengo un target en el 67, ¿vale? Vamos a ver el precio que hace acá. Eh, 11 millones en neto de gam...",
+      "[MARKET MAKER]: ...o por gama del SPX, que son tres más riesgosos. ¿Por qué? Porque no tengo el no tengo lo que tiene el el ndx y liquidez e ineficiencia, que cuando el market maker llega a esos niveles se va. Tengo acá de hecho un mercado muy líquido, entonces por eso es que la entrada es riesgosa. Pero pues el primer trade me saltó un stop loss de 120 y este está de 150 y ya está. ¿A qué le estoy apuntando yo? A e..."
+    ]
+  },
+  {
+    "index": 13,
+    "title": "🚨 Live Trading – Tuesday, May 27, 2025 - Profit = USD$2415",
+    "videoId": "K8LhuYTxF6I",
+    "url": "https://www.youtube.com/watch?v=K8LhuYTxF6I",
+    "language": "es",
+    "char_count": 41278,
+    "keywords": {
+      "market maker": 3,
+      "order flow": 7,
+      "atas": 3
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...de repito. La pusieron en un segundo, eh, diapositivas. Bueno, se acuérdes que estos son imanes, son magnetos. Entonces, cuando colocan esta gama, el market maker tiene que salir a cubrir futuros, tiene que salir a comprar futuros para cubrir su su exposición de gama. Eso se ve a través del delta, pero acuérdese que el gama es el que nos filtra absolutamente todo. Y en el profile del NX también se...",
+      "[MARKET MAKER]: ...a lo que yo quiero, ¿vale? Todo lo contrario de lo que yo quiero es es entrar en estos niveles donde hay fricción. Acuérdense lo que yo les decía, el market maker viene en un carro de Fórmula 1, ¿vale? Y tiene que aplicar un freno en la curva y rápidamente subir a 300 km porh o bueno, bajar en el caso de que sea bajista, ¿vale? Pero pero ya es eso. Mm. Hay momentos que le salta uno el stop. Sí, ha...",
+      "[MARKET MAKER]: ...ez? no se sabe. Mientras que tú cuando analizas todo por exposición de gama, estos son operaciones reales, o sea, son operaciones que están pasando y market maker tiene que salir a cubrir y por volatilidad nos están prohibiendo liquidez acá. Entonces, yo me veté de ver level two precisamente por eso, porque entonces te está dando una una doble. Ahora, si te sirve, perfecto, pero yo level two no lo..."
+    ]
+  },
+  {
+    "index": 14,
+    "title": "Live Trading 5/25 - NQ with GEXBOT Orderflow | Convexity + Gamma Levels 🔥",
+    "videoId": "ihRxcBJPYnU",
+    "url": "https://www.youtube.com/watch?v=ihRxcBJPYnU",
+    "language": "es",
+    "char_count": 29766,
+    "keywords": {
+      "convexity": 1,
+      "order flow": 9,
+      "atas": 5
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...bueno, el BX, ¿cómo lo tenemos? Eh, está en 24,47. tocó un nivel importante al alza en el 25 y rechazó. Entonces, eso en teoría es bueno. Me voy por convexity gets the flow. Voy mirando qué está pasando. Entonces, NX en la parte alta, SPX en la parte baja, gama 60 minutos. Y acuérdesen que miramos los que tienen order flow, miramos eh el la 0 de t y las 1 de t, ¿vale? Entonces, por el momento no..."
+    ]
+  },
+  {
+    "index": 15,
+    "title": "1DTE, GEX, and Level 5550: How We Anticipate the SPX Turnaround",
+    "videoId": "2ow5VZ14Cak",
+    "url": "https://www.youtube.com/watch?v=2ow5VZ14Cak",
+    "language": "es",
+    "char_count": 14095,
+    "keywords": {
+      "market maker": 2
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...precio viene en esas en esa tendencia alcista, esos niveles tienden a ser niveles donde los institucionales toman ganancias. Y al tomar ganancias, el market maker que venía cubriendo futuros al alza, tiene que salir a vender. ¿Okay? Eh, fue un nivel muy interesante y fue el nivel que marcó la tendencia a la caída, ¿vale? Sin embargo, yo logré eh irme largo en este nivel. Me gustaba la estructura....",
+      "[MARKET MAKER]: ...¿vale?, cómo con estos niveles de gama se puede hacer un scalp muy rápido. ¿Por qué? Porque siempre el precio por las operaciones de cobertura de los market makers van a va a tender a tener una reacción acá, ¿vale? Y eso es lo que queremos cuando nosotros operamos, tener reacción, ¿vale? Queremos mirar momentos en el en el que mercado se va a a desbalancear para alguno de los lados. ¿Okay? Entonce..."
+    ]
+  },
+  {
+    "index": 16,
+    "title": "\"Volatility Events That Move the Market: What Every Futures Trader Should Know\"",
+    "videoId": "508toVfsmP0",
+    "url": "https://www.youtube.com/watch?v=508toVfsmP0",
+    "language": "es",
+    "char_count": 10127,
+    "keywords": {
+      "market maker": 1,
+      "opex": 2
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...venció, básicamente el mercado abrió y cayó. sin mirar atrás. Fue una caída certera, ¿vale? Y es básicamente como se vencen todos estos contratos. El market maker tiene que salir a cubrir una cantidad de futuros en el mercado. El último fue a la baja y fue una caída que no tuvo, ni siquiera tuvo un retroceso, ¿vale? Entonces, hay otros eventos que también les digo a los estudiantes, hay un collar..."
+    ]
+  },
+  {
+    "index": 17,
+    "title": "🔥 How to Trade Vol Crush during FOMC | Futures Trading with Gexbot + 0DTE Options",
+    "videoId": "SERBsaobbV0",
+    "url": "https://www.youtube.com/watch?v=SERBsaobbV0",
+    "language": "es",
+    "char_count": 13284,
+    "keywords": {
+      "market maker": 1,
+      "dealer": 1
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...cen. ¿Cuál es el resultado? Una presión al alza derivada del colapso del valor de las puts. Todas esas posiciones long gama se deshacen y los dealers market maker tienen que comprar futuros para cubrirte. Esto es lo que se vio en el gráfico, lo que se llama en inglés un ramp, una subida repentina que nos subió hasta el 560, ¿vale? Ahora, ¿cómo lo utilizamos nosotros como traders de futuros? Uno, i..."
+    ]
+  },
+  {
+    "index": 18,
+    "title": "🔍 Futures Analysis with GEX – April 8, 2025 | Gamma Exhaustion + Orderflow with Gexbot",
+    "videoId": "Jv8NyUJGxuU",
+    "url": "https://www.youtube.com/watch?v=Jv8NyUJGxuU",
+    "language": "es",
+    "char_count": 28567,
+    "keywords": {
+      "gex": 1,
+      "market maker": 5,
+      "order flow": 2,
+      "atas": 5
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...sperar a ver si los operadores de opciones, ¿vale?, comienzan a ingresar operaciones que generen una gama positiva en estos niveles. Recuerden que el market maker en sus maniobras de cubrimiento tiene que cubrir esta gama positiva, ¿vale? Y si esta gama positiva es relevante, pues él tendrá que salir a comprar futuros para cubrir su delta, eh, para estar delta neutral. Pero lo que vemos acá es alg...",
+      "[MARKET MAKER]: ...echo, yo mi stop loss lo coloqué por encima de este nivel importante de gama, ¿vale? Porque estos niveles tienen rechazo y por encima no hay gama. El market maker no por en este momento no existe la probabilidad que no hay una probabilidad alta de que el precio sigue subiendo. Lo único que yo tenía que hacer después era esperar. ¿Vale? Otro concepto muy importante es esta parte del máximo change,...",
+      "[MARKET MAKER]: ...quedar estos puntos acá y se comienza a retraer la gama, es que estos operadores de acá ya están liquidando sus posiciones, ¿vale? Y recuerden que el market maker, cuando ellos colocan estas posiciones, el market maker les da la liquidez, pero el market maker ha venido comprando futuros para estar delta neutral, para cubrir su gama. Entonces, miremos como poco a poco comenzamos a ver más gama nega..."
+    ]
+  },
+  {
+    "index": 19,
+    "title": "Unmasking Market Dynamics with OrderFlow Analysis (Part 3) - Unlock Institutional Market Insights.",
+    "videoId": "6Q2KPv-5KWo",
+    "url": "https://www.youtube.com/watch?v=6Q2KPv-5KWo",
+    "language": "en",
+    "char_count": 20401,
+    "keywords": {
+      "gamma": 27,
+      "market maker": 1,
+      "convexity": 17,
+      "order flow": 14,
+      "positive gamma": 3,
+      "negative gamma": 2
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...come to part three of gets bit order flow. So basically today I'm going to show you how to analyze get order flow and how to trade it combine it with convexity order flow. So in the previous video in part two we studied convexity order flow and we mentioned that it's a powerful tool but when we combine it with gets order flow it will give you some amazing signals and I'm going to show you how and...",
+      "[CONVEXITY]: ...g to show you how to analyze get order flow and how to trade it combine it with convexity order flow. So in the previous video in part two we studied convexity order flow and we mentioned that it's a powerful tool but when we combine it with gets order flow it will give you some amazing signals and I'm going to show you how and also in this video I'm going to show you how to change that futures li...",
+      "[CONVEXITY]: ...ing up and then we see um for instance this big line like spikes up and it's quite meaningful compared to the other lines. And we also have on the uh convexity orderflow we see a long gamma that's a sign for reversal right that's what I mean by market structure so for instance if we the market is trending down and we see a spike on the yellow on the on the positive side a call get that's quite dif...",
+      "[MARKET MAKER]: ...ions traders sell options, the market is drawn to these sellers of options. Right? And the market likes to move away from liquidity takers. Okay? Now market makers hedge their position based on liquidity. If options are being sold, liquidity is being provided and prices tend to move towards those areas. Right? So that's it every time. That's why every time on the convexity we have a a short gamma..."
+    ]
+  },
+  {
+    "index": 20,
+    "title": "Unmasking Market Dynamics with OrderFlow Analysis (Part 2) - Unlock Institutional Market Insights",
+    "videoId": "75G3sXgZem0",
+    "url": "https://www.youtube.com/watch?v=75G3sXgZem0",
+    "language": "en",
+    "char_count": 22969,
+    "keywords": {
+      "gamma": 59,
+      "market maker": 12,
+      "delta hedge": 1,
+      "convexity": 15,
+      "order flow": 31,
+      "positive gamma": 6,
+      "negative gamma": 4,
+      "charm": 1
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...h market maker side or the customer side. I going to explain that how to read this and it's going to be amazing. I promise. So we need to have a look convexity order flow and gets order flow all together right it help us to understand whether the options flows uh sorry options flows align with price action and that's what I mean before you need some market structure to really understand this and f...",
+      "[CONVEXITY]: ...going to see in a minute but in extreme places where the market is trading high and we are on the high of the Okay, if we see a signal of reversal in convexity, that's when we need to use these kind of tools. And I going to explain that. I just I just want to bring it on. But this is going to allow us to take like more uh trace on these flows. When these guys enter the market, we can see instantly...",
+      "[CONVEXITY]: ...scalp trades and we can take also some trend trades and I'm going to show you how right so remember we always have to look we always have to analyze convexity order flow together with gets order flow that's the secret that's the recipe you cannot have a look this one in isolation with this with from this one you have to look it all together so let's going to start with the convexity order flow Le...",
+      "[DELTA HEDGE]: ...aker are long gamma and when the market maker is long gamma he's hedging in the direction or with volatility increasing. What it means in order to be delta hedge market maker as the price move up he needs to buy right and as the market moves down he needs to sell futures in order to be delta h. So this is very important. Please understand this concept because it's going to be so important when ana...",
+      "[MARKET MAKER]: ...e buying options, selling options, taking profits from these options, and actually they're moving the market. So we all know about the world of um uh market makers how when they h their positions they influence the market but now with this tool you forget about the u market makers and the customer size. So you don't have to think oh this is the customer side this is the market maker so just forget...",
+      "[MARKET MAKER]: ...l know about the world of um uh market makers how when they h their positions they influence the market but now with this tool you forget about the u market makers and the customer size. So you don't have to think oh this is the customer side this is the market maker so just forget about it is it's all filtered for you and that's it. Well, that's guestbot order flow. And in this uh video, I going...",
+      "[MARKET MAKER]: ...ut now with this tool you forget about the u market makers and the customer size. So you don't have to think oh this is the customer side this is the market maker so just forget about it is it's all filtered for you and that's it. Well, that's guestbot order flow. And in this uh video, I going to teach you how to trade with that, how to analyze it, and how to understand it, right? Um, and I'm goin..."
+    ]
+  },
+  {
+    "index": 21,
+    "title": "\"Master Gexbot Classic – Trade Like a Pro with This Simple Yet Powerful Tool!\"",
+    "videoId": "6r2329ybeb8",
+    "url": "https://www.youtube.com/watch?v=6r2329ybeb8",
+    "language": "en",
+    "char_count": 41847,
+    "keywords": {
+      "gamma": 93,
+      "market maker": 13,
+      "zero gamma": 13,
+      "order flow": 4,
+      "positive gamma": 9,
+      "negative gamma": 23,
+      "charm": 3
+    },
+    "excerpts": [
+      "[ZERO GAMMA]: ...her I'm going to explain how I use this in a minute but keep an eye this is where you see the net gets net uh gamma exposure and you can see also the zero gamma I going to I going to teach you how to read zero gamma too in a minute and this is very important the mass change gamma exposure when you see this is what this is how the biggest or the maximum change has happened in the last minute 5 minu...",
+      "[ZERO GAMMA]: ...keep an eye this is where you see the net gets net uh gamma exposure and you can see also the zero gamma I going to I going to teach you how to read zero gamma too in a minute and this is very important the mass change gamma exposure when you see this is what this is how the biggest or the maximum change has happened in the last minute 5 minutes 10 minutes 15 minutes and 30 minutes so if if you a...",
+      "[ZERO GAMMA]: ...d also when you sell on on major positive gamma you want to see this m change to go negative right now as I said before let's going to talk about the zero gamma Battle Ground right this is where the fight happens and I'm always aware of this zero gamma right this is one of the most important but less understood Concepts right so what's the zero GMA the zero GMA is the level where if you see the pr...",
+      "[MARKET MAKER]: ...ht so the major positive gamma usually acts as a resistance right think of this as a ceiling when price hit this level or is very close to this level market makers they sell into a strend right making th the PRI for the price to push higher but it's not that the market makers decide to sell you know uh Futures on this level is that options participants right they were positioning themselves on the...",
+      "[MARKET MAKER]: ...level or is very close to this level market makers they sell into a strend right making th the PRI for the price to push higher but it's not that the market makers decide to sell you know uh Futures on this level is that options participants right they were positioning themselves on the way up right and once they reach this target they take profit it has to do with something which is called uh gam...",
+      "[MARKET MAKER]: ...ructures in the options Market which are bullish they take profits here and once they take profits they basically liquidate all the options positions Market maker who has been kind of buying Futures to hedge their this this portfolio to H to be delta neutral once all these Market participants start to liquidate their positions he needs to sell all the Futures that he bought right so this is trade..."
+    ]
+  },
+  {
+    "index": 22,
+    "title": "Trading Day March 1125",
+    "videoId": "N4vwyE8RPxM",
+    "url": "https://www.youtube.com/watch?v=N4vwyE8RPxM",
+    "language": "en",
+    "char_count": 28933,
+    "keywords": {
+      "gamma": 101,
+      "market maker": 1,
+      "convexity": 2,
+      "order flow": 8,
+      "positive gamma": 18,
+      "negative gamma": 17
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...nteresting is by looking at the flow look I took the short here then we have in order flow a positive or long gamma what is long gamma um this is the convexity lder which is uh coming from this screen in the options profile in gamma but we have it here like this and what is showing us is is showing us the most important maximum maximum positive gamma maximum negative gamma in the convexity but als...",
+      "[CONVEXITY]: ...but we have it here like this and what is showing us is is showing us the most important maximum maximum positive gamma maximum negative gamma in the convexity but also is telling me in the whole options change what's happening I mean it doesn't show me in particular like in in these levels individual levels what's happening on each individual level but instead it's telling me in what's happening...",
+      "[MARKET MAKER]: ...al because someone is lifting the calls above but in this case it's a directional trade look it's a directional call so want both calls and obviously market makers they need to adjust uh their Delta by buying Futures but because this is out of the money probably the Delta was very low that's not important that's I mean that's important to know but um I want to show you something else um where is i..."
+    ]
+  },
+  {
+    "index": 23,
+    "title": "Gexbot: Unmasking Market Dynamics with OrderFlow Analysis (Part 1) – Realized vs Implied Volatility",
+    "videoId": "RylEg5XEivk",
+    "url": "https://www.youtube.com/watch?v=RylEg5XEivk",
+    "language": "en",
+    "char_count": 3275,
+    "keywords": {},
+    "excerpts": []
+  },
+  {
+    "index": 24,
+    "title": "🚀 Incredible Trading Day Using Gamma Exposure & Order Flow! 🔥",
+    "videoId": "_YoylmG1Q6Q",
+    "url": "https://www.youtube.com/watch?v=_YoylmG1Q6Q",
+    "language": "en",
+    "char_count": 19444,
+    "keywords": {
+      "gamma": 54,
+      "market maker": 3,
+      "convexity": 3,
+      "order flow": 8,
+      "atas": 3,
+      "positive gamma": 20,
+      "negative gamma": 7
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...do anything else I just wait um we have some um gam exposure which I didn't take the tra but for instance this one if you can see this is a positive convexity right and we have positive uh gas uh gamma spure so this um I'm going to explain in a video but this is a retracement on the way up this is a retracement and I put it in the chat look guys we got positive gamma so this is going to be a reve...",
+      "[CONVEXITY]: ...is going to change right and that's when we see this order flow so we have the regime here as well it's just the same thing but look we got positive convexity telling me options Trader are betting that the regime the current regime is changing and also they are lift so basically they're lifting they're making the options above here more expensive right so so the the C of upside has been lifted so...",
+      "[CONVEXITY]: ...re more expensive right so so the the C of upside has been lifted so this is becoming more expensive right so that's also a reversal so this positive convexity combined with positive gas or positive gamma exposure is basically a signal for reversal and that's what I was waiting for the price to go to this gamma level and then I wanted to interact here but probably in the future what I'm going to d...",
+      "[MARKET MAKER]: ...w they move the market today right so that's where I want to go with them I don't want to be the liquidity of them I want to go with them because the market maker he needs to hedge these positions right and he needs liquidity so you know in the past when I didn't know about um gets profile or gets um gure you know people tend to fade this this um these sell offs or they tend to fade the rallies an...",
+      "[MARKET MAKER]: ...re right and this basically is an excess of calls versus puts right so as I said before in other videos when options Traders come into the market and Market maker manage to match their orders or their flows that's fine we we don't see that because that doesn't create any need for Delta H or gamma H right so that's nothing happens but if um there is an imbalance in in the calls and puts Le from the...",
+      "[MARKET MAKER]: ...this maximum negative gamma okay because I know that there is an interest there options Traders have interest there there are flows there and I know market makers they need to hedge their positions there right so my stop loss was like kind of above here and that's it I didn't took the whole trade I didn't close here but another thing I'm going to show you guys of um why which is so important and..."
+    ]
+  },
+  {
+    "index": 25,
+    "title": "Why OPEX Days Are a Trader's Nightmare!",
+    "videoId": "8pKjQtaP6w8",
+    "url": "https://www.youtube.com/watch?v=8pKjQtaP6w8",
+    "language": "en",
+    "char_count": 7288,
+    "keywords": {
+      "gamma": 14,
+      "market maker": 7,
+      "opex": 16,
+      "pinning": 1
+    },
+    "excerpts": [
+      "[MARKET MAKER]: ...u need to hear this now folks you got to understand gamma it's like the glue that holds the market together especially in the days leading up to Opex market makers those brave souls they gobble up options contracts and to hedge their exposure they got to buy or sell the underlying stock this creates a feedback loop a virtuous cycle where Rising prices be get more buying and falling prices well the...",
+      "[MARKET MAKER]: ...all those options contracts they expire they vanish Into Thin Air and with them goes the gamma the glue that was holding everything together together market makers they don't need to hedge anymore so they unwind their positions and let me tell you when they unwind things can get ugly fast we're talking about billions trillions of dollars sloshing around creating these massive price swings that can...",
+      "[MARKET MAKER]: ...lunatic this is where the real danger lies folks you see a stock up big you think it's the real deal you jump in and then Wham the gamma unwinds the market makers pull the rug out from under you and you're left holding the bag all right man now let's talk about pin risk another land mine waiting to blow you up on Opex you see options they have these things called strike prices and when a stock pr..."
+    ]
+  },
+  {
+    "index": 26,
+    "title": "Gexbot Concepts review - Intro to OrderFlow and Trade Recap",
+    "videoId": "5yms1oOGp6k",
+    "url": "https://www.youtube.com/watch?v=5yms1oOGp6k",
+    "language": "en",
+    "char_count": 50449,
+    "keywords": {
+      "gamma": 78,
+      "market maker": 16,
+      "convexity": 47,
+      "order flow": 16,
+      "positive gamma": 17,
+      "negative gamma": 8
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...e and then we go the trans transition areas which are these ones here the small gamma nodes now I hope that's clear but now we're going to talk about convexity ladder um what the guys are get uh at get box uh they're doing is like they were happy with this gets profiled but then they say okay we want to see not only these regimes these Target but we want to see levels where important levels with p...",
+      "[CONVEXITY]: ...portant levels with positive gamma because we know that on these positive gamma levels the price is going to move right and and so they they did this convexity L and and basically what it does again it takes the imbalance of transactions uh so far uh that day for zero DT options or or on DT options which is more or less the same as before but what they do different in they display the net gamma ex...",
+      "[CONVEXITY]: ...ion They trade volatility and one and what they want is they want the price to move as far as way as possible from this uh long uh let's say positive convexity right this one they want the price to move as far as as as as possible from this levels and the short calls um sorry the purple ones are short calls and short puts right and that represents the short customer gets as we know um and I'm goin...",
+      "[MARKET MAKER]: ...calls and puts right so it's a Nexus it doesn't it doesn't measure everything and what I mean by that if um let's say um a client buys a call and the market maker match that um buying with a selling from another client right that is not going to be shown here we're not going to see it here why because that doesn't have an effect in the system so one bought a c someone else sold a C Market maker wa...",
+      "[MARKET MAKER]: ...t going to be shown here we're not going to see it here why because that doesn't have an effect in the system so one bought a c someone else sold a C Market maker was in the middle you know he did a very good job he matched the two buyer and seller and that's it nothing happens it's just a transaction went through um so basically what we want to see is when a a Flow came into the into um someone b...",
+      "[MARKET MAKER]: ...action went through um so basically what we want to see is when a a Flow came into the into um someone buys an option let's put as an example and the market maker didn't match that with anyone in the market so the market maker have to Warehouse that position and hedge that position right so Market maker needs to be delta neutral and in order to be delta neutral he needs to get out into the uh unde..."
+    ]
+  },
+  {
+    "index": 27,
+    "title": "Don't Short a Bullish Market - The $113M NDX Call Trade: How Market Makers Move the Market.",
+    "videoId": "gAF47MtsyxY",
+    "url": "https://www.youtube.com/watch?v=gAF47MtsyxY",
+    "language": "en",
+    "char_count": 22728,
+    "keywords": {
+      "gamma": 16,
+      "market maker": 20,
+      "convexity": 5,
+      "charm": 3
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...the price up buys theq he push the price up but what it is really important is the G exposure right and and if you guys saw my previous video this is convexity and and if you guys remember why convexity is so important is because if if you remember the my example with the car if if the price if the car if if you if you turn the steering wheel to the left 15 degrees and the car moves a little bit t...",
+      "[CONVEXITY]: ...but what it is really important is the G exposure right and and if you guys saw my previous video this is convexity and and if you guys remember why convexity is so important is because if if you remember the my example with the car if if the price if the car if if you if you turn the steering wheel to the left 15 degrees and the car moves a little bit that's fine that's low uh convexity but when...",
+      "[CONVEXITY]: ...r if if the price if the car if if you if you turn the steering wheel to the left 15 degrees and the car moves a little bit that's fine that's low uh convexity but when you have high convexity and you um turn the steering wheel to the left a little bit 15 Dees the car turns out a lot that's why um if if you put it in options terms when you have a high convexity or or or gamma exposure which is hig...",
+      "[MARKET MAKER]: ...someone correct me but this is an excess of gamma so this this this is an excess which is quite large 111 million is quite large so we know for sure market makers that would need to um start to hedge this position right um as I said before in my previous videos you need to you need to use another kind of um you kind of your knowledge of Market structure to try to go long so actually I went long a...",
+      "[MARKET MAKER]: ...strike right if you if you see something like this with catbox right you don't short the market because you know what's going to happen you know that market makers most likely they will need to hch this exposure this guesses pure right and if the market start to go up it's kind of loop I've been telling this so many times the loop what is the loop if they buy then Q right their gamma exposure will...",
+      "[MARKET MAKER]: ...osure will tell them or the gamma will tell them you need to buy more NQ because you are no delta neutral anymore right so they buy more not only the market makers but maybe other options participants it's not only them and as the prices start to go higher it creates this Loop where they have to buy more because GMA is telling them to buy more right so um managed to go long on this trade it was a..."
+    ]
+  },
+  {
+    "index": 28,
+    "title": "What is Convexity ?",
+    "videoId": "yTCRHW0eLNE",
+    "url": "https://www.youtube.com/watch?v=yTCRHW0eLNE",
+    "language": "en",
+    "char_count": 18460,
+    "keywords": {
+      "gamma": 42,
+      "market maker": 8,
+      "convexity": 17,
+      "positive gamma": 1,
+      "negative gamma": 7
+    },
+    "excerpts": [
+      "[CONVEXITY]: ...ly will have like trads with high probability of success right so we need to understand um that as I say before these bars are here are like high net convexity right or excess of gamma we are Futures Traders and I want to make this video uh because few of the guys new guys coming into the channel um you know they they come in here they see all these oh wait a second this is the options profile thi...",
+      "[CONVEXITY]: ...into the channel um you know they they come in here they see all these oh wait a second this is the options profile this is the excess of GMA this is convexity what is complexity right so I I was thinking about how to explain complexity and and and why so important for the analysis we do every day and and and I think the best way to explain it is like this so if if you bear with me and keep this c...",
+      "[CONVEXITY]: ...n example here if imagine you driving your nice um your nice Lamborghini right and you go your nice Lamborghini and you turn 15° to the left in a low convexity um environment if when you turn your 15° to the left you turn your steering wheel a little to the left the car the car also turns a little right that's does and it turns proportionally that's like having a low complexity right you move 15°...",
+      "[MARKET MAKER]: ...Futures the underlying you know goes Higher and Higher and it's kind it's kind of um a loop because if NQ moves a little bit up and then uh all these market makers and and options participant as well they they say oh Jesus now my my GMA is telling me that I have to buy more so they they need to buy more inq and as the price and as the buy more enq will go up right and then if enq goes up in in ver...",
+      "[MARKET MAKER]: ...ght and that coal basically acts as a magnet for the price so basically this was an out of the money call but I don't want to get into the client the market maker but basically the easiest way to understand this is um it's a magnet for the price right we don't have gamma below and and and we have some gamma above but this one is massive and and that just give us an idea that the price might go the...",
+      "[MARKET MAKER]: ...s a little the Delta of that all those options change a lot right it doesn't change proportionally to the move of the NQ and Gamma is telling them uh market makers or the uh options participants at that time because something that I have learned is that it's not only the market makers who actually have to H most of the options uh traders in the ndx they are sophisticated uh options Traders so they..."
+    ]
+  }
+]

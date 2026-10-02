@@ -1,8 +1,8 @@
 {
   "version": "2.0.0",
-  "timestamp": "2026-10-01T20:22:48.485740",
-  "ist_time": "20:22:48",
-  "execution_latency_ms": 252.32,
+  "timestamp": "2026-10-02T19:29:55.594786",
+  "ist_time": "19:29:55",
+  "execution_latency_ms": 179.41,
   "status": "ALL_SYSTEMS_ACTIVE",
   "engines": {
     "engine_1_trap_predictor": {
@@ -182,21 +182,6 @@
           "historical_leader": true
         },
         {
-          "symbol": "SUNPHARMA",
-          "date": "2026-09-20",
-          "days_elapsed": 1,
-          "block_anchor_price": 1000,
-          "current_spot": 1000,
-          "turnover_cr": 50,
-          "ml_absorption_bounce_prob": 97.5,
-          "ml_predicted_target_pct": 9.2,
-          "predicted_target_price": 1092.0,
-          "predicted_max_drawdown_pct": 0.8,
-          "optimal_entry_dip_price": 992.0,
-          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
-          "historical_leader": true
-        },
-        {
           "symbol": "TCS",
           "date": "2026-09-20",
           "days_elapsed": 1,
@@ -332,6 +317,36 @@
           "historical_leader": false
         },
         {
+          "symbol": "ITC",
+          "date": "2026-09-20",
+          "days_elapsed": 1,
+          "block_anchor_price": 1000,
+          "current_spot": 1000,
+          "turnover_cr": 50,
+          "ml_absorption_bounce_prob": 82.0,
+          "ml_predicted_target_pct": 6.4,
+          "predicted_target_price": 1064.0,
+          "predicted_max_drawdown_pct": 1.8,
+          "optimal_entry_dip_price": 992.0,
+          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
+          "historical_leader": false
+        },
+        {
+          "symbol": "JSWSTEEL",
+          "date": "2026-09-20",
+          "days_elapsed": 1,
+          "block_anchor_price": 1000,
+          "current_spot": 1000,
+          "turnover_cr": 50,
+          "ml_absorption_bounce_prob": 82.0,
+          "ml_predicted_target_pct": 6.4,
+          "predicted_target_price": 1064.0,
+          "predicted_max_drawdown_pct": 1.8,
+          "optimal_entry_dip_price": 992.0,
+          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
+          "historical_leader": false
+        },
+        {
           "symbol": "KOTAKBANK",
           "date": "2026-09-20",
           "days_elapsed": 1,
@@ -347,37 +362,22 @@
           "historical_leader": false
         },
         {
+          "symbol": "SBIN",
+          "date": "2026-09-20",
+          "days_elapsed": 1,
+          "block_anchor_price": 1000,
+          "current_spot": 1000,
+          "turnover_cr": 50,
+          "ml_absorption_bounce_prob": 82.0,
+          "ml_predicted_target_pct": 6.4,
+          "predicted_target_price": 1064.0,
+          "predicted_max_drawdown_pct": 1.8,
+          "optimal_entry_dip_price": 992.0,
+          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
+          "historical_leader": false
+        },
+        {
           "symbol": "ICICIBANK",
-          "date": "2026-09-20",
-          "days_elapsed": 1,
-          "block_anchor_price": 1000,
-          "current_spot": 1000,
-          "turnover_cr": 50,
-          "ml_absorption_bounce_prob": 82.0,
-          "ml_predicted_target_pct": 6.4,
-          "predicted_target_price": 1064.0,
-          "predicted_max_drawdown_pct": 1.8,
-          "optimal_entry_dip_price": 992.0,
-          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
-          "historical_leader": false
-        },
-        {
-          "symbol": "LT",
-          "date": "2026-09-20",
-          "days_elapsed": 1,
-          "block_anchor_price": 1000,
-          "current_spot": 1000,
-          "turnover_cr": 50,
-          "ml_absorption_bounce_prob": 82.0,
-          "ml_predicted_target_pct": 6.4,
-          "predicted_target_price": 1064.0,
-          "predicted_max_drawdown_pct": 1.8,
-          "optimal_entry_dip_price": 992.0,
-          "setup_status": "T_PLUS_1_DIGESTION_ZONE (Wait for T+2)",
-          "historical_leader": false
-        },
-        {
-          "symbol": "BANKNIFTY",
           "date": "2026-09-20",
           "days_elapsed": 1,
           "block_anchor_price": 1000,

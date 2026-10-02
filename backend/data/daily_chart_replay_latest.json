@@ -1,7 +1,7 @@
 {
-  "timestamp": 1790866413349,
-  "dateStr": "2026-10-01",
-  "timeStr": "20:23:33 IST",
+  "timestamp": 1790938228341,
+  "dateStr": "2026-10-02",
+  "timeStr": "16:20:28 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
@@ -40,7 +40,7 @@
   "fnoUniverseSummary": {
     "totalTracked": 212,
     "coilingDematCount": 2,
-    "volumeBreakoutCount": 24,
+    "volumeBreakoutCount": 22,
     "distributionTrapCount": 15,
     "swingLowFormations": 2,
     "swingHighFormations": 15
@@ -48,33 +48,6 @@
   "tomorrowHighConvictionWatchlist": [
     {
       "rank": 1,
-      "type": "LONG_DEMAT_COIL_EXPANSION",
-      "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "FINPIPE",
-      "name": "Finolex Industries Ltd.",
-      "sector": "Pipes & PVC Products",
-      "trade": {
-        "action": "BUY FINPIPE 150 CE / Spot",
-        "spotEntry": 150.49,
-        "spotSL": 147.17,
-        "spotRiskPts": 3.32,
-        "spotTarget1": 155.8,
-        "spotTarget2": 159.79,
-        "atmStrike": 150,
-        "lotSize": 3000,
-        "riskPerLotINR": 9960,
-        "target1GainPerLotINR": 15930,
-        "target2GainPerLotINR": 27900,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹147.17",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
-        "winRatePct": 82.5
-      },
-      "confidencePct": 51,
-      "catalystRationale": "Range compressed to 60.4% of ATR with 79% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
-    },
-    {
-      "rank": 2,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
       "symbol": "ICICIPRULI",
@@ -101,6 +74,33 @@
       "catalystRationale": "Range compressed to 60.7% of ATR with 89% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
+      "rank": 2,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "FINPIPE",
+      "name": "Finolex Industries Ltd.",
+      "sector": "Pipes & PVC Products",
+      "trade": {
+        "action": "BUY FINPIPE 150 CE / Spot",
+        "spotEntry": 150.49,
+        "spotSL": 147.17,
+        "spotRiskPts": 3.32,
+        "spotTarget1": 155.8,
+        "spotTarget2": 159.79,
+        "atmStrike": 150,
+        "lotSize": 3000,
+        "riskPerLotINR": 9960,
+        "target1GainPerLotINR": 15930,
+        "target2GainPerLotINR": 27900,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹147.17",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
+      },
+      "confidencePct": 49,
+      "catalystRationale": "Range compressed to 63.9% of ATR with 79% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
       "rank": 3,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
@@ -110,16 +110,16 @@
       "trade": {
         "action": "BUY ICICIGI 1560 PE / Short Spot",
         "spotEntry": 1563,
-        "spotSL": 1602.37,
-        "spotRiskPts": 39.37,
-        "spotTarget1": 1500.01,
-        "spotTarget2": 1452.76,
+        "spotSL": 1602.3,
+        "spotRiskPts": 39.3,
+        "spotTarget1": 1500.12,
+        "spotTarget2": 1452.96,
         "atmStrike": 1560,
         "lotSize": 325,
-        "riskPerLotINR": 12795,
-        "target1GainPerLotINR": 20472,
-        "target2GainPerLotINR": 35828,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹1602.37",
+        "riskPerLotINR": 12772,
+        "target1GainPerLotINR": 20436,
+        "target2GainPerLotINR": 35763,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹1602.3",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
@@ -158,13 +158,6 @@
   "topRankings": {
     "vaultCoils": [
       {
-        "symbol": "FINPIPE",
-        "price": 150.49,
-        "compPct": 60.4,
-        "delivPct": 79,
-        "floor": 148.05
-      },
-      {
         "symbol": "ICICIPRULI",
         "price": 448.05,
         "compPct": 60.7,
@@ -172,25 +165,25 @@
         "floor": 441.8
       },
       {
+        "symbol": "FINPIPE",
+        "price": 150.49,
+        "compPct": 63.9,
+        "delivPct": 79,
+        "floor": 148.05
+      },
+      {
         "symbol": "PETRONET",
         "price": 285.5,
         "compPct": 73,
         "delivPct": 77,
         "floor": 278.25
-      },
-      {
-        "symbol": "FINCABLES",
-        "price": 1458.8,
-        "compPct": 73.7,
-        "delivPct": 77,
-        "floor": 1186.5
       }
     ],
     "volumeDrives": [
       {
         "symbol": "BAJAJ-AUTO",
         "price": 10045,
-        "volMult": 5.51
+        "volMult": 5.73
       },
       {
         "symbol": "KOTAKBANK",
@@ -199,20 +192,20 @@
         "action": "BUY KOTAKBANK 420 PE / Short Spot"
       },
       {
-        "symbol": "ESCORTS",
-        "price": 2667.3,
-        "volMult": 4.22,
-        "action": "BUY ESCORTS 2650 CE / Spot"
-      },
-      {
         "symbol": "ADANIGREEN",
         "price": 1276.1,
-        "volMult": 4.05
+        "volMult": 4.4
+      },
+      {
+        "symbol": "ESCORTS",
+        "price": 2667.3,
+        "volMult": 4.31,
+        "action": "BUY ESCORTS 2650 CE / Spot"
       },
       {
         "symbol": "ADANIENSOL",
         "price": 1326.4,
-        "volMult": 3.47
+        "volMult": 3.99
       }
     ],
     "distributionTraps": [
@@ -284,7 +277,7 @@
         "totalStocks": 1
       },
       {
-        "sector": "Agri Machinery & Tractors",
+        "sector": "Beauty & Fashion E-Commerce",
         "coilingCount": 0,
         "totalStocks": 1
       }

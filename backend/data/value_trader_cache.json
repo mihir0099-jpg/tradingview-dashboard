@@ -1,6 +1,6 @@
 {
   "timeframe": "1d",
-  "updatedAt": "20:21:41 IST",
+  "updatedAt": "08:36:37 IST",
   "totalScanned": 47,
   "kpis": {
     "totalActiveSetups": 28,
@@ -1118,33 +1118,58 @@
       "name": "Sun Pharmaceutical",
       "sector": "Pharma",
       "timeframe": "1d",
-      "spotPrice": 1801,
-      "dayChangePts": -15.6,
-      "dayChangePct": -0.86,
-      "atr": 31.55,
-      "ema": 1859.23,
+      "spotPrice": 1816.6,
+      "dayChangePts": -48.4,
+      "dayChangePct": -2.6,
+      "atr": 31.32,
+      "ema": 1864.78,
       "bands": {
-        "bandPlus3": 1953.88,
-        "bandPlus2": 1922.33,
-        "bandPlus1": 1890.78,
-        "fairValue": 1859.23,
-        "bandMinus1": 1827.68,
-        "bandMinus2": 1796.13,
-        "bandMinus3": 1764.58
+        "bandPlus3": 1958.74,
+        "bandPlus2": 1927.42,
+        "bandPlus1": 1896.1,
+        "fairValue": 1864.78,
+        "bandMinus1": 1833.46,
+        "bandMinus2": 1802.14,
+        "bandMinus3": 1770.82
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.85,
-        "text": "-1 to -2 ATR (-1.85 ATR)"
+        "atrOffset": -1.54,
+        "text": "-1 to -2 ATR (-1.54 ATR)"
       },
       "activeSetups": [
+        {
+          "version": "V1",
+          "direction": "LONG",
+          "triggerDate": "2026-09-25",
+          "isLatestBar": false,
+          "barsAgo": 3,
+          "penetrationPts": 6.8,
+          "penetrationAtr": 0.21,
+          "entry": 1852.2,
+          "stopLoss": 1841.6,
+          "target1": 1883.23,
+          "target2": 1872.81,
+          "rrRatio": 2.93,
+          "location": {
+            "label": "AT_FAIR_VALUE",
+            "zone": "FAIR_VALUE",
+            "atrOffset": -0.66,
+            "text": "Near Fair Value (-0.66 ATR)"
+          },
+          "reclaimedLevels": [
+            "EMA - 1 ATR"
+          ],
+          "d1Date": "2026-09-24",
+          "d2Date": "2026-09-25"
+        },
         {
           "version": "V2",
           "direction": "SHORT",
           "triggerDate": "2026-09-30",
-          "isLatestBar": false,
-          "barsAgo": 1,
+          "isLatestBar": true,
+          "barsAgo": 0,
           "penetrationPts": 8.4,
           "penetrationAtr": 0.28,
           "entry": 1816.6,
@@ -1170,8 +1195,8 @@
         "version": "V2",
         "direction": "SHORT",
         "triggerDate": "2026-09-30",
-        "isLatestBar": false,
-        "barsAgo": 1,
+        "isLatestBar": true,
+        "barsAgo": 0,
         "penetrationPts": 8.4,
         "penetrationAtr": 0.28,
         "entry": 1816.6,
@@ -1192,7 +1217,7 @@
         "d2Date": "2026-09-29",
         "d3Date": "2026-09-30"
       },
-      "totalSetupsFound": 1
+      "totalSetupsFound": 2
     },
     {
       "symbol": "NSE:MARUTI",
@@ -2388,25 +2413,25 @@
       "name": "Grasim Industries",
       "sector": "Materials",
       "timeframe": "1d",
-      "spotPrice": 2962,
-      "dayChangePts": -99.9,
-      "dayChangePct": -3.26,
-      "atr": 62.27,
-      "ema": 3174.79,
+      "spotPrice": 3061.9,
+      "dayChangePts": -38.1,
+      "dayChangePct": -1.23,
+      "atr": 59.5,
+      "ema": 3195.05,
       "bands": {
-        "bandPlus3": 3361.6,
-        "bandPlus2": 3299.33,
-        "bandPlus1": 3237.06,
-        "fairValue": 3174.79,
-        "bandMinus1": 3112.52,
-        "bandMinus2": 3050.25,
-        "bandMinus3": 2987.98
+        "bandPlus3": 3373.55,
+        "bandPlus2": 3314.05,
+        "bandPlus1": 3254.55,
+        "fairValue": 3195.05,
+        "bandMinus1": 3135.55,
+        "bandMinus2": 3076.05,
+        "bandMinus3": 3016.55
       },
       "currentLocation": {
         "label": "EXTREME_DISCOUNT",
         "zone": "DEEP_VALUE",
-        "atrOffset": -3.42,
-        "text": "Below -2 ATR (-3.42 ATR)"
+        "atrOffset": -2.24,
+        "text": "Below -2 ATR (-2.24 ATR)"
       },
       "activeSetups": [
         {
@@ -2414,7 +2439,7 @@
           "direction": "SHORT",
           "triggerDate": "2026-09-28",
           "isLatestBar": false,
-          "barsAgo": 3,
+          "barsAgo": 2,
           "penetrationPts": 8.8,
           "penetrationAtr": 0.15,
           "entry": 3150,
@@ -2441,7 +2466,7 @@
         "direction": "SHORT",
         "triggerDate": "2026-09-28",
         "isLatestBar": false,
-        "barsAgo": 3,
+        "barsAgo": 2,
         "penetrationPts": 8.8,
         "penetrationAtr": 0.15,
         "entry": 3150,
@@ -2500,25 +2525,25 @@
       "name": "Cipla Ltd.",
       "sector": "Pharma",
       "timeframe": "1d",
-      "spotPrice": 1344,
-      "dayChangePts": -2,
-      "dayChangePct": -0.15,
-      "atr": 25.17,
-      "ema": 1383,
+      "spotPrice": 1346,
+      "dayChangePts": -33.3,
+      "dayChangePct": -2.41,
+      "atr": 25.13,
+      "ema": 1386.71,
       "bands": {
-        "bandPlus3": 1458.51,
-        "bandPlus2": 1433.34,
-        "bandPlus1": 1408.17,
-        "fairValue": 1383,
-        "bandMinus1": 1357.83,
-        "bandMinus2": 1332.66,
-        "bandMinus3": 1307.49
+        "bandPlus3": 1462.1,
+        "bandPlus2": 1436.97,
+        "bandPlus1": 1411.84,
+        "fairValue": 1386.71,
+        "bandMinus1": 1361.58,
+        "bandMinus2": 1336.45,
+        "bandMinus3": 1311.32
       },
       "currentLocation": {
         "label": "VALUE_DISCOUNT",
         "zone": "VALUE_ZONE",
-        "atrOffset": -1.55,
-        "text": "-1 to -2 ATR (-1.55 ATR)"
+        "atrOffset": -1.62,
+        "text": "-1 to -2 ATR (-1.62 ATR)"
       },
       "activeSetups": [],
       "primarySetup": null,

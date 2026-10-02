@@ -176,12 +176,22 @@ while ($true) {
             Start-Sleep -Seconds 3
         }
     }
-    # Verify tunnel before syncing to Hugging Face: prefer Ngrok only if 200 OK, otherwise use healthy Cloudflare URL
+    # Verify tunnel before syncing to Hugging Face: prefer Ngrok only if 200 OK, otherwise healthy Cloudflare or Localtunnel
     $ngrokHealthy = Test-HttpOk "https://skimmer-savage-dipped.ngrok-free.dev/health" 2500
+    
+    # Check Localtunnel (bhaichara-tv-mihir.loca.lt) fallback
+    $lt3002Proc = Get-CimInstance Win32_Process -Filter "Name = 'node.exe'" | Where-Object { $_.CommandLine -like "*localtunnel*3002*" }
+    if ($null -eq $lt3002Proc) {
+        Start-Process -FilePath "cmd.exe" -ArgumentList "/c npx --yes localtunnel --port 3002 --subdomain bhaichara-tv-mihir" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+    }
+    $ltHealthy = Test-HttpOk "https://bhaichara-tv-mihir.loca.lt/health" 3000
+
     if ($ngrokHealthy) {
         Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard https://skimmer-savage-dipped.ngrok-free.dev" -WindowStyle Hidden -ErrorAction SilentlyContinue
     } elseif ($cfOk -and $cfUrl) {
         Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard $cfUrl" -WindowStyle Hidden -ErrorAction SilentlyContinue
+    } elseif ($ltHealthy) {
+        Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard https://bhaichara-tv-mihir.loca.lt" -WindowStyle Hidden -ErrorAction SilentlyContinue
     }
 
     # Autonomous 3:40 PM IST 40-Strike Weekly Expiry Decay & Zero-Settlement Trigger
