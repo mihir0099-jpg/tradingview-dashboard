@@ -1,8 +1,8 @@
 [
   {
     "date": "2026-10-02",
-    "timestamp": 1790949649870,
-    "istTime": "2026-10-02 19:30:49 IST",
+    "timestamp": 1790952360389,
+    "istTime": "2026-10-02 20:16:00 IST",
     "macroProfile": {
       "niftySpot": 22421.95,
       "niftyOpen": 23270.9,
@@ -10,7 +10,7 @@
       "bankniftySpot": 54450.75,
       "dayType": "TREND_EXPANSION_DAY",
       "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 35
+      "activeFnoOpportunities": 38
     },
     "autonomousLearnings": [
       {

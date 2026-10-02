@@ -1,7 +1,7 @@
 {
   "success": true,
-  "timestamp": "2026-10-02T14:21:15.342Z",
-  "istTime": "19:51:14",
+  "timestamp": "2026-10-02T14:45:28.214Z",
+  "istTime": "20:15:27",
   "isPast1015": true,
   "isMarketHours": false,
   "totalScanned": 212,
@@ -5873,7 +5873,7 @@
       "callWallStrike": 155,
       "putWallStrike": 145,
       "volatilitySkew": "PUT_PANIC_HEDGING",
-      "skewSpread": 0.3
+      "skewSpread": 0.2
     },
     {
       "symbol": "SIEMENS",

@@ -77,8 +77,8 @@
       "skewDescription": "OTM Puts bloated with extreme crash protection premium. Elevated downside hedging pressure."
     },
     "momentum": {
-      "m5": -0.9,
-      "m15": -2,
+      "m5": -5.1,
+      "m15": -11.2,
       "day": 1318.5
     },
     "gammaFlip": {
@@ -1240,1308 +1240,1266 @@
     "intradaySeries": [
       {
         "time": "09:15",
-        "netGex": 3297.2,
-        "spot": 22421.3,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:17",
-        "netGex": 3292.6,
-        "spot": 22420.5,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:19",
-        "netGex": 3290.2,
-        "spot": 22419.5,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:21",
-        "netGex": 3284.5,
-        "spot": 22420.7,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:23",
-        "netGex": 3288.1,
+        "netGex": 3298.7,
         "spot": 22421.9,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
+        "time": "09:17",
+        "netGex": 3294.7,
+        "spot": 22422,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:19",
+        "netGex": 3293.8,
+        "spot": 22420,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:21",
+        "netGex": 3289.5,
+        "spot": 22419.6,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:23",
+        "netGex": 3289.3,
+        "spot": 22421.1,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
         "time": "09:25",
-        "netGex": 3290.5,
-        "spot": 22423.7,
+        "netGex": 3283.3,
+        "spot": 22421.7,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:27",
-        "netGex": 3285.1,
-        "spot": 22424.6,
+        "netGex": 3281.5,
+        "spot": 22419.8,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:29",
-        "netGex": 3283.9,
-        "spot": 22426,
+        "netGex": 3282.9,
+        "spot": 22419.6,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:31",
-        "netGex": 3285.7,
-        "spot": 22426.7,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:33",
-        "netGex": 3283.5,
-        "spot": 22425.2,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:35",
-        "netGex": 3284,
-        "spot": 22423.2,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:37",
-        "netGex": 3280.3,
-        "spot": 22421.6,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:39",
-        "netGex": 3282,
-        "spot": 22420,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:41",
-        "netGex": 3282.9,
-        "spot": 22420,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "09:43",
-        "netGex": 3279.9,
+        "netGex": 3287.7,
         "spot": 22418.8,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
+        "time": "09:33",
+        "netGex": 3282.3,
+        "spot": 22420.4,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:35",
+        "netGex": 3281.4,
+        "spot": 22419.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:37",
+        "netGex": 3284.5,
+        "spot": 22418.8,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:39",
+        "netGex": 3278.4,
+        "spot": 22417.2,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:41",
+        "netGex": 3282.4,
+        "spot": 22418.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "09:43",
+        "netGex": 3276.4,
+        "spot": 22419.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
         "time": "09:45",
-        "netGex": 3275.5,
-        "spot": 22417.3,
+        "netGex": 3276.2,
+        "spot": 22421,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:47",
-        "netGex": 3276.4,
-        "spot": 22416.5,
+        "netGex": 3276.5,
+        "spot": 22420.4,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:49",
-        "netGex": 3274.9,
-        "spot": 22416.1,
+        "netGex": 3275.2,
+        "spot": 22420.3,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:51",
-        "netGex": 3274.4,
-        "spot": 22418,
+        "netGex": 3269.9,
+        "spot": 22422,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:53",
-        "netGex": 3275.9,
-        "spot": 22416,
+        "netGex": 3273.5,
+        "spot": 22422.7,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:55",
-        "netGex": 3271.5,
-        "spot": 22416.5,
+        "netGex": 3269.4,
+        "spot": 22424.4,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:57",
-        "netGex": 3276.9,
-        "spot": 22414.5,
+        "netGex": 3265.9,
+        "spot": 22422.9,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "09:59",
-        "netGex": 3270.8,
-        "spot": 22412.8,
+        "netGex": 3264.3,
+        "spot": 22423.7,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:01",
-        "netGex": 3265.3,
-        "spot": 22412.9,
+        "netGex": 3268.4,
+        "spot": 22422.9,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:03",
-        "netGex": 3261.3,
-        "spot": 22412.4,
+        "netGex": 3266.5,
+        "spot": 22422.2,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:05",
-        "netGex": 3255.8,
-        "spot": 22411.1,
+        "netGex": 3265.2,
+        "spot": 22422.1,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:07",
-        "netGex": 3260.2,
-        "spot": 22411.8,
+        "netGex": 3264.9,
+        "spot": 22423.1,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:09",
-        "netGex": 3257.6,
-        "spot": 22411.1,
+        "netGex": 3265.9,
+        "spot": 22424.5,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:11",
-        "netGex": 3252.5,
-        "spot": 22411,
+        "netGex": 3269.7,
+        "spot": 22425.5,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:13",
-        "netGex": 3248.7,
-        "spot": 22411.3,
+        "netGex": 3271.3,
+        "spot": 22423.6,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:15",
-        "netGex": 3251,
-        "spot": 22410.2,
+        "netGex": 3267.6,
+        "spot": 22423.6,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:17",
-        "netGex": 3247.7,
-        "spot": 22410,
+        "netGex": 3270.4,
+        "spot": 22425.2,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:19",
-        "netGex": 3241.7,
-        "spot": 22408,
+        "netGex": 3268.3,
+        "spot": 22424.6,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:21",
-        "netGex": 3237.6,
-        "spot": 22408.3,
+        "netGex": 3264.8,
+        "spot": 22425,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:23",
-        "netGex": 3241.9,
-        "spot": 22407.9,
+        "netGex": 3270.1,
+        "spot": 22423.6,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:25",
-        "netGex": 3240.3,
-        "spot": 22408.2,
+        "netGex": 3270.9,
+        "spot": 22423.1,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:27",
-        "netGex": 3241.3,
-        "spot": 22406.8,
+        "netGex": 3275.1,
+        "spot": 22424.1,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:29",
-        "netGex": 3237.4,
-        "spot": 22406.7,
+        "netGex": 3276.3,
+        "spot": 22423.6,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:31",
-        "netGex": 3238,
-        "spot": 22406.5,
+        "netGex": 3277.7,
+        "spot": 22424.9,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:33",
-        "netGex": 3240,
-        "spot": 22405.5,
+        "netGex": 3274.2,
+        "spot": 22424.8,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:35",
-        "netGex": 3241.8,
-        "spot": 22406.3,
+        "netGex": 3279,
+        "spot": 22423.6,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:37",
-        "netGex": 3238.5,
-        "spot": 22407.1,
+        "netGex": 3273.4,
+        "spot": 22422.9,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:39",
-        "netGex": 3236.9,
-        "spot": 22405.6,
+        "netGex": 3272.3,
+        "spot": 22421.2,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:41",
-        "netGex": 3232.4,
-        "spot": 22405.2,
+        "netGex": 3274.4,
+        "spot": 22420.3,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "10:43",
-        "netGex": 3233.2,
-        "spot": 22404.7,
+        "netGex": 3275.9,
+        "spot": 22420.7,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:45",
-        "netGex": 3229.4,
-        "spot": 22403.9,
+        "netGex": 3276.1,
+        "spot": 22422.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:47",
-        "netGex": 3232.5,
-        "spot": 22402.4,
+        "netGex": 3276.6,
+        "spot": 22422.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:49",
-        "netGex": 3236.2,
-        "spot": 22402,
+        "netGex": 3273.2,
+        "spot": 22420.4,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:51",
-        "netGex": 3236.5,
-        "spot": 22403.1,
+        "netGex": 3273.1,
+        "spot": 22421.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:53",
-        "netGex": 3233.3,
-        "spot": 22403.4,
+        "netGex": 3267.7,
+        "spot": 22423.2,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:55",
-        "netGex": 3234.8,
-        "spot": 22403.2,
+        "netGex": 3271.7,
+        "spot": 22421.8,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:57",
-        "netGex": 3239.5,
-        "spot": 22403.3,
+        "netGex": 3271.5,
+        "spot": 22421.5,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "10:59",
-        "netGex": 3234.6,
-        "spot": 22404.9,
+        "netGex": 3271.9,
+        "spot": 22423.2,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:01",
-        "netGex": 3233.1,
-        "spot": 22404.4,
+        "netGex": 3267.1,
+        "spot": 22421.9,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:03",
-        "netGex": 3233.1,
-        "spot": 22403.6,
+        "netGex": 3271.2,
+        "spot": 22421.1,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:05",
-        "netGex": 3229.8,
-        "spot": 22404.9,
+        "netGex": 3270.4,
+        "spot": 22420.5,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:07",
-        "netGex": 3233.9,
-        "spot": 22405.4,
+        "netGex": 3266.8,
+        "spot": 22420.4,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "11:09",
-        "netGex": 3230,
-        "spot": 22405.2,
+        "netGex": 3266.3,
+        "spot": 22420.9,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "11:11",
-        "netGex": 3224.3,
-        "spot": 22403.2,
+        "netGex": 3262.5,
+        "spot": 22422.6,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:13",
-        "netGex": 3219.3,
-        "spot": 22403.3,
+        "netGex": 3258.2,
+        "spot": 22422.6,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:15",
-        "netGex": 3215.4,
-        "spot": 22401.8,
+        "netGex": 3256.6,
+        "spot": 22421.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:17",
-        "netGex": 3211.4,
-        "spot": 22401.6,
+        "netGex": 3261.1,
+        "spot": 22419.7,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:19",
-        "netGex": 3212.6,
-        "spot": 22402.9,
+        "netGex": 3259.4,
+        "spot": 22418.9,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:21",
-        "netGex": 3207,
-        "spot": 22402.9,
+        "netGex": 3255.4,
+        "spot": 22418.8,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:23",
-        "netGex": 3200.7,
-        "spot": 22403.9,
+        "netGex": 3261,
+        "spot": 22418.1,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:25",
-        "netGex": 3201.3,
-        "spot": 22405.2,
+        "netGex": 3258.4,
+        "spot": 22418.2,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
         "time": "11:27",
-        "netGex": 3197.9,
-        "spot": 22403.8,
+        "netGex": 3260.9,
+        "spot": 22417.8,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:29",
-        "netGex": 3195.8,
-        "spot": 22403.1,
+        "netGex": 3265.9,
+        "spot": 22419.5,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:31",
-        "netGex": 3195.3,
-        "spot": 22401.1,
+        "netGex": 3269.3,
+        "spot": 22419.1,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:33",
-        "netGex": 3190.6,
-        "spot": 22401.9,
+        "netGex": 3265.8,
+        "spot": 22417.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:35",
-        "netGex": 3190.1,
-        "spot": 22402.8,
+        "netGex": 3269.8,
+        "spot": 22416,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:37",
-        "netGex": 3187.7,
-        "spot": 22404,
+        "netGex": 3265.9,
+        "spot": 22416.5,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:39",
-        "netGex": 3190.4,
-        "spot": 22403,
+        "netGex": 3263.5,
+        "spot": 22415.8,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:41",
-        "netGex": 3192.2,
-        "spot": 22404.2,
+        "netGex": 3266.5,
+        "spot": 22415.8,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:43",
-        "netGex": 3196.4,
-        "spot": 22402.2,
+        "netGex": 3260.2,
+        "spot": 22417.6,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:45",
-        "netGex": 3195,
-        "spot": 22400.4,
+        "netGex": 3264.8,
+        "spot": 22416.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:47",
-        "netGex": 3188.8,
-        "spot": 22398.6,
+        "netGex": 3269.9,
+        "spot": 22414.6,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:49",
-        "netGex": 3191.1,
-        "spot": 22399.7,
+        "netGex": 3265.3,
+        "spot": 22412.6,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:51",
-        "netGex": 3185.1,
-        "spot": 22399.3,
+        "netGex": 3261.6,
+        "spot": 22412.1,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:53",
-        "netGex": 3183.3,
-        "spot": 22399.9,
+        "netGex": 3265.7,
+        "spot": 22411.2,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:55",
-        "netGex": 3186.3,
-        "spot": 22399.4,
+        "netGex": 3259.6,
+        "spot": 22410.1,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:57",
-        "netGex": 3186.9,
-        "spot": 22399.5,
+        "netGex": 3254.1,
+        "spot": 22409.2,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "11:59",
-        "netGex": 3181.3,
-        "spot": 22398.2,
+        "netGex": 3247.8,
+        "spot": 22408.6,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:01",
-        "netGex": 3179.3,
-        "spot": 22397.9,
+        "netGex": 3241.5,
+        "spot": 22410.4,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:03",
-        "netGex": 3181.5,
-        "spot": 22398,
+        "netGex": 3236.5,
+        "spot": 22409.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:05",
-        "netGex": 3178.7,
-        "spot": 22398.1,
+        "netGex": 3236.9,
+        "spot": 22410,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:07",
-        "netGex": 3179.3,
-        "spot": 22397,
+        "netGex": 3235.2,
+        "spot": 22409.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:09",
-        "netGex": 3173.9,
-        "spot": 22395.8,
+        "netGex": 3235.1,
+        "spot": 22407.8,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:11",
-        "netGex": 3172,
-        "spot": 22396.6,
+        "netGex": 3239,
+        "spot": 22406,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:13",
-        "netGex": 3169.1,
-        "spot": 22395.8,
+        "netGex": 3234.4,
+        "spot": 22407.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:15",
-        "netGex": 3173.9,
-        "spot": 22395.1,
+        "netGex": 3231.1,
+        "spot": 22406.3,
         "flipEst": 22405.1,
-        "belowFlip": true
+        "belowFlip": false
       },
       {
         "time": "12:17",
-        "netGex": 3171.3,
-        "spot": 22395.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:19",
-        "netGex": 3169,
-        "spot": 22396.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:21",
-        "netGex": 3166.5,
-        "spot": 22395.7,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:23",
-        "netGex": 3168.4,
-        "spot": 22397.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:25",
-        "netGex": 3162.9,
-        "spot": 22398.9,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:27",
-        "netGex": 3162.5,
-        "spot": 22399.9,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:29",
-        "netGex": 3162.3,
-        "spot": 22401.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:31",
-        "netGex": 3162.9,
-        "spot": 22403,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:33",
-        "netGex": 3161,
-        "spot": 22402.5,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:35",
-        "netGex": 3158,
-        "spot": 22401.4,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:37",
-        "netGex": 3159.6,
-        "spot": 22403.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:39",
-        "netGex": 3155.3,
-        "spot": 22403.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:41",
-        "netGex": 3151.9,
-        "spot": 22402.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:43",
-        "netGex": 3153.7,
-        "spot": 22402.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:45",
-        "netGex": 3152.8,
-        "spot": 22402.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:47",
-        "netGex": 3149.3,
-        "spot": 22403.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:49",
-        "netGex": 3145.6,
-        "spot": 22404.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:51",
-        "netGex": 3149.3,
-        "spot": 22403.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:53",
-        "netGex": 3146.5,
-        "spot": 22403.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:55",
-        "netGex": 3146.3,
-        "spot": 22404,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:57",
-        "netGex": 3142.2,
-        "spot": 22405,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "12:59",
-        "netGex": 3143.2,
-        "spot": 22404.9,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:01",
-        "netGex": 3147.7,
-        "spot": 22403.9,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:03",
-        "netGex": 3150,
-        "spot": 22404.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:05",
-        "netGex": 3144.9,
-        "spot": 22403.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:07",
-        "netGex": 3144.4,
-        "spot": 22401.4,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:09",
-        "netGex": 3148.7,
-        "spot": 22401.5,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:11",
-        "netGex": 3148.1,
-        "spot": 22402.5,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:13",
-        "netGex": 3148.6,
-        "spot": 22403,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:15",
-        "netGex": 3145.8,
-        "spot": 22402.7,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:17",
-        "netGex": 3148.8,
-        "spot": 22403.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:19",
-        "netGex": 3144.4,
-        "spot": 22402.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:21",
-        "netGex": 3150,
-        "spot": 22404.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:23",
-        "netGex": 3150.3,
-        "spot": 22402.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:25",
-        "netGex": 3155,
-        "spot": 22404,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:27",
-        "netGex": 3154.3,
-        "spot": 22403.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:29",
-        "netGex": 3148.5,
-        "spot": 22402,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:31",
-        "netGex": 3143.5,
-        "spot": 22402.5,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:33",
-        "netGex": 3143.8,
-        "spot": 22403.5,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:35",
-        "netGex": 3148.1,
-        "spot": 22405.1,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "13:37",
-        "netGex": 3146.8,
-        "spot": 22403.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:39",
-        "netGex": 3150.3,
-        "spot": 22401.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:41",
-        "netGex": 3152.3,
-        "spot": 22401.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:43",
-        "netGex": 3149.8,
-        "spot": 22401.3,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:45",
-        "netGex": 3152.4,
-        "spot": 22399.4,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:47",
-        "netGex": 3156.6,
-        "spot": 22400.1,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:49",
-        "netGex": 3154.4,
-        "spot": 22399.8,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:51",
-        "netGex": 3158.8,
-        "spot": 22399.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:53",
-        "netGex": 3153.3,
-        "spot": 22400.7,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:55",
-        "netGex": 3149.3,
-        "spot": 22402.1,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:57",
-        "netGex": 3147.1,
-        "spot": 22400.5,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "13:59",
-        "netGex": 3149.1,
-        "spot": 22402,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:01",
-        "netGex": 3153,
-        "spot": 22403.9,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:03",
-        "netGex": 3157.6,
-        "spot": 22405.1,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "14:05",
-        "netGex": 3156.6,
-        "spot": 22403.6,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:07",
-        "netGex": 3155.8,
-        "spot": 22405,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:09",
-        "netGex": 3151,
-        "spot": 22404.2,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:11",
-        "netGex": 3156.5,
-        "spot": 22404.9,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:13",
-        "netGex": 3155.5,
-        "spot": 22403.6,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:15",
-        "netGex": 3153.2,
-        "spot": 22404.9,
-        "flipEst": 22405.1,
-        "belowFlip": true
-      },
-      {
-        "time": "14:17",
-        "netGex": 3151.3,
+        "netGex": 3230.4,
         "spot": 22405.2,
         "flipEst": 22405.1,
         "belowFlip": false
       },
       {
-        "time": "14:19",
-        "netGex": 3154,
-        "spot": 22404.9,
+        "time": "12:19",
+        "netGex": 3230.7,
+        "spot": 22405,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
-        "time": "14:21",
-        "netGex": 3152.2,
-        "spot": 22403.2,
+        "time": "12:21",
+        "netGex": 3228.7,
+        "spot": 22403.5,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
-        "time": "14:23",
-        "netGex": 3146.7,
-        "spot": 22402.2,
+        "time": "12:23",
+        "netGex": 3231.8,
+        "spot": 22405.2,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:25",
+        "netGex": 3231.2,
+        "spot": 22404.7,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
-        "time": "14:25",
-        "netGex": 3149.5,
-        "spot": 22401.2,
+        "time": "12:27",
+        "netGex": 3227,
+        "spot": 22405.1,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:29",
+        "netGex": 3230.4,
+        "spot": 22404.8,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
-        "time": "14:27",
-        "netGex": 3153.9,
-        "spot": 22400.7,
+        "time": "12:31",
+        "netGex": 3225,
+        "spot": 22404.5,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
-        "time": "14:29",
-        "netGex": 3148.9,
+        "time": "12:33",
+        "netGex": 3224.2,
+        "spot": 22404.8,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "12:35",
+        "netGex": 3222.9,
+        "spot": 22406.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:37",
+        "netGex": 3219.9,
+        "spot": 22408,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:39",
+        "netGex": 3220.1,
+        "spot": 22406.6,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:41",
+        "netGex": 3216.5,
+        "spot": 22408.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:43",
+        "netGex": 3216.7,
+        "spot": 22407.4,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:45",
+        "netGex": 3220.1,
+        "spot": 22407.6,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:47",
+        "netGex": 3221.8,
+        "spot": 22409.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:49",
+        "netGex": 3221.7,
+        "spot": 22408.9,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:51",
+        "netGex": 3219.7,
+        "spot": 22407.7,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:53",
+        "netGex": 3221.7,
+        "spot": 22409,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:55",
+        "netGex": 3227,
+        "spot": 22407.9,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:57",
+        "netGex": 3223,
+        "spot": 22408.4,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "12:59",
+        "netGex": 3224.6,
+        "spot": 22408.2,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:01",
+        "netGex": 3226.4,
+        "spot": 22407.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:03",
+        "netGex": 3231.1,
+        "spot": 22407.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:05",
+        "netGex": 3230.1,
+        "spot": 22407.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:07",
+        "netGex": 3228.9,
+        "spot": 22406.9,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:09",
+        "netGex": 3222.7,
+        "spot": 22408.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:11",
+        "netGex": 3223.9,
+        "spot": 22408.2,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:13",
+        "netGex": 3226.9,
+        "spot": 22409.9,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:15",
+        "netGex": 3231.8,
+        "spot": 22409,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:17",
+        "netGex": 3227.4,
+        "spot": 22410.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:19",
+        "netGex": 3221.3,
+        "spot": 22410.6,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:21",
+        "netGex": 3224.6,
+        "spot": 22410.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:23",
+        "netGex": 3228,
+        "spot": 22410.7,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:25",
+        "netGex": 3223.2,
+        "spot": 22409.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:27",
+        "netGex": 3222.5,
+        "spot": 22408.7,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:29",
+        "netGex": 3217.4,
+        "spot": 22407.4,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:31",
+        "netGex": 3222.3,
+        "spot": 22405.8,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:33",
+        "netGex": 3227.8,
+        "spot": 22407.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:35",
+        "netGex": 3229.5,
+        "spot": 22406.9,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:37",
+        "netGex": 3229.5,
+        "spot": 22406.4,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:39",
+        "netGex": 3231,
+        "spot": 22406.6,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:41",
+        "netGex": 3231.5,
+        "spot": 22407.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:43",
+        "netGex": 3231.9,
+        "spot": 22409,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:45",
+        "netGex": 3236.5,
+        "spot": 22407.8,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:47",
+        "netGex": 3237.5,
+        "spot": 22409.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:49",
+        "netGex": 3234.4,
+        "spot": 22410.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:51",
+        "netGex": 3235.2,
+        "spot": 22408.7,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:53",
+        "netGex": 3229.3,
+        "spot": 22409.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:55",
+        "netGex": 3224.9,
+        "spot": 22407.3,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:57",
+        "netGex": 3219.1,
+        "spot": 22407.9,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "13:59",
+        "netGex": 3222.4,
+        "spot": 22407.6,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "14:01",
+        "netGex": 3217.1,
+        "spot": 22405.9,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "14:03",
+        "netGex": 3218.4,
+        "spot": 22405.5,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "14:05",
+        "netGex": 3222.8,
+        "spot": 22406.2,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "14:07",
+        "netGex": 3225.1,
+        "spot": 22406,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "14:09",
+        "netGex": 3228.3,
+        "spot": 22404,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:11",
+        "netGex": 3224,
+        "spot": 22402,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:13",
+        "netGex": 3225.3,
+        "spot": 22401.3,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:15",
+        "netGex": 3226.7,
+        "spot": 22399.3,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:17",
+        "netGex": 3229.9,
         "spot": 22400.5,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
-        "time": "14:31",
-        "netGex": 3150.9,
+        "time": "14:19",
+        "netGex": 3225.3,
+        "spot": 22399.4,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:21",
+        "netGex": 3227.5,
+        "spot": 22400.6,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:23",
+        "netGex": 3222,
+        "spot": 22401.2,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:25",
+        "netGex": 3218.7,
+        "spot": 22399.2,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:27",
+        "netGex": 3220.2,
         "spot": 22399.9,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
+        "time": "14:29",
+        "netGex": 3214.4,
+        "spot": 22399.1,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
+        "time": "14:31",
+        "netGex": 3214.2,
+        "spot": 22397.9,
+        "flipEst": 22405.1,
+        "belowFlip": true
+      },
+      {
         "time": "14:33",
-        "netGex": 3148,
-        "spot": 22398.1,
+        "netGex": 3212.2,
+        "spot": 22397.9,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:35",
-        "netGex": 3145.5,
-        "spot": 22396.6,
+        "netGex": 3216.6,
+        "spot": 22397.3,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:37",
-        "netGex": 3149.8,
-        "spot": 22397.1,
+        "netGex": 3218.4,
+        "spot": 22395.7,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:39",
-        "netGex": 3150.9,
-        "spot": 22395.5,
+        "netGex": 3218.3,
+        "spot": 22396.9,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:41",
-        "netGex": 3149.3,
-        "spot": 22395.5,
+        "netGex": 3219.6,
+        "spot": 22396.2,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:43",
-        "netGex": 3145.6,
-        "spot": 22393.7,
+        "netGex": 3220.9,
+        "spot": 22396.5,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:45",
-        "netGex": 3144.6,
-        "spot": 22392.6,
+        "netGex": 3219.1,
+        "spot": 22397.6,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:47",
-        "netGex": 3145.8,
-        "spot": 22393.2,
+        "netGex": 3217.1,
+        "spot": 22398.6,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:49",
-        "netGex": 3148.5,
-        "spot": 22394.7,
+        "netGex": 3211.7,
+        "spot": 22398.8,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:51",
-        "netGex": 3151.9,
-        "spot": 22393.5,
+        "netGex": 3214.3,
+        "spot": 22398.2,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:53",
-        "netGex": 3154.1,
-        "spot": 22392.6,
+        "netGex": 3210.6,
+        "spot": 22398.6,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:55",
-        "netGex": 3154.5,
-        "spot": 22392.1,
+        "netGex": 3204.8,
+        "spot": 22400,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:57",
-        "netGex": 3149.7,
-        "spot": 22390.4,
+        "netGex": 3207.7,
+        "spot": 22400.1,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "14:59",
-        "netGex": 3151.7,
-        "spot": 22391.6,
+        "netGex": 3201.9,
+        "spot": 22398.7,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "15:01",
-        "netGex": 3155,
-        "spot": 22391.9,
+        "netGex": 3202.5,
+        "spot": 22397.9,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "15:03",
-        "netGex": 3152.3,
-        "spot": 22391.4,
+        "netGex": 3197.1,
+        "spot": 22396.1,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "15:05",
-        "netGex": 3148.6,
-        "spot": 22391,
+        "netGex": 3195.1,
+        "spot": 22394.9,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "15:07",
-        "netGex": 3148.3,
-        "spot": 22390.8,
+        "netGex": 3199.7,
+        "spot": 22394.7,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "15:09",
-        "netGex": 3144.7,
-        "spot": 22390.5,
+        "netGex": 3199.5,
+        "spot": 22393.1,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "15:11",
-        "netGex": 3142.4,
+        "netGex": 3200.8,
         "spot": 22391.7,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
         "time": "15:13",
-        "netGex": 3147.4,
-        "spot": 22391.5,
+        "netGex": 3194.6,
+        "spot": 22392.7,
         "flipEst": 22405.1,
         "belowFlip": true
       },
       {
-        "time": "19:30",
-        "netGex": 4708.89,
-        "spot": 22421.95,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "19:42",
-        "netGex": 4708.89,
-        "spot": 22421.95,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "19:43",
-        "netGex": 4708.89,
-        "spot": 22421.95,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "19:44",
-        "netGex": 4708.89,
-        "spot": 22421.95,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "19:45",
-        "netGex": 4708.89,
-        "spot": 22421.95,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "19:46",
-        "netGex": 4708.89,
-        "spot": 22421.95,
-        "flipEst": 22405.1,
-        "belowFlip": false
-      },
-      {
-        "time": "19:47",
+        "time": "20:15",
         "netGex": 4708.89,
         "spot": 22421.95,
         "flipEst": 22405.1,
@@ -2549,10 +2507,10 @@
       }
     ],
     "timeStats": {
-      "minutesBelowFlip": 130,
-      "minutesAboveFlip": 57
+      "minutesBelowFlip": 39,
+      "minutesAboveFlip": 142
     },
-    "updatedAt": "19:47:31 IST"
+    "updatedAt": "20:15:53 IST"
   },
-  "updated_at": "2026-10-02T14:17:31.118Z"
+  "updated_at": "2026-10-02T14:45:53.467Z"
 }

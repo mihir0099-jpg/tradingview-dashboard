@@ -340,11 +340,11 @@ export const GEX_SYMBOLS = {
     name: 'Crude Oil GEX',
     exchange: 'MCX',
     description: 'MCX flagship energy contract. Highly responsive to global inventory shifts and supply-side gamma spikes.',
-    defaultSpot: 5680.00,
+    defaultSpot: 8916.00,
     strikeStep: 50,
     lotSize: 100,
-    expiryDays: 5,
-    ivBase: 0.28,
+    expiryDays: 17,
+    ivBase: 0.32,
     unit: '₹ Cr'
   },
   GOLD: {
@@ -352,11 +352,11 @@ export const GEX_SYMBOLS = {
     name: 'Gold GEX',
     exchange: 'MCX',
     description: 'MCX bullion contract. Sticky dealer positioning around key round strikes with high pin probability.',
-    defaultSpot: 74250.00,
+    defaultSpot: 147866.00,
     strikeStep: 100,
     lotSize: 1,
-    expiryDays: 8,
-    ivBase: 0.11,
+    expiryDays: 3,
+    ivBase: 0.14,
     unit: '₹ Cr'
   },
   NATURALGAS: {
@@ -364,11 +364,11 @@ export const GEX_SYMBOLS = {
     name: 'Natural Gas GEX',
     exchange: 'MCX',
     description: 'High-beta MCX energy contract with severe gamma tail risk and explosive breakout potential.',
-    defaultSpot: 242.50,
-    strikeStep: 5,
+    defaultSpot: 287.50,
+    strikeStep: 2.5,
     lotSize: 1250,
-    expiryDays: 6,
-    ivBase: 0.42,
+    expiryDays: 25,
+    ivBase: 0.45,
     unit: '₹ Cr'
   }
 };
@@ -430,7 +430,13 @@ export async function computeGexForSymbol(symbolKey = 'NIFTY') {
       }
     } else if (sym === 'CRUDEOIL') {
       const ltp = await angelOneBridge.resolveAndGetLtp('CRUDEOIL').catch(() => null);
-      if (ltp && ltp > 100) spot = ltp;
+      if (ltp && ltp > 1000) spot = ltp;
+    } else if (sym === 'GOLD') {
+      const ltp = await angelOneBridge.resolveAndGetLtp('GOLD').catch(() => null);
+      if (ltp && ltp > 1000) spot = ltp;
+    } else if (sym === 'NATURALGAS') {
+      const ltp = await angelOneBridge.resolveAndGetLtp('NATURALGAS').catch(() => null);
+      if (ltp && ltp > 10) spot = ltp;
     } else if (isStock || stockMeta) {
       const ltp = await angelOneBridge.resolveAndGetLtp(config.symbol).catch(() => null);
       if (ltp && ltp > 0) {

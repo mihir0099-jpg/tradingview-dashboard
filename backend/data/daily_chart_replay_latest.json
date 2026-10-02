@@ -1,13 +1,13 @@
 {
-  "timestamp": 1790949659868,
+  "timestamp": 1790952356744,
   "dateStr": "2026-10-02",
-  "timeStr": "19:30:59 IST",
+  "timeStr": "20:15:56 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
       "spot": 22421.95,
       "open": 23270.9,
-      "dayHigh": 22446,
+      "dayHigh": 22421.95,
       "dayLow": 22421.95,
       "ibHigh": 23330.9,
       "ibLow": 23230.9,
@@ -24,7 +24,7 @@
     "banknifty": {
       "spot": 54450.75,
       "open": 56420,
-      "dayHigh": 54565.1,
+      "dayHigh": 54450.75,
       "dayLow": 54450.75,
       "ibHigh": 56600,
       "ibLow": 56300,
@@ -40,10 +40,10 @@
   "fnoUniverseSummary": {
     "totalTracked": 212,
     "coilingDematCount": 2,
-    "volumeBreakoutCount": 20,
-    "distributionTrapCount": 13,
+    "volumeBreakoutCount": 21,
+    "distributionTrapCount": 15,
     "swingLowFormations": 2,
-    "swingHighFormations": 13
+    "swingHighFormations": 15
   },
   "tomorrowHighConvictionWatchlist": [
     {
@@ -83,25 +83,52 @@
       "trade": {
         "action": "BUY ICICIPRULI 450 CE / Spot",
         "spotEntry": 448.05,
-        "spotSL": 438.81,
-        "spotRiskPts": 9.24,
-        "spotTarget1": 462.83,
-        "spotTarget2": 473.92,
+        "spotSL": 438.92,
+        "spotRiskPts": 9.13,
+        "spotTarget1": 462.66,
+        "spotTarget2": 473.61,
         "atmStrike": 450,
         "lotSize": 925,
-        "riskPerLotINR": 8547,
-        "target1GainPerLotINR": 13671,
-        "target2GainPerLotINR": 23930,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹438.81",
+        "riskPerLotINR": 8445,
+        "target1GainPerLotINR": 13514,
+        "target2GainPerLotINR": 23643,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹438.92",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 60,
-      "catalystRationale": "Range compressed to 58.6% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 59,
+      "catalystRationale": "Range compressed to 60.7% of ATR with 89% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 3,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "ICICIGI",
+      "name": "ICICI Lombard General",
+      "sector": "Insurance",
+      "trade": {
+        "action": "BUY ICICIGI 1560 PE / Short Spot",
+        "spotEntry": 1563,
+        "spotSL": 1602.3,
+        "spotRiskPts": 39.3,
+        "spotTarget1": 1500.12,
+        "spotTarget2": 1452.96,
+        "atmStrike": 1560,
+        "lotSize": 325,
+        "riskPerLotINR": 12772,
+        "target1GainPerLotINR": 20436,
+        "target2GainPerLotINR": 35763,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹1602.3",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-3.5% to -6.0% Pullback",
+        "winRatePct": 78.5
+      },
+      "confidencePct": 64,
+      "catalystRationale": "Tested 20-day Resistance (₹1594.7) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    },
+    {
+      "rank": 4,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
       "symbol": "KOTAKBANK",
@@ -126,33 +153,6 @@
       },
       "confidencePct": 55,
       "catalystRationale": "Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
-    },
-    {
-      "rank": 4,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "AXISBANK",
-      "name": "Axis Bank Ltd.",
-      "sector": "Banking & Financials",
-      "trade": {
-        "action": "BUY AXISBANK 1220 PE / Short Spot",
-        "spotEntry": 1217.1,
-        "spotSL": 1304.91,
-        "spotRiskPts": 87.81,
-        "spotTarget1": 1076.6,
-        "spotTarget2": 971.23,
-        "atmStrike": 1220,
-        "lotSize": 625,
-        "riskPerLotINR": 54881,
-        "target1GainPerLotINR": 87813,
-        "target2GainPerLotINR": 153669,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹1304.91",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-4.5% to -7.0% Trend Down",
-        "winRatePct": 82
-      },
-      "confidencePct": 15,
-      "catalystRationale": "Tested 20-day Resistance (₹1300) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
@@ -167,15 +167,15 @@
       {
         "symbol": "ICICIPRULI",
         "price": 448.05,
-        "compPct": 58.6,
-        "delivPct": 90,
+        "compPct": 60.7,
+        "delivPct": 89,
         "floor": 441.8
       },
       {
         "symbol": "PETRONET",
         "price": 285.5,
-        "compPct": 68.5,
-        "delivPct": 78,
+        "compPct": 73,
+        "delivPct": 77,
         "floor": 278.25
       }
     ],
@@ -211,34 +211,34 @@
     ],
     "distributionTraps": [
       {
+        "symbol": "ICICIGI",
+        "price": 1563,
+        "ceil": 1594.7,
+        "distCeilPct": 2.03
+      },
+      {
         "symbol": "KOTAKBANK",
         "price": 418.35,
         "ceil": 435.6,
         "distCeilPct": 4.12
       },
       {
-        "symbol": "AXISBANK",
-        "price": 1217.1,
-        "ceil": 1300,
-        "distCeilPct": 6.81
-      },
-      {
-        "symbol": "ITC",
-        "price": 255.9,
-        "ceil": 273.95,
-        "distCeilPct": 7.05
+        "symbol": "HINDPETRO",
+        "price": 345,
+        "ceil": 365.2,
+        "distCeilPct": 5.86
       },
       {
         "symbol": "IOC",
         "price": 131.34,
-        "ceil": 141.15,
-        "distCeilPct": 7.47
+        "ceil": 139.3,
+        "distCeilPct": 6.06
       },
       {
-        "symbol": "SUNPHARMA",
-        "price": 1801,
-        "ceil": 1984.8,
-        "distCeilPct": 10.21
+        "symbol": "AXISBANK",
+        "price": 1217.1,
+        "ceil": 1300,
+        "distCeilPct": 6.81
       }
     ],
     "sectorLeadership": [
@@ -278,9 +278,9 @@
         "totalStocks": 1
       },
       {
-        "sector": "Pharmaceuticals",
+        "sector": "Beauty & Fashion E-Commerce",
         "coilingCount": 0,
-        "totalStocks": 7
+        "totalStocks": 1
       }
     ]
   },

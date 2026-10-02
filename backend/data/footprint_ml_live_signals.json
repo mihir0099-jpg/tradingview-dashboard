@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-02T14:00:17.703Z",
+  "updatedAt": "2026-10-02T14:45:31.337Z",
   "summary": {
     "totalSignals": 96,
     "byType": {
@@ -19,7 +19,7 @@
   },
   "recentSignals": [
     {
-      "id": "1790949617703-n8oj",
+      "id": "1790952331337-umy1",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "03:30 pm",
@@ -29,9 +29,9 @@
       "candleHigh": 22540,
       "candleLow": 22508.7,
       "candleVolume": 934,
-      "candleDelta": -332,
+      "candleDelta": -358,
       "candlePoc": 22520,
-      "timestamp": 1790949617703,
+      "timestamp": 1790952331337,
       "data": {
         "prevPoc": 22538,
         "newPoc": 22520,
@@ -42,7 +42,7 @@
       }
     },
     {
-      "id": "1790949617700-mn1o",
+      "id": "1790952331335-ashl",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "03:25 pm",
@@ -52,9 +52,9 @@
       "candleHigh": 22550,
       "candleLow": 22526.3,
       "candleVolume": 840,
-      "candleDelta": -299,
+      "candleDelta": -309,
       "candlePoc": 22538,
-      "timestamp": 1790949617700,
+      "timestamp": 1790952331335,
       "data": {
         "prevPoc": 22543,
         "newPoc": 22538,
@@ -65,7 +65,7 @@
       }
     },
     {
-      "id": "1790949617697-a3id",
+      "id": "1790952331333-jnpm",
       "type": "OB_PRESSURE_OFA_SWEEP_SHORT",
       "symbol": "NIFTYFUT",
       "timeStr": "03:20 pm",
@@ -75,24 +75,24 @@
       "candleHigh": 22564,
       "candleLow": 22535.1,
       "candleVolume": 1799,
-      "candleDelta": -715,
+      "candleDelta": -577,
       "candlePoc": 22543,
-      "timestamp": 1790949617697,
+      "timestamp": 1790952331333,
       "data": {
         "obZone": "22555 - 22569.4",
         "rejectionWickPct": 65.7,
-        "netDelta": -715,
+        "netDelta": -577,
         "riskPts": 30.1,
         "stopLoss": 22572.4,
         "target1": 22482.1,
         "target2": 22436.95,
-        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22555 – 22569.4] swept & defended! Upper wick: 65.7% | Delta: -715 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22542.3 | SL: 22572.4 | T1 (1:2): 22482.1 | T2 (1:3.5): 22436.95",
+        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22555 – 22569.4] swept & defended! Upper wick: 65.7% | Delta: -577 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22542.3 | SL: 22572.4 | T1 (1:2): 22482.1 | T2 (1:3.5): 22436.95",
         "action": "BUY_PUT",
         "confidence": 94
       }
     },
     {
-      "id": "1790949617697-9x7i",
+      "id": "1790952331333-kf2i",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "03:20 pm",
@@ -102,9 +102,9 @@
       "candleHigh": 22564,
       "candleLow": 22535.1,
       "candleVolume": 1799,
-      "candleDelta": -715,
+      "candleDelta": -577,
       "candlePoc": 22543,
-      "timestamp": 1790949617697,
+      "timestamp": 1790952331333,
       "data": {
         "prevPoc": 22538,
         "newPoc": 22543,
@@ -115,7 +115,7 @@
       }
     },
     {
-      "id": "1790949617694-k1i6",
+      "id": "1790952331330-0vea",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "03:15 pm",
@@ -125,9 +125,9 @@
       "candleHigh": 22549.5,
       "candleLow": 22520.1,
       "candleVolume": 1027,
-      "candleDelta": 374,
+      "candleDelta": 356,
       "candlePoc": 22538,
-      "timestamp": 1790949617694,
+      "timestamp": 1790952331330,
       "data": {
         "prevPoc": 22520,
         "newPoc": 22538,
@@ -138,7 +138,7 @@
       }
     },
     {
-      "id": "1790949617691-vkf1",
+      "id": "1790952331323-6x03",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "03:10 pm",
@@ -148,9 +148,9 @@
       "candleHigh": 22528,
       "candleLow": 22500.2,
       "candleVolume": 1457,
-      "candleDelta": 524,
+      "candleDelta": 536,
       "candlePoc": 22520,
-      "timestamp": 1790949617691,
+      "timestamp": 1790952331323,
       "data": {
         "prevPoc": 22499,
         "newPoc": 22520,
@@ -161,7 +161,7 @@
       }
     },
     {
-      "id": "1790949617688-pkh4",
+      "id": "1790952331321-a4u5",
       "type": "BULLISH_DELTA_DIVERGENCE",
       "symbol": "NIFTYFUT",
       "timeStr": "03:05 pm",
@@ -171,19 +171,19 @@
       "candleHigh": 22531,
       "candleLow": 22491.6,
       "candleVolume": 2621,
-      "candleDelta": 916,
+      "candleDelta": 878,
       "candlePoc": 22499,
-      "timestamp": 1790949617688,
+      "timestamp": 1790952331321,
       "data": {
         "priceMove": -3.3,
-        "netDelta": 916,
-        "message": "⚡ BULLISH DELTA DIV: Price ↓ 3.3 pts but Delta=+916. Buyers absorbing selloff. Expect bounce.",
+        "netDelta": 878,
+        "message": "⚡ BULLISH DELTA DIV: Price ↓ 3.3 pts but Delta=+878. Buyers absorbing selloff. Expect bounce.",
         "action": "BUY_CALL",
         "confidence": 83
       }
     },
     {
-      "id": "1790949617685-dqce",
+      "id": "1790952331319-qxtg",
       "type": "OB_PRESSURE_OFA_SWEEP_LONG",
       "symbol": "NIFTYFUT",
       "timeStr": "03:00 pm",
@@ -193,24 +193,24 @@
       "candleHigh": 22504.1,
       "candleLow": 22470.1,
       "candleVolume": 915,
-      "candleDelta": 328,
+      "candleDelta": 318,
       "candlePoc": 22499,
-      "timestamp": 1790949617685,
+      "timestamp": 1790952331319,
       "data": {
         "obZone": "22411.3 - 22480",
         "rejectionWickPct": 60,
-        "netDelta": 328,
+        "netDelta": 318,
         "riskPts": 95.1,
         "stopLoss": 22408.3,
         "target1": 22693.6,
         "target2": 22836.25,
-        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Demand OB [22411.3 – 22480] swept & defended! Lower wick: 60.0% | Delta: +328 | Valtos OFA Imbalance confirmed. Signal: BUY CALL @ 22503.4 | SL: 22408.3 | T1 (1:2): 22693.6 | T2 (1:3.5): 22836.25",
+        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Demand OB [22411.3 – 22480] swept & defended! Lower wick: 60.0% | Delta: +318 | Valtos OFA Imbalance confirmed. Signal: BUY CALL @ 22503.4 | SL: 22408.3 | T1 (1:2): 22693.6 | T2 (1:3.5): 22836.25",
         "action": "BUY_CALL",
         "confidence": 94
       }
     },
     {
-      "id": "1790949617685-gn7e",
+      "id": "1790952331319-2izd",
       "type": "VWAP_REJECTION_LONG",
       "symbol": "NIFTYFUT",
       "timeStr": "03:00 pm",
@@ -220,9 +220,9 @@
       "candleHigh": 22504.1,
       "candleLow": 22470.1,
       "candleVolume": 915,
-      "candleDelta": 328,
+      "candleDelta": 318,
       "candlePoc": 22499,
-      "timestamp": 1790949617685,
+      "timestamp": 1790952331319,
       "data": {
         "vwap": 22498.61,
         "lowerWick": 20.4,
@@ -233,7 +233,7 @@
       }
     },
     {
-      "id": "1790949617685-r54r",
+      "id": "1790952331319-0guv",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "03:00 pm",
@@ -243,9 +243,9 @@
       "candleHigh": 22504.1,
       "candleLow": 22470.1,
       "candleVolume": 915,
-      "candleDelta": 328,
+      "candleDelta": 318,
       "candlePoc": 22499,
-      "timestamp": 1790949617685,
+      "timestamp": 1790952331319,
       "data": {
         "prevPoc": 22491,
         "newPoc": 22499,
@@ -256,7 +256,7 @@
       }
     },
     {
-      "id": "1790949617684-wxpf",
+      "id": "1790952331317-tlh6",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:55 pm",
@@ -266,9 +266,9 @@
       "candleHigh": 22515,
       "candleLow": 22486.4,
       "candleVolume": 1259,
-      "candleDelta": -433,
+      "candleDelta": -427,
       "candlePoc": 22491,
-      "timestamp": 1790949617684,
+      "timestamp": 1790952331317,
       "data": {
         "prevPoc": 22485,
         "newPoc": 22491,
@@ -279,7 +279,7 @@
       }
     },
     {
-      "id": "1790949617681-378g",
+      "id": "1790952331315-2unu",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:50 pm",
@@ -289,9 +289,9 @@
       "candleHigh": 22505,
       "candleLow": 22451.1,
       "candleVolume": 1481,
-      "candleDelta": 536,
+      "candleDelta": 518,
       "candlePoc": 22485,
-      "timestamp": 1790949617681,
+      "timestamp": 1790952331315,
       "data": {
         "prevPoc": 22456,
         "newPoc": 22485,
@@ -302,7 +302,7 @@
       }
     },
     {
-      "id": "1790949617677-9w00",
+      "id": "1790952331312-i0eu",
       "type": "BEARISH_DELTA_DIVERGENCE",
       "symbol": "NIFTYFUT",
       "timeStr": "02:45 pm",
@@ -312,19 +312,19 @@
       "candleHigh": 22465,
       "candleLow": 22438.7,
       "candleVolume": 1102,
-      "candleDelta": -402,
+      "candleDelta": -410,
       "candlePoc": 22456,
-      "timestamp": 1790949617677,
+      "timestamp": 1790952331312,
       "data": {
         "priceMove": 1.5,
-        "netDelta": -402,
-        "message": "⚠️ BEARISH DELTA DIV: Price ↑ 1.5 pts but Delta=-402. Sellers absorbing rally. Expect reversal.",
+        "netDelta": -410,
+        "message": "⚠️ BEARISH DELTA DIV: Price ↑ 1.5 pts but Delta=-410. Sellers absorbing rally. Expect reversal.",
         "action": "BUY_PUT",
         "confidence": 84
       }
     },
     {
-      "id": "1790949617675-rib4",
+      "id": "1790952331306-4whf",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:40 pm",
@@ -334,9 +334,9 @@
       "candleHigh": 22468.3,
       "candleLow": 22442.7,
       "candleVolume": 919,
-      "candleDelta": -344,
+      "candleDelta": -328,
       "candlePoc": 22455,
-      "timestamp": 1790949617675,
+      "timestamp": 1790952331306,
       "data": {
         "prevPoc": 22464,
         "newPoc": 22455,
@@ -347,7 +347,7 @@
       }
     },
     {
-      "id": "1790949617673-7bns",
+      "id": "1790952331304-iphx",
       "type": "OB_PRESSURE_OFA_SWEEP_SHORT",
       "symbol": "NIFTYFUT",
       "timeStr": "02:35 pm",
@@ -357,24 +357,24 @@
       "candleHigh": 22491.8,
       "candleLow": 22449.4,
       "candleVolume": 1949,
-      "candleDelta": -693,
+      "candleDelta": -725,
       "candlePoc": 22464,
-      "timestamp": 1790949617673,
+      "timestamp": 1790952331304,
       "data": {
         "obZone": "22450 - 22515",
         "rejectionWickPct": 50.2,
-        "netDelta": -693,
+        "netDelta": -725,
         "riskPts": 57.3,
         "stopLoss": 22518,
         "target1": 22346.1,
         "target2": 22260.15,
-        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22450 – 22515] swept & defended! Upper wick: 50.2% | Delta: -693 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22460.7 | SL: 22518 | T1 (1:2): 22346.1 | T2 (1:3.5): 22260.15",
+        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22450 – 22515] swept & defended! Upper wick: 50.2% | Delta: -725 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22460.7 | SL: 22518 | T1 (1:2): 22346.1 | T2 (1:3.5): 22260.15",
         "action": "BUY_PUT",
         "confidence": 94
       }
     },
     {
-      "id": "1790949617673-8hc8",
+      "id": "1790952331304-1zrn",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:35 pm",
@@ -384,9 +384,9 @@
       "candleHigh": 22491.8,
       "candleLow": 22449.4,
       "candleVolume": 1949,
-      "candleDelta": -693,
+      "candleDelta": -725,
       "candlePoc": 22464,
-      "timestamp": 1790949617673,
+      "timestamp": 1790952331304,
       "data": {
         "prevPoc": 22452,
         "newPoc": 22464,
@@ -397,7 +397,7 @@
       }
     },
     {
-      "id": "1790949617670-1wrn",
+      "id": "1790952331301-kzdi",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:30 pm",
@@ -407,9 +407,9 @@
       "candleHigh": 22480,
       "candleLow": 22411.3,
       "candleVolume": 3435,
-      "candleDelta": 1318,
+      "candleDelta": 1278,
       "candlePoc": 22452,
-      "timestamp": 1790949617670,
+      "timestamp": 1790952331301,
       "data": {
         "prevPoc": 22401,
         "newPoc": 22452,
@@ -420,7 +420,7 @@
       }
     },
     {
-      "id": "1790949617670-wh1z",
+      "id": "1790952331301-b2u9",
       "type": "VCB_VOLUME_CLIMAX_BUY",
       "symbol": "NIFTYFUT",
       "timeStr": "02:30 pm",
@@ -430,9 +430,9 @@
       "candleHigh": 22480,
       "candleLow": 22411.3,
       "candleVolume": 3435,
-      "candleDelta": 1318,
+      "candleDelta": 1278,
       "candlePoc": 22452,
-      "timestamp": 1790949617670,
+      "timestamp": 1790952331301,
       "data": {
         "totalVol": 5274,
         "avgVol": 1649,
@@ -443,7 +443,7 @@
       }
     },
     {
-      "id": "1790949617668-xv3x",
+      "id": "1790952331299-u52g",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:25 pm",
@@ -453,9 +453,9 @@
       "candleHigh": 22424,
       "candleLow": 22373.7,
       "candleVolume": 1681,
-      "candleDelta": 600,
+      "candleDelta": 630,
       "candlePoc": 22401,
-      "timestamp": 1790949617668,
+      "timestamp": 1790952331299,
       "data": {
         "prevPoc": 22376,
         "newPoc": 22401,
@@ -466,7 +466,7 @@
       }
     },
     {
-      "id": "1790949617666-k9jy",
+      "id": "1790952331295-s3hv",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:20 pm",
@@ -476,9 +476,9 @@
       "candleHigh": 22390,
       "candleLow": 22370,
       "candleVolume": 649,
-      "candleDelta": -234,
+      "candleDelta": -236,
       "candlePoc": 22376,
-      "timestamp": 1790949617666,
+      "timestamp": 1790952331295,
       "data": {
         "prevPoc": 22389,
         "newPoc": 22376,
@@ -489,7 +489,7 @@
       }
     },
     {
-      "id": "1790949617664-jvr4",
+      "id": "1790952331292-t8l3",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:15 pm",
@@ -499,9 +499,9 @@
       "candleHigh": 22410,
       "candleLow": 22374.6,
       "candleVolume": 1143,
-      "candleDelta": -430,
+      "candleDelta": -404,
       "candlePoc": 22389,
-      "timestamp": 1790949617664,
+      "timestamp": 1790952331292,
       "data": {
         "prevPoc": 22396,
         "newPoc": 22389,
@@ -512,7 +512,7 @@
       }
     },
     {
-      "id": "1790949617661-ri0u",
+      "id": "1790952331289-78ht",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:10 pm",
@@ -522,9 +522,9 @@
       "candleHigh": 22412.1,
       "candleLow": 22370,
       "candleVolume": 1355,
-      "candleDelta": 461,
+      "candleDelta": 519,
       "candlePoc": 22396,
-      "timestamp": 1790949617661,
+      "timestamp": 1790952331289,
       "data": {
         "prevPoc": 22363,
         "newPoc": 22396,
@@ -535,7 +535,7 @@
       }
     },
     {
-      "id": "1790949617659-oj5t",
+      "id": "1790952331287-ql07",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:05 pm",
@@ -545,9 +545,9 @@
       "candleHigh": 22385.1,
       "candleLow": 22321,
       "candleVolume": 1465,
-      "candleDelta": 563,
+      "candleDelta": 505,
       "candlePoc": 22363,
-      "timestamp": 1790949617659,
+      "timestamp": 1790952331287,
       "data": {
         "prevPoc": 22333,
         "newPoc": 22363,
@@ -558,7 +558,7 @@
       }
     },
     {
-      "id": "1790949617657-gqi4",
+      "id": "1790952331285-65g1",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "02:00 pm",
@@ -568,9 +568,9 @@
       "candleHigh": 22350,
       "candleLow": 22321,
       "candleVolume": 1810,
-      "candleDelta": -655,
+      "candleDelta": -681,
       "candlePoc": 22333,
-      "timestamp": 1790949617657,
+      "timestamp": 1790952331285,
       "data": {
         "prevPoc": 22357,
         "newPoc": 22333,
@@ -581,7 +581,7 @@
       }
     },
     {
-      "id": "1790949617655-hoto",
+      "id": "1790952331282-v3m4",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:55 pm",
@@ -591,9 +591,9 @@
       "candleHigh": 22385,
       "candleLow": 22340,
       "candleVolume": 1529,
-      "candleDelta": -548,
+      "candleDelta": -538,
       "candlePoc": 22357,
-      "timestamp": 1790949617655,
+      "timestamp": 1790952331282,
       "data": {
         "prevPoc": 22382,
         "newPoc": 22357,
@@ -604,7 +604,7 @@
       }
     },
     {
-      "id": "1790949617653-gkie",
+      "id": "1790952331273-nmjj",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:50 pm",
@@ -614,9 +614,9 @@
       "candleHigh": 22389.4,
       "candleLow": 22370,
       "candleVolume": 2062,
-      "candleDelta": -718,
+      "candleDelta": -736,
       "candlePoc": 22382,
-      "timestamp": 1790949617653,
+      "timestamp": 1790952331273,
       "data": {
         "prevPoc": 22389,
         "newPoc": 22382,
@@ -627,7 +627,7 @@
       }
     },
     {
-      "id": "1790949617650-lwyo",
+      "id": "1790952331272-m6rc",
       "type": "OB_PRESSURE_OFA_SWEEP_SHORT",
       "symbol": "NIFTYFUT",
       "timeStr": "01:45 pm",
@@ -637,24 +637,24 @@
       "candleHigh": 22407.9,
       "candleLow": 22379,
       "candleVolume": 1359,
-      "candleDelta": -485,
+      "candleDelta": -479,
       "candlePoc": 22389,
-      "timestamp": 1790949617650,
+      "timestamp": 1790952331272,
       "data": {
         "obZone": "22368.4 - 22434.4",
         "rejectionWickPct": 31.1,
-        "netDelta": -485,
+        "netDelta": -479,
         "riskPts": 54.5,
         "stopLoss": 22437.4,
         "target1": 22273.9,
         "target2": 22192.15,
-        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22368.4 – 22434.4] swept & defended! Upper wick: 31.1% | Delta: -485 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22382.9 | SL: 22437.4 | T1 (1:2): 22273.9 | T2 (1:3.5): 22192.15",
+        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22368.4 – 22434.4] swept & defended! Upper wick: 31.1% | Delta: -479 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22382.9 | SL: 22437.4 | T1 (1:2): 22273.9 | T2 (1:3.5): 22192.15",
         "action": "BUY_PUT",
         "confidence": 94
       }
     },
     {
-      "id": "1790949617650-5nol",
+      "id": "1790952331272-5yyp",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:45 pm",
@@ -664,9 +664,9 @@
       "candleHigh": 22407.9,
       "candleLow": 22379,
       "candleVolume": 1359,
-      "candleDelta": -485,
+      "candleDelta": -479,
       "candlePoc": 22389,
-      "timestamp": 1790949617650,
+      "timestamp": 1790952331272,
       "data": {
         "prevPoc": 22410,
         "newPoc": 22389,
@@ -677,7 +677,7 @@
       }
     },
     {
-      "id": "1790949617648-nqnb",
+      "id": "1790952331269-orpn",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:40 pm",
@@ -687,9 +687,9 @@
       "candleHigh": 22434.4,
       "candleLow": 22368.4,
       "candleVolume": 4073,
-      "candleDelta": -1477,
+      "candleDelta": -1469,
       "candlePoc": 22410,
-      "timestamp": 1790949617648,
+      "timestamp": 1790952331269,
       "data": {
         "prevPoc": 22437,
         "newPoc": 22410,
@@ -700,7 +700,7 @@
       }
     },
     {
-      "id": "1790949617648-2p3k",
+      "id": "1790952331269-k0yg",
       "type": "VCS_VOLUME_CLIMAX_SELL",
       "symbol": "NIFTYFUT",
       "timeStr": "01:40 pm",
@@ -710,9 +710,9 @@
       "candleHigh": 22434.4,
       "candleLow": 22368.4,
       "candleVolume": 4073,
-      "candleDelta": -1477,
+      "candleDelta": -1469,
       "candlePoc": 22410,
-      "timestamp": 1790949617648,
+      "timestamp": 1790952331269,
       "data": {
         "totalVol": 6225,
         "avgVol": 1970,
@@ -723,7 +723,7 @@
       }
     },
     {
-      "id": "1790949617646-lc6r",
+      "id": "1790952331267-6pkt",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:35 pm",
@@ -733,9 +733,9 @@
       "candleHigh": 22465.1,
       "candleLow": 22422.4,
       "candleVolume": 1172,
-      "candleDelta": -407,
+      "candleDelta": -455,
       "candlePoc": 22437,
-      "timestamp": 1790949617646,
+      "timestamp": 1790952331267,
       "data": {
         "prevPoc": 22443,
         "newPoc": 22437,
@@ -746,7 +746,7 @@
       }
     },
     {
-      "id": "1790949617644-mxd3",
+      "id": "1790952331263-q47j",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:30 pm",
@@ -756,9 +756,9 @@
       "candleHigh": 22466,
       "candleLow": 22406,
       "candleVolume": 1781,
-      "candleDelta": 671,
+      "candleDelta": 661,
       "candlePoc": 22443,
-      "timestamp": 1790949617644,
+      "timestamp": 1790952331263,
       "data": {
         "prevPoc": 22417,
         "newPoc": 22443,
@@ -769,7 +769,7 @@
       }
     },
     {
-      "id": "1790949617643-xrtu",
+      "id": "1790952331256-e6hm",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:25 pm",
@@ -779,9 +779,9 @@
       "candleHigh": 22445,
       "candleLow": 22415,
       "candleVolume": 1319,
-      "candleDelta": -456,
+      "candleDelta": -440,
       "candlePoc": 22417,
-      "timestamp": 1790949617643,
+      "timestamp": 1790952331256,
       "data": {
         "prevPoc": 22424,
         "newPoc": 22417,
@@ -792,7 +792,7 @@
       }
     },
     {
-      "id": "1790949617641-5yxe",
+      "id": "1790952331254-lo1j",
       "type": "OB_PRESSURE_OFA_SWEEP_SHORT",
       "symbol": "NIFTYFUT",
       "timeStr": "01:20 pm",
@@ -802,24 +802,24 @@
       "candleHigh": 22449.5,
       "candleLow": 22416.7,
       "candleVolume": 955,
-      "candleDelta": -318,
+      "candleDelta": -314,
       "candlePoc": 22424,
-      "timestamp": 1790949617641,
+      "timestamp": 1790952331254,
       "data": {
         "obZone": "22421 - 22470",
         "rejectionWickPct": 65.5,
-        "netDelta": -318,
+        "netDelta": -314,
         "riskPts": 52,
         "stopLoss": 22473,
         "target1": 22317,
         "target2": 22239,
-        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22421 – 22470] swept & defended! Upper wick: 65.5% | Delta: -318 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22421 | SL: 22473 | T1 (1:2): 22317 | T2 (1:3.5): 22239",
+        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22421 – 22470] swept & defended! Upper wick: 65.5% | Delta: -314 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22421 | SL: 22473 | T1 (1:2): 22317 | T2 (1:3.5): 22239",
         "action": "BUY_PUT",
         "confidence": 94
       }
     },
     {
-      "id": "1790949617641-bhec",
+      "id": "1790952331254-y0cd",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:20 pm",
@@ -829,9 +829,9 @@
       "candleHigh": 22449.5,
       "candleLow": 22416.7,
       "candleVolume": 955,
-      "candleDelta": -318,
+      "candleDelta": -314,
       "candlePoc": 22424,
-      "timestamp": 1790949617641,
+      "timestamp": 1790952331254,
       "data": {
         "prevPoc": 22440,
         "newPoc": 22424,
@@ -842,7 +842,7 @@
       }
     },
     {
-      "id": "1790949617639-wubj",
+      "id": "1790952331252-a1lv",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:15 pm",
@@ -852,9 +852,9 @@
       "candleHigh": 22470,
       "candleLow": 22421,
       "candleVolume": 1238,
-      "candleDelta": -474,
+      "candleDelta": -460,
       "candlePoc": 22440,
-      "timestamp": 1790949617639,
+      "timestamp": 1790952331252,
       "data": {
         "prevPoc": 22468,
         "newPoc": 22440,
@@ -865,7 +865,7 @@
       }
     },
     {
-      "id": "1790949617636-4at3",
+      "id": "1790952331250-5k6i",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:10 pm",
@@ -875,9 +875,9 @@
       "candleHigh": 22485,
       "candleLow": 22458.1,
       "candleVolume": 1995,
-      "candleDelta": -734,
+      "candleDelta": -708,
       "candlePoc": 22468,
-      "timestamp": 1790949617636,
+      "timestamp": 1790952331250,
       "data": {
         "prevPoc": 22479,
         "newPoc": 22468,
@@ -888,7 +888,7 @@
       }
     },
     {
-      "id": "1790949617634-xo1o",
+      "id": "1790952331248-z35w",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:05 pm",
@@ -898,9 +898,9 @@
       "candleHigh": 22493.1,
       "candleLow": 22454,
       "candleVolume": 1501,
-      "candleDelta": 550,
+      "candleDelta": 524,
       "candlePoc": 22479,
-      "timestamp": 1790949617634,
+      "timestamp": 1790952331248,
       "data": {
         "prevPoc": 22452,
         "newPoc": 22479,
@@ -911,7 +911,7 @@
       }
     },
     {
-      "id": "1790949617632-b1vb",
+      "id": "1790952331245-nivt",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "01:00 pm",
@@ -921,9 +921,9 @@
       "candleHigh": 22478,
       "candleLow": 22400.8,
       "candleVolume": 2801,
-      "candleDelta": 1030,
+      "candleDelta": 970,
       "candlePoc": 22452,
-      "timestamp": 1790949617633,
+      "timestamp": 1790952331245,
       "data": {
         "prevPoc": 22417,
         "newPoc": 22452,
@@ -934,7 +934,7 @@
       }
     },
     {
-      "id": "1790949617630-qlmc",
+      "id": "1790952331242-56oy",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:55 pm",
@@ -944,9 +944,9 @@
       "candleHigh": 22435.5,
       "candleLow": 22375.1,
       "candleVolume": 2865,
-      "candleDelta": -1017,
+      "candleDelta": -1001,
       "candlePoc": 22417,
-      "timestamp": 1790949617630,
+      "timestamp": 1790952331242,
       "data": {
         "prevPoc": 22438,
         "newPoc": 22417,
@@ -957,7 +957,7 @@
       }
     },
     {
-      "id": "1790949617628-dgab",
+      "id": "1790952331239-5wvt",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:50 pm",
@@ -967,9 +967,9 @@
       "candleHigh": 22465,
       "candleLow": 22421.9,
       "candleVolume": 2775,
-      "candleDelta": -1113,
+      "candleDelta": -1033,
       "candlePoc": 22438,
-      "timestamp": 1790949617628,
+      "timestamp": 1790952331239,
       "data": {
         "prevPoc": 22476,
         "newPoc": 22438,
@@ -980,7 +980,7 @@
       }
     },
     {
-      "id": "1790949617625-928b",
+      "id": "1790952331237-e0zn",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:45 pm",
@@ -990,9 +990,9 @@
       "candleHigh": 22515,
       "candleLow": 22450,
       "candleVolume": 5062,
-      "candleDelta": -1909,
+      "candleDelta": -1833,
       "candlePoc": 22476,
-      "timestamp": 1790949617625,
+      "timestamp": 1790952331237,
       "data": {
         "prevPoc": 22534,
         "newPoc": 22476,
@@ -1003,7 +1003,7 @@
       }
     },
     {
-      "id": "1790949617625-b36f",
+      "id": "1790952331237-kd5x",
       "type": "VCS_VOLUME_CLIMAX_SELL",
       "symbol": "NIFTYFUT",
       "timeStr": "12:45 pm",
@@ -1013,9 +1013,9 @@
       "candleHigh": 22515,
       "candleLow": 22450,
       "candleVolume": 5062,
-      "candleDelta": -1909,
+      "candleDelta": -1833,
       "candlePoc": 22476,
-      "timestamp": 1790949617625,
+      "timestamp": 1790952331237,
       "data": {
         "totalVol": 7807,
         "avgVol": 1373,
@@ -1026,7 +1026,7 @@
       }
     },
     {
-      "id": "1790949617623-825k",
+      "id": "1790952331235-10ws",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:40 pm",
@@ -1038,7 +1038,7 @@
       "candleVolume": 932,
       "candleDelta": -351,
       "candlePoc": 22534,
-      "timestamp": 1790949617623,
+      "timestamp": 1790952331235,
       "data": {
         "prevPoc": 22563,
         "newPoc": 22534,
@@ -1049,7 +1049,7 @@
       }
     },
     {
-      "id": "1790949617621-jngc",
+      "id": "1790952331233-r8be",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:35 pm",
@@ -1059,9 +1059,9 @@
       "candleHigh": 22569.4,
       "candleLow": 22555,
       "candleVolume": 446,
-      "candleDelta": 165,
+      "candleDelta": 161,
       "candlePoc": 22563,
-      "timestamp": 1790949617621,
+      "timestamp": 1790952331233,
       "data": {
         "prevPoc": 22560,
         "newPoc": 22563,
@@ -1072,7 +1072,7 @@
       }
     },
     {
-      "id": "1790949617618-hkyh",
+      "id": "1790952331231-jtl6",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:30 pm",
@@ -1082,9 +1082,9 @@
       "candleHigh": 22573.9,
       "candleLow": 22540.3,
       "candleVolume": 1007,
-      "candleDelta": 371,
+      "candleDelta": 393,
       "candlePoc": 22560,
-      "timestamp": 1790949617618,
+      "timestamp": 1790952331231,
       "data": {
         "prevPoc": 22563,
         "newPoc": 22560,
@@ -1095,7 +1095,7 @@
       }
     },
     {
-      "id": "1790949617616-3yq4",
+      "id": "1790952331228-4s94",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:25 pm",
@@ -1105,9 +1105,9 @@
       "candleHigh": 22575.4,
       "candleLow": 22550,
       "candleVolume": 955,
-      "candleDelta": -330,
+      "candleDelta": -386,
       "candlePoc": 22563,
-      "timestamp": 1790949617616,
+      "timestamp": 1790952331228,
       "data": {
         "prevPoc": 22575,
         "newPoc": 22563,
@@ -1118,7 +1118,7 @@
       }
     },
     {
-      "id": "1790949617615-3xg9",
+      "id": "1790952331224-wpg1",
       "type": "POC_MIGRATION",
       "symbol": "NIFTYFUT",
       "timeStr": "12:20 pm",
@@ -1128,9 +1128,9 @@
       "candleHigh": 22600,
       "candleLow": 22555,
       "candleVolume": 1638,
-      "candleDelta": -591,
+      "candleDelta": -633,
       "candlePoc": 22575,
-      "timestamp": 1790949617615,
+      "timestamp": 1790952331224,
       "data": {
         "prevPoc": 22594,
         "newPoc": 22575,
@@ -1141,7 +1141,7 @@
       }
     },
     {
-      "id": "1790949617615-hb6n",
+      "id": "1790952331224-x8tx",
       "type": "VCS_VOLUME_CLIMAX_SELL",
       "symbol": "NIFTYFUT",
       "timeStr": "12:20 pm",
@@ -1151,9 +1151,9 @@
       "candleHigh": 22600,
       "candleLow": 22555,
       "candleVolume": 1638,
-      "candleDelta": -591,
+      "candleDelta": -633,
       "candlePoc": 22575,
-      "timestamp": 1790949617615,
+      "timestamp": 1790952331224,
       "data": {
         "totalVol": 2545,
         "avgVol": 636,
@@ -1164,7 +1164,7 @@
       }
     },
     {
-      "id": "1790949617613-ddpc",
+      "id": "1790952331222-kpmz",
       "type": "OB_PRESSURE_OFA_SWEEP_SHORT",
       "symbol": "NIFTYFUT",
       "timeStr": "12:15 pm",
@@ -1174,18 +1174,18 @@
       "candleHigh": 22615.9,
       "candleLow": 22575.9,
       "candleVolume": 674,
-      "candleDelta": -244,
+      "candleDelta": -254,
       "candlePoc": 22594,
-      "timestamp": 1790949617613,
+      "timestamp": 1790952331222,
       "data": {
         "obZone": "22607 - 22643.8",
         "rejectionWickPct": 34.5,
-        "netDelta": -244,
+        "netDelta": -254,
         "riskPts": 56.9,
         "stopLoss": 22646.8,
         "target1": 22476.1,
         "target2": 22390.75,
-        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22607 – 22643.8] swept & defended! Upper wick: 34.5% | Delta: -244 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22589.9 | SL: 22646.8 | T1 (1:2): 22476.1 | T2 (1:3.5): 22390.75",
+        "message": "🛡️ [ORDER BLOCK PRESSURE] NIFTYFUT: Supply OB [22607 – 22643.8] swept & defended! Upper wick: 34.5% | Delta: -254 | Valtos OFA Imbalance confirmed. Signal: BUY PUT @ 22589.9 | SL: 22646.8 | T1 (1:2): 22476.1 | T2 (1:3.5): 22390.75",
         "action": "BUY_PUT",
         "confidence": 94
       }

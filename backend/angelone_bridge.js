@@ -88,7 +88,13 @@ class AngelOneBridge {
       ['SUNPHARMA', { exchange: 'NSE', tradingsymbol: 'SUNPHARMA-EQ', symboltoken: '3351' }],
       ['TITAN', { exchange: 'NSE', tradingsymbol: 'TITAN-EQ', symboltoken: '3506' }],
       ['ITC', { exchange: 'NSE', tradingsymbol: 'ITC-EQ', symboltoken: '1660' }],
-      ['ADANIENT', { exchange: 'NSE', tradingsymbol: 'ADANIENT-EQ', symboltoken: '25' }]
+      ['ADANIENT', { exchange: 'NSE', tradingsymbol: 'ADANIENT-EQ', symboltoken: '25' }],
+      ['CRUDEOIL', { exchange: 'MCX', tradingsymbol: 'CRUDEOIL19OCT26FUT', symboltoken: '569900' }],
+      ['CRUDEOILFUT', { exchange: 'MCX', tradingsymbol: 'CRUDEOIL19OCT26FUT', symboltoken: '569900' }],
+      ['GOLD', { exchange: 'MCX', tradingsymbol: 'GOLD05OCT26FUT', symboltoken: '483079' }],
+      ['GOLDFUT', { exchange: 'MCX', tradingsymbol: 'GOLD05OCT26FUT', symboltoken: '483079' }],
+      ['NATURALGAS', { exchange: 'MCX', tradingsymbol: 'NATURALGAS27OCT26FUT', symboltoken: '570750' }],
+      ['NATURALGASFUT', { exchange: 'MCX', tradingsymbol: 'NATURALGAS27OCT26FUT', symboltoken: '570750' }]
     ]);
     this._ltpCache = new Map();
     this._candleCache = new Map();
@@ -353,11 +359,18 @@ class AngelOneBridge {
 
     let meta = this._tokenMap.get(clean);
     if (!meta) {
-      // Dynamically search scrip
-      const results = await this.searchScrip('NSE', clean);
-      const exact = results.find(r => r.tradingsymbol === clean + '-EQ') || results[0];
+      // Dynamically search scrip: check if MCX commodity or NSE equity
+      const isMcx = clean.includes('CRUDE') || clean.includes('GOLD') || clean.includes('NATURALGAS') || clean.includes('SILVER') || clean.includes('COPPER');
+      const exch = isMcx ? 'MCX' : 'NSE';
+      const results = await this.searchScrip(exch, clean);
+      let exact = null;
+      if (isMcx) {
+        exact = results.find(r => r.tradingsymbol && r.tradingsymbol.endsWith('FUT') && !r.tradingsymbol.includes('M') && !r.tradingsymbol.includes('PETAL'));
+      } else {
+        exact = results.find(r => r.tradingsymbol === clean + '-EQ') || results[0];
+      }
       if (exact) {
-        meta = { exchange: exact.exchange || 'NSE', tradingsymbol: exact.tradingsymbol, symboltoken: exact.symboltoken };
+        meta = { exchange: exact.exchange || exch, tradingsymbol: exact.tradingsymbol, symboltoken: exact.symboltoken };
         this._tokenMap.set(clean, meta);
       }
     }
