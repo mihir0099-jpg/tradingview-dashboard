@@ -1,5 +1,5 @@
 {
-  "lastMinedAt": "2026-10-02T10:45:15.165Z",
+  "lastMinedAt": "2026-10-02T14:00:46.329Z",
   "sessionDate": "2026-10-02",
   "summary": {
     "date": "2026-10-02",
@@ -18,18 +18,18 @@
       "name": "Bearish Delta Divergence (Buying Exhaustion)",
       "category": "REVERSAL_SHORT",
       "setupType": "DELTA_DIVERGENCE",
-      "occurrenceCount": 304,
-      "winRatePct": 33.2,
-      "avgContinuationPts": -4.7,
+      "occurrenceCount": 305,
+      "winRatePct": 33.4,
+      "avgContinuationPts": -4.8,
       "recommendedAction": "BUY_PUT_OPTION",
       "conditionsSummary": "Price prints Higher High + Delta drops lower than previous bar",
       "marketRationale": "Buying exhaustion: retail bidding higher prices while institutional passive offers absorb.",
       "sampleTimes": [
         "09:30 am",
         "09:40 am",
+        "10:30 am",
         "10:35 am",
-        "10:50 am",
-        "11:15 am"
+        "10:50 am"
       ]
     },
     {
@@ -37,9 +37,9 @@
       "name": "Bullish Delta Divergence (Selling Absorption)",
       "category": "REVERSAL_LONG",
       "setupType": "DELTA_DIVERGENCE",
-      "occurrenceCount": 340,
-      "winRatePct": 26.2,
-      "avgContinuationPts": 5.2,
+      "occurrenceCount": 341,
+      "winRatePct": 26.4,
+      "avgContinuationPts": 5.4,
       "recommendedAction": "BUY_CALL_OPTION",
       "conditionsSummary": "Price prints Lower Low + Delta rises higher than previous bar",
       "marketRationale": "Selling exhaustion: sellers dumping aggressively into an institutional limit bid floor.",

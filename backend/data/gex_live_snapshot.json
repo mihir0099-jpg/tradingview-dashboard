@@ -77,8 +77,8 @@
       "skewDescription": "OTM Puts bloated with extreme crash protection premium. Elevated downside hedging pressure."
     },
     "momentum": {
-      "m5": 6.7,
-      "m15": 14.7,
+      "m5": -0.9,
+      "m15": -2,
       "day": 1318.5
     },
     "gammaFlip": {
@@ -2504,13 +2504,55 @@
         "spot": 22421.95,
         "flipEst": 22405.1,
         "belowFlip": false
+      },
+      {
+        "time": "19:42",
+        "netGex": 4708.89,
+        "spot": 22421.95,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "19:43",
+        "netGex": 4708.89,
+        "spot": 22421.95,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "19:44",
+        "netGex": 4708.89,
+        "spot": 22421.95,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "19:45",
+        "netGex": 4708.89,
+        "spot": 22421.95,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "19:46",
+        "netGex": 4708.89,
+        "spot": 22421.95,
+        "flipEst": 22405.1,
+        "belowFlip": false
+      },
+      {
+        "time": "19:47",
+        "netGex": 4708.89,
+        "spot": 22421.95,
+        "flipEst": 22405.1,
+        "belowFlip": false
       }
     ],
     "timeStats": {
       "minutesBelowFlip": 130,
-      "minutesAboveFlip": 51
+      "minutesAboveFlip": 57
     },
-    "updatedAt": "19:30:22 IST"
+    "updatedAt": "19:47:31 IST"
   },
-  "updated_at": "2026-10-02T14:00:22.516Z"
+  "updated_at": "2026-10-02T14:17:31.118Z"
 }

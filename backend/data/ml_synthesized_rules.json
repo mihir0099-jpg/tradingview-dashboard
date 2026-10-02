@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-10-02T10:45:14.143Z",
+  "generated_at": "2026-10-02T14:00:44.871Z",
   "summary": {
     "total_rules_synthesized": 18,
     "total_trades_analyzed": 50,
@@ -8,7 +8,7 @@
     "dynamic_rules_deduped": {
       "before": 50,
       "after": 50,
-      "issues_fixed": 0
+      "issues_fixed": 6
     }
   },
   "setup_performance_ranking": [
@@ -1344,5 +1344,42 @@
       "dedup_hash": "082F684D"
     }
   ],
-  "dedup_issues_fixed": []
+  "dedup_issues_fixed": [
+    {
+      "type": "ID_FIXED",
+      "originalId": "RULE_AUTOGEN_DT_20261002_01",
+      "newId": "RULE_AUTOGEN_DT_76E3CBC6",
+      "reason": "Unique hash-based ID assigned"
+    },
+    {
+      "type": "ID_FIXED",
+      "originalId": "RULE_AUTOGEN_DT_20261002_02",
+      "newId": "RULE_AUTOGEN_DT_EFB734FE",
+      "reason": "Unique hash-based ID assigned"
+    },
+    {
+      "type": "ID_FIXED",
+      "originalId": "RULE_AUTOGEN_DT_20261002_03",
+      "newId": "RULE_AUTOGEN_DT_D88547B2",
+      "reason": "Unique hash-based ID assigned"
+    },
+    {
+      "type": "ID_FIXED",
+      "originalId": "RULE_AUTOGEN_DT_20261002_04",
+      "newId": "RULE_AUTOGEN_DT_D541F88E",
+      "reason": "Unique hash-based ID assigned"
+    },
+    {
+      "type": "ID_FIXED",
+      "originalId": "RULE_AUTOGEN_DT_20261002_05",
+      "newId": "RULE_AUTOGEN_DT_1A56EC5F",
+      "reason": "Unique hash-based ID assigned"
+    },
+    {
+      "type": "ID_FIXED",
+      "originalId": "RULE_AUTOGEN_IFOREST_20261002_01",
+      "newId": "RULE_AUTOGEN_IFOR_6C52FE74",
+      "reason": "Unique hash-based ID assigned"
+    }
+  ]
 }

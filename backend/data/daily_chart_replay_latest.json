@@ -1,7 +1,7 @@
 {
-  "timestamp": 1790938228341,
+  "timestamp": 1790949659868,
   "dateStr": "2026-10-02",
-  "timeStr": "16:20:28 IST",
+  "timeStr": "19:30:59 IST",
   "totalFnoStocksAnalyzed": 212,
   "indexAuction": {
     "nifty": {
@@ -40,41 +40,14 @@
   "fnoUniverseSummary": {
     "totalTracked": 212,
     "coilingDematCount": 2,
-    "volumeBreakoutCount": 22,
-    "distributionTrapCount": 15,
+    "volumeBreakoutCount": 20,
+    "distributionTrapCount": 13,
     "swingLowFormations": 2,
-    "swingHighFormations": 15
+    "swingHighFormations": 13
   },
   "tomorrowHighConvictionWatchlist": [
     {
       "rank": 1,
-      "type": "LONG_DEMAT_COIL_EXPANSION",
-      "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "ICICIPRULI",
-      "name": "ICICI Prudential Life",
-      "sector": "Insurance",
-      "trade": {
-        "action": "BUY ICICIPRULI 450 CE / Spot",
-        "spotEntry": 448.05,
-        "spotSL": 438.92,
-        "spotRiskPts": 9.13,
-        "spotTarget1": 462.66,
-        "spotTarget2": 473.61,
-        "atmStrike": 450,
-        "lotSize": 925,
-        "riskPerLotINR": 8445,
-        "target1GainPerLotINR": 13514,
-        "target2GainPerLotINR": 23643,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹438.92",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
-        "winRatePct": 82.5
-      },
-      "confidencePct": 59,
-      "catalystRationale": "Range compressed to 60.7% of ATR with 89% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
-    },
-    {
-      "rank": 2,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
       "symbol": "FINPIPE",
@@ -97,38 +70,38 @@
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 49,
-      "catalystRationale": "Range compressed to 63.9% of ATR with 79% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 54,
+      "catalystRationale": "Range compressed to 55.4% of ATR with 80% Demat delivery. Smart money hoarding at Demand Floor (₹148.05). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+    },
+    {
+      "rank": 2,
+      "type": "LONG_DEMAT_COIL_EXPANSION",
+      "badge": "🔒 HIGH-CONVICTION COIL",
+      "symbol": "ICICIPRULI",
+      "name": "ICICI Prudential Life",
+      "sector": "Insurance",
+      "trade": {
+        "action": "BUY ICICIPRULI 450 CE / Spot",
+        "spotEntry": 448.05,
+        "spotSL": 438.81,
+        "spotRiskPts": 9.24,
+        "spotTarget1": 462.83,
+        "spotTarget2": 473.92,
+        "atmStrike": 450,
+        "lotSize": 925,
+        "riskPerLotINR": 8547,
+        "target1GainPerLotINR": 13671,
+        "target2GainPerLotINR": 23930,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹438.81",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
+        "winRatePct": 82.5
+      },
+      "confidencePct": 60,
+      "catalystRationale": "Range compressed to 58.6% of ATR with 90% Demat delivery. Smart money hoarding at Demand Floor (₹441.8). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 3,
-      "type": "SHORT_DISTRIBUTION_FADE",
-      "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "ICICIGI",
-      "name": "ICICI Lombard General",
-      "sector": "Insurance",
-      "trade": {
-        "action": "BUY ICICIGI 1560 PE / Short Spot",
-        "spotEntry": 1563,
-        "spotSL": 1602.3,
-        "spotRiskPts": 39.3,
-        "spotTarget1": 1500.12,
-        "spotTarget2": 1452.96,
-        "atmStrike": 1560,
-        "lotSize": 325,
-        "riskPerLotINR": 12772,
-        "target1GainPerLotINR": 20436,
-        "target2GainPerLotINR": 35763,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹1602.3",
-        "rewardRiskRatio": 1.6,
-        "expectedMove": "-3.5% to -6.0% Pullback",
-        "winRatePct": 78.5
-      },
-      "confidencePct": 64,
-      "catalystRationale": "Tested 20-day Resistance (₹1594.7) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
-    },
-    {
-      "rank": 4,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
       "symbol": "KOTAKBANK",
@@ -153,29 +126,56 @@
       },
       "confidencePct": 55,
       "catalystRationale": "Tested 20-day Resistance (₹435.6) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+    },
+    {
+      "rank": 4,
+      "type": "SHORT_DISTRIBUTION_FADE",
+      "badge": "💥 BREAKDOWN / FADE",
+      "symbol": "AXISBANK",
+      "name": "Axis Bank Ltd.",
+      "sector": "Banking & Financials",
+      "trade": {
+        "action": "BUY AXISBANK 1220 PE / Short Spot",
+        "spotEntry": 1217.1,
+        "spotSL": 1304.91,
+        "spotRiskPts": 87.81,
+        "spotTarget1": 1076.6,
+        "spotTarget2": 971.23,
+        "atmStrike": 1220,
+        "lotSize": 625,
+        "riskPerLotINR": 54881,
+        "target1GainPerLotINR": 87813,
+        "target2GainPerLotINR": 153669,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹1304.91",
+        "rewardRiskRatio": 1.6,
+        "expectedMove": "-4.5% to -7.0% Trend Down",
+        "winRatePct": 82
+      },
+      "confidencePct": 15,
+      "catalystRationale": "Tested 20-day Resistance (₹1300) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
-        "symbol": "ICICIPRULI",
-        "price": 448.05,
-        "compPct": 60.7,
-        "delivPct": 89,
-        "floor": 441.8
-      },
-      {
         "symbol": "FINPIPE",
         "price": 150.49,
-        "compPct": 63.9,
-        "delivPct": 79,
+        "compPct": 55.4,
+        "delivPct": 80,
         "floor": 148.05
+      },
+      {
+        "symbol": "ICICIPRULI",
+        "price": 448.05,
+        "compPct": 58.6,
+        "delivPct": 90,
+        "floor": 441.8
       },
       {
         "symbol": "PETRONET",
         "price": 285.5,
-        "compPct": 73,
-        "delivPct": 77,
+        "compPct": 68.5,
+        "delivPct": 78,
         "floor": 278.25
       }
     ],
@@ -192,29 +192,24 @@
         "action": "BUY KOTAKBANK 420 PE / Short Spot"
       },
       {
-        "symbol": "ADANIGREEN",
-        "price": 1276.1,
-        "volMult": 4.4
-      },
-      {
         "symbol": "ESCORTS",
         "price": 2667.3,
         "volMult": 4.31,
         "action": "BUY ESCORTS 2650 CE / Spot"
       },
       {
-        "symbol": "ADANIENSOL",
-        "price": 1326.4,
-        "volMult": 3.99
+        "symbol": "ADANIGREEN",
+        "price": 1276.1,
+        "volMult": 3.98
+      },
+      {
+        "symbol": "BAJAJFINSV",
+        "price": 1732.6,
+        "volMult": 3.2,
+        "action": "BUY BAJAJFINSV 1740 CE / Spot"
       }
     ],
     "distributionTraps": [
-      {
-        "symbol": "ICICIGI",
-        "price": 1563,
-        "ceil": 1594.7,
-        "distCeilPct": 2.03
-      },
       {
         "symbol": "KOTAKBANK",
         "price": 418.35,
@@ -222,22 +217,28 @@
         "distCeilPct": 4.12
       },
       {
-        "symbol": "HINDPETRO",
-        "price": 345,
-        "ceil": 365.2,
-        "distCeilPct": 5.86
-      },
-      {
-        "symbol": "IOC",
-        "price": 131.34,
-        "ceil": 139.3,
-        "distCeilPct": 6.06
-      },
-      {
         "symbol": "AXISBANK",
         "price": 1217.1,
         "ceil": 1300,
         "distCeilPct": 6.81
+      },
+      {
+        "symbol": "ITC",
+        "price": 255.9,
+        "ceil": 273.95,
+        "distCeilPct": 7.05
+      },
+      {
+        "symbol": "IOC",
+        "price": 131.34,
+        "ceil": 141.15,
+        "distCeilPct": 7.47
+      },
+      {
+        "symbol": "SUNPHARMA",
+        "price": 1801,
+        "ceil": 1984.8,
+        "distCeilPct": 10.21
       }
     ],
     "sectorLeadership": [
@@ -262,14 +263,14 @@
         "totalStocks": 7
       },
       {
-        "sector": "Financial Services",
-        "coilingCount": 0,
-        "totalStocks": 2
-      },
-      {
         "sector": "Healthcare",
         "coilingCount": 0,
         "totalStocks": 1
+      },
+      {
+        "sector": "Financial Services",
+        "coilingCount": 0,
+        "totalStocks": 2
       },
       {
         "sector": "Electrical Consumer Goods",
@@ -277,9 +278,9 @@
         "totalStocks": 1
       },
       {
-        "sector": "Beauty & Fashion E-Commerce",
+        "sector": "Pharmaceuticals",
         "coilingCount": 0,
-        "totalStocks": 1
+        "totalStocks": 7
       }
     ]
   },

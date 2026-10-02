@@ -3,6 +3,7 @@ import { getBackendUrl } from '../utils/config';
 import { 
   Activity, ArrowLeft, RefreshCw, Layers, TrendingUp, TrendingDown,
   Shield, AlertTriangle, ChevronRight, BarChart2, Eye, Info, Search, X,
+  BookOpen, CheckCircle, Flame, Lock, Play, Pause, Trash2, Cpu, Crosshair, Brain
 } from 'lucide-react';
 import { GexbotClassicDotsView } from './GexbotClassicDotsView';
 

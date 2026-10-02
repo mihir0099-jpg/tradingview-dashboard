@@ -1,10 +1,29 @@
 [
   {
     "date": "2026-10-02",
-    "source": "EOD_MACHINE_LEARNING_ENGINE",
-    "behaviorClassification": "NORMAL_VARIATION",
-    "primaryLesson": "Neutral First-Hour PCR drift (-0.011) confirmed Open Auction Rotation; lack of institutional writing conviction produced range-bound oscillation.",
-    "modelConfidencePct": 91.8
+    "timestamp": 1790949649870,
+    "istTime": "2026-10-02 19:30:49 IST",
+    "macroProfile": {
+      "niftySpot": 22421.95,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.65%",
+      "bankniftySpot": 54450.75,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 35
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "2 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (ICICIPRULI, FINPIPE).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      }
+    ]
   },
   {
     "date": "2026-10-01",
