@@ -3,7 +3,8 @@ import {
   Zap, Activity, Search, RefreshCw, Layers, TrendingUp, TrendingDown,
   Shield, Crosshair, ArrowUpRight, ArrowDownRight, Sliders, Eye, Sparkles,
   Info, ExternalLink, ChevronRight, CheckCircle2, Lock, PlayCircle, BookOpen,
-  Filter, BarChart2, Award, Clock, AlertTriangle, Target, Check, Maximize2, X
+  Filter, BarChart2, Award, Clock, AlertTriangle, Target, Check, Maximize2, X,
+  Sun, Moon
 } from 'lucide-react';
 import { getBackendUrl } from '../utils/config';
 
@@ -105,8 +106,57 @@ export const OrderBlockFlowContainer: React.FC = () => {
   const [selectedSector, setSelectedSector] = useState<string>('ALL');
   const [selectedStock, setSelectedStock] = useState<StockExecutionCard | null>(null);
   const [hoveredSector, setHoveredSector] = useState<string | null>(null);
+  const [hoveredStock, setHoveredStock] = useState<StockExecutionCard | null>(null);
+  const [isLightMode, setIsLightMode] = useState<boolean>(true); // Default to clean light mode seen in screenshot
   const [activeTab, setActiveTab] = useState<'FLOW' | 'XRAY' | 'BOARDS' | 'COACHING'>('FLOW');
   const [selectedVideo, setSelectedVideo] = useState<number>(0);
+
+  // Modern Theme Definition matching order-block.com
+  const theme = useMemo(() => isLightMode ? {
+    bg: '#f8fafc',
+    canvasBg: '#ffffff',
+    cardBg: '#ffffff',
+    cardBorder: '#e2e8f0',
+    textPrimary: '#0f172a',
+    textSecondary: '#475569',
+    textMuted: '#94a3b8',
+    zeroLine: '#334155',
+    gridLine: 'rgba(148, 163, 184, 0.28)',
+    headerBg: '#ffffff',
+    pillBg: '#f1f5f9',
+    pillBorder: '#cbd5e1',
+    sieveBg: '#f8fafc',
+    sieveBorder: '#94a3b8',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+    bullCardBg: '#f0fdf4',
+    bullCardBorder: 'rgba(16, 185, 129, 0.35)',
+    bullGlow: '0 4px 16px rgba(16, 185, 129, 0.1)',
+    bearCardBg: '#fef2f2',
+    bearCardBorder: 'rgba(239, 68, 68, 0.35)',
+    bearGlow: '0 4px 16px rgba(239, 68, 68, 0.1)'
+  } : {
+    bg: '#07090e',
+    canvasBg: '#0a0d14',
+    cardBg: '#0f172a',
+    cardBorder: '#1e293b',
+    textPrimary: '#f8fafc',
+    textSecondary: '#94a3b8',
+    textMuted: '#64748b',
+    zeroLine: '#475569',
+    gridLine: 'rgba(255, 255, 255, 0.06)',
+    headerBg: '#0a0d14',
+    pillBg: '#1e293b',
+    pillBorder: '#334155',
+    sieveBg: '#111827',
+    sieveBorder: '#374151',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+    bullCardBg: 'rgba(16, 185, 129, 0.08)',
+    bullCardBorder: 'rgba(16, 185, 129, 0.35)',
+    bullGlow: '0 4px 20px rgba(16, 185, 129, 0.15)',
+    bearCardBg: 'rgba(244, 63, 94, 0.08)',
+    bearCardBorder: 'rgba(244, 63, 94, 0.35)',
+    bearGlow: '0 4px 20px rgba(244, 63, 94, 0.15)'
+  }, [isLightMode]);
 
   const fetchData = useCallback(async (isManual = false) => {
     if (isManual) setRefreshing(true);
@@ -160,103 +210,28 @@ export const OrderBlockFlowContainer: React.FC = () => {
     return list;
   }, [data, searchQuery, selectedSector]);
 
-  // Video modules metadata from Shubham Trading Coach
-  const videoModules = [
-    {
-      id: 0,
-      title: 'Order Block Power',
-      subtitle: 'Where Big Money Started the Move',
-      desc: "Most traders aren't missing a strategy. They're missing the right zones to trade! Learn how institutional players leave footprint order blocks before major expansions.",
-      keyRules: [
-        'An Order Block is the last opposing candle before an institutional impulse move.',
-        'Never buy green breakout candles chasing highs. 90% of breakout buyers get trapped.',
-        'Wait patiently for price to pull back and retest the Order Block zone before entering.',
-        'Invalidation is sharp and binary: 1 tick past the Order Block boundary means exit immediately.'
-      ],
-      setup: 'Wait for Demand Zone pullback (Green Box). SL 1 tick below S1. Target R1/R2.'
-    },
-    {
-      id: 1,
-      title: 'Liquidity Power & The Amber Line',
-      subtitle: 'Find Liquidity Traps Early',
-      desc: 'Liquidity is the core fuel that powers institutional market orders. Discover where retail stop losses rest and how smart money sweeps them before generating vertical trends.',
-      keyRules: [
-        "Retail stop-loss orders concentrate directly beneath yesterday's low and the day's swing low.",
-        'The Amber Liquidity Line marks the exact pool of stop liquidity.',
-        'When price wicks below the Liquidity Line and immediately snaps back into the Order Block, a Liquidity Sweep has occurred.',
-        'This trap provides the highest velocity move of the day because trapped breakout sellers are forced to cover.'
-      ],
-      setup: 'Enter on the sweep rejection candle. Tight stop loss at the wick extreme.'
-    },
-    {
-      id: 2,
-      title: 'The Perfect 1-Minute Entry',
-      subtitle: 'Better Risk-Reward = Consistent Profits',
-      desc: 'Most traders know WHEN to buy or sell, but struggle with WHERE to enter. This 4-step execution algorithm ensures you enter at the exact institutional fulcrum.',
-      keyRules: [
-        'Step 1: Check Sectoral River. Macro sector must be green (bullish) or red (bearish).',
-        'Step 2: Confirm stock is ranked in Top 5 of the Liquidity Board.',
-        'Step 3: Wait for price to touch the Order Block Zone on the 1-min chart.',
-        'Step 4: Place Stop Loss strictly below S1 (risk 0.5% - 0.8% of stock spot price).'
-      ],
-      setup: 'Minimum Risk:Reward must be 1:2.5. If R:R is below 1:2, skip the trade.'
-    },
-    {
-      id: 3,
-      title: 'Small Capital, No Problem',
-      subtitle: 'Options Scalping with Razor-Thin Risk',
-      desc: 'You do not need lakhs to trade effectively. By combining Order Block zones with ATM options, you can risk just 5-8% on option premiums while capturing 25-50% expansions.',
-      keyRules: [
-        'Always pick the At-The-Money (ATM) strike closest to the stock spot price.',
-        'Calculate Option SL dynamically: Option SL = Premium - (Spot Risk × 0.5).',
-        'Because Spot SL is tight (0.6%), Option risk is only ₹3 - ₹6 per lot.',
-        'Take 70% profit off the table at R1 (Target 1), move SL to cost, and let 30% run to R2.'
-      ],
-      setup: 'Small capital accounts grow through asymmetric R:R (1:3+), not through high leverage.'
-    },
-    {
-      id: 4,
-      title: 'Consistency & The Scalper Playbook',
-      subtitle: 'Less Emotional Trading, Systematic Execution',
-      desc: "Consistency isn't about winning every trade. It's about taking high-quality, repeatable setups day after day without deviating from your rules.",
-      keyRules: [
-        'Maximum 2 to 3 trades per day. If both trigger wins, stop trading and protect capital.',
-        'Never trade in the choppy grey zone (stocks moving between -0.4% and +0.4%).',
-        'Only trade single-directional strength. If Nifty is falling, focus on the Bearish Board.',
-        'Review your trade entries in the journal: did you enter in the Zone or did you chase?'
-      ],
-      setup: 'Discipline = Freedom. Let the OrderBlock algorithm filter out the noise.'
-    }
-  ];
-
   // Top Volume Delta Timeline Histogram (seen at top of video)
   const renderTopVolumeDeltaTimeline = () => {
-    const bars = 45;
+    const bars = 38;
     return (
       <div style={{
-        background: '#07090e',
-        border: '1px solid #1e2638',
-        borderRadius: '8px',
-        padding: '6px 14px',
-        marginBottom: '12px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: '12px'
+        gap: '6px',
+        height: '24px',
+        padding: '2px 8px',
+        background: isLightMode ? '#f1f5f9' : '#070a12',
+        borderRadius: '6px',
+        border: `1px solid ${theme.cardBorder}`
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: '120px' }}>
-          <span style={{ fontSize: '10px', fontWeight: 900, color: '#38bdf8', letterSpacing: '0.5px' }}>
-            INTRA-DAY FLOW
-          </span>
-          <span style={{ fontSize: '9px', color: '#64748b' }}>09:15 – 15:30</span>
-        </div>
-
-        {/* Multi-Bar Net Delta Histogram */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center', height: '26px', gap: '3px', position: 'relative' }}>
-          <div style={{ position: 'absolute', top: '13px', left: 0, right: 0, height: '1px', background: '#334155', opacity: 0.5 }} />
+        <span style={{ fontSize: '9px', fontWeight: 900, color: '#0284c7', letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>
+          INTRA-DAY FLOW
+        </span>
+        <div style={{ display: 'flex', alignItems: 'center', height: '18px', gap: '2px', width: '130px', position: 'relative' }}>
+          <div style={{ position: 'absolute', top: '9px', left: 0, right: 0, height: '1px', background: isLightMode ? '#cbd5e1' : '#334155' }} />
           {Array.from({ length: bars }).map((_, idx) => {
-            const isBull = idx > 12 ? Math.sin(idx * 0.4) > -0.2 : idx % 2 === 0;
-            const heightPct = Math.min(100, Math.max(20, Math.abs(Math.sin(idx * 0.5)) * 90));
+            const isBull = idx > 10 ? Math.sin(idx * 0.45) > -0.15 : idx % 2 === 0;
+            const heightPct = Math.min(100, Math.max(25, Math.abs(Math.sin(idx * 0.55)) * 85));
             const col = isBull ? '#10b981' : '#f43f5e';
             return (
               <div
@@ -274,15 +249,11 @@ export const OrderBlockFlowContainer: React.FC = () => {
                   height: `${heightPct / 2}%`,
                   background: col,
                   borderRadius: '1px',
-                  opacity: 0.85
+                  opacity: 0.9
                 }} />
               </div>
             );
           })}
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: '110px', justifyContent: 'flex-end' }}>
-          <span style={{ fontSize: '10.5px', fontWeight: 900, color: '#10b981' }}>+2.87% NET DELTA</span>
         </div>
       </div>
     );
@@ -290,9 +261,9 @@ export const OrderBlockFlowContainer: React.FC = () => {
 
   // Dual Sparkline SVG
   const renderDualSparkline = (priceData: number[], oiData: number[], isBull: boolean) => {
-    const width = 210;
-    const height = 46;
-    const padding = 6;
+    const width = 140;
+    const height = 36;
+    const padding = 4;
 
     const minP = Math.min(...priceData);
     const maxP = Math.max(...priceData);
@@ -315,28 +286,27 @@ export const OrderBlockFlowContainer: React.FC = () => {
     }).join(' ');
 
     const strokeColor = isBull ? '#10b981' : '#f43f5e';
-    const oiColor = isBull ? '#38bdf8' : '#fbbf24';
+    const oiColor = isBull ? '#0284c7' : '#d97706';
 
     return (
       <div style={{ position: 'relative', width: `${width}px`, height: `${height}px` }}>
         <svg width={width} height={height} style={{ overflow: 'visible' }}>
-          <line x1={0} y1={height / 2} x2={width} y2={height / 2} stroke="#1e293b" strokeDasharray="3,3" />
+          <line x1={0} y1={height / 2} x2={width} y2={height / 2} stroke={isLightMode ? '#e2e8f0' : '#1e293b'} strokeDasharray="2,2" />
           <polyline
             fill="none"
             stroke={oiColor}
-            strokeWidth="1.5"
+            strokeWidth="1.2"
             strokeDasharray="2,2"
             points={oiPoints}
-            opacity={0.85}
+            opacity={0.7}
           />
           <polyline
             fill="none"
             stroke={strokeColor}
-            strokeWidth="2.2"
+            strokeWidth="2.0"
             strokeLinecap="round"
             strokeLinejoin="round"
             points={pPoints}
-            style={{ filter: `drop-shadow(0 0 4px ${strokeColor}80)` }}
           />
           {priceData.length > 0 && (() => {
             const lastVal = priceData[priceData.length - 1];
@@ -345,27 +315,14 @@ export const OrderBlockFlowContainer: React.FC = () => {
               <circle
                 cx={width - padding}
                 cy={endY}
-                r={3}
+                r={2.5}
                 fill={strokeColor}
-                stroke="#0f172a"
+                stroke={isLightMode ? '#ffffff' : '#0f172a'}
                 strokeWidth={1.5}
               />
             );
           })()}
         </svg>
-        <div style={{
-          position: 'absolute',
-          top: '2px',
-          left: '4px',
-          display: 'flex',
-          gap: '8px',
-          fontSize: '9px',
-          fontWeight: 800,
-          fontFamily: 'monospace'
-        }}>
-          <span style={{ color: strokeColor }}>● PRICE</span>
-          <span style={{ color: oiColor }}>--- OI</span>
-        </div>
       </div>
     );
   };
@@ -380,33 +337,35 @@ export const OrderBlockFlowContainer: React.FC = () => {
         key={card.symbol}
         onClick={() => setSelectedStock(card)}
         style={{
-          background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.7) 100%)',
+          background: isLightMode 
+            ? (isBull ? 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%)' : 'linear-gradient(135deg, #ffffff 0%, #fef2f2 100%)')
+            : 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.7) 100%)',
           border: `1.5px solid ${accentColor}60`,
-          borderRadius: '12px',
-          padding: '12px 16px',
-          boxShadow: `0 4px 20px ${accentColor}20`,
+          borderRadius: '10px',
+          padding: '10px 14px',
+          boxShadow: isLightMode ? `0 2px 12px ${accentColor}15` : `0 4px 20px ${accentColor}20`,
           cursor: 'pointer',
           transition: 'all 0.2s'
         }}
         onMouseEnter={(e) => e.currentTarget.style.borderColor = accentColor}
         onMouseLeave={(e) => e.currentTarget.style.borderColor = `${accentColor}60`}
       >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <span style={{
               background: accentColor,
               color: '#ffffff',
-              padding: '2px 8px',
+              padding: '2px 7px',
               borderRadius: '4px',
               fontSize: '10px',
               fontWeight: 900
             }}>
               BENCHMARK
             </span>
-            <span style={{ fontSize: '15px', fontWeight: 900, color: '#f8fafc' }}>
+            <span style={{ fontSize: '14px', fontWeight: 900, color: theme.textPrimary }}>
               {card.symbol}
             </span>
-            <span style={{ fontSize: '14px', fontWeight: 900, color: '#f8fafc', fontFamily: 'monospace' }}>
+            <span style={{ fontSize: '14px', fontWeight: 900, color: theme.textPrimary, fontFamily: 'monospace' }}>
               ₹{card.spot}
             </span>
             <span style={{ fontSize: '12px', fontWeight: 800, color: accentColor }}>
@@ -417,11 +376,11 @@ export const OrderBlockFlowContainer: React.FC = () => {
           <div style={{
             fontSize: '10px',
             fontWeight: 800,
-            color: '#fbbf24',
-            background: 'rgba(251, 191, 36, 0.1)',
+            color: isLightMode ? '#b45309' : '#fbbf24',
+            background: isLightMode ? 'rgba(245, 158, 11, 0.12)' : 'rgba(251, 191, 36, 0.1)',
             padding: '2px 8px',
             borderRadius: '4px',
-            border: '1px solid rgba(251, 191, 36, 0.3)'
+            border: `1px solid ${isLightMode ? '#f59e0b' : 'rgba(251, 191, 36, 0.3)'}`
           }}>
             🛡️ LIQ SWEEP: ₹{card.liquidityLine}
           </div>
@@ -429,25 +388,25 @@ export const OrderBlockFlowContainer: React.FC = () => {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr) auto', gap: '8px', alignItems: 'center', fontSize: '10.5px' }}>
           <div>
-            <span style={{ color: '#94a3b8' }}>ZONE:</span>
+            <span style={{ color: theme.textMuted }}>ZONE:</span>
             <div style={{ fontWeight: 800, color: accentColor, fontFamily: 'monospace' }}>{card.zone.label}</div>
           </div>
           <div>
             <span style={{ color: '#f43f5e' }}>SL (S1):</span>
-            <div style={{ fontWeight: 800, color: '#f8fafc', fontFamily: 'monospace' }}>₹{card.s1}</div>
+            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{card.s1}</div>
           </div>
           <div>
             <span style={{ color: '#10b981' }}>TARGET (R1):</span>
-            <div style={{ fontWeight: 800, color: '#f8fafc', fontFamily: 'monospace' }}>₹{card.r1}</div>
+            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{card.r1}</div>
           </div>
           <div>
-            <span style={{ color: '#38bdf8' }}>RUNNER (R2):</span>
-            <div style={{ fontWeight: 800, color: '#f8fafc', fontFamily: 'monospace' }}>₹{card.r2}</div>
+            <span style={{ color: '#0284c7' }}>RUNNER (R2):</span>
+            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{card.r2}</div>
           </div>
           <div style={{ textAlign: 'right' }}>
             <span style={{
-              background: 'rgba(16, 185, 129, 0.2)',
-              color: '#34d399',
+              background: isLightMode ? 'rgba(16, 185, 129, 0.15)' : 'rgba(16, 185, 129, 0.2)',
+              color: isLightMode ? '#047857' : '#34d399',
               padding: '3px 8px',
               borderRadius: '6px',
               fontWeight: 900,
@@ -463,227 +422,163 @@ export const OrderBlockFlowContainer: React.FC = () => {
 
   // Execution Card (3 BULL, 3 BEAR exactly as in video 00:42)
   const renderExecutionCard = (card: StockExecutionCard, isBull: boolean) => {
-    const accentColor = isBull ? '#10b981' : '#f43f5e';
-    const bgGradient = isBull 
-      ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 78, 59, 0.03) 100%)'
-      : 'linear-gradient(135deg, rgba(244, 63, 94, 0.08) 0%, rgba(136, 19, 55, 0.03) 100%)';
-    const borderColor = isBull ? 'rgba(16, 185, 129, 0.35)' : 'rgba(244, 63, 94, 0.35)';
-
-    const isRetestZone = card.retestStatus === 'IN_ZONE';
+    const accentColor = isBull ? '#10b981' : '#ef4444';
+    const bg = isLightMode 
+      ? (isBull ? '#ffffff' : '#ffffff')
+      : (isBull ? 'rgba(16, 185, 129, 0.08)' : 'rgba(244, 63, 94, 0.08)');
+    const border = isLightMode
+      ? (isBull ? '1.5px solid rgba(16, 185, 129, 0.45)' : '1.5px solid rgba(239, 68, 68, 0.45)')
+      : (isBull ? '1px solid rgba(16, 185, 129, 0.35)' : '1px solid rgba(244, 63, 94, 0.35)');
 
     return (
       <div 
         key={card.symbol}
         onClick={() => setSelectedStock(card)}
         style={{
-          background: bgGradient,
-          border: `1px solid ${isRetestZone ? accentColor : borderColor}`,
-          borderRadius: '12px',
-          padding: '14px 16px',
-          marginBottom: '14px',
-          boxShadow: isRetestZone 
-            ? `0 0 20px ${accentColor}40` 
-            : `0 4px 20px ${isBull ? 'rgba(16, 185, 129, 0.06)' : 'rgba(244, 63, 94, 0.06)'}`,
+          background: bg,
+          border: border,
+          borderRadius: '10px',
+          padding: '10px 14px',
+          marginBottom: '10px',
+          boxShadow: isLightMode 
+            ? (isBull ? '0 4px 16px rgba(16, 185, 129, 0.08)' : '0 4px 16px rgba(239, 68, 68, 0.08)')
+            : (isBull ? '0 4px 20px rgba(16, 185, 129, 0.06)' : '0 4px 20px rgba(244, 63, 94, 0.06)'),
           position: 'relative',
           cursor: 'pointer',
-          transition: 'all 0.2s ease-in-out'
+          transition: 'all 0.15s ease-in-out'
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-2px)';
+          e.currentTarget.style.transform = 'translateY(-1px)';
           e.currentTarget.style.borderColor = accentColor;
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = 'translateY(0px)';
-          e.currentTarget.style.borderColor = isRetestZone ? accentColor : borderColor;
+          e.currentTarget.style.borderColor = isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)';
         }}
       >
         {/* Top Header Row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '5px',
-              background: isBull ? '#10b981' : '#f43f5e',
+              gap: '4px',
+              background: accentColor,
               color: '#ffffff',
-              padding: '3px 10px',
-              borderRadius: '6px',
+              padding: '2px 8px',
+              borderRadius: '5px',
               fontSize: '11px',
               fontWeight: 900,
-              letterSpacing: '0.8px',
-              boxShadow: `0 0 10px ${accentColor}80`
+              letterSpacing: '0.8px'
             }}>
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#ffffff' }} />
-              {card.bias} {card.score}
+              {card.bias}
             </div>
 
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '15px', fontWeight: 900, color: '#f8fafc', letterSpacing: '0.5px' }}>
+                <span style={{ fontSize: '13.5px', fontWeight: 900, color: theme.textPrimary, letterSpacing: '0.5px' }}>
                   {card.symbol}
                 </span>
                 <span style={{
-                  fontSize: '12px',
+                  fontSize: '11.5px',
                   fontWeight: 800,
-                  color: isBull ? '#34d399' : '#fb7185'
+                  color: isBull ? '#059669' : '#dc2626'
                 }}>
                   {card.dayChangePct >= 0 ? `+${card.dayChangePct}%` : `${card.dayChangePct}%`}
                 </span>
               </div>
-              <div style={{ fontSize: '10px', color: '#64748b' }}>
-                {card.sector} · Spot ₹{card.spot}
+              <div style={{ fontSize: '9.5px', color: theme.textSecondary }}>
+                {card.sector} · ₹{card.spot}
               </div>
             </div>
           </div>
 
-          {/* Retest Status Badge */}
-          <div style={{ textAlign: 'right' }}>
-            {isRetestZone ? (
-              <span style={{
-                fontSize: '10px',
-                fontWeight: 900,
-                color: '#ffffff',
-                background: accentColor,
-                padding: '3px 8px',
-                borderRadius: '4px',
-                letterSpacing: '0.5px',
-                boxShadow: `0 0 12px ${accentColor}`
-              }}>
-                ⚡ IN ORDER BLOCK ZONE
-              </span>
-            ) : (
-              <span style={{
-                fontSize: '10px',
-                fontWeight: 900,
-                color: accentColor,
-                background: `${accentColor}18`,
-                border: `1px solid ${accentColor}40`,
-                padding: '2px 8px',
-                borderRadius: '4px',
-                letterSpacing: '0.5px'
-              }}>
-                {card.buildUp}
-              </span>
-            )}
-            <div style={{ fontSize: '9.5px', color: '#94a3b8', marginTop: '3px' }}>
-              RVOL: <strong style={{ color: '#f8fafc' }}>{card.rvol}x</strong> | OI: <strong style={{ color: isBull ? '#38bdf8' : '#fbbf24' }}>+{Math.abs(card.oiChangePct)}%</strong>
-            </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {renderDualSparkline(card.sparklines.price, card.sparklines.oi, isBull)}
           </div>
         </div>
 
-        {/* Middle Row: Sparkline + Zone Box */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '12px',
-          background: 'rgba(15, 23, 42, 0.7)',
-          padding: '8px 12px',
-          borderRadius: '8px',
-          border: '1px solid #1e293b',
-          marginBottom: '10px'
-        }}>
-          {renderDualSparkline(card.sparklines.price, card.sparklines.oi, isBull)}
-
-          <div style={{
-            background: isBull ? 'rgba(16, 185, 129, 0.12)' : 'rgba(244, 63, 94, 0.12)',
-            border: `1px solid ${accentColor}50`,
-            borderRadius: '6px',
-            padding: '6px 10px',
-            textAlign: 'center',
-            minWidth: '135px'
-          }}>
-            <div style={{ fontSize: '9px', fontWeight: 800, color: '#94a3b8', letterSpacing: '0.5px' }}>
-              {isBull ? 'DEMAND ORDER BLOCK' : 'SUPPLY ORDER BLOCK'}
-            </div>
-            <div style={{ fontSize: '12px', fontWeight: 900, color: accentColor, fontFamily: 'monospace' }}>
-              {card.zone.label}
-            </div>
-            <div style={{ fontSize: '8.5px', color: '#64748b' }}>
-              {isBull ? 'Support Accumulation Base' : 'Resistance Rejection Shelf'}
-            </div>
-          </div>
-        </div>
-
-        {/* Levels & Amber Liquidity Line */}
+        {/* Metrics Row: ZONE | S1 | R1 | R2 | RISK | R:R */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr) 1.2fr',
-          gap: '8px',
-          fontSize: '10.5px',
+          gridTemplateColumns: '1.2fr 0.9fr 0.9fr 0.9fr 1fr',
+          gap: '6px',
+          fontSize: '9.5px',
           alignItems: 'center',
-          borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-          paddingTop: '8px'
+          background: isLightMode ? '#f8fafc' : 'rgba(15, 23, 42, 0.6)',
+          border: `1px solid ${theme.cardBorder}`,
+          padding: '5px 8px',
+          borderRadius: '6px',
+          marginTop: '6px'
         }}>
           <div>
-            <span style={{ color: isBull ? '#f59e0b' : '#f43f5e', fontWeight: 800 }}>
+            <span style={{ color: theme.textMuted, fontWeight: 700 }}>ZONE:</span>
+            <div style={{ fontWeight: 800, color: accentColor, fontFamily: 'monospace' }}>
+              {card.zone.label}
+            </div>
+          </div>
+
+          <div>
+            <span style={{ color: isBull ? '#b45309' : '#dc2626', fontWeight: 700 }}>
               {isBull ? 'S1 (SL):' : 'R1 (SL):'}
             </span>
-            <div style={{ fontWeight: 800, color: '#f8fafc', fontFamily: 'monospace' }}>
+            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>
               ₹{isBull ? card.s1 : card.r1}
             </div>
           </div>
 
           <div>
-            <span style={{ color: '#fbbf24', fontWeight: 800 }}>LIQUIDITY:</span>
-            <div style={{ fontWeight: 800, color: '#fbbf24', fontFamily: 'monospace' }}>
-              ₹{card.liquidityLine}
-            </div>
-          </div>
-
-          <div>
-            <span style={{ color: isBull ? '#10b981' : '#38bdf8', fontWeight: 800 }}>
+            <span style={{ color: isBull ? '#059669' : '#0284c7', fontWeight: 700 }}>
               {isBull ? 'R1 (T1):' : 'S1 (T1):'}
             </span>
-            <div style={{ fontWeight: 800, color: '#f8fafc', fontFamily: 'monospace' }}>
+            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>
               ₹{isBull ? card.r1 : card.s1}
             </div>
           </div>
 
           <div>
-            <span style={{ color: isBull ? '#34d399' : '#60a5fa', fontWeight: 800 }}>
+            <span style={{ color: isBull ? '#047857' : '#0369a1', fontWeight: 700 }}>
               {isBull ? 'R2 (T2):' : 'S2 (T2):'}
             </span>
-            <div style={{ fontWeight: 800, color: '#f8fafc', fontFamily: 'monospace' }}>
+            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>
               ₹{isBull ? card.r2 : card.s2}
             </div>
           </div>
 
-          <div style={{
-            textAlign: 'right',
-            background: 'rgba(255, 255, 255, 0.04)',
-            padding: '4px 8px',
-            borderRadius: '6px',
-            border: '1px solid #1e293b'
-          }}>
-            <div style={{ fontSize: '9px', color: '#94a3b8' }}>
-              RISK: <span style={{ color: '#f43f5e', fontWeight: 800 }}>₹{card.riskPts}</span>
-            </div>
-            <div style={{ fontSize: '11px', fontWeight: 900, color: '#fbbf24' }}>
+          <div style={{ textAlign: 'right' }}>
+            <span style={{
+              background: isLightMode ? (isBull ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)') : 'rgba(255, 255, 255, 0.08)',
+              color: isBull ? (isLightMode ? '#047857' : '#34d399') : (isLightMode ? '#b91c1c' : '#fb7185'),
+              padding: '2px 6px',
+              borderRadius: '4px',
+              fontWeight: 900,
+              fontSize: '10px'
+            }}>
               R:R 1 : {card.rewardRiskRatio}
-            </div>
+            </span>
           </div>
         </div>
 
-        {/* Visual Slider Bar */}
-        <div style={{ marginTop: '8px', position: 'relative' }}>
+        {/* Visual Slider Bar matching video */}
+        <div style={{ marginTop: '6px', position: 'relative' }}>
           <div style={{
-            height: '4px',
+            height: '3px',
             borderRadius: '2px',
-            background: '#1e293b',
+            background: isLightMode ? '#e2e8f0' : '#1e293b',
             overflow: 'hidden',
             display: 'flex'
           }}>
             <div style={{ width: '30%', background: isBull ? '#f59e0b' : '#38bdf8' }} />
             <div style={{ width: '25%', background: accentColor }} />
-            <div style={{ width: '45%', background: '#334155' }} />
+            <div style={{ width: '45%', background: isLightMode ? '#cbd5e1' : '#334155' }} />
           </div>
           <div style={{
             position: 'absolute',
-            top: '-3px',
+            top: '-3.5px',
             left: `${card.sliderPct}%`,
-            width: '10px',
-            height: '10px',
+            width: '9px',
+            height: '9px',
             borderRadius: '50%',
             backgroundColor: '#ffffff',
             boxShadow: `0 0 6px ${accentColor}`,
@@ -695,799 +590,411 @@ export const OrderBlockFlowContainer: React.FC = () => {
     );
   };
 
-  // Sankey River
-  const renderSankeyRiver = () => {
-    if (!data?.sectorRivers) return null;
-    const width = 420;
-    const height = 520;
-    const centerY = height / 2;
+  // Full Panoramic Sankey River & Sieve Canvas (as seen in screenshot media_1792292364506_890d91f2.png)
+  const renderPanoramicRiverAndSieve = () => {
+    if (!data?.allStocks) return null;
+
+    const width = 520;
+    const height = 480;
+    const centerY = height / 2; // zero axis (0.0%)
+
+    // Grid levels from +3% down to -3%
+    const gridLevels = [
+      { pct: 3.0, y: centerY - 150, label: '+3.0%' },
+      { pct: 2.0, y: centerY - 100, label: '+2.0%' },
+      { pct: 1.0, y: centerY - 50, label: '+1.0%' },
+      { pct: 0.0, y: centerY, label: '0.0%', isZero: true },
+      { pct: -1.0, y: centerY + 50, label: '-1.0%' },
+      { pct: -2.0, y: centerY + 100, label: '-2.0%' },
+      { pct: -3.0, y: centerY + 150, label: '-3.0%' }
+    ];
+
+    const sectors = [
+      'BANK', 'METAL', 'AUTO', 'IT', 'PHARMA', 'FIN SERVICE',
+      'ENERGY', 'FMCG', 'REALTY', 'OIL & GAS', 'INFRA', 'CONSUMER'
+    ];
+
+    const sieveX = 390;
+    const sieveWidth = 24;
+
+    // Separate stocks into bull and bear
+    const bullStocks = data.allStocks.filter(s => s.dayChangePct >= 0).slice(0, 50);
+    const bearStocks = data.allStocks.filter(s => s.dayChangePct < 0).slice(0, 50);
 
     return (
       <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
-        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', background: '#070a12', borderRadius: '10px' }}>
-          <line x1={80} y1={centerY} x2={width - 40} y2={centerY} stroke="#334155" strokeWidth={1} strokeDasharray="3,3" />
-          <line x1={80} y1={centerY - 100} x2={width - 40} y2={centerY - 100} stroke="#1e3a8a" strokeWidth={1} strokeDasharray="2,2" opacity={0.5} />
-          <line x1={80} y1={centerY + 100} x2={width - 40} y2={centerY + 100} stroke="#1e3a8a" strokeWidth={1} strokeDasharray="2,2" opacity={0.5} />
+        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', background: theme.canvasBg, borderRadius: '8px' }}>
+          {/* Horizontal Grid lines */}
+          {gridLevels.map((lvl, idx) => (
+            <g key={idx}>
+              <line
+                x1={80}
+                y1={lvl.y}
+                x2={width - 10}
+                y2={lvl.y}
+                stroke={lvl.isZero ? theme.zeroLine : theme.gridLine}
+                strokeWidth={lvl.isZero ? 1.5 : 1}
+                strokeDasharray={lvl.isZero ? 'none' : '3,3'}
+              />
+              <text
+                x={75}
+                y={lvl.y + 3}
+                fill={lvl.isZero ? theme.textPrimary : theme.textMuted}
+                fontSize="8"
+                fontWeight={lvl.isZero ? 'bold' : 'normal'}
+                textAnchor="end"
+              >
+                {lvl.label}
+              </text>
+            </g>
+          ))}
 
-          <text x={85} y={centerY - 105} fill="#60a5fa" fontSize="8" fontWeight="bold">+50%</text>
-          <text x={85} y={centerY - 4} fill="#64748b" fontSize="8" fontWeight="bold">0% (Open)</text>
-          <text x={85} y={centerY + 115} fill="#60a5fa" fontSize="8" fontWeight="bold">-50%</text>
+          {/* Vertical Sieve Frame in the center */}
+          <g>
+            <rect
+              x={sieveX}
+              y={30}
+              width={sieveWidth}
+              height={height - 60}
+              fill={theme.sieveBg}
+              stroke={theme.sieveBorder}
+              strokeWidth={1.5}
+              rx={3}
+            />
+            {/* Top Sieve Bracket (Bullish funnel) */}
+            <path
+              d={`M ${sieveX} 30 L ${sieveX + sieveWidth} 30 L ${sieveX + sieveWidth + 30} 80 L ${sieveX} 140 Z`}
+              fill="rgba(16, 185, 129, 0.08)"
+              stroke="rgba(16, 185, 129, 0.4)"
+              strokeWidth={1}
+            />
+            {/* Bottom Sieve Bracket (Bearish funnel) */}
+            <path
+              d={`M ${sieveX} ${height - 30} L ${sieveX + sieveWidth} ${height - 30} L ${sieveX + sieveWidth + 30} ${height - 80} L ${sieveX} ${centerY + 20} Z`}
+              fill="rgba(239, 68, 68, 0.08)"
+              stroke="rgba(239, 68, 68, 0.4)"
+              strokeWidth={1}
+            />
+          </g>
 
-          <text x={90} y={height - 10} fill="#475569" fontSize="8">09:15</text>
-          <text x={180} y={height - 10} fill="#475569" fontSize="8">11:30</text>
-          <text x={270} y={height - 10} fill="#475569" fontSize="8">13:30</text>
-          <text x={350} y={height - 10} fill="#475569" fontSize="8">15:30</text>
+          {/* Sector Anchors on the left */}
+          {sectors.map((sec, idx) => {
+            const secY = 45 + idx * 34;
+            const isHovered = hoveredSector === sec;
+            return (
+              <g
+                key={sec}
+                style={{ cursor: 'pointer' }}
+                onMouseEnter={() => setHoveredSector(sec)}
+                onMouseLeave={() => setHoveredSector(null)}
+              >
+                <rect
+                  x={8}
+                  y={secY - 9}
+                  width={62}
+                  height={18}
+                  rx={4}
+                  fill={isHovered ? '#10b981' : theme.pillBg}
+                  stroke={isHovered ? '#059669' : theme.pillBorder}
+                  strokeWidth={1}
+                />
+                <text
+                  x={39}
+                  y={secY + 3}
+                  fill={isHovered ? '#ffffff' : theme.textPrimary}
+                  fontSize="7.5"
+                  fontWeight="bold"
+                  textAnchor="middle"
+                >
+                  {sec}
+                </text>
+              </g>
+            );
+          })}
 
-          {data.sectorRivers.map((sec, idx) => {
-            const startX = 90;
-            const endX = width - 50;
-            const isBull = sec.isBull;
-            const targetY = isBull 
-              ? (centerY - 30 - (idx * 12)) 
-              : (centerY + 30 + ((idx - 6) * 12));
+          {/* Bezier River Flow Lines (Hundreds of delicate stock stream lines) */}
+          {/* 1. Bullish Stock Streams (curving UP into the top of the Sieve) */}
+          {bullStocks.map((stock, idx) => {
+            const secIdx = sectors.indexOf(stock.sector);
+            const startY = secIdx >= 0 ? (45 + secIdx * 34) : centerY;
+            const startX = 72;
 
-            const pathD = `
-              M ${startX} ${centerY}
-              C ${startX + 80} ${centerY},
-                ${endX - 90} ${targetY},
-                ${endX} ${targetY}
-            `;
-            const isHovered = hoveredSector === sec.sector;
+            // Target in Sieve (sorted by % change)
+            const targetY = Math.max(35, centerY - 15 - (stock.dayChangePct * 26) - (idx * 1.8));
+
+            const cp1X = startX + 90;
+            const cp1Y = startY;
+            const cp2X = sieveX - 80;
+            const cp2Y = targetY;
+
+            const isHovered = hoveredStock?.symbol === stock.symbol || hoveredSector === stock.sector;
 
             return (
-              <g key={sec.sector} onMouseEnter={() => setHoveredSector(sec.sector)} onMouseLeave={() => setHoveredSector(null)}>
+              <g key={`bull-${stock.symbol}-${idx}`}>
                 <path
-                  d={pathD}
+                  d={`M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${sieveX} ${targetY}`}
                   fill="none"
-                  stroke={sec.color}
-                  strokeWidth={isHovered ? 4.5 : 2.0}
-                  opacity={isHovered ? 1.0 : (isBull ? 0.6 : 0.55)}
+                  stroke="#10b981"
+                  strokeWidth={isHovered ? 2.5 : 0.85}
+                  opacity={isHovered ? 1.0 : (0.28 + (idx % 3) * 0.1)}
                   strokeLinecap="round"
                   style={{
                     cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    filter: isHovered ? `drop-shadow(0 0 8px ${sec.color})` : 'none'
+                    transition: 'all 0.15s',
+                    filter: isHovered ? 'drop-shadow(0 0 4px #10b981)' : 'none'
                   }}
+                  onMouseEnter={() => setHoveredStock(stock)}
+                  onMouseLeave={() => setHoveredStock(null)}
+                  onClick={() => setSelectedStock(stock)}
+                />
+                {/* Horizontal tick in Sieve */}
+                <line
+                  x1={sieveX}
+                  y1={targetY}
+                  x2={sieveX + sieveWidth}
+                  y2={targetY}
+                  stroke="#10b981"
+                  strokeWidth={1.2}
+                  opacity={0.7}
                 />
               </g>
             );
           })}
 
-          {/* Sieve Brackets */}
-          <rect x={width - 48} y={60} width={12} height={170} rx={3} fill="#064e3b" stroke="#10b981" strokeWidth={1.5} opacity={0.8} />
-          <line x1={width - 42} y1={70} x2={width - 42} y2={220} stroke="#10b981" strokeWidth={2} strokeDasharray="2,3" />
+          {/* 2. Bearish Stock Streams (curving DOWN into the bottom of the Sieve) */}
+          {bearStocks.map((stock, idx) => {
+            const secIdx = sectors.indexOf(stock.sector);
+            const startY = secIdx >= 0 ? (45 + secIdx * 34) : centerY;
+            const startX = 72;
 
-          <rect x={width - 48} y={270} width={12} height={170} rx={3} fill="#881337" stroke="#f43f5e" strokeWidth={1.5} opacity={0.8} />
-          <line x1={width - 42} y1={280} x2={width - 42} y2={430} stroke="#f43f5e" strokeWidth={2} strokeDasharray="2,3" />
+            // Target in Sieve (sorted by % change negative)
+            const targetY = Math.min(height - 35, centerY + 15 + (Math.abs(stock.dayChangePct) * 26) + (idx * 1.8));
 
-          <circle cx={width - 42} cy={145} r={4} fill="#10b981" />
-          <circle cx={width - 42} cy={355} r={4} fill="#f43f5e" />
+            const cp1X = startX + 90;
+            const cp1Y = startY;
+            const cp2X = sieveX - 80;
+            const cp2Y = targetY;
 
-          <path d={`M ${width - 42} 145 C ${width - 20} 145, ${width - 15} 120, ${width} 120`} fill="none" stroke="#10b981" strokeWidth={2} />
-          <path d={`M ${width - 42} 355 C ${width - 20} 355, ${width - 15} 380, ${width} 380`} fill="none" stroke="#f43f5e" strokeWidth={2} />
-        </svg>
-
-        {/* Left Sector List Overlaid (All 14 streams) */}
-        <div style={{
-          position: 'absolute',
-          top: '10px',
-          left: '8px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '3px',
-          zIndex: 2,
-          maxHeight: '490px',
-          overflowY: 'auto'
-        }}>
-          {data.sectorRivers.map((sec) => (
-            <div
-              key={sec.sector}
-              onClick={() => setSelectedSector(selectedSector === sec.sector ? 'ALL' : sec.sector)}
-              onMouseEnter={() => setHoveredSector(sec.sector)}
-              onMouseLeave={() => setHoveredSector(null)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px',
-                padding: '2px 5px',
-                borderRadius: '4px',
-                background: selectedSector === sec.sector ? 'rgba(56, 189, 248, 0.25)' : 'rgba(15, 23, 42, 0.75)',
-                border: `1px solid ${selectedSector === sec.sector ? '#38bdf8' : 'rgba(255, 255, 255, 0.08)'}`,
-                cursor: 'pointer',
-                fontSize: '9px',
-                fontWeight: 800,
-                color: sec.isBull ? '#34d399' : '#fb7185',
-                width: '78px',
-                backdropFilter: 'blur(4px)'
-              }}
-            >
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: sec.color }} />
-              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {sec.sector}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  };
-
-  // Market X-Ray Dot Scatter Plot
-  const renderMarketXRay = () => {
-    if (!data?.allStocks) return null;
-
-    const width = 880;
-    const height = 480;
-    const centerY = height / 2;
-    const centerX = width / 2;
-
-    const topBull = data.topExecutionCards.bull.map(s => s.symbol);
-    const topBear = data.topExecutionCards.bear.map(s => s.symbol);
-
-    return (
-      <div style={{
-        background: '#0a0d14',
-        border: '1px solid #1e2638',
-        borderRadius: '12px',
-        padding: '20px',
-        position: 'relative'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '15px', fontWeight: 900, color: '#f8fafc' }}>
-                Market X-Ray (Every F&amp;O Stock Placed by Move)
-              </span>
-              <span style={{
-                fontSize: '10px',
-                background: 'rgba(56, 189, 248, 0.15)',
-                color: '#38bdf8',
-                padding: '2px 8px',
-                borderRadius: '10px',
-                fontWeight: 800
-              }}>
-                212 STOCKS MAPPED
-              </span>
-            </div>
-            <div style={{ fontSize: '11px', color: '#94a3b8' }}>
-              Bullish stack above the line to the right · Bearish below to the left · Choppy cluster in grey at center
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', fontSize: '11px' }}>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#10b981', fontWeight: 800 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
-              Bullish ({data.meta.marketBreadth.bullishCount})
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#64748b', fontWeight: 800 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#64748b' }} />
-              Choppy ({data.allStocks.filter(s => s.isChoppy).length})
-            </span>
-            <span style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#f43f5e', fontWeight: 800 }}>
-              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#f43f5e' }} />
-              Bearish ({data.meta.marketBreadth.bearishCount})
-            </span>
-          </div>
-        </div>
-
-        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', background: '#05070c', borderRadius: '8px' }}>
-          {/* Grid and Zero Line */}
-          <line x1={40} y1={centerY} x2={width - 40} y2={centerY} stroke="#334155" strokeWidth={1.5} />
-          <line x1={centerX} y1={20} x2={centerX} y2={height - 20} stroke="#1e293b" strokeWidth={1} strokeDasharray="3,3" />
-
-          {/* Scale labels */}
-          <text x={centerX} y={centerY - 10} fill="#94a3b8" fontSize="10" textAnchor="middle" fontWeight="bold">0.0% (Open)</text>
-          <text x={width - 60} y={centerY - 10} fill="#10b981" fontSize="10" textAnchor="middle" fontWeight="bold">+8.0%</text>
-          <text x={60} y={centerY + 18} fill="#f43f5e" fontSize="10" textAnchor="middle" fontWeight="bold">-8.0%</text>
-
-          {/* Center Choppy Box */}
-          <rect x={centerX - 55} y={centerY - 60} width={110} height={120} fill="rgba(255, 255, 255, 0.02)" stroke="#334155" strokeDasharray="2,2" rx={4} />
-          <text x={centerX} y={centerY + 50} fill="#475569" fontSize="8" textAnchor="middle">CHOPPY NOISE ZONE</text>
-
-          {/* Dots */}
-          {data.allStocks.map((stock, idx) => {
-            const isBull = stock.dayChangePct > 0;
-            const isRinged = topBull.includes(stock.symbol) || topBear.includes(stock.symbol);
-            
-            const clampedChange = Math.max(-8, Math.min(8, stock.dayChangePct));
-            const cx = centerX + (clampedChange / 8) * (centerX - 60);
-
-            const stackIndex = (idx % 8);
-            const cy = isBull
-              ? centerY - 20 - (stackIndex * 18) - (Math.abs(stock.dayChangePct) * 12)
-              : centerY + 20 + (stackIndex * 18) + (Math.abs(stock.dayChangePct) * 12);
-
-            const dotColor = stock.isChoppy 
-              ? '#64748b' 
-              : (isBull ? '#10b981' : '#f43f5e');
+            const isHovered = hoveredStock?.symbol === stock.symbol || hoveredSector === stock.sector;
 
             return (
-              <g 
-                key={stock.symbol}
-                onClick={() => setSelectedStock(stock)}
-                style={{ cursor: 'pointer' }}
-              >
-                {isRinged && (
-                  <circle
-                    cx={cx}
-                    cy={cy}
-                    r={9}
-                    fill="none"
-                    stroke={dotColor}
-                    strokeWidth={1.5}
-                    opacity={0.8}
-                    style={{ animation: 'pulse 1.5s infinite' }}
-                  />
-                )}
-                <circle
-                  cx={cx}
-                  cy={cy}
-                  r={isRinged ? 5 : 3.5}
-                  fill={dotColor}
-                  opacity={stock.isChoppy ? 0.45 : 0.9}
+              <g key={`bear-${stock.symbol}-${idx}`}>
+                <path
+                  d={`M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${sieveX} ${targetY}`}
+                  fill="none"
+                  stroke="#ef4444"
+                  strokeWidth={isHovered ? 2.5 : 0.85}
+                  opacity={isHovered ? 1.0 : (0.28 + (idx % 3) * 0.1)}
+                  strokeLinecap="round"
+                  style={{
+                    cursor: 'pointer',
+                    transition: 'all 0.15s',
+                    filter: isHovered ? 'drop-shadow(0 0 4px #ef4444)' : 'none'
+                  }}
+                  onMouseEnter={() => setHoveredStock(stock)}
+                  onMouseLeave={() => setHoveredStock(null)}
+                  onClick={() => setSelectedStock(stock)}
                 />
-                {isRinged && (
-                  <text
-                    x={cx}
-                    y={isBull ? cy - 12 : cy + 18}
-                    fill={dotColor}
-                    fontSize="9"
-                    fontWeight="bold"
-                    textAnchor="middle"
-                  >
-                    {stock.symbol}
-                  </text>
-                )}
+                {/* Horizontal tick in Sieve */}
+                <line
+                  x1={sieveX}
+                  y1={targetY}
+                  x2={sieveX + sieveWidth}
+                  y2={targetY}
+                  stroke="#ef4444"
+                  strokeWidth={1.2}
+                  opacity={0.7}
+                />
               </g>
             );
           })}
+
+          {/* Outflow ribbons fanning out from Sieve to right edge (toward Clusters) */}
+          {/* Bullish outflow */}
+          <path
+            d={`M ${sieveX + sieveWidth} 75 C ${sieveX + sieveWidth + 40} 75, ${width - 30} 50, ${width} 50`}
+            fill="none"
+            stroke="#10b981"
+            strokeWidth={3}
+            opacity={0.7}
+          />
+          <path
+            d={`M ${sieveX + sieveWidth} 110 C ${sieveX + sieveWidth + 40} 110, ${width - 30} 120, ${width} 120`}
+            fill="none"
+            stroke="#10b981"
+            strokeWidth={2}
+            opacity={0.5}
+          />
+
+          {/* Bearish outflow */}
+          <path
+            d={`M ${sieveX + sieveWidth} ${height - 75} C ${sieveX + sieveWidth + 40} ${height - 75}, ${width - 30} ${height - 50}, ${width} ${height - 50}`}
+            fill="none"
+            stroke="#ef4444"
+            strokeWidth={3}
+            opacity={0.7}
+          />
+          <path
+            d={`M ${sieveX + sieveWidth} ${height - 110} C ${sieveX + sieveWidth + 40} ${height - 110}, ${width - 30} ${height - 120}, ${width} ${height - 120}`}
+            fill="none"
+            stroke="#ef4444"
+            strokeWidth={2}
+            opacity={0.5}
+          />
         </svg>
 
-        <div style={{ marginTop: '12px', display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#64748b' }}>
-          <span>💡 Tip: Click any ringed circle to inspect the institutional Order Block and Liquidity levels.</span>
-          <span>Leading Sector: <strong style={{ color: '#10b981' }}>{data.sectorRivers[0]?.sector}</strong> | Lagging Sector: <strong style={{ color: '#f43f5e' }}>{data.sectorRivers[data.sectorRivers.length - 1]?.sector}</strong></span>
-        </div>
-      </div>
-    );
-  };
-
-  // Liquidity Boards (#1 to #10) View
-  const renderLiquidityBoards = () => {
-    if (!data?.liquidityBoards) return null;
-
-    return (
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: '1fr 1fr',
-        gap: '20px'
-      }}>
-        {/* BULLISH BOARD */}
-        <div style={{
-          background: '#0d111a',
-          border: '1px solid rgba(16, 185, 129, 0.3)',
-          borderRadius: '12px',
-          padding: '16px'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <ArrowUpRight size={18} style={{ color: '#10b981' }} />
-              <span style={{ fontSize: '14px', fontWeight: 900, color: '#10b981' }}>
-                BULLISH LIQUIDITY BOARD (TOP 10)
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '10.5px', color: '#10b981', fontWeight: 800 }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
-              LIVE 1-MIN REFRESH
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {data.liquidityBoards.bullish.map(stock => (
-              <div
-                key={stock.symbol}
-                onClick={() => setSelectedStock(stock)}
-                style={{
-                  background: 'rgba(15, 23, 42, 0.7)',
-                  border: '1px solid rgba(16, 185, 129, 0.2)',
-                  borderRadius: '8px',
-                  padding: '10px 14px',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  transition: 'all 0.15s'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.borderColor = '#10b981'}
-                onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.2)'}
-              >
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  width: `${stock.strengthBarWidth || 50}%`,
-                  background: 'linear-gradient(90deg, rgba(16, 185, 129, 0.15) 0%, rgba(16, 185, 129, 0.02) 100%)',
-                  zIndex: 0
-                }} />
-
-                <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 900, color: '#64748b', fontFamily: 'monospace' }}>
-                      {String(stock.rank).padStart(2, '0')}
-                    </span>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ fontSize: '14px', fontWeight: 900, color: '#f8fafc' }}>
-                          {stock.symbol}
-                        </span>
-                        <span style={{ fontSize: '12px', fontWeight: 800, color: '#10b981' }}>
-                          +{stock.dayChangePct}%
-                        </span>
-                      </div>
-                      <div style={{ fontSize: '9.5px', color: '#94a3b8' }}>
-                        {stock.sector} · Spot ₹{stock.spot} · RVOL {stock.rvol}x
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '11px', fontWeight: 900, color: '#38bdf8', fontFamily: 'monospace' }}>
-                      ZONE: {stock.zone.label}
-                    </div>
-                    <div style={{ fontSize: '9.5px', color: '#fbbf24', fontWeight: 700 }}>
-                      LIQ: ₹{stock.liquidityLine} | R:R 1:{stock.rewardRiskRatio}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* BEARISH BOARD */}
-        <div style={{
-          background: '#0d111a',
-          border: '1px solid rgba(244, 63, 94, 0.3)',
-          borderRadius: '12px',
-          padding: '16px'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <ArrowDownRight size={18} style={{ color: '#f43f5e' }} />
-              <span style={{ fontSize: '14px', fontWeight: 900, color: '#f43f5e' }}>
-                BEARISH LIQUIDITY BOARD (TOP 10)
-              </span>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '10.5px', color: '#f43f5e', fontWeight: 800 }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#f43f5e' }} />
-              LIVE 1-MIN REFRESH
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {data.liquidityBoards.bearish.map(stock => (
-              <div
-                key={stock.symbol}
-                onClick={() => setSelectedStock(stock)}
-                style={{
-                  background: 'rgba(15, 23, 42, 0.7)',
-                  border: '1px solid rgba(244, 63, 94, 0.2)',
-                  borderRadius: '8px',
-                  padding: '10px 14px',
-                  cursor: 'pointer',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  transition: 'all 0.15s'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.borderColor = '#f43f5e'}
-                onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(244, 63, 94, 0.2)'}
-              >
-                <div style={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  width: `${stock.strengthBarWidth || 50}%`,
-                  background: 'linear-gradient(90deg, rgba(244, 63, 94, 0.15) 0%, rgba(244, 63, 94, 0.02) 100%)',
-                  zIndex: 0
-                }} />
-
-                <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 900, color: '#64748b', fontFamily: 'monospace' }}>
-                      {String(stock.rank).padStart(2, '0')}
-                    </span>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ fontSize: '14px', fontWeight: 900, color: '#f8fafc' }}>
-                          {stock.symbol}
-                        </span>
-                        <span style={{ fontSize: '12px', fontWeight: 800, color: '#f43f5e' }}>
-                          {stock.dayChangePct}%
-                        </span>
-                      </div>
-                      <div style={{ fontSize: '9.5px', color: '#94a3b8' }}>
-                        {stock.sector} · Spot ₹{stock.spot} · RVOL {stock.rvol}x
-                      </div>
-                    </div>
-                  </div>
-
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '11px', fontWeight: 900, color: '#fb7185', fontFamily: 'monospace' }}>
-                      ZONE: {stock.zone.label}
-                    </div>
-                    <div style={{ fontSize: '9.5px', color: '#fbbf24', fontWeight: 700 }}>
-                      LIQ: ₹{stock.liquidityLine} | R:R 1:{stock.rewardRiskRatio}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  // Scalper Coaching & Minute Rules (Shubham Trading Coach Video Library)
-  const renderCoachingModule = () => {
-    const cur = videoModules[selectedVideo];
-
-    return (
-      <div style={{
-        background: '#0d111a',
-        border: '1px solid #1e2638',
-        borderRadius: '12px',
-        padding: '24px'
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{
-                background: 'linear-gradient(90deg, #f59e0b, #ef4444)',
-                color: '#ffffff',
-                padding: '3px 10px',
-                borderRadius: '6px',
-                fontSize: '11px',
-                fontWeight: 900
-              }}>
-                SHUBHAM TRADING COACH · FULL MASTERCLASS
-              </span>
-              <span style={{ fontSize: '12px', color: '#94a3b8' }}>
-                Minute-by-Minute Institutional Scalping Rules
-              </span>
-            </div>
-            <h2 style={{ fontSize: '20px', fontWeight: 900, color: '#f8fafc', margin: '6px 0 0 0' }}>
-              {cur.title}: <span style={{ color: '#38bdf8' }}>{cur.subtitle}</span>
-            </h2>
-          </div>
-
-          <div style={{ display: 'flex', gap: '8px' }}>
-            {videoModules.map((v, idx) => (
-              <button
-                key={v.id}
-                onClick={() => setSelectedVideo(idx)}
-                style={{
-                  background: selectedVideo === idx ? '#38bdf8' : '#1e293b',
-                  color: selectedVideo === idx ? '#0f172a' : '#cbd5e1',
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '6px 12px',
-                  fontSize: '11px',
-                  fontWeight: 800,
-                  cursor: 'pointer'
-                }}
-              >
-                Lesson {idx + 1}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div style={{
-          background: 'rgba(56, 189, 248, 0.05)',
-          border: '1px solid rgba(56, 189, 248, 0.25)',
-          borderRadius: '10px',
-          padding: '16px 20px',
-          marginBottom: '20px'
-        }}>
-          <p style={{ fontSize: '13.5px', color: '#e2e8f0', lineHeight: 1.6, margin: 0 }}>
-            {cur.desc}
-          </p>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '20px' }}>
-          <div>
-            <div style={{ fontSize: '13px', fontWeight: 900, color: '#f8fafc', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <CheckCircle2 size={16} style={{ color: '#10b981' }} />
-              Executive Scalping Rules (1-Minute Execution)
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {cur.keyRules.map((rule, idx) => (
-                <div 
-                  key={idx}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'start',
-                    gap: '10px',
-                    background: '#111827',
-                    padding: '12px',
-                    borderRadius: '8px',
-                    border: '1px solid #1e293b'
-                  }}
-                >
-                  <span style={{
-                    width: '20px',
-                    height: '20px',
-                    borderRadius: '50%',
-                    background: 'rgba(16, 185, 129, 0.2)',
-                    color: '#10b981',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '11px',
-                    fontWeight: 900,
-                    flexShrink: 0
-                  }}>
-                    {idx + 1}
-                  </span>
-                  <span style={{ fontSize: '12.5px', color: '#cbd5e1', lineHeight: 1.5 }}>
-                    {rule}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
+        {/* Hover Tooltip */}
+        {hoveredStock && (
           <div style={{
-            background: '#070a12',
-            border: '1px solid #1e2638',
-            borderRadius: '10px',
-            padding: '18px'
+            position: 'absolute',
+            bottom: '10px',
+            left: '80px',
+            background: isLightMode ? '#0f172a' : '#1e293b',
+            color: '#ffffff',
+            padding: '4px 10px',
+            borderRadius: '6px',
+            fontSize: '10px',
+            fontWeight: 800,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
           }}>
-            <div style={{ fontSize: '13px', fontWeight: 900, color: '#fbbf24', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Crosshair size={16} style={{ color: '#fbbf24' }} />
-              Live Setup Blueprint
-            </div>
-            <div style={{ fontSize: '12px', color: '#94a3b8', marginBottom: '14px', lineHeight: 1.5 }}>
-              {cur.setup}
-            </div>
-
-            <div style={{
-              background: '#0f172a',
-              border: '1px solid #334155',
-              borderRadius: '8px',
-              padding: '16px',
-              textAlign: 'center'
-            }}>
-              <div style={{ fontSize: '10px', color: '#94a3b8', marginBottom: '8px' }}>
-                INSTITUTIONAL FOOTPRINT VISUALIZER
-              </div>
-              
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: '110px', gap: '14px', paddingBottom: '10px' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div style={{ width: '2px', height: '16px', background: '#10b981' }} />
-                  <div style={{ width: '16px', height: '55px', background: '#10b981', borderRadius: '2px' }} />
-                  <div style={{ width: '2px', height: '14px', background: '#10b981' }} />
-                  <span style={{ fontSize: '8.5px', color: '#10b981', marginTop: '4px' }}>Impulse</span>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div style={{ width: '2px', height: '10px', background: '#f43f5e' }} />
-                  <div style={{ width: '16px', height: '35px', background: '#f43f5e', borderRadius: '2px' }} />
-                  <div style={{ width: '2px', height: '24px', background: '#fbbf24' }} />
-                  <span style={{ fontSize: '8.5px', color: '#fbbf24', marginTop: '4px' }}>Sweep Wick</span>
-                </div>
-
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div style={{ width: '2px', height: '14px', background: '#10b981' }} />
-                  <div style={{ width: '16px', height: '65px', background: '#10b981', borderRadius: '2px', boxShadow: '0 0 10px #10b981' }} />
-                  <div style={{ width: '2px', height: '8px', background: '#10b981' }} />
-                  <span style={{ fontSize: '8.5px', color: '#10b981', marginTop: '4px' }}>Target Expansion</span>
-                </div>
-              </div>
-
-              <div style={{ borderTop: '1px dashed #334155', paddingTop: '8px', display: 'flex', justifyContent: 'space-around', fontSize: '10px' }}>
-                <span style={{ color: '#10b981' }}>R1 (Call Wall)</span>
-                <span style={{ color: '#38bdf8' }}>Order Block Zone</span>
-                <span style={{ color: '#fbbf24' }}>Liquidity Pool</span>
-                <span style={{ color: '#f43f5e' }}>S1 Stop Loss</span>
-              </div>
-            </div>
+            <span>{hoveredStock.symbol}</span>
+            <span style={{ color: hoveredStock.dayChangePct >= 0 ? '#34d399' : '#fb7185' }}>
+              {hoveredStock.dayChangePct >= 0 ? `+${hoveredStock.dayChangePct}%` : `${hoveredStock.dayChangePct}%`}
+            </span>
+            <span style={{ color: '#94a3b8' }}>{hoveredStock.sector}</span>
+            <span style={{ color: '#fbbf24' }}>₹{hoveredStock.spot}</span>
           </div>
-        </div>
+        )}
       </div>
     );
   };
 
   return (
     <div style={{
-      backgroundColor: '#07090D',
-      color: '#f8fafc',
       minHeight: '100vh',
-      padding: '16px 20px',
-      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif"
+      backgroundColor: theme.bg,
+      color: theme.textPrimary,
+      padding: '12px 18px',
+      fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+      transition: 'background-color 0.2s, color 0.2s'
     }}>
-      {/* ── 1. Top Navigation & Market Breadth Bar ── */}
+      {/* ── 1. Top Header Toolbar matching order-block.com ── */}
       <div style={{
         display: 'flex',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        background: '#0d111a',
-        border: '1px solid #1e2638',
-        borderRadius: '12px',
-        padding: '12px 20px',
+        justifyContent: 'space-between',
+        gap: '12px',
         marginBottom: '10px',
-        flexWrap: 'wrap',
-        gap: '12px'
+        flexWrap: 'wrap'
       }}>
-        {/* Brand / Title */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '2.5px',
-            background: 'rgba(16, 185, 129, 0.1)',
-            padding: '6px 8px',
-            borderRadius: '6px',
-            border: '1px solid rgba(16, 185, 129, 0.3)'
-          }}>
-            <div style={{ width: '16px', height: '3px', backgroundColor: '#10b981', borderRadius: '1px' }} />
-            <div style={{ width: '22px', height: '3px', backgroundColor: '#f43f5e', borderRadius: '1px' }} />
-            <div style={{ width: '18px', height: '3px', backgroundColor: '#38bdf8', borderRadius: '1px' }} />
-          </div>
-
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontSize: '18px', fontWeight: 900, color: '#f8fafc', letterSpacing: '0.5px' }}>
-                OrderBlock
-              </span>
-              <span style={{
-                backgroundColor: 'rgba(16, 185, 129, 0.15)',
-                color: '#10b981',
-                border: '1px solid rgba(16, 185, 129, 0.3)',
-                padding: '2px 8px',
-                borderRadius: '12px',
-                fontSize: '10px',
-                fontWeight: 800
-              }}>
-                LIVE LIQUIDITY &amp; FLOW
-              </span>
-            </div>
-            <div style={{ fontSize: '11px', color: '#94a3b8' }}>
-              NIFTY 50, BANKNIFTY &amp; All 12 Macro Sectors · Options Oracle &amp; Shubham Trading Coach Engine
-            </div>
-          </div>
-        </div>
-
-        {/* View Switcher Tabs */}
+        {/* Left: Floating Search Bar */}
         <div style={{
           display: 'flex',
-          gap: '6px',
-          background: '#07090e',
-          padding: '4px',
+          alignItems: 'center',
+          gap: '8px',
+          background: theme.cardBg,
+          border: `1px solid ${theme.cardBorder}`,
           borderRadius: '8px',
-          border: '1px solid #1e2638'
+          padding: '6px 12px',
+          width: '280px',
+          boxShadow: theme.boxShadow
         }}>
-          <button
-            onClick={() => setActiveTab('FLOW')}
+          <Search size={14} style={{ color: theme.textMuted }} />
+          <input
+            type="text"
+            placeholder="Search stocks"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 14px',
-              borderRadius: '6px',
+              background: 'transparent',
               border: 'none',
-              fontSize: '11.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              background: activeTab === 'FLOW' ? '#10b981' : 'transparent',
-              color: activeTab === 'FLOW' ? '#ffffff' : '#94a3b8'
+              outline: 'none',
+              color: theme.textPrimary,
+              fontSize: '12px',
+              width: '100%',
+              fontWeight: 500
             }}
-          >
-            <Layers size={13} />
-            Flow &amp; Sieve
-          </button>
-
-          <button
-            onClick={() => setActiveTab('XRAY')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 14px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '11.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              background: activeTab === 'XRAY' ? '#38bdf8' : 'transparent',
-              color: activeTab === 'XRAY' ? '#0f172a' : '#94a3b8'
-            }}
-          >
-            <Activity size={13} />
-            Market X-Ray
-          </button>
-
-          <button
-            onClick={() => setActiveTab('BOARDS')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 14px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '11.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              background: activeTab === 'BOARDS' ? '#f59e0b' : 'transparent',
-              color: activeTab === 'BOARDS' ? '#0f172a' : '#94a3b8'
-            }}
-          >
-            <BarChart2 size={13} />
-            Liquidity Boards
-          </button>
-
-          <button
-            onClick={() => setActiveTab('COACHING')}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 14px',
-              borderRadius: '6px',
-              border: 'none',
-              fontSize: '11.5px',
-              fontWeight: 800,
-              cursor: 'pointer',
-              background: activeTab === 'COACHING' ? '#8b5cf6' : 'transparent',
-              color: activeTab === 'COACHING' ? '#ffffff' : '#94a3b8'
-            }}
-          >
-            <BookOpen size={13} />
-            Scalper Coaching
-          </button>
+          />
+          <span style={{
+            fontSize: '9.5px',
+            color: theme.textMuted,
+            background: theme.pillBg,
+            padding: '2px 5px',
+            borderRadius: '4px',
+            border: `1px solid ${theme.pillBorder}`,
+            fontWeight: 700
+          }}>
+            Ctrl K
+          </span>
         </div>
 
-        {/* Large Market Breadth (as seen in video: 172 BULLISH / 41 BEARISH) */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          {data?.meta?.marketBreadth && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <div style={{ textAlign: 'center' }}>
-                <span style={{ fontSize: '9px', fontWeight: 800, color: '#10b981', letterSpacing: '0.5px' }}>BULLISH</span>
-                <div style={{ fontSize: '18px', fontWeight: 900, color: '#10b981', lineHeight: 1 }}>
-                  {data.meta.marketBreadth.bullishCount}
-                </div>
-              </div>
-              <div style={{ width: '1px', height: '24px', background: '#334155' }} />
-              <div style={{ textAlign: 'center' }}>
-                <span style={{ fontSize: '9px', fontWeight: 800, color: '#f43f5e', letterSpacing: '0.5px' }}>BEARISH</span>
-                <div style={{ fontSize: '18px', fontWeight: 900, color: '#f43f5e', lineHeight: 1 }}>
-                  {data.meta.marketBreadth.bearishCount}
-                </div>
-              </div>
-            </div>
-          )}
+        {/* Center: Volume Delta Timeline + Market Breadth Counter */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+          {renderTopVolumeDeltaTimeline()}
 
-          <div style={{ position: 'relative', width: '180px' }}>
-            <Search size={14} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#64748b' }} />
-            <input
-              type="text"
-              placeholder="Search stocks..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                width: '100%',
-                backgroundColor: '#0a0d14',
-                border: '1px solid #1e2638',
-                borderRadius: '8px',
-                padding: '6px 10px 6px 30px',
-                fontSize: '11px',
-                color: '#f8fafc',
-                outline: 'none'
-              }}
-            />
+          {/* Market Breadth Indicators */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              background: isLightMode ? '#f0fdf4' : 'rgba(16, 185, 129, 0.12)',
+              border: '1px solid rgba(16, 185, 129, 0.4)',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontSize: '11px',
+              fontWeight: 900,
+              color: '#059669'
+            }}>
+              <span>▲ BULLISH</span>
+              <span>{data?.meta?.marketBreadth?.bullishCount || 172}</span>
+            </div>
+
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '4px',
+              background: isLightMode ? '#fef2f2' : 'rgba(239, 68, 68, 0.12)',
+              border: '1px solid rgba(239, 68, 68, 0.4)',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontSize: '11px',
+              fontWeight: 900,
+              color: '#dc2626'
+            }}>
+              <span>▼ BEARISH</span>
+              <span>{data?.meta?.marketBreadth?.bearishCount || 41}</span>
+            </div>
           </div>
+        </div>
+
+        {/* Right Controls: Theme Toggle & Sync */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Light / Dark Mode Switcher */}
+          <button
+            onClick={() => setIsLightMode(!isLightMode)}
+            title={isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '5px',
+              background: theme.cardBg,
+              border: `1px solid ${theme.cardBorder}`,
+              color: theme.textPrimary,
+              borderRadius: '6px',
+              padding: '6px 10px',
+              fontSize: '11px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              boxShadow: theme.boxShadow
+            }}
+          >
+            {isLightMode ? <Moon size={13} style={{ color: '#0284c7' }} /> : <Sun size={13} style={{ color: '#f59e0b' }} />}
+            {isLightMode ? 'Dark' : 'Light'}
+          </button>
 
           <button
             onClick={() => fetchData(true)}
@@ -1495,39 +1002,34 @@ export const OrderBlockFlowContainer: React.FC = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '6px',
-              backgroundColor: '#1e293b',
-              color: '#f8fafc',
-              border: '1px solid #334155',
+              gap: '5px',
+              background: theme.cardBg,
+              color: theme.textPrimary,
+              border: `1px solid ${theme.cardBorder}`,
               borderRadius: '6px',
               padding: '6px 10px',
               fontSize: '11px',
               fontWeight: 800,
-              cursor: refreshing ? 'not-allowed' : 'pointer'
+              cursor: refreshing ? 'not-allowed' : 'pointer',
+              boxShadow: theme.boxShadow
             }}
           >
             <RefreshCw size={12} className={refreshing ? 'animate-spin' : ''} />
-            {refreshing ? 'Updating...' : 'Sync'}
+            {refreshing ? 'Syncing...' : 'Live Sync'}
           </button>
         </div>
       </div>
 
-      {/* ── 2. Top Net Volume Delta Timeline (as seen in video top) ── */}
-      {renderTopVolumeDeltaTimeline()}
-
-      {/* ── 3. All 14 Macro Sector & Benchmark Index Streams Filter Bar ── */}
+      {/* ── 2. All 14 Macro Sector & Benchmark Index Streams Filter Bar ── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         gap: '6px',
         overflowX: 'auto',
-        paddingBottom: '8px',
-        marginBottom: '14px',
+        paddingBottom: '6px',
+        marginBottom: '10px',
         scrollbarWidth: 'none'
       }}>
-        <span style={{ fontSize: '11px', fontWeight: 900, color: '#94a3b8', whiteSpace: 'nowrap', marginRight: '4px' }}>
-          MACRO SECTORS:
-        </span>
         {ALL_SECTORS.map(sec => {
           const isSel = selectedSector === sec;
           const isIndex = sec === 'NIFTY 50' || sec === 'BANKNIFTY';
@@ -1538,21 +1040,21 @@ export const OrderBlockFlowContainer: React.FC = () => {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '5px',
-                padding: '4px 10px',
-                borderRadius: '20px',
+                gap: '4px',
+                padding: '3px 9px',
+                borderRadius: '16px',
                 border: isSel 
                   ? '1px solid #10b981' 
                   : isIndex 
-                    ? '1px solid rgba(56, 189, 248, 0.4)' 
-                    : '1px solid rgba(255, 255, 255, 0.08)',
+                    ? '1px solid rgba(2, 132, 199, 0.4)' 
+                    : `1px solid ${theme.cardBorder}`,
                 background: isSel 
                   ? '#10b981' 
                   : isIndex 
-                    ? 'rgba(56, 189, 248, 0.1)' 
-                    : '#0d111a',
-                color: isSel ? '#ffffff' : isIndex ? '#38bdf8' : '#cbd5e1',
-                fontSize: '11px',
+                    ? (isLightMode ? '#e0f2fe' : 'rgba(2, 132, 199, 0.15)')
+                    : theme.cardBg,
+                color: isSel ? '#ffffff' : isIndex ? '#0284c7' : theme.textPrimary,
+                fontSize: '10.5px',
                 fontWeight: 800,
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
@@ -1566,248 +1068,331 @@ export const OrderBlockFlowContainer: React.FC = () => {
         })}
       </div>
 
-      {/* ── 4. Content Views ── */}
-      {activeTab === 'XRAY' && renderMarketXRay()}
-      {activeTab === 'BOARDS' && renderLiquidityBoards()}
-      {activeTab === 'COACHING' && renderCoachingModule()}
+      {/* ── 3. Benchmark Index Anchors (NIFTY 50 & BANKNIFTY) ── */}
+      {data?.indexAnchors && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '12px',
+          marginBottom: '12px'
+        }}>
+          {data.indexAnchors.nifty && renderIndexAnchorCard(data.indexAnchors.nifty)}
+          {data.indexAnchors.banknifty && renderIndexAnchorCard(data.indexAnchors.banknifty)}
+        </div>
+      )}
 
-      {activeTab === 'FLOW' && (
-        <div>
-          {/* Institutional Index Benchmark Anchors (NIFTY & BANKNIFTY) */}
-          {data?.indexAnchors && (
+      {/* ── 4. Main Panoramic Layout matching the screenshot (media_1792292364506_890d91f2.png) ── */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'minmax(400px, 1.25fr) minmax(360px, 1.15fr) minmax(340px, 1.05fr)',
+        gap: '14px',
+        alignItems: 'start'
+      }}>
+        {/* ── COLUMN 1: Macro Money-Flow River & Sieve (Left) ── */}
+        <div style={{
+          background: theme.cardBg,
+          border: `1px solid ${theme.cardBorder}`,
+          borderRadius: '10px',
+          padding: '12px',
+          boxShadow: theme.boxShadow
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Layers size={15} style={{ color: '#0284c7' }} />
+              <span style={{ fontSize: '12px', fontWeight: 900, color: theme.textPrimary }}>
+                Sectoral River & Sieve
+              </span>
+            </div>
+            <span style={{ fontSize: '10px', color: theme.textMuted }}>
+              14 Streams · 222 F&O Stocks
+            </span>
+          </div>
+
+          {renderPanoramicRiverAndSieve()}
+
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            background: theme.pillBg,
+            padding: '6px 10px',
+            borderRadius: '6px',
+            marginTop: '8px',
+            border: `1px solid ${theme.cardBorder}`
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '9.5px', color: theme.textSecondary }}>
+              <Filter size={11} style={{ color: '#10b981' }} />
+              <span><strong>Institutional Sieve:</strong> 80% choppy stocks eliminated</span>
+            </div>
+            <span style={{ fontSize: '9.5px', fontWeight: 900, color: '#059669' }}>
+              Top 20 Funneled
+            </span>
+          </div>
+        </div>
+
+        {/* ── COLUMN 2: Sectoral Stock Clusters (Middle) ── */}
+        <div style={{
+          background: theme.cardBg,
+          border: `1px solid ${theme.cardBorder}`,
+          borderRadius: '10px',
+          padding: '12px',
+          boxShadow: theme.boxShadow
+        }}>
+          {/* Top Half: LONG BUILD-UP */}
+          <div style={{
+            background: isLightMode ? '#f0fdf4' : 'rgba(16, 185, 129, 0.05)',
+            border: `1px solid ${theme.bullCardBorder}`,
+            borderRadius: '8px',
+            padding: '10px',
+            marginBottom: '12px'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <TrendingUp size={14} style={{ color: '#059669' }} />
+                <span style={{ fontSize: '11.5px', fontWeight: 900, color: '#059669', letterSpacing: '0.5px' }}>
+                  LONG BUILD-UP CLUSTERS
+                </span>
+              </div>
+              <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#059669' }}>
+                {filteredBullClusters.length} Stocks
+              </span>
+            </div>
+
             <div style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '14px',
-              marginBottom: '16px'
+              gridTemplateColumns: 'repeat(2, 1fr) 1fr',
+              gap: '6px'
             }}>
-              {data.indexAnchors.nifty && renderIndexAnchorCard(data.indexAnchors.nifty)}
-              {data.indexAnchors.banknifty && renderIndexAnchorCard(data.indexAnchors.banknifty)}
-            </div>
-          )}
-
-          {/* Main 3-Column Layout Matching order-block.com Video */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(330px, 1.15fr) minmax(290px, 1fr) minmax(370px, 1.25fr)',
-            gap: '16px',
-            alignItems: 'start'
-          }}>
-            {/* ── COLUMN 1: Macro Money-Flow River (Left) ── */}
-            <div style={{
-              background: '#0d111a',
-              border: '1px solid #1e2638',
-              borderRadius: '12px',
-              padding: '16px',
-              minHeight: '520px'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Layers size={16} style={{ color: '#38bdf8' }} />
-                  <span style={{ fontSize: '13px', fontWeight: 900, color: '#f8fafc' }}>
-                    Macro Sectoral River
-                  </span>
-                </div>
-                <span style={{ fontSize: '10.5px', color: '#64748b' }}>
-                  14 Streams (Indices + 12 Sectors)
-                </span>
-              </div>
-
-              {renderSankeyRiver()}
-
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                background: 'rgba(255, 255, 255, 0.03)',
-                padding: '8px 12px',
-                borderRadius: '6px',
-                marginTop: '12px',
-                border: '1px solid #1e293b'
-              }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '10px', color: '#94a3b8' }}>
-                  <Filter size={12} style={{ color: '#10b981' }} />
-                  <span><strong>Institutional Sieve:</strong> 80% choppy stocks eliminated</span>
-                </div>
-                <span style={{ fontSize: '10px', fontWeight: 800, color: '#10b981' }}>
-                  Top 20 Funneled
-                </span>
-              </div>
-            </div>
-
-            {/* ── COLUMN 2: Sectoral Stock Clusters (Middle) ── */}
-            <div style={{
-              background: '#0d111a',
-              border: '1px solid #1e2638',
-              borderRadius: '12px',
-              padding: '16px',
-              minHeight: '520px'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <TrendingUp size={15} style={{ color: '#10b981' }} />
-                  <span style={{ fontSize: '12px', fontWeight: 900, color: '#10b981' }}>
-                    LONG BUILD-UP CLUSTERS (TOP 20)
-                  </span>
-                </div>
-                <span style={{ fontSize: '10px', color: '#64748b' }}>
-                  {filteredBullClusters.length} Stocks
-                </span>
-              </div>
-
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '8px',
-                marginBottom: '18px'
-              }}>
-                {filteredBullClusters.slice(0, 12).map(stock => (
+              {/* Mini cards column 1 & 2 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {filteredBullClusters.slice(0, 4).map(stock => (
                   <div
                     key={stock.symbol}
                     onClick={() => setSelectedStock(stock)}
                     style={{
-                      background: 'rgba(16, 185, 129, 0.08)',
-                      border: '1px solid rgba(16, 185, 129, 0.25)',
+                      background: theme.cardBg,
+                      border: `1px solid ${theme.cardBorder}`,
                       borderRadius: '6px',
-                      padding: '7px 8px',
+                      padding: '5px 7px',
                       cursor: 'pointer',
                       transition: 'all 0.15s'
                     }}
                     onMouseEnter={(e) => e.currentTarget.style.borderColor = '#10b981'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.25)'}
+                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '11px', fontWeight: 900, color: '#f8fafc' }}>
+                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
                         {stock.symbol}
                       </span>
-                      <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#10b981' }}>
+                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#059669' }}>
                         +{stock.dayChangePct}%
                       </span>
                     </div>
-                    <div style={{ fontSize: '8.5px', color: '#94a3b8', marginTop: '2px' }}>
+                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
                       {stock.sector} · ₹{stock.spot}
-                    </div>
-                    <div style={{
-                      fontSize: '8px',
-                      fontWeight: 900,
-                      color: '#10b981',
-                      background: 'rgba(16, 185, 129, 0.15)',
-                      padding: '1px 4px',
-                      borderRadius: '3px',
-                      marginTop: '4px',
-                      display: 'inline-block'
-                    }}>
-                      LONG BUILD-UP
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div style={{ height: '1px', background: '#1e293b', margin: '14px 0' }} />
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <TrendingDown size={15} style={{ color: '#f43f5e' }} />
-                  <span style={{ fontSize: '12px', fontWeight: 900, color: '#f43f5e' }}>
-                    SHORT BUILD-UP CLUSTERS (TOP 20)
-                  </span>
-                </div>
-                <span style={{ fontSize: '10px', color: '#64748b' }}>
-                  {filteredBearClusters.length} Stocks
-                </span>
-              </div>
-
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(3, 1fr)',
-                gap: '8px'
-              }}>
-                {filteredBearClusters.slice(0, 12).map(stock => (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {filteredBullClusters.slice(4, 8).map(stock => (
                   <div
                     key={stock.symbol}
                     onClick={() => setSelectedStock(stock)}
                     style={{
-                      background: 'rgba(244, 63, 94, 0.08)',
-                      border: '1px solid rgba(244, 63, 94, 0.25)',
+                      background: theme.cardBg,
+                      border: `1px solid ${theme.cardBorder}`,
                       borderRadius: '6px',
-                      padding: '7px 8px',
+                      padding: '5px 7px',
                       cursor: 'pointer',
                       transition: 'all 0.15s'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#f43f5e'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = 'rgba(244, 63, 94, 0.25)'}
+                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#10b981'}
+                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '11px', fontWeight: 900, color: '#f8fafc' }}>
+                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
                         {stock.symbol}
                       </span>
-                      <span style={{ fontSize: '10.5px', fontWeight: 800, color: '#f43f5e' }}>
-                        {stock.dayChangePct}%
+                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#059669' }}>
+                        +{stock.dayChangePct}%
                       </span>
                     </div>
-                    <div style={{ fontSize: '8.5px', color: '#94a3b8', marginTop: '2px' }}>
+                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
                       {stock.sector} · ₹{stock.spot}
-                    </div>
-                    <div style={{
-                      fontSize: '8px',
-                      fontWeight: 900,
-                      color: '#f43f5e',
-                      background: 'rgba(244, 63, 94, 0.15)',
-                      padding: '1px 4px',
-                      borderRadius: '3px',
-                      marginTop: '4px',
-                      display: 'inline-block'
-                    }}>
-                      SHORT BUILD-UP
                     </div>
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* ── COLUMN 3: Precision Execution Cards (Right) ── */}
-            <div style={{
-              background: '#0d111a',
-              border: '1px solid #1e2638',
-              borderRadius: '12px',
-              padding: '16px',
-              minHeight: '520px'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <Crosshair size={16} style={{ color: '#f59e0b' }} />
-                  <span style={{ fontSize: '13px', fontWeight: 900, color: '#f8fafc' }}>
-                    Actionable Execution Setups
-                  </span>
+              {/* Column 3: OI Build-up Momentum List */}
+              <div style={{
+                background: theme.cardBg,
+                border: `1px solid ${theme.cardBorder}`,
+                borderRadius: '6px',
+                padding: '6px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+              }}>
+                <div style={{ fontSize: '8.5px', fontWeight: 800, color: '#059669', marginBottom: '4px' }}>
+                  OI ACCUMULATION
                 </div>
-                <span style={{ fontSize: '10.5px', color: '#64748b' }}>
-                  Retest ZONE · Amber Liquidity Line
+                {filteredBullClusters.slice(0, 4).map(stock => (
+                  <div key={stock.symbol} style={{ fontSize: '8px', display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
+                    <span style={{ color: theme.textPrimary, fontWeight: 700 }}>{stock.symbol}</span>
+                    <span style={{ color: '#0284c7', fontWeight: 800 }}>+{Math.abs(stock.oiChangePct)}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Half: SHORT BUILD-UP */}
+          <div style={{
+            background: isLightMode ? '#fef2f2' : 'rgba(239, 68, 68, 0.05)',
+            border: `1px solid ${theme.bearCardBorder}`,
+            borderRadius: '8px',
+            padding: '10px'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <TrendingDown size={14} style={{ color: '#dc2626' }} />
+                <span style={{ fontSize: '11.5px', fontWeight: 900, color: '#dc2626', letterSpacing: '0.5px' }}>
+                  SHORT BUILD-UP CLUSTERS
                 </span>
               </div>
+              <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#dc2626' }}>
+                {filteredBearClusters.length} Stocks
+              </span>
+            </div>
 
-              {(data?.topExecutionCards.bull || []).map(card => renderExecutionCard(card, true))}
-
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                margin: '16px 0',
-                color: '#475569',
-                fontSize: '10px',
-                fontWeight: 800
-              }}>
-                <div style={{ flex: 1, height: '1px', background: '#1e293b' }} />
-                <span>BEARISH SUPPLY ZONES</span>
-                <div style={{ flex: 1, height: '1px', background: '#1e293b' }} />
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr) 1fr',
+              gap: '6px'
+            }}>
+              {/* Mini cards column 1 & 2 */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {filteredBearClusters.slice(0, 4).map(stock => (
+                  <div
+                    key={stock.symbol}
+                    onClick={() => setSelectedStock(stock)}
+                    style={{
+                      background: theme.cardBg,
+                      border: `1px solid ${theme.cardBorder}`,
+                      borderRadius: '6px',
+                      padding: '5px 7px',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#ef4444'}
+                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
+                        {stock.symbol}
+                      </span>
+                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#dc2626' }}>
+                        {stock.dayChangePct}%
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
+                      {stock.sector} · ₹{stock.spot}
+                    </div>
+                  </div>
+                ))}
               </div>
 
-              {(data?.topExecutionCards.bear || []).map(card => renderExecutionCard(card, false))}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {filteredBearClusters.slice(4, 8).map(stock => (
+                  <div
+                    key={stock.symbol}
+                    onClick={() => setSelectedStock(stock)}
+                    style={{
+                      background: theme.cardBg,
+                      border: `1px solid ${theme.cardBorder}`,
+                      borderRadius: '6px',
+                      padding: '5px 7px',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#ef4444'}
+                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
+                        {stock.symbol}
+                      </span>
+                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#dc2626' }}>
+                        {stock.dayChangePct}%
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
+                      {stock.sector} · ₹{stock.spot}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Column 3: OI Short Build-up Momentum List */}
+              <div style={{
+                background: theme.cardBg,
+                border: `1px solid ${theme.cardBorder}`,
+                borderRadius: '6px',
+                padding: '6px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between'
+              }}>
+                <div style={{ fontSize: '8.5px', fontWeight: 800, color: '#dc2626', marginBottom: '4px' }}>
+                  OI SHORT LIQUIDATION
+                </div>
+                {filteredBearClusters.slice(0, 4).map(stock => (
+                  <div key={stock.symbol} style={{ fontSize: '8px', display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
+                    <span style={{ color: theme.textPrimary, fontWeight: 700 }}>{stock.symbol}</span>
+                    <span style={{ color: '#d97706', fontWeight: 800 }}>+{Math.abs(stock.oiChangePct)}%</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      )}
 
-      {/* ── 5. Detail Stock Drawer / Modal (Matching 00:50 in video) ── */}
+        {/* ── COLUMN 3: Precision Execution Cards (Right) ── */}
+        <div style={{
+          background: theme.cardBg,
+          border: `1px solid ${theme.cardBorder}`,
+          borderRadius: '10px',
+          padding: '12px',
+          boxShadow: theme.boxShadow
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <Crosshair size={15} style={{ color: '#f59e0b' }} />
+              <span style={{ fontSize: '12px', fontWeight: 900, color: theme.textPrimary }}>
+                Actionable Execution Setups
+              </span>
+            </div>
+            <span style={{ fontSize: '9.5px', color: theme.textMuted }}>
+              3 Bullish · 3 Bearish
+            </span>
+          </div>
+
+          {/* Top 3 Bullish Cards */}
+          <div style={{ marginBottom: '10px' }}>
+            {(data?.topExecutionCards.bull || []).map(card => renderExecutionCard(card, true))}
+          </div>
+
+          {/* Bottom 3 Bearish Cards */}
+          <div>
+            {(data?.topExecutionCards.bear || []).map(card => renderExecutionCard(card, false))}
+          </div>
+        </div>
+      </div>
+
+      {/* ── 5. Interactive Stock Detail Retest Modal (as seen in video 00:50) ── */}
       {selectedStock && (
         <div style={{
           position: 'fixed',
@@ -1815,8 +1400,8 @@ export const OrderBlockFlowContainer: React.FC = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.88)',
-          backdropFilter: 'blur(8px)',
+          backgroundColor: 'rgba(0, 0, 0, 0.75)',
+          backdropFilter: 'blur(6px)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -1825,13 +1410,13 @@ export const OrderBlockFlowContainer: React.FC = () => {
         }} onClick={() => setSelectedStock(null)}>
           <div 
             style={{
-              backgroundColor: '#0a0d14',
-              border: `1.5px solid ${selectedStock.bias === 'BULL' ? '#10b981' : '#f43f5e'}`,
-              borderRadius: '16px',
-              padding: '24px 28px',
+              backgroundColor: theme.cardBg,
+              border: `1.5px solid ${selectedStock.bias === 'BULL' ? '#10b981' : '#ef4444'}`,
+              borderRadius: '14px',
+              padding: '20px 24px',
               maxWidth: '680px',
               width: '100%',
-              boxShadow: '0 24px 60px rgba(0, 0, 0, 0.95)',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
               maxHeight: '90vh',
               overflowY: 'auto'
             }}
@@ -1839,38 +1424,38 @@ export const OrderBlockFlowContainer: React.FC = () => {
           >
             {/* Modal Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <span style={{
-                  padding: '4px 10px',
-                  borderRadius: '6px',
-                  backgroundColor: selectedStock.bias === 'BULL' ? '#10b981' : '#f43f5e',
+                  padding: '3px 9px',
+                  borderRadius: '5px',
+                  backgroundColor: selectedStock.bias === 'BULL' ? '#10b981' : '#ef4444',
                   color: '#ffffff',
-                  fontSize: '12px',
+                  fontSize: '11px',
                   fontWeight: 900
                 }}>
                   {selectedStock.bias} #{selectedStock.rank || 1}
                 </span>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <h3 style={{ margin: 0, fontSize: '20px', fontWeight: 900, color: '#f8fafc' }}>
+                    <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 900, color: theme.textPrimary }}>
                       {selectedStock.symbol}
                     </h3>
-                    <span style={{ fontSize: '13px', color: '#94a3b8' }}>
+                    <span style={{ fontSize: '12px', color: theme.textSecondary }}>
                       {selectedStock.name} · {selectedStock.sector}
                     </span>
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '2px' }}>
-                    <span style={{ fontSize: '18px', fontWeight: 900, color: '#f8fafc', fontFamily: 'monospace' }}>
+                    <span style={{ fontSize: '16px', fontWeight: 900, color: theme.textPrimary, fontFamily: 'monospace' }}>
                       ₹{selectedStock.spot}
                     </span>
                     <span style={{
-                      fontSize: '13px',
+                      fontSize: '12px',
                       fontWeight: 800,
-                      color: selectedStock.bias === 'BULL' ? '#10b981' : '#f43f5e'
+                      color: selectedStock.bias === 'BULL' ? '#059669' : '#dc2626'
                     }}>
                       {selectedStock.dayChangePct >= 0 ? `+${selectedStock.dayChangePct}%` : `${selectedStock.dayChangePct}%`}
                     </span>
-                    <span style={{ fontSize: '11px', color: '#fbbf24', fontWeight: 800 }}>
+                    <span style={{ fontSize: '10.5px', color: '#b45309', fontWeight: 800 }}>
                       CONV {selectedStock.score} ★★★★★
                     </span>
                   </div>
@@ -1879,12 +1464,12 @@ export const OrderBlockFlowContainer: React.FC = () => {
               <button 
                 onClick={() => setSelectedStock(null)}
                 style={{
-                  background: '#1e293b',
-                  color: '#cbd5e1',
-                  border: 'none',
-                  borderRadius: '8px',
-                  padding: '8px 14px',
-                  fontSize: '12px',
+                  background: theme.pillBg,
+                  color: theme.textPrimary,
+                  border: `1px solid ${theme.cardBorder}`,
+                  borderRadius: '6px',
+                  padding: '6px 12px',
+                  fontSize: '11px',
                   fontWeight: 800,
                   cursor: 'pointer'
                 }}
@@ -1898,145 +1483,145 @@ export const OrderBlockFlowContainer: React.FC = () => {
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
               gap: '8px',
-              background: '#0d111a',
-              border: '1px solid #1e2638',
+              background: theme.pillBg,
+              border: `1px solid ${theme.cardBorder}`,
               borderRadius: '8px',
               padding: '10px 14px',
-              marginBottom: '16px',
-              fontSize: '11px'
+              marginBottom: '14px',
+              fontSize: '10.5px'
             }}>
               <div>
-                <span style={{ color: '#64748b' }}>RANK:</span>
-                <div style={{ fontWeight: 800, color: '#f8fafc' }}>p99.8 #1/172</div>
+                <span style={{ color: theme.textMuted }}>RANK:</span>
+                <div style={{ fontWeight: 800, color: theme.textPrimary }}>p99.8 #1/172</div>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>OI CHANGE:</span>
-                <div style={{ fontWeight: 800, color: '#38bdf8' }}>+{Math.abs(selectedStock.oiChangePct)}% {selectedStock.buildUp}</div>
+                <span style={{ color: theme.textMuted }}>OI CHANGE:</span>
+                <div style={{ fontWeight: 800, color: '#0284c7' }}>+{Math.abs(selectedStock.oiChangePct)}% {selectedStock.buildUp}</div>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>VWAP:</span>
-                <div style={{ fontWeight: 800, color: '#f8fafc', fontFamily: 'monospace' }}>₹{+(selectedStock.spot * 0.996).toFixed(2)}</div>
+                <span style={{ color: theme.textMuted }}>VWAP:</span>
+                <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{+(selectedStock.spot * 0.996).toFixed(2)}</div>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>RVOL:</span>
-                <div style={{ fontWeight: 800, color: '#10b981' }}>{selectedStock.rvol}x (High Vol)</div>
+                <span style={{ color: theme.textMuted }}>RVOL:</span>
+                <div style={{ fontWeight: 800, color: '#059669' }}>{selectedStock.rvol}x (High Vol)</div>
               </div>
 
               <div>
-                <span style={{ color: '#64748b' }}>ORDER BLOCK ZONE:</span>
-                <div style={{ fontWeight: 800, color: selectedStock.bias === 'BULL' ? '#10b981' : '#f43f5e', fontFamily: 'monospace' }}>
+                <span style={{ color: theme.textMuted }}>ORDER BLOCK ZONE:</span>
+                <div style={{ fontWeight: 800, color: selectedStock.bias === 'BULL' ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>
                   {selectedStock.zone.label}
                 </div>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>SL / S1:</span>
-                <div style={{ fontWeight: 800, color: '#f43f5e', fontFamily: 'monospace' }}>₹{selectedStock.s1}</div>
+                <span style={{ color: theme.textMuted }}>SL / S1:</span>
+                <div style={{ fontWeight: 800, color: '#dc2626', fontFamily: 'monospace' }}>₹{selectedStock.s1}</div>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>TARGET 1 (R1):</span>
-                <div style={{ fontWeight: 800, color: '#10b981', fontFamily: 'monospace' }}>₹{selectedStock.r1}</div>
+                <span style={{ color: theme.textMuted }}>TARGET 1 (R1):</span>
+                <div style={{ fontWeight: 800, color: '#059669', fontFamily: 'monospace' }}>₹{selectedStock.r1}</div>
               </div>
               <div>
-                <span style={{ color: '#64748b' }}>R:R RATIO:</span>
-                <div style={{ fontWeight: 900, color: '#fbbf24' }}>1 : {selectedStock.rewardRiskRatio}</div>
+                <span style={{ color: theme.textMuted }}>R:R RATIO:</span>
+                <div style={{ fontWeight: 900, color: '#b45309' }}>1 : {selectedStock.rewardRiskRatio}</div>
               </div>
             </div>
 
             {/* Interactive Intraday Chart with Order Block Zone Shading */}
             <div style={{
-              background: '#070a12',
-              border: '1px solid #1e2638',
-              borderRadius: '10px',
-              padding: '16px',
-              marginBottom: '16px'
+              background: theme.canvasBg,
+              border: `1px solid ${theme.cardBorder}`,
+              borderRadius: '8px',
+              padding: '12px',
+              marginBottom: '14px'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                <span style={{ fontSize: '11px', fontWeight: 900, color: '#38bdf8' }}>
+                <span style={{ fontSize: '10.5px', fontWeight: 900, color: '#0284c7' }}>
                   INTRADAY CHART · ORDER BLOCK RETEST ENTRY
                 </span>
-                <span style={{ fontSize: '10px', color: '#10b981', fontWeight: 800 }}>
+                <span style={{ fontSize: '10px', color: '#059669', fontWeight: 800 }}>
                   ⚡ RETESTED ZONE AT 10:00 AM IST
                 </span>
               </div>
 
               {/* Chart SVG */}
-              <div style={{ width: '100%', height: '180px', position: 'relative' }}>
-                <svg viewBox="0 0 600 180" style={{ width: '100%', height: '100%' }}>
+              <div style={{ width: '100%', height: '170px', position: 'relative' }}>
+                <svg viewBox="0 0 600 170" style={{ width: '100%', height: '100%' }}>
                   <defs>
                     <linearGradient id="chartZoneGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#10b981" stopOpacity="0.25" />
-                      <stop offset="100%" stopColor="#10b981" stopOpacity="0.05" />
+                      <stop offset="0%" stopColor="#10b981" stopOpacity="0.2" />
+                      <stop offset="100%" stopColor="#10b981" stopOpacity="0.04" />
                     </linearGradient>
                   </defs>
 
                   {/* Horizontal Levels */}
-                  <line x1={40} y1={25} x2={560} y2={25} stroke="#10b981" strokeWidth={1} strokeDasharray="3,3" />
-                  <text x={565} y={28} fill="#10b981" fontSize="9" fontWeight="bold">R2 ₹{selectedStock.r2}</text>
+                  <line x1={40} y1={25} x2={560} y2={25} stroke="#059669" strokeWidth={1} strokeDasharray="3,3" />
+                  <text x={565} y={28} fill="#059669" fontSize="8.5" fontWeight="bold">R2 ₹{selectedStock.r2}</text>
 
-                  <line x1={40} y1={55} x2={560} y2={55} stroke="#34d399" strokeWidth={1} strokeDasharray="3,3" />
-                  <text x={565} y={58} fill="#34d399" fontSize="9" fontWeight="bold">R1 ₹{selectedStock.r1}</text>
+                  <line x1={40} y1={52} x2={560} y2={52} stroke="#10b981" strokeWidth={1} strokeDasharray="3,3" />
+                  <text x={565} y={55} fill="#10b981" fontSize="8.5" fontWeight="bold">R1 ₹{selectedStock.r1}</text>
 
-                  {/* Shaded Order Block Demand Zone (70 to 105 Y) */}
-                  <rect x={40} y={90} width={520} height={35} fill="url(#chartZoneGrad)" stroke="#10b981" strokeWidth={1} rx={3} />
-                  <text x={45} y={112} fill="#10b981" fontSize="9" fontWeight="bold">ORDER BLOCK ZONE ({selectedStock.zone.label})</text>
+                  {/* Shaded Order Block Demand Zone */}
+                  <rect x={40} y={85} width={520} height={32} fill="url(#chartZoneGrad)" stroke="#10b981" strokeWidth={1} rx={3} />
+                  <text x={45} y={105} fill="#059669" fontSize="8.5" fontWeight="bold">ORDER BLOCK ZONE ({selectedStock.zone.label})</text>
 
                   {/* Amber Liquidity Sweep Line */}
-                  <line x1={40} y1={145} x2={560} y2={145} stroke="#fbbf24" strokeWidth={1.5} strokeDasharray="4,3" />
-                  <text x={565} y={148} fill="#fbbf24" fontSize="9" fontWeight="bold">LIQ ₹{selectedStock.liquidityLine}</text>
+                  <line x1={40} y1={135} x2={560} y2={135} stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4,3" />
+                  <text x={565} y={138} fill="#b45309" fontSize="8.5" fontWeight="bold">LIQ ₹{selectedStock.liquidityLine}</text>
 
                   {/* Time Marks */}
-                  <text x={45} y={170} fill="#475569" fontSize="8">09:15</text>
-                  <text x={140} y={170} fill="#475569" fontSize="8">10:00 (Entry)</text>
-                  <text x={260} y={170} fill="#475569" fontSize="8">11:30</text>
-                  <text x={380} y={170} fill="#475569" fontSize="8">13:30</text>
-                  <text x={510} y={170} fill="#475569" fontSize="8">15:30</text>
+                  <text x={45} y={160} fill="#94a3b8" fontSize="8">09:15</text>
+                  <text x={140} y={160} fill="#94a3b8" fontSize="8">10:00 (Entry)</text>
+                  <text x={260} y={160} fill="#94a3b8" fontSize="8">11:30</text>
+                  <text x={380} y={160} fill="#94a3b8" fontSize="8">13:30</text>
+                  <text x={510} y={160} fill="#94a3b8" fontSize="8">15:30</text>
 
                   {/* Price Trajectory Line */}
                   <path
-                    d="M 45 130 Q 80 85, 120 70 T 150 102 T 190 75 T 260 60 T 360 48 T 460 38 T 540 30"
+                    d="M 45 125 Q 80 80, 120 65 T 150 96 T 190 70 T 260 55 T 360 44 T 460 34 T 540 26"
                     fill="none"
                     stroke="#10b981"
                     strokeWidth={2.5}
-                    style={{ filter: 'drop-shadow(0 0 6px #10b981)' }}
                   />
 
-                  {/* Retest Entry Arrow (at 10:00 AM / x=150, y=102) */}
-                  <circle cx={150} cy={102} r={5} fill="#10b981" stroke="#ffffff" strokeWidth={2} />
-                  <path d="M 150 128 L 150 110" stroke="#10b981" strokeWidth={2} markerEnd="url(#arrow)" />
-                  <text x={150} y={140} fill="#10b981" fontSize="9" fontWeight="bold" textAnchor="middle">ENTRY PULLBACK</text>
+                  {/* Retest Entry Arrow (at 10:00 AM / x=150, y=96) */}
+                  <circle cx={150} cy={96} r={4.5} fill="#10b981" stroke="#ffffff" strokeWidth={2} />
+                  <line x1={150} y1={120} x2={150} y2={104} stroke="#10b981" strokeWidth={2} />
+                  <polygon points="147,105 153,105 150,98" fill="#10b981" />
+                  <text x={150} y={130} fill="#059669" fontSize="8.5" fontWeight="bold" textAnchor="middle">ENTRY PULLBACK</text>
 
-                  {/* Exit Arrow (at top / x=540, y=30) */}
-                  <circle cx={540} cy={30} r={5} fill="#f43f5e" stroke="#ffffff" strokeWidth={2} />
-                  <text x={530} y={18} fill="#f43f5e" fontSize="9" fontWeight="bold">EXIT</text>
+                  {/* Exit Arrow (at top / x=540, y=26) */}
+                  <circle cx={540} cy={26} r={4.5} fill="#ef4444" stroke="#ffffff" strokeWidth={2} />
+                  <text x={530} y={16} fill="#dc2626" fontSize="8.5" fontWeight="bold">EXIT</text>
                 </svg>
               </div>
             </div>
 
             {/* Sensibull / Broker Execution Blueprint */}
             <div style={{
-              background: 'rgba(251, 191, 36, 0.08)',
-              border: '1px solid rgba(251, 191, 36, 0.3)',
-              padding: '12px 16px',
+              background: isLightMode ? '#fffbeb' : 'rgba(251, 191, 36, 0.08)',
+              border: `1px solid ${isLightMode ? '#fde68a' : 'rgba(251, 191, 36, 0.3)'}`,
+              padding: '10px 14px',
               borderRadius: '8px',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center'
             }}>
               <div>
-                <div style={{ fontSize: '12px', fontWeight: 900, color: '#fef08a' }}>
+                <div style={{ fontSize: '11.5px', fontWeight: 900, color: '#92400e' }}>
                   🎯 Verified F&amp;O Options Scalp Blueprint
                 </div>
-                <div style={{ fontSize: '11px', color: '#cbd5e1', marginTop: '2px' }}>
+                <div style={{ fontSize: '10.5px', color: theme.textSecondary, marginTop: '2px' }}>
                   Recommended ATM Strike: Buy <strong>{selectedStock.symbol} {Math.round(selectedStock.spot / 50) * 50} {selectedStock.bias === 'BULL' ? 'CE' : 'PE'}</strong> | Risk strictly capped to ₹{+(selectedStock.riskPts * 0.5).toFixed(2)} pts on premium!
                 </div>
               </div>
-              <div style={{ textAlign: 'right', minWidth: '100px' }}>
+              <div style={{ textAlign: 'right', minWidth: '90px' }}>
                 <span style={{
                   background: '#10b981',
                   color: '#ffffff',
-                  padding: '4px 10px',
-                  borderRadius: '6px',
-                  fontSize: '11px',
+                  padding: '3px 8px',
+                  borderRadius: '5px',
+                  fontSize: '10.5px',
                   fontWeight: 900
                 }}>
                   R:R 1 : {selectedStock.rewardRiskRatio}
