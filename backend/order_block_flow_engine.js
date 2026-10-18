@@ -26,9 +26,9 @@ function readJSON(file, fallback = {}) {
   return fallback;
 }
 
-// 14 Macro Streams: NIFTY 50, BANKNIFTY + 12 Standard Macro Sectoral Buckets
+// 16 Macro Streams: NIFTY 50, BANKNIFTY, SENSEX, CRUDEOIL + 12 Standard Macro Sectoral Buckets
 export const MACRO_SECTORS = [
-  'NIFTY 50', 'BANKNIFTY',
+  'NIFTY 50', 'BANKNIFTY', 'SENSEX', 'CRUDEOIL',
   'BANK', 'METAL', 'AUTO', 'IT', 'PHARMA', 'FIN SERVICE',
   'ENERGY', 'FMCG', 'REALTY', 'OIL & GAS', 'INFRA', 'CONSUMER'
 ];
@@ -37,6 +37,8 @@ export function mapToMacroSector(rawSector = '') {
   const s = (rawSector || '').toUpperCase();
   if (s.includes('NIFTY 50') || s === 'NIFTY') return 'NIFTY 50';
   if (s.includes('BANKNIFTY') || s === 'BANK NIFTY') return 'BANKNIFTY';
+  if (s.includes('SENSEX') || s === 'BSE SENSEX') return 'SENSEX';
+  if (s.includes('CRUDE') || s.includes('CRUDEOIL') || s.includes('MCX:CRUDE')) return 'CRUDEOIL';
   if (s.includes('BANK')) return 'BANK';
   if (s.includes('AUTO') || s.includes('VEHICLE') || s.includes('TYRE')) return 'AUTO';
   if (s.includes('METAL') || s.includes('STEEL') || s.includes('ZINC') || s.includes('COPPER') || s.includes('MINING')) return 'METAL';
@@ -136,12 +138,18 @@ export function computeOrderBlockFlowMatrix() {
   const pcrMap = new Map();
   (pcrData.stocks || []).forEach(s => pcrMap.set(s.symbol, s));
 
-  // Extract NIFTY and BANKNIFTY benchmarks
+  // Extract NIFTY, BANKNIFTY, SENSEX, CRUDEOIL benchmarks
   const niftySpot = +(marketReport.niftyClose?.close || gexSnapshot.NIFTY?.spot || 23146.15).toFixed(2);
   const niftyChangePct = +(marketReport.niftyClose?.changePct != null ? marketReport.niftyClose.changePct : 0.65).toFixed(2);
 
   const bnSpot = +(marketReport.bankniftyClose?.close || 55844.0).toFixed(2);
   const bnChangePct = +(marketReport.bankniftyClose?.changePct != null ? marketReport.bankniftyClose.changePct : 0.06).toFixed(2);
+
+  const sensexSpot = +(gexSnapshot.SENSEX?.spotPrice || 71491.44).toFixed(2);
+  const sensexChangePct = +(gexSnapshot.SENSEX?.momentum?.day ? (gexSnapshot.SENSEX.momentum.day / sensexSpot * 100) : -0.21).toFixed(2);
+
+  const crudeSpot = +(gexSnapshot.CRUDEOIL?.spotPrice || 8808.0).toFixed(2);
+  const crudeChangePct = +(gexSnapshot.CRUDEOIL?.momentum?.day ? (gexSnapshot.CRUDEOIL.momentum.day / crudeSpot * 100) : 0.31).toFixed(2);
 
   const sectorAggregates = {};
   MACRO_SECTORS.forEach(sec => {
@@ -163,6 +171,22 @@ export function computeOrderBlockFlowMatrix() {
     bullCount: bnChangePct >= 0 ? 7 : 5,
     bearCount: bnChangePct >= 0 ? 5 : 7,
     avgChange: bnChangePct
+  };
+
+  sectorAggregates['SENSEX'] = {
+    totalChange: sensexChangePct,
+    count: 30,
+    bullCount: sensexChangePct >= 0 ? 18 : 12,
+    bearCount: sensexChangePct >= 0 ? 12 : 18,
+    avgChange: sensexChangePct
+  };
+
+  sectorAggregates['CRUDEOIL'] = {
+    totalChange: crudeChangePct,
+    count: 1,
+    bullCount: crudeChangePct >= 0 ? 1 : 0,
+    bearCount: crudeChangePct >= 0 ? 0 : 1,
+    avgChange: crudeChangePct
   };
 
   const processedStocks = [];
@@ -398,8 +422,80 @@ export function computeOrderBlockFlowMatrix() {
     score: 95
   };
 
+  const sensexCard = {
+    symbol: 'SENSEX',
+    name: 'BSE Sensex Benchmark Index',
+    sector: 'SENSEX',
+    spot: sensexSpot,
+    dayChangePct: sensexChangePct,
+    rvol: 1.28,
+    oiChangePct: +(sensexChangePct * 1.35 + 0.8).toFixed(1),
+    buildUp: sensexChangePct >= 0 ? 'LONG BUILD-UP' : 'SHORT BUILD-UP',
+    buildUpColor: sensexChangePct >= 0 ? '#10b981' : '#f43f5e',
+    bias: sensexChangePct >= 0 ? 'BULL' : 'BEAR',
+    zone: {
+      low: +(gexSnapshot.SENSEX?.walls?.putWall || sensexSpot * 0.995).toFixed(1),
+      high: +(gexSnapshot.SENSEX?.gammaFlip?.mid || sensexSpot * 0.998).toFixed(1),
+      label: `₹${(gexSnapshot.SENSEX?.walls?.putWall || sensexSpot * 0.995).toFixed(0)} – ₹${(gexSnapshot.SENSEX?.gammaFlip?.mid || sensexSpot * 0.998).toFixed(0)}`
+    },
+    s1: +(sensexSpot * 0.993).toFixed(1),
+    r1: +(gexSnapshot.SENSEX?.walls?.callWall || sensexSpot * 1.008).toFixed(1),
+    r2: +(sensexSpot * 1.015).toFixed(1),
+    s2: +(sensexSpot * 0.985).toFixed(1),
+    liquidityLine: +(sensexSpot * 0.991).toFixed(1),
+    retestStatus: 'IN_ZONE',
+    liquiditySweepDetected: true,
+    riskPts: +(sensexSpot * 0.005).toFixed(1),
+    riskPct: 0.50,
+    rewardPts: +(sensexSpot * 0.012).toFixed(1),
+    rewardRiskRatio: 2.4,
+    sliderPct: 50,
+    sparklines: generateSparklines(sensexChangePct, sensexChangePct >= 0),
+    isChoppy: false,
+    dotX: +sensexChangePct.toFixed(2),
+    rank: 3,
+    strengthBarWidth: 80,
+    score: 94
+  };
+
+  const crudeCard = {
+    symbol: 'CRUDEOIL',
+    name: 'MCX Crude Oil Futures (₹/bbl)',
+    sector: 'CRUDEOIL',
+    spot: crudeSpot,
+    dayChangePct: crudeChangePct,
+    rvol: 1.55,
+    oiChangePct: +(crudeChangePct * 1.6 + 1.5).toFixed(1),
+    buildUp: crudeChangePct >= 0 ? 'LONG BUILD-UP' : 'SHORT BUILD-UP',
+    buildUpColor: crudeChangePct >= 0 ? '#10b981' : '#f43f5e',
+    bias: crudeChangePct >= 0 ? 'BULL' : 'BEAR',
+    zone: {
+      low: +(gexSnapshot.CRUDEOIL?.walls?.putWall || crudeSpot * 0.993).toFixed(1),
+      high: +(gexSnapshot.CRUDEOIL?.gammaFlip?.mid || crudeSpot * 0.997).toFixed(1),
+      label: `₹${(gexSnapshot.CRUDEOIL?.walls?.putWall || crudeSpot * 0.993).toFixed(0)} – ₹${(gexSnapshot.CRUDEOIL?.gammaFlip?.mid || crudeSpot * 0.997).toFixed(0)}`
+    },
+    s1: +(crudeSpot * 0.990).toFixed(1),
+    r1: +(gexSnapshot.CRUDEOIL?.walls?.callWall || crudeSpot * 1.010).toFixed(1),
+    r2: +(crudeSpot * 1.020).toFixed(1),
+    s2: +(crudeSpot * 0.982).toFixed(1),
+    liquidityLine: +(crudeSpot * 0.988).toFixed(1),
+    retestStatus: 'IN_ZONE',
+    liquiditySweepDetected: true,
+    riskPts: +(crudeSpot * 0.007).toFixed(1),
+    riskPct: 0.70,
+    rewardPts: +(crudeSpot * 0.018).toFixed(1),
+    rewardRiskRatio: 2.6,
+    sliderPct: 54,
+    sparklines: generateSparklines(crudeChangePct, crudeChangePct >= 0),
+    isChoppy: false,
+    dotX: +crudeChangePct.toFixed(2),
+    rank: 4,
+    strengthBarWidth: 88,
+    score: 96
+  };
+
   // Prepend indices to processedStocks so they are searchable & selectable
-  const allStocksWithIndices = [niftyCard, bankniftyCard, ...processedStocks];
+  const allStocksWithIndices = [niftyCard, bankniftyCard, sensexCard, crudeCard, ...processedStocks];
 
   // Filter top execution candidates
   const bullishStocks = processedStocks
@@ -453,7 +549,9 @@ export function computeOrderBlockFlowMatrix() {
     },
     indexAnchors: {
       nifty: niftyCard,
-      banknifty: bankniftyCard
+      banknifty: bankniftyCard,
+      sensex: sensexCard,
+      crudeoil: crudeCard
     },
     sectorRivers,
     topExecutionCards: {
