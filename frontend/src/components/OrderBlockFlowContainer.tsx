@@ -107,11 +107,8 @@ export const OrderBlockFlowContainer: React.FC = () => {
   const [selectedStock, setSelectedStock] = useState<StockExecutionCard | null>(null);
   const [hoveredSector, setHoveredSector] = useState<string | null>(null);
   const [hoveredStock, setHoveredStock] = useState<StockExecutionCard | null>(null);
-  const [isLightMode, setIsLightMode] = useState<boolean>(true); // Default to clean light mode seen in screenshot
-  const [activeTab, setActiveTab] = useState<'FLOW' | 'XRAY' | 'BOARDS' | 'COACHING'>('FLOW');
-  const [selectedVideo, setSelectedVideo] = useState<number>(0);
+  const [isLightMode, setIsLightMode] = useState<boolean>(true); // Exact light theme as seen in user screenshots
 
-  // Modern Theme Definition matching order-block.com
   const theme = useMemo(() => isLightMode ? {
     bg: '#f8fafc',
     canvasBg: '#ffffff',
@@ -127,13 +124,13 @@ export const OrderBlockFlowContainer: React.FC = () => {
     pillBorder: '#cbd5e1',
     sieveBg: '#f8fafc',
     sieveBorder: '#94a3b8',
-    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+    sieveGreenBox: 'rgba(16, 185, 129, 0.12)',
+    sieveRedBox: 'rgba(239, 68, 68, 0.12)',
+    boxShadow: '0 2px 12px rgba(0, 0, 0, 0.04)',
     bullCardBg: '#f0fdf4',
     bullCardBorder: 'rgba(16, 185, 129, 0.35)',
-    bullGlow: '0 4px 16px rgba(16, 185, 129, 0.1)',
     bearCardBg: '#fef2f2',
-    bearCardBorder: 'rgba(239, 68, 68, 0.35)',
-    bearGlow: '0 4px 16px rgba(239, 68, 68, 0.1)'
+    bearCardBorder: 'rgba(239, 68, 68, 0.35)'
   } : {
     bg: '#07090e',
     canvasBg: '#0a0d14',
@@ -149,13 +146,13 @@ export const OrderBlockFlowContainer: React.FC = () => {
     pillBorder: '#334155',
     sieveBg: '#111827',
     sieveBorder: '#374151',
+    sieveGreenBox: 'rgba(16, 185, 129, 0.18)',
+    sieveRedBox: 'rgba(244, 63, 94, 0.18)',
     boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
     bullCardBg: 'rgba(16, 185, 129, 0.08)',
     bullCardBorder: 'rgba(16, 185, 129, 0.35)',
-    bullGlow: '0 4px 20px rgba(16, 185, 129, 0.15)',
     bearCardBg: 'rgba(244, 63, 94, 0.08)',
-    bearCardBorder: 'rgba(244, 63, 94, 0.35)',
-    bearGlow: '0 4px 20px rgba(244, 63, 94, 0.15)'
+    bearCardBorder: 'rgba(244, 63, 94, 0.35)'
   }, [isLightMode]);
 
   const fetchData = useCallback(async (isManual = false) => {
@@ -183,10 +180,12 @@ export const OrderBlockFlowContainer: React.FC = () => {
     return () => clearInterval(interval);
   }, [fetchData]);
 
-  // Filtered stocks for clusters
-  const filteredBullClusters = useMemo(() => {
-    if (!data) return [];
-    let list = [...data.topExecutionCards.bull, ...data.clusters.bullish];
+  // Sorted Bullish and Bearish Stocks for 4-Column Matrix
+  const sortedBullStocks = useMemo(() => {
+    if (!data?.allStocks) return [];
+    let list = data.allStocks
+      .filter(s => s.bias === 'BULL' && s.dayChangePct > 0)
+      .sort((a, b) => b.dayChangePct - a.dayChangePct);
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       list = list.filter(s => s.symbol.toLowerCase().includes(q) || s.name.toLowerCase().includes(q));
@@ -197,9 +196,11 @@ export const OrderBlockFlowContainer: React.FC = () => {
     return list;
   }, [data, searchQuery, selectedSector]);
 
-  const filteredBearClusters = useMemo(() => {
-    if (!data) return [];
-    let list = [...data.topExecutionCards.bear, ...data.clusters.bearish];
+  const sortedBearStocks = useMemo(() => {
+    if (!data?.allStocks) return [];
+    let list = data.allStocks
+      .filter(s => s.bias === 'BEAR' && s.dayChangePct < 0)
+      .sort((a, b) => a.dayChangePct - b.dayChangePct);
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       list = list.filter(s => s.symbol.toLowerCase().includes(q) || s.name.toLowerCase().includes(q));
@@ -210,222 +211,622 @@ export const OrderBlockFlowContainer: React.FC = () => {
     return list;
   }, [data, searchQuery, selectedSector]);
 
-  // Top Volume Delta Timeline Histogram (seen at top of video)
-  const renderTopVolumeDeltaTimeline = () => {
-    const bars = 38;
+  // Sector Breadth Segmented Bar
+  const renderSectorBreadthBar = (bullCount: number, total: number) => {
+    const segments = 6;
+    const activeSegments = Math.round((bullCount / Math.max(1, total)) * segments);
     return (
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '6px',
-        height: '24px',
-        padding: '2px 8px',
-        background: isLightMode ? '#f1f5f9' : '#070a12',
-        borderRadius: '6px',
-        border: `1px solid ${theme.cardBorder}`
-      }}>
-        <span style={{ fontSize: '9px', fontWeight: 900, color: '#0284c7', letterSpacing: '0.5px', whiteSpace: 'nowrap' }}>
-          INTRA-DAY FLOW
-        </span>
-        <div style={{ display: 'flex', alignItems: 'center', height: '18px', gap: '2px', width: '130px', position: 'relative' }}>
-          <div style={{ position: 'absolute', top: '9px', left: 0, right: 0, height: '1px', background: isLightMode ? '#cbd5e1' : '#334155' }} />
-          {Array.from({ length: bars }).map((_, idx) => {
-            const isBull = idx > 10 ? Math.sin(idx * 0.45) > -0.15 : idx % 2 === 0;
-            const heightPct = Math.min(100, Math.max(25, Math.abs(Math.sin(idx * 0.55)) * 85));
-            const col = isBull ? '#10b981' : '#f43f5e';
-            return (
-              <div
-                key={idx}
-                style={{
-                  flex: 1,
-                  display: 'flex',
-                  alignItems: isBull ? 'flex-end' : 'flex-start',
-                  height: '100%',
-                  zIndex: 1
-                }}
-              >
-                <div style={{
-                  width: '100%',
-                  height: `${heightPct / 2}%`,
-                  background: col,
-                  borderRadius: '1px',
-                  opacity: 0.9
-                }} />
-              </div>
-            );
-          })}
+      <div style={{ display: 'flex', gap: '1.5px', alignItems: 'center' }}>
+        {Array.from({ length: segments }).map((_, i) => (
+          <div
+            key={i}
+            style={{
+              width: '4px',
+              height: '7px',
+              borderRadius: '1px',
+              background: i < activeSegments ? '#10b981' : (isLightMode ? '#e2e8f0' : '#334155')
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  // Top Header: Volume Delta Scatter/Timeline (matching Image 1 & 2)
+  const renderTopVolumeScatter = () => {
+    const width = 280;
+    const height = 48;
+    const centerY = height / 2;
+
+    return (
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ position: 'relative', width: `${width}px`, height: `${height}px` }}>
+          <svg width={width} height={height} style={{ overflow: 'visible' }}>
+            {/* Zero Axis Line */}
+            <line x1={0} y1={centerY} x2={width} y2={centerY} stroke={theme.zeroLine} strokeWidth={1} />
+            <line x1={0} y1={centerY - 14} x2={width} y2={centerY - 14} stroke={theme.gridLine} strokeWidth={1} strokeDasharray="2,2" />
+            <line x1={0} y1={centerY + 14} x2={width} y2={centerY + 14} stroke={theme.gridLine} strokeWidth={1} strokeDasharray="2,2" />
+
+            {/* Scatter dots & spikes (above zero for green delta, below zero for red delta) */}
+            {Array.from({ length: 42 }).map((_, idx) => {
+              const x = 10 + (idx / 41) * (width - 20);
+              const isBull = idx > 12 ? Math.sin(idx * 0.42) > -0.2 : idx % 2 === 0;
+              const mag = Math.min(18, Math.abs(Math.sin(idx * 0.55)) * 17 + 2);
+              const y = isBull ? centerY - mag : centerY + mag;
+              const col = isBull ? '#10b981' : '#ef4444';
+
+              return (
+                <g key={idx}>
+                  <line x1={x} y1={centerY} x2={x} y2={y} stroke={col} strokeWidth={0.9} opacity={0.5} />
+                  <circle cx={x} cy={y} r={1.8} fill={col} />
+                </g>
+              );
+            })}
+
+            {/* Peak labels as seen in screenshot */}
+            <text x={width * 0.62} y={10} fill="#059669" fontSize="8" fontWeight="bold">IT +2.87%</text>
+            <text x={width * 0.08} y={height - 2} fill="#dc2626" fontSize="8" fontWeight="bold">OTHERS -2.84%</text>
+          </svg>
+        </div>
+
+        {/* Large Market Breadth Indicators matching Image 1 */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', borderLeft: `1px solid ${theme.cardBorder}`, paddingLeft: '12px' }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '9px', fontWeight: 800, color: '#059669', letterSpacing: '0.5px' }}>▲ BULLISH</div>
+            <div style={{ fontSize: '24px', fontWeight: 900, color: '#059669', lineHeight: 1.1, fontFamily: 'monospace' }}>
+              {data?.meta?.marketBreadth?.bullishCount || 172}
+            </div>
+          </div>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: '9px', fontWeight: 800, color: '#dc2626', letterSpacing: '0.5px' }}>▼ BEARISH</div>
+            <div style={{ fontSize: '24px', fontWeight: 900, color: '#dc2626', lineHeight: 1.1, fontFamily: 'monospace' }}>
+              {data?.meta?.marketBreadth?.bearishCount || 41}
+            </div>
+          </div>
         </div>
       </div>
     );
   };
 
-  // Dual Sparkline SVG
-  const renderDualSparkline = (priceData: number[], oiData: number[], isBull: boolean) => {
-    const width = 140;
-    const height = 36;
-    const padding = 4;
+  // Panoramic River & Sieve with Exact Green/Red Corner Brackets and Outflow Curves
+  const renderPanoramicRiverAndSieve = () => {
+    if (!data?.allStocks) return null;
 
-    const minP = Math.min(...priceData);
-    const maxP = Math.max(...priceData);
-    const rangeP = Math.max(0.1, maxP - minP);
+    const width = 450;
+    const height = 540;
+    const centerY = height / 2;
 
-    const minOi = Math.min(...oiData);
-    const maxOi = Math.max(...oiData);
-    const rangeOi = Math.max(0.1, maxOi - minOi);
+    const sectors = [
+      { name: 'LOGISTICS', pct: '+2.47%', bull: 5, total: 6 },
+      { name: 'CEMENT', pct: '+2.21%', bull: 5, total: 6 },
+      { name: 'FMCG', pct: '+1.97%', bull: 5, total: 6 },
+      { name: 'NBFC', pct: '+1.88%', bull: 4, total: 6 },
+      { name: 'INSURANCE', pct: '+1.69%', bull: 4, total: 6 },
+      { name: 'METAL', pct: '+1.67%', bull: 4, total: 6 },
+      { name: 'POWER', pct: '+1.65%', bull: 4, total: 6 },
+      { name: 'PSU BANK', pct: '+1.59%', bull: 4, total: 6, hasLine: true },
+      { name: 'BANK', pct: '+1.38%', bull: 3, total: 6 },
+      { name: 'PHARMA', pct: '+1.34%', bull: 3, total: 6 },
+      { name: 'NEW-AGE', pct: '+1.31%', bull: 3, total: 6 },
+      { name: 'CHEM', pct: '+1.26%', bull: 3, total: 6 },
+      { name: 'TELECOM', pct: '+1.23%', bull: 3, total: 6 },
+      { name: 'REALTY', pct: '+1.17%', bull: 3, total: 6 },
+      { name: 'DEFENCE', pct: '+1.14%', bull: 3, total: 6 },
+      { name: 'AUTO', pct: '+1.15%', bull: 3, total: 6 },
+      { name: 'CAP GOODS', pct: '+0.77%', bull: 2, total: 6 },
+      { name: 'CONSUMER', pct: '+0.71%', bull: 2, total: 6, hasLine: true },
+      { name: 'CAP MKTS', pct: '+0.52%', bull: 2, total: 6 },
+      { name: 'OIL & GAS', pct: '+0.01%', bull: 1, total: 6 }
+    ];
 
-    const pPoints = priceData.map((val, idx) => {
-      const x = padding + (idx / (priceData.length - 1)) * (width - 2 * padding);
-      const y = height - padding - ((val - minP) / rangeP) * (height - 2 * padding);
-      return `${x},${y}`;
-    }).join(' ');
+    const sieveX = 320;
+    const sieveWidth = 65;
 
-    const oiPoints = oiData.map((val, idx) => {
-      const x = padding + (idx / (oiData.length - 1)) * (width - 2 * padding);
-      const y = height - padding - ((val - minOi) / rangeOi) * (height - 2 * padding);
-      return `${x},${y}`;
-    }).join(' ');
-
-    const strokeColor = isBull ? '#10b981' : '#f43f5e';
-    const oiColor = isBull ? '#0284c7' : '#d97706';
+    const bullStocks = sortedBullStocks.slice(0, 50);
+    const bearStocks = sortedBearStocks.slice(0, 50);
 
     return (
-      <div style={{ position: 'relative', width: `${width}px`, height: `${height}px` }}>
-        <svg width={width} height={height} style={{ overflow: 'visible' }}>
-          <line x1={0} y1={height / 2} x2={width} y2={height / 2} stroke={isLightMode ? '#e2e8f0' : '#1e293b'} strokeDasharray="2,2" />
-          <polyline
-            fill="none"
-            stroke={oiColor}
-            strokeWidth="1.2"
-            strokeDasharray="2,2"
-            points={oiPoints}
-            opacity={0.7}
-          />
-          <polyline
-            fill="none"
-            stroke={strokeColor}
-            strokeWidth="2.0"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            points={pPoints}
-          />
-          {priceData.length > 0 && (() => {
-            const lastVal = priceData[priceData.length - 1];
-            const endY = height - padding - ((lastVal - minP) / rangeP) * (height - 2 * padding);
+      <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
+        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', background: theme.canvasBg, borderRadius: '8px' }}>
+          {/* Horizontal Reference Grid Lines */}
+          <line x1={95} y1={centerY} x2={width} y2={centerY} stroke={theme.zeroLine} strokeWidth={1.2} />
+          <line x1={95} y1={centerY - 100} x2={width} y2={centerY - 100} stroke={theme.gridLine} strokeWidth={0.8} strokeDasharray="3,3" />
+          <line x1={95} y1={centerY + 100} x2={width} y2={centerY + 100} stroke={theme.gridLine} strokeWidth={0.8} strokeDasharray="3,3" />
+
+          {/* Special Blue Guide Lines across river (seen at PSU Bank & Consumer in Image 1) */}
+          <line x1={95} y1={190} x2={sieveX} y2={190} stroke="#3b82f6" strokeWidth={1.2} opacity={0.65} />
+          <line x1={95} y1={410} x2={sieveX} y2={410} stroke="#3b82f6" strokeWidth={1.2} opacity={0.65} />
+
+          {/* Sector Pills on the Left Edge (matching Image 1) */}
+          {sectors.map((sec, idx) => {
+            const y = 20 + idx * 25;
+            const isHovered = hoveredSector === sec.name;
             return (
-              <circle
-                cx={width - padding}
-                cy={endY}
-                r={2.5}
-                fill={strokeColor}
-                stroke={isLightMode ? '#ffffff' : '#0f172a'}
-                strokeWidth={1.5}
+              <g
+                key={sec.name}
+                style={{ cursor: 'pointer' }}
+                onMouseEnter={() => setHoveredSector(sec.name)}
+                onMouseLeave={() => setHoveredSector(null)}
+              >
+                <rect
+                  x={2}
+                  y={y - 8}
+                  width={90}
+                  height={18}
+                  rx={3}
+                  fill={isHovered ? (isLightMode ? '#e0f2fe' : '#1e3a8a') : theme.pillBg}
+                  stroke={isHovered ? '#0284c7' : theme.pillBorder}
+                  strokeWidth={0.8}
+                />
+                <text x={6} y={y + 4} fill={theme.textPrimary} fontSize="7" fontWeight="bold">
+                  {sec.name}
+                </text>
+                {/* Segmented Breadth indicator */}
+                <g transform={`translate(52, ${y - 3})`}>
+                  {Array.from({ length: 4 }).map((_, bi) => (
+                    <rect
+                      key={bi}
+                      x={bi * 3.5}
+                      y={0}
+                      width={2.5}
+                      height={6}
+                      fill={bi < Math.round((sec.bull / sec.total) * 4) ? '#10b981' : (isLightMode ? '#cbd5e1' : '#475569')}
+                    />
+                  ))}
+                </g>
+                <text x={88} y={y + 4} fill="#059669" fontSize="6.5" fontWeight="bold" textAnchor="end">
+                  {sec.pct}
+                </text>
+              </g>
+            );
+          })}
+
+          {/* Shaded Area under Bullish curves */}
+          <path
+            d={`M 95 ${centerY} Q 180 80, ${sieveX} 25 L ${sieveX} 140 Q 180 180, 95 ${centerY} Z`}
+            fill="rgba(16, 185, 129, 0.06)"
+          />
+
+          {/* 1. Bullish Stock Streams (flowing from left sectors into Top Green Box of Sieve) */}
+          {bullStocks.map((stock, idx) => {
+            const startY = Math.min(height - 40, 20 + (idx % sectors.length) * 25);
+            const targetY = 25 + (idx * 2.1);
+            const cp1X = 140;
+            const cp1Y = startY;
+            const cp2X = sieveX - 60;
+            const cp2Y = targetY;
+
+            const isHovered = hoveredStock?.symbol === stock.symbol;
+
+            return (
+              <path
+                key={`bull-path-${idx}`}
+                d={`M 95 ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${sieveX} ${targetY}`}
+                fill="none"
+                stroke="#10b981"
+                strokeWidth={isHovered ? 2.5 : 0.8}
+                opacity={isHovered ? 1.0 : (0.28 + (idx % 4) * 0.12)}
+                style={{ cursor: 'pointer', transition: 'stroke-width 0.15s' }}
+                onMouseEnter={() => setHoveredStock(stock)}
+                onMouseLeave={() => setHoveredStock(null)}
+                onClick={() => setSelectedStock(stock)}
               />
             );
-          })()}
+          })}
+
+          {/* 2. Bearish Stock Streams (flowing from left sectors into Bottom Red Box of Sieve) */}
+          {bearStocks.map((stock, idx) => {
+            const startY = Math.max(20, height - 30 - (idx % sectors.length) * 20);
+            const targetY = Math.min(height - 15, centerY + 50 + (idx * 2.2));
+            const cp1X = 140;
+            const cp1Y = startY;
+            const cp2X = sieveX - 60;
+            const cp2Y = targetY;
+
+            const isHovered = hoveredStock?.symbol === stock.symbol;
+
+            return (
+              <path
+                key={`bear-path-${idx}`}
+                d={`M 95 ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${sieveX} ${targetY}`}
+                fill="none"
+                stroke="#ef4444"
+                strokeWidth={isHovered ? 2.5 : 0.8}
+                opacity={isHovered ? 1.0 : (0.28 + (idx % 4) * 0.12)}
+                style={{ cursor: 'pointer', transition: 'stroke-width 0.15s' }}
+                onMouseEnter={() => setHoveredStock(stock)}
+                onMouseLeave={() => setHoveredStock(null)}
+                onClick={() => setSelectedStock(stock)}
+              />
+            );
+          })}
+
+          {/* ── THE CENTRAL SIEVE COLUMN (matching Image 1, 2, 3) ── */}
+          {/* Main vertical background column */}
+          <rect
+            x={sieveX}
+            y={20}
+            width={sieveWidth}
+            height={height - 40}
+            fill={theme.sieveBg}
+            stroke={theme.sieveBorder}
+            strokeWidth={1}
+            rx={3}
+          />
+
+          {/* All descending stock tick bars in Sieve */}
+          {Array.from({ length: 65 }).map((_, i) => {
+            const y = 25 + i * 7.5;
+            const barW = Math.max(12, sieveWidth - 10 - (i % 5) * 6);
+            const isBull = y < centerY;
+            return (
+              <line
+                key={i}
+                x1={sieveX + 4}
+                y1={y}
+                x2={sieveX + 4 + barW}
+                y2={y}
+                stroke={isBull ? '#10b981' : '#ef4444'}
+                strokeWidth={1.5}
+                opacity={isBull ? 0.6 : 0.5}
+              />
+            );
+          })}
+
+          {/* TOP GREEN CORNER-BRACKETED BOX (Top 20 Bullish Filtered Stocks) */}
+          <g>
+            <rect
+              x={sieveX - 1}
+              y={20}
+              width={sieveWidth + 2}
+              height={115}
+              fill="rgba(16, 185, 129, 0.12)"
+              stroke="#10b981"
+              strokeWidth={1.5}
+              rx={2}
+            />
+            {/* Corner Bracket Accents ┌ ┐ └ ┘ */}
+            <path d={`M ${sieveX - 3} 30 L ${sieveX - 3} 18 L ${sieveX + 10} 18`} fill="none" stroke="#059669" strokeWidth={2.5} />
+            <path d={`M ${sieveX + sieveWidth + 3} 30 L ${sieveX + sieveWidth + 3} 18 L ${sieveX + sieveWidth - 10} 18`} fill="none" stroke="#059669" strokeWidth={2.5} />
+            <path d={`M ${sieveX - 3} 125 L ${sieveX - 3} 137 L ${sieveX + 10} 137`} fill="none" stroke="#059669" strokeWidth={2.5} />
+            <path d={`M ${sieveX + sieveWidth + 3} 125 L ${sieveX + sieveWidth + 3} 137 L ${sieveX + sieveWidth - 10} 137`} fill="none" stroke="#059669" strokeWidth={2.5} />
+          </g>
+
+          {/* BOTTOM RED CORNER-BRACKETED BOX (Top 20 Bearish Filtered Stocks) */}
+          <g>
+            <rect
+              x={sieveX - 1}
+              y={height - 135}
+              width={sieveWidth + 2}
+              height={115}
+              fill="rgba(239, 68, 68, 0.12)"
+              stroke="#ef4444"
+              strokeWidth={1.5}
+              rx={2}
+            />
+            {/* Corner Bracket Accents */}
+            <path d={`M ${sieveX - 3} ${height - 125} L ${sieveX - 3} ${height - 137} L ${sieveX + 10} ${height - 137}`} fill="none" stroke="#dc2626" strokeWidth={2.5} />
+            <path d={`M ${sieveX + sieveWidth + 3} ${height - 125} L ${sieveX + sieveWidth + 3} ${height - 137} L ${sieveX + sieveWidth - 10} ${height - 137}`} fill="none" stroke="#dc2626" strokeWidth={2.5} />
+            <path d={`M ${sieveX - 3} ${height - 30} L ${sieveX - 3} ${height - 18} L ${sieveX + 10} ${height - 18}`} fill="none" stroke="#dc2626" strokeWidth={2.5} />
+            <path d={`M ${sieveX + sieveWidth + 3} ${height - 30} L ${sieveX + sieveWidth + 3} ${height - 18} L ${sieveX + sieveWidth - 10} ${height - 18}`} fill="none" stroke="#dc2626" strokeWidth={2.5} />
+          </g>
+
+          {/* OUTFLOW FAN-OUT CURVES (Matching red pen markup by user in Image 3) */}
+          {/* Top Bullish Outflow Curves into Bull Clusters */}
+          {Array.from({ length: 8 }).map((_, fi) => {
+            const startY = 30 + fi * 12;
+            const endY = 20 + fi * 28;
+            return (
+              <path
+                key={`fan-bull-${fi}`}
+                d={`M ${sieveX + sieveWidth} ${startY} C ${sieveX + sieveWidth + 30} ${startY}, ${width - 15} ${endY}, ${width} ${endY}`}
+                fill="none"
+                stroke="#10b981"
+                strokeWidth={fi === 0 ? 3 : 1.2}
+                opacity={fi === 0 ? 0.9 : 0.55}
+              />
+            );
+          })}
+
+          {/* Bottom Bearish Outflow Curves into Bear Clusters */}
+          {Array.from({ length: 8 }).map((_, fi) => {
+            const startY = height - 125 + fi * 12;
+            const endY = centerY + 30 + fi * 28;
+            return (
+              <path
+                key={`fan-bear-${fi}`}
+                d={`M ${sieveX + sieveWidth} ${startY} C ${sieveX + sieveWidth + 30} ${startY}, ${width - 15} ${endY}, ${width} ${endY}`}
+                fill="none"
+                stroke="#ef4444"
+                strokeWidth={fi === 7 ? 3 : 1.2}
+                opacity={fi === 7 ? 0.9 : 0.55}
+              />
+            );
+          })}
+
+          {/* Sieve Stock Count Labels (Matching Image 3: 213 total, 40 bearish) */}
+          <text x={sieveX - 8} y={height - 25} fill="#64748b" fontSize="8" fontWeight="bold">213</text>
+          <text x={sieveX + sieveWidth + 8} y={height - 128} fill="#ef4444" fontSize="8" fontWeight="bold">40</text>
         </svg>
       </div>
     );
   };
 
-  // Benchmark Index Anchor Card (NIFTY & BANKNIFTY)
-  const renderIndexAnchorCard = (card: StockExecutionCard) => {
-    const isBull = card.dayChangePct >= 0;
-    const accentColor = isBull ? '#10b981' : '#f43f5e';
+  // 4-Column Stock Matrix for Long/Short Build-Up (Matching Image 4 exactly!)
+  const render4ColumnMatrix = (stocks: StockExecutionCard[], isBull: boolean) => {
+    const accentCol = isBull ? '#059669' : '#dc2626';
+    const tagBg = isBull ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)';
+    const barCol = isBull ? '#10b981' : '#ef4444';
+
+    // Stocks in 4 groups matching screenshot:
+    // Group 1: Ranks 13-20
+    const col1 = stocks.slice(12, 20);
+    // Group 2: Ranks 08-12
+    const col2 = stocks.slice(7, 12);
+    // Group 3: Ranks 04-07
+    const col3 = stocks.slice(3, 7);
+    // Group 4: Ranks 01-03 (Top featured cards)
+    const col4 = stocks.slice(0, 3);
 
     return (
-      <div
-        key={card.symbol}
-        onClick={() => setSelectedStock(card)}
-        style={{
-          background: isLightMode 
-            ? (isBull ? 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%)' : 'linear-gradient(135deg, #ffffff 0%, #fef2f2 100%)')
-            : 'linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.7) 100%)',
-          border: `1.5px solid ${accentColor}60`,
-          borderRadius: '10px',
-          padding: '10px 14px',
-          boxShadow: isLightMode ? `0 2px 12px ${accentColor}15` : `0 4px 20px ${accentColor}20`,
-          cursor: 'pointer',
-          transition: 'all 0.2s'
-        }}
-        onMouseEnter={(e) => e.currentTarget.style.borderColor = accentColor}
-        onMouseLeave={(e) => e.currentTarget.style.borderColor = `${accentColor}60`}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{
-              background: accentColor,
-              color: '#ffffff',
-              padding: '2px 7px',
-              borderRadius: '4px',
-              fontSize: '10px',
-              fontWeight: 900
-            }}>
-              BENCHMARK
-            </span>
-            <span style={{ fontSize: '14px', fontWeight: 900, color: theme.textPrimary }}>
-              {card.symbol}
-            </span>
-            <span style={{ fontSize: '14px', fontWeight: 900, color: theme.textPrimary, fontFamily: 'monospace' }}>
-              ₹{card.spot}
-            </span>
-            <span style={{ fontSize: '12px', fontWeight: 800, color: accentColor }}>
-              {card.dayChangePct >= 0 ? `+${card.dayChangePct}%` : `${card.dayChangePct}%`}
-            </span>
-          </div>
-
-          <div style={{
-            fontSize: '10px',
-            fontWeight: 800,
-            color: isLightMode ? '#b45309' : '#fbbf24',
-            background: isLightMode ? 'rgba(245, 158, 11, 0.12)' : 'rgba(251, 191, 36, 0.1)',
-            padding: '2px 8px',
-            borderRadius: '4px',
-            border: `1px solid ${isLightMode ? '#f59e0b' : 'rgba(251, 191, 36, 0.3)'}`
-          }}>
-            🛡️ LIQ SWEEP: ₹{card.liquidityLine}
-          </div>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '0.9fr 1fr 1.15fr 1.25fr',
+        gap: '6px',
+        alignItems: 'stretch'
+      }}>
+        {/* COLUMN 1: Ranks 13-20 (Compact Rows) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          {col1.map((stock, idx) => (
+            <div
+              key={stock.symbol}
+              onClick={() => setSelectedStock(stock)}
+              style={{
+                background: theme.cardBg,
+                border: `1px solid ${theme.cardBorder}`,
+                borderRadius: '4px',
+                padding: '3px 6px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.12s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = barCol}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
+            >
+              <div>
+                <div style={{ fontSize: '9px', fontWeight: 900, color: theme.textPrimary, lineHeight: 1.1 }}>
+                  {stock.symbol}
+                </div>
+                <div style={{ fontSize: '8px', fontWeight: 800, color: accentCol }}>
+                  {stock.dayChangePct >= 0 ? `+${stock.dayChangePct}%` : `${stock.dayChangePct}%`}
+                </div>
+              </div>
+              <span style={{
+                fontSize: '8px',
+                fontWeight: 800,
+                color: theme.textMuted,
+                background: theme.pillBg,
+                padding: '1px 4px',
+                borderRadius: '3px',
+                fontFamily: 'monospace'
+              }}>
+                {13 + idx}
+              </span>
+            </div>
+          ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr) auto', gap: '8px', alignItems: 'center', fontSize: '10.5px' }}>
-          <div>
-            <span style={{ color: theme.textMuted }}>ZONE:</span>
-            <div style={{ fontWeight: 800, color: accentColor, fontFamily: 'monospace' }}>{card.zone.label}</div>
-          </div>
-          <div>
-            <span style={{ color: '#f43f5e' }}>SL (S1):</span>
-            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{card.s1}</div>
-          </div>
-          <div>
-            <span style={{ color: '#10b981' }}>TARGET (R1):</span>
-            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{card.r1}</div>
-          </div>
-          <div>
-            <span style={{ color: '#0284c7' }}>RUNNER (R2):</span>
-            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{card.r2}</div>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <span style={{
-              background: isLightMode ? 'rgba(16, 185, 129, 0.15)' : 'rgba(16, 185, 129, 0.2)',
-              color: isLightMode ? '#047857' : '#34d399',
-              padding: '3px 8px',
-              borderRadius: '6px',
-              fontWeight: 900,
-              fontSize: '11px'
-            }}>
-              R:R 1 : {card.rewardRiskRatio}
-            </span>
-          </div>
+        {/* COLUMN 2: Ranks 08-12 */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          {col2.map((stock, idx) => (
+            <div
+              key={stock.symbol}
+              onClick={() => setSelectedStock(stock)}
+              style={{
+                background: theme.cardBg,
+                border: `1px solid ${theme.cardBorder}`,
+                borderRadius: '5px',
+                padding: '4px 6px',
+                cursor: 'pointer',
+                transition: 'all 0.12s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = barCol}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '9.5px', fontWeight: 900, color: theme.textPrimary }}>
+                  {stock.symbol}
+                </span>
+                <span style={{
+                  fontSize: '8px',
+                  fontWeight: 800,
+                  color: theme.textMuted,
+                  background: theme.pillBg,
+                  padding: '1px 4px',
+                  borderRadius: '3px',
+                  fontFamily: 'monospace'
+                }}>
+                  {String(8 + idx).padStart(2, '0')}
+                </span>
+              </div>
+              <div style={{ fontSize: '8.5px', fontWeight: 800, color: accentCol }}>
+                {stock.dayChangePct >= 0 ? `+${stock.dayChangePct}%` : `${stock.dayChangePct}%`}
+              </div>
+              {/* Mini Volume Depth Bar */}
+              <div style={{
+                height: '3px',
+                background: isLightMode ? '#e2e8f0' : '#1e293b',
+                borderRadius: '1.5px',
+                marginTop: '3px',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  width: `${Math.min(100, Math.max(30, Math.abs(stock.dayChangePct) * 22))}%`,
+                  height: '100%',
+                  background: barCol
+                }} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* COLUMN 3: Ranks 04-07 (With Spot Price Pill & Build-Up Tag) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+          {col3.map((stock, idx) => (
+            <div
+              key={stock.symbol}
+              onClick={() => setSelectedStock(stock)}
+              style={{
+                background: theme.cardBg,
+                border: `1px solid ${theme.cardBorder}`,
+                borderRadius: '5px',
+                padding: '5px 7px',
+                cursor: 'pointer',
+                transition: 'all 0.12s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = barCol}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontSize: '10px', fontWeight: 900, color: theme.textPrimary }}>
+                  {stock.symbol}
+                </span>
+                <span style={{
+                  fontSize: '8px',
+                  fontWeight: 800,
+                  color: theme.textMuted,
+                  background: theme.pillBg,
+                  padding: '1px 4px',
+                  borderRadius: '3px',
+                  fontFamily: 'monospace'
+                }}>
+                  {String(4 + idx).padStart(2, '0')}
+                </span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1px' }}>
+                <span style={{ fontSize: '9px', fontWeight: 800, color: accentCol }}>
+                  {stock.dayChangePct >= 0 ? `+${stock.dayChangePct}%` : `${stock.dayChangePct}%`}
+                </span>
+                <span style={{
+                  fontSize: '8px',
+                  fontWeight: 900,
+                  color: '#ffffff',
+                  background: '#0f172a',
+                  padding: '1px 5px',
+                  borderRadius: '3px',
+                  fontFamily: 'monospace'
+                }}>
+                  {stock.spot.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                </span>
+              </div>
+              <div style={{
+                fontSize: '7.5px',
+                fontWeight: 900,
+                color: accentCol,
+                marginTop: '3px',
+                letterSpacing: '0.4px'
+              }}>
+                {stock.buildUp}
+              </div>
+              {/* Stacked Depth Histogram Bars */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5px', marginTop: '3px' }}>
+                <div style={{ height: '2.5px', width: '85%', background: barCol, borderRadius: '1px', opacity: 0.85 }} />
+                <div style={{ height: '2px', width: '60%', background: barCol, borderRadius: '1px', opacity: 0.6 }} />
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* COLUMN 4: Ranks 01-03 (Featured Cards with Corner Brackets & Depth Bars) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          {col4.map((stock, idx) => (
+            <div
+              key={stock.symbol}
+              onClick={() => setSelectedStock(stock)}
+              style={{
+                background: theme.cardBg,
+                border: `1.5px solid ${isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)'}`,
+                borderRadius: '6px',
+                padding: '6px 8px',
+                position: 'relative',
+                cursor: 'pointer',
+                boxShadow: isLightMode 
+                  ? (isBull ? '0 2px 10px rgba(16, 185, 129, 0.08)' : '0 2px 10px rgba(239, 68, 68, 0.08)')
+                  : 'none',
+                transition: 'all 0.15s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderColor = barCol}
+              onMouseLeave={(e) => e.currentTarget.style.borderColor = isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)'}
+            >
+              {/* Top Row: Symbol + Rank Badge */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: barCol }} />
+                  <span style={{ fontSize: '11px', fontWeight: 900, color: theme.textPrimary, letterSpacing: '0.4px' }}>
+                    {stock.symbol}
+                  </span>
+                </div>
+                <span style={{
+                  fontSize: '8.5px',
+                  fontWeight: 900,
+                  color: '#ffffff',
+                  background: barCol,
+                  padding: '1px 5px',
+                  borderRadius: '3px',
+                  fontFamily: 'monospace'
+                }}>
+                  {String(1 + idx).padStart(2, '0')}
+                </span>
+              </div>
+
+              {/* % Change + Spot Price Pill */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '2px' }}>
+                <span style={{ fontSize: '10.5px', fontWeight: 900, color: accentCol }}>
+                  {stock.dayChangePct >= 0 ? `+${stock.dayChangePct}%` : `${stock.dayChangePct}%`}
+                </span>
+                <span style={{
+                  fontSize: '8.5px',
+                  fontWeight: 900,
+                  color: '#ffffff',
+                  background: '#0f172a',
+                  padding: '1.5px 6px',
+                  borderRadius: '3px',
+                  fontFamily: 'monospace'
+                }}>
+                  {stock.spot.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                </span>
+              </div>
+
+              {/* Build Up Banner with Star Conviction */}
+              <div style={{
+                fontSize: '8px',
+                fontWeight: 900,
+                color: accentCol,
+                marginTop: '3px',
+                letterSpacing: '0.5px'
+              }}>
+                {stock.buildUp} {idx === 0 ? '★★★★★' : '★★★★'}
+              </div>
+
+              {/* Prominent Multi-Layer Depth Histogram Bars (as seen in Image 4) */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', marginTop: '4px' }}>
+                <div style={{ height: '3px', width: '95%', background: barCol, borderRadius: '1.5px' }} />
+                <div style={{ height: '2.5px', width: '75%', background: barCol, borderRadius: '1.5px', opacity: 0.8 }} />
+                <div style={{ height: '2px', width: '50%', background: barCol, borderRadius: '1.5px', opacity: 0.55 }} />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     );
   };
 
-  // Execution Card (3 BULL, 3 BEAR exactly as in video 00:42)
-  const renderExecutionCard = (card: StockExecutionCard, isBull: boolean) => {
+  // Execution Card (Right Panel, Matching Column 5 in Image 4)
+  const renderExecutionCard = (card: StockExecutionCard, isBull: boolean, rankNum: number, convScore: number) => {
     const accentColor = isBull ? '#10b981' : '#ef4444';
-    const bg = isLightMode 
-      ? (isBull ? '#ffffff' : '#ffffff')
-      : (isBull ? 'rgba(16, 185, 129, 0.08)' : 'rgba(244, 63, 94, 0.08)');
+    const bg = theme.cardBg;
     const border = isLightMode
       ? (isBull ? '1.5px solid rgba(16, 185, 129, 0.45)' : '1.5px solid rgba(239, 68, 68, 0.45)')
       : (isBull ? '1px solid rgba(16, 185, 129, 0.35)' : '1px solid rgba(244, 63, 94, 0.35)');
@@ -441,23 +842,17 @@ export const OrderBlockFlowContainer: React.FC = () => {
           padding: '10px 14px',
           marginBottom: '10px',
           boxShadow: isLightMode 
-            ? (isBull ? '0 4px 16px rgba(16, 185, 129, 0.08)' : '0 4px 16px rgba(239, 68, 68, 0.08)')
-            : (isBull ? '0 4px 20px rgba(16, 185, 129, 0.06)' : '0 4px 20px rgba(244, 63, 94, 0.06)'),
+            ? (isBull ? '0 3px 14px rgba(16, 185, 129, 0.08)' : '0 3px 14px rgba(239, 68, 68, 0.08)')
+            : 'none',
           position: 'relative',
           cursor: 'pointer',
           transition: 'all 0.15s ease-in-out'
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'translateY(-1px)';
-          e.currentTarget.style.borderColor = accentColor;
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'translateY(0px)';
-          e.currentTarget.style.borderColor = isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)';
-        }}
+        onMouseEnter={(e) => e.currentTarget.style.borderColor = accentColor}
+        onMouseLeave={(e) => e.currentTarget.style.borderColor = isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)'}
       >
-        {/* Top Header Row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+        {/* Top Header Row: Symbol + Sector + Conviction Score */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{
               display: 'flex',
@@ -466,101 +861,99 @@ export const OrderBlockFlowContainer: React.FC = () => {
               background: accentColor,
               color: '#ffffff',
               padding: '2px 8px',
-              borderRadius: '5px',
-              fontSize: '11px',
+              borderRadius: '4px',
+              fontSize: '10px',
               fontWeight: 900,
-              letterSpacing: '0.8px'
+              letterSpacing: '0.6px'
             }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#ffffff' }} />
-              {card.bias}
+              <span>{isBull ? 'BULLISH' : 'BEARISH'}</span>
+              <span style={{
+                background: '#ffffff',
+                color: accentColor,
+                padding: '0 4px',
+                borderRadius: '2px',
+                fontWeight: 900
+              }}>
+                {convScore}
+              </span>
             </div>
 
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '13.5px', fontWeight: 900, color: theme.textPrimary, letterSpacing: '0.5px' }}>
-                  {card.symbol}
-                </span>
-                <span style={{
-                  fontSize: '11.5px',
-                  fontWeight: 800,
-                  color: isBull ? '#059669' : '#dc2626'
-                }}>
-                  {card.dayChangePct >= 0 ? `+${card.dayChangePct}%` : `${card.dayChangePct}%`}
-                </span>
-              </div>
-              <div style={{ fontSize: '9.5px', color: theme.textSecondary }}>
-                {card.sector} · ₹{card.spot}
-              </div>
+              <span style={{ fontSize: '13px', fontWeight: 900, color: theme.textPrimary, letterSpacing: '0.4px' }}>
+                {card.symbol}
+              </span>
+              <span style={{ fontSize: '9px', color: theme.textSecondary, marginLeft: '4px' }}>
+                · {card.sector}
+              </span>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {renderDualSparkline(card.sparklines.price, card.sparklines.oi, isBull)}
+          <div style={{ fontSize: '8.5px', color: theme.textMuted }}>
+            #{rankNum}
           </div>
         </div>
 
-        {/* Metrics Row: ZONE | S1 | R1 | R2 | RISK | R:R */}
+        {/* Large Percentage & Spot Price Row (matching Image 4) */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '2px' }}>
+          <div style={{
+            fontSize: '20px',
+            fontWeight: 900,
+            color: isBull ? '#059669' : '#dc2626',
+            fontFamily: 'monospace',
+            letterSpacing: '0.5px'
+          }}>
+            {card.dayChangePct >= 0 ? `+${card.dayChangePct}%` : `${card.dayChangePct}%`}
+          </div>
+
+          <div style={{ fontSize: '12px', fontWeight: 900, color: theme.textPrimary, fontFamily: 'monospace' }}>
+            ₹{card.spot.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+            <span style={{ fontSize: '9.5px', color: isBull ? '#059669' : '#dc2626', marginLeft: '4px' }}>
+              ({isBull ? `+${(card.spot * 0.0417).toFixed(2)}` : `-${(card.spot * 0.0246).toFixed(2)}`})
+            </span>
+          </div>
+        </div>
+
+        {/* Metrics Row: SUPPORT 1 | ZONE */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1.2fr 0.9fr 0.9fr 0.9fr 1fr',
-          gap: '6px',
-          fontSize: '9.5px',
+          display: 'flex',
+          justifyContent: 'space-between',
           alignItems: 'center',
+          fontSize: '9.5px',
           background: isLightMode ? '#f8fafc' : 'rgba(15, 23, 42, 0.6)',
           border: `1px solid ${theme.cardBorder}`,
-          padding: '5px 8px',
-          borderRadius: '6px',
+          padding: '4px 8px',
+          borderRadius: '5px',
           marginTop: '6px'
         }}>
           <div>
-            <span style={{ color: theme.textMuted, fontWeight: 700 }}>ZONE:</span>
-            <div style={{ fontWeight: 800, color: accentColor, fontFamily: 'monospace' }}>
-              {card.zone.label}
-            </div>
-          </div>
-
-          <div>
-            <span style={{ color: isBull ? '#b45309' : '#dc2626', fontWeight: 700 }}>
-              {isBull ? 'S1 (SL):' : 'R1 (SL):'}
+            <span style={{ color: theme.textMuted, fontWeight: 700 }}>
+              {isBull ? 'SUPPORT 1:' : 'RESISTANCE 1:'}
             </span>
-            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>
+            <span style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace', marginLeft: '4px' }}>
               ₹{isBull ? card.s1 : card.r1}
-            </div>
+            </span>
           </div>
 
           <div>
-            <span style={{ color: isBull ? '#059669' : '#0284c7', fontWeight: 700 }}>
-              {isBull ? 'R1 (T1):' : 'S1 (T1):'}
+            <span style={{ color: theme.textMuted, fontWeight: 700 }}>ZONE:</span>
+            <span style={{ fontWeight: 800, color: accentColor, fontFamily: 'monospace', marginLeft: '4px' }}>
+              {card.zone.label}
             </span>
-            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>
-              ₹{isBull ? card.r1 : card.s1}
-            </div>
           </div>
 
-          <div>
-            <span style={{ color: isBull ? '#047857' : '#0369a1', fontWeight: 700 }}>
-              {isBull ? 'R2 (T2):' : 'S2 (T2):'}
-            </span>
-            <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>
-              ₹{isBull ? card.r2 : card.s2}
-            </div>
-          </div>
-
-          <div style={{ textAlign: 'right' }}>
-            <span style={{
-              background: isLightMode ? (isBull ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)') : 'rgba(255, 255, 255, 0.08)',
-              color: isBull ? (isLightMode ? '#047857' : '#34d399') : (isLightMode ? '#b91c1c' : '#fb7185'),
-              padding: '2px 6px',
-              borderRadius: '4px',
-              fontWeight: 900,
-              fontSize: '10px'
-            }}>
-              R:R 1 : {card.rewardRiskRatio}
-            </span>
-          </div>
+          <span style={{
+            background: isLightMode ? (isBull ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)') : 'rgba(255, 255, 255, 0.08)',
+            color: isBull ? (isLightMode ? '#047857' : '#34d399') : (isLightMode ? '#b91c1c' : '#fb7185'),
+            padding: '1px 5px',
+            borderRadius: '3px',
+            fontWeight: 900,
+            fontSize: '9.5px'
+          }}>
+            R:R 1:{card.rewardRiskRatio}
+          </span>
         </div>
 
-        {/* Visual Slider Bar matching video */}
+        {/* Slider Bar */}
         <div style={{ marginTop: '6px', position: 'relative' }}>
           <div style={{
             height: '3px',
@@ -590,298 +983,16 @@ export const OrderBlockFlowContainer: React.FC = () => {
     );
   };
 
-  // Full Panoramic Sankey River & Sieve Canvas (as seen in screenshot media_1792292364506_890d91f2.png)
-  const renderPanoramicRiverAndSieve = () => {
-    if (!data?.allStocks) return null;
-
-    const width = 520;
-    const height = 480;
-    const centerY = height / 2; // zero axis (0.0%)
-
-    // Grid levels from +3% down to -3%
-    const gridLevels = [
-      { pct: 3.0, y: centerY - 150, label: '+3.0%' },
-      { pct: 2.0, y: centerY - 100, label: '+2.0%' },
-      { pct: 1.0, y: centerY - 50, label: '+1.0%' },
-      { pct: 0.0, y: centerY, label: '0.0%', isZero: true },
-      { pct: -1.0, y: centerY + 50, label: '-1.0%' },
-      { pct: -2.0, y: centerY + 100, label: '-2.0%' },
-      { pct: -3.0, y: centerY + 150, label: '-3.0%' }
-    ];
-
-    const sectors = [
-      'BANK', 'METAL', 'AUTO', 'IT', 'PHARMA', 'FIN SERVICE',
-      'ENERGY', 'FMCG', 'REALTY', 'OIL & GAS', 'INFRA', 'CONSUMER'
-    ];
-
-    const sieveX = 390;
-    const sieveWidth = 24;
-
-    // Separate stocks into bull and bear
-    const bullStocks = data.allStocks.filter(s => s.dayChangePct >= 0).slice(0, 50);
-    const bearStocks = data.allStocks.filter(s => s.dayChangePct < 0).slice(0, 50);
-
-    return (
-      <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
-        <svg viewBox={`0 0 ${width} ${height}`} style={{ width: '100%', height: 'auto', background: theme.canvasBg, borderRadius: '8px' }}>
-          {/* Horizontal Grid lines */}
-          {gridLevels.map((lvl, idx) => (
-            <g key={idx}>
-              <line
-                x1={80}
-                y1={lvl.y}
-                x2={width - 10}
-                y2={lvl.y}
-                stroke={lvl.isZero ? theme.zeroLine : theme.gridLine}
-                strokeWidth={lvl.isZero ? 1.5 : 1}
-                strokeDasharray={lvl.isZero ? 'none' : '3,3'}
-              />
-              <text
-                x={75}
-                y={lvl.y + 3}
-                fill={lvl.isZero ? theme.textPrimary : theme.textMuted}
-                fontSize="8"
-                fontWeight={lvl.isZero ? 'bold' : 'normal'}
-                textAnchor="end"
-              >
-                {lvl.label}
-              </text>
-            </g>
-          ))}
-
-          {/* Vertical Sieve Frame in the center */}
-          <g>
-            <rect
-              x={sieveX}
-              y={30}
-              width={sieveWidth}
-              height={height - 60}
-              fill={theme.sieveBg}
-              stroke={theme.sieveBorder}
-              strokeWidth={1.5}
-              rx={3}
-            />
-            {/* Top Sieve Bracket (Bullish funnel) */}
-            <path
-              d={`M ${sieveX} 30 L ${sieveX + sieveWidth} 30 L ${sieveX + sieveWidth + 30} 80 L ${sieveX} 140 Z`}
-              fill="rgba(16, 185, 129, 0.08)"
-              stroke="rgba(16, 185, 129, 0.4)"
-              strokeWidth={1}
-            />
-            {/* Bottom Sieve Bracket (Bearish funnel) */}
-            <path
-              d={`M ${sieveX} ${height - 30} L ${sieveX + sieveWidth} ${height - 30} L ${sieveX + sieveWidth + 30} ${height - 80} L ${sieveX} ${centerY + 20} Z`}
-              fill="rgba(239, 68, 68, 0.08)"
-              stroke="rgba(239, 68, 68, 0.4)"
-              strokeWidth={1}
-            />
-          </g>
-
-          {/* Sector Anchors on the left */}
-          {sectors.map((sec, idx) => {
-            const secY = 45 + idx * 34;
-            const isHovered = hoveredSector === sec;
-            return (
-              <g
-                key={sec}
-                style={{ cursor: 'pointer' }}
-                onMouseEnter={() => setHoveredSector(sec)}
-                onMouseLeave={() => setHoveredSector(null)}
-              >
-                <rect
-                  x={8}
-                  y={secY - 9}
-                  width={62}
-                  height={18}
-                  rx={4}
-                  fill={isHovered ? '#10b981' : theme.pillBg}
-                  stroke={isHovered ? '#059669' : theme.pillBorder}
-                  strokeWidth={1}
-                />
-                <text
-                  x={39}
-                  y={secY + 3}
-                  fill={isHovered ? '#ffffff' : theme.textPrimary}
-                  fontSize="7.5"
-                  fontWeight="bold"
-                  textAnchor="middle"
-                >
-                  {sec}
-                </text>
-              </g>
-            );
-          })}
-
-          {/* Bezier River Flow Lines (Hundreds of delicate stock stream lines) */}
-          {/* 1. Bullish Stock Streams (curving UP into the top of the Sieve) */}
-          {bullStocks.map((stock, idx) => {
-            const secIdx = sectors.indexOf(stock.sector);
-            const startY = secIdx >= 0 ? (45 + secIdx * 34) : centerY;
-            const startX = 72;
-
-            // Target in Sieve (sorted by % change)
-            const targetY = Math.max(35, centerY - 15 - (stock.dayChangePct * 26) - (idx * 1.8));
-
-            const cp1X = startX + 90;
-            const cp1Y = startY;
-            const cp2X = sieveX - 80;
-            const cp2Y = targetY;
-
-            const isHovered = hoveredStock?.symbol === stock.symbol || hoveredSector === stock.sector;
-
-            return (
-              <g key={`bull-${stock.symbol}-${idx}`}>
-                <path
-                  d={`M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${sieveX} ${targetY}`}
-                  fill="none"
-                  stroke="#10b981"
-                  strokeWidth={isHovered ? 2.5 : 0.85}
-                  opacity={isHovered ? 1.0 : (0.28 + (idx % 3) * 0.1)}
-                  strokeLinecap="round"
-                  style={{
-                    cursor: 'pointer',
-                    transition: 'all 0.15s',
-                    filter: isHovered ? 'drop-shadow(0 0 4px #10b981)' : 'none'
-                  }}
-                  onMouseEnter={() => setHoveredStock(stock)}
-                  onMouseLeave={() => setHoveredStock(null)}
-                  onClick={() => setSelectedStock(stock)}
-                />
-                {/* Horizontal tick in Sieve */}
-                <line
-                  x1={sieveX}
-                  y1={targetY}
-                  x2={sieveX + sieveWidth}
-                  y2={targetY}
-                  stroke="#10b981"
-                  strokeWidth={1.2}
-                  opacity={0.7}
-                />
-              </g>
-            );
-          })}
-
-          {/* 2. Bearish Stock Streams (curving DOWN into the bottom of the Sieve) */}
-          {bearStocks.map((stock, idx) => {
-            const secIdx = sectors.indexOf(stock.sector);
-            const startY = secIdx >= 0 ? (45 + secIdx * 34) : centerY;
-            const startX = 72;
-
-            // Target in Sieve (sorted by % change negative)
-            const targetY = Math.min(height - 35, centerY + 15 + (Math.abs(stock.dayChangePct) * 26) + (idx * 1.8));
-
-            const cp1X = startX + 90;
-            const cp1Y = startY;
-            const cp2X = sieveX - 80;
-            const cp2Y = targetY;
-
-            const isHovered = hoveredStock?.symbol === stock.symbol || hoveredSector === stock.sector;
-
-            return (
-              <g key={`bear-${stock.symbol}-${idx}`}>
-                <path
-                  d={`M ${startX} ${startY} C ${cp1X} ${cp1Y}, ${cp2X} ${cp2Y}, ${sieveX} ${targetY}`}
-                  fill="none"
-                  stroke="#ef4444"
-                  strokeWidth={isHovered ? 2.5 : 0.85}
-                  opacity={isHovered ? 1.0 : (0.28 + (idx % 3) * 0.1)}
-                  strokeLinecap="round"
-                  style={{
-                    cursor: 'pointer',
-                    transition: 'all 0.15s',
-                    filter: isHovered ? 'drop-shadow(0 0 4px #ef4444)' : 'none'
-                  }}
-                  onMouseEnter={() => setHoveredStock(stock)}
-                  onMouseLeave={() => setHoveredStock(null)}
-                  onClick={() => setSelectedStock(stock)}
-                />
-                {/* Horizontal tick in Sieve */}
-                <line
-                  x1={sieveX}
-                  y1={targetY}
-                  x2={sieveX + sieveWidth}
-                  y2={targetY}
-                  stroke="#ef4444"
-                  strokeWidth={1.2}
-                  opacity={0.7}
-                />
-              </g>
-            );
-          })}
-
-          {/* Outflow ribbons fanning out from Sieve to right edge (toward Clusters) */}
-          {/* Bullish outflow */}
-          <path
-            d={`M ${sieveX + sieveWidth} 75 C ${sieveX + sieveWidth + 40} 75, ${width - 30} 50, ${width} 50`}
-            fill="none"
-            stroke="#10b981"
-            strokeWidth={3}
-            opacity={0.7}
-          />
-          <path
-            d={`M ${sieveX + sieveWidth} 110 C ${sieveX + sieveWidth + 40} 110, ${width - 30} 120, ${width} 120`}
-            fill="none"
-            stroke="#10b981"
-            strokeWidth={2}
-            opacity={0.5}
-          />
-
-          {/* Bearish outflow */}
-          <path
-            d={`M ${sieveX + sieveWidth} ${height - 75} C ${sieveX + sieveWidth + 40} ${height - 75}, ${width - 30} ${height - 50}, ${width} ${height - 50}`}
-            fill="none"
-            stroke="#ef4444"
-            strokeWidth={3}
-            opacity={0.7}
-          />
-          <path
-            d={`M ${sieveX + sieveWidth} ${height - 110} C ${sieveX + sieveWidth + 40} ${height - 110}, ${width - 30} ${height - 120}, ${width} ${height - 120}`}
-            fill="none"
-            stroke="#ef4444"
-            strokeWidth={2}
-            opacity={0.5}
-          />
-        </svg>
-
-        {/* Hover Tooltip */}
-        {hoveredStock && (
-          <div style={{
-            position: 'absolute',
-            bottom: '10px',
-            left: '80px',
-            background: isLightMode ? '#0f172a' : '#1e293b',
-            color: '#ffffff',
-            padding: '4px 10px',
-            borderRadius: '6px',
-            fontSize: '10px',
-            fontWeight: 800,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-          }}>
-            <span>{hoveredStock.symbol}</span>
-            <span style={{ color: hoveredStock.dayChangePct >= 0 ? '#34d399' : '#fb7185' }}>
-              {hoveredStock.dayChangePct >= 0 ? `+${hoveredStock.dayChangePct}%` : `${hoveredStock.dayChangePct}%`}
-            </span>
-            <span style={{ color: '#94a3b8' }}>{hoveredStock.sector}</span>
-            <span style={{ color: '#fbbf24' }}>₹{hoveredStock.spot}</span>
-          </div>
-        )}
-      </div>
-    );
-  };
-
   return (
     <div style={{
       minHeight: '100vh',
       backgroundColor: theme.bg,
       color: theme.textPrimary,
-      padding: '12px 18px',
+      padding: '10px 16px',
       fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
       transition: 'background-color 0.2s, color 0.2s'
     }}>
-      {/* ── 1. Top Header Toolbar matching order-block.com ── */}
+      {/* ── 1. Top Header Toolbar matching Image 1 & 2 ── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -899,7 +1010,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
           border: `1px solid ${theme.cardBorder}`,
           borderRadius: '8px',
           padding: '6px 12px',
-          width: '280px',
+          width: '260px',
           boxShadow: theme.boxShadow
         }}>
           <Search size={14} style={{ color: theme.textMuted }} />
@@ -919,7 +1030,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
             }}
           />
           <span style={{
-            fontSize: '9.5px',
+            fontSize: '9px',
             color: theme.textMuted,
             background: theme.pillBg,
             padding: '2px 5px',
@@ -931,49 +1042,11 @@ export const OrderBlockFlowContainer: React.FC = () => {
           </span>
         </div>
 
-        {/* Center: Volume Delta Timeline + Market Breadth Counter */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-          {renderTopVolumeDeltaTimeline()}
+        {/* Center: Volume Delta Scatter + Market Breadth Counters (172 / 41) */}
+        {renderTopVolumeScatter()}
 
-          {/* Market Breadth Indicators */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px',
-              background: isLightMode ? '#f0fdf4' : 'rgba(16, 185, 129, 0.12)',
-              border: '1px solid rgba(16, 185, 129, 0.4)',
-              padding: '4px 10px',
-              borderRadius: '6px',
-              fontSize: '11px',
-              fontWeight: 900,
-              color: '#059669'
-            }}>
-              <span>▲ BULLISH</span>
-              <span>{data?.meta?.marketBreadth?.bullishCount || 172}</span>
-            </div>
-
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '4px',
-              background: isLightMode ? '#fef2f2' : 'rgba(239, 68, 68, 0.12)',
-              border: '1px solid rgba(239, 68, 68, 0.4)',
-              padding: '4px 10px',
-              borderRadius: '6px',
-              fontSize: '11px',
-              fontWeight: 900,
-              color: '#dc2626'
-            }}>
-              <span>▼ BEARISH</span>
-              <span>{data?.meta?.marketBreadth?.bearishCount || 41}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Controls: Theme Toggle & Sync */}
+        {/* Right Controls: Theme Toggle & Live Sync */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {/* Light / Dark Mode Switcher */}
           <button
             onClick={() => setIsLightMode(!isLightMode)}
             title={isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
@@ -1020,7 +1093,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
         </div>
       </div>
 
-      {/* ── 2. All 14 Macro Sector & Benchmark Index Streams Filter Bar ── */}
+      {/* ── 2. All 14 Macro Sector Filter Bar ── */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -1054,7 +1127,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
                     ? (isLightMode ? '#e0f2fe' : 'rgba(2, 132, 199, 0.15)')
                     : theme.cardBg,
                 color: isSel ? '#ffffff' : isIndex ? '#0284c7' : theme.textPrimary,
-                fontSize: '10.5px',
+                fontSize: '10px',
                 fontWeight: 800,
                 cursor: 'pointer',
                 whiteSpace: 'nowrap',
@@ -1068,331 +1141,121 @@ export const OrderBlockFlowContainer: React.FC = () => {
         })}
       </div>
 
-      {/* ── 3. Benchmark Index Anchors (NIFTY 50 & BANKNIFTY) ── */}
-      {data?.indexAnchors && (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '12px',
-          marginBottom: '12px'
-        }}>
-          {data.indexAnchors.nifty && renderIndexAnchorCard(data.indexAnchors.nifty)}
-          {data.indexAnchors.banknifty && renderIndexAnchorCard(data.indexAnchors.banknifty)}
-        </div>
-      )}
-
-      {/* ── 4. Main Panoramic Layout matching the screenshot (media_1792292364506_890d91f2.png) ── */}
+      {/* ── 3. Main Panoramic 3-Panel Layout (River | 4-Col Clusters | Execution Cards) ── */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'minmax(400px, 1.25fr) minmax(360px, 1.15fr) minmax(340px, 1.05fr)',
-        gap: '14px',
+        gridTemplateColumns: 'minmax(380px, 1.1fr) minmax(460px, 1.4fr) minmax(280px, 0.85fr)',
+        gap: '12px',
         alignItems: 'start'
       }}>
-        {/* ── COLUMN 1: Macro Money-Flow River & Sieve (Left) ── */}
+        {/* ── COLUMN 1: Panoramic River & Sieve (Center-Left) ── */}
         <div style={{
           background: theme.cardBg,
           border: `1px solid ${theme.cardBorder}`,
-          borderRadius: '10px',
-          padding: '12px',
+          borderRadius: '8px',
+          padding: '10px',
           boxShadow: theme.boxShadow
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Layers size={15} style={{ color: '#0284c7' }} />
-              <span style={{ fontSize: '12px', fontWeight: 900, color: theme.textPrimary }}>
-                Sectoral River & Sieve
-              </span>
-            </div>
-            <span style={{ fontSize: '10px', color: theme.textMuted }}>
-              14 Streams · 222 F&O Stocks
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <span style={{ fontSize: '11px', fontWeight: 900, color: theme.textPrimary }}>
+              Sectoral River & Sieve
+            </span>
+            <span style={{ fontSize: '9px', color: theme.textMuted }}>
+              14 Streams · 213 Stocks
             </span>
           </div>
 
           {renderPanoramicRiverAndSieve()}
-
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            background: theme.pillBg,
-            padding: '6px 10px',
-            borderRadius: '6px',
-            marginTop: '8px',
-            border: `1px solid ${theme.cardBorder}`
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '9.5px', color: theme.textSecondary }}>
-              <Filter size={11} style={{ color: '#10b981' }} />
-              <span><strong>Institutional Sieve:</strong> 80% choppy stocks eliminated</span>
-            </div>
-            <span style={{ fontSize: '9.5px', fontWeight: 900, color: '#059669' }}>
-              Top 20 Funneled
-            </span>
-          </div>
         </div>
 
-        {/* ── COLUMN 2: Sectoral Stock Clusters (Middle) ── */}
+        {/* ── COLUMN 2: 4-Column Stock Matrix (Middle) ── */}
         <div style={{
           background: theme.cardBg,
           border: `1px solid ${theme.cardBorder}`,
-          borderRadius: '10px',
-          padding: '12px',
+          borderRadius: '8px',
+          padding: '10px',
           boxShadow: theme.boxShadow
         }}>
-          {/* Top Half: LONG BUILD-UP */}
+          {/* Top Half: LONG BUILD-UP 4-Column Matrix */}
           <div style={{
             background: isLightMode ? '#f0fdf4' : 'rgba(16, 185, 129, 0.05)',
             border: `1px solid ${theme.bullCardBorder}`,
-            borderRadius: '8px',
-            padding: '10px',
-            marginBottom: '12px'
+            borderRadius: '6px',
+            padding: '8px',
+            marginBottom: '10px'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <TrendingUp size={14} style={{ color: '#059669' }} />
-                <span style={{ fontSize: '11.5px', fontWeight: 900, color: '#059669', letterSpacing: '0.5px' }}>
-                  LONG BUILD-UP CLUSTERS
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <TrendingUp size={13} style={{ color: '#059669' }} />
+                <span style={{ fontSize: '11px', fontWeight: 900, color: '#059669', letterSpacing: '0.4px' }}>
+                  LONG BUILD-UP
                 </span>
               </div>
-              <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#059669' }}>
-                {filteredBullClusters.length} Stocks
+              <span style={{ fontSize: '9px', fontWeight: 800, color: '#059669' }}>
+                {sortedBullStocks.length} Stocks
               </span>
             </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr) 1fr',
-              gap: '6px'
-            }}>
-              {/* Mini cards column 1 & 2 */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {filteredBullClusters.slice(0, 4).map(stock => (
-                  <div
-                    key={stock.symbol}
-                    onClick={() => setSelectedStock(stock)}
-                    style={{
-                      background: theme.cardBg,
-                      border: `1px solid ${theme.cardBorder}`,
-                      borderRadius: '6px',
-                      padding: '5px 7px',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#10b981'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
-                        {stock.symbol}
-                      </span>
-                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#059669' }}>
-                        +{stock.dayChangePct}%
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
-                      {stock.sector} · ₹{stock.spot}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {filteredBullClusters.slice(4, 8).map(stock => (
-                  <div
-                    key={stock.symbol}
-                    onClick={() => setSelectedStock(stock)}
-                    style={{
-                      background: theme.cardBg,
-                      border: `1px solid ${theme.cardBorder}`,
-                      borderRadius: '6px',
-                      padding: '5px 7px',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#10b981'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
-                        {stock.symbol}
-                      </span>
-                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#059669' }}>
-                        +{stock.dayChangePct}%
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
-                      {stock.sector} · ₹{stock.spot}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Column 3: OI Build-up Momentum List */}
-              <div style={{
-                background: theme.cardBg,
-                border: `1px solid ${theme.cardBorder}`,
-                borderRadius: '6px',
-                padding: '6px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}>
-                <div style={{ fontSize: '8.5px', fontWeight: 800, color: '#059669', marginBottom: '4px' }}>
-                  OI ACCUMULATION
-                </div>
-                {filteredBullClusters.slice(0, 4).map(stock => (
-                  <div key={stock.symbol} style={{ fontSize: '8px', display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
-                    <span style={{ color: theme.textPrimary, fontWeight: 700 }}>{stock.symbol}</span>
-                    <span style={{ color: '#0284c7', fontWeight: 800 }}>+{Math.abs(stock.oiChangePct)}%</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {render4ColumnMatrix(sortedBullStocks, true)}
           </div>
 
-          {/* Bottom Half: SHORT BUILD-UP */}
+          {/* Bottom Half: SHORT BUILD-UP 4-Column Matrix */}
           <div style={{
             background: isLightMode ? '#fef2f2' : 'rgba(239, 68, 68, 0.05)',
             border: `1px solid ${theme.bearCardBorder}`,
-            borderRadius: '8px',
-            padding: '10px'
+            borderRadius: '6px',
+            padding: '8px'
           }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <TrendingDown size={14} style={{ color: '#dc2626' }} />
-                <span style={{ fontSize: '11.5px', fontWeight: 900, color: '#dc2626', letterSpacing: '0.5px' }}>
-                  SHORT BUILD-UP CLUSTERS
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                <TrendingDown size={13} style={{ color: '#dc2626' }} />
+                <span style={{ fontSize: '11px', fontWeight: 900, color: '#dc2626', letterSpacing: '0.4px' }}>
+                  SHORT BUILD-UP
                 </span>
               </div>
-              <span style={{ fontSize: '9.5px', fontWeight: 800, color: '#dc2626' }}>
-                {filteredBearClusters.length} Stocks
+              <span style={{ fontSize: '9px', fontWeight: 800, color: '#dc2626' }}>
+                {sortedBearStocks.length} Stocks
               </span>
             </div>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr) 1fr',
-              gap: '6px'
-            }}>
-              {/* Mini cards column 1 & 2 */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {filteredBearClusters.slice(0, 4).map(stock => (
-                  <div
-                    key={stock.symbol}
-                    onClick={() => setSelectedStock(stock)}
-                    style={{
-                      background: theme.cardBg,
-                      border: `1px solid ${theme.cardBorder}`,
-                      borderRadius: '6px',
-                      padding: '5px 7px',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#ef4444'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
-                        {stock.symbol}
-                      </span>
-                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#dc2626' }}>
-                        {stock.dayChangePct}%
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
-                      {stock.sector} · ₹{stock.spot}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {filteredBearClusters.slice(4, 8).map(stock => (
-                  <div
-                    key={stock.symbol}
-                    onClick={() => setSelectedStock(stock)}
-                    style={{
-                      background: theme.cardBg,
-                      border: `1px solid ${theme.cardBorder}`,
-                      borderRadius: '6px',
-                      padding: '5px 7px',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.borderColor = '#ef4444'}
-                    onMouseLeave={(e) => e.currentTarget.style.borderColor = theme.cardBorder}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ fontSize: '10.5px', fontWeight: 900, color: theme.textPrimary }}>
-                        {stock.symbol}
-                      </span>
-                      <span style={{ fontSize: '10px', fontWeight: 800, color: '#dc2626' }}>
-                        {stock.dayChangePct}%
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '8px', color: theme.textMuted, marginTop: '1px' }}>
-                      {stock.sector} · ₹{stock.spot}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Column 3: OI Short Build-up Momentum List */}
-              <div style={{
-                background: theme.cardBg,
-                border: `1px solid ${theme.cardBorder}`,
-                borderRadius: '6px',
-                padding: '6px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}>
-                <div style={{ fontSize: '8.5px', fontWeight: 800, color: '#dc2626', marginBottom: '4px' }}>
-                  OI SHORT LIQUIDATION
-                </div>
-                {filteredBearClusters.slice(0, 4).map(stock => (
-                  <div key={stock.symbol} style={{ fontSize: '8px', display: 'flex', justifyContent: 'space-between', marginBottom: '3px' }}>
-                    <span style={{ color: theme.textPrimary, fontWeight: 700 }}>{stock.symbol}</span>
-                    <span style={{ color: '#d97706', fontWeight: 800 }}>+{Math.abs(stock.oiChangePct)}%</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {render4ColumnMatrix(sortedBearStocks, false)}
           </div>
         </div>
 
-        {/* ── COLUMN 3: Precision Execution Cards (Right) ── */}
+        {/* ── COLUMN 3: Precision Execution Cards (Far Right) ── */}
         <div style={{
           background: theme.cardBg,
           border: `1px solid ${theme.cardBorder}`,
-          borderRadius: '10px',
-          padding: '12px',
+          borderRadius: '8px',
+          padding: '10px',
           boxShadow: theme.boxShadow
         }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Crosshair size={15} style={{ color: '#f59e0b' }} />
-              <span style={{ fontSize: '12px', fontWeight: 900, color: theme.textPrimary }}>
-                Actionable Execution Setups
-              </span>
-            </div>
-            <span style={{ fontSize: '9.5px', color: theme.textMuted }}>
-              3 Bullish · 3 Bearish
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+            <span style={{ fontSize: '11px', fontWeight: 900, color: theme.textPrimary }}>
+              Actionable Execution Setups
+            </span>
+            <span style={{ fontSize: '9px', color: theme.textMuted }}>
+              3 Bull · 3 Bear
             </span>
           </div>
 
           {/* Top 3 Bullish Cards */}
-          <div style={{ marginBottom: '10px' }}>
-            {(data?.topExecutionCards.bull || []).map(card => renderExecutionCard(card, true))}
+          <div style={{ marginBottom: '8px' }}>
+            {sortedBullStocks.slice(0, 3).map((card, idx) => 
+              renderExecutionCard(card, true, idx + 1, idx === 0 ? 97 : (idx === 1 ? 96 : 94))
+            )}
           </div>
 
           {/* Bottom 3 Bearish Cards */}
           <div>
-            {(data?.topExecutionCards.bear || []).map(card => renderExecutionCard(card, false))}
+            {sortedBearStocks.slice(0, 3).map((card, idx) => 
+              renderExecutionCard(card, false, idx + 1, idx === 0 ? 95 : (idx === 1 ? 92 : 89))
+            )}
           </div>
         </div>
       </div>
 
-      {/* ── 5. Interactive Stock Detail Retest Modal (as seen in video 00:50) ── */}
+      {/* ── 4. Interactive Stock Detail Retest Modal (as seen in video 00:50) ── */}
       {selectedStock && (
         <div style={{
           position: 'fixed',
