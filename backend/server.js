@@ -20,6 +20,7 @@ import { angelOneBridge } from './angelone_bridge.js';
 import weeklyStrikeLearner from './weekly_strike_decay_learner.js';
 import { imbalanceMeterEngine } from './imbalance_meter.js';
 import { orderFlowStreamEngine, ORDERFLOW_SYMBOLS } from './orderflow_stream.js';
+import { ninjaTraderService } from './ninjatrader_service.js';
 import { cacheResponse, invalidateCache, getCacheMetrics } from './memory_cache.js';
 import { executeDailyEODMachineLearning, getCachedEODInsights } from './daily_eod_ml_learner.js';
 import { executeFullMarketEODMiner, getCachedFullMarketLearnings } from './daily_full_market_eod_miner.js';
@@ -4402,23 +4403,32 @@ app.post('/api/learning/run-full-market-eod', async (req, res) => {
 
 
 
-// Endpoint to retrieve Doji signals — served from daily 9:21 AM cache, instant response
+// Endpoint to retrieve Doji signals
 app.get('/api/doji-signals', (req, res) => {
   const slot = req.query.slot || 'first_5min';
+  const shouldRescan = req.query.rescan === 'true' || req.query.scan === 'true';
   const todayStr = new Date().toLocaleDateString('en-US', { timeZone: 'Asia/Kolkata' });
 
-  // Always serve from cache — scan only happens once at 9:21 AM via scheduler
-  const slotData = dojiCache.slotData[slot] || dojiCache.slotData['first_5min'] || null;
+  // Trigger scan if explicitly requested or if slot data doesn't exist yet
+  if ((shouldRescan || !dojiCache.slotData[slot]) && !dojiCache.isScanning) {
+    console.log(`[Doji Endpoint] Scan triggered for slot: ${slot}`);
+    scanDojiForSlot(tvBridge, slot);
+  }
 
-  res.setHeader('Cache-Control', 'public, max-age=300'); // Cache 5 min in browser
+  // Strictly return the requested slot data — never substitute first_5min when daily is requested!
+  const slotData = dojiCache.slotData[slot] || null;
+
+  res.setHeader('Cache-Control', 'no-cache');
   res.json({
     slot,
     isScanning: dojiCache.isScanning,
     date: slotData?.date || todayStr,
-    lastScanTime: slotData?.lastScanTime || dojiCache.lastScanTime || null,
+    lastScanTime: slotData?.lastScanTime || null,
     stocks: slotData?.stocks || [],
     allDojiStocks: slotData?.allDojiStocks || [],
-    note: slotData ? 'Results from 9:21 AM daily scan' : 'Awaiting 9:21 AM market open scan'
+    note: slotData 
+      ? `Results for ${slot === 'daily' ? 'Daily End-of-Day' : '9:15-9:20 AM first 5-min'} scan` 
+      : (slot === 'daily' ? 'Daily End-of-Day scan runs post-market (3:35 PM IST)' : 'Awaiting 9:21 AM scan')
   });
 });
 
@@ -6316,6 +6326,16 @@ app.post('/api/orderflow/switch', (req, res) => {
   }
 });
 
+// --- NinjaTrader 8 Native Feeder Endpoints ---
+app.get('/api/ninjatrader/status', (req, res) => {
+  res.json(ninjaTraderService.getStats());
+});
+
+app.post('/api/ninjatrader/start', (req, res) => {
+  ninjaTraderService.start();
+  res.json({ success: true, message: 'NinjaTrader 8 Service started' });
+});
+
 // --- Footprint ML Live Signals ---
 app.get('/api/orderflow/ml-signals', async (req, res) => {
   try {
@@ -6405,13 +6425,150 @@ app.post('/api/confluence/score', (req, res) => {
   }
 });
 
-// GET /api/confluence/score — Get last computed confluence score
-app.get('/api/confluence/score', (req, res) => {
+// GET /api/confluence/score — Get live institutional confluence score & option blueprint
+app.get('/api/confluence/score', async (req, res) => {
   try {
-    const result = getConfluenceScoreInsights();
-    res.json({ ok: true, result });
+    const { calculateConfluenceScore } = await import('./institutional_confluence_engine.js');
+    const { processConfluenceSignal } = await import('./autonomous_confluence_trader.js');
+    const symbol = (req.query.symbol || 'NIFTY').toUpperCase();
+    const result = calculateConfluenceScore(symbol);
+
+    if (result.score >= 80) {
+      processConfluenceSignal(result);
+    }
+
+    res.json({ success: true, ...result });
   } catch (e) {
-    res.status(500).json({ ok: false, error: e.message });
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// GET /api/confluence/ledger — Get autonomous confluence trader ledger & PnL statistics
+app.get('/api/confluence/ledger', async (req, res) => {
+  try {
+    const { getLedgerSummary } = await import('./autonomous_confluence_trader.js');
+    const summary = getLedgerSummary();
+    res.json({ success: true, ledger: summary });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// GET /api/algo/institutional-playbook/status — Status of 5 classics playbook engine
+app.get('/api/algo/institutional-playbook/status', async (req, res) => {
+  try {
+    const { getInstitutionalPlaybookStatus } = await import('./institutional_playbook_engine.js');
+    const status = getInstitutionalPlaybookStatus();
+    res.json({ success: true, status });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// ====================================================================
+// 🌊 ORDERBLOCK LIVE FLOW & LIQUIDITY MATRIX API
+// ====================================================================
+app.get('/api/orderblock/flow-matrix', async (req, res) => {
+  try {
+    const { getCachedOrderBlockFlowMatrix } = await import('./order_block_flow_engine.js');
+    const force = req.query.force === 'true';
+    const matrix = getCachedOrderBlockFlowMatrix(force);
+    res.json({ success: true, ...matrix });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+app.post('/api/orderblock/flow-matrix/refresh', async (req, res) => {
+  try {
+    const { getCachedOrderBlockFlowMatrix } = await import('./order_block_flow_engine.js');
+    const matrix = getCachedOrderBlockFlowMatrix(true);
+    res.json({ success: true, ...matrix });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// GET /api/scanner/early-institutional-moves — Early 6%-12% move scanner
+app.get('/api/scanner/early-institutional-moves', async (req, res) => {
+  try {
+    const { getCachedEarlyMoveAlerts, runFullEarlyInstitutionalScan } = await import('./early_institutional_move_scanner.js');
+    let alerts = getCachedEarlyMoveAlerts();
+    if (!alerts || !alerts.meta?.lastScanTime) {
+      alerts = await runFullEarlyInstitutionalScan({ universeLimit: 30 });
+    }
+    res.json({ success: true, ...alerts });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// POST /api/scanner/early-institutional-moves/scan-now — Trigger immediate full universe scan
+app.post('/api/scanner/early-institutional-moves/scan-now', async (req, res) => {
+  try {
+    const { runFullEarlyInstitutionalScan } = await import('./early_institutional_move_scanner.js');
+    const limit = parseInt(req.query.limit || req.body?.limit || '212', 10);
+    const results = await runFullEarlyInstitutionalScan({ universeLimit: limit });
+    res.json({ success: true, ...results });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// GET /api/scanner/early-moves/audit-ledger — Causal forensic ledger & prediction tracking
+app.get('/api/scanner/early-moves/audit-ledger', async (req, res) => {
+  try {
+    const { earlyMovePredictionAuditor } = await import('./early_move_prediction_auditor.js');
+    const ledger = earlyMovePredictionAuditor.getAuditLedger();
+    res.json({ success: true, ledger });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// POST /api/scanner/early-moves/audit-now — Run end-of-day causal mistake audit
+app.post('/api/scanner/early-moves/audit-now', async (req, res) => {
+  try {
+    const { earlyMovePredictionAuditor } = await import('./early_move_prediction_auditor.js');
+    const sessionDate = req.body?.sessionDate || '2026-10-12';
+    const result = await earlyMovePredictionAuditor.runEndOfDayForensicAudit(sessionDate);
+    res.json({ success: true, ...result });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// POST /api/scanner/early-moves/live-update — Update live extremes & triggers
+app.post('/api/scanner/early-moves/live-update', async (req, res) => {
+  try {
+    const { earlyMovePredictionAuditor } = await import('./early_move_prediction_auditor.js');
+    const sessionDate = req.body?.sessionDate || '2026-10-12';
+    const session = earlyMovePredictionAuditor.updateLiveTracking(sessionDate);
+    res.json({ success: true, session });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// GET /api/scanner/eod-movers-forensics — End-of-Day Top Gainers & Losers Reverse-Engineering Ledger
+app.get('/api/scanner/eod-movers-forensics', async (req, res) => {
+  try {
+    const { eodNseMoversForensicLearner } = await import('./eod_nse_movers_forensic_learner.js');
+    const ledger = eodNseMoversForensicLearner.getLedger();
+    res.json({ success: true, ledger });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
+  }
+});
+
+// POST /api/scanner/eod-movers-forensics/analyze-now — Trigger on-demand EOD forensic autopsy
+app.post('/api/scanner/eod-movers-forensics/analyze-now', async (req, res) => {
+  try {
+    const { eodNseMoversForensicLearner } = await import('./eod_nse_movers_forensic_learner.js');
+    const autopsy = eodNseMoversForensicLearner.runFridayBacktestAutopsy();
+    res.json({ success: true, autopsy });
+  } catch (e) {
+    res.status(500).json({ success: false, error: e.message });
   }
 });
 
@@ -6547,16 +6704,18 @@ app.get('/api/gex/data', async (req, res) => {
     const data = await computeGexForSymbol(symbol);
     res.json({ success: true, data });
 
-    // ── Persist live GEX snapshot for Python ML pipeline ─────────────────
-    // Write whenever NIFTY data is fetched so gex_enhanced_lgbm.py has real GEX features
-    if (symbol === 'NIFTY') {
-      try {
-        const snapshotPath = path.join(__dirname, 'data', 'gex_live_snapshot.json');
-        const snapshot = { NIFTY: data, updated_at: new Date().toISOString() };
-        fs.writeFileSync(snapshotPath, JSON.stringify(snapshot, null, 2), 'utf8');
-      } catch (e) {
-        // Non-critical — don't log to avoid noise
-      }
+    // ── Persist live GEX snapshot for ALL symbols (auto-learner + Python ML pipeline) ──
+    // Merges each symbol into the shared gex_live_snapshot.json so gex_auto_learner.js
+    // can observe every instrument (NIFTY, BANKNIFTY, CRUDEOIL, stocks, etc.)
+    try {
+      const snapshotPath = path.join(__dirname, 'data', 'gex_live_snapshot.json');
+      let snapshot = {};
+      try { snapshot = JSON.parse(fs.readFileSync(snapshotPath, 'utf8')); } catch(e) {}
+      snapshot[symbol] = data;
+      snapshot['updated_at'] = new Date().toISOString();
+      fs.writeFileSync(snapshotPath, JSON.stringify(snapshot, null, 2), 'utf8');
+    } catch (e) {
+      // Non-critical — don't log to avoid noise
     }
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
@@ -6572,6 +6731,92 @@ app.get('/api/gex/stock-rules', async (req, res) => {
     } else {
       res.status(404).json({ success: false, error: 'Stock GEX setups not found' });
     }
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ── GEX Auto-Learner Engine — Auto-start on server boot ─────────────────────
+(async () => {
+  try {
+    const { gexAutoLearner } = await import('./gex_auto_learner.js');
+    // Connect WebSocket broadcast to broadcast live 95%-100% GEX alerts instantly
+    gexAutoLearner.setAlertBroadcastCallback((alertData) => {
+      wss.clients.forEach((client) => {
+        if (client.readyState === 1) {
+          try { client.send(JSON.stringify(alertData)); } catch (e) {}
+        }
+      });
+    });
+    gexAutoLearner.startObserving();
+    console.log('[server] GEX Auto-Learner started — observing all symbols every 1 min during market hours');
+  } catch (e) {
+    console.error('[server] GEX Auto-Learner failed to start:', e.message);
+  }
+})();
+
+// ── GEX Auto-Learner API Endpoints ──────────────────────────────────────────
+
+// GET /api/gex/live-alerts?symbol=NIFTY
+// Returns live high-conviction alerts (Call Wall Fade with Leftward March)
+app.get('/api/gex/live-alerts', async (req, res) => {
+  try {
+    const { gexAutoLearner } = await import('./gex_auto_learner.js');
+    const symbol = req.query.symbol ? req.query.symbol.toUpperCase() : null;
+    const alerts = gexAutoLearner.getLiveAlerts(symbol);
+    res.json({ success: true, count: alerts.length, alerts });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET /api/gex/advance-prediction?symbol=NIFTY
+// Returns live advance prediction for the given symbol based on learned rules
+app.get('/api/gex/advance-prediction', async (req, res) => {
+  try {
+    const { gexAutoLearner } = await import('./gex_auto_learner.js');
+    const symbol = (req.query.symbol || 'NIFTY').toUpperCase();
+    const prediction = gexAutoLearner.getAdvancePrediction(symbol);
+    res.json({ success: true, ...prediction });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET /api/gex/auto-rules?symbol=NIFTY
+// Returns all crystallized rules for a symbol (or all symbols if no symbol given)
+app.get('/api/gex/auto-rules', async (req, res) => {
+  try {
+    const { gexAutoLearner } = await import('./gex_auto_learner.js');
+    const symbol = req.query.symbol ? req.query.symbol.toUpperCase() : null;
+    const data = gexAutoLearner.getRules(symbol);
+    res.json({ success: true, ...data });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// GET /api/gex/auto-learner/status
+// Returns engine health: running, observations collected, rules crystallized, etc.
+app.get('/api/gex/auto-learner/status', async (req, res) => {
+  try {
+    const { gexAutoLearner } = await import('./gex_auto_learner.js');
+    res.json({ success: true, ...gexAutoLearner.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ── Institutional Multi-Confluence & Paper Ledger Endpoints ────────────────
+
+
+// GET /api/confluence/ledger
+// Returns real-time paper trading ledger, PnL, active positions, win rate, quarantined rules
+app.get('/api/confluence/ledger', async (req, res) => {
+  try {
+    const { getLedgerSummary } = await import('./autonomous_confluence_trader.js');
+    const ledger = getLedgerSummary();
+    res.json({ success: true, ...ledger });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
@@ -6751,6 +6996,80 @@ app.get('/api/value-trader/universe', async (req, res) => {
   }
 });
 
+// ══════════════════════════════════════════════════════════════════════════════
+// 🏛️ F&O MONTHLY EXPIRY (OCTOBER 2026) CALL WALL MIGRATION TRACKER (ALL 212 STOCKS)
+// ══════════════════════════════════════════════════════════════════════════════
+app.get('/api/fno/monthly-expiry-walls', async (req, res) => {
+  try {
+    const { fnoMonthlyCallWallTracker } = await import('./fno_monthly_call_wall_tracker.js');
+    const summary = fnoMonthlyCallWallTracker.getTrackerSummary();
+    const stocks = fnoMonthlyCallWallTracker.getAllStocks();
+    res.json({
+      success: true,
+      meta: summary.meta,
+      summary: summary.meta.summary,
+      topPinRisk: summary.topPinRisk,
+      topRolledUp: summary.topRolledUp,
+      topRolledDown: summary.topRolledDown,
+      sectorStats: summary.sectorStats,
+      totalCount: stocks.length,
+      stocks
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/fno/monthly-expiry-walls/:symbol', async (req, res) => {
+  try {
+    const { fnoMonthlyCallWallTracker } = await import('./fno_monthly_call_wall_tracker.js');
+    const detail = fnoMonthlyCallWallTracker.getStockDetail(req.params.symbol);
+    if (!detail) {
+      return res.status(404).json({ success: false, error: `Symbol ${req.params.symbol} not found in F&O universe` });
+    }
+    res.json({ success: true, stock: detail });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/fno/monthly-expiry-walls/audit-now', async (req, res) => {
+  try {
+    const { fnoMonthlyCallWallTracker } = await import('./fno_monthly_call_wall_tracker.js');
+    const result = fnoMonthlyCallWallTracker.auditDailyWalls(true);
+    res.json({ success: true, message: 'Daily audit completed across all 212 F&O stocks', result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// ══════════════════════════════════════════════════════════════════════════════
+// 🧠 F&O DAILY CAUSAL FORENSICS & SELF-LEARNING ENGINE (WHAT HAPPENED & WHY)
+// ══════════════════════════════════════════════════════════════════════════════
+app.get('/api/fno/daily-causal-learnings', async (req, res) => {
+  try {
+    const { fnoDailyCausalLearner } = await import('./fno_daily_causal_learner.js');
+    const dateQuery = req.query.date;
+    if (dateQuery) {
+      const specificReport = fnoDailyCausalLearner.getReportForDate(dateQuery);
+      return res.json({ success: true, report: specificReport });
+    }
+    const summary = fnoDailyCausalLearner.getLearningsSummary();
+    res.json({ success: true, ...summary });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.post('/api/fno/daily-causal-learnings/run-now', async (req, res) => {
+  try {
+    const { fnoDailyCausalLearner } = await import('./fno_daily_causal_learner.js');
+    const report = fnoDailyCausalLearner.runDailyForensicAudit(true);
+    res.json({ success: true, message: 'Daily causal forensic audit completed', report });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
 
 // SPA fallback - send index.html for all non-API routes with instant synchronous delivery
 app.get('*', (req, res) => {
@@ -6960,6 +7279,7 @@ server.listen(PORT, '0.0.0.0', () => {
   // Auto-login Angel One SmartAPI if configured
   angelOneBridge.login().then(() => {
     orderFlowStreamEngine.start();
+    ninjaTraderService.start();
   }).catch(e => console.warn('[AngelOne Auto-Login]:', e.message));
 });
 
@@ -7273,5 +7593,82 @@ function startLiveIntradayContinuousLearner() {
 
 startLiveIntradayContinuousLearner();
 startInstitutionalMLScheduler();
+
+// ====================================================================
+// 🚀 Autonomous 09:00 AM & 17:00 IST Daily Early Institutional Move Auto-Scan Scheduler
+// Runs autonomously twice daily without requiring any manual button click:
+// - 09:00 AM IST: Pre-market universe scan (F&O + Cash > ₹500) & prediction snapshotting
+// - 17:00 IST (05:00 PM): Post-market EOD universe scan, forensic audit & causal learning
+// ====================================================================
+let lastMorningEarlyScanDate = null;
+let lastEveningEarlyScanDate = null;
+
+function startAutonomousEarlyMoveAutoScanScheduler() {
+  console.log('[Early Move Auto-Scan] 🕒 Initializing Autonomous Daily 09:00 AM & 17:00 IST Auto-Scan Scheduler...');
+
+  // Periodic check every 30 seconds for 09:00 AM IST and 17:00 IST
+  setInterval(async () => {
+    try {
+      const now = new Date();
+      const istOffset = 5.5 * 60 * 60 * 1000;
+      const istDate = new Date(now.getTime() + istOffset);
+      const istHours = istDate.getUTCHours();
+      const istMinutes = istDate.getUTCMinutes();
+      const todayStr = istDate.toISOString().split('T')[0];
+
+      // 1. 09:00 AM IST Pre-Market Auto-Scan Trigger
+      const isMorningSlot = (istHours === 9 && istMinutes >= 0 && istMinutes < 30);
+      if (isMorningSlot && lastMorningEarlyScanDate !== todayStr) {
+        lastMorningEarlyScanDate = todayStr;
+        console.log(`[Early Move Auto-Scan] ⏰ 09:00 AM IST Reached (${istHours}:${String(istMinutes).padStart(2, '0')} IST)! Executing autonomous pre-market scan for ${todayStr}...`);
+        const { runFullEarlyInstitutionalScan } = await import('./early_institutional_move_scanner.js');
+        const { earlyMovePredictionAuditor } = await import('./early_move_prediction_auditor.js');
+        
+        await runFullEarlyInstitutionalScan({ universeLimit: 212 });
+        earlyMovePredictionAuditor.snapshotSessionPredictions(todayStr);
+        earlyMovePredictionAuditor.updateLiveTracking(todayStr);
+        console.log(`[Early Move Auto-Scan] ✅ 09:00 AM pre-market scan & prediction snapshot complete for ${todayStr}.`);
+      }
+
+      // 2. 17:00 IST (05:00 PM) Post-Market EOD Auto-Scan Trigger
+      const isEveningSlot = (istHours === 17 && istMinutes >= 0 && istMinutes < 30);
+      if (isEveningSlot && lastEveningEarlyScanDate !== todayStr) {
+        lastEveningEarlyScanDate = todayStr;
+        console.log(`[Early Move Auto-Scan] ⏰ 17:00 IST (05:00 PM) Reached (${istHours}:${String(istMinutes).padStart(2, '0')} IST)! Executing autonomous EOD scan, forensic audit & causal learning for ${todayStr}...`);
+        const { runFullEarlyInstitutionalScan } = await import('./early_institutional_move_scanner.js');
+        const { earlyMovePredictionAuditor } = await import('./early_move_prediction_auditor.js');
+        const { eodNseMoversForensicLearner } = await import('./eod_nse_movers_forensic_learner.js');
+
+        await runFullEarlyInstitutionalScan({ universeLimit: 212 });
+        await earlyMovePredictionAuditor.runEndOfDayForensicAudit(todayStr);
+        if (typeof eodNseMoversForensicLearner?.runFridayBacktestAutopsy === 'function') {
+          await eodNseMoversForensicLearner.runFridayBacktestAutopsy();
+        }
+        console.log(`[Early Move Auto-Scan] ✅ 17:00 IST post-market scan & forensic audit complete for ${todayStr}.`);
+      }
+    } catch (err) {
+      console.error('[Early Move Auto-Scan Scheduler Error]', err.message);
+    }
+  }, 30 * 1000);
+
+  // Startup check: if alerts file is missing or older than 4 hours, run background scan
+  setTimeout(async () => {
+    try {
+      const { getCachedEarlyMoveAlerts, runFullEarlyInstitutionalScan } = await import('./early_institutional_move_scanner.js');
+      const alerts = getCachedEarlyMoveAlerts();
+      const lastScanTime = alerts?.meta?.lastScanTime ? new Date(alerts.meta.lastScanTime).getTime() : 0;
+      const fourHoursAgo = Date.now() - (4 * 60 * 60 * 1000);
+      if (!lastScanTime || lastScanTime < fourHoursAgo) {
+        console.log('[Early Move Auto-Scan] 🔄 Cached alerts are older than 4 hours. Executing background refresh scan...');
+        await runFullEarlyInstitutionalScan({ universeLimit: 212 });
+      }
+    } catch (e) {
+      console.error('[Early Move Auto-Scan Startup Error]', e.message);
+    }
+  }, 12000);
+}
+
+startAutonomousEarlyMoveAutoScanScheduler();
+
 
 
