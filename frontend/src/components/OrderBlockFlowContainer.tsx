@@ -717,6 +717,8 @@ export const OrderBlockFlowContainer: React.FC = () => {
   const [sectorModalSearch, setSectorModalSearch] = useState<string>('');
   const [chartViewMode, setChartViewMode] = useState<'candles' | 'line'>('candles');
   const [onlyRetestingFilter, setOnlyRetestingFilter] = useState<boolean>(false);
+  const [secondsUntilNextSync, setSecondsUntilNextSync] = useState<number>(8);
+  const [lastSyncTime, setLastSyncTime] = useState<string>('');
 
   const theme = useMemo(() => isLightMode ? {
     bg: '#f8fafc',
@@ -773,6 +775,8 @@ export const OrderBlockFlowContainer: React.FC = () => {
         const json = await res.json();
         if (json.success) {
           setData(json);
+          setLastSyncTime(new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+          setSecondsUntilNextSync(8);
         }
       }
     } catch (e) {
@@ -785,8 +789,19 @@ export const OrderBlockFlowContainer: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(() => fetchData(false), 8000);
-    return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      fetchData(false);
+      setSecondsUntilNextSync(8);
+    }, 8000);
+
+    const tick = setInterval(() => {
+      setSecondsUntilNextSync(prev => (prev > 1 ? prev - 1 : 8));
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(tick);
+    };
   }, [fetchData]);
 
   // Handle Sector Click from River Pill or Filter Bar
@@ -1705,8 +1720,39 @@ export const OrderBlockFlowContainer: React.FC = () => {
         {/* Center: Volume Delta Scatter + Market Breadth Counters (172 / 41) */}
         {renderTopVolumeScatter()}
 
-        {/* Right Controls: Theme Toggle & Live Sync */}
+        {/* Right Controls: Live Heartbeat Badge, Theme Toggle & Live Sync */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {/* Live Heartbeat & Auto-Sync Pill */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '7px',
+            padding: '5px 10px',
+            borderRadius: '6px',
+            background: isLightMode ? '#f0fdf4' : 'rgba(16, 185, 129, 0.12)',
+            border: '1px solid rgba(16, 185, 129, 0.45)',
+            boxShadow: '0 0 10px rgba(16, 185, 129, 0.18)'
+          }}
+          title="Terminal is connected to live market feeds and auto-syncs every 8 seconds."
+          >
+            <span style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              background: '#10b981',
+              boxShadow: '0 0 8px #10b981',
+              animation: 'pulse 1.5s infinite'
+            }} />
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span style={{ fontSize: '10px', fontWeight: 900, color: '#10b981', letterSpacing: '0.4px', lineHeight: 1.1 }}>
+                🟢 AUTO-UPDATING ({secondsUntilNextSync}s)
+              </span>
+              <span style={{ fontSize: '8.5px', color: theme.textMuted, fontFamily: 'monospace' }}>
+                Synced: {data?.meta?.lastUpdated || lastSyncTime || 'Active'}
+              </span>
+            </div>
+          </div>
+
           <button
             onClick={() => setIsLightMode(!isLightMode)}
             title={isLightMode ? 'Switch to Dark Mode' : 'Switch to Light Mode'}

@@ -138,11 +138,17 @@ export function computeOrderBlockFlowMatrix() {
   const pcrMap = new Map();
   (pcrData.stocks || []).forEach(s => pcrMap.set(s.symbol, s));
 
-  // Extract NIFTY, BANKNIFTY, SENSEX, CRUDEOIL benchmarks
-  const niftySpot = +(marketReport.niftyClose?.close || gexSnapshot.NIFTY?.spot || 23146.15).toFixed(2);
-  const niftyChangePct = +(marketReport.niftyClose?.changePct != null ? marketReport.niftyClose.changePct : 0.65).toFixed(2);
+  // Dynamically extract NIFTY, BANKNIFTY, SENSEX, CRUDEOIL benchmarks
+  const now = new Date();
+  const todayStr = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}`;
+  const todaySignals = readJSON(path.join(DATA_DIR, `historical_signals_${todayStr}.json`), []);
+  const latestBn = [...todaySignals].reverse().find(s => s.symbol === 'BANKNIFTY' && s.spotPrice);
+  const latestNifty = [...todaySignals].reverse().find(s => s.symbol === 'NIFTY' && s.spotPrice);
 
-  const bnSpot = +(marketReport.bankniftyClose?.close || 55844.0).toFixed(2);
+  const niftySpot = +(gexSnapshot.NIFTY?.spotPrice || latestNifty?.spotPrice || marketReport.niftyClose?.close || 22940.75).toFixed(2);
+  const niftyChangePct = +(gexSnapshot.NIFTY?.momentum?.day ? (gexSnapshot.NIFTY.momentum.day / niftySpot * 100) : (marketReport.niftyClose?.changePct != null ? marketReport.niftyClose.changePct : 0.65)).toFixed(2);
+
+  const bnSpot = +(latestBn?.spotPrice || marketReport.bankniftyClose?.close || 55602.50).toFixed(2);
   const bnChangePct = +(marketReport.bankniftyClose?.changePct != null ? marketReport.bankniftyClose.changePct : 0.06).toFixed(2);
 
   const sensexSpot = +(gexSnapshot.SENSEX?.spotPrice || 71491.44).toFixed(2);
