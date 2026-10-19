@@ -699,7 +699,11 @@ export function generateIntradayCandles(stock: StockExecutionCard) {
   return candles;
 }
 
-export const OrderBlockFlowContainer: React.FC = () => {
+export interface OrderBlockFlowContainerProps {
+  refreshTrigger?: number;
+}
+
+export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = ({ refreshTrigger }) => {
   const [data, setData] = useState<OrderBlockFlowData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
@@ -804,6 +808,19 @@ export const OrderBlockFlowContainer: React.FC = () => {
     };
   }, [fetchData]);
 
+  // Trigger live refresh whenever tab is selected / refreshTrigger changes
+  useEffect(() => {
+    if (refreshTrigger !== undefined && refreshTrigger > 0) {
+      fetchData(true);
+    }
+  }, [refreshTrigger, fetchData]);
+
+  // Handle Opening Stock Precision Modal with Immediate Live Refresh
+  const handleOpenStockModal = useCallback((stock: StockExecutionCard) => {
+    setSelectedStock(stock);
+    fetchData(false);
+  }, [fetchData]);
+
   // Handle Sector Click from River Pill or Filter Bar
   const handleSectorClick = (sectorName: string, sectorPct: string) => {
     setSelectedSector(sectorName);
@@ -814,17 +831,19 @@ export const OrderBlockFlowContainer: React.FC = () => {
       stocks: sectorStocks
     });
     setSectorModalSearch('');
+    fetchData(true);
   };
 
-  // Filtered stocks inside the Sector Drill-Down Modal
+  // Filtered stocks inside the Sector Drill-Down Modal (dynamically synced with live data)
   const filteredModalStocks = useMemo(() => {
     if (!sectorModal) return [];
-    if (!sectorModalSearch.trim()) return sectorModal.stocks;
+    const latestStocks = getStocksForSector(sectorModal.name, data?.allStocks || []);
+    if (!sectorModalSearch.trim()) return latestStocks;
     const q = sectorModalSearch.toLowerCase();
-    return sectorModal.stocks.filter(s =>
+    return latestStocks.filter(s =>
       s.symbol.toLowerCase().includes(q) || s.name.toLowerCase().includes(q)
     );
-  }, [sectorModal, sectorModalSearch]);
+  }, [sectorModal, sectorModalSearch, data]);
 
   // Count of stocks currently retesting or pulling back to their Order Block
   const liveRetestingCount = useMemo(() => {
@@ -1081,7 +1100,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
                 style={{ cursor: 'pointer', transition: 'all 0.15s ease' }}
                 onMouseEnter={() => setHoveredStock(stock)}
                 onMouseLeave={() => setHoveredStock(null)}
-                onClick={() => setSelectedStock(stock)}
+                onClick={() => handleOpenStockModal(stock)}
               />
             );
           })}
@@ -1111,7 +1130,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
                 style={{ cursor: 'pointer', transition: 'all 0.15s ease' }}
                 onMouseEnter={() => setHoveredStock(stock)}
                 onMouseLeave={() => setHoveredStock(null)}
-                onClick={() => setSelectedStock(stock)}
+                onClick={() => handleOpenStockModal(stock)}
               />
             );
           })}
@@ -1255,7 +1274,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
           {col1.map((stock, idx) => (
             <div
               key={stock.symbol}
-              onClick={() => setSelectedStock(stock)}
+              onClick={() => handleOpenStockModal(stock)}
               style={{
                 background: theme.cardBg,
                 border: `1px solid ${theme.cardBorder}`,
@@ -1298,7 +1317,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
           {col2.map((stock, idx) => (
             <div
               key={stock.symbol}
-              onClick={() => setSelectedStock(stock)}
+              onClick={() => handleOpenStockModal(stock)}
               style={{
                 background: theme.cardBg,
                 border: `1px solid ${theme.cardBorder}`,
@@ -1352,7 +1371,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
           {col3.map((stock, idx) => (
             <div
               key={stock.symbol}
-              onClick={() => setSelectedStock(stock)}
+              onClick={() => handleOpenStockModal(stock)}
               style={{
                 background: theme.cardBg,
                 border: `1px solid ${theme.cardBorder}`,
@@ -1419,7 +1438,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
           {col4.map((stock, idx) => (
             <div
               key={stock.symbol}
-              onClick={() => setSelectedStock(stock)}
+              onClick={() => handleOpenStockModal(stock)}
               style={{
                 background: theme.cardBg,
                 border: `1.5px solid ${isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)'}`,
@@ -1509,7 +1528,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
     return (
       <div 
         key={card.symbol}
-        onClick={() => setSelectedStock(card)}
+        onClick={() => handleOpenStockModal(card)}
         style={{
           background: bg,
           border: border,
@@ -1871,7 +1890,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
               return (
                 <div
                   key={card.symbol}
-                  onClick={() => setSelectedStock(card)}
+                  onClick={() => handleOpenStockModal(card)}
                   style={{
                     background: isSelected 
                       ? (isLightMode ? '#e0f2fe' : 'rgba(2, 132, 199, 0.15)') 
@@ -2002,7 +2021,10 @@ export const OrderBlockFlowContainer: React.FC = () => {
       }}>
         {/* Live Retest Radar Toggle Button */}
         <button
-          onClick={() => setOnlyRetestingFilter(!onlyRetestingFilter)}
+          onClick={() => {
+            setOnlyRetestingFilter(prev => !prev);
+            fetchData(true);
+          }}
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -2037,7 +2059,10 @@ export const OrderBlockFlowContainer: React.FC = () => {
           return (
             <button
               key={sec}
-              onClick={() => setSelectedSector(sec)}
+              onClick={() => {
+                setSelectedSector(sec);
+                fetchData(true);
+              }}
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -2184,49 +2209,48 @@ export const OrderBlockFlowContainer: React.FC = () => {
       </div>
 
       {/* ── 4. Interactive Stock Detail Retest Modal (as seen in video 00:50) ── */}
-      {selectedStock && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.75)',
-          backdropFilter: 'blur(6px)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 1000,
-          padding: '20px'
-        }} onClick={() => setSelectedStock(null)}>
-          <div 
-            style={{
-              backgroundColor: theme.cardBg,
-              border: `1.5px solid ${selectedStock.bias === 'BULL' ? '#10b981' : '#ef4444'}`,
-              borderRadius: '14px',
-              padding: '20px 24px',
-              maxWidth: '680px',
-              width: '100%',
-              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
-              maxHeight: '90vh',
-              overflowY: 'auto'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header */}
-            {(() => {
-              const liveStock = data?.allStocks?.find(s => s.symbol === selectedStock.symbol) || selectedStock;
-              const isBull = liveStock.bias === 'BULL';
-              const isUp = liveStock.dayChangePct >= 0;
-              return (
-                <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  marginBottom: '14px',
-                  flexWrap: 'wrap',
-                  gap: '12px'
-                }}>
+      {selectedStock && (() => {
+        const liveStock = data?.allStocks?.find(s => s.symbol === selectedStock.symbol) || selectedStock;
+        const isBull = liveStock.bias === 'BULL';
+        const isUp = liveStock.dayChangePct >= 0;
+        return (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            backdropFilter: 'blur(6px)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+            padding: '20px'
+          }} onClick={() => setSelectedStock(null)}>
+            <div 
+              style={{
+                backgroundColor: theme.cardBg,
+                border: `1.5px solid ${isBull ? '#10b981' : '#ef4444'}`,
+                borderRadius: '14px',
+                padding: '20px 24px',
+                maxWidth: '680px',
+                width: '100%',
+                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)',
+                maxHeight: '90vh',
+                overflowY: 'auto'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '14px',
+                flexWrap: 'wrap',
+                gap: '12px'
+              }}>
                   {/* Left: Bias Badge + Symbol & Sector + Conviction */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span style={{
@@ -2326,8 +2350,6 @@ export const OrderBlockFlowContainer: React.FC = () => {
                     </button>
                   </div>
                 </div>
-              );
-            })()}
 
             {/* Metrics Breakdown Grid (as seen in video 00:52) */}
             <div style={{
@@ -2343,44 +2365,44 @@ export const OrderBlockFlowContainer: React.FC = () => {
             }}>
               <div>
                 <span style={{ color: theme.textMuted }}>RANK:</span>
-                <div style={{ fontWeight: 800, color: theme.textPrimary }}>p99.8 #1/172</div>
+                <div style={{ fontWeight: 800, color: theme.textPrimary }}>p99.8 #{liveStock.rank || 1}/172</div>
               </div>
               <div>
                 <span style={{ color: theme.textMuted }}>OI CHANGE:</span>
-                <div style={{ fontWeight: 800, color: '#0284c7' }}>+{Math.abs(selectedStock.oiChangePct)}% {selectedStock.buildUp}</div>
+                <div style={{ fontWeight: 800, color: '#0284c7' }}>+{Math.abs(liveStock.oiChangePct)}% {liveStock.buildUp}</div>
               </div>
               <div>
                 <span style={{ color: theme.textMuted }}>VWAP:</span>
-                <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{+(selectedStock.spot * 0.996).toFixed(2)}</div>
+                <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{+(liveStock.spot * 0.996).toFixed(2)}</div>
               </div>
               <div>
                 <span style={{ color: theme.textMuted }}>RVOL:</span>
-                <div style={{ fontWeight: 800, color: '#059669' }}>{selectedStock.rvol}x (High Vol)</div>
+                <div style={{ fontWeight: 800, color: '#059669' }}>{liveStock.rvol}x (High Vol)</div>
               </div>
 
               <div>
                 <span style={{ color: theme.textMuted }}>ORDER BLOCK ZONE:</span>
-                <div style={{ fontWeight: 800, color: selectedStock.bias === 'BULL' ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>
-                  {selectedStock.zone.label}
+                <div style={{ fontWeight: 800, color: isBull ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>
+                  {liveStock.zone.label}
                 </div>
               </div>
               <div>
                 <span style={{ color: theme.textMuted }}>SL / S1:</span>
-                <div style={{ fontWeight: 800, color: '#dc2626', fontFamily: 'monospace' }}>₹{selectedStock.s1}</div>
+                <div style={{ fontWeight: 800, color: '#dc2626', fontFamily: 'monospace' }}>₹{liveStock.s1}</div>
               </div>
               <div>
                 <span style={{ color: theme.textMuted }}>TARGET 1 (R1):</span>
-                <div style={{ fontWeight: 800, color: '#059669', fontFamily: 'monospace' }}>₹{selectedStock.r1}</div>
+                <div style={{ fontWeight: 800, color: '#059669', fontFamily: 'monospace' }}>₹{liveStock.r1}</div>
               </div>
               <div>
                 <span style={{ color: theme.textMuted }}>R:R RATIO:</span>
-                <div style={{ fontWeight: 900, color: '#b45309' }}>1 : {selectedStock.rewardRiskRatio}</div>
+                <div style={{ fontWeight: 900, color: '#b45309' }}>1 : {liveStock.rewardRiskRatio}</div>
               </div>
             </div>
 
             {/* ── Live Retest Radar Status Banner ── */}
             {(() => {
-              const rStatus = getRetestLiveStatus(selectedStock);
+              const rStatus = getRetestLiveStatus(liveStock);
               return (
                 <div style={{
                   display: 'flex',
@@ -2409,8 +2431,8 @@ export const OrderBlockFlowContainer: React.FC = () => {
                     </span>
                   </div>
                   <div style={{ fontSize: '11px', color: theme.textSecondary }}>
-                    Spot: <strong style={{ color: theme.textPrimary, fontFamily: 'monospace' }}>₹{selectedStock.spot}</strong> · 
-                    Zone: <strong style={{ color: selectedStock.bias === 'BULL' ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>{selectedStock.zone.label}</strong>
+                    Spot: <strong style={{ color: theme.textPrimary, fontFamily: 'monospace' }}>₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</strong> · 
+                    Zone: <strong style={{ color: isBull ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>{liveStock.zone.label}</strong>
                   </div>
                   <div style={{
                     background: theme.canvasBg,
@@ -2464,7 +2486,10 @@ export const OrderBlockFlowContainer: React.FC = () => {
                   {/* View Mode Toggle: Candlesticks vs Line */}
                   <div style={{ display: 'flex', gap: '4px', background: theme.pillBg, padding: '2px', borderRadius: '5px' }}>
                     <button
-                      onClick={() => setChartViewMode('candles')}
+                      onClick={() => {
+                        setChartViewMode('candles');
+                        fetchData(false);
+                      }}
                       style={{
                         background: chartViewMode === 'candles' ? '#0284c7' : 'transparent',
                         color: chartViewMode === 'candles' ? '#ffffff' : theme.textSecondary,
@@ -2479,7 +2504,10 @@ export const OrderBlockFlowContainer: React.FC = () => {
                       🕯️ Candlesticks
                     </button>
                     <button
-                      onClick={() => setChartViewMode('line')}
+                      onClick={() => {
+                        setChartViewMode('line');
+                        fetchData(false);
+                      }}
                       style={{
                         background: chartViewMode === 'line' ? '#0284c7' : 'transparent',
                         color: chartViewMode === 'line' ? '#ffffff' : theme.textSecondary,
@@ -2500,10 +2528,9 @@ export const OrderBlockFlowContainer: React.FC = () => {
               {/* Chart SVG Rendering */}
               <div style={{ width: '100%', height: '200px', position: 'relative' }}>
                 {chartViewMode === 'candles' ? (() => {
-                  const candles = generateIntradayCandles(selectedStock);
-                  const isBull = selectedStock.bias === 'BULL';
-                  const minP = Math.min(...candles.map(c => c.low), selectedStock.s1 * 0.995, selectedStock.zone.low * 0.995);
-                  const maxP = Math.max(...candles.map(c => c.high), selectedStock.r2 * 1.005, selectedStock.zone.high * 1.005);
+                  const candles = generateIntradayCandles(liveStock);
+                  const minP = Math.min(...candles.map(c => c.low), liveStock.s1 * 0.995, liveStock.zone.low * 0.995);
+                  const maxP = Math.max(...candles.map(c => c.high), liveStock.r2 * 1.005, liveStock.zone.high * 1.005);
                   const range = maxP - minP || 1;
 
                   const plotLeft = 45;
@@ -2516,16 +2543,16 @@ export const OrderBlockFlowContainer: React.FC = () => {
                   const yScale = (val: number) => plotTop + (maxP - val) / range * plotHeight;
                   const candleWidth = Math.max(8, (plotWidth / candles.length) - 8);
 
-                  const yZoneHigh = yScale(selectedStock.zone.high);
-                  const yZoneLow = yScale(selectedStock.zone.low);
+                  const yZoneHigh = yScale(liveStock.zone.high);
+                  const yZoneLow = yScale(liveStock.zone.low);
                   const zoneTop = Math.min(yZoneHigh, yZoneLow);
                   const zoneH = Math.max(14, Math.abs(yZoneLow - yZoneHigh));
 
-                  const yR2 = yScale(selectedStock.r2);
-                  const yR1 = yScale(selectedStock.r1);
-                  const yS1 = yScale(selectedStock.s1);
-                  const yLtp = yScale(selectedStock.spot);
-                  const yLiq = yScale(selectedStock.liquidityLine);
+                  const yR2 = yScale(liveStock.r2);
+                  const yR1 = yScale(liveStock.r1);
+                  const yS1 = yScale(liveStock.s1);
+                  const yLtp = yScale(liveStock.spot);
+                  const yLiq = yScale(liveStock.liquidityLine);
 
                   return (
                     <svg viewBox="0 0 620 200" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
@@ -2538,10 +2565,10 @@ export const OrderBlockFlowContainer: React.FC = () => {
 
                       {/* Horizontal Grid & Levels */}
                       <line x1={plotLeft} y1={yR2} x2={plotRight} y2={yR2} stroke="#059669" strokeWidth={0.9} strokeDasharray="3,3" />
-                      <text x={plotRight + 5} y={yR2 + 3} fill="#059669" fontSize="8" fontWeight="bold">R2 ₹{selectedStock.r2}</text>
+                      <text x={plotRight + 5} y={yR2 + 3} fill="#059669" fontSize="8" fontWeight="bold">R2 ₹{liveStock.r2}</text>
 
                       <line x1={plotLeft} y1={yR1} x2={plotRight} y2={yR1} stroke="#10b981" strokeWidth={0.9} strokeDasharray="3,3" />
-                      <text x={plotRight + 5} y={yR1 + 3} fill="#10b981" fontSize="8" fontWeight="bold">R1 ₹{selectedStock.r1}</text>
+                      <text x={plotRight + 5} y={yR1 + 3} fill="#10b981" fontSize="8" fontWeight="bold">R1 ₹{liveStock.r1}</text>
 
                       {/* Shaded Order Block Demand / Supply Zone */}
                       <rect
@@ -2556,21 +2583,21 @@ export const OrderBlockFlowContainer: React.FC = () => {
                         rx={2}
                       />
                       <text x={plotLeft + 6} y={zoneTop + 10} fill={isBull ? '#059669' : '#dc2626'} fontSize="8" fontWeight="900">
-                        {isBull ? 'DEMAND' : 'SUPPLY'} ORDER BLOCK ZONE ({selectedStock.zone.label})
+                        {isBull ? 'DEMAND' : 'SUPPLY'} ORDER BLOCK ZONE ({liveStock.zone.label})
                       </text>
 
                       {/* Support 1 / SL */}
                       <line x1={plotLeft} y1={yS1} x2={plotRight} y2={yS1} stroke="#dc2626" strokeWidth={1} strokeDasharray="3,3" />
-                      <text x={plotRight + 5} y={yS1 + 3} fill="#dc2626" fontSize="8" fontWeight="bold">SL ₹{selectedStock.s1}</text>
+                      <text x={plotRight + 5} y={yS1 + 3} fill="#dc2626" fontSize="8" fontWeight="bold">SL ₹{liveStock.s1}</text>
 
                       {/* Amber Liquidity Line */}
                       <line x1={plotLeft} y1={yLiq} x2={plotRight} y2={yLiq} stroke="#f59e0b" strokeWidth={1.2} strokeDasharray="4,3" />
-                      <text x={plotRight + 5} y={yLiq + 3} fill="#b45309" fontSize="7.5" fontWeight="bold">LIQ ₹{selectedStock.liquidityLine}</text>
+                      <text x={plotRight + 5} y={yLiq + 3} fill="#b45309" fontSize="7.5" fontWeight="bold">LIQ ₹{liveStock.liquidityLine}</text>
 
                       {/* Live Spot Price Dashed Line */}
                       <line x1={plotLeft} y1={yLtp} x2={plotRight} y2={yLtp} stroke="#38bdf8" strokeWidth={1.2} strokeDasharray="2,2" />
                       <rect x={plotRight + 3} y={yLtp - 6} width={50} height={12} rx={2} fill="#0284c7" />
-                      <text x={plotRight + 5} y={yLtp + 3} fill="#ffffff" fontSize="7.5" fontWeight="900">LTP ₹{selectedStock.spot}</text>
+                      <text x={plotRight + 5} y={yLtp + 3} fill="#ffffff" fontSize="7.5" fontWeight="900">LTP ₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</text>
 
                       {/* Volume Divider */}
                       <line x1={plotLeft} y1={170} x2={plotRight} y2={170} stroke={theme.gridLine} strokeWidth={0.8} />
@@ -2661,18 +2688,18 @@ export const OrderBlockFlowContainer: React.FC = () => {
 
                     {/* Horizontal Levels */}
                     <line x1={40} y1={25} x2={560} y2={25} stroke="#059669" strokeWidth={1} strokeDasharray="3,3" />
-                    <text x={565} y={28} fill="#059669" fontSize="8.5" fontWeight="bold">R2 ₹{selectedStock.r2}</text>
+                    <text x={565} y={28} fill="#059669" fontSize="8.5" fontWeight="bold">R2 ₹{liveStock.r2}</text>
 
                     <line x1={40} y1={52} x2={560} y2={52} stroke="#10b981" strokeWidth={1} strokeDasharray="3,3" />
-                    <text x={565} y={55} fill="#10b981" fontSize="8.5" fontWeight="bold">R1 ₹{selectedStock.r1}</text>
+                    <text x={565} y={55} fill="#10b981" fontSize="8.5" fontWeight="bold">R1 ₹{liveStock.r1}</text>
 
                     {/* Shaded Order Block Demand Zone */}
                     <rect x={40} y={85} width={520} height={32} fill="url(#chartZoneGrad)" stroke="#10b981" strokeWidth={1} rx={3} />
-                    <text x={45} y={105} fill="#059669" fontSize="8.5" fontWeight="bold">ORDER BLOCK ZONE ({selectedStock.zone.label})</text>
+                    <text x={45} y={105} fill="#059669" fontSize="8.5" fontWeight="bold">ORDER BLOCK ZONE ({liveStock.zone.label})</text>
 
                     {/* Amber Liquidity Sweep Line */}
                     <line x1={40} y1={135} x2={560} y2={135} stroke="#f59e0b" strokeWidth={1.5} strokeDasharray="4,3" />
-                    <text x={565} y={138} fill="#b45309" fontSize="8.5" fontWeight="bold">LIQ ₹{selectedStock.liquidityLine}</text>
+                    <text x={565} y={138} fill="#b45309" fontSize="8.5" fontWeight="bold">LIQ ₹{liveStock.liquidityLine}</text>
 
                     {/* Time Marks */}
                     <text x={45} y={160} fill="#94a3b8" fontSize="8">09:15</text>
@@ -2718,7 +2745,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
                   🎯 Verified F&amp;O Options Scalp Blueprint
                 </div>
                 <div style={{ fontSize: '10.5px', color: theme.textSecondary, marginTop: '2px' }}>
-                  Recommended ATM Strike: Buy <strong>{selectedStock.symbol} {Math.round(selectedStock.spot / 50) * 50} {selectedStock.bias === 'BULL' ? 'CE' : 'PE'}</strong> | Risk strictly capped to ₹{+(selectedStock.riskPts * 0.5).toFixed(2)} pts on premium!
+                  Recommended ATM Strike: Buy <strong>{liveStock.symbol} {Math.round(liveStock.spot / 50) * 50} {isBull ? 'CE' : 'PE'}</strong> | Risk strictly capped to ₹{+(liveStock.riskPts * 0.5).toFixed(2)} pts on premium!
                 </div>
               </div>
               <div style={{ textAlign: 'right', minWidth: '90px' }}>
@@ -2730,13 +2757,14 @@ export const OrderBlockFlowContainer: React.FC = () => {
                   fontSize: '10.5px',
                   fontWeight: 900
                 }}>
-                  R:R 1 : {selectedStock.rewardRiskRatio}
+                  R:R 1 : {liveStock.rewardRiskRatio}
                 </span>
               </div>
             </div>
           </div>
         </div>
-      )}
+        );
+      })()}
 
       {/* ── SECTOR STOCKS DRILL-DOWN MODAL (When clicking any sector pill on river) ── */}
       {sectorModal && (
@@ -2882,7 +2910,7 @@ export const OrderBlockFlowContainer: React.FC = () => {
                     <div
                       key={stock.symbol}
                       onClick={() => {
-                        setSelectedStock(stock);
+                        handleOpenStockModal(stock);
                       }}
                       style={{
                         display: 'flex',

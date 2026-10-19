@@ -41,6 +41,8 @@ import { InstitutionalMLSuiteV2Card } from './components/InstitutionalMLSuiteV2C
 import { MLBrainContainer } from './components/MLBrainContainer';
 import { MasterExecutiveHUD } from './components/MasterExecutiveHUD';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { FnoGexCycleTracker } from './components/FnoGexCycleTracker';
+import { OrderBlockFlowContainer } from './components/OrderBlockFlowContainer';
 
 function App() {
   const [symbol, setSymbol] = useState('NSE:NIFTY');
@@ -51,7 +53,7 @@ function App() {
   const [refreshKey, setRefreshKey] = useState<number>(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'institutional_ml_v2' | 'ml_brain' | 'stock_pcr' | 'gex_algo' | 'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('value_trader');
+  const [activeTab, setActiveTab] = useState<'order_block_flow' | 'early_moves' | 'fno_gex_cycle' | 'institutional_ml_v2' | 'ml_brain' | 'stock_pcr' | 'gex_algo' | 'gex' | 'value_trader' | 'chart' | 'historical' | 'deep_discoveries' | 'data_learning' | 'microstructure' | 'stocks_tracker' | 'stocks_moving' | 'autonomous_rule_miner' | 'imbalance_meter' | 'orderflow' | 'pcr_velocity' | 'day_range' | 'cycle' | 'auto_learner' | 'bhaichara' | 'dada_thoughts' | 'fifteen_min' | 'scanner' | 'options' | 'signals' | 'doji' | 'doji_novol' | 'volume' | 'opening_bias' | 'hourly_updates' | 'backtest_results' | 'confluences' | 'early_picks' | 'pattern_forecaster' | 'weekly_selling'>('order_block_flow');
   const [biasData, setBiasData] = useState<any>(null);
   const [chartFeedSource, setChartFeedSource] = useState<'angelone' | 'tradingview'>('angelone');
 
@@ -71,6 +73,11 @@ function App() {
     const interval = setInterval(fetchBias, 1000); // 1-second background polling for high-level bias updates
     return () => clearInterval(interval);
   }, []);
+
+  // Instantly bump refreshKey when user clicks any tab across the interface
+  useEffect(() => {
+    setRefreshKey((prev) => prev + 1);
+  }, [activeTab]);
 
   // Subscribe to symbol data: Angel One (Primary) or TradingView (Secondary)
   useEffect(() => {
@@ -214,6 +221,69 @@ function App() {
 
       {/* Navigation Tabs */}
       <div style={{ display: 'flex', gap: '8px', borderBottom: '1px solid rgba(255, 255, 255, 0.05)', paddingBottom: '2px', flexWrap: 'wrap' }}>
+        <button
+          onClick={() => setActiveTab('order_block_flow')}
+          style={{
+            background: activeTab === 'order_block_flow' ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.45) 0%, rgba(6, 78, 59, 0.45) 100%)' : 'rgba(16, 185, 129, 0.12)',
+            border: activeTab === 'order_block_flow' ? '1.5px solid #10b981' : '1px solid rgba(16, 185, 129, 0.35)',
+            borderBottom: activeTab === 'order_block_flow' ? '2.5px solid #10b981' : '2px solid transparent',
+            color: activeTab === 'order_block_flow' ? '#6ee7b7' : '#d1fae5',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '900',
+            cursor: 'pointer',
+            borderRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            boxShadow: activeTab === 'order_block_flow' ? '0 0 16px rgba(16, 185, 129, 0.5)' : 'none'
+          }}
+        >
+          🌊 OrderBlock Flow &amp; Liquidity
+        </button>
+        <button
+          onClick={() => setActiveTab('early_moves')}
+          style={{
+            background: activeTab === 'early_moves' ? 'linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(245, 158, 11, 0.4) 100%)' : 'rgba(239, 68, 68, 0.12)',
+            border: activeTab === 'early_moves' ? '1.5px solid #ef4444' : '1px solid rgba(239, 68, 68, 0.35)',
+            borderBottom: activeTab === 'early_moves' ? '2.5px solid #ef4444' : '2px solid transparent',
+            color: activeTab === 'early_moves' ? '#fca5a5' : '#fee2e2',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '900',
+            cursor: 'pointer',
+            borderRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            boxShadow: activeTab === 'early_moves' ? '0 0 16px rgba(239, 68, 68, 0.5)' : 'none'
+          }}
+        >
+          🚀 Early Move Scanner (6% – 12%)
+        </button>
+        <button
+          onClick={() => setActiveTab('fno_gex_cycle')}
+          style={{
+            background: activeTab === 'fno_gex_cycle' ? 'linear-gradient(135deg, rgba(56, 189, 248, 0.35) 0%, rgba(168, 85, 247, 0.35) 100%)' : 'rgba(56, 189, 248, 0.1)',
+            border: activeTab === 'fno_gex_cycle' ? '1.5px solid #38bdf8' : '1px solid rgba(56, 189, 248, 0.3)',
+            borderBottom: activeTab === 'fno_gex_cycle' ? '2.5px solid #38bdf8' : '2px solid transparent',
+            color: activeTab === 'fno_gex_cycle' ? '#38bdf8' : '#e0f2fe',
+            padding: '8px 16px',
+            fontSize: '14px',
+            fontWeight: '900',
+            cursor: 'pointer',
+            borderRadius: '6px',
+            transition: 'all 0.15s',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            boxShadow: activeTab === 'fno_gex_cycle' ? '0 0 14px rgba(56, 189, 248, 0.45)' : 'none'
+          }}
+        >
+          🏛️ 212 F&O GEX & Playbook
+        </button>
         <button
           onClick={() => setActiveTab('institutional_ml_v2')}
           style={{
@@ -932,6 +1002,21 @@ function App() {
       {/* Main Workspace */}
       <div style={{ flex: '1', display: 'flex', flexDirection: 'column', minHeight: '0' }}>
         <ErrorBoundary key={activeTab} fallbackTitle={`Error Loading Tab (${activeTab})`}>
+        {activeTab === 'order_block_flow' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <OrderBlockFlowContainer refreshTrigger={refreshKey} />
+          </div>
+        )}
+        {activeTab === 'early_moves' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <FnoGexCycleTracker initialTab="early_moves" />
+          </div>
+        )}
+        {activeTab === 'fno_gex_cycle' && (
+          <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
+            <FnoGexCycleTracker initialTab="forensics" />
+          </div>
+        )}
         {activeTab === 'institutional_ml_v2' && (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: 0, overflowY: 'auto' }}>
             <InstitutionalMLSuiteV2Card />
