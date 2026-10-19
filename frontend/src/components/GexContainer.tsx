@@ -6,6 +6,7 @@ import {
   BookOpen, CheckCircle, Flame, Lock, Play, Pause, Trash2, Cpu, Crosshair, Brain
 } from 'lucide-react';
 import { GexbotClassicDotsView } from './GexbotClassicDotsView';
+import { FnoGexCycleTracker } from './FnoGexCycleTracker';
 
 export interface StockGexRule {
   ruleId: string;
@@ -331,8 +332,8 @@ const ASSET_PILLS = [
   { symbol: 'NATURALGAS', label: 'NATURALGAS', exchange: 'MCX' },
 ];
 
-export const GexContainer: React.FC<{ initialViewMode?: 'hub' | 'detail' | 'algo' }> = ({ initialViewMode = 'hub' }) => {
-  const [viewMode, setViewMode] = useState<'hub' | 'detail' | 'algo'>(initialViewMode);
+export const GexContainer: React.FC<{ initialViewMode?: 'hub' | 'detail' | 'algo' | 'cycle' }> = ({ initialViewMode = 'hub' }) => {
+  const [viewMode, setViewMode] = useState<'hub' | 'detail' | 'algo' | 'cycle'>(initialViewMode);
 
   useEffect(() => {
     if (initialViewMode) setViewMode(initialViewMode);
@@ -1071,6 +1072,22 @@ function formatGexVal(val: number, unit = 'Cr'): string {
               Put Writing: <strong style={{ color: '#34d399' }}>{algoStatus?.stockPcrAlpha?.putWritingLeadersCount || 0} stocks</strong> · Call Writing: <strong style={{ color: '#f87171' }}>{algoStatus?.stockPcrAlpha?.callWritingLeadersCount || 0} stocks</strong>
             </div>
           </div>
+
+          {/* Card 7: OrderBlock Flow & Liquidity Engine */}
+          <div style={{ backgroundColor: '#131b2c', padding: '8px 10px', borderRadius: '6px', border: '1px solid rgba(14, 165, 233, 0.4)' }}>
+            <div style={{ fontSize: '9.5px', color: '#38bdf8', fontWeight: 800 }}>7. ORDERBLOCK FLOW & LIQUIDITY</div>
+            <div style={{
+              fontSize: '11.5px',
+              fontWeight: 800,
+              color: '#34d399',
+              marginTop: '2px'
+            }}>
+              🌊 ACTIVE · IN-ZONE FLOW ALPHA
+            </div>
+            <div style={{ fontSize: '9px', color: '#94a3b8', marginTop: '2px' }}>
+              Execution Cards: <strong style={{ color: '#38bdf8' }}>3 Bull + 3 Bear</strong> · Auto-Learns SL Hits
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1132,8 +1149,8 @@ function formatGexVal(val: number, unit = 'Cr'): string {
         <div style={{ backgroundColor: '#111827', padding: '10px 12px', borderRadius: '6px', border: '1px solid #1f2937' }}>
           <div style={{ fontSize: '10px', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>Active Positions</div>
           <div style={{ fontSize: '15px', fontWeight: 800, color: '#a855f7', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span>{algoStatus?.openPositions?.length || 0} / 6</span>
-            <span style={{ fontSize: '9px', padding: '1px 5px', borderRadius: '4px', backgroundColor: '#3b0764', color: '#d8b4fe', fontWeight: 600 }}>3 GEX + 3 PCR Alpha</span>
+            <span>{algoStatus?.openPositions?.length || 0} / 9</span>
+            <span style={{ fontSize: '9px', padding: '1px 5px', borderRadius: '4px', backgroundColor: '#3b0764', color: '#d8b4fe', fontWeight: 600 }}>3 GEX + 3 PCR + 3 OB Flow</span>
           </div>
         </div>
       </div>
@@ -1186,6 +1203,11 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                           {(pos.setupName?.includes('Stock PCR') || pos.setupId?.startsWith('SPCR')) && (
                             <span style={{ fontSize: '9px', background: 'rgba(168, 85, 247, 0.25)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.4)', padding: '1px 5px', borderRadius: '3px', fontWeight: 800 }}>
                               ⚡ PCR RULE 2D
+                            </span>
+                          )}
+                          {(pos.setupName?.includes('OrderBlock') || pos.setupId?.startsWith('OB-FLOW')) && (
+                            <span style={{ fontSize: '9px', background: 'rgba(14, 165, 233, 0.25)', color: '#38bdf8', border: '1px solid rgba(14, 165, 233, 0.4)', padding: '1px 5px', borderRadius: '3px', fontWeight: 800 }}>
+                              🌊 ORDERBLOCK FLOW
                             </span>
                           )}
                         </div>
@@ -1363,6 +1385,11 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                           {(t.setupName?.includes('Stock PCR') || t.setupId?.startsWith('SPCR')) && (
                             <span style={{ fontSize: '9px', background: 'rgba(168, 85, 247, 0.25)', color: '#c084fc', border: '1px solid rgba(168, 85, 247, 0.4)', padding: '1px 5px', borderRadius: '3px', fontWeight: 800 }}>
                               ⚡ PCR RULE 2D
+                            </span>
+                          )}
+                          {(t.setupName?.includes('OrderBlock') || t.setupId?.startsWith('OB-FLOW')) && (
+                            <span style={{ fontSize: '9px', background: 'rgba(14, 165, 233, 0.25)', color: '#38bdf8', border: '1px solid rgba(14, 165, 233, 0.4)', padding: '1px 5px', borderRadius: '3px', fontWeight: 800 }}>
+                              🌊 ORDERBLOCK FLOW
                             </span>
                           )}
                         </div>
@@ -1790,8 +1817,13 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                   borderLeft: `3px solid ${t.isWin ? '#34d399' : '#f87171'}`
                 }}>
                   <div>
-                    <div style={{ fontWeight: 700, color: '#f8fafc' }}>
-                      {t.symbol} {t.strike} {t.optionType}
+                    <div style={{ fontWeight: 700, color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <span>{t.symbol} {t.strike} {t.optionType}</span>
+                      {(t.setupName?.includes('OrderBlock') || t.setupId?.startsWith('OB-FLOW')) && (
+                        <span style={{ fontSize: '8px', background: 'rgba(14, 165, 233, 0.25)', color: '#38bdf8', padding: '1px 4px', borderRadius: '3px', fontWeight: 800 }}>
+                          🌊 OB FLOW
+                        </span>
+                      )}
                     </div>
                     <div style={{ fontSize: '9.5px', color: '#64748b' }}>
                       {t.exitReason} @ {t.exitTimestamp}
@@ -1903,6 +1935,25 @@ function formatGexVal(val: number, unit = 'Cr'): string {
                 {algoStatus.openPositions.length} ACTIVE
               </span>
             )}
+          </button>
+          <button
+            onClick={() => setViewMode('cycle')}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '7px 16px',
+              borderRadius: '6px',
+              fontSize: '13px',
+              fontWeight: 800,
+              cursor: 'pointer',
+              backgroundColor: viewMode === 'cycle' ? 'rgba(56, 189, 248, 0.2)' : '#111726',
+              color: viewMode === 'cycle' ? '#38bdf8' : '#94a3b8',
+              border: viewMode === 'cycle' ? '1px solid #38bdf8' : '1px solid #1f293d'
+            }}
+          >
+            <Layers size={15} />
+            🏛️ 212 F&O GEX & Dual-Wall Cycle
           </button>
         </div>
 
@@ -2201,9 +2252,11 @@ function formatGexVal(val: number, unit = 'Cr'): string {
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
-          VIEW: GEX ALGO TERMINAL vs GEX HUB vs DEEP DIVE CHARTS
+          VIEW: GEX CYCLE TRACKER vs GEX ALGO TERMINAL vs GEX HUB vs DEEP DIVE CHARTS
       ───────────────────────────────────────────────────────────── */}
-      {viewMode === 'algo' ? (
+      {viewMode === 'cycle' ? (
+        <FnoGexCycleTracker />
+      ) : viewMode === 'algo' ? (
         <div>
           {renderAlgoTerminalBlock()}
         </div>

@@ -6862,6 +6862,18 @@ app.post('/api/algo/gex/scan-now', async (req, res) => {
   }
 });
 
+// Trigger immediate OrderBlock Flow paper trade execution (on-demand test / simulation)
+app.post('/api/algo/gex/execute-orderblock-trade', async (req, res) => {
+  try {
+    const { stockGexAlgo } = await import('./stock_gex_algo_engine.js');
+    const { symbol, allowSimulated = true } = req.body || {};
+    const result = await stockGexAlgo.executeOrderBlockTradeNow(symbol, allowSimulated);
+    res.json({ success: true, ...result, status: stockGexAlgo.getStatus() });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 
 app.post('/api/algo/gex/close-position', async (req, res) => {
   try {
