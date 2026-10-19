@@ -2214,60 +2214,120 @@ export const OrderBlockFlowContainer: React.FC = () => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <span style={{
-                  padding: '3px 9px',
-                  borderRadius: '5px',
-                  backgroundColor: selectedStock.bias === 'BULL' ? '#10b981' : '#ef4444',
-                  color: '#ffffff',
-                  fontSize: '11px',
-                  fontWeight: 900
+            {(() => {
+              const liveStock = data?.allStocks?.find(s => s.symbol === selectedStock.symbol) || selectedStock;
+              const isBull = liveStock.bias === 'BULL';
+              const isUp = liveStock.dayChangePct >= 0;
+              return (
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '14px',
+                  flexWrap: 'wrap',
+                  gap: '12px'
                 }}>
-                  {selectedStock.bias} #{selectedStock.rank || 1}
-                </span>
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <h3 style={{ margin: 0, fontSize: '18px', fontWeight: 900, color: theme.textPrimary }}>
-                      {selectedStock.symbol}
-                    </h3>
-                    <span style={{ fontSize: '12px', color: theme.textSecondary }}>
-                      {selectedStock.name} · {selectedStock.sector}
-                    </span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '2px' }}>
-                    <span style={{ fontSize: '16px', fontWeight: 900, color: theme.textPrimary, fontFamily: 'monospace' }}>
-                      ₹{selectedStock.spot}
-                    </span>
+                  {/* Left: Bias Badge + Symbol & Sector + Conviction */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     <span style={{
-                      fontSize: '12px',
-                      fontWeight: 800,
-                      color: selectedStock.bias === 'BULL' ? '#059669' : '#dc2626'
+                      padding: '4px 10px',
+                      borderRadius: '5px',
+                      backgroundColor: isBull ? '#10b981' : '#ef4444',
+                      color: '#ffffff',
+                      fontSize: '11px',
+                      fontWeight: 900
                     }}>
-                      {selectedStock.dayChangePct >= 0 ? `+${selectedStock.dayChangePct}%` : `${selectedStock.dayChangePct}%`}
+                      {liveStock.bias} #{liveStock.rank || 1}
                     </span>
-                    <span style={{ fontSize: '10.5px', color: '#b45309', fontWeight: 800 }}>
-                      CONV {selectedStock.score} ★★★★★
-                    </span>
+                    <div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <h3 style={{ margin: 0, fontSize: '19px', fontWeight: 900, color: theme.textPrimary }}>
+                          {liveStock.symbol}
+                        </h3>
+                        <span style={{ fontSize: '12px', color: theme.textSecondary }}>
+                          {liveStock.name} · {liveStock.sector}
+                        </span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px' }}>
+                        <span style={{ fontSize: '11px', color: '#b45309', fontWeight: 800 }}>
+                          CONV {liveStock.score} ★★★★★
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: EXACT RED MARKED LOCATION — Dedicated Live Price Card + Close Button */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    {/* Live Price Box (Placed exactly where user circled in red) */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '10px',
+                      background: isLightMode ? '#f8fafc' : 'rgba(15, 23, 42, 0.75)',
+                      border: `1.5px solid ${isUp ? '#10b981' : '#ef4444'}60`,
+                      borderRadius: '8px',
+                      padding: '5px 14px',
+                      boxShadow: isUp 
+                        ? '0 0 14px rgba(16, 185, 129, 0.2)' 
+                        : '0 0 14px rgba(239, 68, 68, 0.2)'
+                    }}>
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '4px' }}>
+                          <span style={{
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            background: isUp ? '#10b981' : '#ef4444',
+                            boxShadow: `0 0 6px ${isUp ? '#10b981' : '#ef4444'}`,
+                            animation: 'pulse 1.5s infinite'
+                          }} />
+                          <span style={{ fontSize: '9px', fontWeight: 900, color: theme.textMuted, letterSpacing: '0.5px' }}>
+                            LIVE PRICE
+                          </span>
+                        </div>
+                        <div style={{
+                          fontSize: '19px',
+                          fontWeight: 900,
+                          fontFamily: 'monospace',
+                          color: theme.textPrimary,
+                          lineHeight: 1.1
+                        }}>
+                          ₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}
+                        </div>
+                      </div>
+                      <div style={{
+                        padding: '3px 8px',
+                        borderRadius: '5px',
+                        background: isUp ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                        border: `1px solid ${isUp ? '#10b981' : '#ef4444'}40`,
+                        color: isUp ? '#059669' : '#dc2626',
+                        fontSize: '12px',
+                        fontWeight: 900
+                      }}>
+                        {isUp ? `+${liveStock.dayChangePct}%` : `${liveStock.dayChangePct}%`}
+                      </div>
+                    </div>
+
+                    <button 
+                      onClick={() => setSelectedStock(null)}
+                      style={{
+                        background: theme.pillBg,
+                        color: theme.textPrimary,
+                        border: `1px solid ${theme.cardBorder}`,
+                        borderRadius: '6px',
+                        padding: '6px 14px',
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        cursor: 'pointer',
+                        transition: 'all 0.15s'
+                      }}
+                    >
+                      Close
+                    </button>
                   </div>
                 </div>
-              </div>
-              <button 
-                onClick={() => setSelectedStock(null)}
-                style={{
-                  background: theme.pillBg,
-                  color: theme.textPrimary,
-                  border: `1px solid ${theme.cardBorder}`,
-                  borderRadius: '6px',
-                  padding: '6px 12px',
-                  fontSize: '11px',
-                  fontWeight: 800,
-                  cursor: 'pointer'
-                }}
-              >
-                Close
-              </button>
-            </div>
+              );
+            })()}
 
             {/* Metrics Breakdown Grid (as seen in video 00:52) */}
             <div style={{
