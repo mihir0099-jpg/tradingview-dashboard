@@ -1,10 +1,10 @@
 [
   {
-    "timestamp": 1792558578941,
-    "istTime": "21/10/2026, 10:26:18 am",
-    "component": "⚡ Gamma & Order Flow",
-    "error": "Request timeout (>6000ms)",
-    "remedyAction": "Recalculated gamma orderflow & dealer exposure walls",
+    "timestamp": 1792563049650,
+    "istTime": "21/10/2026, 11:40:49 am",
+    "component": "HealthCheck",
+    "error": "fetch failed",
+    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   },
   {
@@ -397,14 +397,6 @@
     "component": "DayRangeEngine",
     "error": "The operation was aborted due to timeout",
     "remedyAction": "Re-seeded index memory cache from baseline values",
-    "status": "AUTO_RESOLVED"
-  },
-  {
-    "timestamp": 1792490262700,
-    "istTime": "20/10/2026, 3:27:42 pm",
-    "component": "RiverMetaLearner",
-    "error": "The operation was aborted due to timeout",
-    "remedyAction": "Auto-restarted component listeners and purged stale sockets",
     "status": "AUTO_RESOLVED"
   }
 ]

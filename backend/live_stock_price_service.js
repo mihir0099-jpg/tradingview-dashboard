@@ -12,6 +12,7 @@ import fs from 'fs';
 import path from 'path';
 import https from 'https';
 import { fileURLToPath } from 'url';
+import { angelOneBridge } from './angelone_bridge.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -98,16 +99,84 @@ class LiveStockPriceService {
   init() {
     // Immediate background fetch
     setTimeout(() => {
+      this.refreshAngelOneIndices().catch(() => {});
       this.refreshAllPrices().catch(err => {
         console.error('[LivePriceService] Initial fetch error:', err.message);
       });
     }, 1000);
 
-    // Refresh every 90 seconds
+    // Refresh official zero-delay Angel One indices every 15 seconds
+    setInterval(() => {
+      this.refreshAngelOneIndices().catch(() => {});
+    }, 15000);
+
+    // Refresh all 212 stocks every 90 seconds
     if (this.refreshInterval) clearInterval(this.refreshInterval);
     this.refreshInterval = setInterval(() => {
       this.refreshAllPrices().catch(() => {});
     }, 90000);
+  }
+
+  async refreshAngelOneIndices() {
+    try {
+      const [niftyLtp, bnLtp, sensexLtp] = await Promise.all([
+        angelOneBridge.getLtp('NSE', 'Nifty 50', '99926000').catch(() => null),
+        angelOneBridge.getLtp('NSE', 'Nifty Bank', '99926009').catch(() => null),
+        angelOneBridge.getLtp('BSE', 'SENSEX', '99919000').catch(() => null)
+      ]);
+
+      let updated = false;
+      if (niftyLtp && niftyLtp.ltp > 0) {
+        const close = niftyLtp.close || 22888.95;
+        const changePct = +(((niftyLtp.ltp - close) / close) * 100).toFixed(2);
+        this.priceMap.set('NIFTY', {
+          symbol: 'NIFTY',
+          price: +niftyLtp.ltp.toFixed(2),
+          prevClose: +close.toFixed(2),
+          dayChangePct: changePct,
+          source: 'ANGEL_ONE_OFFICIAL',
+          timestamp: Date.now(),
+          success: true
+        });
+        updated = true;
+      }
+
+      if (bnLtp && bnLtp.ltp > 0) {
+        const close = bnLtp.close || 55488.10;
+        const changePct = +(((bnLtp.ltp - close) / close) * 100).toFixed(2);
+        this.priceMap.set('BANKNIFTY', {
+          symbol: 'BANKNIFTY',
+          price: +bnLtp.ltp.toFixed(2),
+          prevClose: +close.toFixed(2),
+          dayChangePct: changePct,
+          source: 'ANGEL_ONE_OFFICIAL',
+          timestamp: Date.now(),
+          success: true
+        });
+        updated = true;
+      }
+
+      if (sensexLtp && sensexLtp.ltp > 0) {
+        const close = sensexLtp.close || 73852.90;
+        const changePct = +(((sensexLtp.ltp - close) / close) * 100).toFixed(2);
+        this.priceMap.set('SENSEX', {
+          symbol: 'SENSEX',
+          price: +sensexLtp.ltp.toFixed(2),
+          prevClose: +close.toFixed(2),
+          dayChangePct: changePct,
+          source: 'ANGEL_ONE_OFFICIAL',
+          timestamp: Date.now(),
+          success: true
+        });
+        updated = true;
+      }
+
+      if (updated) {
+        this.saveCache();
+      }
+    } catch (e) {
+      console.warn('[LivePriceService] refreshAngelOneIndices warning:', e.message);
+    }
   }
 
   /**
@@ -168,6 +237,59 @@ class LiveStockPriceService {
     this.isUpdating = true;
 
     try {
+      // 1. Fetch Official Zero-Delay Index Quotes from Angel One SmartAPI
+      try {
+        const [niftyLtp, bnLtp, sensexLtp] = await Promise.all([
+          angelOneBridge.getLtp('NSE', 'Nifty 50', '99926000').catch(() => null),
+          angelOneBridge.getLtp('NSE', 'Nifty Bank', '99926009').catch(() => null),
+          angelOneBridge.getLtp('BSE', 'SENSEX', '99919000').catch(() => null)
+        ]);
+
+        if (niftyLtp && niftyLtp.ltp > 0) {
+          const close = niftyLtp.close || 22888.95;
+          const changePct = +(((niftyLtp.ltp - close) / close) * 100).toFixed(2);
+          this.priceMap.set('NIFTY', {
+            symbol: 'NIFTY',
+            price: +niftyLtp.ltp.toFixed(2),
+            prevClose: +close.toFixed(2),
+            dayChangePct: changePct,
+            source: 'ANGEL_ONE_OFFICIAL',
+            timestamp: Date.now(),
+            success: true
+          });
+        }
+
+        if (bnLtp && bnLtp.ltp > 0) {
+          const close = bnLtp.close || 55488.10;
+          const changePct = +(((bnLtp.ltp - close) / close) * 100).toFixed(2);
+          this.priceMap.set('BANKNIFTY', {
+            symbol: 'BANKNIFTY',
+            price: +bnLtp.ltp.toFixed(2),
+            prevClose: +close.toFixed(2),
+            dayChangePct: changePct,
+            source: 'ANGEL_ONE_OFFICIAL',
+            timestamp: Date.now(),
+            success: true
+          });
+        }
+
+        if (sensexLtp && sensexLtp.ltp > 0) {
+          const close = sensexLtp.close || 73852.90;
+          const changePct = +(((sensexLtp.ltp - close) / close) * 100).toFixed(2);
+          this.priceMap.set('SENSEX', {
+            symbol: 'SENSEX',
+            price: +sensexLtp.ltp.toFixed(2),
+            prevClose: +close.toFixed(2),
+            dayChangePct: changePct,
+            source: 'ANGEL_ONE_OFFICIAL',
+            timestamp: Date.now(),
+            success: true
+          });
+        }
+      } catch (e) {
+        console.warn('[LivePriceService] AngelOne index query warning:', e.message);
+      }
+
       const batchSize = 25;
       let totalUpdated = 0;
 

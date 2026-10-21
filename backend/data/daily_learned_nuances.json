@@ -1,26 +1,26 @@
 [
   {
     "date": "2026-10-21",
-    "timestamp": 1792558728502,
-    "istTime": "2026-10-21 10:28:48 IST",
+    "timestamp": 1792565859981,
+    "istTime": "2026-10-21 12:27:39 IST",
     "macroProfile": {
-      "niftySpot": 22928.2,
+      "niftySpot": 22720.2,
       "niftyOpen": 23270.9,
-      "niftyChangePct": "-1.47%",
-      "bankniftySpot": 55383.7,
+      "niftyChangePct": "-2.37%",
+      "bankniftySpot": 54768.85,
       "dayType": "TREND_EXPANSION_DAY",
       "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 22
+      "activeFnoOpportunities": 10
     },
     "autonomousLearnings": [
       {
-        "domain": "First-Hour Put Supply Collapse (Call Writing Drive)",
-        "observation": "NIFTY First-Hour PCR drift collapsed to -7.85 indicating aggressive institutional Call writing. NIFTY closed -57 pts (-0.25%).",
-        "ruleAction": "Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces."
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +9.40 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
       },
       {
         "domain": "Session Extreme Timing & Anchor Confirmation",
-        "observation": "HOD established at 09:40:00 (Midday) at 23120.9. Absolute LOD printed at 10:20:00 (Midday) at 22922.6.",
+        "observation": "HOD established at 09:40:00 (Midday) at 23120.9. Absolute LOD printed at 12:23:00 (Midday) at 22703.1.",
         "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
       }
     ]

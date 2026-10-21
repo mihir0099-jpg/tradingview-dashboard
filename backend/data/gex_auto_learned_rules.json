@@ -59,26 +59,24 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 4,
-      "failedCount": 2,
-      "flatCount": 2,
-      "winRate": 50,
-      "failRate": 25,
-      "avgPtsOnWin": 36.6,
-      "avgPtsOnFail": 11.8,
-      "topFailureReason": "OPENING_VOLATILITY_NOISE",
-      "failureReasons": {
-        "OPENING_VOLATILITY_NOISE": 2
-      },
-      "wallHoldRate": 50,
-      "winRate60": 100,
+      "sampleCount": 11,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 11,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": 100,
+      "winRate60": 0,
       "description": "NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
-        "2026-10-08"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-11T11:57:36.650Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "NIFTY|AT_CALL_WALL|B|RIGHTWARD": {
       "key": "NIFTY|AT_CALL_WALL|B|RIGHTWARD",
@@ -143,26 +141,24 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 10,
-      "workedCount": 9,
-      "failedCount": 1,
-      "flatCount": 0,
-      "winRate": 90,
-      "failRate": 10,
-      "avgPtsOnWin": 15.3,
-      "avgPtsOnFail": 18.6,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 1
-      },
-      "wallHoldRate": 10,
-      "winRate60": 100,
+      "sampleCount": 30,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 30,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": 100,
+      "winRate60": 0,
       "description": "NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-08"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-11T11:57:36.650Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "SENSEX|AT_GAMMA_FLIP|C|RIGHTWARD": {
       "key": "SENSEX|AT_GAMMA_FLIP|C|RIGHTWARD",
@@ -185,10 +181,10 @@
       "winRate60": 0,
       "description": "SENSEX at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period C → BUY_CE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.082Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "NIFTY|AT_CALL_WALL|D|RIGHTWARD": {
       "key": "NIFTY|AT_CALL_WALL|D|RIGHTWARD",
@@ -359,24 +355,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 10,
-      "workedCount": 8,
+      "sampleCount": 29,
+      "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 2,
-      "winRate": 80,
+      "flatCount": 29,
+      "winRate": 0,
       "failRate": 0,
-      "avgPtsOnWin": 26,
+      "avgPtsOnWin": 0,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
-      "wallHoldRate": 20,
-      "winRate60": 100,
+      "wallHoldRate": 100,
+      "winRate60": 0,
       "description": "NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-08"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-11T11:57:36.650Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "NIFTY|AT_PUT_WALL|F|RIGHTWARD": {
       "key": "NIFTY|AT_PUT_WALL|F|RIGHTWARD",
@@ -465,24 +461,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 8,
+      "sampleCount": 12,
+      "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 12,
+      "winRate": 0,
       "failRate": 0,
-      "avgPtsOnWin": 66.4,
+      "avgPtsOnWin": 0,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
-      "wallHoldRate": 0,
-      "winRate60": 100,
+      "wallHoldRate": 100,
+      "winRate60": null,
       "description": "NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-08"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-11T11:57:36.650Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "NIFTY|AT_CALL_WALL|G|LEFTWARD": {
       "key": "NIFTY|AT_CALL_WALL|G|LEFTWARD",
@@ -1144,10 +1140,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1161,7 +1157,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "NIFTY|AT_PUT_WALL|L|LEFTWARD": {
       "key": "NIFTY|AT_PUT_WALL|L|LEFTWARD",
@@ -1265,7 +1261,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "NIFTY|AT_PUT_WALL|M|STABLE": {
       "key": "NIFTY|AT_PUT_WALL|M|STABLE",
@@ -1317,7 +1313,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.075Z"
+      "lastUpdated": "2026-10-21T06:57:18.840Z"
     },
     "SENSEX|AT_GAMMA_FLIP|A|RIGHTWARD": {
       "key": "SENSEX|AT_GAMMA_FLIP|A|RIGHTWARD",
@@ -1343,7 +1339,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.075Z"
+      "lastUpdated": "2026-10-21T06:57:18.840Z"
     },
     "NIFTY|AT_CALL_WALL|B|STABLE": {
       "key": "NIFTY|AT_CALL_WALL|B|STABLE",
@@ -1352,10 +1348,10 @@
       "tpoPeriod": "B",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 13,
+      "sampleCount": 19,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 13,
+      "flatCount": 19,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1363,13 +1359,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": 0,
-      "winRate60": null,
+      "winRate60": 0,
       "description": "NIFTY at AT CALL WALL with dots marching LEFT (bearish) during Period B → HOLD signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "SENSEX|AT_GAMMA_FLIP|B|RIGHTWARD": {
       "key": "SENSEX|AT_GAMMA_FLIP|B|RIGHTWARD",
@@ -1378,10 +1374,10 @@
       "tpoPeriod": "B",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 13,
+      "sampleCount": 30,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 13,
+      "flatCount": 30,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1389,13 +1385,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 0,
       "description": "SENSEX at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period B → BUY_CE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "NIFTY|AT_CALL_WALL|C|STABLE": {
       "key": "NIFTY|AT_CALL_WALL|C|STABLE",
@@ -1430,10 +1426,10 @@
       "tpoPeriod": "D",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 305,
+      "sampleCount": 254,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 305,
+      "flatCount": 254,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1448,7 +1444,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T06:57:18.837Z"
     },
     "SENSEX|AT_GAMMA_FLIP|D|RIGHTWARD": {
       "key": "SENSEX|AT_GAMMA_FLIP|D|RIGHTWARD",
@@ -1457,10 +1453,10 @@
       "tpoPeriod": "D",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 305,
+      "sampleCount": 282,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 305,
+      "flatCount": 282,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1475,7 +1471,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.071Z"
+      "lastUpdated": "2026-10-21T06:57:18.837Z"
     },
     "NIFTY|AT_CALL_WALL|E|STABLE": {
       "key": "NIFTY|AT_CALL_WALL|E|STABLE",
@@ -1510,10 +1506,10 @@
       "tpoPeriod": "E",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 14,
+      "sampleCount": 29,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 14,
+      "flatCount": 29,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1524,10 +1520,10 @@
       "winRate60": 0,
       "description": "SENSEX at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period E → BUY_CE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:54:58.200Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "NIFTY|AT_CALL_WALL|F|STABLE": {
       "key": "NIFTY|AT_CALL_WALL|F|STABLE",
@@ -1562,10 +1558,10 @@
       "tpoPeriod": "F",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 30,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 30,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1573,13 +1569,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": null,
       "description": "SENSEX at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period F → BUY_CE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "NIFTY|AT_CALL_WALL|G|STABLE": {
       "key": "NIFTY|AT_CALL_WALL|G|STABLE",
@@ -1824,10 +1820,10 @@
       "tpoPeriod": "D",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 305,
+      "sampleCount": 282,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 305,
+      "flatCount": 282,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -1842,7 +1838,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.071Z"
+      "lastUpdated": "2026-10-21T06:57:18.838Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|D|RIGHTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|D|RIGHTWARD",
@@ -1877,27 +1873,27 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 0,
+      "sampleCount": 280,
+      "workedCount": 26,
       "failedCount": 29,
-      "flatCount": 276,
-      "winRate": 0,
-      "failRate": 9.5,
-      "avgPtsOnWin": 0,
+      "flatCount": 225,
+      "winRate": 9.3,
+      "failRate": 10.4,
+      "avgPtsOnWin": 5.4,
       "avgPtsOnFail": 24.2,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
         "WRONG_DIRECTION_CONTINUATION": 29
       },
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 9.3,
       "description": "ICICIBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.073Z"
+      "lastUpdated": "2026-10-21T06:57:18.839Z"
     },
     "SBIN|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -1906,13 +1902,13 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 9,
-      "workedCount": 9,
+      "sampleCount": 16,
+      "workedCount": 16,
       "failedCount": 0,
       "flatCount": 0,
       "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 3.6,
+      "avgPtsOnWin": 3.4,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
@@ -1920,10 +1916,10 @@
       "winRate60": 100,
       "description": "SBIN at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T14:28:33.250Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "TCS|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "TCS|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -1932,27 +1928,27 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 0,
-      "failedCount": 29,
-      "flatCount": 276,
-      "winRate": 0,
-      "failRate": 9.5,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 62.1,
+      "sampleCount": 275,
+      "workedCount": 7,
+      "failedCount": 41,
+      "flatCount": 227,
+      "winRate": 2.5,
+      "failRate": 14.9,
+      "avgPtsOnWin": 6,
+      "avgPtsOnFail": 45.7,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 29
+        "WRONG_DIRECTION_CONTINUATION": 41
       },
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 2.2,
       "description": "TCS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.073Z"
+      "lastUpdated": "2026-10-21T06:57:18.840Z"
     },
     "INFY|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -1961,27 +1957,27 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 0,
+      "sampleCount": 266,
+      "workedCount": 12,
       "failedCount": 29,
-      "flatCount": 276,
-      "winRate": 0,
-      "failRate": 9.5,
-      "avgPtsOnWin": 0,
+      "flatCount": 225,
+      "winRate": 4.5,
+      "failRate": 10.9,
+      "avgPtsOnWin": 5.8,
       "avgPtsOnFail": 36,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
         "WRONG_DIRECTION_CONTINUATION": 29
       },
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 4.5,
       "description": "INFY at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.074Z"
+      "lastUpdated": "2026-10-21T06:57:18.840Z"
     },
     "LT|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "LT|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -1990,27 +1986,27 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 0,
+      "sampleCount": 283,
+      "workedCount": 28,
       "failedCount": 29,
-      "flatCount": 276,
-      "winRate": 0,
-      "failRate": 9.5,
-      "avgPtsOnWin": 0,
+      "flatCount": 226,
+      "winRate": 9.9,
+      "failRate": 10.2,
+      "avgPtsOnWin": 16.5,
       "avgPtsOnFail": 29.6,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
         "WRONG_DIRECTION_CONTINUATION": 29
       },
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 9.9,
       "description": "LT at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.074Z"
+      "lastUpdated": "2026-10-21T06:57:18.832Z"
     },
     "BHARTIARTL|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "BHARTIARTL|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -2019,27 +2015,27 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 0,
+      "sampleCount": 283,
+      "workedCount": 19,
       "failedCount": 29,
-      "flatCount": 276,
-      "winRate": 0,
-      "failRate": 9.5,
-      "avgPtsOnWin": 0,
+      "flatCount": 235,
+      "winRate": 6.7,
+      "failRate": 10.2,
+      "avgPtsOnWin": 10,
       "avgPtsOnFail": 26,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
         "WRONG_DIRECTION_CONTINUATION": 29
       },
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 9.9,
       "description": "BHARTIARTL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.074Z"
+      "lastUpdated": "2026-10-21T06:57:18.834Z"
     },
     "ITC|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -2048,12 +2044,12 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
+      "sampleCount": 255,
       "workedCount": 0,
       "failedCount": 29,
-      "flatCount": 276,
+      "flatCount": 226,
       "winRate": 0,
-      "failRate": 9.5,
+      "failRate": 11.4,
       "avgPtsOnWin": 0,
       "avgPtsOnFail": 3.5,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
@@ -2068,7 +2064,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.074Z"
+      "lastUpdated": "2026-10-21T06:57:18.835Z"
     },
     "AXISBANK|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "AXISBANK|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -2077,27 +2073,27 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 0,
+      "sampleCount": 272,
+      "workedCount": 17,
       "failedCount": 29,
-      "flatCount": 276,
-      "winRate": 0,
-      "failRate": 9.5,
-      "avgPtsOnWin": 0,
+      "flatCount": 226,
+      "winRate": 6.3,
+      "failRate": 10.7,
+      "avgPtsOnWin": 9.3,
       "avgPtsOnFail": 5.1,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
         "WRONG_DIRECTION_CONTINUATION": 29
       },
       "wallHoldRate": null,
-      "winRate60": 1.3,
+      "winRate60": 7.7,
       "description": "AXISBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.075Z"
+      "lastUpdated": "2026-10-21T06:57:18.835Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|D|RIGHTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|D|RIGHTWARD",
@@ -2134,10 +2130,10 @@
       "tpoPeriod": "D",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 34,
+      "sampleCount": 23,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 34,
+      "flatCount": 23,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -2148,10 +2144,10 @@
       "winRate60": 0,
       "description": "TATASTEEL at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period D → BUY_CE signal",
       "sampleDates": [
-        "2026-10-16"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-16T10:38:48.425Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -2160,25 +2156,25 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 0,
+      "sampleCount": 283,
+      "workedCount": 24,
       "failedCount": 0,
-      "flatCount": 305,
-      "winRate": 0,
+      "flatCount": 259,
+      "winRate": 8.5,
       "failRate": 0,
-      "avgPtsOnWin": 0,
+      "avgPtsOnWin": 9.8,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 9.5,
+      "winRate60": 20.1,
       "description": "VOLTAS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.075Z"
+      "lastUpdated": "2026-10-21T06:57:18.836Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -2187,25 +2183,25 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
-      "workedCount": 29,
+      "sampleCount": 283,
+      "workedCount": 56,
       "failedCount": 0,
-      "flatCount": 276,
-      "winRate": 9.5,
+      "flatCount": 227,
+      "winRate": 19.8,
       "failRate": 0,
-      "avgPtsOnWin": 16.2,
+      "avgPtsOnWin": 11.6,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 19.3,
+      "winRate60": 30.4,
       "description": "ESCORTS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.075Z"
+      "lastUpdated": "2026-10-21T06:57:18.836Z"
     },
     "HDFCBANK|BELOW_FLIP_ZONE|J|STABLE": {
       "key": "HDFCBANK|BELOW_FLIP_ZONE|J|STABLE",
@@ -2956,10 +2952,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -2973,7 +2969,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|L|RIGHTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|L|RIGHTWARD",
@@ -3008,10 +3004,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3025,7 +3021,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "SBIN|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -3062,10 +3058,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3079,7 +3075,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "INFY|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -3088,10 +3084,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3105,7 +3101,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "LT|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "LT|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -3114,10 +3110,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3131,7 +3127,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "BHARTIARTL|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "BHARTIARTL|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -3140,10 +3136,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3157,7 +3153,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "ITC|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -3166,10 +3162,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3183,7 +3179,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "AXISBANK|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "AXISBANK|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -3192,10 +3188,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3209,7 +3205,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|L|RIGHTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|L|RIGHTWARD",
@@ -3270,10 +3266,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3287,7 +3283,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -3296,10 +3292,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3313,7 +3309,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "HDFCBANK|BELOW_FLIP_ZONE|M|STABLE": {
       "key": "HDFCBANK|BELOW_FLIP_ZONE|M|STABLE",
@@ -3339,7 +3335,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|M|RIGHTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|M|RIGHTWARD",
@@ -3391,7 +3387,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "SBIN|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -3443,7 +3439,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "INFY|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -3469,7 +3465,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "LT|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "LT|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -3478,10 +3474,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3495,7 +3491,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.151Z"
     },
     "BHARTIARTL|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "BHARTIARTL|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -3504,10 +3500,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3521,7 +3517,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.153Z"
     },
     "ITC|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -3530,10 +3526,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3547,7 +3543,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.153Z"
     },
     "AXISBANK|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "AXISBANK|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -3556,10 +3552,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3573,7 +3569,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.153Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|M|RIGHTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|M|RIGHTWARD",
@@ -3634,10 +3630,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3651,7 +3647,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.153Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -3660,10 +3656,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -3677,7 +3673,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.153Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -3742,24 +3738,26 @@
       "tpoPeriod": "D",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 30,
+      "sampleCount": 28,
       "workedCount": 0,
-      "failedCount": 0,
-      "flatCount": 30,
+      "failedCount": 5,
+      "flatCount": 23,
       "winRate": 0,
-      "failRate": 0,
+      "failRate": 17.9,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 1.7,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 5
+      },
       "wallHoldRate": null,
       "winRate60": 0,
       "description": "ITC at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period D → BUY_CE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T14:28:33.248Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "TATASTEEL|AT_GAMMA_FLIP|D|LEFTWARD": {
       "key": "TATASTEEL|AT_GAMMA_FLIP|D|LEFTWARD",
@@ -3768,12 +3766,12 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 305,
+      "sampleCount": 260,
       "workedCount": 0,
       "failedCount": 5,
-      "flatCount": 300,
+      "flatCount": 255,
       "winRate": 0,
-      "failRate": 1.6,
+      "failRate": 1.9,
       "avgPtsOnWin": 0,
       "avgPtsOnFail": 1.6,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
@@ -3788,7 +3786,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.075Z"
+      "lastUpdated": "2026-10-21T06:57:18.836Z"
     },
     "NIFTY|AT_PUT_WALL|A|STABLE": {
       "key": "NIFTY|AT_PUT_WALL|A|STABLE",
@@ -3840,7 +3838,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.840Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|A|LEFTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|A|LEFTWARD",
@@ -3890,13 +3888,13 @@
         "OPENING_VOLATILITY_NOISE": 5
       },
       "wallHoldRate": null,
-      "winRate60": 15.4,
+      "winRate60": 10.7,
       "description": "ICICIBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period A → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "SBIN|AT_GAMMA_FLIP|A|RIGHTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|A|RIGHTWARD",
@@ -3946,13 +3944,13 @@
         "OPENING_VOLATILITY_NOISE": 11
       },
       "wallHoldRate": null,
-      "winRate60": 36.4,
+      "winRate60": 68.2,
       "description": "TCS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period A → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "INFY|AT_GAMMA_FLIP|A|LEFTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|A|LEFTWARD",
@@ -3980,7 +3978,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "LT|AT_GAMMA_FLIP|A|LEFTWARD": {
       "key": "LT|AT_GAMMA_FLIP|A|LEFTWARD",
@@ -4002,13 +4000,13 @@
         "OPENING_VOLATILITY_NOISE": 2
       },
       "wallHoldRate": null,
-      "winRate60": 85.7,
+      "winRate60": 90,
       "description": "LT at AT GAMMA FLIP with dots marching LEFT (bearish) during Period A → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": true,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "BHARTIARTL|AT_GAMMA_FLIP|A|LEFTWARD": {
       "key": "BHARTIARTL|AT_GAMMA_FLIP|A|LEFTWARD",
@@ -4030,13 +4028,13 @@
         "OPENING_VOLATILITY_NOISE": 9
       },
       "wallHoldRate": null,
-      "winRate60": 35.7,
+      "winRate60": 70,
       "description": "BHARTIARTL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period A → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "ITC|AT_GAMMA_FLIP|A|RIGHTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|A|RIGHTWARD",
@@ -4090,7 +4088,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": true,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|A|RIGHTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|A|RIGHTWARD",
@@ -4136,13 +4134,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 22.2,
+      "winRate60": 17.4,
       "description": "TATASTEEL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period A → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|A|LEFTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|A|LEFTWARD",
@@ -4168,7 +4166,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": true,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|A|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|A|LEFTWARD",
@@ -4188,13 +4186,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 78.6,
+      "winRate60": 50,
       "description": "ESCORTS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period A → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": true,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "ICICIBANK|AT_GAMMA_FLIP|A|RIGHTWARD": {
       "key": "ICICIBANK|AT_GAMMA_FLIP|A|RIGHTWARD",
@@ -4242,13 +4240,13 @@
         "OPENING_VOLATILITY_NOISE": 2
       },
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 50,
       "description": "SBIN at AT GAMMA FLIP with dots marching LEFT (bearish) during Period A → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": true,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "ITC|AT_GAMMA_FLIP|A|LEFTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|A|LEFTWARD",
@@ -4276,7 +4274,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|A|RIGHTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|A|RIGHTWARD",
@@ -4386,7 +4384,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|A|RIGHTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|A|RIGHTWARD",
@@ -4414,7 +4412,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "RELIANCE|ABOVE_FLIP_ZONE|A|RIGHTWARD": {
       "key": "RELIANCE|ABOVE_FLIP_ZONE|A|RIGHTWARD",
@@ -4505,10 +4503,10 @@
       "tpoPeriod": "B",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 13,
+      "sampleCount": 30,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 13,
+      "flatCount": 30,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -4516,13 +4514,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 0,
       "description": "HDFCBANK at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period B → HOLD signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|B|RIGHTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|B|RIGHTWARD",
@@ -4559,24 +4557,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
+      "sampleCount": 28,
       "workedCount": 11,
-      "failedCount": 0,
-      "flatCount": 2,
-      "winRate": 84.6,
-      "failRate": 0,
+      "failedCount": 10,
+      "flatCount": 7,
+      "winRate": 39.3,
+      "failRate": 35.7,
       "avgPtsOnWin": 6.2,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 8.4,
+      "topFailureReason": "OPENING_VOLATILITY_NOISE",
+      "failureReasons": {
+        "OPENING_VOLATILITY_NOISE": 10
+      },
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 0,
       "description": "ICICIBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "SBIN|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -4585,26 +4585,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 17,
-      "workedCount": 10,
-      "failedCount": 2,
-      "flatCount": 5,
-      "winRate": 58.8,
-      "failRate": 11.8,
-      "avgPtsOnWin": 2.6,
-      "avgPtsOnFail": 2,
+      "sampleCount": 13,
+      "workedCount": 7,
+      "failedCount": 5,
+      "flatCount": 1,
+      "winRate": 53.8,
+      "failRate": 38.5,
+      "avgPtsOnWin": 7.7,
+      "avgPtsOnFail": 8.8,
       "topFailureReason": "OPENING_VOLATILITY_NOISE",
       "failureReasons": {
-        "OPENING_VOLATILITY_NOISE": 2
+        "OPENING_VOLATILITY_NOISE": 5
       },
       "wallHoldRate": null,
-      "winRate60": 76.5,
+      "winRate60": 15.4,
       "description": "SBIN at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T11:43:24.212Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "TCS|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "TCS|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -4613,24 +4613,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 21,
-      "workedCount": 17,
-      "failedCount": 0,
-      "flatCount": 4,
-      "winRate": 81,
-      "failRate": 0,
-      "avgPtsOnWin": 8.2,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "sampleCount": 22,
+      "workedCount": 19,
+      "failedCount": 3,
+      "flatCount": 0,
+      "winRate": 86.4,
+      "failRate": 13.6,
+      "avgPtsOnWin": 8.8,
+      "avgPtsOnFail": 5.5,
+      "topFailureReason": "OPENING_VOLATILITY_NOISE",
+      "failureReasons": {
+        "OPENING_VOLATILITY_NOISE": 3
+      },
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 40.9,
       "description": "TCS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": true,
-      "lastUpdated": "2026-10-19T11:43:24.212Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "INFY|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -4639,24 +4641,24 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 14,
-      "workedCount": 8,
+      "sampleCount": 16,
+      "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 6,
-      "winRate": 57.1,
+      "flatCount": 16,
+      "winRate": 0,
       "failRate": 0,
-      "avgPtsOnWin": 3.9,
+      "avgPtsOnWin": 0,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 56.3,
       "description": "INFY at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T11:43:24.212Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "LT|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "LT|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -4665,24 +4667,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
+      "sampleCount": 30,
       "workedCount": 10,
-      "failedCount": 0,
-      "flatCount": 3,
-      "winRate": 76.9,
-      "failRate": 0,
+      "failedCount": 3,
+      "flatCount": 17,
+      "winRate": 33.3,
+      "failRate": 10,
       "avgPtsOnWin": 12.2,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 8.1,
+      "topFailureReason": "OPENING_VOLATILITY_NOISE",
+      "failureReasons": {
+        "OPENING_VOLATILITY_NOISE": 3
+      },
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 23.3,
       "description": "LT at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "BHARTIARTL|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "BHARTIARTL|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -4691,24 +4695,24 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
-      "workedCount": 13,
+      "sampleCount": 30,
+      "workedCount": 25,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 5,
+      "winRate": 83.3,
       "failRate": 0,
-      "avgPtsOnWin": 12.1,
+      "avgPtsOnWin": 8.9,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 70,
       "description": "BHARTIARTL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "ITC|AT_GAMMA_FLIP|B|RIGHTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|B|RIGHTWARD",
@@ -4743,24 +4747,24 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
-      "workedCount": 13,
+      "sampleCount": 26,
+      "workedCount": 24,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 2,
+      "winRate": 92.3,
       "failRate": 0,
-      "avgPtsOnWin": 6.3,
+      "avgPtsOnWin": 7,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 100,
       "description": "AXISBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "BAJFINANCE|ABOVE_FLIP_ZONE|B|LEFTWARD": {
       "key": "BAJFINANCE|ABOVE_FLIP_ZONE|B|LEFTWARD",
@@ -4795,10 +4799,10 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
+      "sampleCount": 28,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 13,
+      "flatCount": 28,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -4806,13 +4810,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 7.1,
       "description": "TATASTEEL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -4821,24 +4825,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
+      "sampleCount": 30,
       "workedCount": 12,
-      "failedCount": 0,
-      "flatCount": 1,
-      "winRate": 92.3,
-      "failRate": 0,
+      "failedCount": 7,
+      "flatCount": 11,
+      "winRate": 40,
+      "failRate": 23.3,
       "avgPtsOnWin": 8.1,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 5.3,
+      "topFailureReason": "OPENING_VOLATILITY_NOISE",
+      "failureReasons": {
+        "OPENING_VOLATILITY_NOISE": 7
+      },
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 6.7,
       "description": "VOLTAS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -4847,26 +4853,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
+      "sampleCount": 30,
       "workedCount": 2,
-      "failedCount": 7,
-      "flatCount": 4,
-      "winRate": 15.4,
-      "failRate": 53.8,
+      "failedCount": 21,
+      "flatCount": 7,
+      "winRate": 6.7,
+      "failRate": 70,
       "avgPtsOnWin": 3.9,
-      "avgPtsOnFail": 6.4,
+      "avgPtsOnFail": 10.3,
       "topFailureReason": "OPENING_VOLATILITY_NOISE",
       "failureReasons": {
-        "OPENING_VOLATILITY_NOISE": 7
+        "OPENING_VOLATILITY_NOISE": 21
       },
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 0,
       "description": "ESCORTS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "TATASTEEL|AT_GAMMA_FLIP|B|RIGHTWARD": {
       "key": "TATASTEEL|AT_GAMMA_FLIP|B|RIGHTWARD",
@@ -5023,10 +5029,10 @@
       "winRate60": 0,
       "description": "HDFCBANK at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period C → HOLD signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.082Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|C|RIGHTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|C|RIGHTWARD",
@@ -5061,24 +5067,26 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 21,
-      "workedCount": 10,
-      "failedCount": 0,
+      "sampleCount": 26,
+      "workedCount": 7,
+      "failedCount": 8,
       "flatCount": 11,
-      "winRate": 47.6,
-      "failRate": 0,
-      "avgPtsOnWin": 7.2,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "winRate": 26.9,
+      "failRate": 30.8,
+      "avgPtsOnWin": 4,
+      "avgPtsOnFail": 6.1,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 8
+      },
       "wallHoldRate": null,
-      "winRate60": 81,
+      "winRate60": 50,
       "description": "ICICIBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.083Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "SBIN|AT_GAMMA_FLIP|C|LEFTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|C|LEFTWARD",
@@ -5087,24 +5095,26 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
-      "workedCount": 10,
-      "failedCount": 0,
-      "flatCount": 3,
-      "winRate": 76.9,
-      "failRate": 0,
-      "avgPtsOnWin": 3.8,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "sampleCount": 19,
+      "workedCount": 7,
+      "failedCount": 11,
+      "flatCount": 1,
+      "winRate": 36.8,
+      "failRate": 57.9,
+      "avgPtsOnWin": 3.9,
+      "avgPtsOnFail": 5.5,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 11
+      },
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 42.1,
       "description": "SBIN at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.108Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "TCS|AT_GAMMA_FLIP|C|LEFTWARD": {
       "key": "TCS|AT_GAMMA_FLIP|C|LEFTWARD",
@@ -5113,28 +5123,84 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 23,
-      "workedCount": 13,
+      "sampleCount": 26,
+      "workedCount": 0,
+      "failedCount": 21,
+      "flatCount": 5,
+      "winRate": 0,
+      "failRate": 80.8,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 8.4,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 21
+      },
+      "wallHoldRate": null,
+      "winRate60": 0,
+      "description": "TCS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
+    },
+    "INFY|AT_GAMMA_FLIP|C|LEFTWARD": {
+      "key": "INFY|AT_GAMMA_FLIP|C|LEFTWARD",
+      "symbol": "INFY",
+      "wallApproach": "AT_GAMMA_FLIP",
+      "tpoPeriod": "C",
+      "migrationDirection": "LEFTWARD",
+      "signal": "BUY_PE",
+      "sampleCount": 17,
+      "workedCount": 10,
       "failedCount": 0,
-      "flatCount": 10,
-      "winRate": 56.5,
+      "flatCount": 7,
+      "winRate": 58.8,
       "failRate": 0,
       "avgPtsOnWin": 4.8,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 87,
-      "description": "TCS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
+      "winRate60": 100,
+      "description": "INFY at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.108Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
-    "INFY|AT_GAMMA_FLIP|C|LEFTWARD": {
-      "key": "INFY|AT_GAMMA_FLIP|C|LEFTWARD",
-      "symbol": "INFY",
+    "LT|AT_GAMMA_FLIP|C|LEFTWARD": {
+      "key": "LT|AT_GAMMA_FLIP|C|LEFTWARD",
+      "symbol": "LT",
+      "wallApproach": "AT_GAMMA_FLIP",
+      "tpoPeriod": "C",
+      "migrationDirection": "LEFTWARD",
+      "signal": "BUY_PE",
+      "sampleCount": 30,
+      "workedCount": 4,
+      "failedCount": 6,
+      "flatCount": 20,
+      "winRate": 13.3,
+      "failRate": 20,
+      "avgPtsOnWin": 7.8,
+      "avgPtsOnFail": 7.4,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 6
+      },
+      "wallHoldRate": null,
+      "winRate60": 73.3,
+      "description": "LT at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
+    },
+    "BHARTIARTL|AT_GAMMA_FLIP|C|LEFTWARD": {
+      "key": "BHARTIARTL|AT_GAMMA_FLIP|C|LEFTWARD",
+      "symbol": "BHARTIARTL",
       "wallApproach": "AT_GAMMA_FLIP",
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
@@ -5150,67 +5216,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
-      "description": "INFY at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
-      "sampleDates": [
-        "2026-10-18"
-      ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T02:36:25.752Z"
-    },
-    "LT|AT_GAMMA_FLIP|C|LEFTWARD": {
-      "key": "LT|AT_GAMMA_FLIP|C|LEFTWARD",
-      "symbol": "LT",
-      "wallApproach": "AT_GAMMA_FLIP",
-      "tpoPeriod": "C",
-      "migrationDirection": "LEFTWARD",
-      "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 0,
-      "failedCount": 12,
-      "flatCount": 18,
-      "winRate": 0,
-      "failRate": 40,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 8.7,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 12
-      },
-      "wallHoldRate": null,
-      "winRate60": 46.7,
-      "description": "LT at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
-      "sampleDates": [
-        "2026-10-19"
-      ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.083Z"
-    },
-    "BHARTIARTL|AT_GAMMA_FLIP|C|LEFTWARD": {
-      "key": "BHARTIARTL|AT_GAMMA_FLIP|C|LEFTWARD",
-      "symbol": "BHARTIARTL",
-      "wallApproach": "AT_GAMMA_FLIP",
-      "tpoPeriod": "C",
-      "migrationDirection": "LEFTWARD",
-      "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 14,
-      "failedCount": 0,
-      "flatCount": 16,
-      "winRate": 46.7,
-      "failRate": 0,
-      "avgPtsOnWin": 4.7,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
-      "wallHoldRate": null,
-      "winRate60": 76.7,
+      "winRate60": 73.3,
       "description": "BHARTIARTL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.083Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "ITC|AT_GAMMA_FLIP|C|RIGHTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|C|RIGHTWARD",
@@ -5245,26 +5257,24 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 2,
-      "failedCount": 6,
-      "flatCount": 22,
-      "winRate": 6.7,
-      "failRate": 20,
+      "sampleCount": 29,
+      "workedCount": 23,
+      "failedCount": 0,
+      "flatCount": 6,
+      "winRate": 79.3,
+      "failRate": 0,
       "avgPtsOnWin": 5.5,
-      "avgPtsOnFail": 3.8,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 6
-      },
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 13.3,
+      "winRate60": 100,
       "description": "AXISBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.107Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "BAJFINANCE|ABOVE_FLIP_ZONE|C|LEFTWARD": {
       "key": "BAJFINANCE|ABOVE_FLIP_ZONE|C|LEFTWARD",
@@ -5299,10 +5309,10 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 28,
+      "sampleCount": 20,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 28,
+      "flatCount": 20,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -5310,13 +5320,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 15,
       "description": "TATASTEEL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.107Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|C|LEFTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|C|LEFTWARD",
@@ -5325,24 +5335,26 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
-      "workedCount": 11,
-      "failedCount": 0,
-      "flatCount": 13,
-      "winRate": 45.8,
-      "failRate": 0,
-      "avgPtsOnWin": 4.6,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "sampleCount": 30,
+      "workedCount": 1,
+      "failedCount": 17,
+      "flatCount": 12,
+      "winRate": 3.3,
+      "failRate": 56.7,
+      "avgPtsOnWin": 3.4,
+      "avgPtsOnFail": 6.4,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 17
+      },
       "wallHoldRate": null,
-      "winRate60": 87.5,
+      "winRate60": 60,
       "description": "VOLTAS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.107Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|C|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|C|LEFTWARD",
@@ -5352,23 +5364,25 @@
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
       "sampleCount": 30,
-      "workedCount": 25,
-      "failedCount": 0,
-      "flatCount": 5,
-      "winRate": 83.3,
-      "failRate": 0,
-      "avgPtsOnWin": 5.7,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "workedCount": 9,
+      "failedCount": 4,
+      "flatCount": 17,
+      "winRate": 30,
+      "failRate": 13.3,
+      "avgPtsOnWin": 8.1,
+      "avgPtsOnFail": 4,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 4
+      },
       "wallHoldRate": null,
-      "winRate60": 56.7,
+      "winRate60": 80,
       "description": "ESCORTS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": true,
-      "lastUpdated": "2026-10-19T13:58:45.107Z"
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "TATASTEEL|AT_GAMMA_FLIP|C|RIGHTWARD": {
       "key": "TATASTEEL|AT_GAMMA_FLIP|C|RIGHTWARD",
@@ -5377,10 +5391,10 @@
       "tpoPeriod": "C",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 29,
+      "sampleCount": 10,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 29,
+      "flatCount": 10,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -5391,10 +5405,10 @@
       "winRate60": 0,
       "description": "TATASTEEL at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period C → BUY_CE signal",
       "sampleDates": [
-        "2026-10-15"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-15T12:11:54.399Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "SBIN|BELOW_FLIP_ZONE|C|LEFTWARD": {
       "key": "SBIN|BELOW_FLIP_ZONE|C|LEFTWARD",
@@ -5429,38 +5443,10 @@
       "tpoPeriod": "C",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 24,
-      "workedCount": 0,
-      "failedCount": 6,
-      "flatCount": 18,
-      "winRate": 0,
-      "failRate": 25,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 3.7,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 6
-      },
-      "wallHoldRate": null,
-      "winRate60": 0,
-      "description": "INFY at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period C → BUY_CE signal",
-      "sampleDates": [
-        "2026-10-19"
-      ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.083Z"
-    },
-    "BAJFINANCE|AT_GAMMA_FLIP|C|LEFTWARD": {
-      "key": "BAJFINANCE|AT_GAMMA_FLIP|C|LEFTWARD",
-      "symbol": "BAJFINANCE",
-      "wallApproach": "AT_GAMMA_FLIP",
-      "tpoPeriod": "C",
-      "migrationDirection": "LEFTWARD",
-      "signal": "BUY_PE",
-      "sampleCount": 30,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 30,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -5469,12 +5455,38 @@
       "failureReasons": {},
       "wallHoldRate": null,
       "winRate60": 0,
-      "description": "BAJFINANCE at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
+      "description": "INFY at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period C → BUY_CE signal",
       "sampleDates": [
-        "2026-10-18"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T02:36:25.752Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
+    },
+    "BAJFINANCE|AT_GAMMA_FLIP|C|LEFTWARD": {
+      "key": "BAJFINANCE|AT_GAMMA_FLIP|C|LEFTWARD",
+      "symbol": "BAJFINANCE",
+      "wallApproach": "AT_GAMMA_FLIP",
+      "tpoPeriod": "C",
+      "migrationDirection": "LEFTWARD",
+      "signal": "BUY_PE",
+      "sampleCount": 12,
+      "workedCount": 12,
+      "failedCount": 0,
+      "flatCount": 0,
+      "winRate": 100,
+      "failRate": 0,
+      "avgPtsOnWin": 3.6,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": null,
+      "winRate60": 100,
+      "description": "BAJFINANCE at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "RELIANCE|BELOW_FLIP_ZONE|D|RIGHTWARD": {
       "key": "RELIANCE|BELOW_FLIP_ZONE|D|RIGHTWARD",
@@ -5511,12 +5523,12 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 305,
+      "sampleCount": 254,
       "workedCount": 0,
       "failedCount": 24,
-      "flatCount": 281,
+      "flatCount": 230,
       "winRate": 0,
-      "failRate": 7.9,
+      "failRate": 9.4,
       "avgPtsOnWin": 0,
       "avgPtsOnFail": 5.5,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
@@ -5524,14 +5536,14 @@
         "WRONG_DIRECTION_CONTINUATION": 24
       },
       "wallHoldRate": null,
-      "winRate60": 1.3,
+      "winRate60": 1.6,
       "description": "SBIN at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period D → HOLD signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.073Z"
+      "lastUpdated": "2026-10-21T06:57:18.839Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|D|RIGHTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|D|RIGHTWARD",
@@ -5594,27 +5606,27 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 305,
-      "workedCount": 0,
+      "sampleCount": 270,
+      "workedCount": 2,
       "failedCount": 29,
-      "flatCount": 276,
-      "winRate": 0,
-      "failRate": 9.5,
-      "avgPtsOnWin": 0,
+      "flatCount": 239,
+      "winRate": 0.7,
+      "failRate": 10.7,
+      "avgPtsOnWin": 3.1,
       "avgPtsOnFail": 26.8,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
         "WRONG_DIRECTION_CONTINUATION": 29
       },
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 2.2,
       "description": "RELIANCE at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period D → HOLD signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.072Z"
+      "lastUpdated": "2026-10-21T06:57:18.839Z"
     },
     "NIFTY|AT_PUT_WALL|E|STABLE": {
       "key": "NIFTY|AT_PUT_WALL|E|STABLE",
@@ -5649,10 +5661,10 @@
       "tpoPeriod": "E",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 14,
+      "sampleCount": 29,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 14,
+      "flatCount": 29,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -5663,10 +5675,10 @@
       "winRate60": 0,
       "description": "HDFCBANK at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period E → HOLD signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:54:58.200Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -5675,24 +5687,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 8,
+      "sampleCount": 9,
+      "workedCount": 6,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 3,
+      "winRate": 66.7,
       "failRate": 0,
-      "avgPtsOnWin": 6,
+      "avgPtsOnWin": 6.1,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": null,
       "description": "RELIANCE at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:54:58.201Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "ICICIBANK|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "ICICIBANK|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -5701,24 +5713,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
-      "workedCount": 0,
+      "sampleCount": 18,
+      "workedCount": 18,
       "failedCount": 0,
-      "flatCount": 13,
-      "winRate": 0,
+      "flatCount": 0,
+      "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 0,
+      "avgPtsOnWin": 8.3,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 100,
       "description": "ICICIBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:54:58.201Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "SBIN|AT_GAMMA_FLIP|E|RIGHTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|E|RIGHTWARD",
@@ -5753,13 +5765,13 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 14,
-      "workedCount": 14,
+      "sampleCount": 19,
+      "workedCount": 6,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 13,
+      "winRate": 31.6,
       "failRate": 0,
-      "avgPtsOnWin": 15.3,
+      "avgPtsOnWin": 10,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
@@ -5767,10 +5779,10 @@
       "winRate60": 100,
       "description": "TCS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:54:58.201Z"
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "INFY|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -5779,13 +5791,13 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 14,
+      "sampleCount": 15,
       "workedCount": 2,
       "failedCount": 0,
-      "flatCount": 12,
-      "winRate": 14.3,
+      "flatCount": 13,
+      "winRate": 13.3,
       "failRate": 0,
-      "avgPtsOnWin": 3.2,
+      "avgPtsOnWin": 4,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
@@ -5793,10 +5805,10 @@
       "winRate60": 100,
       "description": "INFY at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:54:58.201Z"
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "LT|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "LT|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -5805,24 +5817,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 1,
+      "sampleCount": 29,
+      "workedCount": 21,
       "failedCount": 0,
-      "flatCount": 7,
-      "winRate": 12.5,
+      "flatCount": 8,
+      "winRate": 72.4,
       "failRate": 0,
-      "avgPtsOnWin": 6.3,
+      "avgPtsOnWin": 16.6,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 12.5,
+      "winRate60": 100,
       "description": "LT at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.392Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "BHARTIARTL|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "BHARTIARTL|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -5831,24 +5843,26 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 2,
-      "failedCount": 0,
-      "flatCount": 6,
-      "winRate": 25,
-      "failRate": 0,
-      "avgPtsOnWin": 5.1,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "sampleCount": 29,
+      "workedCount": 18,
+      "failedCount": 2,
+      "flatCount": 9,
+      "winRate": 62.1,
+      "failRate": 6.9,
+      "avgPtsOnWin": 8.5,
+      "avgPtsOnFail": 3.5,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 2
+      },
       "wallHoldRate": null,
       "winRate60": 100,
       "description": "BHARTIARTL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.392Z"
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "ITC|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -5961,24 +5975,26 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 0,
-      "failedCount": 0,
-      "flatCount": 8,
-      "winRate": 0,
-      "failRate": 0,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "sampleCount": 29,
+      "workedCount": 22,
+      "failedCount": 3,
+      "flatCount": 4,
+      "winRate": 75.9,
+      "failRate": 10.3,
+      "avgPtsOnWin": 6.4,
+      "avgPtsOnFail": 1.6,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 3
+      },
       "wallHoldRate": null,
-      "winRate60": 37.5,
+      "winRate60": 100,
       "description": "VOLTAS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.392Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -5987,26 +6003,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 0,
-      "failedCount": 8,
-      "flatCount": 0,
-      "winRate": 0,
-      "failRate": 100,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 9.9,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 8
-      },
+      "sampleCount": 29,
+      "workedCount": 9,
+      "failedCount": 0,
+      "flatCount": 20,
+      "winRate": 31,
+      "failRate": 0,
+      "avgPtsOnWin": 5.4,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 84.6,
       "description": "ESCORTS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "AXISBANK|AT_GAMMA_FLIP|E|LEFTWARD": {
       "key": "AXISBANK|AT_GAMMA_FLIP|E|LEFTWARD",
@@ -6015,13 +6029,13 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 0,
+      "sampleCount": 24,
+      "workedCount": 17,
       "failedCount": 0,
-      "flatCount": 8,
-      "winRate": 0,
+      "flatCount": 7,
+      "winRate": 70.8,
       "failRate": 0,
-      "avgPtsOnWin": 0,
+      "avgPtsOnWin": 3.9,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
@@ -6029,10 +6043,10 @@
       "winRate60": 100,
       "description": "AXISBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.392Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|E|RIGHTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|E|RIGHTWARD",
@@ -6041,24 +6055,26 @@
       "tpoPeriod": "E",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 10,
-      "workedCount": 10,
-      "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
-      "failRate": 0,
-      "avgPtsOnWin": 6.5,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "sampleCount": 25,
+      "workedCount": 0,
+      "failedCount": 23,
+      "flatCount": 2,
+      "winRate": 0,
+      "failRate": 92,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 4.1,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 23
+      },
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 0,
       "description": "BAJFINANCE at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period E → BUY_CE signal",
       "sampleDates": [
-        "2026-10-13"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-13T12:32:54.049Z"
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "RELIANCE|BELOW_FLIP_ZONE|E|LEFTWARD": {
       "key": "RELIANCE|BELOW_FLIP_ZONE|E|LEFTWARD",
@@ -6067,13 +6083,13 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 19,
-      "workedCount": 19,
+      "sampleCount": 14,
+      "workedCount": 2,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 12,
+      "winRate": 14.3,
       "failRate": 0,
-      "avgPtsOnWin": 6.2,
+      "avgPtsOnWin": 3.8,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
@@ -6081,10 +6097,10 @@
       "winRate60": 100,
       "description": "RELIANCE at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period E → HOLD signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": true,
-      "lastUpdated": "2026-10-20T08:33:22.798Z"
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "TCS|AT_GAMMA_FLIP|E|RIGHTWARD": {
       "key": "TCS|AT_GAMMA_FLIP|E|RIGHTWARD",
@@ -7447,10 +7463,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -7464,7 +7480,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "TATASTEEL|AT_GAMMA_FLIP|L|LEFTWARD": {
       "key": "TATASTEEL|AT_GAMMA_FLIP|L|LEFTWARD",
@@ -7473,10 +7489,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 42,
+      "sampleCount": 13,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 42,
+      "flatCount": 13,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -7490,7 +7506,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.125Z"
     },
     "TCS|AT_GAMMA_FLIP|L|RIGHTWARD": {
       "key": "TCS|AT_GAMMA_FLIP|L|RIGHTWARD",
@@ -7709,10 +7725,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -7726,7 +7742,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.153Z"
     },
     "NIFTY|AT_PUT_WALL|D|RIGHTWARD": {
       "key": "NIFTY|AT_PUT_WALL|D|RIGHTWARD",
@@ -7789,25 +7805,25 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 305,
-      "workedCount": 29,
+      "sampleCount": 274,
+      "workedCount": 48,
       "failedCount": 0,
-      "flatCount": 276,
-      "winRate": 9.5,
+      "flatCount": 226,
+      "winRate": 17.5,
       "failRate": 0,
-      "avgPtsOnWin": 19.4,
+      "avgPtsOnWin": 14.2,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 19.3,
+      "winRate60": 28.5,
       "description": "BAJFINANCE at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period D → HOLD signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.075Z"
+      "lastUpdated": "2026-10-21T06:57:18.835Z"
     },
     "CRUDEOIL|BELOW_FLIP_ZONE|D|RIGHTWARD": {
       "key": "CRUDEOIL|BELOW_FLIP_ZONE|D|RIGHTWARD",
@@ -8084,10 +8100,10 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
+      "sampleCount": 30,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 13,
+      "flatCount": 30,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -8095,13 +8111,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 0,
       "description": "ITC at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "RELIANCE|BELOW_FLIP_ZONE|B|RIGHTWARD": {
       "key": "RELIANCE|BELOW_FLIP_ZONE|B|RIGHTWARD",
@@ -8139,23 +8155,25 @@
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
       "sampleCount": 8,
-      "workedCount": 8,
-      "failedCount": 0,
+      "workedCount": 0,
+      "failedCount": 8,
       "flatCount": 0,
-      "winRate": 100,
-      "failRate": 0,
-      "avgPtsOnWin": 6.1,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "winRate": 0,
+      "failRate": 100,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 2.7,
+      "topFailureReason": "OPENING_VOLATILITY_NOISE",
+      "failureReasons": {
+        "OPENING_VOLATILITY_NOISE": 8
+      },
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 0,
       "description": "BAJFINANCE at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period B → BUY_CE signal",
       "sampleDates": [
-        "2026-10-16"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-16T11:38:49.197Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "TCS|AT_GAMMA_FLIP|B|RIGHTWARD": {
       "key": "TCS|AT_GAMMA_FLIP|B|RIGHTWARD",
@@ -8246,10 +8264,10 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 29,
+      "sampleCount": 25,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 29,
+      "flatCount": 25,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -8257,13 +8275,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 32,
       "description": "ITC at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-15"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-15T12:11:54.399Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|C|RIGHTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|C|RIGHTWARD",
@@ -8324,24 +8342,26 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 9,
+      "sampleCount": 8,
       "workedCount": 0,
-      "failedCount": 0,
-      "flatCount": 9,
+      "failedCount": 8,
+      "flatCount": 0,
       "winRate": 0,
-      "failRate": 0,
+      "failRate": 100,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 4.1,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 8
+      },
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 0,
       "description": "RELIANCE at AT GAMMA FLIP with dots marching LEFT (bearish) during Period C → BUY_PE signal",
       "sampleDates": [
-        "2026-10-13"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-13T10:32:54.062Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "BAJFINANCE|BELOW_FLIP_ZONE|C|RIGHTWARD": {
       "key": "BAJFINANCE|BELOW_FLIP_ZONE|C|RIGHTWARD",
@@ -8430,13 +8450,13 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 16,
-      "workedCount": 16,
+      "sampleCount": 8,
+      "workedCount": 4,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 4,
+      "winRate": 50,
       "failRate": 0,
-      "avgPtsOnWin": 3.4,
+      "avgPtsOnWin": 2.3,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
@@ -8444,10 +8464,10 @@
       "winRate60": 100,
       "description": "SBIN at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period D → HOLD signal",
       "sampleDates": [
-        "2026-10-13"
+        "2026-10-21"
       ],
-      "isHighConfidence": true,
-      "lastUpdated": "2026-10-13T11:32:53.795Z"
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "TCS|BELOW_FLIP_ZONE|D|LEFTWARD": {
       "key": "TCS|BELOW_FLIP_ZONE|D|LEFTWARD",
@@ -8592,24 +8612,26 @@
       "tpoPeriod": "E",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 13,
-      "workedCount": 6,
-      "failedCount": 0,
-      "flatCount": 7,
-      "winRate": 46.2,
-      "failRate": 0,
-      "avgPtsOnWin": 5.4,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "sampleCount": 11,
+      "workedCount": 0,
+      "failedCount": 11,
+      "flatCount": 0,
+      "winRate": 0,
+      "failRate": 100,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 8.1,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 11
+      },
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": 0,
       "description": "ICICIBANK at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period E → BUY_CE signal",
       "sampleDates": [
-        "2026-10-16"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-16T13:08:48.634Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "SBIN|BELOW_FLIP_ZONE|E|LEFTWARD": {
       "key": "SBIN|BELOW_FLIP_ZONE|E|LEFTWARD",
@@ -8618,26 +8640,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 10,
-      "workedCount": 0,
-      "failedCount": 7,
-      "flatCount": 3,
-      "winRate": 0,
-      "failRate": 70,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 1.8,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 7
-      },
+      "sampleCount": 19,
+      "workedCount": 19,
+      "failedCount": 0,
+      "flatCount": 0,
+      "winRate": 100,
+      "failRate": 0,
+      "avgPtsOnWin": 2.9,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": 100,
       "description": "SBIN at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period E → HOLD signal",
       "sampleDates": [
-        "2026-10-16"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-16T13:08:48.633Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "BAJFINANCE|BELOW_FLIP_ZONE|E|RIGHTWARD": {
       "key": "BAJFINANCE|BELOW_FLIP_ZONE|E|RIGHTWARD",
@@ -8672,10 +8692,10 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 11,
+      "sampleCount": 23,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 11,
+      "flatCount": 23,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -8686,10 +8706,10 @@
       "winRate60": 0,
       "description": "TATASTEEL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:54:58.200Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|E|RIGHTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|E|RIGHTWARD",
@@ -8778,24 +8798,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 14,
-      "workedCount": 14,
+      "sampleCount": 8,
+      "workedCount": 8,
       "failedCount": 0,
       "flatCount": 0,
       "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 5.5,
+      "avgPtsOnWin": 4.9,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": null,
       "description": "SBIN at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period E → HOLD signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:33:22.798Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "NIFTY|AT_PUT_WALL|F|STABLE": {
       "key": "NIFTY|AT_PUT_WALL|F|STABLE",
@@ -8830,10 +8850,10 @@
       "tpoPeriod": "F",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 30,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 30,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -8841,13 +8861,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": null,
       "description": "HDFCBANK at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period F → HOLD signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "CRUDEOIL|AT_GAMMA_FLIP|F|STABLE": {
       "key": "CRUDEOIL|AT_GAMMA_FLIP|F|STABLE",
@@ -8908,26 +8928,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 29,
-      "workedCount": 0,
-      "failedCount": 4,
-      "flatCount": 25,
-      "winRate": 0,
-      "failRate": 13.8,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 3.8,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 4
-      },
+      "sampleCount": 12,
+      "workedCount": 12,
+      "failedCount": 0,
+      "flatCount": 0,
+      "winRate": 100,
+      "failRate": 0,
+      "avgPtsOnWin": 9.8,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": null,
       "description": "ICICIBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "TCS|AT_GAMMA_FLIP|F|LEFTWARD": {
       "key": "TCS|AT_GAMMA_FLIP|F|LEFTWARD",
@@ -8962,24 +8980,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 24,
-      "workedCount": 15,
+      "sampleCount": 9,
+      "workedCount": 6,
       "failedCount": 0,
-      "flatCount": 9,
-      "winRate": 62.5,
+      "flatCount": 3,
+      "winRate": 66.7,
       "failRate": 0,
-      "avgPtsOnWin": 4.8,
+      "avgPtsOnWin": 5.8,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 100,
+      "winRate60": null,
       "description": "INFY at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.848Z"
     },
     "LT|AT_GAMMA_FLIP|F|LEFTWARD": {
       "key": "LT|AT_GAMMA_FLIP|F|LEFTWARD",
@@ -8988,24 +9006,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 17,
+      "sampleCount": 12,
+      "workedCount": 12,
       "failedCount": 0,
-      "flatCount": 13,
-      "winRate": 56.7,
+      "flatCount": 0,
+      "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 9.9,
+      "avgPtsOnWin": 7.9,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 66.7,
+      "winRate60": null,
       "description": "LT at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "BHARTIARTL|AT_GAMMA_FLIP|F|LEFTWARD": {
       "key": "BHARTIARTL|AT_GAMMA_FLIP|F|LEFTWARD",
@@ -9014,24 +9032,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 22,
+      "sampleCount": 12,
+      "workedCount": 12,
       "failedCount": 0,
-      "flatCount": 8,
-      "winRate": 73.3,
+      "flatCount": 0,
+      "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 6.5,
+      "avgPtsOnWin": 8,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 93.3,
+      "winRate60": null,
       "description": "BHARTIARTL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": true,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "ITC|AT_GAMMA_FLIP|F|LEFTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|F|LEFTWARD",
@@ -9066,24 +9084,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 11,
+      "sampleCount": 9,
+      "workedCount": 9,
       "failedCount": 0,
-      "flatCount": 19,
-      "winRate": 36.7,
+      "flatCount": 0,
+      "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 6.2,
+      "avgPtsOnWin": 4.2,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 40,
+      "winRate60": null,
       "description": "AXISBANK at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "BAJFINANCE|BELOW_FLIP_ZONE|F|RIGHTWARD": {
       "key": "BAJFINANCE|BELOW_FLIP_ZONE|F|RIGHTWARD",
@@ -9118,10 +9136,10 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 26,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 26,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -9129,13 +9147,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": null,
       "description": "TATASTEEL at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|F|LEFTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|F|LEFTWARD",
@@ -9144,24 +9162,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 13,
+      "sampleCount": 12,
+      "workedCount": 4,
       "failedCount": 0,
-      "flatCount": 17,
-      "winRate": 43.3,
+      "flatCount": 8,
+      "winRate": 33.3,
       "failRate": 0,
-      "avgPtsOnWin": 3.7,
+      "avgPtsOnWin": 1.7,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 26.7,
+      "winRate60": null,
       "description": "VOLTAS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "ESCORTS|AT_GAMMA_FLIP|F|LEFTWARD": {
       "key": "ESCORTS|AT_GAMMA_FLIP|F|LEFTWARD",
@@ -9170,26 +9188,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 30,
-      "workedCount": 17,
-      "failedCount": 9,
-      "flatCount": 4,
-      "winRate": 56.7,
-      "failRate": 30,
-      "avgPtsOnWin": 11.3,
-      "avgPtsOnFail": 9.9,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 9
-      },
+      "sampleCount": 12,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 12,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 13.3,
+      "winRate60": null,
       "description": "ESCORTS at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.848Z"
     },
     "ICICIBANK|AT_GAMMA_FLIP|F|RIGHTWARD": {
       "key": "ICICIBANK|AT_GAMMA_FLIP|F|RIGHTWARD",
@@ -10876,24 +10892,26 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 28,
+      "sampleCount": 15,
       "workedCount": 0,
-      "failedCount": 0,
-      "flatCount": 28,
+      "failedCount": 14,
+      "flatCount": 1,
       "winRate": 0,
-      "failRate": 0,
+      "failRate": 93.3,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 5.7,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 14
+      },
       "wallHoldRate": null,
       "winRate60": 0,
       "description": "RELIANCE at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period C → HOLD signal",
       "sampleDates": [
-        "2026-10-15"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-15T12:11:54.399Z"
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "TCS|BELOW_FLIP_ZONE|C|LEFTWARD": {
       "key": "TCS|BELOW_FLIP_ZONE|C|LEFTWARD",
@@ -10954,10 +10972,10 @@
       "tpoPeriod": "D",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 305,
+      "sampleCount": 254,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 305,
+      "flatCount": 254,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -10965,14 +10983,14 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": 100,
-      "winRate60": 4.6,
+      "winRate60": 5.5,
       "description": "NSE:NIFTY at AT CALL WALL with dots marching RIGHT (bullish) during Period D → BUY_CE signal",
       "sampleDates": [
         "2026-10-20",
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.072Z"
+      "lastUpdated": "2026-10-21T06:57:18.838Z"
     },
     "NSE:NIFTY|AT_PUT_WALL|D|LEFTWARD": {
       "key": "NSE:NIFTY|AT_PUT_WALL|D|LEFTWARD",
@@ -10981,24 +10999,24 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 8,
-      "workedCount": 6,
+      "sampleCount": 28,
+      "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 2,
-      "winRate": 75,
+      "flatCount": 28,
+      "winRate": 0,
       "failRate": 0,
-      "avgPtsOnWin": 26.2,
+      "avgPtsOnWin": 0,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
-      "wallHoldRate": 25,
+      "wallHoldRate": 100,
       "winRate60": 0,
       "description": "NSE:NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
-        "2026-10-14"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-14T12:38:53.903Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "CRUDEOIL|AT_PUT_WALL|E|RIGHTWARD": {
       "key": "CRUDEOIL|AT_PUT_WALL|E|RIGHTWARD",
@@ -11033,26 +11051,24 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 13,
+      "sampleCount": 29,
       "workedCount": 0,
-      "failedCount": 5,
-      "flatCount": 8,
+      "failedCount": 0,
+      "flatCount": 29,
       "winRate": 0,
-      "failRate": 38.5,
+      "failRate": 0,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 32.4,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 5
-      },
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": 100,
       "winRate60": 0,
       "description": "NSE:NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period E → BUY_PE signal",
       "sampleDates": [
-        "2026-10-14"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-14T13:08:54.007Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "RELIANCE|ABOVE_FLIP_ZONE|E|LEFTWARD": {
       "key": "RELIANCE|ABOVE_FLIP_ZONE|E|LEFTWARD",
@@ -11773,10 +11789,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -11790,7 +11806,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "CRUDEOIL|AT_PUT_WALL|M|RIGHTWARD": {
       "key": "CRUDEOIL|AT_PUT_WALL|M|RIGHTWARD",
@@ -11842,7 +11858,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "NSE:NIFTY|AT_CALL_WALL|A|RIGHTWARD": {
       "key": "NSE:NIFTY|AT_CALL_WALL|A|RIGHTWARD",
@@ -11868,7 +11884,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "NSE:NIFTY|AT_CALL_WALL|B|RIGHTWARD": {
       "key": "NSE:NIFTY|AT_CALL_WALL|B|RIGHTWARD",
@@ -11877,24 +11893,24 @@
       "tpoPeriod": "B",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 13,
-      "workedCount": 13,
+      "sampleCount": 17,
+      "workedCount": 17,
       "failedCount": 0,
       "flatCount": 0,
       "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 301.2,
+      "avgPtsOnWin": 305.4,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": 0,
-      "winRate60": null,
+      "winRate60": 100,
       "description": "NSE:NIFTY at AT CALL WALL with dots marching RIGHT (bullish) during Period B → BUY_CE signal",
       "sampleDates": [
         "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "NSE:NIFTY|AT_CALL_WALL|C|RIGHTWARD": {
       "key": "NSE:NIFTY|AT_CALL_WALL|C|RIGHTWARD",
@@ -12044,13 +12060,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 25,
+      "winRate60": 11.1,
       "description": "INFY at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period A → BUY_CE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -12085,10 +12101,10 @@
       "tpoPeriod": "B",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 8,
+      "sampleCount": 14,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 8,
+      "flatCount": 14,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -12096,13 +12112,13 @@
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 0,
       "description": "INFY at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period B → BUY_CE signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "RELIANCE|AT_GAMMA_FLIP|B|LEFTWARD": {
       "key": "RELIANCE|AT_GAMMA_FLIP|B|LEFTWARD",
@@ -12111,26 +12127,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 10,
-      "workedCount": 0,
-      "failedCount": 10,
-      "flatCount": 0,
-      "winRate": 0,
-      "failRate": 100,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 9.7,
+      "sampleCount": 11,
+      "workedCount": 2,
+      "failedCount": 4,
+      "flatCount": 5,
+      "winRate": 18.2,
+      "failRate": 36.4,
+      "avgPtsOnWin": 5.8,
+      "avgPtsOnFail": 3.3,
       "topFailureReason": "OPENING_VOLATILITY_NOISE",
       "failureReasons": {
-        "OPENING_VOLATILITY_NOISE": 10
+        "OPENING_VOLATILITY_NOISE": 4
       },
       "wallHoldRate": null,
       "winRate60": 0,
       "description": "RELIANCE at AT GAMMA FLIP with dots marching LEFT (bearish) during Period B → BUY_PE signal",
       "sampleDates": [
-        "2026-10-16"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-16T11:38:49.197Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "SBIN|AT_GAMMA_FLIP|C|RIGHTWARD": {
       "key": "SBIN|AT_GAMMA_FLIP|C|RIGHTWARD",
@@ -12167,26 +12183,26 @@
       "tpoPeriod": "D",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 22,
+      "sampleCount": 16,
       "workedCount": 0,
-      "failedCount": 10,
-      "flatCount": 12,
+      "failedCount": 16,
+      "flatCount": 0,
       "winRate": 0,
-      "failRate": 45.5,
+      "failRate": 100,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 4.3,
+      "avgPtsOnFail": 7.4,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 10
+        "WRONG_DIRECTION_CONTINUATION": 16
       },
       "wallHoldRate": null,
       "winRate60": 0,
       "description": "INFY at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period D → BUY_CE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T14:28:33.247Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "INFY|AT_GAMMA_FLIP|E|RIGHTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|E|RIGHTWARD",
@@ -12195,26 +12211,26 @@
       "tpoPeriod": "E",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 10,
+      "sampleCount": 14,
       "workedCount": 0,
-      "failedCount": 9,
-      "flatCount": 1,
+      "failedCount": 5,
+      "flatCount": 9,
       "winRate": 0,
-      "failRate": 90,
+      "failRate": 35.7,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 5.1,
+      "avgPtsOnFail": 7.2,
       "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
       "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 9
+        "WRONG_DIRECTION_CONTINUATION": 5
       },
       "wallHoldRate": null,
       "winRate60": 0,
       "description": "INFY at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period E → BUY_CE signal",
       "sampleDates": [
-        "2026-10-16"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-16T13:08:48.633Z"
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "ITC|AT_GAMMA_FLIP|E|RIGHTWARD": {
       "key": "ITC|AT_GAMMA_FLIP|E|RIGHTWARD",
@@ -12223,24 +12239,26 @@
       "tpoPeriod": "E",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 8,
+      "sampleCount": 29,
       "workedCount": 0,
-      "failedCount": 0,
-      "flatCount": 8,
+      "failedCount": 5,
+      "flatCount": 24,
       "winRate": 0,
-      "failRate": 0,
+      "failRate": 17.2,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 1.8,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 5
+      },
       "wallHoldRate": null,
       "winRate60": 0,
       "description": "ITC at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period E → BUY_CE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.392Z"
+      "lastUpdated": "2026-10-21T06:57:18.846Z"
     },
     "BAJFINANCE|BELOW_FLIP_ZONE|E|LEFTWARD": {
       "key": "BAJFINANCE|BELOW_FLIP_ZONE|E|LEFTWARD",
@@ -12275,24 +12293,26 @@
       "tpoPeriod": "F",
       "migrationDirection": "RIGHTWARD",
       "signal": "BUY_CE",
-      "sampleCount": 14,
+      "sampleCount": 12,
       "workedCount": 0,
-      "failedCount": 0,
-      "flatCount": 14,
+      "failedCount": 1,
+      "flatCount": 11,
       "winRate": 0,
-      "failRate": 0,
+      "failRate": 8.3,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 1.6,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 1
+      },
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": null,
       "description": "ITC at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period F → BUY_CE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.393Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "BAJFINANCE|BELOW_FLIP_ZONE|F|LEFTWARD": {
       "key": "BAJFINANCE|BELOW_FLIP_ZONE|F|LEFTWARD",
@@ -12835,10 +12855,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "STABLE",
       "signal": "HOLD",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -12852,7 +12872,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "INFY|AT_GAMMA_FLIP|L|RIGHTWARD": {
       "key": "INFY|AT_GAMMA_FLIP|L|RIGHTWARD",
@@ -12904,7 +12924,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|M|LEFTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|M|LEFTWARD",
@@ -13017,10 +13037,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -13034,7 +13054,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "SBIN|ABOVE_FLIP_ZONE|M|LEFTWARD": {
       "key": "SBIN|ABOVE_FLIP_ZONE|M|LEFTWARD",
@@ -13060,7 +13080,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "SBIN|ABOVE_FLIP_ZONE|B|LEFTWARD": {
       "key": "SBIN|ABOVE_FLIP_ZONE|B|LEFTWARD",
@@ -13095,24 +13115,26 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 30,
+      "sampleCount": 8,
       "workedCount": 0,
-      "failedCount": 0,
-      "flatCount": 30,
+      "failedCount": 8,
+      "flatCount": 0,
       "winRate": 0,
-      "failRate": 0,
+      "failRate": 100,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 0,
-      "topFailureReason": null,
-      "failureReasons": {},
+      "avgPtsOnFail": 4.2,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 8
+      },
       "wallHoldRate": null,
       "winRate60": 0,
       "description": "SBIN at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period C → HOLD signal",
       "sampleDates": [
-        "2026-10-18"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T02:36:25.752Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "SBIN|ABOVE_FLIP_ZONE|F|LEFTWARD": {
       "key": "SBIN|ABOVE_FLIP_ZONE|F|LEFTWARD",
@@ -13121,24 +13143,24 @@
       "tpoPeriod": "F",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 30,
-      "workedCount": 0,
+      "sampleCount": 12,
+      "workedCount": 12,
       "failedCount": 0,
-      "flatCount": 30,
-      "winRate": 0,
+      "flatCount": 0,
+      "winRate": 100,
       "failRate": 0,
-      "avgPtsOnWin": 0,
+      "avgPtsOnWin": 7.1,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 0,
+      "winRate60": null,
       "description": "SBIN at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period F → HOLD signal",
       "sampleDates": [
-        "2026-10-18"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T04:06:26.018Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "BAJFINANCE|AT_GAMMA_FLIP|G|LEFTWARD": {
       "key": "BAJFINANCE|AT_GAMMA_FLIP|G|LEFTWARD",
@@ -13201,24 +13223,24 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 8,
-      "workedCount": 8,
+      "sampleCount": 16,
+      "workedCount": 13,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 3,
+      "winRate": 81.3,
       "failRate": 0,
-      "avgPtsOnWin": 7.3,
+      "avgPtsOnWin": 6.5,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 18.8,
       "description": "RELIANCE at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period B → HOLD signal",
       "sampleDates": [
         "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "BAJFINANCE|BELOW_FLIP_ZONE|B|LEFTWARD": {
       "key": "BAJFINANCE|BELOW_FLIP_ZONE|B|LEFTWARD",
@@ -13227,26 +13249,26 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 10,
+      "sampleCount": 17,
       "workedCount": 0,
-      "failedCount": 9,
-      "flatCount": 1,
+      "failedCount": 10,
+      "flatCount": 7,
       "winRate": 0,
-      "failRate": 90,
+      "failRate": 58.8,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 2.1,
+      "avgPtsOnFail": 2.2,
       "topFailureReason": "OPENING_VOLATILITY_NOISE",
       "failureReasons": {
-        "OPENING_VOLATILITY_NOISE": 9
+        "OPENING_VOLATILITY_NOISE": 10
       },
       "wallHoldRate": null,
-      "winRate60": null,
+      "winRate60": 52.9,
       "description": "BAJFINANCE at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period B → HOLD signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
     },
     "RELIANCE|BELOW_FLIP_ZONE|C|LEFTWARD": {
       "key": "RELIANCE|BELOW_FLIP_ZONE|C|LEFTWARD",
@@ -13309,26 +13331,24 @@
       "tpoPeriod": "C",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 16,
-      "workedCount": 0,
-      "failedCount": 16,
-      "flatCount": 0,
-      "winRate": 0,
-      "failRate": 100,
-      "avgPtsOnWin": 0,
-      "avgPtsOnFail": 3.8,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 16
-      },
+      "sampleCount": 15,
+      "workedCount": 12,
+      "failedCount": 0,
+      "flatCount": 3,
+      "winRate": 80,
+      "failRate": 0,
+      "avgPtsOnWin": 3.9,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": null,
-      "winRate60": 31.3,
+      "winRate60": 100,
       "description": "BAJFINANCE at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period C → HOLD signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
-      "isHighConfidence": false,
-      "lastUpdated": "2026-10-19T13:58:45.108Z"
+      "isHighConfidence": true,
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
     },
     "TCS|ABOVE_FLIP_ZONE|D|LEFTWARD": {
       "key": "TCS|ABOVE_FLIP_ZONE|D|LEFTWARD",
@@ -13363,13 +13383,13 @@
       "tpoPeriod": "E",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 12,
-      "workedCount": 12,
+      "sampleCount": 10,
+      "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 0,
-      "winRate": 100,
+      "flatCount": 10,
+      "winRate": 0,
       "failRate": 0,
-      "avgPtsOnWin": 9.2,
+      "avgPtsOnWin": 0,
       "avgPtsOnFail": 0,
       "topFailureReason": null,
       "failureReasons": {},
@@ -13377,10 +13397,10 @@
       "winRate60": 100,
       "description": "TCS at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period E → HOLD signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:33:22.798Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
     },
     "SBIN|BELOW_FLIP_ZONE|F|LEFTWARD": {
       "key": "SBIN|BELOW_FLIP_ZONE|F|LEFTWARD",
@@ -13627,10 +13647,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -13644,7 +13664,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "AXISBANK|AT_GAMMA_FLIP|L|RIGHTWARD": {
       "key": "AXISBANK|AT_GAMMA_FLIP|L|RIGHTWARD",
@@ -13722,7 +13742,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "VOLTAS|AT_GAMMA_FLIP|M|RIGHTWARD": {
       "key": "VOLTAS|AT_GAMMA_FLIP|M|RIGHTWARD",
@@ -13757,10 +13777,10 @@
       "tpoPeriod": "M",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 24,
+      "sampleCount": 8,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 24,
+      "flatCount": 8,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -13774,7 +13794,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.070Z"
+      "lastUpdated": "2026-10-21T05:58:15.153Z"
     },
     "NIFTY|AT_PUT_WALL|D|LEFTWARD": {
       "key": "NIFTY|AT_PUT_WALL|D|LEFTWARD",
@@ -13783,26 +13803,24 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "BUY_PE",
-      "sampleCount": 72,
+      "sampleCount": 28,
       "workedCount": 0,
-      "failedCount": 34,
-      "flatCount": 38,
+      "failedCount": 0,
+      "flatCount": 28,
       "winRate": 0,
-      "failRate": 47.2,
+      "failRate": 0,
       "avgPtsOnWin": 0,
-      "avgPtsOnFail": 21.6,
-      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
-      "failureReasons": {
-        "WRONG_DIRECTION_CONTINUATION": 34
-      },
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
       "wallHoldRate": 100,
       "winRate60": 0,
       "description": "NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period D → BUY_PE signal",
       "sampleDates": [
-        "2026-10-19"
+        "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-20T08:58:14.395Z"
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
     },
     "CRUDEOIL|BELOW_FLIP_ZONE|D|LEFTWARD": {
       "key": "CRUDEOIL|BELOW_FLIP_ZONE|D|LEFTWARD",
@@ -13811,10 +13829,10 @@
       "tpoPeriod": "D",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 305,
+      "sampleCount": 282,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 305,
+      "flatCount": 282,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -13829,7 +13847,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.071Z"
+      "lastUpdated": "2026-10-21T06:57:18.838Z"
     },
     "CRUDEOIL|BELOW_FLIP_ZONE|K|LEFTWARD": {
       "key": "CRUDEOIL|BELOW_FLIP_ZONE|K|LEFTWARD",
@@ -13890,10 +13908,10 @@
       "tpoPeriod": "L",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 41,
+      "sampleCount": 12,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 41,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -13907,7 +13925,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "CRUDEOIL|BELOW_FLIP_ZONE|M|LEFTWARD": {
       "key": "CRUDEOIL|BELOW_FLIP_ZONE|M|LEFTWARD",
@@ -13933,7 +13951,7 @@
         "2026-10-20"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.069Z"
+      "lastUpdated": "2026-10-21T05:28:16.126Z"
     },
     "CRUDEOIL|BELOW_FLIP_ZONE|A|LEFTWARD": {
       "key": "CRUDEOIL|BELOW_FLIP_ZONE|A|LEFTWARD",
@@ -13959,7 +13977,7 @@
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.840Z"
     },
     "BAJFINANCE|BELOW_FLIP_ZONE|A|LEFTWARD": {
       "key": "BAJFINANCE|BELOW_FLIP_ZONE|A|LEFTWARD",
@@ -13981,13 +13999,13 @@
         "OPENING_VOLATILITY_NOISE": 6
       },
       "wallHoldRate": null,
-      "winRate60": 33.3,
+      "winRate60": 37.5,
       "description": "BAJFINANCE at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period A → HOLD signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.841Z"
     },
     "CRUDEOIL|BELOW_FLIP_ZONE|B|LEFTWARD": {
       "key": "CRUDEOIL|BELOW_FLIP_ZONE|B|LEFTWARD",
@@ -13996,10 +14014,172 @@
       "tpoPeriod": "B",
       "migrationDirection": "LEFTWARD",
       "signal": "HOLD",
-      "sampleCount": 13,
+      "sampleCount": 30,
       "workedCount": 0,
       "failedCount": 0,
-      "flatCount": 13,
+      "flatCount": 30,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": null,
+      "winRate60": 0,
+      "description": "CRUDEOIL at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period B → HOLD signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.842Z"
+    },
+    "NSE:NIFTY|AT_CALL_WALL|B|LEFTWARD": {
+      "key": "NSE:NIFTY|AT_CALL_WALL|B|LEFTWARD",
+      "symbol": "NSE:NIFTY",
+      "wallApproach": "AT_CALL_WALL",
+      "tpoPeriod": "B",
+      "migrationDirection": "LEFTWARD",
+      "signal": "BUY_PE",
+      "sampleCount": 8,
+      "workedCount": 5,
+      "failedCount": 1,
+      "flatCount": 2,
+      "winRate": 62.5,
+      "failRate": 12.5,
+      "avgPtsOnWin": 37.7,
+      "avgPtsOnFail": 23.1,
+      "topFailureReason": "CALL_WALL_BROKE",
+      "failureReasons": {
+        "CALL_WALL_BROKE": 1
+      },
+      "wallHoldRate": 87.5,
+      "winRate60": 62.5,
+      "description": "NSE:NIFTY at AT CALL WALL with dots marching LEFT (bearish) during Period B → BUY_PE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.843Z"
+    },
+    "CRUDEOIL|BELOW_FLIP_ZONE|C|LEFTWARD": {
+      "key": "CRUDEOIL|BELOW_FLIP_ZONE|C|LEFTWARD",
+      "symbol": "CRUDEOIL",
+      "wallApproach": "BELOW_FLIP_ZONE",
+      "tpoPeriod": "C",
+      "migrationDirection": "LEFTWARD",
+      "signal": "HOLD",
+      "sampleCount": 30,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 30,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": null,
+      "winRate60": 0,
+      "description": "CRUDEOIL at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period C → HOLD signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.844Z"
+    },
+    "NSE:NIFTY|AT_PUT_WALL|C|LEFTWARD": {
+      "key": "NSE:NIFTY|AT_PUT_WALL|C|LEFTWARD",
+      "symbol": "NSE:NIFTY",
+      "wallApproach": "AT_PUT_WALL",
+      "tpoPeriod": "C",
+      "migrationDirection": "LEFTWARD",
+      "signal": "BUY_PE",
+      "sampleCount": 15,
+      "workedCount": 0,
+      "failedCount": 1,
+      "flatCount": 14,
+      "winRate": 0,
+      "failRate": 6.7,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 33.2,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 1
+      },
+      "wallHoldRate": 100,
+      "winRate60": 0,
+      "description": "NSE:NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period C → BUY_PE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
+    },
+    "AXISBANK|AT_GAMMA_FLIP|D|RIGHTWARD": {
+      "key": "AXISBANK|AT_GAMMA_FLIP|D|RIGHTWARD",
+      "symbol": "AXISBANK",
+      "wallApproach": "AT_GAMMA_FLIP",
+      "tpoPeriod": "D",
+      "migrationDirection": "RIGHTWARD",
+      "signal": "BUY_CE",
+      "sampleCount": 11,
+      "workedCount": 0,
+      "failedCount": 11,
+      "flatCount": 0,
+      "winRate": 0,
+      "failRate": 100,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 8.8,
+      "topFailureReason": "WRONG_DIRECTION_CONTINUATION",
+      "failureReasons": {
+        "WRONG_DIRECTION_CONTINUATION": 11
+      },
+      "wallHoldRate": null,
+      "winRate60": 0,
+      "description": "AXISBANK at AT GAMMA FLIP with dots marching RIGHT (bullish) during Period D → BUY_CE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
+    },
+    "CRUDEOIL|BELOW_FLIP_ZONE|E|LEFTWARD": {
+      "key": "CRUDEOIL|BELOW_FLIP_ZONE|E|LEFTWARD",
+      "symbol": "CRUDEOIL",
+      "wallApproach": "BELOW_FLIP_ZONE",
+      "tpoPeriod": "E",
+      "migrationDirection": "LEFTWARD",
+      "signal": "HOLD",
+      "sampleCount": 29,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 29,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": null,
+      "winRate60": 0,
+      "description": "CRUDEOIL at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period E → HOLD signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.845Z"
+    },
+    "CRUDEOIL|BELOW_FLIP_ZONE|F|LEFTWARD": {
+      "key": "CRUDEOIL|BELOW_FLIP_ZONE|F|LEFTWARD",
+      "symbol": "CRUDEOIL",
+      "wallApproach": "BELOW_FLIP_ZONE",
+      "tpoPeriod": "F",
+      "migrationDirection": "LEFTWARD",
+      "signal": "HOLD",
+      "sampleCount": 12,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 12,
       "winRate": 0,
       "failRate": 0,
       "avgPtsOnWin": 0,
@@ -14008,15 +14188,119 @@
       "failureReasons": {},
       "wallHoldRate": null,
       "winRate60": null,
-      "description": "CRUDEOIL at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period B → HOLD signal",
+      "description": "CRUDEOIL at BELOW FLIP ZONE with dots marching LEFT (bearish) during Period F → HOLD signal",
       "sampleDates": [
         "2026-10-21"
       ],
       "isHighConfidence": false,
-      "lastUpdated": "2026-10-21T04:58:19.076Z"
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
+    },
+    "NSE:NIFTY|AT_PUT_WALL|F|LEFTWARD": {
+      "key": "NSE:NIFTY|AT_PUT_WALL|F|LEFTWARD",
+      "symbol": "NSE:NIFTY",
+      "wallApproach": "AT_PUT_WALL",
+      "tpoPeriod": "F",
+      "migrationDirection": "LEFTWARD",
+      "signal": "BUY_PE",
+      "sampleCount": 12,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 12,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": 100,
+      "winRate60": null,
+      "description": "NSE:NIFTY at AT PUT WALL with dots marching LEFT (bearish) during Period F → BUY_PE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
+    },
+    "RELIANCE|AT_GAMMA_FLIP|F|LEFTWARD": {
+      "key": "RELIANCE|AT_GAMMA_FLIP|F|LEFTWARD",
+      "symbol": "RELIANCE",
+      "wallApproach": "AT_GAMMA_FLIP",
+      "tpoPeriod": "F",
+      "migrationDirection": "LEFTWARD",
+      "signal": "BUY_PE",
+      "sampleCount": 12,
+      "workedCount": 12,
+      "failedCount": 0,
+      "flatCount": 0,
+      "winRate": 100,
+      "failRate": 0,
+      "avgPtsOnWin": 9.1,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": null,
+      "winRate60": null,
+      "description": "RELIANCE at AT GAMMA FLIP with dots marching LEFT (bearish) during Period F → BUY_PE signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
+    },
+    "BAJFINANCE|ABOVE_FLIP_ZONE|F|LEFTWARD": {
+      "key": "BAJFINANCE|ABOVE_FLIP_ZONE|F|LEFTWARD",
+      "symbol": "BAJFINANCE",
+      "wallApproach": "ABOVE_FLIP_ZONE",
+      "tpoPeriod": "F",
+      "migrationDirection": "LEFTWARD",
+      "signal": "HOLD",
+      "sampleCount": 12,
+      "workedCount": 0,
+      "failedCount": 0,
+      "flatCount": 12,
+      "winRate": 0,
+      "failRate": 0,
+      "avgPtsOnWin": 0,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": null,
+      "winRate60": null,
+      "description": "BAJFINANCE at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period F → HOLD signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.847Z"
+    },
+    "TCS|ABOVE_FLIP_ZONE|F|LEFTWARD": {
+      "key": "TCS|ABOVE_FLIP_ZONE|F|LEFTWARD",
+      "symbol": "TCS",
+      "wallApproach": "ABOVE_FLIP_ZONE",
+      "tpoPeriod": "F",
+      "migrationDirection": "LEFTWARD",
+      "signal": "HOLD",
+      "sampleCount": 10,
+      "workedCount": 10,
+      "failedCount": 0,
+      "flatCount": 0,
+      "winRate": 100,
+      "failRate": 0,
+      "avgPtsOnWin": 11.7,
+      "avgPtsOnFail": 0,
+      "topFailureReason": null,
+      "failureReasons": {},
+      "wallHoldRate": null,
+      "winRate60": null,
+      "description": "TCS at ABOVE FLIP ZONE with dots marching LEFT (bearish) during Period F → HOLD signal",
+      "sampleDates": [
+        "2026-10-21"
+      ],
+      "isHighConfidence": false,
+      "lastUpdated": "2026-10-21T06:57:18.848Z"
     }
   },
-  "totalRules": 528,
-  "highConfidenceCount": 36,
-  "lastCrystallized": "2026-10-21T04:58:19.086Z"
+  "totalRules": 538,
+  "highConfidenceCount": 44,
+  "lastCrystallized": "2026-10-21T06:57:18.860Z"
 }

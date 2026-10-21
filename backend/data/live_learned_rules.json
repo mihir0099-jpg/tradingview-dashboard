@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated_at": "2026-10-21T03:45:07.636Z",
+  "generated_at": "2026-10-21T06:07:00.617Z",
   "total_trades_analyzed": 50,
   "sample_size_policy": {
     "noise": "< 5 trades → ignored",
@@ -10,6 +10,48 @@
   },
   "cross_validation_policy": "Live data contradicting 6-year global backtest is shown as MONITORING only until 30+ live trades confirm the divergence",
   "rules": [
+    {
+      "rule_id": "LIVE-TPO-E-F36654",
+      "rule_type": "TIME_FILTER",
+      "name": "Period E — Live Data Contradicts Backtest",
+      "condition": "current_tpo_period == \"E\"",
+      "action": "MONITOR_ONLY_CONTRADICTS_BACKTEST",
+      "period": "E",
+      "live_wr_pct": 14.3,
+      "backtest_wr_pct": 86.4,
+      "backtest_source": "Rule 4A",
+      "contradicts_backtest": true,
+      "backtest_warning": "⚠️ CONTRADICTS Rule 4A backtest (86.4% WR from 700+ trades). Live sample (7 trades) too small to override — showing for monitoring only.",
+      "sample_count": 7,
+      "avg_pnl": 140,
+      "trust_level": "MONITORING",
+      "trust_label": "👁 Monitoring (5-14)",
+      "enforce": false,
+      "date_discovered": "2026-10-21",
+      "expires_after_sessions": 20,
+      "source": "LIVE_RULE_LEARNER_TPO"
+    },
+    {
+      "rule_id": "LIVE-TPO-D-287B1A",
+      "rule_type": "TIME_FILTER",
+      "name": "Period D — Live-Confirmed Edge (66.7% WR)",
+      "condition": "current_tpo_period == \"D\"",
+      "action": "MONITOR_POSITIVE",
+      "period": "D",
+      "live_wr_pct": 66.7,
+      "backtest_wr_pct": 80,
+      "backtest_source": "Rule 4A",
+      "contradicts_backtest": false,
+      "backtest_warning": null,
+      "sample_count": 6,
+      "avg_pnl": 275,
+      "trust_level": "MONITORING",
+      "trust_label": "👁 Monitoring (5-14)",
+      "enforce": false,
+      "date_discovered": "2026-10-21",
+      "expires_after_sessions": 20,
+      "source": "LIVE_RULE_LEARNER_TPO"
+    },
     {
       "rule_id": "LIVE-TPO-K-0A8DCF",
       "rule_type": "TIME_FILTER",
@@ -53,93 +95,48 @@
       "source": "LIVE_RULE_LEARNER_TPO"
     },
     {
-      "rule_id": "LIVE-TPO-G-2C2BA1",
-      "rule_type": "TIME_FILTER",
-      "name": "Period G — Live Data Contradicts Backtest",
-      "condition": "current_tpo_period == \"G\"",
-      "action": "MONITOR_ONLY_CONTRADICTS_BACKTEST",
-      "period": "G",
-      "live_wr_pct": 40,
-      "backtest_wr_pct": 87.8,
-      "backtest_source": "Rule 1A",
+      "rule_id": "LIVE-SETUP-7EE0E2",
+      "rule_type": "SETUP_ANALYSIS",
+      "name": "GEX PUT WALL BOUNCE — Live Performance Analysis",
+      "condition": "setup_category == \"GEX_PUT_WALL_BOUNCE\"",
+      "action": "IMPROVE_EXIT_MANAGEMENT_NOT_ENTRY",
+      "setup_category": "GEX_PUT_WALL_BOUNCE",
+      "live_wr_pct": 40.7,
+      "backtest_wr_pct": 75,
       "contradicts_backtest": true,
-      "backtest_warning": "⚠️ CONTRADICTS Rule 1A backtest (87.8% WR from 2000+ trades). Live sample (5 trades) too small to override — showing for monitoring only.",
-      "sample_count": 5,
-      "avg_pnl": -198,
-      "trust_level": "MONITORING",
-      "trust_label": "👁 Monitoring (5-14)",
+      "backtest_warning": "⚠️ CONTRADICTS GEX Algo backtest (75% WR from 50+ trades). Live sample (27 trades) too small to override — showing for monitoring only.",
+      "wins": 11,
+      "sl": 11,
+      "closed": 5,
+      "total": 27,
+      "avg_pnl": 105,
+      "ml_insight": "CRITICAL: 40.7% live WR vs 75% backtest WR. Root cause: 5 stagnant exits (not wins OR SL hits). The setup itself works — but positions are being closed before targets hit. Fix exit management, not entry criteria.",
+      "trust_level": "CANDIDATE",
+      "trust_label": "⚠️ Candidate (15-29)",
       "enforce": false,
       "date_discovered": "2026-10-21",
-      "expires_after_sessions": 20,
-      "source": "LIVE_RULE_LEARNER_TPO"
+      "expires_after_sessions": 30,
+      "source": "LIVE_RULE_LEARNER_SETUP"
     },
     {
-      "rule_id": "LIVE-SETUP-EB4FEE",
+      "rule_id": "LIVE-SETUP-F82890",
       "rule_type": "SETUP_ANALYSIS",
       "name": "PCR PUT WRITING DRIVE — Live Performance Analysis",
       "condition": "setup_category == \"PCR_PUT_WRITING_DRIVE\"",
       "action": "MONITOR",
       "setup_category": "PCR_PUT_WRITING_DRIVE",
-      "live_wr_pct": 72.7,
+      "live_wr_pct": 63.6,
       "backtest_wr_pct": 96,
       "contradicts_backtest": true,
       "backtest_warning": "⚠️ CONTRADICTS Rule 2D backtest (96% WR from 100+ trades). Live sample (11 trades) too small to override — showing for monitoring only.",
-      "wins": 8,
+      "wins": 7,
       "sl": 0,
-      "closed": 3,
-      "total": 11,
-      "avg_pnl": 1893,
-      "ml_insight": "",
-      "trust_level": "MONITORING",
-      "trust_label": "👁 Monitoring (5-14)",
-      "enforce": false,
-      "date_discovered": "2026-10-21",
-      "expires_after_sessions": 30,
-      "source": "LIVE_RULE_LEARNER_SETUP"
-    },
-    {
-      "rule_id": "LIVE-SETUP-D3C065",
-      "rule_type": "SETUP_ANALYSIS",
-      "name": "PCR CALL WRITING BREAKDOWN — Live Performance Analysis",
-      "condition": "setup_category == \"PCR_CALL_WRITING_BREAKDOWN\"",
-      "action": "MONITOR",
-      "setup_category": "PCR_CALL_WRITING_BREAKDOWN",
-      "live_wr_pct": 30,
-      "backtest_wr_pct": 96,
-      "contradicts_backtest": true,
-      "backtest_warning": "⚠️ CONTRADICTS Rule 2D backtest (96% WR from 100+ trades). Live sample (10 trades) too small to override — showing for monitoring only.",
-      "wins": 3,
-      "sl": 0,
-      "closed": 7,
-      "total": 10,
-      "avg_pnl": -133,
-      "ml_insight": "30% live WR. Highest-performing setup in live data. ⚠️ CONTRADICTS Rule 2D backtest (96% WR from 100+ trades). Live sample (10 trades) too small to override — showing for monitoring only.",
-      "trust_level": "MONITORING",
-      "trust_label": "👁 Monitoring (5-14)",
-      "enforce": false,
-      "date_discovered": "2026-10-21",
-      "expires_after_sessions": 30,
-      "source": "LIVE_RULE_LEARNER_SETUP"
-    },
-    {
-      "rule_id": "LIVE-SETUP-0D7383",
-      "rule_type": "SETUP_ANALYSIS",
-      "name": "GEX PUT WALL BOUNCE — Live Performance Analysis",
-      "condition": "setup_category == \"GEX_PUT_WALL_BOUNCE\"",
-      "action": "MONITOR",
-      "setup_category": "GEX_PUT_WALL_BOUNCE",
-      "live_wr_pct": 52,
-      "backtest_wr_pct": 75,
-      "contradicts_backtest": true,
-      "backtest_warning": "⚠️ CONTRADICTS GEX Algo backtest (75% WR from 50+ trades). Live sample (25 trades) too small to override — showing for monitoring only.",
-      "wins": 13,
-      "sl": 8,
       "closed": 4,
-      "total": 25,
-      "avg_pnl": 414,
+      "total": 11,
+      "avg_pnl": 1883,
       "ml_insight": "",
-      "trust_level": "CANDIDATE",
-      "trust_label": "⚠️ Candidate (15-29)",
+      "trust_level": "MONITORING",
+      "trust_label": "👁 Monitoring (5-14)",
       "enforce": false,
       "date_discovered": "2026-10-21",
       "expires_after_sessions": 30,
@@ -152,7 +149,7 @@
       "condition": "position_age_minutes >= 60 AND spot_move_pct < 0.3% AND no_volume_surge",
       "action": "EXIT_50PCT_AT_60MIN_PRESERVE_PREMIUM",
       "sample_count": 24,
-      "avg_pnl_current": 74,
+      "avg_pnl_current": 69,
       "estimated_improvement": "Exit at 60min saves ~15-20% more premium vs 90min wait",
       "trust_level": "CANDIDATE",
       "trust_label": "⚠️ Candidate (15-29)",
@@ -165,52 +162,52 @@
   "statistics": {
     "by_symbol": [
       {
-        "symbol": "BANKNIFTY",
-        "total": 8,
-        "wr": 62.5,
-        "avgPnl": 699,
-        "trustLabel": "👁 Monitoring (5-14)"
-      },
-      {
         "symbol": "NIFTY",
-        "total": 7,
-        "wr": 28.6,
-        "avgPnl": -109,
+        "total": 9,
+        "wr": 22.2,
+        "avgPnl": -292,
         "trustLabel": "👁 Monitoring (5-14)"
       },
       {
-        "symbol": "NTPC",
-        "total": 6,
-        "wr": 33.3,
-        "avgPnl": -215,
+        "symbol": "BANKNIFTY",
+        "total": 7,
+        "wr": 42.9,
+        "avgPnl": 144,
         "trustLabel": "👁 Monitoring (5-14)"
       },
       {
         "symbol": "TCS",
-        "total": 4,
-        "wr": 75,
-        "avgPnl": 3080,
-        "trustLabel": "❌ Too small (<5)"
+        "total": 5,
+        "wr": 60,
+        "avgPnl": 2461,
+        "trustLabel": "👁 Monitoring (5-14)"
       },
       {
-        "symbol": "TITAN",
+        "symbol": "NTPC",
         "total": 4,
         "wr": 50,
-        "avgPnl": 197,
+        "avgPnl": -206,
         "trustLabel": "❌ Too small (<5)"
       },
       {
         "symbol": "RELIANCE",
         "total": 3,
         "wr": 66.7,
-        "avgPnl": 110,
+        "avgPnl": -68,
         "trustLabel": "❌ Too small (<5)"
       },
       {
-        "symbol": "JSWSTEEL",
+        "symbol": "TITAN",
         "total": 3,
-        "wr": 66.7,
-        "avgPnl": 1717,
+        "wr": 33.3,
+        "avgPnl": 231,
+        "trustLabel": "❌ Too small (<5)"
+      },
+      {
+        "symbol": "TECHM",
+        "total": 2,
+        "wr": 0,
+        "avgPnl": 0,
         "trustLabel": "❌ Too small (<5)"
       },
       {
@@ -228,10 +225,31 @@
         "trustLabel": "❌ Too small (<5)"
       },
       {
-        "symbol": "ITC",
+        "symbol": "JSWSTEEL",
         "total": 2,
         "wr": 50,
-        "avgPnl": -216,
+        "avgPnl": 2234,
+        "trustLabel": "❌ Too small (<5)"
+      },
+      {
+        "symbol": "YESBANK",
+        "total": 1,
+        "wr": 100,
+        "avgPnl": 3110,
+        "trustLabel": "❌ Too small (<5)"
+      },
+      {
+        "symbol": "AUROPHARMA",
+        "total": 1,
+        "wr": 0,
+        "avgPnl": 0,
+        "trustLabel": "❌ Too small (<5)"
+      },
+      {
+        "symbol": "UNIONBANK",
+        "total": 1,
+        "wr": 0,
+        "avgPnl": 0,
         "trustLabel": "❌ Too small (<5)"
       },
       {
@@ -253,13 +271,6 @@
         "total": 1,
         "wr": 0,
         "avgPnl": -3500,
-        "trustLabel": "❌ Too small (<5)"
-      },
-      {
-        "symbol": "TECHM",
-        "total": 1,
-        "wr": 0,
-        "avgPnl": 0,
         "trustLabel": "❌ Too small (<5)"
       },
       {
@@ -301,12 +312,30 @@
     "by_period": [
       {
         "period": "M",
-        "total": 14,
-        "wr": 57.1,
-        "avgPnl": 1686,
+        "total": 11,
+        "wr": 54.5,
+        "avgPnl": 2063,
         "backtestWR": 55,
         "trustLabel": "👁 Monitoring (5-14)",
         "backtestSource": "Rule 4C"
+      },
+      {
+        "period": "E",
+        "total": 7,
+        "wr": 14.3,
+        "avgPnl": 140,
+        "backtestWR": 86.4,
+        "trustLabel": "👁 Monitoring (5-14)",
+        "backtestSource": "Rule 4A"
+      },
+      {
+        "period": "D",
+        "total": 6,
+        "wr": 66.7,
+        "avgPnl": 275,
+        "backtestWR": 80,
+        "trustLabel": "👁 Monitoring (5-14)",
+        "backtestSource": "Rule 4A"
       },
       {
         "period": "K",
@@ -328,21 +357,12 @@
       },
       {
         "period": "G",
-        "total": 5,
-        "wr": 40,
-        "avgPnl": -198,
-        "backtestWR": 87.8,
-        "trustLabel": "👁 Monitoring (5-14)",
-        "backtestSource": "Rule 1A"
-      },
-      {
-        "period": "D",
         "total": 4,
-        "wr": 100,
-        "avgPnl": 957,
-        "backtestWR": 80,
+        "wr": 50,
+        "avgPnl": -110,
+        "backtestWR": 87.8,
         "trustLabel": "❌ Too small (<5)",
-        "backtestSource": "Rule 4A"
+        "backtestSource": "Rule 1A"
       },
       {
         "period": "A",
@@ -372,15 +392,6 @@
         "backtestSource": "Estimated"
       },
       {
-        "period": "E",
-        "total": 3,
-        "wr": 66.7,
-        "avgPnl": -54,
-        "backtestWR": 86.4,
-        "trustLabel": "❌ Too small (<5)",
-        "backtestSource": "Rule 4A"
-      },
-      {
         "period": "L",
         "total": 2,
         "wr": 50,
@@ -391,51 +402,42 @@
       },
       {
         "period": "B",
-        "total": 2,
+        "total": 1,
         "wr": 100,
-        "avgPnl": 2569,
+        "avgPnl": 2509,
         "backtestWR": 55,
         "trustLabel": "❌ Too small (<5)",
         "backtestSource": "Rule 5A"
-      },
-      {
-        "period": "C",
-        "total": 1,
-        "wr": 0,
-        "avgPnl": -270,
-        "backtestWR": 89,
-        "trustLabel": "❌ Too small (<5)",
-        "backtestSource": "Rule 4A"
       }
     ],
     "by_setup": [
       {
         "category": "PCR_PUT_WRITING_DRIVE",
         "total": 11,
-        "wr": 72.7,
-        "avgPnl": 1893,
+        "wr": 63.6,
+        "avgPnl": 1883,
         "trustLabel": "👁 Monitoring (5-14)"
       },
       {
         "category": "GEX_PUT_WALL_BOUNCE",
-        "total": 25,
-        "wr": 52,
-        "avgPnl": 414,
+        "total": 27,
+        "wr": 40.7,
+        "avgPnl": 105,
         "trustLabel": "⚠️ Candidate (15-29)"
       },
       {
         "category": "PCR_CALL_WRITING_BREAKDOWN",
-        "total": 10,
-        "wr": 30,
-        "avgPnl": -133,
-        "trustLabel": "👁 Monitoring (5-14)"
+        "total": 4,
+        "wr": 25,
+        "avgPnl": -140,
+        "trustLabel": "❌ Too small (<5)"
       },
       {
         "category": "OTHER",
-        "total": 4,
-        "wr": 0,
-        "avgPnl": -875,
-        "trustLabel": "❌ Too small (<5)"
+        "total": 8,
+        "wr": 12.5,
+        "avgPnl": -49,
+        "trustLabel": "👁 Monitoring (5-14)"
       }
     ]
   }

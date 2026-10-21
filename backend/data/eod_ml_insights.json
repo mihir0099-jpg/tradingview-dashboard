@@ -1,15 +1,15 @@
 {
   "date": "2026-10-21",
-  "generatedAtIST": "2026-10-21T10:28:23.514Z",
+  "generatedAtIST": "2026-10-21T12:27:19.142Z",
   "sessionSummary": {
     "date": "2026-10-21",
     "dayOfWeek": "Wednesday",
     "nifty": {
       "open": 23016,
-      "close": 22934.65,
+      "close": 22720.45,
       "dayHigh": 23120.9,
-      "dayLow": 22922.6,
-      "changePct": -0.35,
+      "dayLow": 22703.1,
+      "changePct": -1.28,
       "ibRange": 196.55,
       "ibWidthPct": 0.85,
       "dayType": "NORMAL_VARIATION_BEAR",
@@ -17,24 +17,24 @@
       "periodAHeldLow": false,
       "periodAHeldHigh": true,
       "periodCExtension": "BEARISH_BREAK",
-      "periodGExtension": "INSIDE_IB",
+      "periodGExtension": "BEARISH_CLOSE",
       "sessionExtremeInL": false,
       "hodTime": "09:40:00",
-      "lodTime": "10:20:00"
+      "lodTime": "12:23:00"
     },
     "banknifty": {
       "open": 55702.6,
-      "close": 55396.9,
-      "changePct": -0.55,
-      "dayType": "NORMAL_DAY"
+      "close": 54772.2,
+      "changePct": -1.67,
+      "dayType": "NORMAL_VARIATION_BEAR"
     },
     "options": {
-      "pcrDrift": -7.85,
-      "pcrSignal": "BEARISH",
+      "pcrDrift": 9.4,
+      "pcrSignal": "BULLISH",
       "morningSkew": 21.93263547674998,
-      "closingSkew": 14.086956521739136
+      "closingSkew": 31.3347022587269
     },
-    "targetOutcome": "BALANCED_VARIATION"
+    "targetOutcome": "TREND_EXPANSION"
   },
   "machineLearningMetrics": {
     "sessionsAnalyzed": 35,
@@ -48,16 +48,16 @@
     "empiricalRates": {
       "periodAHeldExtremeRate": "68.6%",
       "periodCContinuationRate": "82.4%",
-      "pcrPredictiveAccuracy": "60.0%",
+      "pcrPredictiveAccuracy": "57.1%",
       "periodLExtremeRate": "14.3%",
-      "trendDayFrequency": "25.7%",
+      "trendDayFrequency": "28.6%",
       "rotationalDayFrequency": "28.6%"
     },
     "learnedRules": [
       {
         "feature": "First-Hour PCR Velocity (Rule 2D)",
         "rule": "If 10:15 AM PCR drift is within -0.03 to +0.03, market exhibits Open Auction Rotation with 86.4% probability of staying range-bound.",
-        "historicalReliability": "60.0%",
+        "historicalReliability": "57.1%",
         "activeToday": false
       },
       {
@@ -91,11 +91,9 @@
     "primaryReasoning": "Weak close near day lows signals liquidation into the close; sellers remain in control.",
     "keyLevelsToWatch": {
       "bullishPivot": 23120.9,
-      "bearishPivot": 22922.6,
-      "equilibriumPOC": 22992.72
+      "bearishPivot": 22703.1,
+      "equilibriumPOC": 22848.15
     }
   },
-  "lessonsLearnedToday": [
-    "Period G stayed inside Initial Balance, resulting in lunchtime option decay as per Rule 2; breakout chasing was penalized."
-  ]
+  "lessonsLearnedToday": []
 }

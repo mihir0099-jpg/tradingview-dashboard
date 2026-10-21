@@ -1282,6 +1282,37 @@ app.get('/api/chart/candles', async (req, res) => {
       candles = await fetchCandlesForSymbol(tvBridge, symbol, timeframe, 100).catch(() => []);
     }
 
+    // Official Zero-Delay Broker Fallback / Enhancement: Angel One SmartAPI
+    if (!candles || candles.length === 0) {
+      try {
+        const clean = symbol.replace('NSE:', '').replace('BSE:', '').trim();
+        let token = '99926000';
+        let exch = 'NSE';
+        if (clean === 'NIFTY' || clean === 'NIFTY 50') { token = '99926000'; exch = 'NSE'; }
+        else if (clean === 'BANKNIFTY' || clean === 'NIFTY BANK') { token = '99926009'; exch = 'NSE'; }
+        else if (clean === 'SENSEX') { token = '99919000'; exch = 'BSE'; }
+        else {
+          const scrip = await angelOneBridge.searchScrip('NSE', clean);
+          const match = scrip.find(r => r.tradingsymbol === clean + '-EQ') || scrip[0];
+          if (match) { token = match.symboltoken; exch = match.exchange || 'NSE'; }
+        }
+
+        const intervalMap = { '1': 'ONE_MINUTE', '3': 'THREE_MINUTE', '5': 'FIVE_MINUTE', '15': 'FIFTEEN_MINUTE', 'D': 'ONE_DAY' };
+        const interval = intervalMap[timeframe] || 'FIVE_MINUTE';
+        const raw = await angelOneBridge.getCandles(exch, token, interval);
+        if (raw && raw.length > 0) {
+          candles = raw.map(c => ({
+            time: Math.floor(new Date(c[0]).getTime() / 1000),
+            open: c[1],
+            high: c[2],
+            low: c[3],
+            close: c[4],
+            volume: c[5] || 0
+          })).sort((a, b) => a.time - b.time);
+        }
+      } catch (e) {}
+    }
+
     if ((!candles || candles.length === 0) && liveOptionCandlesCache[symbol]) {
       candles = liveOptionCandlesCache[symbol];
     }

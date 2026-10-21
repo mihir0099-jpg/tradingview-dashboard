@@ -92895,3 +92895,113 @@ AUTONOMOUS SESSION FORENSIC: 2026-10-21 (10:28:48 IST)
 * 212 F&O UNIVERSE CAPITAL CONCENTRATION: 11 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Pharmaceuticals (2 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
 * INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
 ================================================================================
+
+--------------------------------------------------------------------------------
+[21/10/2026 10:52:09 IST] ALGO AUTOPSY & DYNAMIC LEARNING: NIFTY undefined
+Outcome: STOP LOSS HIT | PnL: ₹-832.65
+Setup: NIFTY Put Wall Absorption Floor Bounce (IGEX-100-03)
+Root Cause: Wall Exhaustion Reversal: NIFTY tested gamma resistance but met institutional call supply, snapping back below the SL coordinate.
+Tactical Mistake: Entered breakout directly into the wall before waiting for a sustained 5-minute candle close confirmation.
+Actionable Learning: Wait for a 5-minute candle close strictly above the Call Wall before buying CE, reducing false break traps.
+Synthesized Rule: NIFTY 5-Min Close Filter on Breakout [Requires 5-min candle close outside Wall] -> REQUIRE_CANDLE_CLOSE_CONFIRMATION
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+[21/10/2026 11:10:09 IST] ALGO AUTOPSY & DYNAMIC LEARNING: BANKNIFTY undefined
+Outcome: STOP LOSS HIT | PnL: ₹-1343.4
+Setup: BANKNIFTY Put Wall Absorption Floor Bounce (IGEX-100-03)
+Root Cause: Wall Exhaustion Reversal: BANKNIFTY tested gamma resistance but met institutional call supply, snapping back below the SL coordinate.
+Tactical Mistake: Entered breakout directly into the wall before waiting for a sustained 5-minute candle close confirmation.
+Actionable Learning: Wait for a 5-minute candle close strictly above the Call Wall before buying CE, reducing false break traps.
+Synthesized Rule: BANKNIFTY 5-Min Close Filter on Breakout [Requires 5-min candle close outside Wall] -> REQUIRE_CANDLE_CLOSE_CONFIRMATION
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+[21/10/2026 11:20:23 IST] ALGO AUTOPSY & DYNAMIC LEARNING: NIFTY undefined
+Outcome: STOP LOSS HIT | PnL: ₹-1032.2
+Setup: NIFTY Put Wall Absorption Floor Bounce (IGEX-100-03)
+Root Cause: Wall Exhaustion Reversal: NIFTY tested gamma resistance but met institutional call supply, snapping back below the SL coordinate.
+Tactical Mistake: Entered breakout directly into the wall before waiting for a sustained 5-minute candle close confirmation.
+Actionable Learning: Wait for a 5-minute candle close strictly above the Call Wall before buying CE, reducing false break traps.
+Synthesized Rule: NIFTY 5-Min Close Filter on Breakout [Requires 5-min candle close outside Wall] -> REQUIRE_CANDLE_CLOSE_CONFIRMATION
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+[21/10/2026 11:31:36 IST] ALGO AUTOPSY & DYNAMIC LEARNING: YESBANK undefined
+Outcome: WIN / TARGET HIT | PnL: ₹3110
+Setup: YESBANK OrderBlock Supply Retest & Liquidity Flow (OB-FLOW-BEAR-02)
+Root Cause: OrderBlock Supply Violation: Institutional buy absorption cleared supply block resting orders.
+Tactical Mistake: Shorting OrderBlock supply block while institutional put writing pegs market floor or without volume exhaustion.
+Actionable Learning: Veto OrderBlock PE entries when NIFTY PCR drift > +0.02, and require volume divergence (volume < 1.2x average) at supply zone.
+Synthesized Rule: YESBANK Supply Zone Squeeze Protection [NIFTY PCR Drift <= 0.01 AND Supply Zone Rejection Candle] -> BLOCK_OB_PE_IF_PUT_WRITTEN
+--------------------------------------------------------------------------------
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-21 ===
+- NIFTY: Day Type NORMAL_VARIATION_BEAR | Range: 417.8 pts
+- BANKNIFTY: Day Type NORMAL_VARIATION_BEAR | Range: 1149.4 pts
+- Rule 5A: Period A Low held all day at 22703.1
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-21 (12:27:39 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22720.2 (-2.37%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 54768.85 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 10 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT WRITING CONVICTION (FLOOR ABSORPTION):
+  - Insight: NIFTY First-Hour PCR drift expanded to +9.40 indicating heavy institutional put absorption.
+  - Applied Rule: Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 09:40:00 (Midday) at 23120.9. Absolute LOD printed at 12:23:00 (Midday) at 22703.1.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 12 institutional rules
+* Auto-Learned Rules Added: 8 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-21
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22720.2 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹54768.85 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 220 F&O Assets
+* Extreme Vault Accumulation: 1 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 1 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: FMCG & Personal Care (1 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 💥 BREAKDOWN / FADE -> BANKBARODA (Public Sector Banking)
+    Action: BUY BANKBARODA 240 PE / Short Spot
+    Entry: ₹237.81 | SL: ₹242.74 (Risk: ₹14420/lot)
+    Target 1: ₹229.92 (+₹23078/lot)
+    Target 2: ₹224.01 (+₹40365/lot)
+    Win Rate: 59% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹240.99) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[2] 💥 BREAKDOWN / FADE -> TATAELXSI (Information Technology)
+    Action: BUY TATAELXSI 3800 PE / Short Spot
+    Entry: ₹3812.7 | SL: ₹3893.64 (Risk: ₹10118/lot)
+    Target 1: ₹3683.2 (+₹16188/lot)
+    Target 2: ₹3586.07 (+₹28329/lot)
+    Win Rate: 53% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹3873) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 1 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in FMCG & Personal Care (1 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
