@@ -1,0 +1,2 @@
+Add-Type -Path 'C:\Program Files\NinjaTrader 8\bin\NinjaTrader.Core.dll'
+[NinjaTrader.Cbi.ConnectOptions].Assembly.GetTypes() | Where-Object { $_.Name -like '*External*' } | ForEach-Object { Write-Output $_.FullName }

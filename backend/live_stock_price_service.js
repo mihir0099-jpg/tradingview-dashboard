@@ -157,8 +157,12 @@ class LiveStockPriceService {
       for (let i = 0; i < this.universe.length; i += batchSize) {
         const batch = this.universe.slice(i, i + batchSize);
         const promises = batch.map(async (stock) => {
-          const clean = stock.cleanSymbol;
-          const ticker = TICKER_OVERRIDES[clean] || stock.ticker || (clean + '.NS');
+          if (!stock) return;
+          const clean = (typeof stock === 'string')
+            ? stock.toUpperCase().replace('NSE:', '').replace('.NS', '')
+            : (stock.cleanSymbol || (stock.symbol ? stock.symbol.replace('NSE:', '') : ''));
+          if (!clean) return;
+          const ticker = TICKER_OVERRIDES[clean] || (typeof stock === 'object' && stock.ticker) || (clean + '.NS');
           const quote = await this.fetchSingleTicker(clean, ticker);
           
           if (quote && quote.price > 0) {
@@ -166,7 +170,7 @@ class LiveStockPriceService {
             totalUpdated++;
           } else if (!this.priceMap.has(clean.toUpperCase())) {
             // Fallback: Use defaultSpot with a realistic non-zero fractional day drift
-            const defSpot = stock.defaultSpot || 500;
+            const defSpot = (typeof stock === 'object' && stock.defaultSpot) ? stock.defaultSpot : 500;
             const hash = clean.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
             const pseudoChange = +(((hash % 11) - 5) * 0.35).toFixed(2);
             const fallbackQuote = {

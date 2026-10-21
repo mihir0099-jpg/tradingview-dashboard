@@ -1,0 +1,2 @@
+Add-Type -Path 'C:\Program Files\NinjaTrader 8\bin\NinjaTrader.Client.dll'
+[NinjaTrader.Client.Client].GetMethods() | ForEach-Object { $p = ($_.GetParameters() | ForEach-Object { $_.ParameterType.Name + ' ' + $_.Name }) -join ', '; Write-Output ($_.ReturnType.Name + ' ' + $_.Name + '(' + $p + ')') }

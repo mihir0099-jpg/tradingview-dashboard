@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-02T14:45:30.765Z",
+  "lastUpdated": "2026-10-21T03:01:08.636Z",
   "contracts": {
     "NIFTYFUT": {
       "token": "48704",
@@ -18,9 +18,9 @@
       "tickSize": 1
     },
     "CRUDEOILFUT": {
-      "token": "569900",
-      "tradingsymbol": "CRUDEOIL19OCT26FUT",
-      "expiry": "2026-10-18T18:30:00.000Z",
+      "token": "573422",
+      "tradingsymbol": "CRUDEOIL19NOV26FUT",
+      "expiry": "2026-11-18T18:30:00.000Z",
       "exchange": "MCX",
       "lotSize": 100,
       "tickSize": 1

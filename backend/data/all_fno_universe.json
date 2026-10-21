@@ -46,7 +46,7 @@
     "name": "HDFC Bank Ltd.",
     "sector": "Banking & Financials",
     "strikeInterval": 10,
-    "defaultSpot": 731.0,
+    "defaultSpot": 731,
     "lotSize": 650
   },
   {
@@ -76,7 +76,7 @@
     "name": "Tata Consultancy Services",
     "sector": "Information Technology",
     "strikeInterval": 50,
-    "defaultSpot": 2105.0,
+    "defaultSpot": 2105,
     "lotSize": 225
   },
   {
@@ -106,7 +106,7 @@
     "name": "Larsen & Toubro Ltd.",
     "sector": "Infrastructure & Capital Goods",
     "strikeInterval": 50,
-    "defaultSpot": 3885.0,
+    "defaultSpot": 3885,
     "lotSize": 175
   },
   {
@@ -116,7 +116,7 @@
     "name": "Axis Bank Ltd.",
     "sector": "Banking & Financials",
     "strikeInterval": 10,
-    "defaultSpot": 1257.0,
+    "defaultSpot": 1257,
     "lotSize": 625
   },
   {
@@ -156,7 +156,7 @@
     "name": "Hindustan Unilever Ltd.",
     "sector": "FMCG",
     "strikeInterval": 20,
-    "defaultSpot": 1932.0,
+    "defaultSpot": 1932,
     "lotSize": 300
   },
   {
@@ -176,7 +176,7 @@
     "name": "Maruti Suzuki India Ltd.",
     "sector": "Automobile",
     "strikeInterval": 100,
-    "defaultSpot": 12103.0,
+    "defaultSpot": 12103,
     "lotSize": 50
   },
   {
@@ -206,7 +206,7 @@
     "name": "Adani Enterprises Ltd.",
     "sector": "Metals & Energy",
     "strikeInterval": 50,
-    "defaultSpot": 3020.0,
+    "defaultSpot": 3020,
     "lotSize": 309
   },
   {
@@ -216,7 +216,7 @@
     "name": "Adani Ports and SEZ",
     "sector": "Ports & Logistics",
     "strikeInterval": 20,
-    "defaultSpot": 1824.0,
+    "defaultSpot": 1824,
     "lotSize": 475
   },
   {
@@ -226,7 +226,7 @@
     "name": "UltraTech Cement Ltd.",
     "sector": "Cement & Building Materials",
     "strikeInterval": 100,
-    "defaultSpot": 11014.0,
+    "defaultSpot": 11014,
     "lotSize": 50
   },
   {
@@ -266,7 +266,7 @@
     "name": "Mahindra & Mahindra Ltd.",
     "sector": "Automobile",
     "strikeInterval": 50,
-    "defaultSpot": 3052.0,
+    "defaultSpot": 3052,
     "lotSize": 200
   },
   {
@@ -326,7 +326,7 @@
     "name": "Bharat Petroleum Corp",
     "sector": "Oil Refining & Marketing",
     "strikeInterval": 5,
-    "defaultSpot": 314.0,
+    "defaultSpot": 314,
     "lotSize": 1975
   },
   {
@@ -366,7 +366,7 @@
     "name": "Eicher Motors Ltd.",
     "sector": "Automobile",
     "strikeInterval": 50,
-    "defaultSpot": 7516.0,
+    "defaultSpot": 7516,
     "lotSize": 100
   },
   {
@@ -396,7 +396,7 @@
     "name": "Britannia Industries Ltd.",
     "sector": "FMCG",
     "strikeInterval": 50,
-    "defaultSpot": 4998.0,
+    "defaultSpot": 4998,
     "lotSize": 125
   },
   {
@@ -406,7 +406,7 @@
     "name": "Tata Consumer Products",
     "sector": "FMCG",
     "strikeInterval": 20,
-    "defaultSpot": 996.0,
+    "defaultSpot": 996,
     "lotSize": 550
   },
   {
@@ -456,7 +456,7 @@
     "name": "Shree Cement Ltd.",
     "sector": "Cement",
     "strikeInterval": 100,
-    "defaultSpot": 22600.0,
+    "defaultSpot": 22600,
     "lotSize": 25
   },
   {
@@ -476,7 +476,7 @@
     "name": "SBI Life Insurance Company",
     "sector": "Insurance",
     "strikeInterval": 20,
-    "defaultSpot": 1731.0,
+    "defaultSpot": 1731,
     "lotSize": 375
   },
   {
@@ -506,7 +506,7 @@
     "name": "Trent Limited",
     "sector": "Retail & Consumer",
     "strikeInterval": 50,
-    "defaultSpot": 2824.0,
+    "defaultSpot": 2824,
     "lotSize": 225
   },
   {
@@ -596,7 +596,7 @@
     "name": "Amber Enterprises India Ltd.",
     "sector": "Consumer Electronics EMS",
     "strikeInterval": 50,
-    "defaultSpot": 7125.0,
+    "defaultSpot": 7125,
     "lotSize": 100
   },
   {
@@ -646,7 +646,7 @@
     "name": "Ashok Leyland Ltd.",
     "sector": "Commercial Vehicles",
     "strikeInterval": 2.5,
-    "defaultSpot": 163.0,
+    "defaultSpot": 163,
     "lotSize": 5000
   },
   {
@@ -676,7 +676,7 @@
     "name": "Aurobindo Pharma Ltd.",
     "sector": "Pharmaceuticals",
     "strikeInterval": 20,
-    "defaultSpot": 1734.0,
+    "defaultSpot": 1734,
     "lotSize": 550
   },
   {
@@ -686,7 +686,7 @@
     "name": "Bajaj Auto Ltd.",
     "sector": "Automobile",
     "strikeInterval": 100,
-    "defaultSpot": 11414.0,
+    "defaultSpot": 11414,
     "lotSize": 75
   },
   {
@@ -696,7 +696,7 @@
     "name": "Bajaj Holdings & Investment Limited.",
     "sector": "Holding Company & Investments",
     "strikeInterval": 100,
-    "defaultSpot": 11282.0,
+    "defaultSpot": 11282,
     "lotSize": 75
   },
   {
@@ -716,7 +716,7 @@
     "name": "Bandhan Bank Ltd.",
     "sector": "Private Banking",
     "strikeInterval": 2.5,
-    "defaultSpot": 175.0,
+    "defaultSpot": 175,
     "lotSize": 3600
   },
   {
@@ -736,7 +736,7 @@
     "name": "Bank of India",
     "sector": "Public Sector Banking",
     "strikeInterval": 2.5,
-    "defaultSpot": 140.0,
+    "defaultSpot": 140,
     "lotSize": 5200
   },
   {
@@ -776,7 +776,7 @@
     "name": "Biocon Limited",
     "sector": "Biotechnology",
     "strikeInterval": 5,
-    "defaultSpot": 385.0,
+    "defaultSpot": 385,
     "lotSize": 2500
   },
   {
@@ -796,7 +796,7 @@
     "name": "Bosch Limited",
     "sector": "Auto Components",
     "strikeInterval": 100,
-    "defaultSpot": 47000.0,
+    "defaultSpot": 47000,
     "lotSize": 25
   },
   {
@@ -856,7 +856,7 @@
     "name": "Central Depository Services (India) Limited",
     "sector": "Depository & Financial Services",
     "strikeInterval": 20,
-    "defaultSpot": 1390.0,
+    "defaultSpot": 1390,
     "lotSize": 475
   },
   {
@@ -866,7 +866,7 @@
     "name": "CG Power & Industrial Solutions Ltd",
     "sector": "Power Equipment & Industrial",
     "strikeInterval": 10,
-    "defaultSpot": 892.0,
+    "defaultSpot": 892,
     "lotSize": 850
   },
   {
@@ -876,7 +876,7 @@
     "name": "Cholamandalam Investment",
     "sector": "NBFC",
     "strikeInterval": 20,
-    "defaultSpot": 1800.0,
+    "defaultSpot": 1800,
     "lotSize": 625
   },
   {
@@ -886,7 +886,7 @@
     "name": "Cochin Shipyard Limited",
     "sector": "Shipbuilding & Marine",
     "strikeInterval": 20,
-    "defaultSpot": 1398.0,
+    "defaultSpot": 1398,
     "lotSize": 400
   },
   {
@@ -896,7 +896,7 @@
     "name": "Coforge Limited",
     "sector": "Information Technology",
     "strikeInterval": 20,
-    "defaultSpot": 1841.0,
+    "defaultSpot": 1841,
     "lotSize": 475
   },
   {
@@ -976,7 +976,7 @@
     "name": "Delhivery Limited",
     "sector": "Logistics & Supply Chain",
     "strikeInterval": 5,
-    "defaultSpot": 428.0,
+    "defaultSpot": 428,
     "lotSize": 2075
   },
   {
@@ -986,7 +986,7 @@
     "name": "Dixon Technologies Ltd.",
     "sector": "Electronics Manufacturing",
     "strikeInterval": 100,
-    "defaultSpot": 13005.0,
+    "defaultSpot": 13005,
     "lotSize": 50
   },
   {
@@ -1076,7 +1076,7 @@
     "name": "Godrej Consumer Products Limited",
     "sector": "FMCG & Personal Care",
     "strikeInterval": 10,
-    "defaultSpot": 880.0,
+    "defaultSpot": 880,
     "lotSize": 500
   },
   {
@@ -1126,7 +1126,7 @@
     "name": "HDFC Asset Management Co.",
     "sector": "Asset Management",
     "strikeInterval": 20,
-    "defaultSpot": 2425.0,
+    "defaultSpot": 2425,
     "lotSize": 300
   },
   {
@@ -1146,7 +1146,7 @@
     "name": "Hindustan Petroleum Corp",
     "sector": "Oil Refining & Marketing",
     "strikeInterval": 5,
-    "defaultSpot": 359.0,
+    "defaultSpot": 359,
     "lotSize": 2025
   },
   {
@@ -1156,7 +1156,7 @@
     "name": "Hindustan Zinc Ltd.",
     "sector": "Zinc & Silver Mining",
     "strikeInterval": 10,
-    "defaultSpot": 596.0,
+    "defaultSpot": 596,
     "lotSize": 1225
   },
   {
@@ -1176,7 +1176,7 @@
     "name": "ICICI Prudential Life",
     "sector": "Insurance",
     "strikeInterval": 5,
-    "defaultSpot": 492.0,
+    "defaultSpot": 492,
     "lotSize": 925
   },
   {
@@ -1246,7 +1246,7 @@
     "name": "InterGlobe Aviation Ltd",
     "sector": "Airlines & Aviation",
     "strikeInterval": 50,
-    "defaultSpot": 4920.0,
+    "defaultSpot": 4920,
     "lotSize": 150
   },
   {
@@ -1276,7 +1276,7 @@
     "name": "Indian Oil Corporation",
     "sector": "Oil Refining & Marketing",
     "strikeInterval": 2.5,
-    "defaultSpot": 137.0,
+    "defaultSpot": 137,
     "lotSize": 4875
   },
   {
@@ -1326,7 +1326,7 @@
     "name": "JSW Energy Limited",
     "sector": "Power Utilities & Renewables",
     "strikeInterval": 10,
-    "defaultSpot": 526.0,
+    "defaultSpot": 526,
     "lotSize": 1075
   },
   {
@@ -1336,7 +1336,7 @@
     "name": "Jubilant FoodWorks Ltd.",
     "sector": "Restaurants & Fast Food",
     "strikeInterval": 5,
-    "defaultSpot": 500.0,
+    "defaultSpot": 500,
     "lotSize": 1250
   },
   {
@@ -1356,7 +1356,7 @@
     "name": "KPIT Technologies Limited",
     "sector": "Automotive Software & Tech",
     "strikeInterval": 10,
-    "defaultSpot": 532.0,
+    "defaultSpot": 532,
     "lotSize": 775
   },
   {
@@ -1376,7 +1376,7 @@
     "name": "Laurus Labs Ltd.",
     "sector": "Pharmaceuticals",
     "strikeInterval": 20,
-    "defaultSpot": 1954.0,
+    "defaultSpot": 1954,
     "lotSize": 850
   },
   {
@@ -1446,7 +1446,7 @@
     "name": "Lupin Limited",
     "sector": "Pharmaceuticals",
     "strikeInterval": 20,
-    "defaultSpot": 2083.0,
+    "defaultSpot": 2083,
     "lotSize": 425
   },
   {
@@ -1506,7 +1506,7 @@
     "name": "Mazagon Dock Shipbuilders Ltd.",
     "sector": "Defense Shipbuilding & Marine",
     "strikeInterval": 20,
-    "defaultSpot": 2280.0,
+    "defaultSpot": 2280,
     "lotSize": 225
   },
   {
@@ -1516,7 +1516,7 @@
     "name": "Multi Commodity Exchange of India Limited",
     "sector": "Commodity Exchange & Financial Infra",
     "strikeInterval": 50,
-    "defaultSpot": 3260.0,
+    "defaultSpot": 3260,
     "lotSize": 225
   },
   {
@@ -1526,7 +1526,7 @@
     "name": "Max Financial Services Limited",
     "sector": "Life Insurance & Financials",
     "strikeInterval": 20,
-    "defaultSpot": 1559.0,
+    "defaultSpot": 1559,
     "lotSize": 400
   },
   {
@@ -1546,7 +1546,7 @@
     "name": "Motilal Oswal Financial Services Limited",
     "sector": "Brokerage & Wealth Management",
     "strikeInterval": 20,
-    "defaultSpot": 1010.0,
+    "defaultSpot": 1010,
     "lotSize": 775
   },
   {
@@ -1566,7 +1566,7 @@
     "name": "MRF Limited",
     "sector": "Auto Tyres",
     "strikeInterval": 100,
-    "defaultSpot": 125670.0,
+    "defaultSpot": 125670,
     "lotSize": 5
   },
   {
@@ -1586,7 +1586,7 @@
     "name": "Nippon Life India Asset Mgmt",
     "sector": "Asset Management & Mutual Funds",
     "strikeInterval": 20,
-    "defaultSpot": 1155.0,
+    "defaultSpot": 1155,
     "lotSize": 625
   },
   {
@@ -1666,7 +1666,7 @@
     "name": "Oberoi Realty Ltd.",
     "sector": "Real Estate & Property",
     "strikeInterval": 20,
-    "defaultSpot": 1785.0,
+    "defaultSpot": 1785,
     "lotSize": 350
   },
   {
@@ -1676,7 +1676,7 @@
     "name": "Oracle Financial Services Software Limited",
     "sector": "Financial Software & IT",
     "strikeInterval": 100,
-    "defaultSpot": 11896.0,
+    "defaultSpot": 11896,
     "lotSize": 100
   },
   {
@@ -1696,7 +1696,7 @@
     "name": "Page Industries Limited",
     "sector": "Apparel & Innerwear",
     "strikeInterval": 100,
-    "defaultSpot": 36400.0,
+    "defaultSpot": 36400,
     "lotSize": 20
   },
   {
@@ -1706,7 +1706,7 @@
     "name": "Patanjali Foods Limited",
     "sector": "FMCG & Foods",
     "strikeInterval": 5,
-    "defaultSpot": 367.0,
+    "defaultSpot": 367,
     "lotSize": 1075
   },
   {
@@ -1726,7 +1726,7 @@
     "name": "Persistent Systems Ltd.",
     "sector": "Information Technology",
     "strikeInterval": 50,
-    "defaultSpot": 5416.0,
+    "defaultSpot": 5416,
     "lotSize": 125
   },
   {
@@ -1806,7 +1806,7 @@
     "name": "PB Fintech Limited",
     "sector": "Fintech & Insurance Marketplace",
     "strikeInterval": 20,
-    "defaultSpot": 1743.0,
+    "defaultSpot": 1743,
     "lotSize": 350
   },
   {
@@ -1816,7 +1816,7 @@
     "name": "Polycab India Ltd.",
     "sector": "Cables & Electricals",
     "strikeInterval": 50,
-    "defaultSpot": 8400.0,
+    "defaultSpot": 8400,
     "lotSize": 125
   },
   {
@@ -1826,7 +1826,7 @@
     "name": "Premier Energies Limited",
     "sector": "Solar Energy Solutions",
     "strikeInterval": 10,
-    "defaultSpot": 902.0,
+    "defaultSpot": 902,
     "lotSize": 650
   },
   {
@@ -1866,7 +1866,7 @@
     "name": "REC Limited",
     "sector": "Financial Institutions",
     "strikeInterval": 5,
-    "defaultSpot": 312.0,
+    "defaultSpot": 312,
     "lotSize": 1575
   },
   {
@@ -1906,7 +1906,7 @@
     "name": "Shriram Finance Ltd.",
     "sector": "NBFC",
     "strikeInterval": 20,
-    "defaultSpot": 1010.0,
+    "defaultSpot": 1010,
     "lotSize": 825
   },
   {
@@ -1926,7 +1926,7 @@
     "name": "Sona BLW Precision Forgings",
     "sector": "Precision Automotive Components",
     "strikeInterval": 10,
-    "defaultSpot": 808.0,
+    "defaultSpot": 808,
     "lotSize": 1225
   },
   {
@@ -1936,7 +1936,7 @@
     "name": "SRF Limited",
     "sector": "Specialty Chemicals",
     "strikeInterval": 50,
-    "defaultSpot": 2512.0,
+    "defaultSpot": 2512,
     "lotSize": 200
   },
   {
@@ -1996,7 +1996,7 @@
     "name": "Torrent Pharmaceuticals",
     "sector": "Pharmaceuticals",
     "strikeInterval": 50,
-    "defaultSpot": 4840.0,
+    "defaultSpot": 4840,
     "lotSize": 125
   },
   {
@@ -2036,7 +2036,7 @@
     "name": "United Spirits Limited",
     "sector": "Distilleries & Spirits",
     "strikeInterval": 20,
-    "defaultSpot": 1371.0,
+    "defaultSpot": 1371,
     "lotSize": 400
   },
   {
@@ -2046,7 +2046,7 @@
     "name": "Uno Minda Limited",
     "sector": "Auto Components & Lighting",
     "strikeInterval": 20,
-    "defaultSpot": 1284.0,
+    "defaultSpot": 1284,
     "lotSize": 550
   },
   {
@@ -2056,7 +2056,7 @@
     "name": "UPL Limited",
     "sector": "Agrochemicals & Crop Protection",
     "strikeInterval": 10,
-    "defaultSpot": 580.0,
+    "defaultSpot": 580,
     "lotSize": 1355
   },
   {
@@ -2116,7 +2116,87 @@
     "name": "Zydus Lifesciences Ltd.",
     "sector": "Pharmaceuticals",
     "strikeInterval": 20,
-    "defaultSpot": 1160.0,
+    "defaultSpot": 1160,
     "lotSize": 900
+  },
+  {
+    "symbol": "NSE:KALYANKJIL",
+    "cleanSymbol": "KALYANKJIL",
+    "ticker": "KALYANKJIL.NS",
+    "name": "KALYANKJIL",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 1350
+  },
+  {
+    "symbol": "NSE:CDSL",
+    "cleanSymbol": "CDSL",
+    "ticker": "CDSL.NS",
+    "name": "CDSL",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 475
+  },
+  {
+    "symbol": "NSE:AFFLE",
+    "cleanSymbol": "AFFLE",
+    "ticker": "AFFLE.NS",
+    "name": "AFFLE",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:CERA",
+    "cleanSymbol": "CERA",
+    "ticker": "CERA.NS",
+    "name": "CERA",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:DATAPATTNS",
+    "cleanSymbol": "DATAPATTNS",
+    "ticker": "DATAPATTNS.NS",
+    "name": "DATAPATTNS",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:NATCOPHARM",
+    "cleanSymbol": "NATCOPHARM",
+    "ticker": "NATCOPHARM.NS",
+    "name": "NATCOPHARM",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:TITAGARH",
+    "cleanSymbol": "TITAGARH",
+    "ticker": "TITAGARH.NS",
+    "name": "TITAGARH",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 100
+  },
+  {
+    "symbol": "NSE:THERMAX",
+    "cleanSymbol": "THERMAX",
+    "ticker": "THERMAX.NS",
+    "name": "THERMAX",
+    "sector": "Equity Momentum Universe",
+    "strikeInterval": 10,
+    "defaultSpot": 500,
+    "lotSize": 100
   }
 ]

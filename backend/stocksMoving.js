@@ -47,10 +47,18 @@ const BATCH_SIZE = 25;       // 25 concurrent socket requests per batch
  * Fetch candles with TradingView WebSocket Bridge as primary, Yahoo Finance as graceful fallback
  */
 async function getStockCandles(tvBridge, stock) {
+  if (!stock) return { source: 'NONE', candles: [] };
+  const rawSym = typeof stock === 'string' ? stock : (stock.symbol || '');
+  const clean = (typeof stock === 'object' && stock.cleanSymbol)
+    ? stock.cleanSymbol
+    : rawSym.replace('NSE:', '').replace('.NS', '');
+  if (!clean) return { source: 'NONE', candles: [] };
+  const symbol = 'NSE:' + clean;
+
   // 1. Primary: TradingView Live WebSocket Bridge
   if (tvBridge) {
     try {
-      const tvCandles = await fetchCandlesForSymbol(tvBridge, stock.symbol, 'D', 30);
+      const tvCandles = await fetchCandlesForSymbol(tvBridge, symbol, 'D', 30);
       if (tvCandles && tvCandles.length >= 2) {
         return { source: 'TRADINGVIEW', candles: tvCandles };
       }
@@ -60,8 +68,7 @@ async function getStockCandles(tvBridge, stock) {
   }
 
   // 2. Secondary: Yahoo Finance REST fallback
-  const clean = stock.cleanSymbol || stock.symbol.replace('NSE:', '');
-  const ticker = stock.ticker || `${clean}.NS`;
+  const ticker = (typeof stock === 'object' && stock.ticker) ? stock.ticker : `${clean}.NS`;
   const url = `https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker)}?interval=1d&range=1mo`;
 
   try {

@@ -262,3 +262,35 @@ Both Morning Directional Biases & Range Envelopes were strictly tracked and logg
 
   return await sendTelegramMessage(msg);
 }
+
+export async function sendConfluenceAlert(c) {
+  const opt = c.optionPlan;
+  const isAplus = c.grade === 'GRADE_A_PLUS';
+  const headerIcon = isAplus ? '⭐️⭐️⭐️ <b>GRADE A+ ULTRA CONFLUENCE SETUP</b>' : '🟢 <b>GRADE A INSTITUTIONAL SETUP</b>';
+  
+  const msg = `${headerIcon}
+🔥 <b>${c.symbol} ${c.signal.replace(/_/g, ' ')} [Score: ${c.score}/100]</b>
+━━━━━━━━━━━━━━━━━━━━━
+📍 <b>Spot Price:</b> ₹${c.spotPrice?.toLocaleString('en-IN')}
+🧱 <b>Call Wall:</b> ₹${c.callWall?.toLocaleString('en-IN')} | <b>Put Wall:</b> ₹${c.putWall?.toLocaleString('en-IN')}
+⏰ <b>TPO Period:</b> Period ${c.tpoPeriod} | <b>Win Rate:</b> ${c.winRateEstimate}
+
+🎯 <b>OPTION TRADE BLUEPRINT:</b>
+• <b>Action:</b> <b>${opt?.executionAdvice?.action || c.signal}</b>
+• <b>${opt?.executionAdvice?.stopLossText || 'SL: -15 pts'}</b>
+• <b>${opt?.executionAdvice?.target1Text || 'Target 1: +25 pts'}</b>
+• <b>${opt?.executionAdvice?.target2Text || 'Target 2: +50 pts'}</b>
+• <b>Capital per Lot:</b> ₹${opt?.capital?.capitalPerLot?.toLocaleString('en-IN') || '-'} (Risk: ₹${opt?.capital?.maxRiskPerLot || '-'})
+
+📊 <b>CONFLUENCE PILLARS:</b>
+• <b>GEX Tape (${c.pillars?.gex?.score}/30):</b> ${c.pillars?.gex?.reason}
+• <b>TPO Profile (${c.pillars?.tpo?.score}/25):</b> ${c.pillars?.tpo?.reason}
+• <b>PCR Drift (${c.pillars?.pcr?.score}/25):</b> ${c.pillars?.pcr?.reason}
+• <b>Liquidity (${c.pillars?.volume?.score}/20):</b> ${c.pillars?.volume?.reason}
+${opt?.executionAdvice?.thetaWarning ? `\n${opt.executionAdvice.thetaWarning}\n` : ''}
+━━━━━━━━━━━━━━━━━━━━━
+<i>Autonomous Confluence Engine · Real-Time Institutional Tape</i>`;
+
+  return await sendTelegramMessage(msg);
+}
+

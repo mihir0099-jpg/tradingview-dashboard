@@ -1,9 +1,9 @@
 {
-  "date": "2026-10-02",
-  "generatedAtIST": "2026-10-02T20:15:56.766Z",
+  "date": "2026-10-20",
+  "generatedAtIST": "2026-10-20T17:10:25.366Z",
   "sessionSummary": {
-    "date": "2026-10-02",
-    "dayOfWeek": "Friday",
+    "date": "2026-10-20",
+    "dayOfWeek": "Tuesday",
     "nifty": {
       "open": 23200,
       "close": 23200,
@@ -29,13 +29,13 @@
     "options": {
       "pcrDrift": 0,
       "pcrSignal": "NEUTRAL",
-      "morningSkew": 22.05646740484922,
-      "closingSkew": 22.05646740484922
+      "morningSkew": 0,
+      "closingSkew": 0
     },
     "targetOutcome": "NEUTRAL_ROTATION"
   },
   "machineLearningMetrics": {
-    "sessionsAnalyzed": 22,
+    "sessionsAnalyzed": 34,
     "featureImportance": {
       "pcr_velocity_1015_drift": 0.32,
       "initial_balance_width_pct": 0.26,
@@ -44,36 +44,36 @@
       "period_l_volume_confirmation": 0.1
     },
     "empiricalRates": {
-      "periodAHeldExtremeRate": "68.2%",
-      "periodCContinuationRate": "77.8%",
-      "pcrPredictiveAccuracy": "59.1%",
-      "periodLExtremeRate": "13.6%",
-      "trendDayFrequency": "9.1%",
-      "rotationalDayFrequency": "31.8%"
+      "periodAHeldExtremeRate": "67.6%",
+      "periodCContinuationRate": "81.3%",
+      "pcrPredictiveAccuracy": "58.8%",
+      "periodLExtremeRate": "14.7%",
+      "trendDayFrequency": "26.5%",
+      "rotationalDayFrequency": "29.4%"
     },
     "learnedRules": [
       {
         "feature": "First-Hour PCR Velocity (Rule 2D)",
         "rule": "If 10:15 AM PCR drift is within -0.03 to +0.03, market exhibits Open Auction Rotation with 86.4% probability of staying range-bound.",
-        "historicalReliability": "59.1%",
+        "historicalReliability": "58.8%",
         "activeToday": true
       },
       {
         "feature": "Period A Extreme Anchor (Rule 5A)",
         "rule": "If Period A (09:15-09:45 AM) establishes the session extreme and rejects it in Period B, that boundary holds as the day extreme with >62% probability.",
-        "historicalReliability": "68.2%",
+        "historicalReliability": "67.6%",
         "activeToday": false
       },
       {
         "feature": "Period C Morning Extension (Rule 4A)",
         "rule": "When Period C breaks the Initial Balance, the morning drive has an 86%+ continuation win rate if backed by PCR confluence.",
-        "historicalReliability": "77.8%",
+        "historicalReliability": "81.3%",
         "activeToday": false
       },
       {
         "feature": "Late-Day Session Extreme in Period L (Rule 4C)",
         "rule": "Over 30% of all sessions establish their absolute high or low of the day during Period L (14:45 - 15:15 IST). Do not exit trend positions before 15:00 IST.",
-        "historicalReliability": "13.6%",
+        "historicalReliability": "14.7%",
         "activeToday": false
       }
     ]

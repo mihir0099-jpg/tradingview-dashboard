@@ -281,13 +281,22 @@ export function startDojiScanner(tvBridge) {
     // IMPORTANT: Use IST locale for weekday — now.getDay() is UTC and can be wrong after midnight IST
     const dayOfWeekIST = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Kolkata', weekday: 'short' }).format(now);
     const isWeekDay = !['Sat', 'Sun'].includes(dayOfWeekIST);
-    // Trigger STRICTLY at 9:21 AM IST only - never mid-day catchup
-    const isTimeReady = (hh === 9 && mm === 21);
-    const alreadyScannedToday = dojiCache.slotData['first_5min'] && dojiCache.slotData['first_5min'].date === todayStr;
+    // Trigger STRICTLY at 9:21 AM IST only - first 5-min candle
+    const isMorningReady = (hh === 9 && mm === 21);
+    const alreadyScannedMorningToday = dojiCache.slotData['first_5min'] && dojiCache.slotData['first_5min'].date === todayStr;
 
-    if (isWeekDay && isTimeReady && !alreadyScannedToday && !dojiCache.isScanning) {
+    if (isWeekDay && isMorningReady && !alreadyScannedMorningToday && !dojiCache.isScanning) {
       console.log(`[Doji Scheduler] Triggering daily 9:21 AM IST Doji scan (${kolkataTime} IST)...`);
       scanDojiForSlot(tvBridge, 'first_5min');
+    }
+
+    // Trigger at 3:35 PM IST for Daily End-of-Day candle scan
+    const isEodReady = (hh === 15 && mm === 35);
+    const alreadyScannedEodToday = dojiCache.slotData['daily'] && dojiCache.slotData['daily'].date === todayStr;
+
+    if (isWeekDay && isEodReady && !alreadyScannedEodToday && !dojiCache.isScanning) {
+      console.log(`[Doji Scheduler] Triggering daily 3:35 PM IST EOD Doji scan (${kolkataTime} IST)...`);
+      scanDojiForSlot(tvBridge, 'daily');
     }
   }, 10000);
 

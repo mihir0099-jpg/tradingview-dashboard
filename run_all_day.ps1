@@ -110,45 +110,7 @@ while ($true) {
         }
     }
 
-    # Check Port 3001 (Market Profile)
-    $mpOk = Test-HttpOk "http://localhost:3001/health" 3000
-    if (-not $mpOk) {
-        $port3001Listening = Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue
-        if (-not $port3001Listening) {
-            Write-Host "[Watchdog] Port 3001 not listening. Launching MP keep_alive.ps1..." -ForegroundColor Yellow
-            Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$mpDir\keep_alive.ps1`"" -WorkingDirectory $mpDir -WindowStyle Hidden -ErrorAction SilentlyContinue
-        }
-    }
 
-    # Check Port 5000 (NSE GEX Dashboard)
-    $port5000Listening = Get-NetTCPConnection -LocalPort 5000 -State Listen -ErrorAction SilentlyContinue
-    if (-not $port5000Listening) {
-        $gexDir = "C:\Users\mihir\.gemini\antigravity\scratch\nse-gex-dashboard"
-        $pythonExe = "$gexDir\venv\Scripts\python.exe"
-        if (Test-Path "$gexDir\app.py") {
-            if (-not (Test-Path $pythonExe)) { $pythonExe = "python.exe" }
-            Write-Host "[Watchdog] Port 5000 not listening. Launching NSE GEX app.py..." -ForegroundColor Yellow
-            Start-Process -FilePath $pythonExe -ArgumentList "-u app.py" -WorkingDirectory $gexDir -WindowStyle Hidden -ErrorAction SilentlyContinue
-        }
-    }
-
-    # Check Serveo Tunnel (Port 3001)
-    $serveoOk = Test-HttpOk "https://bhaichara-scanner-mihir.serveousercontent.com/health" 5000
-    if (-not $serveoOk) {
-        $serveoConsecutiveFails++
-        if ($serveoConsecutiveFails -ge 3) {
-            Write-Host "[Watchdog] Serveo tunnel disconnected (3 failures). Reconnecting..." -ForegroundColor Yellow
-            Stop-Process -Name ssh -Force -ErrorAction SilentlyContinue
-            Start-Sleep -Seconds 2
-            $kpProc = Get-CimInstance Win32_Process -Filter "Name = 'powershell.exe'" | Where-Object { $_.CommandLine -like "*keep_alive.ps1*" }
-            if (-not $kpProc) {
-                Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File `"$mpDir\keep_alive.ps1`"" -WorkingDirectory $mpDir -WindowStyle Hidden -ErrorAction SilentlyContinue
-            }
-            $serveoConsecutiveFails = 0
-        }
-    } else {
-        $serveoConsecutiveFails = 0
-    }
 
     # Check Cloudflare Tunnel for Port 3002 (Health-based check)
     $cfLog = "$tvDir\backend\data\active_tunnel_url.txt"
@@ -159,7 +121,7 @@ while ($true) {
         $cfConsecutiveFails++
         if ($cfConsecutiveFails -ge 2 -or -not $cfUrl) {
             Write-Host "[Watchdog] Port 3002 Cloudflare tunnel unreachable. Starting start_cloudflare_tunnel.js..." -ForegroundColor Yellow
-            Start-Process -FilePath "C:\Program Files\nodejs\node.exe" -ArgumentList "backend/start_cloudflare_tunnel.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
+            Start-Process -FilePath "C:\Program Files\nodejs\node.exe" -ArgumentList "$tvDir\backend\start_cloudflare_tunnel.js" -WorkingDirectory $tvDir -WindowStyle Hidden -ErrorAction SilentlyContinue
             $cfConsecutiveFails = 0
         }
     } else {
@@ -186,12 +148,19 @@ while ($true) {
     }
     $ltHealthy = Test-HttpOk "https://bhaichara-tv-mihir.loca.lt/health" 3000
 
+    $selectedUrl = $null
     if ($ngrokHealthy) {
-        Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard https://skimmer-savage-dipped.ngrok-free.dev" -WindowStyle Hidden -ErrorAction SilentlyContinue
+        $selectedUrl = "https://skimmer-savage-dipped.ngrok-free.dev"
     } elseif ($cfOk -and $cfUrl) {
-        Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard $cfUrl" -WindowStyle Hidden -ErrorAction SilentlyContinue
+        $selectedUrl = $cfUrl
     } elseif ($ltHealthy) {
-        Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard https://bhaichara-tv-mihir.loca.lt" -WindowStyle Hidden -ErrorAction SilentlyContinue
+        $selectedUrl = "https://bhaichara-tv-mihir.loca.lt"
+    }
+
+    $timeSinceLastSync = if ($global:lastHfSyncTime) { (Get-Date) - $global:lastHfSyncTime } else { [timespan]::FromHours(1) }
+    if ($selectedUrl -and (($selectedUrl -ne $global:lastHfSyncedUrl) -or ($timeSinceLastSync.TotalMinutes -ge 30))) {
+        Start-Process -FilePath "python.exe" -ArgumentList "$tvDir\backend\sync_hf_tunnel.py mihir0099/tradingview-dashboard $selectedUrl" -WindowStyle Hidden -ErrorAction SilentlyContinue
+        $global:lastHfSyncedUrl = $selectedUrl
     }
 
     # Autonomous 3:40 PM IST 40-Strike Weekly Expiry Decay & Zero-Settlement Trigger

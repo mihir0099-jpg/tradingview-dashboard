@@ -83,20 +83,14 @@ function killAllCloudflared(callback) {
     try {
       child.removeAllListeners('close');
       child.removeAllListeners('exit');
+      if (child.pid) {
+        try { exec(`taskkill /F /PID ${child.pid}`); } catch (e) {}
+      }
+      child.kill('SIGKILL');
     } catch (e) {}
+    child = null;
   }
-  try {
-    if (process.platform === 'win32') {
-      exec(`taskkill /F /IM cloudflared.exe`, () => {
-        if (callback) callback();
-      });
-    } else {
-      if (child) child.kill('SIGKILL');
-      if (callback) callback();
-    }
-  } catch (e) {
-    if (callback) callback();
-  }
+  if (callback) callback();
 }
 
 let isSpawning = false;

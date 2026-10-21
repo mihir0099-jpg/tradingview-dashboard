@@ -1,0 +1,27 @@
+{
+  "archive_id": "SESSION_2026-10-20",
+  "date": "2026-10-20",
+  "day_of_week": "Tuesday",
+  "archived_at": "2026-10-20T09:55:42.444Z",
+  "ist_timestamp": "15:25:42",
+  "captured_till_ist": "15:25:42",
+  "session_status": "IN_PROGRESS",
+  "save_trigger": "INTRADAY_5MIN_AUTO",
+  "indices": {
+    "nifty": {
+      "profile": null,
+      "candles_count": 0,
+      "last_candle_time": "N/A"
+    },
+    "banknifty": {
+      "profile": null,
+      "candles_count": 0,
+      "last_candle_time": "N/A"
+    }
+  },
+  "options_skew_gamma": null,
+  "raw_candles": {
+    "nifty_1m": [],
+    "banknifty_1m": []
+  }
+}

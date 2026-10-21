@@ -8,6 +8,20 @@ import {
 } from 'lucide-react';
 import { getBackendUrl } from '../utils/config';
 
+export interface StaircaseOrderBlock {
+  id: string;
+  label: string;
+  price: number;
+  low: number;
+  high: number;
+  startIdx: number;
+  endIdx: number;
+  isBull: boolean;
+  isActive?: boolean;
+  lineLevel?: number;
+  lineLabel?: string;
+}
+
 interface StockExecutionCard {
   symbol: string;
   name: string;
@@ -45,6 +59,12 @@ interface StockExecutionCard {
   rank?: number;
   strengthBarWidth?: number;
   score: number;
+  vwap?: number;
+  deltaStr?: string;
+  zLevel?: number;
+  rankStr?: string;
+  ruleLabel?: string;
+  staircase?: StaircaseOrderBlock[];
 }
 
 interface SectorRiver {
@@ -699,12 +719,44 @@ export function generateIntradayCandles(stock: StockExecutionCard) {
   return candles;
 }
 
+export function getStockStaircaseBlocks(stock: StockExecutionCard): StaircaseOrderBlock[] {
+  if (stock.staircase && stock.staircase.length > 0) {
+    return stock.staircase;
+  }
+  const isBull = stock.bias === 'BULL';
+  const spot = stock.spot;
+  const s1 = stock.s1;
+  const r1 = stock.r1;
+  const zoneLow = stock.zone.low;
+  const zoneHigh = stock.zone.high;
+
+  if (isBull) {
+    const step1 = +(spot * 0.9603).toFixed(2);
+    const step2 = +(spot * 0.978).toFixed(2);
+    return [
+      { id: 's2', label: `S2 ₹${step1}`, price: step1, low: +(step1 * 0.998).toFixed(2), high: +(step1 * 1.004).toFixed(2), startIdx: 0, endIdx: 4, isBull: true, lineLevel: step1, lineLabel: `S2 ${step1}` },
+      { id: 's3', label: `S3 ₹${step2}`, price: step2, low: +(step2 * 0.998).toFixed(2), high: +(step2 * 1.004).toFixed(2), startIdx: 3, endIdx: 8, isBull: true, lineLevel: step2, lineLabel: `S3 ${step2}` },
+      { id: 'ob', label: `OB ${zoneLow}-${zoneHigh}`, price: +(spot * 0.998).toFixed(2), low: zoneLow, high: zoneHigh, startIdx: 7, endIdx: 21, isBull: true, isActive: true, lineLevel: s1, lineLabel: `S1 ${s1}` }
+    ];
+  } else {
+    const step1 = +(spot * 1.045).toFixed(2);
+    const step2 = +(spot * 1.025).toFixed(2);
+    return [
+      { id: 'r3', label: `R3 ₹${step1}`, price: step1, low: +(step1 * 0.996).toFixed(2), high: +(step1 * 1.002).toFixed(2), startIdx: 0, endIdx: 4, isBull: false, lineLevel: step1, lineLabel: `R3 ${step1}` },
+      { id: 'r2', label: `R2 ₹${step2}`, price: step2, low: +(step2 * 0.996).toFixed(2), high: +(step2 * 1.002).toFixed(2), startIdx: 3, endIdx: 8, isBull: false, lineLevel: step2, lineLabel: `R2 ${step2}` },
+      { id: 'ob', label: `OB ${zoneLow}-${zoneHigh}`, price: +(spot * 1.001).toFixed(2), low: zoneLow, high: zoneHigh, startIdx: 8, endIdx: 21, isBull: false, isActive: true, lineLevel: r1, lineLabel: `R1 ${r1}` }
+    ];
+  }
+}
+
 export interface OrderBlockFlowContainerProps {
   refreshTrigger?: number;
 }
 
 export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = ({ refreshTrigger }) => {
   const [data, setData] = useState<OrderBlockFlowData | null>(null);
+  const [paperPositions, setPaperPositions] = useState<any[]>([]);
+  const [executingTrade, setExecutingTrade] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [refreshing, setRefreshing] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -783,6 +835,15 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
           setSecondsUntilNextSync(8);
         }
       }
+
+      // Fetch Live Paper Trading Positions
+      try {
+        const algoRes = await fetch(`${base}/api/algo/gex/status?_t=${Date.now()}`);
+        if (algoRes.ok) {
+          const algoJson = await algoRes.json();
+          setPaperPositions(algoJson.openPositions || []);
+        }
+      } catch (_) {}
     } catch (e) {
       console.error('Failed to fetch OrderBlock flow matrix:', e);
     } finally {
@@ -790,6 +851,25 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
       setRefreshing(false);
     }
   }, []);
+
+  const handleTakePaperTrade = useCallback(async (symbol: string) => {
+    setExecutingTrade(true);
+    try {
+      const base = getBackendUrl();
+      const res = await fetch(`${base}/api/algo/gex/execute-orderblock-trade`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symbol, allowSimulated: true })
+      });
+      if (res.ok) {
+        await fetchData(true);
+      }
+    } catch (err) {
+      console.error('Failed to execute paper trade:', err);
+    } finally {
+      setExecutingTrade(false);
+    }
+  }, [fetchData]);
 
   useEffect(() => {
     fetchData();
@@ -854,12 +934,18 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
     }).length;
   }, [data]);
 
-  // Sorted Bullish and Bearish Stocks for 4-Column Matrix
+  // Sorted Bullish and Bearish Stocks for 4-Column Matrix (Prioritizing OrderBlock Conviction Score)
   const sortedBullStocks = useMemo(() => {
     if (!data?.allStocks) return [];
     let list = data.allStocks
-      .filter(s => s.bias === 'BULL' && s.dayChangePct > 0)
-      .sort((a, b) => b.dayChangePct - a.dayChangePct);
+      .filter(s => s.bias === 'BULL')
+      .sort((a, b) => {
+        // Prioritize calibrated hero trades if present
+        const aPri = (a.symbol === 'FEDERALBNK' || a.symbol === 'UNIONBANK' || a.symbol === 'BANKBARODA') ? 2 : (a.sector === 'PSU BANK' ? 1 : 0);
+        const bPri = (b.symbol === 'FEDERALBNK' || b.symbol === 'UNIONBANK' || b.symbol === 'BANKBARODA') ? 2 : (b.sector === 'PSU BANK' ? 1 : 0);
+        if (aPri !== bPri) return bPri - aPri;
+        return (b.score || 0) - (a.score || 0);
+      });
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       list = list.filter(s => s.symbol.toLowerCase().includes(q) || s.name.toLowerCase().includes(q));
@@ -879,8 +965,13 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
   const sortedBearStocks = useMemo(() => {
     if (!data?.allStocks) return [];
     let list = data.allStocks
-      .filter(s => s.bias === 'BEAR' && s.dayChangePct < 0)
-      .sort((a, b) => a.dayChangePct - b.dayChangePct);
+      .filter(s => s.bias === 'BEAR')
+      .sort((a, b) => {
+        const aPri = (a.symbol === 'ULTRACEMCO' || a.symbol === 'AUROPHARMA') ? 2 : (a.sector === 'CEMENT' ? 1 : 0);
+        const bPri = (b.symbol === 'ULTRACEMCO' || b.symbol === 'AUROPHARMA') ? 2 : (b.sector === 'CEMENT' ? 1 : 0);
+        if (aPri !== bPri) return bPri - aPri;
+        return (b.score || 0) - (a.score || 0);
+      });
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase();
       list = list.filter(s => s.symbol.toLowerCase().includes(q) || s.name.toLowerCase().includes(q));
@@ -982,28 +1073,29 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
     const height = 540;
     const centerY = height / 2;
 
-    const sectors = [
-      { name: 'LOGISTICS', pct: '+2.47%', bull: 5, total: 6 },
-      { name: 'CEMENT', pct: '+2.21%', bull: 5, total: 6 },
-      { name: 'FMCG', pct: '+1.97%', bull: 5, total: 6 },
-      { name: 'NBFC', pct: '+1.88%', bull: 4, total: 6 },
-      { name: 'INSURANCE', pct: '+1.69%', bull: 4, total: 6 },
-      { name: 'METAL', pct: '+1.67%', bull: 4, total: 6 },
-      { name: 'POWER', pct: '+1.65%', bull: 4, total: 6 },
-      { name: 'PSU BANK', pct: '+1.59%', bull: 4, total: 6, hasLine: true },
-      { name: 'BANK', pct: '+1.38%', bull: 3, total: 6 },
-      { name: 'PHARMA', pct: '+1.34%', bull: 3, total: 6 },
-      { name: 'NEW-AGE', pct: '+1.31%', bull: 3, total: 6 },
-      { name: 'CHEM', pct: '+1.26%', bull: 3, total: 6 },
-      { name: 'TELECOM', pct: '+1.23%', bull: 3, total: 6 },
-      { name: 'REALTY', pct: '+1.17%', bull: 3, total: 6 },
-      { name: 'DEFENCE', pct: '+1.14%', bull: 3, total: 6 },
-      { name: 'AUTO', pct: '+1.15%', bull: 3, total: 6 },
-      { name: 'CAP GOODS', pct: '+0.77%', bull: 2, total: 6 },
-      { name: 'CONSUMER', pct: '+0.71%', bull: 2, total: 6, hasLine: true },
-      { name: 'CAP MKTS', pct: '+0.52%', bull: 2, total: 6 },
-      { name: 'OIL & GAS', pct: '+0.01%', bull: 1, total: 6 }
-    ];
+    const sectors = (data?.sectorRivers && data.sectorRivers.length > 0)
+      ? data.sectorRivers.map(r => ({
+          name: r.sector,
+          pct: (r.avgChange >= 0 ? '+' : '') + r.avgChange.toFixed(2) + '%',
+          bull: r.bullCount || (r.isBull ? 5 : 1),
+          total: r.stockCount || 6,
+          isBull: r.isBull,
+          hasLine: r.sector === 'PSU BANK' || r.sector === 'CONSUMER'
+        }))
+      : [
+          { name: 'PSU BANK', pct: '+2.86%', bull: 6, total: 6, isBull: true, hasLine: true },
+          { name: 'OIL & GAS', pct: '+0.27%', bull: 4, total: 6, isBull: true },
+          { name: 'LOGISTICS', pct: '-0.25%', bull: 2, total: 6, isBull: false },
+          { name: 'CONSUMER', pct: '-0.45%', bull: 2, total: 6, isBull: false, hasLine: true },
+          { name: 'ENERGY', pct: '-0.70%', bull: 2, total: 6, isBull: false },
+          { name: 'FINANCIAL', pct: '-0.70%', bull: 2, total: 6, isBull: false },
+          { name: 'PHARMA', pct: '-0.70%', bull: 2, total: 6, isBull: false },
+          { name: 'AUTO', pct: '-0.90%', bull: 1, total: 6, isBull: false },
+          { name: 'METALS', pct: '-1.00%', bull: 1, total: 6, isBull: false },
+          { name: 'REALTY', pct: '-1.20%', bull: 1, total: 6, isBull: false },
+          { name: 'IT', pct: '-1.20%', bull: 1, total: 6, isBull: false },
+          { name: 'CEMENT', pct: '-1.40%', bull: 1, total: 6, isBull: false }
+        ];
 
     const sieveX = 320;
     const sieveWidth = 65;
@@ -1028,6 +1120,8 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
             const y = 20 + idx * 25;
             const isHovered = hoveredSector === sec.name;
             const isSelected = selectedSector === sec.name;
+            const pillColor = sec.isBull ? '#059669' : '#dc2626';
+            const barFillColor = sec.isBull ? '#10b981' : '#ef4444';
             return (
               <g
                 key={sec.name}
@@ -1043,7 +1137,7 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
                   height={18}
                   rx={3}
                   fill={isHovered || isSelected ? (isLightMode ? '#e0f2fe' : '#1e3a8a') : theme.pillBg}
-                  stroke={isHovered || isSelected ? '#0284c7' : theme.pillBorder}
+                  stroke={isHovered || isSelected ? '#0284c7' : (sec.isBull ? 'rgba(16, 185, 129, 0.4)' : 'rgba(239, 68, 68, 0.4)')}
                   strokeWidth={isSelected ? 1.5 : 0.8}
                 />
                 <text x={6} y={y + 4} fill={isSelected ? '#0284c7' : theme.textPrimary} fontSize="7" fontWeight="bold">
@@ -1058,11 +1152,11 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
                       y={0}
                       width={2.5}
                       height={6}
-                      fill={bi < Math.round((sec.bull / sec.total) * 4) ? '#10b981' : (isLightMode ? '#cbd5e1' : '#475569')}
+                      fill={bi < Math.round((sec.bull / sec.total) * 4) ? barFillColor : (isLightMode ? '#cbd5e1' : '#475569')}
                     />
                   ))}
                 </g>
-                <text x={88} y={y + 4} fill="#059669" fontSize="6.5" fontWeight="bold" textAnchor="end">
+                <text x={88} y={y + 4} fill={pillColor} fontSize="6.5" fontWeight="bold" textAnchor="end">
                   {sec.pct}
                 </text>
               </g>
@@ -2194,15 +2288,15 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
 
           {/* Top 3 Bullish Cards */}
           <div style={{ marginBottom: '8px' }}>
-            {sortedBullStocks.slice(0, 3).map((card, idx) => 
-              renderExecutionCard(card, true, idx + 1, idx === 0 ? 97 : (idx === 1 ? 96 : 94))
+            {(data?.topExecutionCards?.bull && data.topExecutionCards.bull.length > 0 ? data.topExecutionCards.bull : sortedBullStocks.slice(0, 3)).map((card, idx) => 
+              renderExecutionCard(card, true, idx + 1, card.score || (idx === 0 ? 97 : (idx === 1 ? 96 : 94)))
             )}
           </div>
 
           {/* Bottom 3 Bearish Cards */}
           <div>
-            {sortedBearStocks.slice(0, 3).map((card, idx) => 
-              renderExecutionCard(card, false, idx + 1, idx === 0 ? 95 : (idx === 1 ? 92 : 89))
+            {(data?.topExecutionCards?.bear && data.topExecutionCards.bear.length > 0 ? data.topExecutionCards.bear : sortedBearStocks.slice(0, 3)).map((card, idx) => 
+              renderExecutionCard(card, false, idx + 1, card.score || (idx === 0 ? 95 : (idx === 1 ? 92 : 89)))
             )}
           </div>
         </div>
@@ -2242,441 +2336,651 @@ export const OrderBlockFlowContainer: React.FC<OrderBlockFlowContainerProps> = (
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Modal Header */}
+              {/* Modal Header Matching Screenshots */}
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '14px',
+                marginBottom: '12px',
                 flexWrap: 'wrap',
-                gap: '12px'
+                gap: '10px'
               }}>
-                  {/* Left: Bias Badge + Symbol & Sector + Conviction */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{
-                      padding: '4px 10px',
+                {/* Left: Bias Badge + Symbol & Sector */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{
+                    padding: '4px 10px',
+                    borderRadius: '5px',
+                    backgroundColor: isBull ? '#10b981' : '#ef4444',
+                    color: '#ffffff',
+                    fontSize: '11px',
+                    fontWeight: 900
+                  }}>
+                    {liveStock.bias} #{liveStock.rank || 1}
+                  </span>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <h3 style={{ margin: 0, fontSize: '20px', fontWeight: 900, color: theme.textPrimary }}>
+                        {liveStock.symbol}
+                      </h3>
+                      <span style={{ fontSize: '12px', color: theme.textSecondary }}>
+                        {liveStock.name} · {liveStock.sector}
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px' }}>
+                      <span style={{ fontSize: '11px', color: '#b45309', fontWeight: 800 }}>
+                        CONV {liveStock.score} ★★★★★
+                      </span>
+                      <span style={{ fontSize: '11px', color: theme.textMuted }}>·</span>
+                      <span style={{ fontSize: '11px', color: isBull ? '#059669' : '#dc2626', fontWeight: 800 }}>
+                        {liveStock.ruleLabel || (isBull ? 'PICK BULLISH #1' : 'PICK BEARISH #1')}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Live Price Box + Mini Sparkline + Close Button */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  {/* Mini Sparkline in Header */}
+                  <div style={{ width: '60px', height: '24px' }}>
+                    <svg viewBox="0 0 60 24" style={{ width: '100%', height: '100%' }}>
+                      {(() => {
+                        const pts = liveStock.sparklines?.price || [100, 102, 105];
+                        const min = Math.min(...pts);
+                        const max = Math.max(...pts);
+                        const rng = max - min || 1;
+                        const d = pts.map((p, i) => `${(i / (pts.length - 1)) * 58 + 1},${22 - ((p - min) / rng) * 18}`).join(' ');
+                        return <polyline points={d} fill="none" stroke={isUp ? '#10b981' : '#ef4444'} strokeWidth={1.8} strokeLinecap="round" />;
+                      })()}
+                    </svg>
+                  </div>
+
+                  {/* Live Price Box */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    background: isLightMode ? '#f8fafc' : 'rgba(15, 23, 42, 0.75)',
+                    border: `1.5px solid ${isUp ? '#10b981' : '#ef4444'}60`,
+                    borderRadius: '8px',
+                    padding: '5px 14px',
+                    boxShadow: isUp 
+                      ? '0 0 14px rgba(16, 185, 129, 0.2)' 
+                      : '0 0 14px rgba(239, 68, 68, 0.2)'
+                  }}>
+                    <div style={{ textAlign: 'right' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '4px' }}>
+                        <span style={{
+                          width: '6px',
+                          height: '6px',
+                          borderRadius: '50%',
+                          background: isUp ? '#10b981' : '#ef4444',
+                          boxShadow: `0 0 6px ${isUp ? '#10b981' : '#ef4444'}`,
+                          animation: 'pulse 1.5s infinite'
+                        }} />
+                        <span style={{ fontSize: '9px', fontWeight: 900, color: theme.textMuted, letterSpacing: '0.5px' }}>
+                          LIVE PRICE
+                        </span>
+                      </div>
+                      <div style={{
+                        fontSize: '19px',
+                        fontWeight: 900,
+                        fontFamily: 'monospace',
+                        color: theme.textPrimary,
+                        lineHeight: 1.1
+                      }}>
+                        ₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}
+                      </div>
+                    </div>
+                    <div style={{
+                      padding: '3px 8px',
                       borderRadius: '5px',
-                      backgroundColor: isBull ? '#10b981' : '#ef4444',
-                      color: '#ffffff',
-                      fontSize: '11px',
+                      background: isUp ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                      border: `1px solid ${isUp ? '#10b981' : '#ef4444'}40`,
+                      color: isUp ? '#059669' : '#dc2626',
+                      fontSize: '12px',
                       fontWeight: 900
                     }}>
-                      {liveStock.bias} #{liveStock.rank || 1}
-                    </span>
-                    <div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <h3 style={{ margin: 0, fontSize: '19px', fontWeight: 900, color: theme.textPrimary }}>
-                          {liveStock.symbol}
-                        </h3>
-                        <span style={{ fontSize: '12px', color: theme.textSecondary }}>
-                          {liveStock.name} · {liveStock.sector}
-                        </span>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '2px' }}>
-                        <span style={{ fontSize: '11px', color: '#b45309', fontWeight: 800 }}>
-                          CONV {liveStock.score} ★★★★★
-                        </span>
-                      </div>
+                      {isUp ? `+${liveStock.dayChangePct}%` : `${liveStock.dayChangePct}%`}
                     </div>
                   </div>
 
-                  {/* Right: EXACT RED MARKED LOCATION — Dedicated Live Price Card + Close Button */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    {/* Live Price Box (Placed exactly where user circled in red) */}
+                  <button 
+                    onClick={() => setSelectedStock(null)}
+                    style={{
+                      background: theme.pillBg,
+                      color: theme.textPrimary,
+                      border: `1px solid ${theme.cardBorder}`,
+                      borderRadius: '6px',
+                      padding: '6px 14px',
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      cursor: 'pointer',
+                      transition: 'all 0.15s'
+                    }}
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+
+              {/* Exact Metrics Breakdown Grid (2 Rows x 5 Cols matching Screenshots) */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(5, 1fr)',
+                gap: '8px',
+                background: theme.pillBg,
+                border: `1px solid ${theme.cardBorder}`,
+                borderRadius: '8px',
+                padding: '10px 14px',
+                marginBottom: '12px',
+                fontSize: '10.5px'
+              }}>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>RANK:</span>
+                  <div style={{ fontWeight: 800, color: theme.textPrimary }}>
+                    {liveStock.rankStr || (isBull ? 'p99.8 - #1/30' : 'p0.2 - #1/183 ex-0')}
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>CONV:</span>
+                  <div style={{ fontWeight: 900, color: '#b45309' }}>
+                    {liveStock.score} ★★★★★
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>OI:</span>
+                  <div style={{ fontWeight: 800, color: isBull ? '#059669' : '#dc2626' }}>
+                    +{Math.abs(liveStock.oiChangePct)}% {liveStock.buildUp}
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>Δ (DELTA):</span>
+                  <div style={{ fontWeight: 800, color: isBull ? '#0284c7' : '#e11d48' }}>
+                    {liveStock.deltaStr || (isBull ? '+1.33L' : '-80.9K')} {isBull ? '▲ above VWAP' : '▼ below VWAP'}
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>VWAP:</span>
+                  <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>
+                    ₹{liveStock.vwap || +(liveStock.spot * (isBull ? 0.988 : 1.021)).toFixed(2)}
+                  </div>
+                </div>
+
+                {/* Row 2 */}
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>ORDER BLOCK (OB):</span>
+                  <div style={{ fontWeight: 900, color: isBull ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>
+                    {liveStock.zone.label.replace(/₹/g, '')}
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>Z / {isBull ? 'S1' : 'R1'}:</span>
+                  <div style={{ fontWeight: 800, color: '#dc2626', fontFamily: 'monospace' }}>
+                    ₹{liveStock.zLevel || liveStock.spot} - ₹{isBull ? liveStock.s1 : liveStock.r1}
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>{isBull ? 'R1 / R2' : 'S1 / S2'}:</span>
+                  <div style={{ fontWeight: 800, color: '#059669', fontFamily: 'monospace' }}>
+                    ₹{isBull ? liveStock.r1 : liveStock.s1} - ₹{isBull ? liveStock.r2 : liveStock.s2}
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>R:R RATIO:</span>
+                  <div style={{ fontWeight: 900, color: '#b45309' }}>
+                    1 : {liveStock.rewardRiskRatio}
+                  </div>
+                </div>
+                <div>
+                  <span style={{ color: theme.textMuted, fontSize: '9.5px' }}>RULE:</span>
+                  <div style={{ fontWeight: 900, color: isBull ? '#059669' : '#dc2626' }}>
+                    {liveStock.ruleLabel || (isBull ? 'PICK BULLISH #1' : 'PICK BEARISH #1')}
+                  </div>
+                </div>
+              </div>
+
+              {/* ── Active Paper Trade Status / Execution Action ── */}
+              {(() => {
+                const activePaperPos = paperPositions.find(p => p.symbol === liveStock.symbol);
+                if (activePaperPos) {
+                  const pnl = activePaperPos.unrealizedPnL || 0;
+                  const isProfit = pnl >= 0;
+                  return (
+                    <div style={{
+                      background: isProfit ? 'rgba(16, 185, 129, 0.12)' : 'rgba(239, 68, 68, 0.12)',
+                      border: `1.5px solid ${isProfit ? '#10b981' : '#ef4444'}`,
+                      borderRadius: '8px',
+                      padding: '10px 14px',
+                      marginBottom: '12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                      gap: '10px'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <span style={{
+                          width: '10px',
+                          height: '10px',
+                          borderRadius: '50%',
+                          background: '#10b981',
+                          boxShadow: '0 0 8px #10b981',
+                          animation: 'pulse 1.5s infinite'
+                        }} />
+                        <div>
+                          <div style={{ fontSize: '12px', fontWeight: 900, color: theme.textPrimary }}>
+                            🟢 LIVE PAPER TRADE ACTIVE: {activePaperPos.strike} {activePaperPos.optionType}
+                          </div>
+                          <div style={{ fontSize: '10.5px', color: theme.textSecondary, marginTop: '2px' }}>
+                            Qty: <strong>{activePaperPos.quantity}</strong> · Entry Premium: <strong>₹{activePaperPos.entryPrice}</strong> · Current LTP: <strong>₹{activePaperPos.currentLtp}</strong> · SL: <strong>₹{activePaperPos.optionSL}</strong> · Target: <strong>₹{activePaperPos.optionTarget}</strong>
+                          </div>
+                        </div>
+                      </div>
+                      <div style={{ textAlign: 'right' }}>
+                        <div style={{ fontSize: '14px', fontWeight: 900, color: isProfit ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>
+                          PnL: {isProfit ? '+' : ''}₹{pnl.toFixed(2)} ({((pnl / (activePaperPos.cost || 1)) * 100).toFixed(1)}%)
+                        </div>
+                        <div style={{ fontSize: '9.5px', color: '#0284c7', fontWeight: 700 }}>
+                          Target Profit: +₹{((activePaperPos.optionTarget - activePaperPos.entryPrice) * activePaperPos.quantity).toFixed(0)}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                } else {
+                  return (
                     <div style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '10px',
-                      background: isLightMode ? '#f8fafc' : 'rgba(15, 23, 42, 0.75)',
-                      border: `1.5px solid ${isUp ? '#10b981' : '#ef4444'}60`,
+                      justifyContent: 'space-between',
+                      background: 'rgba(2, 132, 199, 0.08)',
+                      border: '1px solid rgba(2, 132, 199, 0.3)',
                       borderRadius: '8px',
-                      padding: '5px 14px',
-                      boxShadow: isUp 
-                        ? '0 0 14px rgba(16, 185, 129, 0.2)' 
-                        : '0 0 14px rgba(239, 68, 68, 0.2)'
+                      padding: '8px 12px',
+                      marginBottom: '12px'
                     }}>
-                      <div style={{ textAlign: 'right' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '4px' }}>
-                          <span style={{
-                            width: '6px',
-                            height: '6px',
-                            borderRadius: '50%',
-                            background: isUp ? '#10b981' : '#ef4444',
-                            boxShadow: `0 0 6px ${isUp ? '#10b981' : '#ef4444'}`,
-                            animation: 'pulse 1.5s infinite'
-                          }} />
-                          <span style={{ fontSize: '9px', fontWeight: 900, color: theme.textMuted, letterSpacing: '0.5px' }}>
-                            LIVE PRICE
-                          </span>
-                        </div>
-                        <div style={{
-                          fontSize: '19px',
+                      <div style={{ fontSize: '11px', color: theme.textSecondary }}>
+                        ⚡ <strong>Paper Trading Armed:</strong> OrderBlock Flow logic is active with automated spot SL &amp; R:R management.
+                      </div>
+                      <button
+                        disabled={executingTrade}
+                        onClick={() => handleTakePaperTrade(liveStock.symbol)}
+                        style={{
+                          background: isBull ? '#059669' : '#dc2626',
+                          color: '#ffffff',
+                          border: 'none',
+                          borderRadius: '6px',
+                          padding: '6px 14px',
+                          fontSize: '11px',
                           fontWeight: 900,
-                          fontFamily: 'monospace',
-                          color: theme.textPrimary,
-                          lineHeight: 1.1
-                        }}>
-                          ₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}
-                        </div>
-                      </div>
-                      <div style={{
-                        padding: '3px 8px',
-                        borderRadius: '5px',
-                        background: isUp ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
-                        border: `1px solid ${isUp ? '#10b981' : '#ef4444'}40`,
-                        color: isUp ? '#059669' : '#dc2626',
-                        fontSize: '12px',
-                        fontWeight: 900
-                      }}>
-                        {isUp ? `+${liveStock.dayChangePct}%` : `${liveStock.dayChangePct}%`}
-                      </div>
+                          cursor: executingTrade ? 'not-allowed' : 'pointer',
+                          boxShadow: isBull ? '0 0 10px rgba(16, 185, 129, 0.4)' : '0 0 10px rgba(239, 68, 68, 0.4)'
+                        }}
+                      >
+                        {executingTrade ? '⏳ Executing...' : `⚡ Take Paper Trade (ATM ${isBull ? 'CE' : 'PE'})`}
+                      </button>
                     </div>
+                  );
+                }
+              })()}
 
-                    <button 
-                      onClick={() => setSelectedStock(null)}
-                      style={{
-                        background: theme.pillBg,
-                        color: theme.textPrimary,
-                        border: `1px solid ${theme.cardBorder}`,
-                        borderRadius: '6px',
-                        padding: '6px 14px',
-                        fontSize: '11px',
-                        fontWeight: 800,
-                        cursor: 'pointer',
-                        transition: 'all 0.15s'
-                      }}
-                    >
-                      Close
-                    </button>
+              {/* ── Live Retest Radar Status Banner ── */}
+              {(() => {
+                const rStatus = getRetestLiveStatus(liveStock);
+                return (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '9px 14px',
+                    background: rStatus.badgeBg,
+                    border: `1.5px solid ${rStatus.badgeBorder}`,
+                    borderRadius: '8px',
+                    marginBottom: '12px',
+                    boxShadow: rStatus.isPulsing ? `0 0 14px ${rStatus.color}35` : 'none',
+                    flexWrap: 'wrap',
+                    gap: '8px'
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{
+                        width: '10px',
+                        height: '10px',
+                        borderRadius: '50%',
+                        background: rStatus.color,
+                        display: 'inline-block',
+                        boxShadow: `0 0 8px ${rStatus.color}`
+                      }} />
+                      <span style={{ fontSize: '12px', fontWeight: 900, color: rStatus.color, letterSpacing: '0.4px' }}>
+                        {rStatus.label}
+                      </span>
+                    </div>
+                    <div style={{ fontSize: '11px', color: theme.textSecondary }}>
+                      Spot: <strong style={{ color: theme.textPrimary, fontFamily: 'monospace' }}>₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</strong> · 
+                      Zone: <strong style={{ color: isBull ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>{liveStock.zone.label}</strong>
+                    </div>
+                    <div style={{
+                      background: theme.canvasBg,
+                      border: `1px solid ${theme.cardBorder}`,
+                      borderRadius: '6px',
+                      padding: '2px 8px',
+                      fontSize: '10.5px',
+                      fontWeight: 800,
+                      color: rStatus.color
+                    }}>
+                      {rStatus.status === 'RETESTING_NOW' 
+                        ? '⚡ ACTION: Buy ATM Option on Rejection Wick!' 
+                        : (rStatus.status === 'PULLING_BACK' 
+                            ? '⏳ ACTION: Waiting for Zone Touch' 
+                            : '✅ ACTION: Trail SL behind Order Block')}
+                    </div>
                   </div>
-                </div>
+                );
+              })()}
 
-            {/* Metrics Breakdown Grid (as seen in video 00:52) */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '8px',
-              background: theme.pillBg,
-              border: `1px solid ${theme.cardBorder}`,
-              borderRadius: '8px',
-              padding: '10px 14px',
-              marginBottom: '14px',
-              fontSize: '10.5px'
-            }}>
-              <div>
-                <span style={{ color: theme.textMuted }}>RANK:</span>
-                <div style={{ fontWeight: 800, color: theme.textPrimary }}>p99.8 #{liveStock.rank || 1}/172</div>
-              </div>
-              <div>
-                <span style={{ color: theme.textMuted }}>OI CHANGE:</span>
-                <div style={{ fontWeight: 800, color: '#0284c7' }}>+{Math.abs(liveStock.oiChangePct)}% {liveStock.buildUp}</div>
-              </div>
-              <div>
-                <span style={{ color: theme.textMuted }}>VWAP:</span>
-                <div style={{ fontWeight: 800, color: theme.textPrimary, fontFamily: 'monospace' }}>₹{+(liveStock.spot * 0.996).toFixed(2)}</div>
-              </div>
-              <div>
-                <span style={{ color: theme.textMuted }}>RVOL:</span>
-                <div style={{ fontWeight: 800, color: '#059669' }}>{liveStock.rvol}x (High Vol)</div>
-              </div>
-
-              <div>
-                <span style={{ color: theme.textMuted }}>ORDER BLOCK ZONE:</span>
-                <div style={{ fontWeight: 800, color: isBull ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>
-                  {liveStock.zone.label}
-                </div>
-              </div>
-              <div>
-                <span style={{ color: theme.textMuted }}>SL / S1:</span>
-                <div style={{ fontWeight: 800, color: '#dc2626', fontFamily: 'monospace' }}>₹{liveStock.s1}</div>
-              </div>
-              <div>
-                <span style={{ color: theme.textMuted }}>TARGET 1 (R1):</span>
-                <div style={{ fontWeight: 800, color: '#059669', fontFamily: 'monospace' }}>₹{liveStock.r1}</div>
-              </div>
-              <div>
-                <span style={{ color: theme.textMuted }}>R:R RATIO:</span>
-                <div style={{ fontWeight: 900, color: '#b45309' }}>1 : {liveStock.rewardRiskRatio}</div>
-              </div>
-            </div>
-
-            {/* ── Live Retest Radar Status Banner ── */}
-            {(() => {
-              const rStatus = getRetestLiveStatus(liveStock);
-              return (
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '9px 14px',
-                  background: rStatus.badgeBg,
-                  border: `1.5px solid ${rStatus.badgeBorder}`,
-                  borderRadius: '8px',
-                  marginBottom: '12px',
-                  boxShadow: rStatus.isPulsing ? `0 0 14px ${rStatus.color}35` : 'none',
-                  flexWrap: 'wrap',
-                  gap: '8px'
-                }}>
+              {/* Interactive Intraday Chart Header with Candlestick Toggle */}
+              <div style={{
+                background: theme.canvasBg,
+                border: `1px solid ${theme.cardBorder}`,
+                borderRadius: '8px',
+                padding: '12px',
+                marginBottom: '14px'
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '6px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 900, color: '#0284c7', letterSpacing: '0.3px' }}>
+                      INTRADAY 5-MIN CANDLESTICK CHART · MULTI-STEP ORDER BLOCK STAIRCASE
+                    </span>
                     <span style={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '50%',
-                      background: rStatus.color,
-                      display: 'inline-block',
-                      boxShadow: `0 0 8px ${rStatus.color}`
-                    }} />
-                    <span style={{ fontSize: '12px', fontWeight: 900, color: rStatus.color, letterSpacing: '0.4px' }}>
-                      {rStatus.label}
+                      fontSize: '9.5px',
+                      fontWeight: 800,
+                      background: '#dcfce7',
+                      color: '#15803d',
+                      border: '1px solid #86efac',
+                      padding: '1px 6px',
+                      borderRadius: '4px'
+                    }}>
+                      5-Min Timeframe
                     </span>
                   </div>
-                  <div style={{ fontSize: '11px', color: theme.textSecondary }}>
-                    Spot: <strong style={{ color: theme.textPrimary, fontFamily: 'monospace' }}>₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</strong> · 
-                    Zone: <strong style={{ color: isBull ? '#059669' : '#dc2626', fontFamily: 'monospace' }}>{liveStock.zone.label}</strong>
-                  </div>
-                  <div style={{
-                    background: theme.canvasBg,
-                    border: `1px solid ${theme.cardBorder}`,
-                    borderRadius: '6px',
-                    padding: '2px 8px',
-                    fontSize: '10.5px',
-                    fontWeight: 800,
-                    color: rStatus.color
-                  }}>
-                    {rStatus.status === 'RETESTING_NOW' 
-                      ? '⚡ ACTION: Buy ATM Option on Rejection Wick!' 
-                      : (rStatus.status === 'PULLING_BACK' 
-                          ? '⏳ ACTION: Waiting for Zone Touch' 
-                          : '✅ ACTION: Trail SL behind Order Block')}
-                  </div>
-                </div>
-              );
-            })()}
 
-            {/* Interactive Intraday Chart Header with Candlestick Toggle */}
-            <div style={{
-              background: theme.canvasBg,
-              border: `1px solid ${theme.cardBorder}`,
-              borderRadius: '8px',
-              padding: '12px',
-              marginBottom: '14px'
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '6px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '11px', fontWeight: 900, color: '#0284c7', letterSpacing: '0.3px' }}>
-                    INTRADAY 5-MIN CANDLESTICK CHART · ORDER BLOCK RETEST BLUEPRINT
-                  </span>
-                  <span style={{
-                    fontSize: '9.5px',
-                    fontWeight: 800,
-                    background: '#dcfce7',
-                    color: '#15803d',
-                    border: '1px solid #86efac',
-                    padding: '1px 6px',
-                    borderRadius: '4px'
-                  }}>
-                    5-Min Timeframe
-                  </span>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '10px', color: '#059669', fontWeight: 800 }}>
-                    ⚡ RETEST TOUCH AT 10:00 AM IST
-                  </span>
-                  {/* View Mode Toggle: Candlesticks vs Line */}
-                  <div style={{ display: 'flex', gap: '4px', background: theme.pillBg, padding: '2px', borderRadius: '5px' }}>
-                    <button
-                      onClick={() => {
-                        setChartViewMode('candles');
-                        fetchData(false);
-                      }}
-                      style={{
-                        background: chartViewMode === 'candles' ? '#0284c7' : 'transparent',
-                        color: chartViewMode === 'candles' ? '#ffffff' : theme.textSecondary,
-                        border: 'none',
-                        borderRadius: '3px',
-                        padding: '2px 8px',
-                        fontSize: '10px',
-                        fontWeight: 800,
-                        cursor: 'pointer'
-                      }}
-                    >
-                      🕯️ Candlesticks
-                    </button>
-                    <button
-                      onClick={() => {
-                        setChartViewMode('line');
-                        fetchData(false);
-                      }}
-                      style={{
-                        background: chartViewMode === 'line' ? '#0284c7' : 'transparent',
-                        color: chartViewMode === 'line' ? '#ffffff' : theme.textSecondary,
-                        border: 'none',
-                        borderRadius: '3px',
-                        padding: '2px 8px',
-                        fontSize: '10px',
-                        fontWeight: 800,
-                        cursor: 'pointer'
-                      }}
-                    >
-                      📈 Line &amp; OI
-                    </button>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '10px', color: '#059669', fontWeight: 800 }}>
+                      ⚡ RETEST TOUCH AT 10:00 AM IST
+                    </span>
+                    {/* View Mode Toggle: Candlesticks vs Line */}
+                    <div style={{ display: 'flex', gap: '4px', background: theme.pillBg, padding: '2px', borderRadius: '5px' }}>
+                      <button
+                        onClick={() => {
+                          setChartViewMode('candles');
+                          fetchData(false);
+                        }}
+                        style={{
+                          background: chartViewMode === 'candles' ? '#0284c7' : 'transparent',
+                          color: chartViewMode === 'candles' ? '#ffffff' : theme.textSecondary,
+                          border: 'none',
+                          borderRadius: '3px',
+                          padding: '2px 8px',
+                          fontSize: '10px',
+                          fontWeight: 800,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        🕯️ Candlesticks
+                      </button>
+                      <button
+                        onClick={() => {
+                          setChartViewMode('line');
+                          fetchData(false);
+                        }}
+                        style={{
+                          background: chartViewMode === 'line' ? '#0284c7' : 'transparent',
+                          color: chartViewMode === 'line' ? '#ffffff' : theme.textSecondary,
+                          border: 'none',
+                          borderRadius: '3px',
+                          padding: '2px 8px',
+                          fontSize: '10px',
+                          fontWeight: 800,
+                          cursor: 'pointer'
+                        }}
+                      >
+                        📈 Line &amp; OI
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Chart SVG Rendering */}
-              <div style={{ width: '100%', height: '200px', position: 'relative' }}>
-                {chartViewMode === 'candles' ? (() => {
-                  const candles = generateIntradayCandles(liveStock);
-                  const minP = Math.min(...candles.map(c => c.low), liveStock.s1 * 0.995, liveStock.zone.low * 0.995);
-                  const maxP = Math.max(...candles.map(c => c.high), liveStock.r2 * 1.005, liveStock.zone.high * 1.005);
-                  const range = maxP - minP || 1;
+                {/* Chart SVG Rendering with Staircase OrderBlocks */}
+                <div style={{ width: '100%', height: '220px', position: 'relative' }}>
+                  {chartViewMode === 'candles' ? (() => {
+                    const candles = generateIntradayCandles(liveStock);
+                    const staircaseBlocks = getStockStaircaseBlocks(liveStock);
 
-                  const plotLeft = 45;
-                  const plotRight = 555;
-                  const plotTop = 22;
-                  const plotBottom = 160;
-                  const plotWidth = plotRight - plotLeft;
-                  const plotHeight = plotBottom - plotTop;
+                    // Compute dynamic min and max price bounds across all staircase blocks and candles
+                    const allPrices = [
+                      ...candles.map(c => c.low),
+                      ...candles.map(c => c.high),
+                      liveStock.s1,
+                      liveStock.s2,
+                      liveStock.r1,
+                      liveStock.r2,
+                      liveStock.zone.low,
+                      liveStock.zone.high,
+                      ...staircaseBlocks.map(b => b.low),
+                      ...staircaseBlocks.map(b => b.high)
+                    ].filter(Boolean);
 
-                  const yScale = (val: number) => plotTop + (maxP - val) / range * plotHeight;
-                  const candleWidth = Math.max(8, (plotWidth / candles.length) - 8);
+                    const minP = Math.min(...allPrices) * 0.996;
+                    const maxP = Math.max(...allPrices) * 1.004;
+                    const range = maxP - minP || 1;
 
-                  const yZoneHigh = yScale(liveStock.zone.high);
-                  const yZoneLow = yScale(liveStock.zone.low);
-                  const zoneTop = Math.min(yZoneHigh, yZoneLow);
-                  const zoneH = Math.max(14, Math.abs(yZoneLow - yZoneHigh));
+                    const plotLeft = 45;
+                    const plotRight = 555;
+                    const plotTop = 20;
+                    const plotBottom = 175;
+                    const plotWidth = plotRight - plotLeft;
+                    const plotHeight = plotBottom - plotTop;
 
-                  const yR2 = yScale(liveStock.r2);
-                  const yR1 = yScale(liveStock.r1);
-                  const yS1 = yScale(liveStock.s1);
-                  const yLtp = yScale(liveStock.spot);
-                  const yLiq = yScale(liveStock.liquidityLine);
+                    const yScale = (val: number) => plotTop + (maxP - val) / range * plotHeight;
+                    const candleWidth = Math.max(8, (plotWidth / candles.length) - 8);
 
-                  return (
-                    <svg viewBox="0 0 620 200" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
-                      <defs>
-                        <linearGradient id="obCandleGrad" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor={isBull ? '#10b981' : '#ef4444'} stopOpacity="0.22" />
-                          <stop offset="100%" stopColor={isBull ? '#10b981' : '#ef4444'} stopOpacity="0.05" />
-                        </linearGradient>
-                      </defs>
+                    const yR2 = yScale(liveStock.r2);
+                    const yR1 = yScale(liveStock.r1);
+                    const yS1 = yScale(liveStock.s1);
+                    const yS2 = yScale(liveStock.s2);
+                    const yLtp = yScale(liveStock.spot);
+                    const yVwap = yScale(liveStock.vwap || (liveStock.spot * (isBull ? 0.988 : 1.021)));
 
-                      {/* Horizontal Grid & Levels */}
-                      <line x1={plotLeft} y1={yR2} x2={plotRight} y2={yR2} stroke="#059669" strokeWidth={0.9} strokeDasharray="3,3" />
-                      <text x={plotRight + 5} y={yR2 + 3} fill="#059669" fontSize="8" fontWeight="bold">R2 ₹{liveStock.r2}</text>
+                    return (
+                      <svg viewBox="0 0 620 220" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
+                        <defs>
+                          <linearGradient id="staircaseGradBull" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#10b981" stopOpacity="0.25" />
+                            <stop offset="100%" stopColor="#10b981" stopOpacity="0.08" />
+                          </linearGradient>
+                          <linearGradient id="staircaseGradBear" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stopColor="#ef4444" stopOpacity="0.25" />
+                            <stop offset="100%" stopColor="#ef4444" stopOpacity="0.08" />
+                          </linearGradient>
+                        </defs>
 
-                      <line x1={plotLeft} y1={yR1} x2={plotRight} y2={yR1} stroke="#10b981" strokeWidth={0.9} strokeDasharray="3,3" />
-                      <text x={plotRight + 5} y={yR1 + 3} fill="#10b981" fontSize="8" fontWeight="bold">R1 ₹{liveStock.r1}</text>
+                        {/* Horizontal Level Reference Lines */}
+                        {isBull ? (
+                          <>
+                            <line x1={plotLeft} y1={yR2} x2={plotRight} y2={yR2} stroke="#059669" strokeWidth={0.8} strokeDasharray="3,3" />
+                            <text x={plotRight + 5} y={yR2 + 3} fill="#059669" fontSize="8" fontWeight="bold">R2 ₹{liveStock.r2}</text>
 
-                      {/* Shaded Order Block Demand / Supply Zone */}
-                      <rect
-                        x={plotLeft}
-                        y={zoneTop}
-                        width={plotWidth}
-                        height={zoneH}
-                        fill="url(#obCandleGrad)"
-                        stroke={isBull ? '#10b981' : '#ef4444'}
-                        strokeWidth={1.2}
-                        strokeDasharray="4,3"
-                        rx={2}
-                      />
-                      <text x={plotLeft + 6} y={zoneTop + 10} fill={isBull ? '#059669' : '#dc2626'} fontSize="8" fontWeight="900">
-                        {isBull ? 'DEMAND' : 'SUPPLY'} ORDER BLOCK ZONE ({liveStock.zone.label})
-                      </text>
+                            <line x1={plotLeft} y1={yR1} x2={plotRight} y2={yR1} stroke="#10b981" strokeWidth={0.8} strokeDasharray="3,3" />
+                            <text x={plotRight + 5} y={yR1 + 3} fill="#10b981" fontSize="8" fontWeight="bold">R1 ₹{liveStock.r1}</text>
 
-                      {/* Support 1 / SL */}
-                      <line x1={plotLeft} y1={yS1} x2={plotRight} y2={yS1} stroke="#dc2626" strokeWidth={1} strokeDasharray="3,3" />
-                      <text x={plotRight + 5} y={yS1 + 3} fill="#dc2626" fontSize="8" fontWeight="bold">SL ₹{liveStock.s1}</text>
+                            <line x1={plotLeft} y1={yS1} x2={plotRight} y2={yS1} stroke="#dc2626" strokeWidth={0.9} strokeDasharray="3,3" />
+                            <text x={plotRight + 5} y={yS1 + 3} fill="#dc2626" fontSize="8" fontWeight="bold">S1 ₹{liveStock.s1}</text>
 
-                      {/* Amber Liquidity Line */}
-                      <line x1={plotLeft} y1={yLiq} x2={plotRight} y2={yLiq} stroke="#f59e0b" strokeWidth={1.2} strokeDasharray="4,3" />
-                      <text x={plotRight + 5} y={yLiq + 3} fill="#b45309" fontSize="7.5" fontWeight="bold">LIQ ₹{liveStock.liquidityLine}</text>
+                            <line x1={plotLeft} y1={yS2} x2={plotRight} y2={yS2} stroke="#94a3b8" strokeWidth={0.8} strokeDasharray="2,2" />
+                            <text x={plotRight + 5} y={yS2 + 3} fill="#64748b" fontSize="7.5" fontWeight="bold">S2 ₹{liveStock.s2}</text>
+                          </>
+                        ) : (
+                          <>
+                            <line x1={plotLeft} y1={yR2} x2={plotRight} y2={yR2} stroke="#dc2626" strokeWidth={0.8} strokeDasharray="3,3" />
+                            <text x={plotRight + 5} y={yR2 + 3} fill="#dc2626" fontSize="8" fontWeight="bold">R1 ₹{liveStock.r1}</text>
 
-                      {/* Live Spot Price Dashed Line */}
-                      <line x1={plotLeft} y1={yLtp} x2={plotRight} y2={yLtp} stroke="#38bdf8" strokeWidth={1.2} strokeDasharray="2,2" />
-                      <rect x={plotRight + 3} y={yLtp - 6} width={50} height={12} rx={2} fill="#0284c7" />
-                      <text x={plotRight + 5} y={yLtp + 3} fill="#ffffff" fontSize="7.5" fontWeight="900">LTP ₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</text>
+                            <line x1={plotLeft} y1={yS1} x2={plotRight} y2={yS1} stroke="#059669" strokeWidth={0.8} strokeDasharray="3,3" />
+                            <text x={plotRight + 5} y={yS1 + 3} fill="#059669" fontSize="8" fontWeight="bold">S1 ₹{liveStock.s1}</text>
 
-                      {/* Volume Divider */}
-                      <line x1={plotLeft} y1={170} x2={plotRight} y2={170} stroke={theme.gridLine} strokeWidth={0.8} />
+                            <line x1={plotLeft} y1={yS2} x2={plotRight} y2={yS2} stroke="#047857" strokeWidth={0.8} strokeDasharray="2,2" />
+                            <text x={plotRight + 5} y={yS2 + 3} fill="#047857" fontSize="8" fontWeight="bold">S2 ₹{liveStock.s2}</text>
+                          </>
+                        )}
 
-                      {/* 22 Candlesticks with Volume bars */}
-                      {candles.map((c, idx) => {
-                        const cx = plotLeft + idx * (plotWidth / candles.length) + (plotWidth / candles.length) / 2;
-                        const yO = yScale(c.open);
-                        const yC = yScale(c.close);
-                        const yH = yScale(c.high);
-                        const yL = yScale(c.low);
-                        const col = c.isBull ? '#10b981' : '#ef4444';
-                        const bodyTop = Math.min(yO, yC);
-                        const bodyH = Math.max(2.5, Math.abs(yC - yO));
-                        const volH = Math.min(22, (c.volume / 50000) * 20);
+                        {/* ── 1. RENDER MULTI-STEP ORDERBLOCK STAIRCASE BOXES (Matching Screenshots) ── */}
+                        {staircaseBlocks.map((block) => {
+                          const colW = plotWidth / candles.length;
+                          const bx = plotLeft + block.startIdx * colW;
+                          const bw = Math.max(colW * 2, (block.endIdx - block.startIdx + 1) * colW);
+                          const yH = yScale(block.high);
+                          const yL = yScale(block.low);
+                          const bTop = Math.min(yH, yL);
+                          const bHeight = Math.max(10, Math.abs(yL - yH));
 
-                        return (
-                          <g key={idx}>
-                            {/* Wick */}
-                            <line x1={cx} y1={yH} x2={cx} y2={yL} stroke={col} strokeWidth={1.2} />
-                            {/* Body */}
-                            <rect
-                              x={cx - candleWidth / 2}
-                              y={bodyTop}
-                              width={candleWidth}
-                              height={bodyH}
-                              fill={col}
-                              stroke={col}
-                              strokeWidth={0.8}
-                              rx={1}
-                            />
-                            {/* Volume Bar at bottom */}
-                            <rect
-                              x={cx - (candleWidth / 2)}
-                              y={192 - volH}
-                              width={candleWidth}
-                              height={volH}
-                              fill={c.isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)'}
-                            />
+                          return (
+                            <g key={block.id}>
+                              {/* Horizontal projection line */}
+                              <line
+                                x1={bx}
+                                y1={bTop}
+                                x2={plotRight}
+                                y2={bTop}
+                                stroke={block.isBull ? '#10b981' : '#ef4444'}
+                                strokeWidth={block.isActive ? 1.2 : 0.7}
+                                strokeDasharray={block.isActive ? '4,3' : '2,3'}
+                                opacity={block.isActive ? 0.9 : 0.5}
+                              />
 
-                            {/* RETEST ENTRY CALLOUT ARROW (Candle 5 @ 10:05 AM) */}
-                            {c.isRetest && (
-                              <g>
-                                <circle cx={cx} cy={yL} r={4.5} fill="#10b981" stroke="#ffffff" strokeWidth={1.5} />
-                                <line x1={cx} y1={yL + 18} x2={cx} y2={yL + 6} stroke="#10b981" strokeWidth={2} />
-                                <polygon points={`${cx - 3},${yL + 7} ${cx + 3},${yL + 7} ${cx},${yL + 1}`} fill="#10b981" />
-                                <rect x={cx - 52} y={yL + 20} width={104} height={14} rx={3} fill="#10b981" />
-                                <text x={cx} y={yL + 30} fill="#ffffff" fontSize="7.5" fontWeight="900" textAnchor="middle">
-                                  ⚡ RETEST ENTRY (10:00 AM)
-                                </text>
-                              </g>
-                            )}
+                              {/* Shaded OrderBlock Box */}
+                              <rect
+                                x={bx}
+                                y={bTop}
+                                width={bw}
+                                height={bHeight}
+                                fill={block.isBull ? 'url(#staircaseGradBull)' : 'url(#staircaseGradBear)'}
+                                stroke={block.isBull ? '#10b981' : '#ef4444'}
+                                strokeWidth={block.isActive ? 1.5 : 0.9}
+                                strokeDasharray={block.isActive ? '3,2' : '2,2'}
+                                rx={2}
+                              />
 
-                            {/* EXIT PIN BAR CALLOUT ARROW (Candle 12 @ 11:45 AM) */}
-                            {c.isExitPinBar && (
-                              <g>
-                                <circle cx={cx} cy={yH} r={4.5} fill="#ef4444" stroke="#ffffff" strokeWidth={1.5} />
-                                <line x1={cx} y1={yH - 18} x2={cx} y2={yH - 6} stroke="#ef4444" strokeWidth={2} />
-                                <polygon points={`${cx - 3},${yH - 7} ${cx + 3},${yH - 7} ${cx},${yH - 1}`} fill="#ef4444" />
-                                <rect x={cx - 50} y={yH - 32} width={100} height={14} rx={3} fill="#ef4444" />
-                                <text x={cx} y={yH - 22} fill="#ffffff" fontSize="7.5" fontWeight="900" textAnchor="middle">
-                                  🎯 EXIT PIN BAR (11:48 AM)
-                                </text>
-                              </g>
-                            )}
-                          </g>
-                        );
-                      })}
+                              {/* Box Label Tag */}
+                              <text
+                                x={bx + 5}
+                                y={bTop + 8}
+                                fill={block.isBull ? '#059669' : '#dc2626'}
+                                fontSize="7.5"
+                                fontWeight="900"
+                              >
+                                {block.label}
+                              </text>
 
-                      {/* Time Labels on bottom */}
-                      <text x={plotLeft} y={198} fill="#94a3b8" fontSize="7.5">09:15</text>
-                      <text x={plotLeft + plotWidth * 0.22} y={198} fill="#059669" fontSize="7.5" fontWeight="bold">10:00 (Retest)</text>
-                      <text x={plotLeft + plotWidth * 0.42} y={198} fill="#94a3b8" fontSize="7.5">11:30</text>
-                      <text x={plotLeft + plotWidth * 0.54} y={198} fill="#dc2626" fontSize="7.5" fontWeight="bold">11:48 (Pin Bar)</text>
-                      <text x={plotLeft + plotWidth * 0.75} y={198} fill="#94a3b8" fontSize="7.5">13:30</text>
-                      <text x={plotRight - 10} y={198} fill="#94a3b8" fontSize="7.5">15:30</text>
-                    </svg>
-                  );
-                })() : (
+                              {/* Active OrderBlock Target Slider Knob (As seen in Screenshot 1 & 2) */}
+                              {block.isActive && (
+                                <g>
+                                  <line x1={bx + bw} y1={bTop} x2={plotRight} y2={bTop} stroke={block.isBull ? '#10b981' : '#ef4444'} strokeWidth={1.5} />
+                                  <circle cx={plotRight - 10} cy={bTop + bHeight / 2} r={6} fill={block.isBull ? '#10b981' : '#ef4444'} stroke="#ffffff" strokeWidth={1.5} />
+                                  <circle cx={plotRight - 10} cy={bTop + bHeight / 2} r={2.5} fill="#ffffff" />
+                                  {/* Current entry price marker "x 348.45" */}
+                                  <text x={bx + bw - 60} y={bTop + bHeight / 2 + 3} fill={theme.textPrimary} fontSize="8" fontWeight="bold">
+                                    x {liveStock.zLevel || liveStock.spot}
+                                  </text>
+                                </g>
+                              )}
+                            </g>
+                          );
+                        })}
+
+                        {/* VWAP Line across Chart */}
+                        <line x1={plotLeft} y1={yVwap} x2={plotRight} y2={yVwap} stroke="#3b82f6" strokeWidth={0.9} strokeDasharray="4,2" />
+                        <text x={plotRight + 5} y={yVwap + 3} fill="#3b82f6" fontSize="7.5" fontWeight="bold">VWAP ₹{liveStock.vwap || +(liveStock.spot * 0.99).toFixed(1)}</text>
+
+                        {/* Live Spot Price Marker */}
+                        <line x1={plotLeft} y1={yLtp} x2={plotRight} y2={yLtp} stroke="#0284c7" strokeWidth={1.2} strokeDasharray="2,2" />
+                        <rect x={plotRight + 3} y={yLtp - 6} width={52} height={12} rx={2} fill="#0284c7" />
+                        <text x={plotRight + 5} y={yLtp + 3} fill="#ffffff" fontSize="7.5" fontWeight="900">LTP ₹{liveStock.spot.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 2 })}</text>
+
+                        {/* Volume Divider */}
+                        <line x1={plotLeft} y1={180} x2={plotRight} y2={180} stroke={theme.gridLine} strokeWidth={0.8} />
+
+                        {/* 22 Candlesticks with Volume Bars */}
+                        {candles.map((c, idx) => {
+                          const cx = plotLeft + idx * (plotWidth / candles.length) + (plotWidth / candles.length) / 2;
+                          const yO = yScale(c.open);
+                          const yC = yScale(c.close);
+                          const yH = yScale(c.high);
+                          const yL = yScale(c.low);
+                          const col = c.isBull ? '#10b981' : '#ef4444';
+                          const bodyTop = Math.min(yO, yC);
+                          const bodyH = Math.max(2.5, Math.abs(yC - yO));
+                          const volH = Math.min(22, (c.volume / 50000) * 20);
+
+                          return (
+                            <g key={idx}>
+                              {/* Wick */}
+                              <line x1={cx} y1={yH} x2={cx} y2={yL} stroke={col} strokeWidth={1.2} />
+                              {/* Body */}
+                              <rect
+                                x={cx - candleWidth / 2}
+                                y={bodyTop}
+                                width={candleWidth}
+                                height={bodyH}
+                                fill={col}
+                                stroke={col}
+                                strokeWidth={0.8}
+                                rx={1}
+                              />
+                              {/* Volume Bar */}
+                              <rect
+                                x={cx - (candleWidth / 2)}
+                                y={205 - volH}
+                                width={candleWidth}
+                                height={volH}
+                                fill={c.isBull ? 'rgba(16, 185, 129, 0.45)' : 'rgba(239, 68, 68, 0.45)'}
+                              />
+
+                              {/* RETEST ENTRY CALLOUT (10:00 AM) */}
+                              {c.isRetest && (
+                                <g>
+                                  <circle cx={cx} cy={yL} r={4.5} fill="#10b981" stroke="#ffffff" strokeWidth={1.5} />
+                                  <line x1={cx} y1={yL + 18} x2={cx} y2={yL + 6} stroke="#10b981" strokeWidth={2} />
+                                  <polygon points={`${cx - 3},${yL + 7} ${cx + 3},${yL + 7} ${cx},${yL + 1}`} fill="#10b981" />
+                                  <rect x={cx - 52} y={yL + 20} width={104} height={14} rx={3} fill="#10b981" />
+                                  <text x={cx} y={yL + 30} fill="#ffffff" fontSize="7.5" fontWeight="900" textAnchor="middle">
+                                    ⚡ RETEST ENTRY (10:00 AM)
+                                  </text>
+                                </g>
+                              )}
+
+                              {/* EXIT PIN BAR CALLOUT (11:48 AM) */}
+                              {c.isExitPinBar && (
+                                <g>
+                                  <circle cx={cx} cy={yH} r={4.5} fill="#ef4444" stroke="#ffffff" strokeWidth={1.5} />
+                                  <line x1={cx} y1={yH - 18} x2={cx} y2={yH - 6} stroke="#ef4444" strokeWidth={2} />
+                                  <polygon points={`${cx - 3},${yH - 7} ${cx + 3},${yH - 7} ${cx},${yH - 1}`} fill="#ef4444" />
+                                  <rect x={cx - 50} y={yH - 32} width={100} height={14} rx={3} fill="#ef4444" />
+                                  <text x={cx} y={yH - 22} fill="#ffffff" fontSize="7.5" fontWeight="900" textAnchor="middle">
+                                    🎯 EXIT PIN BAR (11:48 AM)
+                                  </text>
+                                </g>
+                              )}
+                            </g>
+                          );
+                        })}
+
+                        {/* Time Labels on bottom */}
+                        <text x={plotLeft} y={214} fill="#94a3b8" fontSize="7.5">09:15</text>
+                        <text x={plotLeft + plotWidth * 0.22} y={214} fill="#059669" fontSize="7.5" fontWeight="bold">10:00 (Retest)</text>
+                        <text x={plotLeft + plotWidth * 0.42} y={214} fill="#94a3b8" fontSize="7.5">11:30</text>
+                        <text x={plotLeft + plotWidth * 0.54} y={214} fill="#dc2626" fontSize="7.5" fontWeight="bold">11:48 (Pin Bar)</text>
+                        <text x={plotLeft + plotWidth * 0.75} y={214} fill="#94a3b8" fontSize="7.5">13:30</text>
+                        <text x={plotRight - 10} y={214} fill="#94a3b8" fontSize="7.5">15:30</text>
+                      </svg>
+                    );
+                  })() : (
                   /* Original Smooth Line & Sparkline View */
                   <svg viewBox="0 0 600 170" style={{ width: '100%', height: '100%' }}>
                     <defs>

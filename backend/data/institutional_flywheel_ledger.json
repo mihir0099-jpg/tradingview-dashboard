@@ -1,0 +1,30 @@
+{
+  "meta": {
+    "engine": "INSTITUTIONAL_FLYWHEEL_LEARNER",
+    "methodology": "Bayesian Conjugate Beta-Binomial Prior Updating",
+    "lastUpdated": "2026-10-11T11:57:54.489Z"
+  },
+  "rules": {
+    "NIFTY_BUY_CE_C": {
+      "ruleKey": "NIFTY_BUY_CE_C",
+      "symbol": "NIFTY",
+      "grade": "GRADE_A",
+      "priorAlpha": 8,
+      "priorBeta": 2,
+      "empiricalWins": 1,
+      "empiricalLosses": 0,
+      "totalTrades": 1,
+      "cumulativePnl": 4500,
+      "bayesianWinRate": 81.8,
+      "isQuarantined": false,
+      "flywheelStatus": "ACTIVE_ROTATION"
+    }
+  },
+  "globalStats": {
+    "totalEvaluations": 3,
+    "totalVetoes": 1,
+    "totalInversions": 2,
+    "totalHalfLifeExits": 0,
+    "totalStockdaleExits": 0
+  }
+}

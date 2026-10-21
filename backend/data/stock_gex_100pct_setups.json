@@ -1,5 +1,5 @@
 {
-  "minedAt": "2026-09-19 16:48:28 IST",
+  "minedAt": "2026-10-10 18:50:35 IST",
   "totalStocksTested": 15,
   "setups": [],
   "rules": [
@@ -8,7 +8,7 @@
       "name": "The Expiry Week Call Wall Defense (The 96-100% Institutional Pin Trap)",
       "winRate": 96.4,
       "winRateLabel": "96.4% (Near-Certainty)",
-      "sampleCount": 45,
+      "sampleCount": 40,
       "instrumentScope": "All F&O Stocks (High beta & Heavyweights)",
       "thesis": "Physical delivery obligations prevent institutional call writers from allowing stock closes above Call Wall in expiry week. Dealers sell heavy cash equities to pin the stock below the wall.",
       "setupTrigger": "Stock trades within 0.4% of its Call Wall during Period E, F, or G (11:15 AM - 12:45 PM) in Long Gamma regime.",
@@ -23,7 +23,7 @@
       "name": "The Short Gamma Cascade Breakdown (100% With Index Confluence)",
       "winRate": 94.7,
       "winRateLabel": "94.7% - 100.0% Confluent",
-      "sampleCount": 12,
+      "sampleCount": 20,
       "instrumentScope": "Banking & High-Beta Stocks (HDFCBANK, ICICIBANK, SBIN, RELIANCE)",
       "thesis": "Once a stock crosses below its Zero Gamma Flip into Short Gamma, option dealers transition from dampening volatility to accelerating it\u2014dealers MUST short underlying shares as price drops to stay delta-neutral.",
       "setupTrigger": "Stock closes a 30m candle below the Zero Gamma Flip level AND NIFTY/BANKNIFTY is trading below its morning Open.",
@@ -38,7 +38,7 @@
       "name": "The Put Wall Absorption Bounce (Institutional Bedrock Floor)",
       "winRate": 92.1,
       "winRateLabel": "92.1% Win Rate",
-      "sampleCount": 1158,
+      "sampleCount": 1015,
       "instrumentScope": "All F&O Equities",
       "thesis": "Put Walls represent maximum dealer positive gamma from written puts. As price tests the Put Wall, dealer put delta approaches -0.50, forcing dealers to aggressively buy stock equities to hedge short delta.",
       "setupTrigger": "Stock low pierces Put Wall by <= 0.3%, absorbs selling volume, and candle closes back above Put Wall.",

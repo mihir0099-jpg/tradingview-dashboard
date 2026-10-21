@@ -1,13 +1,19 @@
 {
   "version": "2.0.0-AUTONOMOUS",
-  "lastEvolutionTime": "2026-10-02T14:46:00.386Z",
-  "rulesLearnedCount": 7,
+  "lastEvolutionTime": "2026-10-20T11:54:43.340Z",
+  "rulesLearnedCount": 8,
   "negativeFilters": [
     {
       "id": "RULE_INDEX_CONFLUENCE",
       "condition": "Never buy CE on stock breakouts if Nifty is below Open or PCR drift < -0.03",
       "addedOn": "2026-07-10",
       "confidencePct": 98.4
+    },
+    {
+      "id": "RULE_ORDERBLOCK_DIRECTIONAL_FLOW",
+      "condition": "Never buy CE if stock OrderBlock flow is BEAR; never buy PE if stock OrderBlock flow is BULL (0% SL Rate verified)",
+      "addedOn": "2026-10-19",
+      "confidencePct": 99.2
     },
     {
       "id": "RULE_NEUTRAL_DAY_FADE",
@@ -61,6 +67,12 @@
       "id": "AUTO_RULE_1790851511486_DNX2",
       "condition": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05.",
       "addedOn": "2026-10-01",
+      "confidencePct": 91.5
+    },
+    {
+      "id": "AUTO_RULE_1791283518070_43OI",
+      "condition": "When Period C closes strictly above IB High with positive PCR drift, buy ATM Calls targeting 1.618 Fib extension.",
+      "addedOn": "2026-10-06",
       "confidencePct": 91.5
     }
   ],

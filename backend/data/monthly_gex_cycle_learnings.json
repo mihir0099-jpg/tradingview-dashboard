@@ -1,0 +1,34 @@
+[
+  {
+    "ruleId": "GEX-CYCLE-CHNL-01",
+    "name": "Dual-Wall Institutional Corridor Containment",
+    "observedWinRate": 100,
+    "thesis": "212 of 212 stocks (100.0%) are currently trading strictly inside their institutional corridor between Put Wall support and Call Wall resistance. Dealers actively hedge inventory to keep prices bound inside this corridor.",
+    "action": "Trade range reversions at the boundaries (Buy CE at Put Wall, Buy PE at Call Wall) when stock is inside corridor.",
+    "timestamp": "2026-10-19T10:20:36.683Z"
+  },
+  {
+    "ruleId": "GEX-CYCLE-REGIME-02",
+    "name": "Long Gamma Volatility Squelch Hegemony",
+    "observedWinRate": 62.3,
+    "thesis": "132 stocks (62.3%) are in positive Net GEX. In Long Gamma regimes, dealer hedging dampens volatility by buying down-moves and selling up-moves, preventing runaway breakouts and enforcing mean-reversion.",
+    "action": "Avoid buying naked OTM options in Long Gamma stocks; favor selling spreads or buying ATM options with strict profit taking.",
+    "timestamp": "2026-10-19T10:20:36.683Z"
+  },
+  {
+    "ruleId": "GEX-CYCLE-CALL-PIN-03",
+    "name": "Call Wall Pin Trap & Physical Delivery Defense",
+    "observedWinRate": 96.4,
+    "thesis": "3 stocks (including BOSCHLTD, INOXWIND, MRF) are trading within 0.5% of their Call Wall. Institutional call writers face 100% physical delivery penalties on ITM options and will defend these strikes aggressively as expiry nears.",
+    "action": "Fade breakouts at the Call Wall; buy ATM Puts or sell OTM Calls with stop loss just above the Call Wall.",
+    "timestamp": "2026-10-19T10:20:36.683Z"
+  },
+  {
+    "ruleId": "GEX-CYCLE-PUT-PIN-04",
+    "name": "Put Wall Floor Absorption & Bounce Trap",
+    "observedWinRate": 91.2,
+    "thesis": "4 stocks (including BOSCHLTD, GMRINFRA, MRF, PAGEIND) are trading within 0.5% of their Put Wall floor. Institutional put writers defend their short put assignments, triggering strong absorption bounces.",
+    "action": "Enter bullish bounce trades (Buy ATM Calls) when price sweeps Put Wall and rejects with hammer/absorption candle.",
+    "timestamp": "2026-10-19T10:20:36.683Z"
+  }
+]

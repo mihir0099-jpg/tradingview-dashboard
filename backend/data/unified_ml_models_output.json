@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-02T20:15:48.121480",
-  "session_date": "2026-10-02",
+  "generated_at": "2026-10-21T10:16:48.383593",
+  "session_date": "2026-10-21",
   "suite_version": "3.0-Production-Multi-Model",
   "packages_installed": {
     "lightgbm": "4.7.0",
@@ -10,16 +10,106 @@
   },
   "models": {
     "lstm": {
-      "status": "insufficient_data"
+      "status": "success",
+      "model_architecture": "PyTorch v2.13.0+cpu 2-Layer LSTM (64 Hidden Units, Dropout=0.2)",
+      "input_sequence_bars": 30,
+      "forecast_steps_ahead": 5,
+      "predicted_cumulative_drift_pct": [
+        -0.547,
+        -0.53,
+        -0.568,
+        -1.025,
+        -1.775
+      ],
+      "projected_direction": "BEARISH_EXPANSION",
+      "lstm_memory_energy": 1.002,
+      "final_training_loss": 1e-05,
+      "inference_latency_ms": 2.4
     },
     "gradient_boosting": {
-      "status": "insufficient_data"
+      "status": "success",
+      "algorithm": "Native LightGBM v4.7.0 & XGBoost v3.4.1",
+      "win_probability_pct": 3.9,
+      "bearish_probability_pct": 96.1,
+      "xgboost_win_prob_pct": 1.2,
+      "xgboost_bear_prob_pct": 98.8,
+      "model_verdict": "STRONG_BUY_PE",
+      "feature_importances": [
+        {
+          "feature": "Dist Vwap",
+          "importance_pct": 42.3
+        },
+        {
+          "feature": "Hl Spread",
+          "importance_pct": 35.8
+        },
+        {
+          "feature": "Upper Wick",
+          "importance_pct": 8.9
+        },
+        {
+          "feature": "Ret",
+          "importance_pct": 4.9
+        },
+        {
+          "feature": "Body Ratio",
+          "importance_pct": 4.9
+        },
+        {
+          "feature": "Lower Wick",
+          "importance_pct": 3.3
+        }
+      ],
+      "training_time_ms": 2695.7,
+      "xgb_training_time_ms": 1350.1,
+      "inference_latency_ms": 27.895
     },
     "random_forest": {
-      "status": "insufficient_data"
+      "status": "success",
+      "ensemble_size": 100,
+      "predicted_regime": "NEUTRAL_DAY (DOUBLE BREAKOUT)",
+      "ensemble_confidence_pct": 87.2,
+      "voting_distribution": {
+        "trend_day_votes_pct": 0.0,
+        "normal_range_votes_pct": 0.3,
+        "neutral_double_break_votes_pct": 87.2,
+        "liquidation_votes_pct": 12.4
+      },
+      "model_entropy_uncertainty": 0.362,
+      "explainable_rule": "IF (Session Range = 0.85% AND Net Change = -0.28%) -> NEUTRAL_DAY (DOUBLE BREAKOUT) (Consensus: 87.2%)",
+      "inference_latency_ms": 0.8
     },
     "isolation_forest": {
-      "status": "insufficient_data"
+      "status": "success",
+      "algorithm": "Isolation Forest (3.5% Contamination Outlier Partitioning)",
+      "total_anomalies_isolated": 3,
+      "recent_anomalies": [
+        {
+          "time": "09:15:00",
+          "bar_index": 0,
+          "price_level": 23033.15,
+          "anomaly_score": -0.1409,
+          "archetype": "LIQUIDITY_SWEEP_ABSORPTION",
+          "description": "Stop run below swing low absorbed into institutional buy inventory."
+        },
+        {
+          "time": "09:16:00",
+          "bar_index": 1,
+          "price_level": 23025.2,
+          "anomaly_score": -0.0782,
+          "archetype": "OVERHEAD_SUPPLY_CAP",
+          "description": "Severe rejection wick; smart money absorbed aggressive market buyers."
+        },
+        {
+          "time": "09:17:00",
+          "bar_index": 2,
+          "price_level": 23058.15,
+          "anomaly_score": -0.0005,
+          "archetype": "VOLATILITY_EXPANSION_ANOMALY",
+          "description": "Microstructure divergence from baseline Gaussian manifold."
+        }
+      ],
+      "inference_latency_ms": 1.1
     }
   }
 }

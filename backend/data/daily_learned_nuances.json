@@ -1,8 +1,439 @@
 [
   {
-    "date": "2026-10-02",
-    "timestamp": 1790952360389,
-    "istTime": "2026-10-02 20:16:00 IST",
+    "date": "2026-10-20",
+    "timestamp": 1792497283641,
+    "istTime": "2026-10-20 17:24:26 IST",
+    "macroProfile": {
+      "niftySpot": 22888.95,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-1.64%",
+      "bankniftySpot": 55488.1,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 32
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "10 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (ASIANPAINT, CUMMINSIND, SBILIFE, MFSL).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-19",
+    "timestamp": 1792410234356,
+    "istTime": "2026-10-19 17:13:54 IST",
+    "macroProfile": {
+      "niftySpot": 22888.95,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-1.64%",
+      "bankniftySpot": 55488.1,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 40
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +2.79 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 09:18:00 (Midday) at 23175.1. Absolute LOD printed at 14:26:00 (Midday) at 22845.25.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-18",
+    "timestamp": 1792320304904,
+    "istTime": "2026-10-18 16:15:04 IST",
+    "macroProfile": {
+      "niftySpot": 23146.15,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-0.54%",
+      "bankniftySpot": 55844,
+      "dayType": "ROTATIONAL_BALANCED_AUCTION",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 46
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "12 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (NATCOPHARM, DATAPATTNS, IDEA, DMART).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-17",
+    "timestamp": 1792233919374,
+    "istTime": "2026-10-17 16:15:19 IST",
+    "macroProfile": {
+      "niftySpot": 23146.15,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-0.54%",
+      "bankniftySpot": 55844,
+      "dayType": "ROTATIONAL_BALANCED_AUCTION",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 46
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "12 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (NATCOPHARM, DATAPATTNS, IDEA, DMART).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-16",
+    "timestamp": 1792147531450,
+    "istTime": "2026-10-16 16:15:31 IST",
+    "macroProfile": {
+      "niftySpot": 23146.15,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-0.54%",
+      "bankniftySpot": 55844,
+      "dayType": "ROTATIONAL_BALANCED_AUCTION",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 45
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Period C Upside Continuation Acceptance",
+        "observation": "Period C broke NIFTY IB High (23094.6) and closed strictly above at 23100.65. Trend extended an additional 49.2 pts to HOD (23149.85).",
+        "ruleAction": "When Period C closes strictly above IB High with positive PCR drift, buy ATM Calls targeting 1.618 Fib extension."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 10:36:00 (Midday) at 23149.85. Absolute LOD printed at 09:36:00 (Midday) at 22914.3.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-15",
+    "timestamp": 1792086162817,
+    "istTime": "2026-10-15 23:12:42 IST",
+    "macroProfile": {
+      "niftySpot": 22997.35,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-1.18%",
+      "bankniftySpot": 55810.5,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 56
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Period C Upside Continuation Acceptance",
+        "observation": "Period C broke NIFTY IB High (22903.85) and closed strictly above at 22927.95. Trend extended an additional 128.3 pts to HOD (23056.2).",
+        "ruleAction": "When Period C closes strictly above IB High with positive PCR drift, buy ATM Calls targeting 1.618 Fib extension."
+      },
+      {
+        "domain": "First-Hour Put Supply Collapse (Call Writing Drive)",
+        "observation": "NIFTY First-Hour PCR drift collapsed to -8.20 indicating aggressive institutional Call writing. NIFTY closed 326.05 pts (1.44%).",
+        "ruleAction": "Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 13:38:00 (Midday) at 23056.2. Absolute LOD printed at 09:15:00 (Midday) at 22637.4.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-14",
+    "timestamp": 1791974721060,
+    "istTime": "2026-10-14 16:15:21 IST",
+    "macroProfile": {
+      "niftySpot": 22622.7,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-2.79%",
+      "bankniftySpot": 55316,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 56
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +0.26 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 09:48:00 (Midday) at 22757.8. Absolute LOD printed at 13:15:00 (Midday) at 22558.95.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-13",
+    "timestamp": 1791888325009,
+    "istTime": "2026-10-13 16:15:24 IST",
+    "macroProfile": {
+      "niftySpot": 22721.95,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-2.36%",
+      "bankniftySpot": 55481.05,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 56
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +15.37 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 15:28:00 (Midday) at 22721.95. Absolute LOD printed at 09:15:00 (Midday) at 22288.7.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-12",
+    "timestamp": 1791801927719,
+    "istTime": "2026-10-12 16:15:27 IST",
+    "macroProfile": {
+      "niftySpot": 22363.35,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.9%",
+      "bankniftySpot": 54918,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 25
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Period C Downside Continuation Acceptance",
+        "observation": "Period C broke NIFTY IB Low (22472.15) and closed strictly below at 22460.35. Trend extended an additional 155.9 pts to LOD (22304.45).",
+        "ruleAction": "When Period C closes strictly below IB Low with negative PCR drift, hold ATM Puts until Period L (14:30+ IST) for maximum range extension."
+      },
+      {
+        "domain": "First-Hour Put Supply Collapse (Call Writing Drive)",
+        "observation": "NIFTY First-Hour PCR drift collapsed to -7.92 indicating aggressive institutional Call writing. NIFTY closed -229.85 pts (-1.02%).",
+        "ruleAction": "Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 09:15:00 (Period A) at 22650.55. Absolute LOD printed at 15:10:00 (Period L/M) at 22304.45.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-11",
+    "timestamp": 1791734600334,
+    "istTime": "2026-10-11 21:33:20 IST",
+    "macroProfile": {
+      "niftySpot": 22520.45,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.22%",
+      "bankniftySpot": 55256.65,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 63
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "40 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (EXIDEIND, IREDA, YESBANK, TATACONSUM).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-10",
+    "timestamp": 1791642718205,
+    "istTime": "2026-10-10 20:01:58 IST",
+    "macroProfile": {
+      "niftySpot": 22520.45,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.22%",
+      "bankniftySpot": 55256.65,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 63
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "40 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (IREDA, EXIDEIND, YESBANK, TATACONSUM).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-09",
+    "timestamp": 1791542713745,
+    "istTime": "2026-10-09 16:15:13 IST",
+    "macroProfile": {
+      "niftySpot": 22520.45,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.22%",
+      "bankniftySpot": 55256.65,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 43
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +87.42 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 14:18:00 (Midday) at 22580.5. Absolute LOD printed at 09:25:00 (Midday) at 22295.2.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-08",
+    "timestamp": 1791456327689,
+    "istTime": "2026-10-08 16:15:27 IST",
+    "macroProfile": {
+      "niftySpot": 22231.8,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-4.47%",
+      "bankniftySpot": 54515.05,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 43
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Period C Downside Continuation Acceptance",
+        "observation": "Period C broke NIFTY IB Low (22445.7) and closed strictly below at 22434.7. Trend extended an additional 254.4 pts to LOD (22180.3).",
+        "ruleAction": "When Period C closes strictly below IB Low with negative PCR drift, hold ATM Puts until Period L (14:30+ IST) for maximum range extension."
+      },
+      {
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +3.55 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 09:15:00 (Period A) at 22599.05. Absolute LOD printed at 15:09:00 (Period L/M) at 22180.3.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-07",
+    "timestamp": 1791369915203,
+    "istTime": "2026-10-07 16:15:14 IST",
+    "macroProfile": {
+      "niftySpot": 22603.05,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-2.87%",
+      "bankniftySpot": 55055.55,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 23
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "First-Hour Put Supply Collapse (Call Writing Drive)",
+        "observation": "NIFTY First-Hour PCR drift collapsed to -1.39 indicating aggressive institutional Call writing. NIFTY closed -87.4 pts (-0.39%).",
+        "ruleAction": "Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 12:04:00 (Midday) at 22717.25. Absolute LOD printed at 14:00:00 (Midday) at 22546.55.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-06",
+    "timestamp": 1791283519400,
+    "istTime": "2026-10-06 16:15:19 IST",
+    "macroProfile": {
+      "niftySpot": 22776.1,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-2.13%",
+      "bankniftySpot": 55128.4,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 66
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Period C Upside Continuation Acceptance",
+        "observation": "Period C broke NIFTY IB High (22667.35) and closed strictly above at 22675.55. Trend extended an additional 100.5 pts to HOD (22776.1).",
+        "ruleAction": "When Period C closes strictly above IB High with positive PCR drift, buy ATM Calls targeting 1.618 Fib extension."
+      },
+      {
+        "domain": "First-Hour Put Writing Conviction (Floor Absorption)",
+        "observation": "NIFTY First-Hour PCR drift expanded to +15.66 indicating heavy institutional put absorption.",
+        "ruleAction": "Strictly veto downside Put (PE) entries when morning PCR drift > +0.05."
+      },
+      {
+        "domain": "Session Extreme Timing & Anchor Confirmation",
+        "observation": "HOD established at 15:29:00 (Midday) at 22776.1. Absolute LOD printed at 09:16:00 (Midday) at 22561.8.",
+        "ruleAction": "On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-05",
+    "timestamp": 1791197115132,
+    "istTime": "2026-10-05 16:15:15 IST",
+    "macroProfile": {
+      "niftySpot": 22555.75,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.07%",
+      "bankniftySpot": 54714.1,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 46
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "First-Hour Put Supply Collapse (Call Writing Drive)",
+        "observation": "NIFTY First-Hour PCR drift collapsed to -20.14 indicating aggressive institutional Call writing. NIFTY closed -284 pts (-1.23%).",
+        "ruleAction": "Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-03",
+    "timestamp": 1791024321993,
+    "istTime": "2026-10-03 16:15:21 IST",
     "macroProfile": {
       "niftySpot": 22421.95,
       "niftyOpen": 23270.9,
@@ -10,7 +441,33 @@
       "bankniftySpot": 54450.75,
       "dayType": "TREND_EXPANSION_DAY",
       "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 38
+      "activeFnoOpportunities": 39
+    },
+    "autonomousLearnings": [
+      {
+        "domain": "Institutional Demat Absorption",
+        "observation": "2 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65% (ICICIPRULI, FINPIPE).",
+        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
+      },
+      {
+        "domain": "Index vs Sector Cointegration",
+        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
+        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
+      }
+    ]
+  },
+  {
+    "date": "2026-10-02",
+    "timestamp": 1790958851198,
+    "istTime": "2026-10-02 22:04:11 IST",
+    "macroProfile": {
+      "niftySpot": 22421.95,
+      "niftyOpen": 23270.9,
+      "niftyChangePct": "-3.65%",
+      "bankniftySpot": 54450.75,
+      "dayType": "TREND_EXPANSION_DAY",
+      "vixRegime": "LOW_VIX_GRIND",
+      "activeFnoOpportunities": 39
     },
     "autonomousLearnings": [
       {
@@ -388,161 +845,6 @@
       {
         "domain": "Late-Day Volume Filter (Period L)",
         "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in KPITTECH, MARUTI, TCS printed exhaustion tails.",
-        "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
-      }
-    ]
-  },
-  {
-    "date": "2026-09-17",
-    "timestamp": 1789644263484,
-    "istTime": "2026-09-17 16:54:23 IST",
-    "macroProfile": {
-      "niftySpot": 23270.6,
-      "niftyOpen": 23270.9,
-      "niftyChangePct": "0%",
-      "bankniftySpot": 56055.75,
-      "dayType": "ROTATIONAL_BALANCED_AUCTION",
-      "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 45
-    },
-    "autonomousLearnings": [
-      {
-        "domain": "Institutional Demat Absorption",
-        "observation": "31 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (HAVELLS, DALBHARAT, NAM-INDIA, ESCORTS).",
-        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
-      },
-      {
-        "domain": "Index vs Sector Cointegration",
-        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
-        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
-      },
-      {
-        "domain": "Late-Day Volume Filter (Period L)",
-        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in PNB, BANKINDIA printed exhaustion tails.",
-        "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
-      }
-    ]
-  },
-  {
-    "date": "2026-09-16",
-    "timestamp": 1789575483141,
-    "istTime": "2026-09-16 21:48:03 IST",
-    "macroProfile": {
-      "niftySpot": 23217.6,
-      "niftyOpen": 23270.9,
-      "niftyChangePct": "-0.23%",
-      "bankniftySpot": 56292.45,
-      "dayType": "ROTATIONAL_BALANCED_AUCTION",
-      "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 38
-    },
-    "autonomousLearnings": [
-      {
-        "domain": "Institutional Demat Absorption",
-        "observation": "16 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (DALBHARAT, ICICIBANK, BHARTIARTL, M&MFIN).",
-        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
-      },
-      {
-        "domain": "Index vs Sector Cointegration",
-        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
-        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
-      },
-      {
-        "domain": "Late-Day Volume Filter (Period L)",
-        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in UPL, SONACOMS, LT printed exhaustion tails.",
-        "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
-      }
-    ]
-  },
-  {
-    "date": "2026-09-15",
-    "timestamp": 1789476191837,
-    "istTime": "2026-09-15 18:13:11 IST",
-    "macroProfile": {
-      "niftySpot": 23118.6,
-      "niftyOpen": 23270.9,
-      "niftyChangePct": "-0.65%",
-      "bankniftySpot": 55794.75,
-      "dayType": "ROTATIONAL_BALANCED_AUCTION",
-      "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 42
-    },
-    "autonomousLearnings": [
-      {
-        "domain": "Institutional Demat Absorption",
-        "observation": "6 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (BHARTIARTL, ONGC, JUBLFOOD, SONACOMS).",
-        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
-      },
-      {
-        "domain": "Index vs Sector Cointegration",
-        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
-        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
-      },
-      {
-        "domain": "Late-Day Volume Filter (Period L)",
-        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in BEL, SHRIRAMFIN, ULTRACEMCO printed exhaustion tails.",
-        "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
-      }
-    ]
-  },
-  {
-    "date": "2026-09-14",
-    "timestamp": 1789392563781,
-    "istTime": "2026-09-14 18:59:23 IST",
-    "macroProfile": {
-      "niftySpot": 23398.1,
-      "niftyOpen": 23270.9,
-      "niftyChangePct": "0.55%",
-      "bankniftySpot": 56606.55,
-      "dayType": "ROTATIONAL_BALANCED_AUCTION",
-      "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 61
-    },
-    "autonomousLearnings": [
-      {
-        "domain": "Institutional Demat Absorption",
-        "observation": "39 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (PAGEIND, HEROMOTOCO, COLPAL, CANBK).",
-        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
-      },
-      {
-        "domain": "Index vs Sector Cointegration",
-        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
-        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
-      },
-      {
-        "domain": "Late-Day Volume Filter (Period L)",
-        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in MARUTI, COALINDIA, APOLLOHOSP printed exhaustion tails.",
-        "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
-      }
-    ]
-  },
-  {
-    "date": "2026-09-13",
-    "timestamp": 1789312439545,
-    "istTime": "2026-09-13 20:43:59 IST",
-    "macroProfile": {
-      "niftySpot": 23398.1,
-      "niftyOpen": 23270.9,
-      "niftyChangePct": "0.55%",
-      "bankniftySpot": 56606.55,
-      "dayType": "ROTATIONAL_BALANCED_AUCTION",
-      "vixRegime": "LOW_VIX_GRIND",
-      "activeFnoOpportunities": 59
-    },
-    "autonomousLearnings": [
-      {
-        "domain": "Institutional Demat Absorption",
-        "observation": "37 F&O assets showed extreme Trade-to-Volume Price Tension (TVPT) drops with Demat delivery >65%. Smart money actively absorbed supply near 20-day value area lows (PAGEIND, HEROMOTOCO, COLPAL, SBIN).",
-        "ruleAction": "Prioritize Long call accumulation when TVPT drops >50% while spot holds within 1.5% of Demand Floor."
-      },
-      {
-        "domain": "Index vs Sector Cointegration",
-        "observation": "On rotational auction days (|Nifty Change| < 0.85%), single-stock breakouts without sector backing faced a 72% reversion rate back inside Initial Balance.",
-        "ruleAction": "Mandate minimum 2-stock sector confirmation before entering single-stock momentum breakouts."
-      },
-      {
-        "domain": "Late-Day Volume Filter (Period L)",
-        "observation": "Afternoon breakouts between 2:45 PM and 3:15 PM IST required at least 1.25x volume to sustain. Low-volume Period L spikes in MARUTI, COALINDIA, APOLLOHOSP printed exhaustion tails.",
         "ruleAction": "Auto-invalidate Period L continuation trades if 5-min volume is below 1.25x 20-period baseline."
       }
     ]

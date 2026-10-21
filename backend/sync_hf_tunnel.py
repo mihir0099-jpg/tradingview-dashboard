@@ -4,12 +4,16 @@ import json
 from huggingface_hub import HfApi
 
 def sync_tunnel():
-    if len(sys.argv) < 3:
-        print("Usage: python sync_hf_tunnel.py <repo_id> <url>")
+    if len(sys.argv) < 2:
+        print("Usage: python sync_hf_tunnel.py [repo_id] <url>")
         sys.exit(1)
 
-    repo_id = sys.argv[1].strip()
-    url = sys.argv[2].strip().rstrip('/')
+    if len(sys.argv) == 2:
+        repo_id = "mihir0099/tradingview-dashboard"
+        url = sys.argv[1].strip().rstrip('/')
+    else:
+        repo_id = sys.argv[1].strip()
+        url = sys.argv[2].strip().rstrip('/')
 
     try:
         api = HfApi()

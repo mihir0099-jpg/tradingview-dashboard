@@ -3,6 +3,8 @@ import {
   Activity, ArrowRight, ArrowLeft, Shield, AlertTriangle, CheckCircle, 
   TrendingUp, TrendingDown, Info, Flame, Target, Zap, Clock, ChevronRight
 } from 'lucide-react';
+import { GexLiveMarketRadar } from './GexLiveMarketRadar';
+import { GexAutoRulesFeed } from './GexAutoRulesFeed';
 
 interface StrikeDots {
   m1: number;
@@ -96,6 +98,7 @@ interface Props {
 export const GexbotClassicDotsView: React.FC<Props> = ({ gexData, visibleStrikes }) => {
   const [hoveredStrike, setHoveredStrike] = useState<StrikeGex | null>(null);
   const [filterMode, setFilterMode] = useState<'ALL' | 'WALLS_ONLY' | 'UNWINDING'>('ALL');
+  const [radarPosition, setRadarPosition] = useState<'inChart' | 'top'>('inChart');
 
   const spot = gexData.spotPrice;
   const putWall = gexData.walls.putWall;
@@ -293,13 +296,25 @@ export const GexbotClassicDotsView: React.FC<Props> = ({ gexData, visibleStrikes
         </div>
       </div>
 
+      {/* ── LIVE INSTITUTIONAL RADAR HUD & TACTICAL ACTION PLAN (TOP VIEW) ─── */}
+      {radarPosition === 'top' && (
+        <GexLiveMarketRadar 
+          gexData={gexData} 
+          visibleStrikes={visibleStrikes} 
+          position="top"
+          onTogglePosition={() => setRadarPosition('inChart')}
+        />
+      )}
+
       {/* ── THE GEXBOT CLASSIC HORIZONTAL HISTOGRAM (THE DOTS VIEW) ─────────── */}
       <div style={{
         backgroundColor: '#090d16',
         border: '1px solid #1e293b',
         borderRadius: '8px',
         padding: '16px',
-        overflowX: 'auto'
+        overflowX: 'auto',
+        position: 'relative',
+        minHeight: '640px'
       }}>
         
         {/* Header & Filter Controls */}
@@ -316,8 +331,28 @@ export const GexbotClassicDotsView: React.FC<Props> = ({ gexData, visibleStrikes
             </div>
           </div>
 
-          {/* Filter Pills */}
-          <div style={{ display: 'flex', gap: '6px' }}>
+          {/* Filter Pills & HUD Mode Toggle */}
+          <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <button
+              onClick={() => setRadarPosition(pos => pos === 'inChart' ? 'top' : 'inChart')}
+              style={{
+                backgroundColor: radarPosition === 'inChart' ? '#047857' : '#1e293b',
+                color: radarPosition === 'inChart' ? '#ffffff' : '#94a3b8',
+                border: '1px solid ' + (radarPosition === 'inChart' ? '#10b981' : '#334155'),
+                borderRadius: '4px',
+                padding: '4px 10px',
+                fontSize: '10px',
+                fontWeight: 800,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '5px'
+              }}
+              title="Toggle HUD docked inside chart vs top"
+            >
+              <span>{radarPosition === 'inChart' ? '📍 HUD Docked in Chart' : '🔼 Show HUD on Top'}</span>
+            </button>
+
             {(['ALL', 'WALLS_ONLY', 'UNWINDING'] as const).map(f => (
               <button
                 key={f}
@@ -543,6 +578,34 @@ export const GexbotClassicDotsView: React.FC<Props> = ({ gexData, visibleStrikes
           })}
         </div>
 
+        {/* ── IN-CHART LIVE RADAR HUD (USER RED-MARKED LOWER-LEFT QUADRANT) ──── */}
+        {radarPosition === 'inChart' && (
+          <div style={{
+            position: 'absolute',
+            bottom: hoveredStrike ? '75px' : '14px',
+            left: '138px',
+            width: 'calc(50% - 148px)',
+            maxWidth: '820px',
+            maxHeight: '450px',
+            overflowY: 'auto',
+            zIndex: 15,
+            backgroundColor: 'rgba(9, 13, 22, 0.96)',
+            backdropFilter: 'blur(10px)',
+            border: '1px solid #1e2d4a',
+            borderRadius: '8px',
+            padding: '8px',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.9)'
+          }}>
+            <GexLiveMarketRadar 
+              gexData={gexData} 
+              visibleStrikes={visibleStrikes} 
+              compact={true}
+              position="inChart"
+              onTogglePosition={() => setRadarPosition('top')}
+            />
+          </div>
+        )}
+
         {/* Hover Tooltip Card if Strike Hovered */}
         {hoveredStrike && (
           <div style={{
@@ -594,6 +657,9 @@ export const GexbotClassicDotsView: React.FC<Props> = ({ gexData, visibleStrikes
           <li><span style={{ color: '#ef4444' }}>Strict Downside Guard</span>: When Price is below Zero Gamma and the 5-timeframe matrix is unanimous red, market makers are aggressively selling into every bounce. Lock out all calls until the Put Wall floor is struck.</li>
         </ul>
       </div>
+
+      {/* ── GEX AUTO-LEARNER PREDICTION FEED ────────────────────────────────── */}
+      <GexAutoRulesFeed symbol={gexData?.symbol ?? 'NIFTY'} />
 
     </div>
   );

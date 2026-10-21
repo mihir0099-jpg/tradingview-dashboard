@@ -1,0 +1,2 @@
+Get-ChildItem -Path 'C:\Users\mihir\OneDrive\Documents\NinjaTrader 8' -Recurse -Filter '*OpenConnect*' -ErrorAction SilentlyContinue | ForEach-Object { Write-Output $_.FullName }
+Get-ChildItem -Path 'C:\Users\mihir\OneDrive\Documents\NinjaTrader 8' -Recurse -Filter '*Accelpix*' -ErrorAction SilentlyContinue | ForEach-Object { Write-Output $_.FullName }
