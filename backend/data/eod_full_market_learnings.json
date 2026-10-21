@@ -1,354 +1,1885 @@
 {
-  "date": "2026-10-20",
-  "generatedAtIST": "2026-10-20T17:10:25.309Z",
+  "date": "2026-10-21",
+  "generatedAtIST": "2026-10-21T10:28:23.500Z",
   "sessionTiming": "15:45 IST Post-CAS Final Settlement",
   "indices": {
     "nifty": {
-      "summary": {},
-      "tpoPeriods": [],
-      "candlePatterns": []
+      "summary": {
+        "openPrice": 23016,
+        "closePrice": 22934.65,
+        "changePts": -81.35,
+        "changePct": -0.35,
+        "dayHigh": 23120.9,
+        "dayLow": 22922.6,
+        "totalRange": 198.3,
+        "ibHigh": 23120.9,
+        "ibLow": 22924.35,
+        "ibRange": 196.55,
+        "dayType": "NORMAL_VARIATION_BEAR",
+        "periodC": {
+          "brokeHigh": false,
+          "brokeLow": true,
+          "close": 22934.65,
+          "closedAboveIB": false,
+          "closedBelowIB": false
+        },
+        "periodG": {
+          "close": null,
+          "closedAboveIB": null,
+          "closedBelowIB": null
+        },
+        "sessionExtremes": {
+          "hodTime": "09:40:00",
+          "lodTime": "10:20:00"
+        }
+      },
+      "tpoPeriods": [
+        {
+          "period": "A",
+          "label": "Period A (Morning Auction & Initial Extreme)",
+          "startTime": "09:15:00",
+          "endTime": "09:45:00",
+          "candleCount": 30,
+          "open": 23016,
+          "high": 23120.9,
+          "low": 22981.35,
+          "close": 23097.65,
+          "rangePts": 139.55,
+          "changePts": 81.65,
+          "volume": 0,
+          "candles": [
+            {
+              "time": 1792554300,
+              "timeIST": "09:15:00",
+              "open": 23016,
+              "high": 23034.95,
+              "low": 22981.35,
+              "close": 23033.15,
+              "volume": 0
+            },
+            {
+              "time": 1792554360,
+              "timeIST": "09:16:00",
+              "open": 23033.4,
+              "high": 23059.85,
+              "low": 23024.5,
+              "close": 23025.2,
+              "volume": 0
+            },
+            {
+              "time": 1792554420,
+              "timeIST": "09:17:00",
+              "open": 23025,
+              "high": 23059.65,
+              "low": 23025,
+              "close": 23058.15,
+              "volume": 0
+            },
+            {
+              "time": 1792554480,
+              "timeIST": "09:18:00",
+              "open": 23058.9,
+              "high": 23061.2,
+              "low": 23044.5,
+              "close": 23056.7,
+              "volume": 0
+            },
+            {
+              "time": 1792554540,
+              "timeIST": "09:19:00",
+              "open": 23057.1,
+              "high": 23063.35,
+              "low": 23037.35,
+              "close": 23039.2,
+              "volume": 0
+            },
+            {
+              "time": 1792554600,
+              "timeIST": "09:20:00",
+              "open": 23040.15,
+              "high": 23074.5,
+              "low": 23036.8,
+              "close": 23066.55,
+              "volume": 0
+            },
+            {
+              "time": 1792554660,
+              "timeIST": "09:21:00",
+              "open": 23067.35,
+              "high": 23085,
+              "low": 23066.55,
+              "close": 23071.95,
+              "volume": 0
+            },
+            {
+              "time": 1792554720,
+              "timeIST": "09:22:00",
+              "open": 23074.65,
+              "high": 23085.6,
+              "low": 23072.55,
+              "close": 23079.2,
+              "volume": 0
+            },
+            {
+              "time": 1792554780,
+              "timeIST": "09:23:00",
+              "open": 23079.8,
+              "high": 23084,
+              "low": 23074.75,
+              "close": 23078.45,
+              "volume": 0
+            },
+            {
+              "time": 1792554840,
+              "timeIST": "09:24:00",
+              "open": 23079.1,
+              "high": 23080.9,
+              "low": 23067.9,
+              "close": 23076.6,
+              "volume": 0
+            },
+            {
+              "time": 1792554900,
+              "timeIST": "09:25:00",
+              "open": 23076.85,
+              "high": 23082.55,
+              "low": 23067.9,
+              "close": 23075.05,
+              "volume": 0
+            },
+            {
+              "time": 1792554960,
+              "timeIST": "09:26:00",
+              "open": 23077.8,
+              "high": 23083.15,
+              "low": 23073.15,
+              "close": 23079.25,
+              "volume": 0
+            },
+            {
+              "time": 1792555020,
+              "timeIST": "09:27:00",
+              "open": 23080.1,
+              "high": 23086.75,
+              "low": 23068.35,
+              "close": 23068.7,
+              "volume": 0
+            },
+            {
+              "time": 1792555080,
+              "timeIST": "09:28:00",
+              "open": 23071.7,
+              "high": 23086.2,
+              "low": 23064.25,
+              "close": 23082.5,
+              "volume": 0
+            },
+            {
+              "time": 1792555140,
+              "timeIST": "09:29:00",
+              "open": 23084.65,
+              "high": 23085.25,
+              "low": 23076.9,
+              "close": 23079.85,
+              "volume": 0
+            },
+            {
+              "time": 1792555200,
+              "timeIST": "09:30:00",
+              "open": 23080.95,
+              "high": 23090.85,
+              "low": 23069.2,
+              "close": 23081.4,
+              "volume": 0
+            },
+            {
+              "time": 1792555260,
+              "timeIST": "09:31:00",
+              "open": 23082.85,
+              "high": 23102.85,
+              "low": 23081.4,
+              "close": 23097.7,
+              "volume": 0
+            },
+            {
+              "time": 1792555320,
+              "timeIST": "09:32:00",
+              "open": 23098,
+              "high": 23098.8,
+              "low": 23081.25,
+              "close": 23095.7,
+              "volume": 0
+            },
+            {
+              "time": 1792555380,
+              "timeIST": "09:33:00",
+              "open": 23097.15,
+              "high": 23102.35,
+              "low": 23096.15,
+              "close": 23100.65,
+              "volume": 0
+            },
+            {
+              "time": 1792555440,
+              "timeIST": "09:34:00",
+              "open": 23102.5,
+              "high": 23118.3,
+              "low": 23100.5,
+              "close": 23115.65,
+              "volume": 0
+            },
+            {
+              "time": 1792555500,
+              "timeIST": "09:35:00",
+              "open": 23117.35,
+              "high": 23118.4,
+              "low": 23110.1,
+              "close": 23115.95,
+              "volume": 0
+            },
+            {
+              "time": 1792555560,
+              "timeIST": "09:36:00",
+              "open": 23117.2,
+              "high": 23119.25,
+              "low": 23112.9,
+              "close": 23112.9,
+              "volume": 0
+            },
+            {
+              "time": 1792555620,
+              "timeIST": "09:37:00",
+              "open": 23114,
+              "high": 23114.15,
+              "low": 23102.75,
+              "close": 23106.15,
+              "volume": 0
+            },
+            {
+              "time": 1792555680,
+              "timeIST": "09:38:00",
+              "open": 23106.5,
+              "high": 23106.5,
+              "low": 23093.65,
+              "close": 23100,
+              "volume": 0
+            },
+            {
+              "time": 1792555740,
+              "timeIST": "09:39:00",
+              "open": 23102.1,
+              "high": 23115.75,
+              "low": 23100.55,
+              "close": 23112.65,
+              "volume": 0
+            },
+            {
+              "time": 1792555800,
+              "timeIST": "09:40:00",
+              "open": 23113.15,
+              "high": 23120.9,
+              "low": 23109,
+              "close": 23111.65,
+              "volume": 0
+            },
+            {
+              "time": 1792555860,
+              "timeIST": "09:41:00",
+              "open": 23113.35,
+              "high": 23116.9,
+              "low": 23106.35,
+              "close": 23108.4,
+              "volume": 0
+            },
+            {
+              "time": 1792555920,
+              "timeIST": "09:42:00",
+              "open": 23109.45,
+              "high": 23111.75,
+              "low": 23102.4,
+              "close": 23109.45,
+              "volume": 0
+            },
+            {
+              "time": 1792555980,
+              "timeIST": "09:43:00",
+              "open": 23111.85,
+              "high": 23112.9,
+              "low": 23094.75,
+              "close": 23097.65,
+              "volume": 0
+            },
+            {
+              "time": 1792556040,
+              "timeIST": "09:44:00",
+              "open": 23098.65,
+              "high": 23103.15,
+              "low": 23093.75,
+              "close": 23097.65,
+              "volume": 0
+            }
+          ],
+          "extensionType": "INITIAL_AUCTION",
+          "brokeIbHigh": false,
+          "brokeIbLow": false,
+          "closedAboveIb": false,
+          "closedBelowIb": false,
+          "reversalTrap": false,
+          "trapDescription": "Normal rotation",
+          "ruleRef": "Rule 5A (Period A establishes Day High/Low in 62.6% of Nifty sessions)"
+        },
+        {
+          "period": "B",
+          "label": "Period B (Initial Balance Completion)",
+          "startTime": "09:45:00",
+          "endTime": "10:15:00",
+          "candleCount": 30,
+          "open": 23098.3,
+          "high": 23098.65,
+          "low": 22924.35,
+          "close": 22949.15,
+          "rangePts": 174.3,
+          "changePts": -149.15,
+          "volume": 0,
+          "candles": [
+            {
+              "time": 1792556100,
+              "timeIST": "09:45:00",
+              "open": 23098.3,
+              "high": 23098.65,
+              "low": 23085.8,
+              "close": 23086.05,
+              "volume": 0
+            },
+            {
+              "time": 1792556160,
+              "timeIST": "09:46:00",
+              "open": 23088.2,
+              "high": 23088.2,
+              "low": 23075.5,
+              "close": 23078.2,
+              "volume": 0
+            },
+            {
+              "time": 1792556220,
+              "timeIST": "09:47:00",
+              "open": 23078.6,
+              "high": 23079.5,
+              "low": 23066.4,
+              "close": 23072.5,
+              "volume": 0
+            },
+            {
+              "time": 1792556280,
+              "timeIST": "09:48:00",
+              "open": 23074.75,
+              "high": 23079.35,
+              "low": 23069.8,
+              "close": 23070.05,
+              "volume": 0
+            },
+            {
+              "time": 1792556340,
+              "timeIST": "09:49:00",
+              "open": 23070.7,
+              "high": 23070.8,
+              "low": 23053.5,
+              "close": 23057.95,
+              "volume": 0
+            },
+            {
+              "time": 1792556400,
+              "timeIST": "09:50:00",
+              "open": 23059.1,
+              "high": 23059.1,
+              "low": 23048.35,
+              "close": 23049.8,
+              "volume": 0
+            },
+            {
+              "time": 1792556460,
+              "timeIST": "09:51:00",
+              "open": 23051.2,
+              "high": 23051.75,
+              "low": 23025.3,
+              "close": 23039.85,
+              "volume": 0
+            },
+            {
+              "time": 1792556520,
+              "timeIST": "09:52:00",
+              "open": 23041.2,
+              "high": 23041.55,
+              "low": 23028.8,
+              "close": 23028.9,
+              "volume": 0
+            },
+            {
+              "time": 1792556580,
+              "timeIST": "09:53:00",
+              "open": 23030.4,
+              "high": 23034.5,
+              "low": 23018.55,
+              "close": 23031.85,
+              "volume": 0
+            },
+            {
+              "time": 1792556640,
+              "timeIST": "09:54:00",
+              "open": 23033.8,
+              "high": 23033.8,
+              "low": 23023,
+              "close": 23030.2,
+              "volume": 0
+            },
+            {
+              "time": 1792556700,
+              "timeIST": "09:55:00",
+              "open": 23030.95,
+              "high": 23043.45,
+              "low": 23025.55,
+              "close": 23035.65,
+              "volume": 0
+            },
+            {
+              "time": 1792556760,
+              "timeIST": "09:56:00",
+              "open": 23037.05,
+              "high": 23037.05,
+              "low": 23013.6,
+              "close": 23016.45,
+              "volume": 0
+            },
+            {
+              "time": 1792556820,
+              "timeIST": "09:57:00",
+              "open": 23017.6,
+              "high": 23034.6,
+              "low": 23014.85,
+              "close": 23034.15,
+              "volume": 0
+            },
+            {
+              "time": 1792556880,
+              "timeIST": "09:58:00",
+              "open": 23034.6,
+              "high": 23037.45,
+              "low": 23025.9,
+              "close": 23026,
+              "volume": 0
+            },
+            {
+              "time": 1792556940,
+              "timeIST": "09:59:00",
+              "open": 23028.4,
+              "high": 23028.4,
+              "low": 23016.95,
+              "close": 23021.95,
+              "volume": 0
+            },
+            {
+              "time": 1792557000,
+              "timeIST": "10:00:00",
+              "open": 23022.8,
+              "high": 23022.9,
+              "low": 23006.05,
+              "close": 23008.15,
+              "volume": 0
+            },
+            {
+              "time": 1792557060,
+              "timeIST": "10:01:00",
+              "open": 23009.7,
+              "high": 23037.1,
+              "low": 23007.9,
+              "close": 23036.65,
+              "volume": 0
+            },
+            {
+              "time": 1792557120,
+              "timeIST": "10:02:00",
+              "open": 23037.35,
+              "high": 23038.1,
+              "low": 23017.75,
+              "close": 23018.1,
+              "volume": 0
+            },
+            {
+              "time": 1792557180,
+              "timeIST": "10:03:00",
+              "open": 23019,
+              "high": 23019.8,
+              "low": 22997.25,
+              "close": 22998,
+              "volume": 0
+            },
+            {
+              "time": 1792557240,
+              "timeIST": "10:04:00",
+              "open": 22998.55,
+              "high": 23000.45,
+              "low": 22987.05,
+              "close": 22987.9,
+              "volume": 0
+            },
+            {
+              "time": 1792557300,
+              "timeIST": "10:05:00",
+              "open": 22989.05,
+              "high": 22989.05,
+              "low": 22969.1,
+              "close": 22979.6,
+              "volume": 0
+            },
+            {
+              "time": 1792557360,
+              "timeIST": "10:06:00",
+              "open": 22981.25,
+              "high": 22990.35,
+              "low": 22979.5,
+              "close": 22983.75,
+              "volume": 0
+            },
+            {
+              "time": 1792557420,
+              "timeIST": "10:07:00",
+              "open": 22984.95,
+              "high": 22984.95,
+              "low": 22962.6,
+              "close": 22962.8,
+              "volume": 0
+            },
+            {
+              "time": 1792557480,
+              "timeIST": "10:08:00",
+              "open": 22963.45,
+              "high": 22970,
+              "low": 22950.9,
+              "close": 22969.15,
+              "volume": 0
+            },
+            {
+              "time": 1792557540,
+              "timeIST": "10:09:00",
+              "open": 22969.3,
+              "high": 22975.05,
+              "low": 22959.25,
+              "close": 22968.1,
+              "volume": 0
+            },
+            {
+              "time": 1792557600,
+              "timeIST": "10:10:00",
+              "open": 22967.4,
+              "high": 22974.15,
+              "low": 22961.6,
+              "close": 22962.55,
+              "volume": 0
+            },
+            {
+              "time": 1792557660,
+              "timeIST": "10:11:00",
+              "open": 22962.5,
+              "high": 22964.15,
+              "low": 22947.65,
+              "close": 22950.55,
+              "volume": 0
+            },
+            {
+              "time": 1792557720,
+              "timeIST": "10:12:00",
+              "open": 22949.7,
+              "high": 22953.95,
+              "low": 22924.35,
+              "close": 22927.95,
+              "volume": 0
+            },
+            {
+              "time": 1792557780,
+              "timeIST": "10:13:00",
+              "open": 22930.1,
+              "high": 22940.5,
+              "low": 22925.35,
+              "close": 22930.55,
+              "volume": 0
+            },
+            {
+              "time": 1792557840,
+              "timeIST": "10:14:00",
+              "open": 22932.05,
+              "high": 22951,
+              "low": 22930.55,
+              "close": 22949.15,
+              "volume": 0
+            }
+          ],
+          "extensionType": "PERIOD_B_LOW_EXPANSION",
+          "brokeIbHigh": false,
+          "brokeIbLow": false,
+          "closedAboveIb": false,
+          "closedBelowIb": false,
+          "reversalTrap": false,
+          "trapDescription": "Normal rotation",
+          "ruleRef": null
+        },
+        {
+          "period": "C",
+          "label": "Period C (First IB Extension / Morning Breakout)",
+          "startTime": "10:15:00",
+          "endTime": "10:45:00",
+          "candleCount": 11,
+          "open": 22950.25,
+          "high": 22969.6,
+          "low": 22922.6,
+          "close": 22934.65,
+          "rangePts": 47,
+          "changePts": -15.6,
+          "volume": 0,
+          "candles": [
+            {
+              "time": 1792557900,
+              "timeIST": "10:15:00",
+              "open": 22950.25,
+              "high": 22960,
+              "low": 22948.7,
+              "close": 22953.4,
+              "volume": 0
+            },
+            {
+              "time": 1792557960,
+              "timeIST": "10:16:00",
+              "open": 22954.3,
+              "high": 22969.35,
+              "low": 22953.95,
+              "close": 22964.7,
+              "volume": 0
+            },
+            {
+              "time": 1792558020,
+              "timeIST": "10:17:00",
+              "open": 22965.65,
+              "high": 22969.6,
+              "low": 22944,
+              "close": 22945.15,
+              "volume": 0
+            },
+            {
+              "time": 1792558080,
+              "timeIST": "10:18:00",
+              "open": 22945.5,
+              "high": 22948.7,
+              "low": 22940.85,
+              "close": 22944.25,
+              "volume": 0
+            },
+            {
+              "time": 1792558140,
+              "timeIST": "10:19:00",
+              "open": 22944.3,
+              "high": 22947.8,
+              "low": 22934.7,
+              "close": 22936.05,
+              "volume": 0
+            },
+            {
+              "time": 1792558200,
+              "timeIST": "10:20:00",
+              "open": 22936.3,
+              "high": 22936.7,
+              "low": 22922.6,
+              "close": 22931.2,
+              "volume": 0
+            },
+            {
+              "time": 1792558260,
+              "timeIST": "10:21:00",
+              "open": 22932.85,
+              "high": 22935.25,
+              "low": 22923.35,
+              "close": 22934.7,
+              "volume": 0
+            },
+            {
+              "time": 1792558320,
+              "timeIST": "10:22:00",
+              "open": 22937.15,
+              "high": 22943.45,
+              "low": 22936.6,
+              "close": 22942.7,
+              "volume": 0
+            },
+            {
+              "time": 1792558380,
+              "timeIST": "10:23:00",
+              "open": 22943.9,
+              "high": 22948.3,
+              "low": 22940.1,
+              "close": 22942.2,
+              "volume": 0
+            },
+            {
+              "time": 1792558440,
+              "timeIST": "10:24:00",
+              "open": 22943.5,
+              "high": 22948.4,
+              "low": 22939.85,
+              "close": 22941.45,
+              "volume": 0
+            },
+            {
+              "time": 1792558549,
+              "timeIST": "10:25:49",
+              "open": 22934.65,
+              "high": 22934.65,
+              "low": 22934.65,
+              "close": 22934.65,
+              "volume": 0
+            }
+          ],
+          "extensionType": "PERIOD_C_FAILED_BREAKOUT_TRAP",
+          "brokeIbHigh": false,
+          "brokeIbLow": true,
+          "closedAboveIb": false,
+          "closedBelowIb": false,
+          "reversalTrap": true,
+          "trapDescription": "Period C spiked past IB boundary but closed back inside. Institutional fade setup triggered targeting opposite morning extreme (Rule 4E: 90-100% reversal rate).",
+          "ruleRef": "Rule 4A (Period C breakout: 86.1% upside / 92.0% downside continuation win rate)"
+        },
+        {
+          "period": "D",
+          "label": "Period D (Continuation vs Absorption Test)",
+          "startTime": "10:45:00",
+          "endTime": "11:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "E",
+          "label": "Period E (Late-Morning Trend Extension)",
+          "startTime": "11:15:00",
+          "endTime": "11:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "F",
+          "label": "Period F (Vertical Downside/Upside Extension)",
+          "startTime": "11:45:00",
+          "endTime": "12:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "G",
+          "label": "Period G (Lunchtime Breakout vs Decay Filter)",
+          "startTime": "12:15:00",
+          "endTime": "12:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "H",
+          "label": "Period H (European Open Resumption)",
+          "startTime": "12:45:00",
+          "endTime": "13:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "I",
+          "label": "Period I (Early Afternoon Balance)",
+          "startTime": "13:15:00",
+          "endTime": "13:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "J",
+          "label": "Period J (Afternoon Pre-Drive Setup)",
+          "startTime": "13:45:00",
+          "endTime": "14:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "K",
+          "label": "Period K (Late-Day 85% Breakout Trigger)",
+          "startTime": "14:15:00",
+          "endTime": "14:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "L",
+          "label": "Period L (Session Extreme & Climax Drive)",
+          "startTime": "14:45:00",
+          "endTime": "15:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "M",
+          "label": "Period M (Closing Drive & Final Auction)",
+          "startTime": "15:15:00",
+          "endTime": "15:30:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        }
+      ],
+      "candlePatterns": [
+        {
+          "timeIST": "09:40:00",
+          "type": "BEARISH_LIQUIDITY_SWEEP_BSL",
+          "price": 23120.9,
+          "direction": "BEARISH_REVERSAL",
+          "description": "Smart money swept Buy-Side Liquidity (BSL) above swing high, rejected immediately with long upper shadow (7.8 pts), closing back inside range.",
+          "actionableRule": "Rule 11D: Enter Short / Buy PE with SL at sweep candle high; target opposite morning extreme."
+        },
+        {
+          "timeIST": "09:49:00",
+          "type": "INSIDE_BAR_BEARISH_EXPANSION",
+          "price": 23057.95,
+          "direction": "BEARISH_CONTINUATION",
+          "description": "Bearish expansion breakdown out of Inside Bar squeeze structure.",
+          "actionableRule": "Rule 9B: Momentum continuation scalp in breakdown direction."
+        },
+        {
+          "timeIST": "09:55:00",
+          "type": "INSIDE_BAR_BULLISH_EXPANSION",
+          "price": 23035.65,
+          "direction": "BULLISH_CONTINUATION",
+          "description": "Bullish expansion break out of Inside Bar squeeze structure.",
+          "actionableRule": "Rule 9B: Momentum continuation scalp in breakout direction (57.3% win rate on Nifty)."
+        },
+        {
+          "timeIST": "10:11:00",
+          "type": "INSIDE_BAR_BEARISH_EXPANSION",
+          "price": 22950.55,
+          "direction": "BEARISH_CONTINUATION",
+          "description": "Bearish expansion breakdown out of Inside Bar squeeze structure.",
+          "actionableRule": "Rule 9B: Momentum continuation scalp in breakdown direction."
+        },
+        {
+          "timeIST": "10:13:00",
+          "type": "BULLISH_LIQUIDITY_SWEEP_SSL",
+          "price": 22925.35,
+          "direction": "BULLISH_REVERSAL",
+          "description": "Smart money swept Sell-Side Liquidity (SSL) below swing low, printed a Hammer rejection (4.8 pts wick), closing back above support.",
+          "actionableRule": "Rule 11D: Enter Long / Buy CE with SL at sweep candle low; target opposite morning extreme."
+        },
+        {
+          "timeIST": "10:21:00",
+          "type": "BULLISH_LIQUIDITY_SWEEP_SSL",
+          "price": 22923.35,
+          "direction": "BULLISH_REVERSAL",
+          "description": "Smart money swept Sell-Side Liquidity (SSL) below swing low, printed a Hammer rejection (9.5 pts wick), closing back above support.",
+          "actionableRule": "Rule 11D: Enter Long / Buy CE with SL at sweep candle low; target opposite morning extreme."
+        },
+        {
+          "timeIST": "10:22:00",
+          "type": "INSIDE_BAR_BULLISH_EXPANSION",
+          "price": 22942.7,
+          "direction": "BULLISH_CONTINUATION",
+          "description": "Bullish expansion break out of Inside Bar squeeze structure.",
+          "actionableRule": "Rule 9B: Momentum continuation scalp in breakout direction (57.3% win rate on Nifty)."
+        }
+      ]
     },
     "banknifty": {
-      "summary": {},
-      "tpoPeriods": [],
-      "candlePatterns": []
+      "summary": {
+        "openPrice": 55702.6,
+        "closePrice": 55396.9,
+        "changePts": -305.7,
+        "changePct": -0.55,
+        "dayHigh": 55866.55,
+        "dayLow": 55301.05,
+        "totalRange": 565.5,
+        "ibHigh": 55866.55,
+        "ibLow": 55301.05,
+        "ibRange": 565.5,
+        "dayType": "NORMAL_DAY",
+        "periodC": {
+          "brokeHigh": false,
+          "brokeLow": false,
+          "close": 55396.9,
+          "closedAboveIB": false,
+          "closedBelowIB": false
+        },
+        "periodG": {
+          "close": null,
+          "closedAboveIB": null,
+          "closedBelowIB": null
+        },
+        "sessionExtremes": {
+          "hodTime": "09:36:00",
+          "lodTime": "10:12:00"
+        }
+      },
+      "tpoPeriods": [
+        {
+          "period": "A",
+          "label": "Period A (Morning Auction & Initial Extreme)",
+          "startTime": "09:15:00",
+          "endTime": "09:45:00",
+          "candleCount": 30,
+          "open": 55702.6,
+          "high": 55866.55,
+          "low": 55595.8,
+          "close": 55801,
+          "rangePts": 270.75,
+          "changePts": 98.4,
+          "volume": 0,
+          "candles": [
+            {
+              "time": 1792554300,
+              "timeIST": "09:15:00",
+              "open": 55702.6,
+              "high": 55705.3,
+              "low": 55602.3,
+              "close": 55687.95,
+              "volume": 0
+            },
+            {
+              "time": 1792554360,
+              "timeIST": "09:16:00",
+              "open": 55690.2,
+              "high": 55775,
+              "low": 55690.2,
+              "close": 55700.25,
+              "volume": 0
+            },
+            {
+              "time": 1792554420,
+              "timeIST": "09:17:00",
+              "open": 55699.55,
+              "high": 55727.75,
+              "low": 55670.35,
+              "close": 55696.75,
+              "volume": 0
+            },
+            {
+              "time": 1792554480,
+              "timeIST": "09:18:00",
+              "open": 55693.15,
+              "high": 55702.15,
+              "low": 55610.85,
+              "close": 55613.3,
+              "volume": 0
+            },
+            {
+              "time": 1792554540,
+              "timeIST": "09:19:00",
+              "open": 55613.75,
+              "high": 55628.65,
+              "low": 55595.8,
+              "close": 55624.9,
+              "volume": 0
+            },
+            {
+              "time": 1792554600,
+              "timeIST": "09:20:00",
+              "open": 55621.65,
+              "high": 55670.7,
+              "low": 55610.8,
+              "close": 55620.3,
+              "volume": 0
+            },
+            {
+              "time": 1792554660,
+              "timeIST": "09:21:00",
+              "open": 55620.5,
+              "high": 55702.05,
+              "low": 55620.5,
+              "close": 55665.75,
+              "volume": 0
+            },
+            {
+              "time": 1792554720,
+              "timeIST": "09:22:00",
+              "open": 55668.3,
+              "high": 55704.4,
+              "low": 55645.2,
+              "close": 55691.2,
+              "volume": 0
+            },
+            {
+              "time": 1792554780,
+              "timeIST": "09:23:00",
+              "open": 55698.2,
+              "high": 55710.7,
+              "low": 55664.55,
+              "close": 55680.2,
+              "volume": 0
+            },
+            {
+              "time": 1792554840,
+              "timeIST": "09:24:00",
+              "open": 55673.1,
+              "high": 55679.75,
+              "low": 55640.2,
+              "close": 55677.45,
+              "volume": 0
+            },
+            {
+              "time": 1792554900,
+              "timeIST": "09:25:00",
+              "open": 55681.7,
+              "high": 55712.6,
+              "low": 55678.75,
+              "close": 55705.3,
+              "volume": 0
+            },
+            {
+              "time": 1792554960,
+              "timeIST": "09:26:00",
+              "open": 55707.85,
+              "high": 55753.3,
+              "low": 55706.35,
+              "close": 55734.75,
+              "volume": 0
+            },
+            {
+              "time": 1792555020,
+              "timeIST": "09:27:00",
+              "open": 55736.35,
+              "high": 55751.75,
+              "low": 55721.45,
+              "close": 55722.35,
+              "volume": 0
+            },
+            {
+              "time": 1792555080,
+              "timeIST": "09:28:00",
+              "open": 55722.75,
+              "high": 55745.25,
+              "low": 55709.2,
+              "close": 55738.45,
+              "volume": 0
+            },
+            {
+              "time": 1792555140,
+              "timeIST": "09:29:00",
+              "open": 55744.2,
+              "high": 55766,
+              "low": 55732.8,
+              "close": 55755.1,
+              "volume": 0
+            },
+            {
+              "time": 1792555200,
+              "timeIST": "09:30:00",
+              "open": 55756.6,
+              "high": 55793.65,
+              "low": 55746.8,
+              "close": 55786.95,
+              "volume": 0
+            },
+            {
+              "time": 1792555260,
+              "timeIST": "09:31:00",
+              "open": 55786.5,
+              "high": 55838.4,
+              "low": 55783.65,
+              "close": 55798.6,
+              "volume": 0
+            },
+            {
+              "time": 1792555320,
+              "timeIST": "09:32:00",
+              "open": 55796.55,
+              "high": 55808,
+              "low": 55758.55,
+              "close": 55803.6,
+              "volume": 0
+            },
+            {
+              "time": 1792555380,
+              "timeIST": "09:33:00",
+              "open": 55799.3,
+              "high": 55822.7,
+              "low": 55788.5,
+              "close": 55796.95,
+              "volume": 0
+            },
+            {
+              "time": 1792555440,
+              "timeIST": "09:34:00",
+              "open": 55796.25,
+              "high": 55828.9,
+              "low": 55796.2,
+              "close": 55822.25,
+              "volume": 0
+            },
+            {
+              "time": 1792555500,
+              "timeIST": "09:35:00",
+              "open": 55821.65,
+              "high": 55852.45,
+              "low": 55806.8,
+              "close": 55843.1,
+              "volume": 0
+            },
+            {
+              "time": 1792555560,
+              "timeIST": "09:36:00",
+              "open": 55846.8,
+              "high": 55866.55,
+              "low": 55843,
+              "close": 55848.1,
+              "volume": 0
+            },
+            {
+              "time": 1792555620,
+              "timeIST": "09:37:00",
+              "open": 55848.45,
+              "high": 55851.35,
+              "low": 55806.6,
+              "close": 55822.45,
+              "volume": 0
+            },
+            {
+              "time": 1792555680,
+              "timeIST": "09:38:00",
+              "open": 55823.4,
+              "high": 55825.3,
+              "low": 55795.3,
+              "close": 55825.3,
+              "volume": 0
+            },
+            {
+              "time": 1792555740,
+              "timeIST": "09:39:00",
+              "open": 55826.6,
+              "high": 55860.85,
+              "low": 55822.3,
+              "close": 55846.8,
+              "volume": 0
+            },
+            {
+              "time": 1792555800,
+              "timeIST": "09:40:00",
+              "open": 55847.05,
+              "high": 55858.7,
+              "low": 55833.2,
+              "close": 55838.65,
+              "volume": 0
+            },
+            {
+              "time": 1792555860,
+              "timeIST": "09:41:00",
+              "open": 55843.7,
+              "high": 55848.2,
+              "low": 55828.15,
+              "close": 55841.05,
+              "volume": 0
+            },
+            {
+              "time": 1792555920,
+              "timeIST": "09:42:00",
+              "open": 55838.75,
+              "high": 55848.65,
+              "low": 55819.05,
+              "close": 55829.95,
+              "volume": 0
+            },
+            {
+              "time": 1792555980,
+              "timeIST": "09:43:00",
+              "open": 55830.6,
+              "high": 55834.25,
+              "low": 55804.8,
+              "close": 55810.4,
+              "volume": 0
+            },
+            {
+              "time": 1792556040,
+              "timeIST": "09:44:00",
+              "open": 55812.65,
+              "high": 55818.15,
+              "low": 55793.35,
+              "close": 55801,
+              "volume": 0
+            }
+          ],
+          "extensionType": "INITIAL_AUCTION",
+          "brokeIbHigh": false,
+          "brokeIbLow": false,
+          "closedAboveIb": false,
+          "closedBelowIb": false,
+          "reversalTrap": false,
+          "trapDescription": "Normal rotation",
+          "ruleRef": "Rule 5A (Period A establishes Day High/Low in 62.6% of Nifty sessions)"
+        },
+        {
+          "period": "B",
+          "label": "Period B (Initial Balance Completion)",
+          "startTime": "09:45:00",
+          "endTime": "10:15:00",
+          "candleCount": 30,
+          "open": 55799.95,
+          "high": 55803.25,
+          "low": 55301.05,
+          "close": 55397.9,
+          "rangePts": 502.2,
+          "changePts": -402.05,
+          "volume": 0,
+          "candles": [
+            {
+              "time": 1792556100,
+              "timeIST": "09:45:00",
+              "open": 55799.95,
+              "high": 55803.25,
+              "low": 55747.7,
+              "close": 55750.45,
+              "volume": 0
+            },
+            {
+              "time": 1792556160,
+              "timeIST": "09:46:00",
+              "open": 55755.9,
+              "high": 55755.9,
+              "low": 55708.55,
+              "close": 55722.95,
+              "volume": 0
+            },
+            {
+              "time": 1792556220,
+              "timeIST": "09:47:00",
+              "open": 55726,
+              "high": 55727.1,
+              "low": 55705.15,
+              "close": 55718.2,
+              "volume": 0
+            },
+            {
+              "time": 1792556280,
+              "timeIST": "09:48:00",
+              "open": 55723.15,
+              "high": 55731.05,
+              "low": 55704.5,
+              "close": 55706.85,
+              "volume": 0
+            },
+            {
+              "time": 1792556340,
+              "timeIST": "09:49:00",
+              "open": 55707.3,
+              "high": 55707.3,
+              "low": 55661.85,
+              "close": 55673.2,
+              "volume": 0
+            },
+            {
+              "time": 1792556400,
+              "timeIST": "09:50:00",
+              "open": 55675,
+              "high": 55675,
+              "low": 55652.3,
+              "close": 55662.25,
+              "volume": 0
+            },
+            {
+              "time": 1792556460,
+              "timeIST": "09:51:00",
+              "open": 55663.4,
+              "high": 55665.75,
+              "low": 55604.65,
+              "close": 55650.8,
+              "volume": 0
+            },
+            {
+              "time": 1792556520,
+              "timeIST": "09:52:00",
+              "open": 55652.15,
+              "high": 55659.35,
+              "low": 55624.55,
+              "close": 55628.75,
+              "volume": 0
+            },
+            {
+              "time": 1792556580,
+              "timeIST": "09:53:00",
+              "open": 55630.9,
+              "high": 55630.9,
+              "low": 55597.9,
+              "close": 55622.55,
+              "volume": 0
+            },
+            {
+              "time": 1792556640,
+              "timeIST": "09:54:00",
+              "open": 55622.5,
+              "high": 55625.35,
+              "low": 55598.95,
+              "close": 55613.9,
+              "volume": 0
+            },
+            {
+              "time": 1792556700,
+              "timeIST": "09:55:00",
+              "open": 55610.4,
+              "high": 55626.8,
+              "low": 55592.75,
+              "close": 55610.4,
+              "volume": 0
+            },
+            {
+              "time": 1792556760,
+              "timeIST": "09:56:00",
+              "open": 55609.4,
+              "high": 55609.8,
+              "low": 55576.85,
+              "close": 55590.95,
+              "volume": 0
+            },
+            {
+              "time": 1792556820,
+              "timeIST": "09:57:00",
+              "open": 55590.35,
+              "high": 55632.35,
+              "low": 55580.65,
+              "close": 55632.35,
+              "volume": 0
+            },
+            {
+              "time": 1792556880,
+              "timeIST": "09:58:00",
+              "open": 55630.05,
+              "high": 55630.85,
+              "low": 55591.15,
+              "close": 55591.95,
+              "volume": 0
+            },
+            {
+              "time": 1792556940,
+              "timeIST": "09:59:00",
+              "open": 55591.1,
+              "high": 55595.4,
+              "low": 55563.45,
+              "close": 55565.4,
+              "volume": 0
+            },
+            {
+              "time": 1792557000,
+              "timeIST": "10:00:00",
+              "open": 55559.35,
+              "high": 55562.75,
+              "low": 55519.1,
+              "close": 55525,
+              "volume": 0
+            },
+            {
+              "time": 1792557060,
+              "timeIST": "10:01:00",
+              "open": 55529.15,
+              "high": 55598.1,
+              "low": 55522.5,
+              "close": 55593.2,
+              "volume": 0
+            },
+            {
+              "time": 1792557120,
+              "timeIST": "10:02:00",
+              "open": 55595.6,
+              "high": 55599.8,
+              "low": 55545.85,
+              "close": 55545.85,
+              "volume": 0
+            },
+            {
+              "time": 1792557180,
+              "timeIST": "10:03:00",
+              "open": 55548.55,
+              "high": 55549.25,
+              "low": 55502.25,
+              "close": 55509.6,
+              "volume": 0
+            },
+            {
+              "time": 1792557240,
+              "timeIST": "10:04:00",
+              "open": 55510.85,
+              "high": 55519.6,
+              "low": 55500.15,
+              "close": 55500.15,
+              "volume": 0
+            },
+            {
+              "time": 1792557300,
+              "timeIST": "10:05:00",
+              "open": 55503.7,
+              "high": 55507.2,
+              "low": 55456.45,
+              "close": 55485.35,
+              "volume": 0
+            },
+            {
+              "time": 1792557360,
+              "timeIST": "10:06:00",
+              "open": 55486.9,
+              "high": 55499.65,
+              "low": 55477.7,
+              "close": 55483.05,
+              "volume": 0
+            },
+            {
+              "time": 1792557420,
+              "timeIST": "10:07:00",
+              "open": 55482.15,
+              "high": 55490.15,
+              "low": 55447.7,
+              "close": 55451.7,
+              "volume": 0
+            },
+            {
+              "time": 1792557480,
+              "timeIST": "10:08:00",
+              "open": 55451.35,
+              "high": 55462.2,
+              "low": 55416.7,
+              "close": 55461.5,
+              "volume": 0
+            },
+            {
+              "time": 1792557540,
+              "timeIST": "10:09:00",
+              "open": 55462.6,
+              "high": 55462.6,
+              "low": 55432.85,
+              "close": 55449.65,
+              "volume": 0
+            },
+            {
+              "time": 1792557600,
+              "timeIST": "10:10:00",
+              "open": 55457.9,
+              "high": 55478.15,
+              "low": 55426.45,
+              "close": 55426.8,
+              "volume": 0
+            },
+            {
+              "time": 1792557660,
+              "timeIST": "10:11:00",
+              "open": 55432.7,
+              "high": 55432.7,
+              "low": 55400.35,
+              "close": 55403.05,
+              "volume": 0
+            },
+            {
+              "time": 1792557720,
+              "timeIST": "10:12:00",
+              "open": 55404.6,
+              "high": 55407.85,
+              "low": 55301.05,
+              "close": 55321.3,
+              "volume": 0
+            },
+            {
+              "time": 1792557780,
+              "timeIST": "10:13:00",
+              "open": 55324.95,
+              "high": 55352.05,
+              "low": 55322,
+              "close": 55346.3,
+              "volume": 0
+            },
+            {
+              "time": 1792557840,
+              "timeIST": "10:14:00",
+              "open": 55344.8,
+              "high": 55400.25,
+              "low": 55341.85,
+              "close": 55397.9,
+              "volume": 0
+            }
+          ],
+          "extensionType": "PERIOD_B_LOW_EXPANSION",
+          "brokeIbHigh": false,
+          "brokeIbLow": false,
+          "closedAboveIb": false,
+          "closedBelowIb": false,
+          "reversalTrap": false,
+          "trapDescription": "Normal rotation",
+          "ruleRef": null
+        },
+        {
+          "period": "C",
+          "label": "Period C (First IB Extension / Morning Breakout)",
+          "startTime": "10:15:00",
+          "endTime": "10:45:00",
+          "candleCount": 11,
+          "open": 55399.85,
+          "high": 55459.65,
+          "low": 55355.8,
+          "close": 55396.9,
+          "rangePts": 103.85,
+          "changePts": -2.95,
+          "volume": 0,
+          "candles": [
+            {
+              "time": 1792557900,
+              "timeIST": "10:15:00",
+              "open": 55399.85,
+              "high": 55415.45,
+              "low": 55388.9,
+              "close": 55403.6,
+              "volume": 0
+            },
+            {
+              "time": 1792557960,
+              "timeIST": "10:16:00",
+              "open": 55405.25,
+              "high": 55459.65,
+              "low": 55403.45,
+              "close": 55432.6,
+              "volume": 0
+            },
+            {
+              "time": 1792558020,
+              "timeIST": "10:17:00",
+              "open": 55438.8,
+              "high": 55451.45,
+              "low": 55391.9,
+              "close": 55395.75,
+              "volume": 0
+            },
+            {
+              "time": 1792558080,
+              "timeIST": "10:18:00",
+              "open": 55399.4,
+              "high": 55408.85,
+              "low": 55383.1,
+              "close": 55392.45,
+              "volume": 0
+            },
+            {
+              "time": 1792558140,
+              "timeIST": "10:19:00",
+              "open": 55392.8,
+              "high": 55407.7,
+              "low": 55371.7,
+              "close": 55405.55,
+              "volume": 0
+            },
+            {
+              "time": 1792558200,
+              "timeIST": "10:20:00",
+              "open": 55405.25,
+              "high": 55405.65,
+              "low": 55373.1,
+              "close": 55389.8,
+              "volume": 0
+            },
+            {
+              "time": 1792558260,
+              "timeIST": "10:21:00",
+              "open": 55393.45,
+              "high": 55393.45,
+              "low": 55355.8,
+              "close": 55382.4,
+              "volume": 0
+            },
+            {
+              "time": 1792558320,
+              "timeIST": "10:22:00",
+              "open": 55385.9,
+              "high": 55403.7,
+              "low": 55379.8,
+              "close": 55395.55,
+              "volume": 0
+            },
+            {
+              "time": 1792558380,
+              "timeIST": "10:23:00",
+              "open": 55397.1,
+              "high": 55415.25,
+              "low": 55395.95,
+              "close": 55404.1,
+              "volume": 0
+            },
+            {
+              "time": 1792558440,
+              "timeIST": "10:24:00",
+              "open": 55402.95,
+              "high": 55416.65,
+              "low": 55400.9,
+              "close": 55408.75,
+              "volume": 0
+            },
+            {
+              "time": 1792558541,
+              "timeIST": "10:25:41",
+              "open": 55396.9,
+              "high": 55396.9,
+              "low": 55396.9,
+              "close": 55396.9,
+              "volume": 0
+            }
+          ],
+          "extensionType": "INSIDE_PREV_PERIOD",
+          "brokeIbHigh": false,
+          "brokeIbLow": false,
+          "closedAboveIb": false,
+          "closedBelowIb": false,
+          "reversalTrap": false,
+          "trapDescription": "Normal rotation",
+          "ruleRef": "Rule 4A (Period C breakout: 86.1% upside / 92.0% downside continuation win rate)"
+        },
+        {
+          "period": "D",
+          "label": "Period D (Continuation vs Absorption Test)",
+          "startTime": "10:45:00",
+          "endTime": "11:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "E",
+          "label": "Period E (Late-Morning Trend Extension)",
+          "startTime": "11:15:00",
+          "endTime": "11:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "F",
+          "label": "Period F (Vertical Downside/Upside Extension)",
+          "startTime": "11:45:00",
+          "endTime": "12:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "G",
+          "label": "Period G (Lunchtime Breakout vs Decay Filter)",
+          "startTime": "12:15:00",
+          "endTime": "12:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "H",
+          "label": "Period H (European Open Resumption)",
+          "startTime": "12:45:00",
+          "endTime": "13:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "I",
+          "label": "Period I (Early Afternoon Balance)",
+          "startTime": "13:15:00",
+          "endTime": "13:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "J",
+          "label": "Period J (Afternoon Pre-Drive Setup)",
+          "startTime": "13:45:00",
+          "endTime": "14:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "K",
+          "label": "Period K (Late-Day 85% Breakout Trigger)",
+          "startTime": "14:15:00",
+          "endTime": "14:45:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "L",
+          "label": "Period L (Session Extreme & Climax Drive)",
+          "startTime": "14:45:00",
+          "endTime": "15:15:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        },
+        {
+          "period": "M",
+          "label": "Period M (Closing Drive & Final Auction)",
+          "startTime": "15:15:00",
+          "endTime": "15:30:00",
+          "candleCount": 0,
+          "high": null,
+          "low": null,
+          "open": null,
+          "close": null,
+          "rangePts": 0,
+          "volume": 0,
+          "extensionStatus": "NO_DATA"
+        }
+      ],
+      "candlePatterns": [
+        {
+          "timeIST": "09:36:00",
+          "type": "BEARISH_LIQUIDITY_SWEEP_BSL",
+          "price": 55866.55,
+          "direction": "BEARISH_REVERSAL",
+          "description": "Smart money swept Buy-Side Liquidity (BSL) above swing high, rejected immediately with long upper shadow (18.5 pts), closing back inside range.",
+          "actionableRule": "Rule 11D: Enter Short / Buy PE with SL at sweep candle high; target opposite morning extreme."
+        },
+        {
+          "timeIST": "09:59:00",
+          "type": "INSIDE_BAR_BEARISH_EXPANSION",
+          "price": 55565.4,
+          "direction": "BEARISH_CONTINUATION",
+          "description": "Bearish expansion breakdown out of Inside Bar squeeze structure.",
+          "actionableRule": "Rule 9B: Momentum continuation scalp in breakdown direction."
+        },
+        {
+          "timeIST": "10:07:00",
+          "type": "INSIDE_BAR_BEARISH_EXPANSION",
+          "price": 55451.7,
+          "direction": "BEARISH_CONTINUATION",
+          "description": "Bearish expansion breakdown out of Inside Bar squeeze structure.",
+          "actionableRule": "Rule 9B: Momentum continuation scalp in breakdown direction."
+        }
+      ]
     }
   },
   "stockUniverseForensics": {
-    "totalEvaluated": 31,
-    "winCount": 31,
+    "totalEvaluated": 0,
+    "winCount": 0,
     "mistakeCount": 0,
     "winRatePct": 100,
     "stockLearnings": [
       "STOCK CONFLUENCE: All evaluated stock trades aligned with morning institutional demand floors; zero negative drift breaches."
     ],
-    "evaluations": [
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "LT",
-        "predictedLevel": 3647.98,
-        "finalClose": 3661.9,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹3647.98 defended successfully. Spot closed at ₹3661.9 (+13.92 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "ICICIBANK",
-        "predictedLevel": 1378.39,
-        "finalClose": 1381,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹1378.39 defended successfully. Spot closed at ₹1381 (+2.61 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "BANKNIFTY",
-        "predictedLevel": 55706.92,
-        "finalClose": 55488.1,
-        "result": "WIN_LIQUIDATION_CONFIRMED",
-        "isWin": true,
-        "detail": "Institutional trap confirmed below ₹55706.92. Sellers dominated down to ₹55488.1.",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "SUNPHARMA",
-        "predictedLevel": 1740.07,
-        "finalClose": 1743,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹1740.07 defended successfully. Spot closed at ₹1743 (+2.93 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "NIFTY",
-        "predictedLevel": 22970.7,
-        "finalClose": 22888.95,
-        "result": "WIN_LIQUIDATION_CONFIRMED",
-        "isWin": true,
-        "detail": "Institutional trap confirmed below ₹22970.7. Sellers dominated down to ₹22888.95.",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "AXISBANK",
-        "predictedLevel": 1233.14,
-        "finalClose": 1236,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹1233.14 defended successfully. Spot closed at ₹1236 (+2.86 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "TATASTEEL",
-        "predictedLevel": 173.69,
-        "finalClose": 174.04,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹173.69 defended successfully. Spot closed at ₹174.04 (+0.35 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "INFY",
-        "predictedLevel": 1134.95,
-        "finalClose": 1130.7,
-        "result": "WIN_LIQUIDATION_CONFIRMED",
-        "isWin": true,
-        "detail": "Institutional trap confirmed below ₹1134.95. Sellers dominated down to ₹1130.7.",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "JSWSTEEL",
-        "predictedLevel": 1239.88,
-        "finalClose": 1241.3,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹1239.88 defended successfully. Spot closed at ₹1241.3 (+1.42 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "BHARTIARTL",
-        "predictedLevel": 1871.45,
-        "finalClose": 1875.2,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹1871.45 defended successfully. Spot closed at ₹1875.2 (+3.75 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "ITC",
-        "predictedLevel": 261.21,
-        "finalClose": 260.8,
-        "result": "WIN_LIQUIDATION_CONFIRMED",
-        "isWin": true,
-        "detail": "Institutional trap confirmed below ₹261.21. Sellers dominated down to ₹260.8.",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "MARUTI",
-        "predictedLevel": 12437.2,
-        "finalClose": 12400,
-        "result": "WIN_LIQUIDATION_CONFIRMED",
-        "isWin": true,
-        "detail": "Institutional trap confirmed below ₹12437.2. Sellers dominated down to ₹12400.",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "TCS",
-        "predictedLevel": 2459.51,
-        "finalClose": 2460.9,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹2459.51 defended successfully. Spot closed at ₹2460.9 (+1.39 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "KOTAKBANK",
-        "predictedLevel": 444.95,
-        "finalClose": 442.3,
-        "result": "WIN_LIQUIDATION_CONFIRMED",
-        "isWin": true,
-        "detail": "Institutional trap confirmed below ₹444.95. Sellers dominated down to ₹442.3.",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "SBIN",
-        "predictedLevel": 971.75,
-        "finalClose": 973.7,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹971.75 defended successfully. Spot closed at ₹973.7 (+1.95 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "RELIANCE",
-        "predictedLevel": 1198.39,
-        "finalClose": 1202,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹1198.39 defended successfully. Spot closed at ₹1202 (+3.61 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "HDFCBANK",
-        "predictedLevel": 709.86,
-        "finalClose": 712,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹709.86 defended successfully. Spot closed at ₹712 (+2.14 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "BAJFINANCE",
-        "predictedLevel": 954.48,
-        "finalClose": 957.35,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹954.48 defended successfully. Spot closed at ₹957.35 (+2.87 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "DARK_POOL_SIGNATURE",
-        "symbol": "TATAMOTORS",
-        "predictedLevel": 277.17,
-        "finalClose": 278,
-        "result": "WIN_SUPPORT_HELD",
-        "isWin": true,
-        "detail": "Institutional support at ₹277.17 defended successfully. Spot closed at ₹278 (+0.83 pts).",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "HDFCBANK",
-        "predictedLevel": "Delivery 69%",
-        "finalClose": 712,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (69%) held tight range (1.05%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "INFY",
-        "predictedLevel": "Delivery 65%",
-        "finalClose": 1130.7,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (65%) held tight range (0.65%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "ITC",
-        "predictedLevel": "Delivery 82%",
-        "finalClose": 260.8,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (82%) held tight range (1.15%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "TATAMOTORS",
-        "predictedLevel": "Delivery 78%",
-        "finalClose": 278,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (78%) held tight range (0.75%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "AXISBANK",
-        "predictedLevel": "Delivery 76%",
-        "finalClose": 1236,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (76%) held tight range (0.55%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "TCS",
-        "predictedLevel": "Delivery 84%",
-        "finalClose": 2460.9,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (84%) held tight range (1.35%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "SBIN",
-        "predictedLevel": "Delivery 67%",
-        "finalClose": 973.7,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (67%) held tight range (0.85%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "LT",
-        "predictedLevel": "Delivery 80%",
-        "finalClose": 3661.9,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (80%) held tight range (0.95%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "ICICIBANK",
-        "predictedLevel": "Delivery 86%",
-        "finalClose": 1381,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (86%) held tight range (1.55%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "SUNPHARMA",
-        "predictedLevel": "Delivery 74%",
-        "finalClose": 1743,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (74%) held tight range (1.55%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "STEALTH_DEMAT_HOARDING",
-        "symbol": "JSWSTEEL",
-        "predictedLevel": "Delivery 72%",
-        "finalClose": 1241.3,
-        "result": "WIN_STEALTH_ACCUMULATION_CONFIRMED",
-        "isWin": true,
-        "detail": "High delivery absorption (72%) held tight range (1.35%). Coiled for T+1 markup.",
-        "lesson": ""
-      },
-      {
-        "category": "RETAIL_TRAP_DIVERGENCE",
-        "symbol": "NIFTY / BANKNIFTY",
-        "predictedLevel": "Retail Trap Index: 88/100",
-        "finalClose": 22888.95,
-        "result": "WIN_INSTITUTIONAL_DRAG_VERIFIED",
-        "isWin": true,
-        "detail": "FII net short positioning (-84,250 contracts) successfully capped index rallies. Retail call buyers trapped.",
-        "lesson": ""
-      }
-    ]
+    "evaluations": []
   },
   "discoveredNuances": [
     {
       "domain": "TPO Initial Balance Expansion (Period C)",
-      "finding": "Period C stayed inside IB",
+      "finding": "PERIOD_C_FAILED_BREAKOUT_TRAP",
       "ruleLearned": "If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%."
     },
     {
       "domain": "Period A Extreme Retention (Rule 5A)",
-      "finding": "Session Low printed at 09:45 AM (Period A LOD ₹23116.35) and held intact all day.",
+      "finding": "Session Low printed at 09:45 AM (Period A LOD ₹22922.6) and held intact all day.",
       "ruleLearned": "Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor."
     },
     {
       "domain": "Liquidity Sweep & Reversal Attribution",
-      "finding": "0 liquidity sweeps detected on intraday 1-minute tape.",
+      "finding": "7 liquidity sweeps detected on intraday 1-minute tape.",
       "ruleLearned": "Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through."
     }
   ]

@@ -144,24 +144,27 @@ export function computeOrderBlockFlowMatrix() {
   const pcrMap = new Map();
   (pcrData.stocks || []).forEach(s => pcrMap.set(s.symbol, s));
 
-  // Dynamically extract NIFTY, BANKNIFTY, SENSEX, CRUDEOIL benchmarks
-  const now = new Date();
-  const todayStr = `${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}`;
-  const todaySignals = readJSON(path.join(DATA_DIR, `historical_signals_${todayStr}.json`), []);
-  const latestBn = [...todaySignals].reverse().find(s => s.symbol === 'BANKNIFTY' && s.spotPrice);
-  const latestNifty = [...todaySignals].reverse().find(s => s.symbol === 'NIFTY' && s.spotPrice);
+  // Dynamically extract NIFTY, BANKNIFTY, SENSEX, CRUDEOIL benchmarks from live price feeds
+  const niftyLive = livePrices['NIFTY'] || {};
+  const bnLive = livePrices['BANKNIFTY'] || {};
+  const sensexLive = livePrices['SENSEX'] || {};
+  const crudeLive = livePrices['CRUDEOIL'] || {};
 
-  const niftySpot = +(gexSnapshot.NIFTY?.spotPrice || latestNifty?.spotPrice || marketReport.niftyClose?.close || 22888.95).toFixed(2);
-  const niftyChangePct = +(gexSnapshot.NIFTY?.changePct != null ? gexSnapshot.NIFTY.changePct : (marketReport.niftyClose?.changePct != null ? marketReport.niftyClose.changePct : -1.11)).toFixed(2);
+  const niftySpot = +(niftyLive.price || 22933.35).toFixed(2);
+  const niftyPrev = niftyLive.prevClose || 22888.95;
+  const niftyChangePct = +(niftyLive.dayChangePct != null ? niftyLive.dayChangePct : (((niftySpot - niftyPrev) / niftyPrev) * 100)).toFixed(2);
 
-  const bnSpot = +(latestBn?.spotPrice || marketReport.bankniftyClose?.close || 55602.50).toFixed(2);
-  const bnChangePct = +(marketReport.bankniftyClose?.changePct != null ? marketReport.bankniftyClose.changePct : 0.06).toFixed(2);
+  const bnSpot = +(bnLive.price || 55399.00).toFixed(2);
+  const bnPrev = bnLive.prevClose || 55488.10;
+  const bnChangePct = +(bnLive.dayChangePct != null ? bnLive.dayChangePct : (((bnSpot - bnPrev) / bnPrev) * 100)).toFixed(2);
 
-  const sensexSpot = +(gexSnapshot.SENSEX?.spotPrice || 71491.44).toFixed(2);
-  const sensexChangePct = +(gexSnapshot.SENSEX?.momentum?.day ? (gexSnapshot.SENSEX.momentum.day / sensexSpot * 100) : -0.21).toFixed(2);
+  const sensexSpot = +(sensexLive.price || 74268.31).toFixed(2);
+  const sensexPrev = sensexLive.prevClose || 73852.90;
+  const sensexChangePct = +(sensexLive.dayChangePct != null ? sensexLive.dayChangePct : (((sensexSpot - sensexPrev) / sensexPrev) * 100)).toFixed(2);
 
-  const crudeSpot = +(gexSnapshot.CRUDEOIL?.spotPrice || 8808.0).toFixed(2);
-  const crudeChangePct = +(gexSnapshot.CRUDEOIL?.momentum?.day ? (gexSnapshot.CRUDEOIL.momentum.day / crudeSpot * 100) : 0.31).toFixed(2);
+  const crudeRaw = crudeLive.price || 71.50;
+  const crudeSpot = +(crudeRaw < 500 ? crudeRaw * 84 : crudeRaw).toFixed(2);
+  const crudeChangePct = +(crudeLive.dayChangePct != null ? crudeLive.dayChangePct : 0.15).toFixed(2);
 
   const sectorAggregates = {};
   MACRO_SECTORS.forEach(sec => {
@@ -308,6 +311,7 @@ export function computeOrderBlockFlowMatrix() {
     const deltaStr = bias === 'BULL' ? `+${estDeltaLots}K` : `-${estDeltaLots}K`;
     const zLevel = +(spot * (bias === 'BULL' ? 0.9985 : 1.0015)).toFixed(2);
     const ruleLabel = bias === 'BULL' ? `ORDER BLOCK DEMAND` : `ORDER BLOCK SUPPLY`;
+    const rankStr = bias === 'BULL' ? `Bullish Selection` : `Bearish Selection`;
     let staircase = [];
 
     if (bias === 'BULL') {

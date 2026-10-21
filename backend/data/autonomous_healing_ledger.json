@@ -1,5 +1,13 @@
 [
   {
+    "timestamp": 1792558578941,
+    "istTime": "21/10/2026, 10:26:18 am",
+    "component": "⚡ Gamma & Order Flow",
+    "error": "Request timeout (>6000ms)",
+    "remedyAction": "Recalculated gamma orderflow & dealer exposure walls",
+    "status": "AUTO_RESOLVED"
+  },
+  {
     "timestamp": 1792557457956,
     "istTime": "21/10/2026, 10:07:37 am",
     "component": "HealthCheck",

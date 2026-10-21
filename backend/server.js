@@ -6470,7 +6470,7 @@ app.get('/api/algo/institutional-playbook/status', async (req, res) => {
 // ====================================================================
 app.get('/api/orderblock/flow-matrix', async (req, res) => {
   try {
-    const { getCachedOrderBlockFlowMatrix } = await import('./order_block_flow_engine.js');
+    const { getCachedOrderBlockFlowMatrix } = await import(`./order_block_flow_engine.js?v=${Date.now()}`);
     const force = req.query.force === 'true';
     const matrix = getCachedOrderBlockFlowMatrix(force);
     res.json({ success: true, ...matrix });
@@ -6481,7 +6481,7 @@ app.get('/api/orderblock/flow-matrix', async (req, res) => {
 
 app.post('/api/orderblock/flow-matrix/refresh', async (req, res) => {
   try {
-    const { getCachedOrderBlockFlowMatrix } = await import('./order_block_flow_engine.js');
+    const { getCachedOrderBlockFlowMatrix } = await import(`./order_block_flow_engine.js?v=${Date.now()}`);
     const matrix = getCachedOrderBlockFlowMatrix(true);
     res.json({ success: true, ...matrix });
   } catch (e) {

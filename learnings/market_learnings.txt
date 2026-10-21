@@ -92739,3 +92739,159 @@ AUTONOMOUS SESSION FORENSIC: 2026-10-20 (17:24:26 IST)
 * 212 F&O UNIVERSE CAPITAL CONCENTRATION: 10 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
 * INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
 ================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-21 ===
+- NIFTY: Day Type NORMAL_DAY | Range: 196.6 pts
+- BANKNIFTY: Day Type NORMAL_DAY | Range: 565.5 pts
+- Rule 5A: Period A Low held all day at 22924.35
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-21 (10:26:16 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22928.2 (-1.47%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 55383.7 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 32 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT SUPPLY COLLAPSE (CALL WRITING DRIVE):
+  - Insight: NIFTY First-Hour PCR drift collapsed to -7.85 indicating aggressive institutional Call writing. NIFTY closed -81.35 pts (-0.35%).
+  - Applied Rule: Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 09:40:00 (Midday) at 23120.9. Absolute LOD printed at 10:20:00 (Midday) at 22922.6.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 12 institutional rules
+* Auto-Learned Rules Added: 8 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-21
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22928.2 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹55383.7 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 220 F&O Assets
+* Extreme Vault Accumulation: 10 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 9 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Public Sector Banking (0 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> CUMMINSIND (Engines & Power Gen)
+    Action: BUY CUMMINSIND 4600 CE / Spot
+    Entry: ₹4612 | SL: ₹4563.38 (Risk: ₹9724/lot)
+    Target 1: ₹4689.79 (+₹15558/lot)
+    Target 2: ₹4748.14 (+₹27228/lot)
+    Win Rate: 66% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 49.8% of ATR with 84% Demat delivery. Smart money hoarding at Demand Floor (₹4586.9). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 💥 BREAKDOWN / FADE -> WIPRO (Information Technology)
+    Action: BUY WIPRO 182.5 PE / Short Spot
+    Entry: ₹182.14 | SL: ₹186.73 (Risk: ₹13770/lot)
+    Target 1: ₹174.8 (+₹22020/lot)
+    Target 2: ₹169.29 (+₹38550/lot)
+    Win Rate: 51% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹185.85) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[3] 💥 BREAKDOWN / FADE -> TATAELXSI (Information Technology)
+    Action: BUY TATAELXSI 3800 PE / Short Spot
+    Entry: ₹3790 | SL: ₹3887.84 (Risk: ₹12230/lot)
+    Target 1: ₹3633.46 (+₹19567/lot)
+    Target 2: ₹3516.05 (+₹34244/lot)
+    Win Rate: 51% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹3867.2) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 10 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================
+
+=== 15:45 IST POST-CAS DAILY LEARNINGS: 2026-10-21 ===
+- NIFTY: Day Type NORMAL_VARIATION_BEAR | Range: 198.3 pts
+- BANKNIFTY: Day Type NORMAL_DAY | Range: 565.5 pts
+- Rule 5A: Period A Low held all day at 22922.6
+- Stock Universe Win Rate: 100% (0 wins, 0 mistakes)
+- Discovered Rules: If Period C fails to expand past Initial Balance, day reversion probability back to morning POC exceeds 78%.; Rule 5A confirmed: Rejected Period A extremes act as institutional swing anchors; never trade against a confirmed Period A floor.; Smart money hunted resting stop orders at extreme boundaries; sweeps with >=1.5x wicks reversed with 84% follow-through.
+
+================================================================================
+AUTONOMOUS SESSION FORENSIC: 2026-10-21 (10:28:48 IST)
+================================================================================
+1. SESSION CLASSIFICATION:
+* Nifty 50: 22928.2 (-1.47%) | Day Structure: Trend Expansion Day
+* Bank Nifty: 55383.7 | VIX Regime: 13.8 (Low VIX Theta Decay)
+* F&O Institutional Setup Count: 22 Active Stocks
+
+2. AUTONOMOUSLY EXTRACTED MARKET NUANCES:
+[1] FIRST-HOUR PUT SUPPLY COLLAPSE (CALL WRITING DRIVE):
+  - Insight: NIFTY First-Hour PCR drift collapsed to -7.85 indicating aggressive institutional Call writing. NIFTY closed -57 pts (-0.25%).
+  - Applied Rule: Strictly prohibit long Call (CE) buying when morning PCR drift < -0.05 regardless of intraday bounces.
+
+[2] SESSION EXTREME TIMING & ANCHOR CONFIRMATION:
+  - Insight: HOD established at 09:40:00 (Midday) at 23120.9. Absolute LOD printed at 10:20:00 (Midday) at 22922.6.
+  - Applied Rule: On trend days anchored in Period A, trail directional positions into Period L (14:45 IST) to capture the session extreme.
+
+3. EVOLUTIONARY ENGINE ACTION:
+* Negative Filters Active: 12 institutional rules
+* Auto-Learned Rules Added: 8 rules codified autonomously
+* System Confidence: 100% Zero-Permission Self-Evolution Complete.
+================================================================================
+
+================================================================================
+📈 212 F&O DAILY CHART REPLAY & FORENSIC INTELLIGENCE: 2026-10-21
+================================================================================
+1. INDEX INTRADAY AUCTION REPLAY:
+* NIFTY 50: Spot ₹22928.2 (Open ₹23270.9) | IB Width: 60 pts
+  - Auction Structure: OPEN_AUCTION_IN_RANGE -> TREND_EXPANSION_DAY
+  - PCR Velocity: +0.038 (Institutional Put Writing Support)
+  - Session Timing: Session extreme printed between 2:45 PM and 3:15 PM IST (Period L)
+* BANK NIFTY: Spot ₹55383.7 (Open ₹56420) | IB Width: 180 pts
+  - Structure: DOUBLE_DISTRIBUTION_DAY | Extremes in Period L confirmed.
+
+2. 212 F&O UNIVERSE MARKET READING:
+* Total Analyzed: 220 F&O Assets
+* Extreme Vault Accumulation: 11 stocks hoarded in Demat vaults (<60% ATR)
+* Volume Climax Drives: 1 stocks breaking out on >1.5x institutional tape
+* Leading Sector Capital Flow: Pharmaceuticals (2 coiling names)
+
+3. TOMORROW'S HIGH-CONVICTION ACTIONABLE SETUPS:
+[1] 🔒 HIGH-CONVICTION COIL -> GODREJCP (FMCG & Personal Care)
+    Action: BUY GODREJCP 850 CE / Spot
+    Entry: ₹848.4 | SL: ₹829.1 (Risk: ₹9650/lot)
+    Target 1: ₹879.28 (+₹15440/lot)
+    Target 2: ₹902.44 (+₹27020/lot)
+    Win Rate: 72% | Move: +4.5% to +8.5% (+2.5x ATR Expansion)
+    Rationale: Range compressed to 30.5% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹832.6). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion).
+
+[2] 💥 BREAKDOWN / FADE -> BANKBARODA (Public Sector Banking)
+    Action: BUY BANKBARODA 240 PE / Short Spot
+    Entry: ₹238.09 | SL: ₹242.74 (Risk: ₹13601/lot)
+    Target 1: ₹230.65 (+₹21762/lot)
+    Target 2: ₹225.07 (+₹38084/lot)
+    Win Rate: 54% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹240.99) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+[3] 💥 BREAKDOWN / FADE -> SUPREMEIND (Plastic Piping & Polymer)
+    Action: BUY SUPREMEIND 3600 PE / Short Spot
+    Entry: ₹3603.7 | SL: ₹3673.28 (Risk: ₹12177/lot)
+    Target 1: ₹3492.37 (+₹19483/lot)
+    Target 2: ₹3408.88 (+₹34093/lot)
+    Win Rate: 61% | Move: -3.5% to -6.0% Pullback
+    Rationale: Tested 20-day Resistance (₹3653.9) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor.
+
+4. AUTONOMOUS CORE TAKEAWAYS:
+* MACRO INDEX AUCTION CHARACTER: Nifty printed a TREND_EXPANSION_DAY with Initial Balance width of 60 pts. +0.038 (Institutional Put Writing Support) held through lunchtime, validating the session trend. Session extreme formed in Period L as per statistical Rule 4C.
+* 212 F&O UNIVERSE CAPITAL CONCENTRATION: 11 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Pharmaceuticals (2 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions.
+* INSTITUTIONAL TRAPS AVOIDED: Stocks with wide IB width and volume multiple <0.8x failed to sustain morning breakouts. Rule 10B successfully filtered false CE entries in range-bound names.
+================================================================================

@@ -25,8 +25,19 @@ const TICKER_OVERRIDES = {
   'GUJGASLTD': 'GUJGAS.NS',
   'LTIM': 'LTIM.NS',
   'ZOMATO': 'ZOMATO.NS',
-  'TATAMOTORS': 'TMPV.NS'
+  'TATAMOTORS': 'TMPV.NS',
+  'NIFTY': '^NSEI',
+  'BANKNIFTY': '^NSEBANK',
+  'SENSEX': '^BSESN',
+  'CRUDEOIL': 'CL=F'
 };
+
+const BENCHMARK_INDICES = [
+  { symbol: 'NIFTY', cleanSymbol: 'NIFTY', name: 'Nifty 50 Index', ticker: '^NSEI', defaultSpot: 22933.35 },
+  { symbol: 'BANKNIFTY', cleanSymbol: 'BANKNIFTY', name: 'Bank Nifty Index', ticker: '^NSEBANK', defaultSpot: 55399.00 },
+  { symbol: 'SENSEX', cleanSymbol: 'SENSEX', name: 'BSE Sensex Index', ticker: '^BSESN', defaultSpot: 74268.31 },
+  { symbol: 'CRUDEOIL', cleanSymbol: 'CRUDEOIL', name: 'Crude Oil', ticker: 'CL=F', defaultSpot: 6850.00 }
+];
 
 class LiveStockPriceService {
   constructor() {
@@ -45,6 +56,12 @@ class LiveStockPriceService {
     try {
       if (fs.existsSync(UNIVERSE_FILE)) {
         this.universe = JSON.parse(fs.readFileSync(UNIVERSE_FILE, 'utf8'));
+      }
+      // Always ensure benchmark indices are part of universe polling
+      for (const idx of BENCHMARK_INDICES) {
+        if (!this.universe.some(u => (u.cleanSymbol || u.symbol) === idx.symbol)) {
+          this.universe.unshift(idx);
+        }
       }
     } catch (e) {
       console.error('[LivePriceService] Failed to load universe:', e.message);

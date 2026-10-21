@@ -1,5 +1,22 @@
 [
   {
+    "id": "ALERT_NSE:NIFTY_1792558233090",
+    "symbol": "NSE:NIFTY",
+    "timestamp": "2026-10-21T04:50:33.091Z",
+    "timeStr": "10:20 IST",
+    "tpoPeriod": "C",
+    "spotPrice": 22938.75,
+    "callWall": 22950,
+    "putWall": 22900,
+    "setupType": "CALL_WALL_LEFTWARD_MARCH",
+    "historicalWinRate": "95% – 100%",
+    "expectedMove": "+45 to +73 pts",
+    "signal": "BUY_PE",
+    "actionText": "Buy NSE:NIFTY ATM Put / Fade 22950 Call Wall",
+    "stopLossText": "Stop Loss just above 22950",
+    "targetText": "Target Put Wall: 22900"
+  },
+  {
     "id": "ALERT_NSE:NIFTY_1792557152961",
     "symbol": "NSE:NIFTY",
     "timestamp": "2026-10-21T04:32:32.974Z",

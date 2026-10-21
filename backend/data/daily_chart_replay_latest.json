@@ -1,11 +1,11 @@
 {
-  "timestamp": 1792497458808,
-  "dateStr": "2026-10-20",
-  "timeStr": "17:27:36 IST",
+  "timestamp": 1792558738486,
+  "dateStr": "2026-10-21",
+  "timeStr": "10:28:58 IST",
   "totalFnoStocksAnalyzed": 220,
   "indexAuction": {
     "nifty": {
-      "spot": 22888.95,
+      "spot": 22928.2,
       "open": 23270.9,
       "dayHigh": 23146.15,
       "dayLow": 22858,
@@ -22,10 +22,10 @@
       "gammaExposureRegime": "Dealers in Long Gamma zone (Volatility dampened)"
     },
     "banknifty": {
-      "spot": 55488.1,
+      "spot": 55383.7,
       "open": 56420,
       "dayHigh": 55844,
-      "dayLow": 55386.35,
+      "dayLow": 55319.2,
       "ibHigh": 56600,
       "ibLow": 56300,
       "ibWidthPts": 180,
@@ -39,201 +39,188 @@
   },
   "fnoUniverseSummary": {
     "totalTracked": 220,
-    "coilingDematCount": 10,
-    "volumeBreakoutCount": 9,
-    "distributionTrapCount": 13,
-    "swingLowFormations": 10,
-    "swingHighFormations": 13
+    "coilingDematCount": 11,
+    "volumeBreakoutCount": 1,
+    "distributionTrapCount": 10,
+    "swingLowFormations": 11,
+    "swingHighFormations": 10
   },
   "tomorrowHighConvictionWatchlist": [
     {
-      "rank": 3,
+      "rank": 2,
       "type": "LONG_DEMAT_COIL_EXPANSION",
       "badge": "🔒 HIGH-CONVICTION COIL",
-      "symbol": "CUMMINSIND",
-      "name": "Cummins India Ltd.",
-      "sector": "Engines & Power Gen",
+      "symbol": "GODREJCP",
+      "name": "Godrej Consumer Products Limited",
+      "sector": "FMCG & Personal Care",
       "trade": {
-        "action": "BUY CUMMINSIND 4600 CE / Spot",
-        "spotEntry": 4612,
-        "spotSL": 4563.38,
-        "spotRiskPts": 48.62,
-        "spotTarget1": 4689.79,
-        "spotTarget2": 4748.14,
-        "atmStrike": 4600,
-        "lotSize": 200,
-        "riskPerLotINR": 9724,
-        "target1GainPerLotINR": 15558,
-        "target2GainPerLotINR": 27228,
-        "exitCondition": "Exit option immediately if Spot crosses below ₹4563.38",
+        "action": "BUY GODREJCP 850 CE / Spot",
+        "spotEntry": 848.4,
+        "spotSL": 829.1,
+        "spotRiskPts": 19.3,
+        "spotTarget1": 879.28,
+        "spotTarget2": 902.44,
+        "atmStrike": 850,
+        "lotSize": 500,
+        "riskPerLotINR": 9650,
+        "target1GainPerLotINR": 15440,
+        "target2GainPerLotINR": 27020,
+        "exitCondition": "Exit option immediately if Spot crosses below ₹829.1",
         "rewardRiskRatio": 1.6,
         "expectedMove": "+4.5% to +8.5% (+2.5x ATR Expansion)",
         "winRatePct": 82.5
       },
-      "confidencePct": 66,
-      "catalystRationale": "Range compressed to 49.8% of ATR with 84% Demat delivery. Smart money hoarding at Demand Floor (₹4586.9). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
+      "confidencePct": 72,
+      "catalystRationale": "Range compressed to 30.5% of ATR with 92% Demat delivery. Smart money hoarding at Demand Floor (₹832.6). Expected expansion: +4.5% to +8.5% (+2.5x ATR Expansion)."
     },
     {
       "rank": 2,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "WIPRO",
-      "name": "Wipro Limited",
-      "sector": "Information Technology",
+      "symbol": "BANKBARODA",
+      "name": "Bank of Baroda",
+      "sector": "Public Sector Banking",
       "trade": {
-        "action": "BUY WIPRO 182.5 PE / Short Spot",
-        "spotEntry": 182.14,
-        "spotSL": 186.73,
-        "spotRiskPts": 4.59,
-        "spotTarget1": 174.8,
-        "spotTarget2": 169.29,
-        "atmStrike": 182.5,
-        "lotSize": 3000,
-        "riskPerLotINR": 13770,
-        "target1GainPerLotINR": 22020,
-        "target2GainPerLotINR": 38550,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹186.73",
+        "action": "BUY BANKBARODA 240 PE / Short Spot",
+        "spotEntry": 238.09,
+        "spotSL": 242.74,
+        "spotRiskPts": 4.65,
+        "spotTarget1": 230.65,
+        "spotTarget2": 225.07,
+        "atmStrike": 240,
+        "lotSize": 2925,
+        "riskPerLotINR": 13601,
+        "target1GainPerLotINR": 21762,
+        "target2GainPerLotINR": 38084,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹242.74",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
       },
-      "confidencePct": 51,
-      "catalystRationale": "Tested 20-day Resistance (₹185.85) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 54,
+      "catalystRationale": "Tested 20-day Resistance (₹240.99) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     },
     {
       "rank": 3,
       "type": "SHORT_DISTRIBUTION_FADE",
       "badge": "💥 BREAKDOWN / FADE",
-      "symbol": "TATAELXSI",
-      "name": "Tata Elxsi Ltd.",
-      "sector": "Information Technology",
+      "symbol": "SUPREMEIND",
+      "name": "Supreme Industries Limited",
+      "sector": "Plastic Piping & Polymer",
       "trade": {
-        "action": "BUY TATAELXSI 3800 PE / Short Spot",
-        "spotEntry": 3790,
-        "spotSL": 3887.84,
-        "spotRiskPts": 97.84,
-        "spotTarget1": 3633.46,
-        "spotTarget2": 3516.05,
-        "atmStrike": 3800,
-        "lotSize": 125,
-        "riskPerLotINR": 12230,
-        "target1GainPerLotINR": 19567,
-        "target2GainPerLotINR": 34244,
-        "exitCondition": "Exit option immediately if Spot crosses above ₹3887.84",
+        "action": "BUY SUPREMEIND 3600 PE / Short Spot",
+        "spotEntry": 3603.7,
+        "spotSL": 3673.28,
+        "spotRiskPts": 69.58,
+        "spotTarget1": 3492.37,
+        "spotTarget2": 3408.88,
+        "atmStrike": 3600,
+        "lotSize": 175,
+        "riskPerLotINR": 12177,
+        "target1GainPerLotINR": 19483,
+        "target2GainPerLotINR": 34093,
+        "exitCondition": "Exit option immediately if Spot crosses above ₹3673.28",
         "rewardRiskRatio": 1.6,
         "expectedMove": "-3.5% to -6.0% Pullback",
         "winRatePct": 78.5
       },
-      "confidencePct": 51,
-      "catalystRationale": "Tested 20-day Resistance (₹3867.2) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
+      "confidencePct": 61,
+      "catalystRationale": "Tested 20-day Resistance (₹3653.9) with selling divergence. R/R ratio: 1.6+ targeting Demand Floor."
     }
   ],
   "topRankings": {
     "vaultCoils": [
       {
         "symbol": "POLICYBZR",
-        "price": 1035,
-        "compPct": 41,
-        "delivPct": 78,
+        "price": 1023.4,
+        "compPct": 23.4,
+        "delivPct": 86,
         "floor": 945.1
       },
       {
-        "symbol": "NUVAMA",
-        "price": 1683.8,
-        "compPct": 44.1,
-        "delivPct": 76,
-        "floor": 1605.1
+        "symbol": "GODREJCP",
+        "price": 848.4,
+        "compPct": 30.5,
+        "delivPct": 92,
+        "floor": 832.6
       },
       {
-        "symbol": "CUMMINSIND",
-        "price": 4612,
-        "compPct": 49.8,
-        "delivPct": 84,
-        "floor": 4586.9
+        "symbol": "ESCORTS",
+        "price": 2683.9,
+        "compPct": 33.3,
+        "delivPct": 82,
+        "floor": 2550.1
       },
       {
-        "symbol": "JSWENERGY",
-        "price": 482.2,
-        "compPct": 52.7,
-        "delivPct": 81,
-        "floor": 457.5
+        "symbol": "ICICIPRULI",
+        "price": 435.15,
+        "compPct": 35.2,
+        "delivPct": 91,
+        "floor": 434.55
       },
       {
-        "symbol": "ADANIENSOL",
-        "price": 1364.9,
-        "compPct": 53.7,
-        "delivPct": 73,
-        "floor": 1241.2
+        "symbol": "PATANJALI",
+        "price": 362,
+        "compPct": 36.1,
+        "delivPct": 80,
+        "floor": 335.75
       }
     ],
     "volumeDrives": [
       {
-        "symbol": "PNB",
-        "price": 121.9,
-        "volMult": 4.89
-      },
-      {
-        "symbol": "UNIONBANK",
-        "price": 180.7,
-        "volMult": 4.29,
-        "action": "BUY UNIONBANK 180 CE / Spot"
-      },
-      {
-        "symbol": "FEDERALBNK",
-        "price": 348.85,
-        "volMult": 4.12,
-        "action": "BUY FEDERALBNK 350 CE / Spot"
-      },
-      {
-        "symbol": "ABB",
-        "price": 6974,
-        "volMult": 2.63,
-        "action": "BUY ABB 6950 CE / Spot"
-      },
-      {
-        "symbol": "ICICIBANK",
-        "price": 1381,
-        "volMult": 2.39,
-        "action": "BUY ICICIBANK 1380 PE / Short Spot"
+        "symbol": "LTTS",
+        "price": 4046,
+        "volMult": 17.25,
+        "action": "BUY LTTS 4050 CE / Spot"
       }
     ],
     "distributionTraps": [
       {
-        "symbol": "WIPRO",
-        "price": 182.14,
-        "ceil": 185.85,
-        "distCeilPct": 2.04
+        "symbol": "BANKBARODA",
+        "price": 238.09,
+        "ceil": 240.99,
+        "distCeilPct": 1.22
       },
       {
-        "symbol": "TATAELXSI",
-        "price": 3790,
-        "ceil": 3867.2,
-        "distCeilPct": 2.04
+        "symbol": "SUPREMEIND",
+        "price": 3603.7,
+        "ceil": 3653.9,
+        "distCeilPct": 1.39
       },
       {
-        "symbol": "INDHOTEL",
-        "price": 760,
-        "ceil": 776.15,
-        "distCeilPct": 2.12
+        "symbol": "COFORGE",
+        "price": 1939,
+        "ceil": 1970,
+        "distCeilPct": 1.6
       },
       {
         "symbol": "DLF",
-        "price": 672.85,
-        "ceil": 689.75,
-        "distCeilPct": 2.51
+        "price": 673.15,
+        "ceil": 685.85,
+        "distCeilPct": 1.89
       },
       {
-        "symbol": "INDUSTOWER",
-        "price": 382.4,
-        "ceil": 392.3,
-        "distCeilPct": 2.59
+        "symbol": "LAURUSLABS",
+        "price": 2043.4,
+        "ceil": 2089,
+        "distCeilPct": 2.23
       }
     ],
     "sectorLeadership": [
       {
-        "sector": "Public Sector Banking",
-        "coilingCount": 0,
+        "sector": "Pharmaceuticals",
+        "coilingCount": 2,
         "totalStocks": 7
+      },
+      {
+        "sector": "FMCG & Personal Care",
+        "coilingCount": 1,
+        "totalStocks": 2
+      },
+      {
+        "sector": "FMCG",
+        "coilingCount": 1,
+        "totalStocks": 4
       },
       {
         "sector": "Paints & Chemicals",
@@ -241,24 +228,9 @@
         "totalStocks": 1
       },
       {
-        "sector": "Engines & Power Gen",
+        "sector": "Natural Gas Transmission",
         "coilingCount": 1,
         "totalStocks": 1
-      },
-      {
-        "sector": "Insurance",
-        "coilingCount": 1,
-        "totalStocks": 5
-      },
-      {
-        "sector": "Life Insurance & Financials",
-        "coilingCount": 1,
-        "totalStocks": 1
-      },
-      {
-        "sector": "Air Conditioning & Cooling",
-        "coilingCount": 1,
-        "totalStocks": 2
       },
       {
         "sector": "Healthcare Diagnostics",
@@ -266,7 +238,12 @@
         "totalStocks": 1
       },
       {
-        "sector": "Financial Software & IT",
+        "sector": "Equity Momentum Universe",
+        "coilingCount": 1,
+        "totalStocks": 8
+      },
+      {
+        "sector": "Adhesives & Chemicals",
         "coilingCount": 1,
         "totalStocks": 1
       }
@@ -279,7 +256,7 @@
     },
     {
       "title": "212 F&O Universe Capital Concentration",
-      "finding": "10 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Public Sector Banking (0 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
+      "finding": "11 stocks are in Stage 1 Demat Accumulation (ultra-tight coil <60% ATR). Capital concentration is highest in Pharmaceuticals (2 coiling assets). Expect explosive sector-wide volatility release within 2-3 sessions."
     },
     {
       "title": "Institutional Traps Avoided",

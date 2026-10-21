@@ -1,8 +1,8 @@
 {
   "paperCapital": 516200.4,
-  "cashBalance": 497971.9,
+  "cashBalance": 458287.2,
   "realizedPnL": 16200.4,
-  "unrealizedPnL": 0,
+  "unrealizedPnL": 1989.8,
   "openPositions": [
     {
       "positionId": "POS_1792558066111_UNIONBANK",
@@ -39,7 +39,14 @@
         "stars": "★★★★★"
       },
       "entryTimestamp": "10:17:46",
-      "entryDate": "21/10/2026"
+      "entryDate": "21/10/2026",
+      "currentGreeks": {
+        "delta": 0.497,
+        "absDelta": 0.497,
+        "gamma": 0.085,
+        "theta": -0.2,
+        "vega": 0.09
+      }
     },
     {
       "positionId": "POS_1792558078312_AUROPHARMA",
@@ -76,7 +83,241 @@
         "stars": "★★★★★"
       },
       "entryTimestamp": "10:17:58",
-      "entryDate": "21/10/2026"
+      "entryDate": "21/10/2026",
+      "currentGreeks": {
+        "delta": -0.53,
+        "absDelta": 0.53,
+        "gamma": 0.0096,
+        "theta": -1.5,
+        "vega": 0.75
+      }
+    },
+    {
+      "positionId": "POS_1792558874546_INFY",
+      "symbol": "INFY",
+      "setupId": "SPCR-100-01",
+      "setupName": "INFY Stock PCR Put-Writing Drive (Rule 2D)",
+      "optionType": "CE",
+      "strike": 1160,
+      "lotSize": 400,
+      "quantity": 400,
+      "entryPrice": 15.4,
+      "currentLtp": 17.07,
+      "spotEntry": 1165.35,
+      "spotSL": 1153.35,
+      "targetSpot": 1200,
+      "optionSL": 9.28,
+      "optionTarget": 43.6,
+      "entryDelta": 0.589,
+      "currentDelta": 0.625,
+      "greeks": {
+        "delta": 0.589,
+        "absDelta": 0.589,
+        "gamma": 0.013,
+        "theta": -1.29,
+        "vega": 0.53
+      },
+      "dteDays": 5,
+      "iv": 0.22,
+      "lastSpot": 1168.1,
+      "cost": 6160,
+      "unrealizedPnL": 668,
+      "confluence": {
+        "score": 84,
+        "stars": "⭐⭐⭐⭐",
+        "isApproved": true,
+        "gexPts": 23,
+        "ofPts": 25,
+        "pcrPts": 20,
+        "skewPts": 2,
+        "valueImbPts": 14,
+        "orderFlowState": "BULLISH ABSORPTION",
+        "skewState": "PUT PANIC HEDGING (DRAG)",
+        "pcrState": "Stock PCR: PUT WRITING (+22.7%)",
+        "valueBandLocation": "AT_FAIR_VALUE (-0.6 ATR)",
+        "imbalanceState": "41.4% Buy / 58.6% Sell",
+        "reasons": [
+          "PCR Institutional Put Writing Support Floor",
+          "OF: Passive Limit Buyers Absorbing Dips",
+          "INFY Stock PCR: Bullish Put Writing (+22.7% drift)"
+        ],
+        "summaryText": "84/100 ⭐⭐⭐⭐ (OF: BULLISH ABSORPTION · Skew: PUT PANIC HEDGING (DRAG) · VT: AT_FAIR_VALUE (-0.6 ATR) · PCR: Stock PCR: PUT WRITING (+22.7%))"
+      },
+      "entryTimestamp": "10:31:14",
+      "entryDate": "21/10/2026",
+      "currentGreeks": {
+        "delta": 0.625,
+        "absDelta": 0.625,
+        "gamma": 0.0126,
+        "theta": -1.27,
+        "vega": 0.52
+      }
+    },
+    {
+      "positionId": "POS_1792558875352_BANKNIFTY",
+      "symbol": "BANKNIFTY",
+      "setupId": "IGEX-100-03",
+      "setupName": "BANKNIFTY Put Wall Absorption Floor Bounce",
+      "optionType": "CE",
+      "strike": 55500,
+      "lotSize": 30,
+      "quantity": 30,
+      "entryPrice": 366.39,
+      "currentLtp": 405.45,
+      "spotEntry": 55452.1,
+      "spotSL": 55382.1,
+      "targetSpot": 55602.1,
+      "optionSL": 332.46,
+      "optionTarget": 476.31,
+      "entryDelta": 0.5,
+      "currentDelta": 0.532,
+      "greeks": {
+        "delta": 0.5,
+        "absDelta": 0.5,
+        "gamma": 0.0004,
+        "theta": -51.19,
+        "vega": 23.16
+      },
+      "dteDays": 4,
+      "iv": 0.16,
+      "lastSpot": 55527.8,
+      "cost": 10991.7,
+      "unrealizedPnL": 1171.8,
+      "confluence": {
+        "score": 88,
+        "stars": "⭐⭐⭐⭐",
+        "isApproved": true,
+        "gexPts": 20,
+        "ofPts": 25,
+        "pcrPts": 14,
+        "skewPts": 15,
+        "valueImbPts": 14,
+        "orderFlowState": "BULLISH ABSORPTION",
+        "skewState": "LOW PUT SKEW (WRITING FLOOR)",
+        "pcrState": "NEUTRAL",
+        "valueBandLocation": "AT_FAIR_VALUE (-1.0 ATR)",
+        "imbalanceState": "41.4% Buy / 58.6% Sell",
+        "reasons": [
+          "OF: Passive Limit Buyers Absorbing Dips",
+          "Skew: Calm Put Volatility Confirms Bedrock Support"
+        ],
+        "summaryText": "88/100 ⭐⭐⭐⭐ (OF: BULLISH ABSORPTION · Skew: LOW PUT SKEW (WRITING FLOOR) · VT: AT_FAIR_VALUE (-1.0 ATR) · PCR: NEUTRAL)"
+      },
+      "entryTimestamp": "10:31:15",
+      "entryDate": "21/10/2026",
+      "currentGreeks": {
+        "delta": 0.532,
+        "absDelta": 0.532,
+        "gamma": 0.0004,
+        "theta": -51.42,
+        "vega": 23.11
+      }
+    },
+    {
+      "positionId": "POS_1792558876634_TECHM",
+      "symbol": "TECHM",
+      "setupId": "OB-FLOW-BULL-01",
+      "setupName": "TECHM OrderBlock Demand Retest & Liquidity Flow",
+      "optionType": "CE",
+      "strike": 1820,
+      "lotSize": 600,
+      "quantity": 600,
+      "entryPrice": 16.83,
+      "currentLtp": 16.83,
+      "spotEntry": 1814.6,
+      "spotSL": 1795.83,
+      "targetSpot": 1844.6,
+      "optionSL": 9.43,
+      "optionTarget": 34.85,
+      "entryDelta": 0.473,
+      "currentDelta": 0.473,
+      "greeks": {
+        "delta": 0.473,
+        "absDelta": 0.473,
+        "gamma": 0.0085,
+        "theta": -2.01,
+        "vega": 0.85
+      },
+      "dteDays": 5,
+      "iv": 0.22,
+      "lastSpot": 1814.6,
+      "cost": 10098,
+      "unrealizedPnL": 0,
+      "confluence": {
+        "score": 98,
+        "stars": "★★★★★"
+      },
+      "entryTimestamp": "10:31:16",
+      "entryDate": "21/10/2026",
+      "currentGreeks": {
+        "delta": 0.473,
+        "absDelta": 0.473,
+        "gamma": 0.0085,
+        "theta": -2.01,
+        "vega": 0.85
+      }
+    },
+    {
+      "positionId": "POS_1792558991823_BAJFINANCE",
+      "symbol": "BAJFINANCE",
+      "setupId": "SPCR-100-02",
+      "setupName": "BAJFINANCE Stock PCR Call-Writing Breakdown (Rule 2D)",
+      "optionType": "PE",
+      "strike": 950,
+      "lotSize": 750,
+      "quantity": 750,
+      "entryPrice": 16.58,
+      "currentLtp": 16.78,
+      "spotEntry": 937.55,
+      "spotSL": 967.55,
+      "targetSpot": 837.55,
+      "optionSL": 3.26,
+      "optionTarget": 118.43,
+      "entryDelta": 0.679,
+      "currentDelta": 0.683,
+      "greeks": {
+        "delta": -0.679,
+        "absDelta": 0.679,
+        "gamma": 0.0148,
+        "theta": -0.75,
+        "vega": 0.39
+      },
+      "dteDays": 5,
+      "iv": 0.22,
+      "lastSpot": 937.25,
+      "cost": 12435,
+      "unrealizedPnL": 150,
+      "confluence": {
+        "score": 92,
+        "stars": "⭐⭐⭐⭐⭐",
+        "isApproved": true,
+        "gexPts": 23,
+        "ofPts": 25,
+        "pcrPts": 20,
+        "skewPts": 15,
+        "valueImbPts": 9,
+        "orderFlowState": "BEARISH DELTA EXPANSION",
+        "skewState": "PUT PANIC (DOWN ACCELERATION)",
+        "pcrState": "Stock PCR: CALL WRITING (-5.2%)",
+        "valueBandLocation": "VALUE_DISCOUNT (-1.4 ATR)",
+        "imbalanceState": "54.3% Buy / 45.7% Sell",
+        "reasons": [
+          "PCR Institutional Call Writing Resistance Ceiling",
+          "OF: Aggressive Market Sellers Driving Flow",
+          "BAJFINANCE Stock PCR: Bearish Call Writing (-5.2% drift)",
+          "Skew: Aggressive OTM Put Bidding Fuels Downside"
+        ],
+        "summaryText": "92/100 ⭐⭐⭐⭐⭐ (OF: BEARISH DELTA EXPANSION · Skew: PUT PANIC (DOWN ACCELERATION) · VT: VALUE_DISCOUNT (-1.4 ATR) · PCR: Stock PCR: CALL WRITING (-5.2%))"
+      },
+      "entryTimestamp": "10:33:11",
+      "entryDate": "21/10/2026",
+      "currentGreeks": {
+        "delta": -0.683,
+        "absDelta": 0.683,
+        "gamma": 0.0148,
+        "theta": -0.74,
+        "vega": 0.39
+      }
     }
   ],
   "closedTrades": [
@@ -14669,1404 +14910,1404 @@
   ],
   "scanLogs": [
     {
-      "id": "1792558078313_9irr",
-      "timestamp": "10:17:58",
-      "symbol": "AUROPHARMA",
-      "type": "TRIGGER",
-      "message": "🚀 OB-FLOW-BEAR-02: AUROPHARMA OrderBlock Supply Retest & Liquidity Flow | Confluence: 88/100 ★★★★★ | BOUGHT AUROPHARMA 1620 PE @ ₹18.5 (Opt SL: ₹12.84 | Opt Tgt: ₹38.7 | Δ: 0.53) | Spot: ₹1614.9 (SL: ₹1626.87 | Tgt: ₹1584.9) | Lot: 550"
-    },
-    {
-      "id": "1792558066113_ra8u",
-      "timestamp": "10:17:46",
-      "symbol": "UNIONBANK",
-      "type": "TRIGGER",
-      "message": "🚀 OB-FLOW-BULL-01: UNIONBANK OrderBlock Demand Retest & Liquidity Flow | Confluence: 98/100 ★★★★★ | BOUGHT UNIONBANK 182.5 CE @ ₹1.82 (Opt SL: ₹1.02 | Opt Tgt: ₹4.28 | Δ: 0.50) | Spot: ₹182.24 (SL: ₹180.3 | Tgt: ₹185.99) | Lot: 4425"
-    },
-    {
-      "id": "1792554699967_33jd",
-      "timestamp": "09:21:39",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 4 min at 09:25 AM. | 2026-10-21 09:21:39 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554699958_78gr",
-      "timestamp": "09:21:39",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23080.3 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792554663802_zdl9",
-      "timestamp": "09:21:03",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 4 min at 09:25 AM. | 2026-10-21 09:21:03 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554663800_8ehr",
-      "timestamp": "09:21:03",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23071.4 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792554633684_el5l",
-      "timestamp": "09:20:33",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 5 min at 09:25 AM. | 2026-10-21 09:20:33 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554633683_w9n7",
-      "timestamp": "09:20:33",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23063.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792554604010_9288",
-      "timestamp": "09:20:04",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 5 min at 09:25 AM. | 2026-10-21 09:20:04 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554604007_hilr",
-      "timestamp": "09:20:04",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23047.1 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792554573433_19hm",
-      "timestamp": "09:19:33",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 6 min at 09:25 AM. | 2026-10-21 09:19:33 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554573432_pgdt",
-      "timestamp": "09:19:33",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23055.05 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792554551321_2r5x",
-      "timestamp": "09:19:11",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 6 min at 09:25 AM. | 2026-10-21 09:19:11 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554551320_uyvv",
-      "timestamp": "09:19:11",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23047.3 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792554484967_mqla",
-      "timestamp": "09:18:04",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 7 min at 09:25 AM. | 2026-10-21 09:18:04 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554484964_xqqa",
-      "timestamp": "09:18:04",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23057 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792554453845_c5b2",
-      "timestamp": "09:17:33",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 8 min at 09:25 AM. | 2026-10-21 09:17:33 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554453844_6m9i",
-      "timestamp": "09:17:33",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23042.65 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792554424120_wtzt",
-      "timestamp": "09:17:04",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 8 min at 09:25 AM. | 2026-10-21 09:17:04 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554424118_bkfa",
-      "timestamp": "09:17:04",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23030.2 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792554394255_qb5q",
-      "timestamp": "09:16:34",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 9 min at 09:25 AM. | 2026-10-21 09:16:34 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554394255_3cnz",
-      "timestamp": "09:16:34",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23049.65 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792554377101_5ecw",
-      "timestamp": "09:16:17",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 9 min at 09:25 AM. | 2026-10-21 09:16:17 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554377037_so7p",
-      "timestamp": "09:16:17",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23039.4 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792554342781_f3au",
-      "timestamp": "09:15:42",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 10 min at 09:25 AM. | 2026-10-21 09:15:42 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554342781_edok",
-      "timestamp": "09:15:42",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23003.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792554307638_1cqt",
-      "timestamp": "09:15:07",
-      "symbol": "AI_LEARNER",
-      "type": "RULE_LEARNED",
-      "message": "🤖 Live Rule Learner updated: 7 rules (0 ACTIVE enforced, 2 CANDIDATE). Trigger: ULTRACEMCO CLOSED trade closed."
-    },
-    {
-      "id": "1792554307632_fl6v",
-      "timestamp": "09:15:07",
-      "symbol": "AI_LEARNER",
-      "type": "RULE_LEARNED",
-      "message": "🤖 Live Rule Learner updated: 7 rules (0 ACTIVE enforced, 2 CANDIDATE). Trigger: FEDERALBNK CLOSED trade closed."
-    },
-    {
-      "id": "1792554307523_a6mn",
-      "timestamp": "09:15:07",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is OPENING_AUCTION (Market OPEN (09:15 AM). Opening auction settling — new entries unlock in 10 min at 09:25 AM. | 2026-10-21 09:15:07 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792554307521_8gbu",
-      "timestamp": "09:15:07",
-      "symbol": "ULTRACEMCO",
-      "type": "FLAT",
-      "message": "Closed ULTRACEMCO 10700 PE | Exit: ₹131.03 | PnL: +₹0 (STAGNANT_EXIT (Held 84m with 0.0% move — 60m theta preservation exit))"
-    },
-    {
-      "id": "1792554307506_qzal",
-      "timestamp": "09:15:07",
-      "symbol": "FEDERALBNK",
-      "type": "FLAT",
-      "message": "Closed FEDERALBNK 350 CE | Exit: ₹3.18 | PnL: +₹0 (STAGNANT_EXIT (Held 85m with 0.0% move — 60m theta preservation exit))"
-    },
-    {
-      "id": "1792554307465_cond",
-      "timestamp": "09:15:07",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹23016 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792549265060_thdm",
-      "timestamp": "07:51:05",
-      "symbol": "ULTRACEMCO",
-      "type": "TRIGGER",
-      "message": "🚀 OB-FLOW-BEAR-02: ULTRACEMCO OrderBlock Supply Retest & Liquidity Flow | Confluence: 67/100 ★★★★☆ | BOUGHT ULTRACEMCO 10700 PE @ ₹131.03 (Opt SL: ₹91.84 | Opt Tgt: ₹230.27 | Δ: 0.55) | Spot: ₹10650 (SL: ₹10728.95 | Tgt: ₹10500) | Lot: 50"
-    },
-    {
-      "id": "1792549241391_4p42",
-      "timestamp": "07:50:41",
-      "symbol": "FEDERALBNK",
-      "type": "TRIGGER",
-      "message": "🚀 OB-FLOW-BULL-01: FEDERALBNK OrderBlock Demand Retest & Liquidity Flow | Confluence: 98/100 ★★★★★ | BOUGHT FEDERALBNK 350 CE @ ₹3.18 (Opt SL: ₹1.74 | Opt Tgt: ₹7.93 | Δ: 0.47) | Spot: ₹348.85 (SL: ₹345.12 | Tgt: ₹356.35) | Lot: 2500"
-    },
-    {
-      "id": "1792408551887_05wy",
-      "timestamp": "16:45:51",
-      "symbol": "TECHM",
-      "type": "FLAT",
-      "message": "Closed TECHM 1780 CE | Exit: ₹18.62 | PnL: +₹0 (EOD_MANDATORY_SQUARE_OFF)"
-    },
-    {
-      "id": "1792408551855_uex5",
-      "timestamp": "16:45:51",
-      "symbol": "SYSTEM",
-      "type": "EOD",
-      "message": "⏰ 3:15 PM IST reached. Executing mandatory intraday auto square-off."
-    },
-    {
-      "id": "1792408531139_1xum",
-      "timestamp": "16:45:31",
-      "symbol": "TECHM",
-      "type": "TRIGGER",
-      "message": "🚀 OB-FLOW-BULL-01: TECHM OrderBlock Demand Retest & Liquidity Flow | Confluence: 98/100 ★★★★★ | BOUGHT TECHM 1780 CE @ ₹18.62 (Opt SL: ₹5.75 | Opt Tgt: ₹134.15 | Δ: 0.51) | Spot: ₹1779.1 (SL: ₹1743.52 | Tgt: ₹1912.53) | Lot: 600"
-    },
-    {
-      "id": "1792403115101_1e0a",
-      "timestamp": "15:15:15",
-      "symbol": "TCS",
-      "type": "LOSS",
-      "message": "Closed TCS 2450 CE | Exit: ₹34.69 | PnL: ₹-207 (EOD_MANDATORY_SQUARE_OFF)"
-    },
-    {
-      "id": "1792403115094_j48r",
-      "timestamp": "15:15:15",
-      "symbol": "AXISBANK",
-      "type": "LOSS",
-      "message": "Closed AXISBANK 1240 PE | Exit: ₹14.21 | PnL: ₹-237.5 (EOD_MANDATORY_SQUARE_OFF)"
-    },
-    {
-      "id": "1792403115085_10vd",
-      "timestamp": "15:15:15",
-      "symbol": "SYSTEM",
-      "type": "EOD",
-      "message": "⏰ 3:15 PM IST reached. Executing mandatory intraday auto square-off."
-    },
-    {
-      "id": "1792403086335_h2kd",
-      "timestamp": "15:14:46",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:14:46 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792403086331_14r5",
-      "timestamp": "15:14:46",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22871.7 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792403055899_9zj7",
-      "timestamp": "15:14:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:14:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792403055898_wull",
-      "timestamp": "15:14:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22881.9 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792403025823_22hs",
-      "timestamp": "15:13:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:13:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792403025821_fxyx",
-      "timestamp": "15:13:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22875.5 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792402995898_4t9x",
-      "timestamp": "15:13:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:13:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402995896_leur",
-      "timestamp": "15:13:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22868.4 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792402965840_rhm4",
-      "timestamp": "15:12:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:12:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402965838_3cey",
-      "timestamp": "15:12:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22863.5 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402936028_sjjk",
-      "timestamp": "15:12:16",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:12:16 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402936026_wrhe",
-      "timestamp": "15:12:16",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22869.65 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792402905882_837e",
-      "timestamp": "15:11:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:11:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402905882_0tl2",
-      "timestamp": "15:11:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22864.75 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792402875869_1arv",
-      "timestamp": "15:11:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:11:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402875869_e3dc",
-      "timestamp": "15:11:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22855.7 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402845824_i117",
-      "timestamp": "15:10:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:10:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402845821_zks7",
-      "timestamp": "15:10:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22854.85 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402815850_dybq",
-      "timestamp": "15:10:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:10:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402815848_knpt",
-      "timestamp": "15:10:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22858.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402785815_msol",
-      "timestamp": "15:09:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:09:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402785814_z6sb",
-      "timestamp": "15:09:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22861.25 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402755882_7wvm",
-      "timestamp": "15:09:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:09:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402755880_kgqv",
-      "timestamp": "15:09:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22861.25 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402725944_cwww",
-      "timestamp": "15:08:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:08:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402725943_7cg9",
-      "timestamp": "15:08:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22854.65 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402696199_mne2",
-      "timestamp": "15:08:16",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:08:16 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402696198_6357",
-      "timestamp": "15:08:16",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22852 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402665831_p3w8",
-      "timestamp": "15:07:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:07:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402665829_hmxc",
-      "timestamp": "15:07:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22853.85 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402635851_jdqd",
-      "timestamp": "15:07:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:07:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402635848_00ff",
-      "timestamp": "15:07:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22858.85 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402605812_czkh",
-      "timestamp": "15:06:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:06:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402605812_obl4",
-      "timestamp": "15:06:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22860.35 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402576073_p2lb",
-      "timestamp": "15:06:16",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:06:16 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402576072_emnh",
-      "timestamp": "15:06:16",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22861.3 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402546018_xdk1",
-      "timestamp": "15:05:46",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:05:46 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402546015_4g9s",
-      "timestamp": "15:05:46",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22863.05 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402516804_868b",
-      "timestamp": "15:05:16",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:05:16 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402516802_x8x8",
-      "timestamp": "15:05:16",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22864.65 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402485804_0952",
-      "timestamp": "15:04:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:04:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402485804_0ior",
-      "timestamp": "15:04:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22864.1 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402455881_ge9d",
-      "timestamp": "15:04:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:04:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402455880_vx69",
-      "timestamp": "15:04:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22866.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402425740_0bfm",
-      "timestamp": "15:03:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:03:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402425737_4rf4",
-      "timestamp": "15:03:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22862.9 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402395793_44ww",
-      "timestamp": "15:03:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:03:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402395792_0xau",
-      "timestamp": "15:03:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22869.15 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402365720_g94r",
-      "timestamp": "15:02:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:02:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402365718_rdnf",
-      "timestamp": "15:02:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22874.15 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402336011_d5wa",
-      "timestamp": "15:02:16",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:02:16 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402336009_fyus",
-      "timestamp": "15:02:16",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22870.7 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402305746_ah6f",
-      "timestamp": "15:01:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:01:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402305743_0b4t",
-      "timestamp": "15:01:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22876.25 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402275933_vg97",
-      "timestamp": "15:01:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:01:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402275931_9sse",
-      "timestamp": "15:01:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22877.7 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402245750_smby",
-      "timestamp": "15:00:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:00:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402245749_8moq",
-      "timestamp": "15:00:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22891.1 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402218591_u4ut",
-      "timestamp": "15:00:18",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 15:00:18 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402218590_yy07",
-      "timestamp": "15:00:18",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22892 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
-    },
-    {
-      "id": "1792402186101_ow0r",
-      "timestamp": "14:59:46",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:59:46 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402186099_2w5j",
-      "timestamp": "14:59:46",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22890.3 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402155803_ie1m",
-      "timestamp": "14:59:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:59:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402155802_d50d",
-      "timestamp": "14:59:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22885.05 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402125852_g01n",
-      "timestamp": "14:58:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:58:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402125851_o258",
-      "timestamp": "14:58:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22884.45 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792402095684_bqbz",
-      "timestamp": "14:58:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:58:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402095683_pzhn",
-      "timestamp": "14:58:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22888.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402065915_c7kg",
-      "timestamp": "14:57:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:57:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402065913_52di",
-      "timestamp": "14:57:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22893.5 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402035696_bhrl",
-      "timestamp": "14:57:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:57:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402035694_dxm9",
-      "timestamp": "14:57:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22897.45 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792402005733_nex1",
-      "timestamp": "14:56:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:56:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792402005731_5k2o",
-      "timestamp": "14:56:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22892.9 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401975616_vzns",
-      "timestamp": "14:56:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:56:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401975614_7dxx",
-      "timestamp": "14:56:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22873.4 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792401945939_yusp",
-      "timestamp": "14:55:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:55:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401945938_auqr",
-      "timestamp": "14:55:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22867.05 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401917112_x927",
-      "timestamp": "14:55:17",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:55:17 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401917109_msb8",
-      "timestamp": "14:55:17",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22871.4 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401885873_oj23",
-      "timestamp": "14:54:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:54:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401885870_1lvo",
-      "timestamp": "14:54:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22860.9 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401855899_hc6z",
-      "timestamp": "14:54:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:54:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401855897_ly6q",
-      "timestamp": "14:54:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22863.65 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401825752_e4jv",
-      "timestamp": "14:53:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:53:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401825751_zheq",
-      "timestamp": "14:53:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22859.3 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401795709_kqlq",
-      "timestamp": "14:53:15",
-      "symbol": "AI_LEARNER",
-      "type": "RULE_LEARNED",
-      "message": "🤖 Live Rule Learner updated: 9 rules (0 ACTIVE enforced, 2 CANDIDATE). Trigger: BANKNIFTY WIN trade closed."
-    },
-    {
-      "id": "1792401795689_xi5o",
-      "timestamp": "14:53:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:53:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401795688_s9wi",
-      "timestamp": "14:53:15",
-      "symbol": "BANKNIFTY",
-      "type": "WIN",
-      "message": "Closed BANKNIFTY 55500 CE | Exit: ₹388.79 | PnL: +₹509.4 (STAGNANT_EXIT (Held 60m with 4.6% move — 60m theta preservation exit))"
-    },
-    {
-      "id": "1792401795681_33as",
-      "timestamp": "14:53:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22862.2 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792401765702_84y6",
-      "timestamp": "14:52:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:52:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401765702_ay8k",
-      "timestamp": "14:52:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22873.35 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401735818_glxy",
-      "timestamp": "14:52:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:52:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401735815_kar4",
-      "timestamp": "14:52:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22875.05 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401705742_12bz",
-      "timestamp": "14:51:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:51:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401705740_b5ra",
-      "timestamp": "14:51:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22873.6 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401675688_c3jn",
-      "timestamp": "14:51:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:51:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401675686_zod4",
-      "timestamp": "14:51:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22872.85 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401645666_tkh4",
-      "timestamp": "14:50:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:50:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401645664_87hd",
-      "timestamp": "14:50:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22871.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401615622_q9iv",
-      "timestamp": "14:50:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:50:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401615621_laxd",
-      "timestamp": "14:50:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22864.9 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401585833_wtok",
-      "timestamp": "14:49:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:49:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401585832_5i7v",
-      "timestamp": "14:49:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22868.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401555659_809d",
-      "timestamp": "14:49:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:49:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401555657_6h5m",
-      "timestamp": "14:49:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22869.3 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401525665_v34q",
-      "timestamp": "14:48:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:48:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401525664_is5t",
-      "timestamp": "14:48:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22868.1 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401495621_nz30",
-      "timestamp": "14:48:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:48:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401495620_op10",
-      "timestamp": "14:48:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22868.5 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401465594_fyl8",
-      "timestamp": "14:47:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:47:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401465593_qipv",
-      "timestamp": "14:47:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22876.15 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792401435638_lyy4",
-      "timestamp": "14:47:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:47:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401435636_0iux",
-      "timestamp": "14:47:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22875.75 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401405605_61wv",
-      "timestamp": "14:46:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:46:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401405604_5xzb",
-      "timestamp": "14:46:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22876.05 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401379234_il4x",
-      "timestamp": "14:46:19",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:46:19 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401379233_kid6",
-      "timestamp": "14:46:19",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22881.65 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401345816_l7hq",
-      "timestamp": "14:45:45",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:45:45 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401345815_nxjb",
-      "timestamp": "14:45:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22871.7 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792401315667_4ud8",
-      "timestamp": "14:45:15",
-      "symbol": "SCAN",
-      "type": "MARKET_GATE",
-      "message": "⏸️ New trade scans paused: Market is EOD_CLOSING (Market in EOD CLOSING (02:45 – 03:15 PM IST: Managing exits only, no new entries). | 2026-10-19 14:45:15 IST). Trading window for new entries: 09:15 AM - 03:00 PM IST."
-    },
-    {
-      "id": "1792401315666_vuzc",
-      "timestamp": "14:45:15",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22883.25 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
-    },
-    {
-      "id": "1792401286908_pyko",
-      "timestamp": "14:44:46",
+      "id": "1792559080065_kdor",
+      "timestamp": "10:34:40",
       "symbol": "JSWSTEEL",
       "type": "FILTER",
-      "message": "🛡️ Sub-optimal R:R: JSWSTEEL CE R:R 0.54:1 < 1.1:1 minimum. Rejected."
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1250.4) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
     },
     {
-      "id": "1792401286890_63p0",
-      "timestamp": "14:44:46",
-      "symbol": "TITAN",
-      "type": "CONFLUENCE_VETO",
-      "message": "🛡️ Gated SGEX-100-03 on TITAN: Confluence Score 63/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: EXTREME_DISCOUNT (-3.1 ATR)]"
+      "id": "1792559080063_hhg5",
+      "timestamp": "10:34:40",
+      "symbol": "NTPC",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: NTPC PE R:R 1.04:1 < 1.1:1 minimum. Rejected."
     },
     {
-      "id": "1792401286673_xyj9",
-      "timestamp": "14:44:46",
+      "id": "1792559080061_mfs1",
+      "timestamp": "10:34:40",
+      "symbol": "HINDUNILVR",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDUNILVR SPCR PE: Spot momentum (+0.65%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559079866_rb1u",
+      "timestamp": "10:34:39",
       "symbol": "MARUTI",
       "type": "FILTER",
-      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (+0.02%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (-1.58%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401286606_m52p",
-      "timestamp": "14:44:46",
+      "id": "1792559079810_iqlq",
+      "timestamp": "10:34:39",
       "symbol": "BHARTIARTL",
       "type": "FILTER",
-      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (-2.05%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (+0.17%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401286549_r8tr",
-      "timestamp": "14:44:46",
+      "id": "1792559079755_78n3",
+      "timestamp": "10:34:39",
       "symbol": "KOTAKBANK",
       "type": "FILTER",
-      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.15%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.19%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401286257_g66x",
-      "timestamp": "14:44:46",
-      "symbol": "INFY",
+      "id": "1792559079700_0nai",
+      "timestamp": "10:34:39",
+      "symbol": "AXISBANK",
       "type": "FILTER",
-      "message": "🛡️ Blocked INFY SPCR CE: Spot momentum (-2.05%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Sub-optimal R:R: AXISBANK PE R:R 0.72:1 < 1.1:1 minimum. Rejected."
     },
     {
-      "id": "1792401286200_pyde",
-      "timestamp": "14:44:46",
+      "id": "1792559079467_8z99",
+      "timestamp": "10:34:39",
+      "symbol": "TATAMOTORS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAMOTORS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559079407_7ec4",
+      "timestamp": "10:34:39",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792559079405_3jyv",
+      "timestamp": "10:34:39",
       "symbol": "SBIN",
       "type": "FILTER",
-      "message": "🛡️ Sub-optimal R:R: SBIN CE R:R 0.67:1 < 1.1:1 minimum. Rejected."
+      "message": "🛡️ Blocked SBIN SPCR CE: Spot momentum (+0.08%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401286145_1tho",
-      "timestamp": "14:44:46",
+      "id": "1792559079352_pbot",
+      "timestamp": "10:34:39",
       "symbol": "ICICIBANK",
       "type": "FILTER",
-      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (-1.45%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (+0.21%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401286084_mma5",
-      "timestamp": "14:44:46",
+      "id": "1792559079289_c638",
+      "timestamp": "10:34:39",
       "symbol": "HDFCBANK",
       "type": "CONFLUENCE_VETO",
       "message": "🛡️ Gated SGEX-100-03 on HDFCBANK: Confluence Score 62/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.6 ATR)]"
     },
     {
-      "id": "1792401285867_s871",
-      "timestamp": "14:44:45",
-      "symbol": "NESTLEIND",
-      "type": "FILTER",
-      "message": "🛡️ Blocked NESTLEIND CE Bounce: Stock's Own PCR is Bearish Call Writing (-13.4% drift ceiling)."
+      "id": "1792559079236_v9b5",
+      "timestamp": "10:34:39",
+      "symbol": "RELIANCE",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on RELIANCE: Confluence Score 75/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: EXTREME_DISCOUNT (-2.6 ATR)]"
     },
     {
-      "id": "1792401285860_gaj4",
-      "timestamp": "14:44:45",
+      "id": "1792559079067_fe3b",
+      "timestamp": "10:34:39",
+      "symbol": "NIFTY",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for NIFTY: Spot (₹22988.15) below Zero Gamma (₹23005.2) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792559079065_9a1y",
+      "timestamp": "10:34:39",
+      "symbol": "VBL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked VBL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559079062_67vw",
+      "timestamp": "10:34:39",
       "symbol": "M&MFIN",
       "type": "FILTER",
-      "message": "🛡️ Blocked M&MFIN CE Bounce: Stock's Own PCR is Bearish Call Writing (-14.5% drift ceiling)."
+      "message": "🛡️ Blocked M&MFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285853_pdll",
-      "timestamp": "14:44:45",
-      "symbol": "LTF",
+      "id": "1792559079060_sx2j",
+      "timestamp": "10:34:39",
+      "symbol": "SIEMENS",
       "type": "FILTER",
-      "message": "🛡️ Blocked LTF SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+      "message": "🛡️ Blocked SIEMENS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285847_3ktj",
-      "timestamp": "14:44:45",
-      "symbol": "NUVAMA",
+      "id": "1792559079058_h9sq",
+      "timestamp": "10:34:39",
+      "symbol": "CHENNPETRO",
       "type": "FILTER",
-      "message": "🛡️ Blocked NUVAMA SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+      "message": "🛡️ Blocked CHENNPETRO SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285841_8kdk",
-      "timestamp": "14:44:45",
-      "symbol": "EXIDEIND",
+      "id": "1792559079056_vtot",
+      "timestamp": "10:34:39",
+      "symbol": "NESTLEIND",
       "type": "FILTER",
-      "message": "🛡️ Blocked EXIDEIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+      "message": "🛡️ Blocked NESTLEIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285834_ph5s",
-      "timestamp": "14:44:45",
-      "symbol": "SHRIRAMFIN",
+      "id": "1792559079054_0rtt",
+      "timestamp": "10:34:39",
+      "symbol": "HINDCOPPER",
       "type": "FILTER",
-      "message": "🛡️ Blocked SHRIRAMFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+      "message": "🛡️ Blocked HINDCOPPER SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285828_tvrr",
-      "timestamp": "14:44:45",
+      "id": "1792559079051_wknv",
+      "timestamp": "10:34:39",
       "symbol": "INOXWIND",
       "type": "FILTER",
       "message": "🛡️ Blocked INOXWIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285821_wyjl",
-      "timestamp": "14:44:45",
-      "symbol": "LICHSGFIN",
+      "id": "1792559079049_fj84",
+      "timestamp": "10:34:39",
+      "symbol": "BHEL",
       "type": "FILTER",
-      "message": "🛡️ Blocked LICHSGFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+      "message": "🛡️ Blocked BHEL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285817_4k2j",
-      "timestamp": "14:44:45",
+      "id": "1792559079045_sl70",
+      "timestamp": "10:34:39",
       "symbol": "FINCABLES",
       "type": "FILTER",
       "message": "🛡️ Blocked FINCABLES SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285787_0dcx",
-      "timestamp": "14:44:45",
+      "id": "1792559079042_l9sy",
+      "timestamp": "10:34:39",
       "symbol": "YESBANK",
       "type": "FILTER",
       "message": "🛡️ Blocked YESBANK SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
     },
     {
-      "id": "1792401285781_wukz",
-      "timestamp": "14:44:45",
-      "symbol": "PNB",
+      "id": "1792559079039_kogj",
+      "timestamp": "10:34:39",
+      "symbol": "HCLTECH",
       "type": "FILTER",
-      "message": "🛡️ Blocked PNB SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked HCLTECH SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401285774_ssh8",
-      "timestamp": "14:44:45",
+      "id": "1792559079037_ruwy",
+      "timestamp": "10:34:39",
       "symbol": "HINDPETRO",
       "type": "FILTER",
       "message": "🛡️ Blocked HINDPETRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401285768_t1it",
-      "timestamp": "14:44:45",
-      "symbol": "BSOFT",
-      "type": "FILTER",
-      "message": "🛡️ Blocked BSOFT SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
-    },
-    {
-      "id": "1792401285761_p8w9",
-      "timestamp": "14:44:45",
-      "symbol": "INDHOTEL",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INDHOTEL SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
-    },
-    {
-      "id": "1792401285751_w3qv",
-      "timestamp": "14:44:45",
-      "symbol": "LTTS",
-      "type": "FILTER",
-      "message": "🛡️ Blocked LTTS SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
-    },
-    {
-      "id": "1792401285743_uvhy",
-      "timestamp": "14:44:45",
-      "symbol": "WIPRO",
-      "type": "FILTER",
-      "message": "🛡️ Blocked WIPRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
-    },
-    {
-      "id": "1792401285734_z0tt",
-      "timestamp": "14:44:45",
-      "symbol": "INFY",
-      "type": "FILTER",
-      "message": "🛡️ Blocked INFY SPCR CE: Spot momentum (-2.05%) < +0.25% required for high-probability entry."
-    },
-    {
-      "id": "1792401285637_271j",
-      "timestamp": "14:44:45",
+      "id": "1792559079034_7i9n",
+      "timestamp": "10:34:39",
       "symbol": "TATAELXSI",
       "type": "FILTER",
       "message": "🛡️ Blocked TATAELXSI SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401285631_6pdr",
-      "timestamp": "14:44:45",
-      "symbol": "TECHM",
-      "type": "FILTER",
-      "message": "🛡️ Blocked TECHM SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
-    },
-    {
-      "id": "1792401285615_73pa",
-      "timestamp": "14:44:45",
-      "symbol": "SCAN",
-      "type": "CYCLE",
-      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22884.25 | PCR: 1.032 (Drift: +0) | OF: NONE"
-    },
-    {
-      "id": "1792401257148_czjj",
-      "timestamp": "14:44:17",
+      "id": "1792559079032_d4p4",
+      "timestamp": "10:34:39",
       "symbol": "JSWSTEEL",
       "type": "FILTER",
-      "message": "🛡️ Sub-optimal R:R: JSWSTEEL CE R:R 0.55:1 < 1.1:1 minimum. Rejected."
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1250.4) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
     },
     {
-      "id": "1792401256867_qdnj",
-      "timestamp": "14:44:16",
+      "id": "1792559079029_13fv",
+      "timestamp": "10:34:39",
+      "symbol": "BSOFT",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BSOFT SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559079027_tplp",
+      "timestamp": "10:34:39",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792559078909_81kv",
+      "timestamp": "10:34:38",
+      "symbol": "WIPRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked WIPRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559078905_sthp",
+      "timestamp": "10:34:38",
+      "symbol": "LTTS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked LTTS SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559078897_je32",
+      "timestamp": "10:34:38",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22985.2 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1792559050825_6p5x",
+      "timestamp": "10:34:10",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.9) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792559050822_obco",
+      "timestamp": "10:34:10",
+      "symbol": "NTPC",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: NTPC PE R:R 1.07:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792559050820_c2d7",
+      "timestamp": "10:34:10",
+      "symbol": "HINDUNILVR",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDUNILVR SPCR PE: Spot momentum (+0.64%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559050511_qhey",
+      "timestamp": "10:34:10",
       "symbol": "MARUTI",
       "type": "FILTER",
-      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (-1.57%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401256799_x1o8",
-      "timestamp": "14:44:16",
+      "id": "1792559050436_bim4",
+      "timestamp": "10:34:10",
       "symbol": "BHARTIARTL",
       "type": "FILTER",
-      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (-2.10%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (+0.07%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401256736_mtz4",
-      "timestamp": "14:44:16",
+      "id": "1792559050346_8p3v",
+      "timestamp": "10:34:10",
       "symbol": "KOTAKBANK",
       "type": "FILTER",
-      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.15%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.19%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401256452_73kt",
-      "timestamp": "14:44:16",
-      "symbol": "INFY",
+      "id": "1792559050264_akyt",
+      "timestamp": "10:34:10",
+      "symbol": "AXISBANK",
       "type": "FILTER",
-      "message": "🛡️ Blocked INFY SPCR CE: Spot momentum (-2.06%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Sub-optimal R:R: AXISBANK PE R:R 0.76:1 < 1.1:1 minimum. Rejected."
     },
     {
-      "id": "1792401255994_w215",
-      "timestamp": "14:44:15",
+      "id": "1792559049941_fc3u",
+      "timestamp": "10:34:09",
+      "symbol": "TATAMOTORS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAMOTORS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049553_4g1y",
+      "timestamp": "10:34:09",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792559049550_yrzh",
+      "timestamp": "10:34:09",
       "symbol": "SBIN",
       "type": "FILTER",
-      "message": "🛡️ Sub-optimal R:R: SBIN CE R:R 0.73:1 < 1.1:1 minimum. Rejected."
+      "message": "🛡️ Blocked SBIN SPCR CE: Spot momentum (+0.01%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401255947_2540",
-      "timestamp": "14:44:15",
+      "id": "1792559049464_8muo",
+      "timestamp": "10:34:09",
       "symbol": "ICICIBANK",
       "type": "FILTER",
-      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (-1.55%) < +0.25% required for high-probability entry."
+      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (+0.18%) < +0.25% required for high-probability entry."
     },
     {
-      "id": "1792401255879_suah",
-      "timestamp": "14:44:15",
+      "id": "1792559049391_wk36",
+      "timestamp": "10:34:09",
       "symbol": "HDFCBANK",
       "type": "CONFLUENCE_VETO",
       "message": "🛡️ Gated SGEX-100-03 on HDFCBANK: Confluence Score 62/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.6 ATR)]"
     },
     {
-      "id": "1792401255608_61a3",
-      "timestamp": "14:44:15",
+      "id": "1792559049301_8l9n",
+      "timestamp": "10:34:09",
+      "symbol": "RELIANCE",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on RELIANCE: Confluence Score 75/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: EXTREME_DISCOUNT (-2.6 ATR)]"
+    },
+    {
+      "id": "1792559049077_bxab",
+      "timestamp": "10:34:09",
+      "symbol": "NIFTY",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for NIFTY: Spot (₹22982.2) below Zero Gamma (₹23005.2) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792559049075_ddcy",
+      "timestamp": "10:34:09",
+      "symbol": "VBL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked VBL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049073_82jv",
+      "timestamp": "10:34:09",
+      "symbol": "M&MFIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked M&MFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049071_13r0",
+      "timestamp": "10:34:09",
+      "symbol": "SIEMENS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SIEMENS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049070_yv63",
+      "timestamp": "10:34:09",
+      "symbol": "CHENNPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked CHENNPETRO CE Bounce: Stock's Own PCR is Bearish Call Writing (-22% drift ceiling)."
+    },
+    {
+      "id": "1792559049068_sg6x",
+      "timestamp": "10:34:09",
       "symbol": "NESTLEIND",
       "type": "FILTER",
-      "message": "🛡️ Blocked NESTLEIND CE Bounce: Stock's Own PCR is Bearish Call Writing (-13.4% drift ceiling)."
+      "message": "🛡️ Blocked NESTLEIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049065_3ji0",
+      "timestamp": "10:34:09",
+      "symbol": "HINDCOPPER",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDCOPPER SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049063_sjou",
+      "timestamp": "10:34:09",
+      "symbol": "INOXWIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked INOXWIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049059_ohsv",
+      "timestamp": "10:34:09",
+      "symbol": "BHEL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHEL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049056_dzly",
+      "timestamp": "10:34:09",
+      "symbol": "FINCABLES",
+      "type": "FILTER",
+      "message": "🛡️ Blocked FINCABLES SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049054_n4xm",
+      "timestamp": "10:34:09",
+      "symbol": "YESBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked YESBANK SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559049052_dz6p",
+      "timestamp": "10:34:09",
+      "symbol": "HCLTECH",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HCLTECH: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.5 ATR)]"
+    },
+    {
+      "id": "1792559049050_7lr7",
+      "timestamp": "10:34:09",
+      "symbol": "HINDPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDPETRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559049048_o40n",
+      "timestamp": "10:34:09",
+      "symbol": "TATAELXSI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAELXSI SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559049047_8dap",
+      "timestamp": "10:34:09",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.9) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792559049045_4r9j",
+      "timestamp": "10:34:09",
+      "symbol": "BSOFT",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on BSOFT: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792559049043_kmxs",
+      "timestamp": "10:34:09",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792559048956_lm5b",
+      "timestamp": "10:34:08",
+      "symbol": "WIPRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked WIPRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559048952_94sb",
+      "timestamp": "10:34:08",
+      "symbol": "LTTS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on LTTS: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792559048891_zcrw",
+      "timestamp": "10:34:08",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22975.95 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1792559020449_qlv0",
+      "timestamp": "10:33:40",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.1) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792559020447_m12u",
+      "timestamp": "10:33:40",
+      "symbol": "NTPC",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: NTPC PE R:R 1.03:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792559020445_wwno",
+      "timestamp": "10:33:40",
+      "symbol": "HINDUNILVR",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDUNILVR SPCR PE: Spot momentum (+0.55%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559020274_t6th",
+      "timestamp": "10:33:40",
+      "symbol": "MARUTI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (-1.53%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559020214_iiu9",
+      "timestamp": "10:33:40",
+      "symbol": "BHARTIARTL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (+0.04%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559020131_l66o",
+      "timestamp": "10:33:40",
+      "symbol": "KOTAKBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.20%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559020073_pm48",
+      "timestamp": "10:33:40",
+      "symbol": "AXISBANK",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: AXISBANK PE R:R 0.75:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792559019819_eqsh",
+      "timestamp": "10:33:39",
+      "symbol": "TATAMOTORS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAMOTORS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019760_vzvm",
+      "timestamp": "10:33:39",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792559019757_movc",
+      "timestamp": "10:33:39",
+      "symbol": "SBIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SBIN SPCR CE: Spot momentum (-0.08%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559019690_fr4k",
+      "timestamp": "10:33:39",
+      "symbol": "ICICIBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (+0.16%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559019640_bldc",
+      "timestamp": "10:33:39",
+      "symbol": "HDFCBANK",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HDFCBANK: Confluence Score 62/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.6 ATR)]"
+    },
+    {
+      "id": "1792559019581_1li2",
+      "timestamp": "10:33:39",
+      "symbol": "RELIANCE",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on RELIANCE: Confluence Score 78/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: EXTREME_DISCOUNT (-2.6 ATR)]"
+    },
+    {
+      "id": "1792559019259_wcfc",
+      "timestamp": "10:33:39",
+      "symbol": "NIFTY",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated IGEX-100-03 on NIFTY: Confluence Score 69/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: EXTREME_DISCOUNT (-2.4 ATR)]"
+    },
+    {
+      "id": "1792559019257_mhm1",
+      "timestamp": "10:33:39",
+      "symbol": "VBL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked VBL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019252_3lgh",
+      "timestamp": "10:33:39",
+      "symbol": "M&MFIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked M&MFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019250_t1vo",
+      "timestamp": "10:33:39",
+      "symbol": "SIEMENS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SIEMENS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019247_uv5x",
+      "timestamp": "10:33:39",
+      "symbol": "CHENNPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked CHENNPETRO CE Bounce: Stock's Own PCR is Bearish Call Writing (-22% drift ceiling)."
+    },
+    {
+      "id": "1792559019245_oh57",
+      "timestamp": "10:33:39",
+      "symbol": "NESTLEIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked NESTLEIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019243_15u8",
+      "timestamp": "10:33:39",
+      "symbol": "HINDCOPPER",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDCOPPER SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019239_66tb",
+      "timestamp": "10:33:39",
+      "symbol": "INOXWIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked INOXWIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019237_9eo7",
+      "timestamp": "10:33:39",
+      "symbol": "BHEL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHEL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019233_6hzt",
+      "timestamp": "10:33:39",
+      "symbol": "FINCABLES",
+      "type": "FILTER",
+      "message": "🛡️ Blocked FINCABLES SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019228_ny8g",
+      "timestamp": "10:33:39",
+      "symbol": "YESBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked YESBANK SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792559019224_fk56",
+      "timestamp": "10:33:39",
+      "symbol": "HCLTECH",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HCLTECH: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.5 ATR)]"
+    },
+    {
+      "id": "1792559019220_uzru",
+      "timestamp": "10:33:39",
+      "symbol": "HINDPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDPETRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559019214_pny8",
+      "timestamp": "10:33:39",
+      "symbol": "TATAELXSI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAELXSI SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559019212_w95c",
+      "timestamp": "10:33:39",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.1) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792559019207_v9s6",
+      "timestamp": "10:33:39",
+      "symbol": "BSOFT",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on BSOFT: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792559019204_e4d1",
+      "timestamp": "10:33:39",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792559019152_86s1",
+      "timestamp": "10:33:39",
+      "symbol": "WIPRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked WIPRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792559019149_jpnk",
+      "timestamp": "10:33:39",
+      "symbol": "LTTS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on LTTS: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792559019067_0z33",
+      "timestamp": "10:33:39",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22972.1 | PCR: 1.032 (Drift: +0) | OF: NONE"
+    },
+    {
+      "id": "1792558992530_safe",
+      "timestamp": "10:33:12",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked JSWSTEEL SPCR CE: Spot momentum (+0.25%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558992527_yj8k",
+      "timestamp": "10:33:12",
+      "symbol": "NTPC",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: NTPC PE R:R 1.01:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792558992525_kyx1",
+      "timestamp": "10:33:12",
+      "symbol": "HINDUNILVR",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDUNILVR SPCR PE: Spot momentum (+0.50%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558992274_1rxl",
+      "timestamp": "10:33:12",
+      "symbol": "MARUTI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (-1.62%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558992201_37ce",
+      "timestamp": "10:33:12",
+      "symbol": "BHARTIARTL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (-0.02%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558992121_ggnl",
+      "timestamp": "10:33:12",
+      "symbol": "KOTAKBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.23%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558992052_ti48",
+      "timestamp": "10:33:12",
+      "symbol": "AXISBANK",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: AXISBANK PE R:R 0.74:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792558991823_90yd",
+      "timestamp": "10:33:11",
+      "symbol": "BAJFINANCE",
+      "type": "TRIGGER",
+      "message": "🚀 SPCR-100-02: BAJFINANCE Stock PCR Call-Writing Breakdown (Rule 2D) | Confluence: 92/100 ⭐⭐⭐⭐⭐ | BOUGHT BAJFINANCE 950 PE @ ₹16.58 (Opt SL: ₹3.26 | Opt Tgt: ₹118.43 | Δ: 0.68) | Spot: ₹937.55 (SL: ₹967.55 | Tgt: ₹837.55) | Lot: 750"
+    },
+    {
+      "id": "1792558991821_w3i5",
+      "timestamp": "10:33:11",
+      "symbol": "BAJFINANCE",
+      "type": "CONFLUENCE_PASS",
+      "message": "✨ High-Conviction Setup Confirmed for BAJFINANCE: Score 92/100 ⭐⭐⭐⭐⭐ | PCR Institutional Call Writing Resistance Ceiling + OF: Aggressive Market Sellers Driving Flow"
+    },
+    {
+      "id": "1792558991744_gbtq",
+      "timestamp": "10:33:11",
+      "symbol": "TATAMOTORS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAMOTORS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558991586_eac2",
+      "timestamp": "10:33:11",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792558991486_0lu0",
+      "timestamp": "10:33:11",
+      "symbol": "SBIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SBIN SPCR CE: Spot momentum (-0.20%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558991401_bqj1",
+      "timestamp": "10:33:11",
+      "symbol": "ICICIBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (+0.11%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558991331_j814",
+      "timestamp": "10:33:11",
+      "symbol": "HDFCBANK",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for HDFCBANK: Spot (₹711) below Zero Gamma (₹711.1) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558990102_4fam",
+      "timestamp": "10:33:10",
+      "symbol": "RELIANCE",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for RELIANCE: Spot (₹1217.4) below Zero Gamma (₹1222.5) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558989565_cylo",
+      "timestamp": "10:33:09",
+      "symbol": "NIFTY",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for NIFTY: Spot (₹22955.15) below Zero Gamma (₹22955.1) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558989563_rujt",
+      "timestamp": "10:33:09",
+      "symbol": "VBL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked VBL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989559_1wj1",
+      "timestamp": "10:33:09",
+      "symbol": "M&MFIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked M&MFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989556_fk45",
+      "timestamp": "10:33:09",
+      "symbol": "SIEMENS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SIEMENS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989553_vtmf",
+      "timestamp": "10:33:09",
+      "symbol": "CHENNPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked CHENNPETRO CE Bounce: Stock's Own PCR is Bearish Call Writing (-22% drift ceiling)."
+    },
+    {
+      "id": "1792558989550_pdfd",
+      "timestamp": "10:33:09",
+      "symbol": "NESTLEIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked NESTLEIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989547_h90s",
+      "timestamp": "10:33:09",
+      "symbol": "HINDCOPPER",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDCOPPER SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989544_mgb2",
+      "timestamp": "10:33:09",
+      "symbol": "INOXWIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked INOXWIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989541_sry4",
+      "timestamp": "10:33:09",
+      "symbol": "BHEL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHEL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989538_a0my",
+      "timestamp": "10:33:09",
+      "symbol": "FINCABLES",
+      "type": "FILTER",
+      "message": "🛡️ Blocked FINCABLES SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989536_moul",
+      "timestamp": "10:33:09",
+      "symbol": "YESBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked YESBANK SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558989534_whie",
+      "timestamp": "10:33:09",
+      "symbol": "HCLTECH",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HCLTECH: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.5 ATR)]"
+    },
+    {
+      "id": "1792558989531_sq3m",
+      "timestamp": "10:33:09",
+      "symbol": "HINDPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDPETRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558989529_qeey",
+      "timestamp": "10:33:09",
+      "symbol": "TATAELXSI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAELXSI SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558989525_ekvd",
+      "timestamp": "10:33:09",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked JSWSTEEL SPCR CE: Spot momentum (+0.25%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558989523_ko7c",
+      "timestamp": "10:33:09",
+      "symbol": "BSOFT",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on BSOFT: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792558989520_e7sp",
+      "timestamp": "10:33:09",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-01 on TCS: Confluence Score 77/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792558989362_bo6f",
+      "timestamp": "10:33:09",
+      "symbol": "WIPRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked WIPRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558989359_il0d",
+      "timestamp": "10:33:09",
+      "symbol": "LTTS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on LTTS: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792558989294_015a",
+      "timestamp": "10:33:09",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22955 | PCR: 1.032 (Drift: +0) | OF: BEARISH EXHAUSTION (Price Up, Delta Falling)"
+    },
+    {
+      "id": "1792558962102_0fjk",
+      "timestamp": "10:32:42",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.5) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558962099_3uaq",
+      "timestamp": "10:32:42",
+      "symbol": "NTPC",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: NTPC PE R:R 1.02:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792558962096_wlwt",
+      "timestamp": "10:32:42",
+      "symbol": "HINDUNILVR",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDUNILVR SPCR PE: Spot momentum (+0.49%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558961846_a8gg",
+      "timestamp": "10:32:41",
+      "symbol": "MARUTI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (-1.60%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558961759_ecij",
+      "timestamp": "10:32:41",
+      "symbol": "BHARTIARTL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (-0.05%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558961682_8r0c",
+      "timestamp": "10:32:41",
+      "symbol": "KOTAKBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.16%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558961599_04k0",
+      "timestamp": "10:32:41",
+      "symbol": "AXISBANK",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: AXISBANK PE R:R 0.79:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792558961351_wlc4",
+      "timestamp": "10:32:41",
+      "symbol": "BAJFINANCE",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-02 on BAJFINANCE: Confluence Score 71/100 (< 82 required for high win rate). [OF: BULLISH ABSORPTION COUNTER-DRAG | Skew: PUT PANIC (DOWN ACCELERATION) | VT: VALUE_DISCOUNT (-1.4 ATR)]"
+    },
+    {
+      "id": "1792558961273_ba3k",
+      "timestamp": "10:32:41",
+      "symbol": "TATAMOTORS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAMOTORS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960803_6oga",
+      "timestamp": "10:32:40",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on TCS: Confluence Score 81/100 (< 82 required for high win rate). [OF: BULLISH ABSORPTION | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792558960799_0zkp",
+      "timestamp": "10:32:40",
+      "symbol": "SBIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SBIN SPCR CE: Spot momentum (-0.32%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558960723_5xlv",
+      "timestamp": "10:32:40",
+      "symbol": "ICICIBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (+0.05%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558960453_8p7v",
+      "timestamp": "10:32:40",
+      "symbol": "HDFCBANK",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HDFCBANK: Confluence Score 69/100 (< 82 required for high win rate). [OF: BULLISH ABSORPTION | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.6 ATR)]"
+    },
+    {
+      "id": "1792558960368_067h",
+      "timestamp": "10:32:40",
+      "symbol": "RELIANCE",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for RELIANCE: Spot (₹1217.2) below Zero Gamma (₹1222.5) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558960140_z9ma",
+      "timestamp": "10:32:40",
+      "symbol": "NIFTY",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for NIFTY: Spot (₹22954.75) below Zero Gamma (₹22955.1) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558960137_lg58",
+      "timestamp": "10:32:40",
+      "symbol": "VBL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked VBL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960134_sq01",
+      "timestamp": "10:32:40",
+      "symbol": "M&MFIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked M&MFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960131_3dp4",
+      "timestamp": "10:32:40",
+      "symbol": "SIEMENS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SIEMENS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960128_uxt2",
+      "timestamp": "10:32:40",
+      "symbol": "CHENNPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked CHENNPETRO CE Bounce: Stock's Own PCR is Bearish Call Writing (-22% drift ceiling)."
+    },
+    {
+      "id": "1792558960123_676f",
+      "timestamp": "10:32:40",
+      "symbol": "NESTLEIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked NESTLEIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960118_jfed",
+      "timestamp": "10:32:40",
+      "symbol": "HINDCOPPER",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDCOPPER SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960115_afll",
+      "timestamp": "10:32:40",
+      "symbol": "INOXWIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked INOXWIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960111_6m6v",
+      "timestamp": "10:32:40",
+      "symbol": "BHEL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHEL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960108_5mow",
+      "timestamp": "10:32:40",
+      "symbol": "FINCABLES",
+      "type": "FILTER",
+      "message": "🛡️ Blocked FINCABLES SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960105_3vko",
+      "timestamp": "10:32:40",
+      "symbol": "YESBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked YESBANK SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558960101_x5xz",
+      "timestamp": "10:32:40",
+      "symbol": "HCLTECH",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HCLTECH: Confluence Score 81/100 (< 82 required for high win rate). [OF: BULLISH ABSORPTION | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.5 ATR)]"
+    },
+    {
+      "id": "1792558960097_e7sp",
+      "timestamp": "10:32:40",
+      "symbol": "HINDPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDPETRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558960061_wc2w",
+      "timestamp": "10:32:40",
+      "symbol": "TATAELXSI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAELXSI SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558960057_um96",
+      "timestamp": "10:32:40",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.5) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558960053_dmum",
+      "timestamp": "10:32:40",
+      "symbol": "BSOFT",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on BSOFT: Confluence Score 81/100 (< 82 required for high win rate). [OF: BULLISH ABSORPTION | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792558960049_hwmj",
+      "timestamp": "10:32:40",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on TCS: Confluence Score 81/100 (< 82 required for high win rate). [OF: BULLISH ABSORPTION | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792558959904_fz1s",
+      "timestamp": "10:32:39",
+      "symbol": "WIPRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked WIPRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558959897_jy2s",
+      "timestamp": "10:32:39",
+      "symbol": "LTTS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked LTTS SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558959887_lnkc",
+      "timestamp": "10:32:39",
+      "symbol": "SCAN",
+      "type": "CYCLE",
+      "message": "Evaluated 22 F&O stocks | NIFTY: ₹22953.35 | PCR: 1.032 (Drift: +0) | OF: BULLISH ABSORPTION (Price Down, Delta Rising)"
+    },
+    {
+      "id": "1792558930577_c1c8",
+      "timestamp": "10:32:10",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.9) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558930574_m5lb",
+      "timestamp": "10:32:10",
+      "symbol": "NTPC",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: NTPC PE R:R 1.01:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792558930571_brll",
+      "timestamp": "10:32:10",
+      "symbol": "HINDUNILVR",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDUNILVR SPCR PE: Spot momentum (+0.47%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558930327_px5k",
+      "timestamp": "10:32:10",
+      "symbol": "MARUTI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked MARUTI SPCR CE: Spot momentum (-1.60%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558930265_3qf1",
+      "timestamp": "10:32:10",
+      "symbol": "BHARTIARTL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHARTIARTL SPCR CE: Spot momentum (+0.06%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558930188_2dt9",
+      "timestamp": "10:32:10",
+      "symbol": "KOTAKBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked KOTAKBANK SPCR CE: Spot momentum (-0.16%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558930123_504q",
+      "timestamp": "10:32:10",
+      "symbol": "AXISBANK",
+      "type": "FILTER",
+      "message": "🛡️ Sub-optimal R:R: AXISBANK PE R:R 0.78:1 < 1.1:1 minimum. Rejected."
+    },
+    {
+      "id": "1792558929861_xwkt",
+      "timestamp": "10:32:09",
+      "symbol": "BAJFINANCE",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SPCR-100-02 on BAJFINANCE: Confluence Score 81/100 (< 82 required for high win rate). [OF: BALANCED FLOW | Skew: PUT PANIC (DOWN ACCELERATION) | VT: VALUE_DISCOUNT (-1.4 ATR)]"
+    },
+    {
+      "id": "1792558929776_bj3j",
+      "timestamp": "10:32:09",
+      "symbol": "TATAMOTORS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAMOTORS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929685_gwq8",
+      "timestamp": "10:32:09",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on TCS: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792558929682_halw",
+      "timestamp": "10:32:09",
+      "symbol": "SBIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SBIN SPCR CE: Spot momentum (-0.33%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558929602_spd0",
+      "timestamp": "10:32:09",
+      "symbol": "ICICIBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked ICICIBANK SPCR CE: Spot momentum (+0.09%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558929529_micp",
+      "timestamp": "10:32:09",
+      "symbol": "HDFCBANK",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HDFCBANK: Confluence Score 62/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.6 ATR)]"
+    },
+    {
+      "id": "1792558929433_2alv",
+      "timestamp": "10:32:09",
+      "symbol": "RELIANCE",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for RELIANCE: Spot (₹1217.7) below Zero Gamma (₹1222.5) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558929112_3439",
+      "timestamp": "10:32:09",
+      "symbol": "NIFTY",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated IGEX-100-03 on NIFTY: Confluence Score 69/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: EXTREME_DISCOUNT (-2.4 ATR)]"
+    },
+    {
+      "id": "1792558929109_j8zj",
+      "timestamp": "10:32:09",
+      "symbol": "VBL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked VBL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929104_gv07",
+      "timestamp": "10:32:09",
+      "symbol": "M&MFIN",
+      "type": "FILTER",
+      "message": "🛡️ Blocked M&MFIN SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929100_j99g",
+      "timestamp": "10:32:09",
+      "symbol": "SIEMENS",
+      "type": "FILTER",
+      "message": "🛡️ Blocked SIEMENS SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929097_hkac",
+      "timestamp": "10:32:09",
+      "symbol": "CHENNPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked CHENNPETRO CE Bounce: Stock's Own PCR is Bearish Call Writing (-22% drift ceiling)."
+    },
+    {
+      "id": "1792558929094_cipz",
+      "timestamp": "10:32:09",
+      "symbol": "NESTLEIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked NESTLEIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929088_u708",
+      "timestamp": "10:32:09",
+      "symbol": "HINDCOPPER",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDCOPPER SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929085_nvtm",
+      "timestamp": "10:32:09",
+      "symbol": "INOXWIND",
+      "type": "FILTER",
+      "message": "🛡️ Blocked INOXWIND SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929080_ppz3",
+      "timestamp": "10:32:09",
+      "symbol": "BHEL",
+      "type": "FILTER",
+      "message": "🛡️ Blocked BHEL SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929074_dgqn",
+      "timestamp": "10:32:09",
+      "symbol": "FINCABLES",
+      "type": "FILTER",
+      "message": "🛡️ Blocked FINCABLES SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929063_oygt",
+      "timestamp": "10:32:09",
+      "symbol": "YESBANK",
+      "type": "FILTER",
+      "message": "🛡️ Blocked YESBANK SPCR PE: Spot momentum (+0.00%) > -0.25% required for breakdown entry."
+    },
+    {
+      "id": "1792558929052_70kh",
+      "timestamp": "10:32:09",
+      "symbol": "HCLTECH",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on HCLTECH: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (-0.5 ATR)]"
+    },
+    {
+      "id": "1792558929039_et5i",
+      "timestamp": "10:32:09",
+      "symbol": "HINDPETRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked HINDPETRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558929035_lwlp",
+      "timestamp": "10:32:09",
+      "symbol": "TATAELXSI",
+      "type": "FILTER",
+      "message": "🛡️ Blocked TATAELXSI SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
+    },
+    {
+      "id": "1792558929031_tuwz",
+      "timestamp": "10:32:09",
+      "symbol": "JSWSTEEL",
+      "type": "FILTER",
+      "message": "🛡️ [GEX DOWNSIDE GUARD] Blocked CE entry for JSWSTEEL: Spot (₹1249.9) below Zero Gamma (₹1262.8) with negative multi-timeframe gamma migration."
+    },
+    {
+      "id": "1792558929027_a07z",
+      "timestamp": "10:32:09",
+      "symbol": "BSOFT",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on BSOFT: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: FAIR_VALUE]"
+    },
+    {
+      "id": "1792558929024_i6pr",
+      "timestamp": "10:32:09",
+      "symbol": "TCS",
+      "type": "CONFLUENCE_VETO",
+      "message": "🛡️ Gated SGEX-100-03 on TCS: Confluence Score 74/100 (< 82 required for high win rate). [OF: POSITIVE CVD | Skew: PUT PANIC HEDGING (DRAG) | VT: AT_FAIR_VALUE (+0.3 ATR)]"
+    },
+    {
+      "id": "1792558928853_knre",
+      "timestamp": "10:32:08",
+      "symbol": "WIPRO",
+      "type": "FILTER",
+      "message": "🛡️ Blocked WIPRO SPCR CE: Spot momentum (+0.00%) < +0.25% required for high-probability entry."
     }
   ],
   "stats": {
@@ -16076,9 +16317,9 @@
     "winRate": 37.1,
     "maxDrawdown": 4.78
   },
-  "lastScanTime": "09:22:02",
+  "lastScanTime": "10:34:38",
   "marketSession": {
-    "istTime": "10:17:50",
+    "istTime": "10:34:38",
     "istDate": "2026-10-21",
     "dayOfWeek": 3,
     "dayName": "Wednesday",
@@ -16101,8 +16342,8 @@
     }
   },
   "indexContext": {
-    "niftySpot": 23076.75,
-    "niftyOpen": 23076.75,
+    "niftySpot": 22985.2,
+    "niftyOpen": 22985.2,
     "niftyBullish": true,
     "pcrDrift": 0,
     "firstHourBaselinePcr": 1.032,
